@@ -189,4 +189,3 @@ public class EjemploColores {
 1.  **Claridad**: Usa `println()` para separar lógicamente las salidas y hacer la consola más legible.
 2.  **Concatenación**: Ten cuidado al concatenar múltiples valores para evitar espacios faltantes o sobrantes.
 3.  **Formato**: Prefiere `printf()` para salidas complejas, especialmente con números, para mantener el código limpio y el resultado bien formateado.
-``````
