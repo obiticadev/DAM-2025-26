@@ -1,4 +1,4 @@
-# Apuntes de la Clase Scanner en Java
+# 04 - LecturaDeDatos
 
 La clase `Scanner` en Java es una herramienta fundamental para leer datos de entrada desde diversas fuentes, como el teclado, archivos o cadenas de texto.
 
