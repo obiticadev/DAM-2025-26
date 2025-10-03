@@ -22,6 +22,13 @@ public class if_else {
             System.out.println("FELICIDADES, HAS ACERTADO");
             
         }
+
+        if (0 < num < 10) {
+            System.out.println("Estás en el rango");
+            
+        }else{
+            System.out.println("Estás fuera del rango");
+        }
         
     }
 }
