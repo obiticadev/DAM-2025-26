@@ -93,6 +93,44 @@ Algoritmo numero_positivo
 FinAlgoritmo
 ```
 
+Claro, aquí tienes una continuación para tu documento Markdown, manteniendo el estilo y la idea del pseudocódigo.
+
 ### 3. Tablas de Decisión
 
 Es una herramienta tabular que ayuda a representar la lógica de decisiones complejas. Mapea todas las combinaciones posibles de condiciones con las acciones que se deben realizar en cada caso. Son muy útiles para verificar que se han considerado todos los escenarios posibles.
+
+#### Ejemplo Práctico: Descuentos en una Tienda
+
+Imaginemos un sistema que aplica descuentos según dos condiciones: si el cliente es un miembro registrado y si su compra supera los 50€.
+
+| **Condiciones/Acciones**   | **Regla 1** | **Regla 2** | **Regla 3** | **Regla 4** |
+| -------------------------- | :---------: | :---------: | :---------: | :---------: |
+| ¿Es miembro registrado?    |     Sí      |     Sí      |     No      |     No      |
+| ¿Compra > 50€?             |     Sí      |     No      |     Sí      |     No      |
+| **--------------------**   | **-------** | **-------** | **-------** | **-------** |
+| Aplicar 10% de descuento   |      X      |      X      |             |             |
+| Ofrecer envío gratuito     |      X      |             |      X      |             |
+
+#### Equivalencia en Pseudocódigo
+
+El siguiente pseudocódigo representa la lógica de la tabla de decisión anterior.
+
+```plaintext
+Inicio
+  Leer esMiembro
+  Leer totalCompra
+
+  Si esMiembro = VERDADERO Entonces
+     Escribir "Aplicar 10% de descuento"
+     Si totalCompra > 50 Entonces
+        Escribir "Ofrecer envío gratuito"
+     FinSi
+  Sino
+     Si totalCompra > 50 Entonces
+        Escribir "Ofrecer envío gratuito"
+     Sino
+        Escribir "No hay ofertas adicionales"
+     FinSi
+  FinSi
+Fin
+```
