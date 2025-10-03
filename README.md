@@ -103,5 +103,5 @@ Las herramientas elegidas para romper el sistema.
 > **"Bienvenido... al desierto de lo real."**
 
 <p align="center">
-  <img src="https://media.giphy.com/media/Aaxib3uCNM5R6/giphy.gif" alt="Matrix Rabbit" width="200"/>
+  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGF6ZWtkOGV0d2lkcnRlc2l5ZHNrNWlpcnBpNGh3dTU3N2JranZ5MyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/10zxDv7Hv5RF9C/giphy.gif" alt="Matrix Rabbit" width="200"/>
 </p>
