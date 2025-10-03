@@ -24,6 +24,7 @@ public class if_else_ej1 {
         }else{
             System.out.println("No puedes entrar");
         }
+        numScanner.close();
         
     }
 }
