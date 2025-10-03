@@ -61,11 +61,11 @@ Es una técnica que utiliza símbolos gráficos para representar la secuencia de
 
 | Símbolo | Nombre | Función |
 | :--- | :--- | :--- |
-| ![Inicio/Fin](https://i.imgur.com/8aZ3sMv.png) | Inicio / Final | Representa el comienzo y el fin de un proceso. |
-| ![Línea de Flujo](https://i.imgur.com/GgV7o3k.png) | Línea de Flujo | Indica el orden de ejecución y conecta los símbolos. |
-| ![Entrada/Salida](https://i.imgur.com/gJ6Z1d2.png) | Entrada / Salida | Representa la lectura de datos (ej. del teclado) o la impresión de resultados (ej. en pantalla). |
-| ![Proceso](https://i.imgur.com/6a9yq4D.png) | Proceso | Representa cualquier tipo de operación, cálculo o asignación. |
-| ![Decisión](https://i.imgur.com/M6F2G6A.png) | Decisión | Permite analizar una condición para tomar un camino u otro (basado en verdadero o falso). |
+| ![Inicio/Fin](https://waz.smartdraw.com/flowchart/img/start-end-flowchart-symbol.png?bn=15100111939) | Inicio / Final | Representa el comienzo y el fin de un proceso. |
+| ![Línea de Flujo](https://venngage-wordpress.s3.amazonaws.com/uploads/2024/02/2.png) | Línea de Flujo | Indica el orden de ejecución y conecta los símbolos. |
+| ![Entrada/Salida](https://waz.smartdraw.com/flowchart/img/imput-output-flowchart-symbol.png?bn=15100111939) | Entrada / Salida | Representa la lectura de datos (ej. del teclado) o la impresión de resultados (ej. en pantalla). |
+| ![Proceso](https://waz.smartdraw.com/flowchart/img/action-process-flowchart-symbol.png?bn=15100111939) | Proceso | Representa cualquier tipo de operación, cálculo o asignación. |
+| ![Decisión](https://waz.smartdraw.com/flowchart/img/decision-flowchart-symbol.png?bn=15100111939) | Decisión | Permite analizar una condición para tomar un camino u otro (basado en verdadero o falso). |
 
 **Reglas de Construcción:**
 1.  Todos los símbolos deben estar conectados por líneas de flujo.
@@ -78,9 +78,6 @@ Es una técnica que utiliza símbolos gráficos para representar la secuencia de
 Es la técnica más utilizada actualmente. Se basa en el uso de un lenguaje natural simplificado con palabras clave, instrucciones y estructuras de programación para describir un algoritmo de forma escrita.
 
 **Ejemplo: Determinar si un número es positivo.**
-
-**Diagrama de Flujo:**
-![Diagrama de flujo de número positivo](https://i.imgur.com/2sX3K2T.png)
 
 **Pseudocódigo correspondiente:**
 ```
