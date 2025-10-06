@@ -1,0 +1,3 @@
+En un supermercado hay productos organizados por categorías (Frutas, carnes, pescados, etc...), cada producto pertenece a una única categoría y puede haber categorías que todavía no tenga ningún producto asignado, sin embargo, no puede haber productos sin categoría.
+De las categorías vamos a guardar un código, un nombre y de los productos un código un nombre y un precio
+También interesa almacenar cuántos productos de cada categoría hay en el supermercado
