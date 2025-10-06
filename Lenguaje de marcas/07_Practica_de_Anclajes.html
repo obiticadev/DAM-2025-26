@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lenguaje de marcado</title>
+</head>
+<body>
+    <ul>
+        <li><a href="#uno">Lenguaje de marcado</a></li>
+        <li><a href="#dos">Clases de lenguajes de marcado</a></li>
+        <ul>
+            <li><a href="#dos_uno">Marcado de presentación</a></li>
+            <li><a href="#dos_dos">Marcado de procedimientos</a></li>
+        </ul>
+    </ul>
+    <h1 id="uno">Lenguaje de marcado</h1>
+    <hr>
+    <p>Un lenguaje de marcado o lenguaje de marcas es una forma de codificar un documento que, junto con el texto, incorpora etiquetas o marcas que contienen información adicional acerca de la estructura del texto o su presentación. </p>
+    <p>El lenguaje de marcas más extendido es el HTML (HyperText Markup Language, lenguaje de marcado de hipertexto), fundamento del World Wide Web (entramado de comunicación de alcance mundial).</p>
+    <p>Los lenguajes de marcado suelen confundirse con lenguajes de programación. Sin embargo, no son lo mismo, ya que el lenguaje de marcado no tiene funciones aritméticas o variables, como poseen los lenguajes de programación. Históricamente, el marcado se usaba y se usa en la industria editorial y de la comunicación, así como entre autores, editores e impresores.</p>
+    <p>Un ejemplo de cómo funciona el lenguaje de marcado puede observarse en el dictado de viva voz de un documento a una persona que lo transcribe a máquina:</p>
+    <p><q><em>Ponga estilo de carta, ponga comillas, ponga mayúsculas, Estimado Juan, ponga dos puntos, aparte, sangría, ponga primera letra mayúscula, te escribo esta carta, ponga negrillas, de forma muy urgente, cierre negrilla, ya que no me has enviado..., etc.</em></q></p>
+    
+    <h1 id="dos">Clases de lenguajes de marcado</h1>
+    <p>Se suele diferenciar entre tres clases de lenguajes de marcado, aunque en la práctica pueden combinarse varias clases en un mismo documento. Por ejemplo, el HTML contiene etiquetas puramente procedimentales, como la B de bold (negrita), junto con otras puramente descriptivas (BLOCKQUOTE, el atributo HREF). El HTML también incluye el elemento PRE, que indica que el texto debe representarse tal y como está escrito.</p>
+
+    <h2 id="dos_uno">Marcado de presentación</h2>
+    <p>El marcado de presentación es aquel que indica el formato del texto. Este tipo de marcado es útil para maquetar la presentación de un documento para su lectura, pero resulta insuficiente para el procesamiento automático de la información. El marcado de presentación resulta más fácil de elaborar, sobre todo para cantidades pequeñas de información. Sin embargo resulta complicado de mantener o modificar, por lo que su uso se ha ido reduciendo en proyectos grandes en favor de otros tipos de marcado más estructurados.</p>
+    <p>Se puede tratar de averiguar la estructura de un documento de esta clase buscando pistas en el texto. Por ejemplo, el título puede ir precedido de varios saltos de línea (o renglón), y estar ubicado centrado en la página web. Varios programas pueden deducir la estructura del texto basándose en esta clase de datos, aunque el resultado suele ser bastante imperfecto. Un ejemplo de marcado de presentación, puede ser RTF.</p>
+
+    <h2 id="dos_dos">Marcado de procedimientos</h2>
+    <p>El marcado de procedimientos está enfocado hacia la presentación del texto, sin embargo, también es visible para el usuario que edita el texto. El programa que representa el documento debe interpretar el código en el mismo orden en que aparece. Por ejemplo, para formatear un título, debe haber una serie de directivas inmediatamente antes del texto en cuestión, indicándole al software instrucciones tales como centrar, aumentar el tamaño de la fuente, o cambiar a negrita. Inmediatamente después del título deberá haber etiquetas inversas que reviertan estos efectos. En sistemas más avanzados se utilizan macros o pilas que facilitan el trabajo.</p>
+    <p>Algunos ejemplos de marcado de procedimientos son nroff, troff, TeX. Este tipo de marcado se ha usado extensivamente en aplicaciones de edición profesional, manipulados por tipógrafos calificados, ya que puede llegar a ser extremadamente complejo.</p>
+</body>
+</html>
