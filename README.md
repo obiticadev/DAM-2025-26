@@ -57,7 +57,7 @@ Matriz de tiempo de las incursiones académicas semanales.
 
 ## 📈 Estado y Contacto
 *   **Estado del Repositorio:** `ACTIVO - EN CONSTANTE ACTUALIZACIÓN`
-*   **Contacto:** `[Añade aquí tu LinkedIn, correo o portfolio]`
+*   **Contacto:** obitica.dev@gmail.com
 
 > **"Bienvenido... al desierto de lo real."**
 
