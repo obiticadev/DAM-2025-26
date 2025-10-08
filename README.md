@@ -20,7 +20,6 @@ Cada directorio es un módulo de conocimiento que estoy cursando. A continuació
 | **Programación** | `_the_core_code_` | Desarrollo de algoritmos, lógica de programación y aplicaciones con Java y Python. | [Ver Archivos](./Programación/) |
 | **Entornos de Desarrollo** | `_arsenal_&_tools_` | Dominio de herramientas de desarrollo, IDEs, depuradores y control de versiones con Git. | [Ver Archivos](./Entornos%20de%20Desarrollo/) |
 | **Computación en la Nube** | `_the_expanse_` | Introducción a los servicios en la nube, contenedores y arquitecturas distribuidas. | [Ver Archivos](./Fundamentos%20de%20la%20Computación%20en%20la%20Nube/) |
-| **Formación y O.L.** | `_human_interface_protocol_` | Protocolos del entorno laboral: legislación, búsqueda de empleo y trabajo en equipo. | [Ver Archivos](./Formación%20y%20Orientación%20Laboral/) |
 
 ---
 
