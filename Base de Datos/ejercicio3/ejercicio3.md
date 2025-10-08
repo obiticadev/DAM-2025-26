@@ -5,4 +5,4 @@
 5. Los atributos de producto: código , nombre y precio. 
 6. Cada compra se identifica por un numero de ticket e interesa almacenar la fecha de la compra y el importe total. 
 7. Puede haber productos que no estén en la compra 
-8. Para cada compra debo saber la cantidad de un producto que se compro
+8. Para cada compra debo saber la cantidad de un producto que se compro 
