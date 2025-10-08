@@ -2,103 +2,62 @@
   <img src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3Nnh3MnowMHkwengyZWtwdGhpNHV0aG91b29iYzMwbHRnc3Bic3J1eCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/zXmbOaTpbY6mA/giphy.gif" alt="Matrix Code Rain" width="100%"/>
 </p>
 
-# > **SYSTEM_LOG: DAM_2025-26**
-## > **STATUS: INICIANDO PROGRAMA DE APRENDIZAJE...**
+# Repositorio Académico: Desarrollo de Aplicaciones Multiplataforma (2025-26)
+### `> SYSTEM_STATUS: ONLINE | MISSION: DAM_COURSEWORK`
 
-```
-[root@localhost ~]# whoami
-> Un agente en entrenamiento. Este repositorio es mi base de operaciones.
-> Aquí se registran todas mis incursiones en el código, mis descifrados
-> de sistemas y mis misiones académicas del Grado Superior en
-> Desarrollo de Aplicaciones Multiplataforma.
-
-[root@localhost ~]# ls -l
-> total 7
-> drwxr-xr-x 1 user user 4096 Oct 3 15:35 modulos/
-> -rw-r--r-- 1 user user 1024 Oct 3 15:35 schedule.log
-> -rw-r--r-- 1 user user 2048 Oct 3 15:35 tools.conf
-```
+Este repositorio centraliza todos los proyectos, ejercicios y apuntes del **Grado Superior en Desarrollo de Aplicaciones Multiplataforma (DAM)**. Es mi bitácora de aprendizaje, donde cada *commit* es un paso más en mi formación como desarrollador.
 
 ---
 
-## > **MODULOS_DE_CONOCIMIENTO > CARGANDO...**
+## 📂 Módulos de Conocimiento
+Cada directorio es un módulo de conocimiento que estoy cursando. A continuación, se detalla el contenido y las habilidades en desarrollo para cada uno.
 
-Cada directorio es un módulo de habilidades que estoy adquiriendo. El acceso está restringido a agentes autorizados (o a cualquiera que quiera aprender).
-
-<details>
-  <summary><strong>> [ módulo ] : Sistemas Informáticos // _kernel_panic_avoidance_</strong></summary>
-  <br>
-  <p>Análisis forense de hardware, infiltración en sistemas operativos y decodificación de redes. Los registros de esta unidad se encuentran en <code>./Sistemas-Informaticos</code>.</p>
-</details>
-
-<details>
-  <summary><strong>> [ módulo ] : Base de Datos // _data_stream_control_</strong></summary>
-  <br>
-  <p>Construcción y manipulación de constructos de datos masivos. Planos de diseño, inyecciones SQL y protocolos de persistencia almacenados en <code>./Base-de-Datos</code>.</p>
-</details>
-
-<details>
-  <summary><strong>> [ módulo ] : Lenguajes Informáticos y SGI // _protocol_decryption_</strong></summary>
-  <br>
-  <p>Ingeniería inversa de lenguajes de marcado. Aquí se archivan los artefactos y scripts para interpretar la estructura de la información. Accede a los archivos en <code>./Lenguajes-Informaticos-SGI</code>.</p>
-</details>
-
-<details>
-  <summary><strong>> [ módulo ] : Programación // _the_core_code_</strong></summary>
-  <br>
-  <p>El núcleo de la simulación. Algoritmos, exploits de lógica y scripts de combate compilados en Java y Python. El código fuente reside en <code>./Programacion</code>.</p>
-</details>
-
-<details>
-  <summary><strong>> [ módulo ] : Entorno de Desarrollo // _arsenal_&_tools_</strong></summary>
-  <br>
-  <p>Forjando mis herramientas: terminales personalizadas, scripts de automatización y el arte del control de versiones con Git. Manuales y configuraciones en <code>./Entorno-de-Desarrollo</code>.</p>
-</details>
-
-<details>
-  <summary><strong>> [ módulo ] : Fundamentos de la Computación en la Nube // _the_expanse_</strong></summary>
-  <br>
-  <p>Navegando por la red de redes descentralizada. Protocolos de acceso a la nube, contenedores y arquitecturas distribuidas. Datos de misión en <code>./Fundamentos-Cloud</code>.</p>
-</details>
-
-<details>
-  <summary><strong>> [ módulo ] : Formación y Orientación Laboral // _human_interface_protocol_</strong></summary>
-  <br>
-  <p>Incluso un agente necesita entender las reglas del mundo real. Contratos, derechos y protocolos de interacción corporativa. Documentación clasificada en <code>./FOL</code>.</p>
-</details>
+| Módulo | Alias Temático | Descripción | Acceso Directo |
+| :--- | :--- | :--- | :--- |
+| **Sistemas Informáticos** | `_kernel_panic_avoidance_` | Análisis de hardware, gestión de sistemas operativos y configuración de redes. | [Ver Archivos](./Sistemas%20Informáticos/) |
+| **Base de Datos** | `_data_stream_control_` | Diseño, implementación y manipulación de bases de datos relacionales y NoSQL. | [Ver Archivos](./Base%20de%20Datos/) |
+| **Lenguaje de Marcas** | `_protocol_decryption_` | Estructuración de la información y creación de contenido web con HTML, XML y CSS. | [Ver Archivos](./Lenguaje%20de%20marcas/) |
+| **Programación** | `_the_core_code_` | Desarrollo de algoritmos, lógica de programación y aplicaciones con Java y Python. | [Ver Archivos](./Programación/) |
+| **Entornos de Desarrollo** | `_arsenal_&_tools_` | Dominio de herramientas de desarrollo, IDEs, depuradores y control de versiones con Git. | [Ver Archivos](./Entornos%20de%20Desarrollo/) |
+| **Computación en la Nube** | `_the_expanse_` | Introducción a los servicios en la nube, contenedores y arquitecturas distribuidas. | [Ver Archivos](./Fundamentos%20de%20la%20Computación%20en%20la%20Nube/) |
+| **Formación y O.L.** | `_human_interface_protocol_` | Protocolos del entorno laboral: legislación, búsqueda de empleo y trabajo en equipo. | [Ver Archivos](./Formación%20y%20Orientación%20Laboral/) |
 
 ---
 
-## > **SCHEDULE.LOG > SINCRONIZANDO TRANSMISIONES**
+## 🛠️ Stack Tecnológico | Mi Arsenal
+Tecnologías y herramientas que estoy utilizando para construir y completar mis misiones.
 
-```
-// Matriz de tiempo de las incursiones semanales. No hay escapatoria.
-+-----------------+---------------------------+--------------------------+---------------------------+------------------------+---------------------+
-|      HORA       |           LUNES           |          MARTES          |         MIÉRCOLES         |         JUEVES         |       VIERNES       |
-+-----------------+---------------------------+--------------------------+---------------------------+------------------------+---------------------+
-| 15:35 -> 17:25  | Sistemas Informáticos     | Formación y O.L.         | Sistemas Informáticos     | Sistemas Informáticos  | Programación        |
-| 17:25 -> 18:20  | Lenguajes Informáticos    | Programación             | Lenguajes Informáticos    | Entorno de Desarrollo  | Fundamentos Cloud   |
-| 18:40 -> 19:35  | Lenguajes Informáticos    | Programación             | Formación y O.L.          | Entorno de Desarrollo  | Fundamentos Cloud   |
-| 19:35 -> 21:25  | Base de Datos             | Base de Datos            | Programación              | Programación           | Base de Datos       |
-+-----------------+---------------------------+--------------------------+---------------------------+------------------------+---------------------+
-```
-
----
-
-## > **TOOLS.CONF > MI ARSENAL DIGITAL**
-
-Las herramientas elegidas para romper el sistema.
-
-<p align="left">
-  <a href="https://www.java.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="java" width="40" height="40"/> </a>
-  <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a>
-  <a href="https://www.mysql.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="40" height="40"/> </a>
-  <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a>
-  <a href="https://www.linux.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="40" height="40"/> </a>
-  <a href="https://code.visualstudio.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vscode/vscode-original.svg" alt="vscode" width="40" height="40"/> </a>
+<p align="center">
+  <a href="https://www.java.com" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="Java" width="50" height="50"/></a>
+  &nbsp;&nbsp;
+  <a href="https://www.python.org" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="Python" width="50" height="50"/></a>
+  &nbsp;&nbsp;
+  <a href="https://www.mysql.com/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="MySQL" width="50" height="50"/></a>
+  &nbsp;&nbsp;
+  <a href="https://git-scm.com/" target="_blank" rel="noreferrer"><img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="Git" width="50" height="50"/></a>
+  &nbsp;&nbsp;
+  <a href="https://www.linux.org/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="Linux" width="50" height="50"/></a>
+  &nbsp;&nbsp;
+  <a href="https://code.visualstudio.com/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vscode/vscode-original.svg" alt="VSCode" width="50" height="50"/></a>
 </p>
 
 ---
+
+## 📅 Horario de Transmisiones | `SCHEDULE.LOG`
+Matriz de tiempo de las incursiones académicas semanales.
+
+| Hora | Lunes | Martes | Miércoles | Jueves | Viernes |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| **15:35 - 17:25** | Sistemas Informáticos | Formación y O.L. | Sistemas Informáticos | Sistemas Informáticos | Programación |
+| **17:25 - 18:20** | Lenguaje de Marcas | Programación | Lenguaje de Marcas | Entornos de Desarrollo | Computación en la Nube |
+| **18:40 - 19:35** | Lenguaje de Marcas | Programación | Formación y O.L. | Entornos de Desarrollo | Computación en la Nube |
+| **19:35 - 21:25** | Base de Datos | Base de Datos | Programación | Programación | Base de Datos |
+
+---
+
+## 📈 Estado y Contacto
+*   **Estado del Repositorio:** `ACTIVO - EN CONSTANTE ACTUALIZACIÓN`
+*   **Contacto:** `[Añade aquí tu LinkedIn, correo o portfolio]`
 
 > **"Bienvenido... al desierto de lo real."**
 
