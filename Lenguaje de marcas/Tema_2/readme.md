@@ -207,3 +207,40 @@ Se pueden crear enlaces a secciones específicas de una misma página utilizando
     ```html
     <a href="#seccion2">Ir a la Sección 2</a>
     ```
+
+### 10. Imágenes en HTML
+
+Para incluir imágenes en un documento HTML se utiliza la etiqueta `<img>`, que es una etiqueta vacía (no tiene etiqueta de cierre).
+
+| Atributo | Descripción |
+| :--- | :--- |
+| **`src`** | **Obligatorio.** Especifica la ruta (URL) del archivo de imagen. |
+| **`alt`** | **Obligatorio.** Proporciona un texto alternativo que se muestra si la imagen no se puede cargar. Es fundamental para la accesibilidad web. |
+| `width` | Define el ancho de la imagen en píxeles. |
+| `height`| Define el alto de la imagen en píxeles. |
+| `border` | Define el grosor del borde. (*Nota: Este atributo está obsoleto, se recomienda usar CSS para los bordes*). |
+
+**Ejemplo básico:**
+```html
+<h1>Lago Tahoe</h1>
+<img src="img/lake.jpg" alt="Un paisaje del Lago Tahoe" width="400" border="1" />
+```
+
+#### Agrupación Semántica con `<figure>` y `<figcaption>`
+
+Para asociar una imagen con un pie de foto o una leyenda de manera semántica, se utilizan las etiquetas `<figure>` y `<figcaption>`.
+
+*   **`<figure>`:** Es un contenedor para cualquier contenido independiente (como imágenes, diagramas o vídeos) que se referencia desde el flujo principal del documento.
+*   **`<figcaption>`:** Proporciona una leyenda o descripción para el contenido dentro de `<figure>`.
+
+Este es el método moderno y correcto para añadir un pie de foto a una imagen.
+
+**Ejemplo de uso:**
+```html
+<figure>
+    <img src="img/lake.jpg" alt="Un paisaje del Lago Tahoe" width="400" />
+    <figcaption>
+        <i>El <b>lago Tahoe</b> en Sierra Nevada (Estados Unidos)</i>
+    </figcaption>
+</figure>
+```
