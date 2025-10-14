@@ -1,0 +1,4 @@
+Una persona asiste a clases particulares en una academia de inglés. Cada persona se ubica en un grupo en función de su nivel de inglés y nos interesa saber el nombre del grupo el nivel (unico) y el horario del grupo. Hay un grupo para cada nivel.
+En la academia, hay varios profesores de nacionalidades distintas.
+Cada profesor da clase a varios grupos y queremos guardar el nombre, apellido, nacionalidad, nss de cada profesor. Cada grupo está formado por varios alumnos.
+A cada grupo solo le imparte clase un profesor y del alumno guardaremos su DNI, nombre, apellidos, nacionalidad y número de cuenta bancaria

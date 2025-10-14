@@ -1,0 +1,1 @@
+En un centro de salud un médico atiende a varios pacientes y cada paciente está asignado a un solo médico. Tanto de lo médicos como de los pacientes guardaremos sus datos personales (nombre, apellido, dirección, dni). Cada médico, del que también necesitaremos número de cuenta corriente pasa consulta en una o varias salas.
