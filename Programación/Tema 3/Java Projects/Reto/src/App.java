@@ -37,8 +37,8 @@ public class App {
         // Declaración de variables
         int select;
         int modulos;
-        double nota;
         boolean selectValido = false;
+        int i;
         
         Scanner numScan = new Scanner(System.in);
 
@@ -55,22 +55,27 @@ public class App {
 
 
             if (select == 1) {
+                System.out.print("\033[H\033[2J");
                 System.out.println("Has seleccionado la opción 1");
                 System.out.println("Introduce el número de módulos:");
                 modulos = numScan.nextInt();
-                for (int i = 1 ; i <= modulos ; i++){
+                double[] nota = new double[modulos];
+
+                
+                for (i = 0 ; i < modulos ; i++){
+                    System.out.print("\033[H\033[2J");
                     System.out.println("Introduce la nota del módulo " + i + ":");
-                    nota = numScan.nextDouble();
-                    if (nota < 1 || nota > 10){
+                    nota[i] = numScan.nextDouble();
+                    if (nota[i] < 1 || nota[i] > 10){
                         System.out.println("Esta nota no es válida");
                         i--;
-                    }else if (nota >= 1 && nota < 5){
+                    }else if (nota[i] >= 1 && nota[i] < 5){
                         System.out.println("No superado");
-                    }else if (nota >= 5 && nota < 6){
+                    }else if (nota[i] >= 5 && nota[i] < 6){
                         System.out.println("Aprobado");
-                    }else if (nota >= 6 && nota < 8){
+                    }else if (nota[i] >= 6 && nota[i] < 8){
                         System.out.println("Notable");
-                    }else if (nota >= 8 && nota <= 10){
+                    }else if (nota[i] >= 8 && nota[i] <= 10){
                         System.out.println("Sobresaliente");
                     }
 
@@ -78,17 +83,19 @@ public class App {
 
                 selectValido = true;
             }else if (select == 2) {
+                System.out.print("\033[H\033[2J");
 
                 
                 selectValido = true;
             }else if (select == 3) {
+                System.out.print("\033[H\033[2J");
                 
                 
                 System.out.println("FIN DEL PROGRAMA");
-                selectValido = false;
+                selectValido = true;
             }else{
                 
-                
+                System.out.print("\033[H\033[2J");
                 System.out.println("\nOpción no válida\n");
                 selectValido = false;
             }
