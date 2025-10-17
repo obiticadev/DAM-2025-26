@@ -1,0 +1,1 @@
+En una clase puede haber solo ejercicios teóricos o prácticos. Si son teóricos, tienen que cumplir una serie de horas y si son prácticos constan de un número de ejercicios. Un ejercicio puede ser teórico y práctico a la vez.

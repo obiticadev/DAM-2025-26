@@ -1,0 +1,1 @@
+Una persona puede estar parada, ser un trabajador o incluso jubilado. Pero si eres parado no puedes estar trabajando. Si eres parado, tienes un número de parado y si eres trabajador un número de empresa. Las personas viven en una sola ciudad. Y los trabajadores pueden trabajar en varios proyectos si quieren. Y en un proyecto puede haber varios trabajadores a veces.
