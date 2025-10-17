@@ -166,5 +166,125 @@ public class EjemploConversionTipos {
         int valorAscii = (int) letra; // Casting explícito
         System.out.println("Valor ASCII de '" + letra + "': " + valorAscii);
     }
-}```
+}
+```
+
+# Simplificado
+
+## 1. Conversiones Numéricas
+
+### De `int` a `double` (Automática / Widening)
+Se convierte automáticamente un tipo pequeño a uno más grande sin riesgo de perder datos.
+
+```java
+// int numeroEntero = 100;
+double numeroDecimal = numeroEntero; // Se añade .0 automáticamente
+```
+
+### De `double` a `int` (Manual / Narrowing)
+Se debe forzar la conversión de un tipo grande a uno más pequeño. **Se pierde la parte decimal.**
+
+```java
+// double numeroDecimal = 9.78;
+int enteroRecortado = (int) numeroDecimal; // Resultado: 9
+```
+
+### De `long` a `int` (Manual / Narrowing)
+Requiere casting explícito. **Riesgo de perder valor** si el `long` es más grande de lo que un `int` puede almacenar.
+
+```java
+// long longLargo = 12345678901L;
+int intCorto = (int) longLargo;
+```
+
+### De `int` a `byte` (Manual / Narrowing)
+Requiere casting explícito. **Riesgo de desbordamiento** si el `int` está fuera del rango de `byte` (-128 a 127).
+
+```java
+// int numeroEntero = 120;
+byte bytePequeño = (byte) numeroEntero;
+```
+
+---
+
+## 2. Conversiones entre `char` y `int`
+
+### De `char` (letra) a `int` (su código ASCII/Unicode)
+Se obtiene el valor numérico del carácter de forma automática.
+
+```java
+// char unaLetra = 'A';
+int codigoNumerico = unaLetra; // Resultado: 65
+```
+
+### De `int` (código) a `char` (letra)
+Se convierte un valor numérico a su carácter correspondiente usando casting.
+
+```java
+// int unCodigo = 65;
+char letraResultante = (char) unCodigo; // Resultado: 'A'
+```
+
+---
+
+## 3. Conversiones de `String` a Tipos Numéricos (¡Usando Métodos!)
+
+**Importante:** Nunca se usa casting directo como `(int) "123"`. Se utilizan los métodos `parse` de las clases envolventes (`Integer`, `Double`, etc.).
+
+### De `String` a `int`
+```java
+// String textoNumero = "123";
+int numeroParseado = Integer.parseInt(textoNumero);
+```
+
+### De `String` a `double`
+```java
+// String textoDecimal = "99.5";
+double decimalParseado = Double.parseDouble(textoDecimal);
+```
+
+### De `String` a `float`
+```java
+// String textoFlotante = "12.34f";
+float flotanteParseado = Float.parseFloat(textoFlotante);
+```
+
+### De `String` a `long`
+```java
+// String textoLargo = "1234567890";
+long largoParseado = Long.parseLong(textoLargo);
+```
+
+---
+
+## 4. Conversiones de Tipos Numéricos a `String`
+
+### Método 1: Formal (`String.valueOf()`)
+La forma explícita y recomendada.
+
+```java
+// int numeroEntero = 500;
+String textoDesdeInt = String.valueOf(numeroEntero); // Resultado: "500"
+```
+
+### Método 2: Fácil (Concatenación)
+El truco más común y rápido para convertir cualquier tipo a `String`.
+
+```java
+// double numeroDecimal = 49.99;
+String textoDesdeDouble = "" + numeroDecimal; // Resultado: "49.99"
+```
+
+---
+
+## 5. Extracción de `String` a `char`
+
+No es una conversión de tipo directa, sino la **extracción** de un carácter de la cadena en una posición específica.
+
+### De `String` a `char` (Obtener un carácter)
+Se usa el método `.charAt(índice)`. El índice `0` es el primer carácter.
+
+```java
+// String miPalabra = "Hola";
+char primerCaracter = miPalabra.charAt(0); // Resultado: 'H'
 ```

@@ -1,4 +1,4 @@
-# Guía de la Estructura de Control switch en Java
+# Guía de la Estructura de Control `switch` en Java
 
 El comando `switch` es una estructura de control que permite evaluar una variable y compararla con una lista de posibles valores (`case`). Es una alternativa más limpia y, a veces, más eficiente que una larga cadena de sentencias `if-else if-else` cuando todas las condiciones dependen del valor de una única variable.
 
@@ -29,6 +29,44 @@ switch (variable) {
 *   **`case valorX`**: Una etiqueta que define un valor con el que se comparará la variable.
 *   **`break`**: **Fundamental**. Termina la ejecución del `switch`. Si se omite, la ejecución continuará con el siguiente `case` (comportamiento conocido como *fall-through*).
 *   **`default`**: Bloque opcional que se ejecuta si la variable no coincide con ninguno de los `case`. Es una buena práctica incluirlo siempre.
+
+### Ámbito de Variables y el Uso de Llaves `{}`
+Una característica importante de la sintaxis clásica es el **ámbito (scope)** de las variables. Por defecto, todo el bloque `switch` comparte un único ámbito. Esto puede causar problemas si declaras variables con el mismo nombre en diferentes `case`.
+
+Para solucionar esto y organizar mejor el código, puedes usar llaves `{}` para darle a cada `case` su propio ámbito local.
+
+**Ejemplo sin llaves (genera un error):**
+```java
+int opcion = 1;
+switch (opcion) {
+    case 1:
+        String mensaje = "Opción 1"; // 'mensaje' se declara en el ámbito del switch
+        System.out.println(mensaje);
+        break;
+    case 2:
+        String mensaje = "Opción 2"; // ERROR: Variable 'mensaje' ya está definida
+        System.out.println(mensaje);
+        break;
+}
+```
+
+**Ejemplo con llaves (sintaxis correcta y recomendada):**
+```java
+int opcion = 1;
+switch (opcion) {
+    case 1: {
+        String mensaje = "Opción 1"; // 'mensaje' solo existe dentro de este bloque
+        System.out.println(mensaje);
+        break;
+    }
+    case 2: {
+        String mensaje = "Opción 2"; // Es una variable nueva, sin conflicto
+        System.out.println(mensaje);
+        break;
+    }
+}
+```
+**Recomendación:** Es una excelente práctica usar siempre llaves `{}` en cada `case` si contiene más de una línea de código o si declaras variables, ya que evita errores de ámbito y mejora la legibilidad.
 
 ### Ejemplo Básico (con `int`)
 ```java
@@ -206,3 +244,4 @@ El día de la semana es: Domingo
 2.  **Incluye `default`:** Siempre añade un caso `default` para manejar valores inesperados y evitar un comportamiento indefinido.
 3.  **Prefiere el `switch` Moderno:** Si tu versión de Java lo permite (14+), usa la sintaxis con `->`. Es más segura, legible y potente.
 4.  **Agrupa Casos:** Para evitar código duplicado, agrupa los `case` que deben ejecutar la misma lógica.
+5.  **Usa Llaves en `case` Clásicos:** Para evitar errores de ámbito de variables y mejorar la claridad del código, encierra la lógica de cada `case` en un bloque `{}`.
