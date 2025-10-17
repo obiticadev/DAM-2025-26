@@ -172,7 +172,8 @@ public class UsoBreak {
         // La ejecución continúa aquí después del break
         System.out.println("Bucle terminado.");
     }
-}```
+}
+```
 **Salida:**
 ```
 Número: 1
