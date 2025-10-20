@@ -27,7 +27,8 @@ resultado = (condicion) ? valor_si_es_verdadero : valor_si_es_falso;
 
 El operador ternario es un reemplazo directo para una estructura `if-else` simple que solo realiza una asignación.
 
-**Estructura `if-else`:**```java
+**Estructura `if-else`:**
+```java
 if (x > y) {
     mayor = x;
 } else {
