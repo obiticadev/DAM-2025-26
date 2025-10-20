@@ -1,3 +1,6 @@
+
+import java.util.Scanner;
+
 /*
 Enunciado:
 
@@ -16,7 +19,27 @@ Céntimos: 68
 
 public class ejercicio8 {
     public static void main(String[] args) throws Exception {
+
+        String num;
+        double numConvert;
+        int numEntero;
+        double decimal;
+        int decimalToInt;
+
+        Scanner scan = new Scanner(System.in);
         
+        System.out.println("Ingresa una cantidad de dinero (ej: 45.67):");
+        num = scan.nextLine();
+        numConvert = Double.parseDouble(num);
+        numEntero = (int) numConvert;
+        decimal = (numConvert - numEntero) * 100;
+        decimalToInt = (int) decimal;
+
+        // Salida
+        System.out.println("Desglose:");
+        System.out.println("Euros: " + numEntero);
+        System.out.println("Céntimos: " + decimalToInt);
+
         
     }
 }

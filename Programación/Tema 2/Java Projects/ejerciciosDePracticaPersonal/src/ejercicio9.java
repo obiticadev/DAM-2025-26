@@ -1,3 +1,6 @@
+
+import java.util.Scanner;
+
 /*
 Enunciado:
 
@@ -17,7 +20,41 @@ Tu código de usuario es: AN94#
 
 public class ejercicio9 {
     public static void main(String[] args) throws Exception {
+
+        String name;
+        int date;
+        boolean esMinuscula;
+        char[] codUser = new char[5];
+        String codUserFinal;
         
+        Scanner scan = new Scanner(System.in);
+        Scanner numScan = new Scanner(System.in);
+        
+        System.out.println("Ingresa tu primer nombre: ");
+        name = scan.nextLine();
+        System.out.println("Ingresa tu año de nacimiento:");
+        date = numScan.nextInt();
+
+        for (int i = 0 ; i <= 4 ; i ++){
+            if (i >= 0 && i <= 1){
+                codUser[i] = name.charAt(i);
+                if (Character.isLowerCase(codUser[i])){
+                    codUser[i] = Character.toUpperCase(codUser[i]);
+                }
+            }
+            if (i > 1 && i <= 3){
+                codUser[i] = (String.valueOf(date)).charAt(i);
+            }
+            if (i == 4){
+                codUser[i] = '#';
+            }
+            
+        }
+        codUserFinal = new String(codUser);
+
+
+        // Salida
+        System.out.println("Tu código de usuario es: " + codUserFinal);
         
     }
 }
