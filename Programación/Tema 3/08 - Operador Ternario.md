@@ -27,7 +27,8 @@ resultado = (condicion) ? valor_si_es_verdadero : valor_si_es_falso;
 
 El operador ternario es un reemplazo directo para una estructura `if-else` simple que solo realiza una asignación.
 
-**Estructura `if-else`:**```java
+**Estructura `if-else`:**
+```java
 if (x > y) {
     mayor = x;
 } else {
@@ -76,7 +77,8 @@ public class ParOImpar {
         String resultado = (numero % 2 == 0) ? "Par" : "Impar";
         System.out.println("El número es: " + resultado); // Salida: Impar
     }
-}```
+}
+```
 **Explicación:** La condición `(7 % 2 == 0)` es falsa, por lo que se asigna el string `"Impar"`.
 
 ### Ejemplo 3: Verificar si una Persona es Mayor de Edad
