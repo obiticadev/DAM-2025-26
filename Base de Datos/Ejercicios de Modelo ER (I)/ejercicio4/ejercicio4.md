@@ -10,6 +10,6 @@ Diagrama E/R que recoja la organización de un sistema de información sobre mun
     
 - Una persona sólo puede habitar una vivienda y residir en un municipio, pero puede ser propietaria de más de una vivienda.
     
-- Interesa reflejar la relación de las personas con su cabeza de familia.
+- Interesa reflejar la relación de las personas con su cabeza de familia. 
     
 - Se asume que no hay municipios sin viviendas, pero que puede haber municipios sin habitantes.

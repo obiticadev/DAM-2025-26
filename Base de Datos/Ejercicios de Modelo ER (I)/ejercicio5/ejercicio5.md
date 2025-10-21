@@ -18,6 +18,6 @@ Diseñar el esquema E/R para una BD que guarda información sobre las reservas q
     
 - En la Base de Datos pueden existir clientes que no hayan hecho aún ninguna reserva.
     
-- Todas las entidades tienen una clave alfanumérica que las identifica unívocamente.
+- Todas las entidades tienen una clave alfanumérica que las identifica inequívocamente.
     
 - Es importante registrar la fecha de comienzo y final del periodo de reserva.
