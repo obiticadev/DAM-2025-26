@@ -35,8 +35,8 @@ Los objetos `String` en Java son **inmutables**, lo que significa que una vez cr
 String saludo = "Hola";
 // La siguiente línea no modifica "Hola", sino que crea un nuevo objeto "Hola Mundo"
 // y hace que la variable 'saludo' apunte a este nuevo objeto.
-saludo = saludo + " Mundo"; 
-```
+saludo = saludo + " Mundo"; ```
+Esta propiedad garantiza que las cadenas sean seguras y predecibles, pero puede ser ineficiente si necesitas realizar muchas modificaciones. Para esos casos, se utiliza `StringBuilder`.
 
 ---
 
@@ -88,8 +88,7 @@ saludo = saludo + " Mundo";
     ```java
     String saludo = "Hola, Mundo";
     int posicion = saludo.indexOf("Mundo"); // Resultado: 6
-    ```
-*   **`.contains(String str)`**: Devuelve `true` si la cadena contiene la subcadena especificada.
+    ```*   **`.contains(String str)`**: Devuelve `true` si la cadena contiene la subcadena especificada.
     ```java
     String frase = "Java es muy popular";
     boolean contieneJava = frase.contains("Java"); // Resultado: true
@@ -144,7 +143,7 @@ saludo = saludo + " Mundo";
 
 ---
 
-## 5. Ejemplos Prácticos
+## 5. Ejemplos Prácticos de `String`
 
 ### Ejemplo 1: Concatenar y transformar
 ```java
@@ -185,5 +184,86 @@ public class ContieneSubcadena {
 ```
 **Salida:**
 ```
-La frase contiene la palabra 'Java'
+La frase contiene la palabra 'Java'```
+
+---
+
+## 6. StringBuilder: La Alternativa Mutable
+
+Cuando necesitas realizar muchas modificaciones a una cadena (como construir una cadena dentro de un bucle), usar `String` es ineficiente porque crea un nuevo objeto en cada operación. Para estos casos, Java ofrece `StringBuilder`.
+
+### 6.1. Propiedades de `StringBuilder`
+
+*   **Mutabilidad**: A diferencia de `String`, los objetos `StringBuilder` **sí pueden ser modificados** después de su creación. Las operaciones como `append` o `insert` modifican el objeto existente en lugar de crear uno nuevo.
+*   **Eficiencia**: Es mucho más rápido y consume menos memoria que la concatenación de `String` en bucles o en operaciones complejas.
+*   **No es "thread-safe"**: `StringBuilder` no está sincronizado, por lo que es ideal para usarse en un único hilo. Si necesitas seguridad en entornos con múltiples hilos, existe una clase similar llamada `StringBuffer` que es más lenta pero segura.
+
+### 6.2. Creación de `StringBuilder`
+
+Se crea siempre usando el constructor.
+```java
+// Un StringBuilder vacío
+StringBuilder sb1 = new StringBuilder();
+
+// Un StringBuilder con un texto inicial
+StringBuilder sb2 = new StringBuilder("Hola");
+```
+
+### 6.3. Métodos Más Comunes de `StringBuilder`
+
+*   **`.append(valor)`**: Añade el `valor` (que puede ser un `String`, `int`, `char`, etc.) al final de la secuencia.
+    ```java
+    StringBuilder sb = new StringBuilder("Hola");
+    sb.append(" Mundo"); // sb ahora contiene "Hola Mundo"
+    sb.append(123); // sb ahora contiene "Hola Mundo123"
+    ```
+*   **`.insert(int offset, valor)`**: Inserta el `valor` en la posición indicada.
+    ```java
+    StringBuilder sb = new StringBuilder("Hola Mundo");
+    sb.insert(5, "gran "); // sb ahora contiene "Hola gran Mundo"
+    ```
+*   **`.replace(int start, int end, String str)`**: Reemplaza los caracteres en un rango específico por otra cadena.
+    ```java
+    StringBuilder sb = new StringBuilder("Hola Mundo");
+    sb.replace(0, 4, "Adiós"); // sb ahora contiene "Adiós Mundo"
+    ```
+*   **`.delete(int start, int end)`**: Elimina los caracteres en un rango específico.
+    ```java
+    StringBuilder sb = new StringBuilder("Hola Mundo");
+    sb.delete(0, 5); // sb ahora contiene "Mundo"
+    ```
+*   **`.reverse()`**: Invierte el orden de los caracteres.
+    ```java
+    StringBuilder sb = new StringBuilder("Hola");
+    sb.reverse(); // sb ahora contiene "aloH"
+    ```
+*   **`.toString()`**: Convierte el `StringBuilder` a un objeto `String` inmutable. Este es el paso final cuando ya has terminado de construir tu cadena.
+    ```java
+    StringBuilder sb = new StringBuilder("Texto final");
+    String resultado = sb.toString();
+    ```
+
+### 6.4. Ejemplo Práctico de `StringBuilder`
+
+Este ejemplo demuestra por qué `StringBuilder` es ideal para construir cadenas en un bucle.
+
+```java
+public class EjemploStringBuilder {
+    public static void main(String[] args) {
+        String[] palabras = {"Java", "es", "eficiente", "con", "StringBuilder"};
+        StringBuilder frase = new StringBuilder();
+
+        // Construir la frase de manera eficiente
+        for (int i = 0; i < palabras.length; i++) {
+            frase.append(palabras[i]);
+            if (i < palabras.length - 1) {
+                frase.append(" ");
+            }
+        }
+
+        // Convertir a String para su uso final
+        String resultado = frase.toString();
+        System.out.println(resultado); // "Java es eficiente con StringBuilder"
+    }
+}
 ```
