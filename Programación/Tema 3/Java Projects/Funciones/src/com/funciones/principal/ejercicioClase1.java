@@ -1,6 +1,8 @@
+package com.funciones.principal;
+import com.funciones.utilidades.Operarios;
 import java.util.Scanner;
 
-public class ejercicio1 {
+public class ejercicioClase1 {
     public static void main(String[] args) throws Exception {
         
         System.out.println("FUNCIÓN SUMAR");
@@ -38,7 +40,7 @@ public class ejercicio1 {
                         System.out.println("Introduce el segundo parámetro");
                         num2 = numScan.nextInt();
 
-                        resultado = suma(num1, num2);
+                        resultado = Operarios.suma(num1, num2);
                         System.out.println("La suma de " + num1 + " + " + num2 + " = " + resultado);
                         System.out.println("\nPulsa cualquier tecla para continuar...");
                         String clear2 = numScan.nextLine();
@@ -53,7 +55,7 @@ public class ejercicio1 {
                         System.out.println("Introduce el segundo parámetro");
                         num2 = numScan.nextInt();
 
-                        resultado = resta(num1, num2);
+                        resultado = Operarios.resta(num1, num2);
                         System.out.println("La resta de " + num1 + " - " + num2 + " = " + resultado);
                         System.out.println("\nPulsa cualquier tecla para continuar...");
                         String clear2 = numScan.nextLine();
@@ -69,7 +71,7 @@ public class ejercicio1 {
                         System.out.println("Introduce el segundo parámetro");
                         num2 = numScan.nextInt();
 
-                        resultado = multiplicar(num1, num2);
+                        resultado = Operarios.multiplicar(num1, num2);
                         System.out.println("La multiplicación de " + num1 + " x " + num2 + " = " + resultado);
                         System.out.println("\nPulsa cualquier tecla para continuar...");
                         String clear2 = numScan.nextLine();
@@ -85,7 +87,7 @@ public class ejercicio1 {
                         System.out.println("Introduce el segundo parámetro");
                         num2 = numScan.nextInt();
 
-                        resultado = dividir(num1, num2);
+                        resultado = Operarios.dividir(num1, num2);
                         System.out.println("La división de " + num1 + " / " + num2 + " = " + resultado);
                         System.out.println("\nPulsa cualquier tecla para continuar...");
                         String clear2 = numScan.nextLine();
@@ -106,27 +108,8 @@ public class ejercicio1 {
                     }
                 }
         } while (continuar);
-        
-
-        
-        
-        
-        
-
-
-        
+  
     }
-    public static int suma(int a, int b){
-        return a + b;
-    }
-    public static int resta(int a, int b){
-        return a - b;
-    }
-    public static int multiplicar(int a, int b){
-        return a * b;
-    }
-    public static int dividir(int a, int b){
-        return a / b;
-    }
+    
 
 }
