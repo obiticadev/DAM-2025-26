@@ -185,7 +185,8 @@ public class ContieneSubcadena {
 ```
 **Salida:**
 ```
-La frase contiene la palabra 'Java'```
+La frase contiene la palabra 'Java'
+```
 
 ---
 
