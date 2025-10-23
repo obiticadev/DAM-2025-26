@@ -35,7 +35,8 @@ Los objetos `String` en Java son **inmutables**, lo que significa que una vez cr
 String saludo = "Hola";
 // La siguiente línea no modifica "Hola", sino que crea un nuevo objeto "Hola Mundo"
 // y hace que la variable 'saludo' apunte a este nuevo objeto.
-saludo = saludo + " Mundo"; ```
+saludo = saludo + " Mundo";
+```
 Esta propiedad garantiza que las cadenas sean seguras y predecibles, pero puede ser ineficiente si necesitas realizar muchas modificaciones. Para esos casos, se utiliza `StringBuilder`.
 
 ---
