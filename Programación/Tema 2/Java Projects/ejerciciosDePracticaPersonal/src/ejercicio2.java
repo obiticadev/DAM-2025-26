@@ -26,7 +26,9 @@ public class ejercicio2 {
         System.out.println("Calcula e imprime el resultado de num1 + caracter. ¿Por qué el resultado es un número y no un carácter?");
         suma = num1 + caracter;
         System.out.println(suma + " es numérico porque recoge automáticamente el número ASCII para operar\n");
-
+        
+                
+        
 
 
     }
