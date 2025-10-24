@@ -50,50 +50,43 @@ public class MutaciónGenética {
         String cadena1;
         String cadena2;
         boolean hayMutacion = false;
-        
-    
+
         System.out.println("""
                 ++++++++++++++++++++++++++++++++
                 +++ COMPROBACIÓN DE MOLÉCULA +++
                 ++++++++++++++++++++++++++++++++\n
                 """);
-                for (int i = 0; i <= 2; i++) {
-                    if(i != 2){
-                        cadena[i] = new StringBuilder();
-                        for (int j = 0; j < 5; j++) {
-                            System.out.print("Introduce de la cadena (" + (i+1) +") el caracter (" + (j+1) + "):");
-                            cadena[i].append(lineScan.next().charAt(0)).append(" ");
-                            
-                            caracter[i][j] = cadena[i].toString().replaceAll(" ", "").toUpperCase().charAt(j);
-                        
-                            }
-                        }else{
-                            for (int j = 0; j < 5; j++) {
-                               switch (caracter[0][j]) {
-                                case 'A' -> {
-                                    if (caracter[1][j] != 'T'){
-                                        hayMutacion = true;
-                                    }
-                                }
-                                    
-                               
-                                default -> {
+        for (int i = 0; i <= 2; i++) {
+            if (i != 2) {
+                cadena[i] = new StringBuilder();
+                for (int j = 0; j < 5; j++) {
+                    System.out.print("Introduce de la cadena (" + (i + 1) + ") el caracter (" + (j + 1) + "):");
+                    cadena[i].append(lineScan.next().charAt(0)).append(" ");
 
-                                }
-                                    
-                               }
+                    caracter[i][j] = cadena[i].toString().replaceAll(" ", "").toUpperCase().charAt(j);
+
+                }
+            } else {
+                for (int j = 0; j < 5; j++) {
+                    switch (caracter[0][j]) {
+                        case 'A' -> {
+                            if (caracter[1][j] != 'T') {
+                                hayMutacion = true;
                             }
-                            
                         }
+
+                        default -> {
+
+                        }
+
+                    }
                 }
 
-                
-                
-                
-                
-                // Salida
-                System.out.println("\nCadena1: " + cadena[0] + "\nCadena2: " + cadena[1]);
+            }
+        }
 
-        
+        // Salida
+        System.out.println("\nCadena1: " + cadena[0] + "\nCadena2: " + cadena[1]);
+
     }
 }
