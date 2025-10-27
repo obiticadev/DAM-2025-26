@@ -9,4 +9,4 @@ Si el empleado es un conductor se conoce la categoría del número de permiso de
 La empresa tiene un conjunto de vehículos, de los cuales se conoce la matrícula y la marca. Estos vehículos son conducidos por los conductores y a cualquier conductor se le puede asignar cualquier vehículo para que lo conduzca durante una fecha determinada (durante todo el dia; es decir, en un
 mismo día solo lo conducirá un conductor).
 
-La empresa lleva adelante un conjunto de proyectos en los que trabajan. Estos proyectos están identificados por el número del proyecto y tienen un presupuesto asignado. A un proyecto se pueden asignar varios técnicos. Un técnico podrá ser asignado a varios proyectos.
+La empresa lleva adelante un conjunto de proyectos en los que trabajan. Estos proyectos están identificados por el número del proyecto y tienen un presupuesto asignado. A un proyecto se pueden asignar varios técnicos. Un técnico podrá ser asignado a varios proyectos. 

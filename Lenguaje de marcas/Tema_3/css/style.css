@@ -1,0 +1,25 @@
+#especial {
+    color: red;
+    border-width: 20px;
+    border-style: dashed;
+    border-color: black;
+}
+body {
+    background-color: rgb(240, 227, 155);
+    font-family: monospace;
+    font-size: 40px;
+
+}
+
+ul{
+    background-color: yellow;
+    list-style: none;
+}
+ul li{
+    display: inline-block;
+    margin-right: 150px;
+}
+ul li a{
+    color: gray;
+    text-decoration: none;
+}

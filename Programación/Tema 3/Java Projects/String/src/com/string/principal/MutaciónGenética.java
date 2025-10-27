@@ -3,7 +3,7 @@ package com.string.principal;
 import java.util.Scanner;
 
 /*
- * Disponemos de una molécula de ADN formada por dos cadenas complementarias, cada una con 15 bases nitrogenadas.
+ * Disponemos de una molécula de ADN formada por dos cadenas complementarias, cada una con 1LONGITUD_ADN bases nitrogenadas.
 
 Queremos comprobar si la molécula está correctamente ordenada (es decir, si las bases se emparejan según las reglas de complementariedad) o si presenta una mutación.
 
@@ -45,8 +45,9 @@ public class MutaciónGenética {
         Scanner lineScan = new Scanner(System.in);
 
         // Declaración de variables
+        final int LONGITUD_ADN = 15;
         StringBuilder[] cadena = new StringBuilder[2];
-        char[][] caracter = new char[2][5];
+        char[][] caracter = new char[2][LONGITUD_ADN];
         String cadena1;
         String cadena2;
         boolean hayMutacion = false;
@@ -59,7 +60,7 @@ public class MutaciónGenética {
         for (int i = 0; i <= 2; i++) {
             if (i != 2) {
                 cadena[i] = new StringBuilder();
-                for (int j = 0; j < 5; j++) {
+                for (int j = 0; j < LONGITUD_ADN; j++) {
                     System.out.print("Introduce de la cadena (" + (i + 1) + ") el caracter (" + (j + 1) + "):");
                     cadena[i].append(lineScan.next().charAt(0)).append(" ");
 
@@ -67,26 +68,57 @@ public class MutaciónGenética {
 
                 }
             } else {
-                for (int j = 0; j < 5; j++) {
+                for (int j = 0; j < LONGITUD_ADN; j++) {
                     switch (caracter[0][j]) {
                         case 'A' -> {
                             if (caracter[1][j] != 'T') {
+                                caracter[1][j] = Character.toLowerCase(caracter[1][j]);
+                                hayMutacion = true;
+                            }
+                        }
+                        case 'T' -> {
+                            if (caracter[1][j] != 'A') {
+                                caracter[1][j] = Character.toLowerCase(caracter[1][j]);
+                                hayMutacion = true;
+                            }
+                        }
+                        case 'C' -> {
+                            if (caracter[1][j] != 'G') {
+                                caracter[1][j] = Character.toLowerCase(caracter[1][j]);
+                                hayMutacion = true;
+                            }
+                        }
+                        case 'G' -> {
+                            if (caracter[1][j] != 'C') {
+                                caracter[1][j] = Character.toLowerCase(caracter[1][j]);
                                 hayMutacion = true;
                             }
                         }
 
                         default -> {
-
+                            caracter[0][j] = Character.toLowerCase(caracter[0][j]);
+                            caracter[1][j] = Character.toLowerCase(caracter[1][j]);
+                            hayMutacion = true;
                         }
 
                     }
+
                 }
 
             }
         }
 
         // Salida
-        System.out.println("\nCadena1: " + cadena[0] + "\nCadena2: " + cadena[1]);
+        System.out.print("\nCadena 1: ");
+        for (int j = 0; j < LONGITUD_ADN; j++) {
+            System.out.print(caracter[0][j] + " ");
+        }
+
+        System.out.print("\nCadena 2: ");
+        for (int j = 0; j < LONGITUD_ADN; j++) {
+            System.out.print(caracter[1][j] + " ");
+        }
+        System.out.println(" ");
 
     }
 }

@@ -13,8 +13,7 @@ Un documento HTML es interpretado por el navegador, lo que significa que los err
 <body>
     <!-- Contenido visible de la página: texto, imágenes, etc. -->
 </body>
-</html>
-```
+</html>```
 
 | Etiqueta | Descripción |
 | :--- | :--- |
@@ -243,4 +242,242 @@ Este es el método moderno y correcto para añadir un pie de foto a una imagen.
         <i>El <b>lago Tahoe</b> en Sierra Nevada (Estados Unidos)</i>
     </figcaption>
 </figure>
+```
+
+### 11. Audio y Video en HTML
+
+HTML5 introdujo etiquetas específicas para incrustar contenido multimedia de forma nativa sin depender de plugins de terceros como Flash.
+
+#### Audio con `<audio>`
+La etiqueta `<audio>` permite incluir audio en una página. El atributo `controls` es fundamental para que el usuario pueda interactuar con el reproductor (play, pausa, volumen).
+
+Para asegurar la compatibilidad entre navegadores, se utiliza la etiqueta `<source>` para proporcionar múltiples formatos de audio. El navegador utilizará el primer formato que reconozca.
+
+```html
+<audio controls>
+  <source src="ogg/horse.ogg" type="audio/ogg">
+  <source src="mp3/horse.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+```
+
+#### Video con `<video>`
+De forma similar, la etiqueta `<video>` permite incluir videos. Además del atributo `controls`, se pueden usar otros como `autoplay` para que el video comience automáticamente (generalmente requiere el atributo `muted` para funcionar en navegadores modernos) o `width` y `height` para definir sus dimensiones.
+
+La etiqueta `<track>` permite añadir subtítulos o pistas de texto.
+
+```html
+<video width="400" controls autoplay muted>
+  <source src="mp4/mov_bbb.mp4" type="video/mp4">
+  <source src="ogg/mov_bbb.ogg" type="video/ogg">
+  Your browser does not support HTML5 video.
+</video>
+```
+
+#### Contenido Embebido con `<iframe>`
+La etiqueta `<iframe>` permite incrustar un documento HTML completo dentro de otro. Es comúnmente utilizada para incluir contenido de terceros, como videos de YouTube, mapas de Google Maps o publicaciones de redes sociales.
+
+| Atributo | Descripción |
+| :--- | :--- |
+| **`src`** | URL del documento o contenido a incrustar. |
+| `width` | Ancho del marco. |
+| `height`| Alto del marco. |
+| `allowfullscreen` | Permite que el contenido del iframe se muestre en pantalla completa. |
+
+**Ejemplo para un video de YouTube:**
+```html
+<iframe width="640" height="360"
+  src="https://www.youtube.com/embed/fJ9rUzIMcZQ"
+  allowfullscreen>
+</iframe>
+```
+
+### 12. Tablas en HTML
+Las tablas se utilizan para mostrar datos tabulados de manera organizada en filas y columnas.
+
+#### Estructura Básica: `<table>`, `<tr>`, `<td>`
+*   **`<table>`**: Define el contenedor de la tabla.
+*   **`<tr>`**: Define una fila (*table row*).
+*   **`<td>`**: Define una celda de datos (*table data*) dentro de una fila.
+
+```html
+<table border="1">
+  <tr>
+    <td>Fila 1, Columna 1</td>
+    <td>Fila 1, Columna 2</td>
+  </tr>
+  <tr>
+    <td>Fila 2, Columna 1</td>
+    <td>Fila 2, Columna 2</td>
+  </tr>
+</table>
+```
+
+#### Cabeceras de Tabla con `<th>`
+La etiqueta `<th>` (*table head*) se usa para definir las celdas de encabezado de la tabla. El texto dentro de `<th>` se muestra por defecto en negrita y centrado.
+
+```html
+<table border="1">
+  <tr>
+    <th>Titulo 1</th>
+    <th>Titulo 2</th>
+  </tr>
+  <tr>
+    <td>Fila 1, Columna 1</td>
+    <td>Fila 1, Columna 2</td>
+  </tr>
+</table>
+```
+#### Fusión de Celdas: `colspan` y `rowspan`
+*   **`colspan`**: Fusiona dos o más celdas en horizontal (a lo largo de varias columnas).
+*   **`rowspan`**: Fusiona dos o más celdas en vertical (a lo largo de varias filas).
+
+```html
+<table border="1">
+  <tr>
+    <th>Titulo 1</th>
+    <th>Titulo 2</th>
+    <th>Titulo 3</th>
+  </tr>
+  <tr>
+    <td rowspan="2">Fila 1 y 2, Columna 1</td>
+    <td>Fila 1, Columna 2</td>
+    <td>Fila 1, Columna 3</td>
+  </tr>
+  <tr>
+    <td>Fila 2, Columna 2</td>
+    <td>Fila 2, Columna 3</td>
+  </tr>
+  <tr>
+    <td colspan="3">Fila 3, Columnas 1, 2 y 3</td>
+  </tr>
+</table>
+```
+
+#### Estructura Semántica de Tablas
+Para mejorar la accesibilidad y la estructura, las tablas se pueden dividir en tres secciones:
+*   **`<thead>`**: Define el encabezado de la tabla.
+*   **`<tbody>`**: Define el cuerpo principal de la tabla.
+*   **`<tfoot>`**: Define el pie de la tabla.
+
+#### Título de la Tabla con `<caption>`
+La etiqueta `<caption>` permite definir un título o leyenda para la tabla. Debe ser el primer elemento hijo de la etiqueta `<table>`.
+
+```html
+<table border="1">
+  <caption>Ejemplo de tabla con estructura semántica</caption>
+  <thead>
+    <tr>
+      <td colspan="2"><b><i>Cabecera de la tabla</i></b></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Titulo 1</th>
+      <th>Titulo 2</th>
+    </tr>
+    <tr>
+      <td>Fila 1, Columna 1</td>
+      <td>Fila 1, Columna 2</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="2"><b><i>Pie de la tabla</i></b></td>
+    </tr>
+  </tfoot>
+</table>
+```
+
+### 13. Formularios en HTML
+
+Los formularios son esenciales para la interacción con el usuario, permitiendo recoger información como datos de registro, comentarios o búsquedas.
+
+#### La Etiqueta `<form>`
+Es el contenedor principal de un formulario.
+
+| Atributo | Descripción |
+| :--- | :--- |
+| **`action`** | Define la URL a la que se enviarán los datos del formulario para ser procesados. |
+| **`method`**| Define el método HTTP que se usará para enviar los datos. Los valores comunes son `get` (los datos se añaden a la URL, visible) o `post` (los datos se envían en el cuerpo de la petición, oculto). |
+
+```html
+<form action="/procesar_datos" method="post">
+  <!-- Controles del formulario aquí -->
+</form>
+```
+
+#### Controles de Formulario con `<input>`
+La etiqueta `<input>` es la más versátil y se utiliza para crear la mayoría de los controles de un formulario. Su comportamiento cambia según el valor de su atributo `type`.
+
+**Atributos comunes de `<input>`:**
+
+| Atributo | Descripción |
+| :--- | :--- |
+| **`type`** | Define el tipo de control (texto, contraseña, botón, etc.). |
+| **`name`** | Asigna un nombre a la variable que se enviará al servidor. |
+| `id` | Identificador único para el control, útil para asociarlo con una etiqueta `<label>`. |
+| `value` | Define el valor inicial o el valor que se enviará. |
+| `placeholder` | Muestra un texto de ayuda dentro del campo que desaparece al escribir. |
+| `maxlength` | Define el número máximo de caracteres permitidos. |
+
+**Valores comunes del atributo `type`:**
+
+| Valor | Descripción |
+| :--- | :--- |
+| `text` | Campo de una línea de texto. |
+| `password` | Campo de contraseña (oculta los caracteres). |
+| `checkbox` | Casilla de verificación (permite selecciones múltiples). |
+| `radio` | Botón de opción (solo una selección de un grupo con el mismo `name`). |
+| `submit` | Botón para enviar el formulario. |
+| `reset` | Botón para restablecer los valores del formulario. |
+| `button` | Botón genérico, para usar con JavaScript. |
+| `image` | Botón de envío con una imagen de fondo. |
+| `email` | Campo para direcciones de correo electrónico (con validación básica). |
+| `date` | Selector de fecha. |
+| `number` | Campo numérico. |
+
+#### Etiquetas y Agrupación
+
+*   **`<label>`**: Asocia un texto descriptivo a un control del formulario. El atributo `for` de la etiqueta debe coincidir con el `id` del `input` para mejorar la accesibilidad.
+*   **`<textarea>`**: Define un área de texto multilínea. Los atributos `rows` y `cols` definen su tamaño.
+*   **`<select>` y `<option>`**: Crean una lista desplegable. `<select>` es el contenedor y cada `<option>` es una de las opciones.
+*   **`<fieldset>` y `<legend>`**: `<fieldset>` agrupa controles relacionados visualmente, y `<legend>` proporciona un título a esa agrupación.
+
+**Ejemplo de formulario completo:**
+
+```html
+<form action="" method="post">
+  <fieldset>
+    <legend>Datos Personales</legend>
+
+    <label for="user">Usuario:</label>
+    <input type="text" name="username" id="user" maxlength="20" placeholder="Nombre de usuario">
+    <br/><br/>
+
+    <label for="pass">Contraseña:</label>
+    <input type="password" name="password" id="pass" maxlength="12" placeholder="Contraseña">
+  </fieldset>
+
+  <fieldset>
+    <legend>Intereses</legend>
+    <input type="checkbox" name="chkMath" id="chkMath" value="math">
+    <label for="chkMath">Matemáticas</label><br>
+    <input type="checkbox" name="chkIng" id="chkIng" value="ing" checked>
+    <label for="chkIng">Inglés</label>
+  </fieldset>
+
+  <fieldset>
+    <legend>Vehículo</legend>
+    <label for="cars">Elige un coche:</label>
+    <select name="dropCars" id="cars">
+      <option value="volvo">Volvo</option>
+      <option value="saab">Saab</option>
+      <option value="audi" selected>Audi</option>
+    </select>
+  </fieldset>
+  
+  <br/>
+  <input type="submit" value="Login">
+</form>
 ```
