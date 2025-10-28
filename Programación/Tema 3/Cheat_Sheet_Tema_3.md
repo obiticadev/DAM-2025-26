@@ -1,4 +1,19 @@
-# Cheat Sheet de Clases Utilitarias en Java
+# Cheat Sheet de Operador Ternario, String, Math y Character
+
+## Operador Ternario
+
+Es una forma compacta de la estructura `if-else` para asignar un valor a una variable en una sola línea.
+
+### Estructura
+
+| Concepto | Sintaxis |
+| :--- | :--- |
+| **Estructura Básica** | `variable = (condicion) ? valor_si_true : valor_si_false;` |
+| **Ejemplo (Par/Impar)**| `String resultado = (num % 2 == 0) ? "Par" : "Impar";` |
+| **Ejemplo (Mayor/Menor)**| `int mayor = (a > b) ? a : b;` |
+| **Anidado (No recomendado)**| `String res = (n > 0) ? "Positivo" : ((n < 0) ? "Negativo" : "Cero");` |
+
+---
 
 ## String
 
@@ -105,18 +120,3 @@ Clase envoltorio (`wrapper`) que proporciona métodos estáticos para manipular 
 | **`toUpperCase(ch)`** | Convierte el carácter a mayúscula. | `Character.toUpperCase('c'); // 'C'` |
 | **`toLowerCase(ch)`** | Convierte el carácter a minúscula. | `Character.toLowerCase('D'); // 'd'` |
 | **`getNumericValue(ch)`**| Devuelve el valor `int` de un carácter numérico. | `Character.getNumericValue('7'); // 7` |
-
----
-
-## Operador Ternario
-
-Es una forma compacta de la estructura `if-else` para asignar un valor a una variable en una sola línea.
-
-### Estructura
-
-| Concepto | Sintaxis |
-| :--- | :--- |
-| **Estructura Básica** | `variable = (condicion) ? valor_si_true : valor_si_false;` |
-| **Ejemplo (Par/Impar)**| `String resultado = (num % 2 == 0) ? "Par" : "Impar";` |
-| **Ejemplo (Mayor/Menor)**| `int mayor = (a > b) ? a : b;` |
-| **Anidado (No recomendado)**| `String res = (n > 0) ? "Positivo" : ((n < 0) ? "Negativo" : "Cero");` |
