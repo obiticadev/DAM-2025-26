@@ -52,7 +52,7 @@ public class App {
         // Mostrar estadísticas
 
         System.out.println("Total de coches: " + numCoches);
-        System.out.println("Porcentaje del total de las plazas ocupadas por coches: " + ((numCoches/NUM_PLAZAS)*100) + "%");
+        System.out.println("Porcentaje del total de las plazas ocupadas por coches: " + (((double) numCoches/NUM_PLAZAS)*100) + "%");
         System.out.println("Total de personas: " + (numAdultos + numMenores));
         System.out.println("Total de adultos: " + numAdultos);
         System.out.println("Total de menores: " + numMenores);
