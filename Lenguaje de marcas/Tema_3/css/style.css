@@ -1,25 +1,47 @@
-#especial {
-    color: red;
-    border-width: 20px;
-    border-style: dashed;
-    border-color: black;
-}
-body {
-    background-color: rgb(240, 227, 155);
-    font-family: monospace;
-    font-size: 40px;
+body{
+    background-color : #f0f0f0;
+    font-family: Arial;
+    display: grid;
+    place-items: center;
+    height: 100hv;
+    margin-top: 25lvw;
 
+    
+}
+div{
+    width: 400px;
+    padding: 25px;
+    border-radius: 20px;
+    background-color: white;
+    
+}
+h1{
+    color: #333;
+    font-size: 26px;
+}
+h1, .pie_de_titulo{
+    align-items: center;
+    text-align: center;
+}
+.pie_de_titulo{
+    color: #777;
+    font-size: 16px;
 }
 
-ul{
-    background-color: yellow;
-    list-style: none;
-}
 ul li{
-    display: inline-block;
-    margin-right: 150px;
+    text-decoration: none;
+    list-style: none;
+    color: rgb(71, 71, 110)
+
 }
 ul li a{
-    color: gray;
     text-decoration: none;
+    color: rgb(71, 71, 110);
+    
+}
+ul li a:hover{
+    color: #0066cc;
+    border-bottom: 1px;
+    border-color: black;
+    text-decoration: underline solid blue 2px;
 }
