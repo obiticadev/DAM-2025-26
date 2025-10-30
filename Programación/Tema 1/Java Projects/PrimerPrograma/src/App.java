@@ -7,5 +7,8 @@ public class App {
 
                 Mi aplicación favorita es Java
                 """);
+
+                String num;
+                num = " 0" + num;
     }
 }
