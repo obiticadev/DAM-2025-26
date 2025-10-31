@@ -18,10 +18,12 @@ public class ejercicio4 {
         int contadorBolasRestante;
 
         do {
+            System.out.print("\033[H\033[2J");
             // Buscamos si hay algún punto en el String
             contadorBolasRestante = contadorDeBolas(pacmanS);
 
             if (contadorBolasRestante != 0) {
+                
 
                 System.out.println("Tienes " + (contadorBolasInicial - contadorBolasRestante) + " puntos actualmente");
                 System.out.println("Quedan " + contadorBolasRestante + " puntos para completar el juego\n");
