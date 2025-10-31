@@ -1,6 +1,4 @@
-Claro, aquí tienes el cuestionario con el formato solicitado:
-
-### **Cuestionario T1**
+### **Cuestionario de AWS Academy - Módulo 1**
 
 **1. ¿Cuál de las siguientes es una ventaja del servicio medido en la computación en la nube?**
 *   Acceso directo al hardware físico
