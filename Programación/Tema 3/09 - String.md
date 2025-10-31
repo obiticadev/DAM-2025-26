@@ -89,7 +89,8 @@ Esta propiedad garantiza que las cadenas sean seguras y predecibles, pero puede 
     ```java
     String saludo = "Hola, Mundo";
     int posicion = saludo.indexOf("Mundo"); // Resultado: 6
-    ```*   **`.contains(String str)`**: Devuelve `true` si la cadena contiene la subcadena especificada.
+    ```
+    *   **`.contains(String str)`**: Devuelve `true` si la cadena contiene la subcadena especificada.
     ```java
     String frase = "Java es muy popular";
     boolean contieneJava = frase.contains("Java"); // Resultado: true
