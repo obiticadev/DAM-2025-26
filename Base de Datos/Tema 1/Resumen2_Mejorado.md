@@ -1,7 +1,3 @@
-¡Claro que sí! Procedo a formatear el nuevo contenido con el mismo sistema de marcado por colores para que sea claro y fácil de estudiar. Me aseguraré de incluir toda la información proporcionada.
-
-***
-
 ### **Leyenda de Marcadores**
 
 *   <mark style="background-color: #ffff00;">Amarillo</mark>: Para conceptos fundamentales, definiciones y puntos clave.
