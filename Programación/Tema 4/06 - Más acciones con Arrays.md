@@ -175,7 +175,8 @@ public class CopiaArray {
         
         System.out.println("Copia: " + Arrays.toString(copia)); // Salida:
     }
-}```
+}
+```
 
 ---
 

@@ -8,7 +8,8 @@ Al utilizar la clase `Scanner` para capturar entradas del usuario, es muy común
 
 Cuando se solicita al usuario un número y luego una cadena de texto, el programa parece "saltarse" la solicitud de la cadena.
 
-### Código que Demuestra el Problema```java
+### Código que Demuestra el Problema
+```java
 import java.util.Scanner;
 
 public class ScannerAnomalia {
