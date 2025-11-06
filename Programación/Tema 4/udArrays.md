@@ -154,7 +154,8 @@ double[][] precios = new double;
 ```
 
 ### Acceso
-Se utilizan dobles corchetes, el primero para la fila y el segundo para la columna.```java
+Se utilizan dobles corchetes, el primero para la fila y el segundo para la columna.
+```java
 precios = 7.5; // Fila 0, Columna 0
 precios = 12;  // Fila 0, Columna 1
 ```
@@ -184,7 +185,7 @@ Java proporciona una clase `Arrays` en el paquete `java.util` con métodos está
 
 | Método | Descripción |
 | :--- | :--- |
-| `Arrays.fill(array, valor)` | Rellena todos los elementos de un array con un valor específico. |
+| `Arrays.fill(array, desde, hasta, valor)` o también `Arrays.fill(array, valor)` | Rellena todos los elementos de un array con un valor específico. |
 | `Arrays.equals(array1, array2)` | Devuelve `true` si ambos arrays tienen el mismo tamaño y los mismos elementos en el mismo orden. |
 | `Arrays.sort(array)` | Ordena los elementos del array en orden ascendente. |
 | `Arrays.binarySearch(array, clave)`| Busca un elemento en un **array previamente ordenado** y devuelve su índice, o un número negativo si no lo encuentra. |
