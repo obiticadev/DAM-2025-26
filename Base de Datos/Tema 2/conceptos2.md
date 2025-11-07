@@ -1,59 +1,34 @@
-graph TD
-    subgraph " "
-        direction LR
-        subgraph "ANTES (Diagrama E/R)"
-            A["
-                <b>DEPARTAMENTO</b>
-                <hr>
-                🔑 id_depto (PK)
-                <br>nombre_depto
-                <br>ubicacion
-            "]
-            
-            R{"
-                <b>💎 TRABAJA_EN</b>
-                <hr>
-                fecha_incorporacion
-                <br>tipo_contrato
-            "}
+¡Por supuesto! Entendido. Aquí tienes el diseño en formato horizontal, que es ideal para comparar el "antes" y el "después" uno al lado del otro.
 
-            B["
-                <b>EMPLEADO</b>
-                <hr>
-                🔑 id_emp (PK)
-                <br>nombre_empleado
-                <br>apellido
-                <br>salario
-            "]
+Este formato es muy limpio y utiliza tablas de Markdown para asegurar que siempre se vea bien.
 
-            A -- "(1,1)" --> R -- "(1,N)" --> B
-        end
+---
 
-        subgraph "DESPUÉS (Modelo Relacional)"
-            T1["
-                <b>Tabla DEPARTAMENTO</b>
-                <hr>
-                🔑 id_depto (PK)
-                <br>nombre_depto
-                <br>ubicacion
-            "]
+### Transformación 1:N (Formato Horizontal)
 
-            T2["
-                <b>Tabla EMPLEADO</b>
-                <hr>
-                🔑 id_emp (PK)
-                <br>nombre_empleado
-                <br>apellido
-                <br>salario
-                <br>🔗 <b>id_depto (FK)</b>
-                <br><b>fecha_incorporacion</b>
-                <br><b>tipo_contrato</b>
-            "]
-        end
-    end
-    
-    style R fill:#d4edda,stroke:#155724
-    style A fill:#e2e3e5,stroke:#383d41
-    style B fill:#e2e3e5,stroke:#383d41
-    style T1 fill:#cce5ff,stroke:#004085
-    style T2 fill:#cce5ff,stroke:#004085
+> **Regla de Oro:** La tabla del lado "N" absorbe la clave `🔑` de la tabla "1" y todos los atributos de la relación `💎`.
+
+### ANTES (Diseño Conceptual)
+
+| Entidad `DEPARTAMENTO` (Lado 1) | Relación `💎 TRABAJA_EN` | Entidad `EMPLEADO` (Lado N) |
+| :--- | :--- | :--- |
+| 🔑 **id_depto** (PK) | fecha_incorporacion | 🔑 **id_emp** (PK) |
+| nombre_depto | tipo_contrato | nombre_empleado |
+| ubicacion | | apellido |
+| | | salario |
+
+---
+
+### DESPUÉS (Modelo Relacional Final)
+
+| Tabla `DEPARTAMENTO` (Sin cambios) | Tabla `EMPLEADO` (Modificada) |
+| :--- | :--- |
+| 🔑 **id_depto** (PK) | 🔑 **id_emp** (PK) |
+| nombre_depto | nombre_empleado |
+| ubicacion | apellido |
+| | salario |
+| | **🔗 id_depto (FK)** |
+| | **fecha_incorporacion** |
+| | **tipo_contrato** |
+
+**Resultado:** La tabla `EMPLEADO` ha absorbido los atributos en **negrita**, eliminando la relación y creando un vínculo directo con `DEPARTAMENTO`.

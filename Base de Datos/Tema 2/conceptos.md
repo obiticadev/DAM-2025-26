@@ -1,4 +1,15 @@
-ANTES (Diagrama Entidad-Relación)                  DESPUÉS (Modelo Relacional Final)
+¡Entendido! Aquí tienes una versión mejorada, más densa en atributos y manteniendo la estructura vertical que te gustó. Es ideal para una documentación técnica clara y concisa.
+
+Copia y pega el siguiente bloque en tu archivo `.md`.
+
+---
+
+### Transformación `1:N` (Uno a Varios) - Guía Visual Compacta
+
+> **Regla de Oro:** La tabla del lado "N" absorbe la clave `🔑` de la tabla "1" y todos los atributos de la relación `💎`.
+
+```
+      ANTES (Diagrama Entidad-Relación)                  DESPUÉS (Modelo Relacional Final)
 ┌──────────────────────────┐
 │       DEPARTAMENTO       │
 │--------------------------│                       ┌──────────────────────────────────────────┐
@@ -24,3 +35,6 @@ ANTES (Diagrama Entidad-Relación)                  DESPUÉS (Modelo Relacional 
 │    apellido              │
 │    salario               │
 └──────────────────────────┘
+```
+
+**Resultado:** La relación `TRABAJA_EN` desaparece. La tabla `EMPLEADO` ahora contiene toda la información, incluyendo a qué departamento pertenece cada empleado (`🔗id_depto`) y los detalles de su contratación.
