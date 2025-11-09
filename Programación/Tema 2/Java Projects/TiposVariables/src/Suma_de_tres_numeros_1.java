@@ -3,7 +3,8 @@ import java.util.Scanner;
 public class Suma_de_tres_numeros_1 {
 
     /*
-     * Pide al usuario tres números enteros y muestra su suma, su producto y su promedio.
+     * Pide al usuario tres números enteros y muestra su suma, su producto y su
+     * promedio.
      * 
      */
     public static void main(String[] args) {
@@ -35,6 +36,6 @@ public class Suma_de_tres_numeros_1 {
         System.out.println("La suma de los números es: " + suma + ",");
         System.out.println("el producto de los número es: " + producto + " y");
         System.out.println("el promedio de los números es de: " + promedio);
-        
+
     }
 }

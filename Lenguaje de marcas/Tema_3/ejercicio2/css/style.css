@@ -1,0 +1,46 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    background-color: #7bc0f1;
+
+}
+div{
+    margin-top: 20px;
+    width: 500px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    overflow: hidden; /*Le dices al contenedor div que cualquier cosa que sus hijos intenten dibujar fuera de sus límites (incluyendo sus esquinas redondeadas) debe ser recortado y ocultado.*/
+
+}
+h1{
+    background-color: #1976d2;
+    text-align: center;
+    color: white;
+    font-size: 24px;
+    padding: 10px;
+}
+ul li{
+    list-style: none;
+    padding: 10px;
+}
+.amarillo{
+    background-color: #fff9c4;
+    border-color: #eee;
+}
+.gris{
+    text-decoration-line: line-through;
+    background-color: #f5f5f5;
+    color: #999;
+}
+p{
+    color: #1976d2;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+}

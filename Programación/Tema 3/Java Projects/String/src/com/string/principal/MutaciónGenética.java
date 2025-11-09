@@ -57,45 +57,45 @@ public class MutaciónGenética {
                 +++ COMPROBACIÓN DE MOLÉCULA +++
                 ++++++++++++++++++++++++++++++++\n
                 """);
-        for (int i = 0; i <= 2; i++) {
+        for (int i = 0; i <= 2; i++) { // Aquí utilizo tres rangos para que después de recorrer las dos cadenas entre en el else para parametrizar los diferentes casos
             if (i != 2) {
                 cadena[i] = new StringBuilder();
-                for (int j = 0; j < LONGITUD_ADN; j++) {
+                for (int j = 0; j < LONGITUD_ADN; j++) { // Recorremos cada uno de los caracteres introducidos en cada cadena
                     System.out.print("Introduce de la cadena (" + (i + 1) + ") el caracter (" + (j + 1) + "):");
-                    cadena[i].append(lineScan.next().charAt(0)).append(" ");
+                    cadena[i].append(lineScan.next().charAt(0)).append(" "); // Aquí concatenamos el primer caracter recogido del Scanner y lo concatenamos con un espacio
 
-                    caracter[i][j] = cadena[i].toString().replaceAll(" ", "").toUpperCase().charAt(j);
+                    caracter[i][j] = cadena[i].toString().replaceAll(" ", "").toUpperCase().charAt(j);// Aquí guardo en el array bidimensional los caracteres en su posición correcta eliminando los espacios y poniendolos en mayuscula previamente para evitar errores
 
                 }
-            } else {
+            } else { // Cuando ya ha recorrido las dos cadenas entramos en el tercer paso para parametrizar
                 for (int j = 0; j < LONGITUD_ADN; j++) {
                     switch (caracter[0][j]) {
-                        case 'A' -> {
+                        case 'A' -> { // Si A no va con T ponemos el caracter de la cadena 2 en minúscula
                             if (caracter[1][j] != 'T') {
                                 caracter[1][j] = Character.toLowerCase(caracter[1][j]);
                                 hayMutacion = true;
                             }
                         }
-                        case 'T' -> {
+                        case 'T' -> { // Si T no va con A ponemos el caracter de la cadena 2 en minúscula
                             if (caracter[1][j] != 'A') {
                                 caracter[1][j] = Character.toLowerCase(caracter[1][j]);
                                 hayMutacion = true;
                             }
                         }
-                        case 'C' -> {
+                        case 'C' -> { // Si C no va con G ponemos el caracter de la cadena 2 en minúscula
                             if (caracter[1][j] != 'G') {
                                 caracter[1][j] = Character.toLowerCase(caracter[1][j]);
                                 hayMutacion = true;
                             }
                         }
-                        case 'G' -> {
+                        case 'G' -> { // Si G no va con C ponemos el caracter de la cadena 2 en minúscula
                             if (caracter[1][j] != 'C') {
                                 caracter[1][j] = Character.toLowerCase(caracter[1][j]);
                                 hayMutacion = true;
                             }
                         }
 
-                        default -> {
+                        default -> { // Si en la primera cadena no hay ninguno de los anteriores casos es que hay mutación seguro y por tanto se pone en minúscula tanto el caracter de la cadena 1 como el de la cadena 2 aunque no he contemplado en dejar en la cadena 2 en mayúscula si contiene un caracter correcto. A vistas del programa final la mutación se da si o sí porque la cadena 1 no comienza bien por tanto cumple con el objetivo del ejercicio
                             caracter[0][j] = Character.toLowerCase(caracter[0][j]);
                             caracter[1][j] = Character.toLowerCase(caracter[1][j]);
                             hayMutacion = true;
@@ -110,7 +110,7 @@ public class MutaciónGenética {
 
         // Salida
         System.out.print("\nCadena 1: ");
-        for (int j = 0; j < LONGITUD_ADN; j++) {
+        for (int j = 0; j < LONGITUD_ADN; j++) { // Aquí colocamos los espacios nuevamente con la transformación final de mayúsculas y minúsculas
             System.out.print(caracter[0][j] + " ");
         }
 
