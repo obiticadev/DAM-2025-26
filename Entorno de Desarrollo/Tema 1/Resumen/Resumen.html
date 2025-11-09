@@ -1,0 +1,752 @@
+<h1 id="leyenda-de-colores">Leyenda de Colores</h1>
+<ul>
+<li><mark style="background-color: #ffff00;">Amarillo</mark>: Para
+conceptos fundamentales, definiciones y puntos clave.</li>
+<li><mark style="background-color: #90ee90;">Verde</mark>: Para
+ventajas, objetivos, propósitos y características positivas.</li>
+<li><mark style="background-color: #add8e6;">Azul</mark>: Para tipos,
+clasificaciones, componentes, estructuras y ejemplos.</li>
+<li><mark style="background-color: #ffa07a;">Rojo/Salmón</mark>: Para
+problemas, inconvenientes, limitaciones o advertencias.</li>
+<li><mark style="background-color: #d3d3d3;">Gris</mark>: Para
+tecnologías específicas, nombres propios, estándares o secciones
+explícitamente marcadas como “Contenido Prioritario”.</li>
+</ul>
+<h1
+id="fundamentos-de-la-computación-un-viaje-desde-el-hardware-hasta-las-metodologías-de-software">Fundamentos
+de la Computación: Un Viaje desde el Hardware hasta las Metodologías de
+Software</h1>
+<h2 id="introducción-los-pilares-del-mundo-digital">1. Introducción: Los
+Pilares del Mundo Digital</h2>
+<p>Para comprender verdaderamente el software que impulsa nuestra era
+digital, primero es necesario entender la máquina sobre la que se
+ejecuta y los procesos mediante los cuales se crea.
+<mark style="background-color: #ffff00;">La aplicación más sofisticada
+no es más que una serie de instrucciones que una pieza de hardware debe
+interpretar y ejecutar</mark>. Del mismo modo, el código más elegante es
+ineficaz si no se enmarca en un proceso de construcción coherente y
+planificado. Este documento propone
+<mark style="background-color: #add8e6;">un recorrido en tres etapas
+fundamentales</mark> para construir una visión integral de la
+computación. <mark style="background-color: #add8e6;">Comenzaremos
+explorando la arquitectura fundamental del computador</mark>,
+<mark style="background-color: #add8e6;">continuaremos con los lenguajes
+que actúan como puente entre el ingenio humano y la lógica de la
+máquina</mark>, y <mark style="background-color: #add8e6;">concluiremos
+con las metodologías que organizan la creación de software complejo y
+fiable</mark>.</p>
+<p>Este viaje comienza en el nivel más elemental: el hardware. La base
+de casi todos los dispositivos informáticos modernos se asienta sobre un
+modelo conceptual definido hace décadas, la
+<mark style="background-color: #d3d3d3;">Arquitectura de Von
+Neumann</mark>, nuestro punto de partida.</p>
+<h2 id="la-máquina-por-dentro-la-arquitectura-de-von-neumann">2. La
+Máquina por Dentro: La Arquitectura de Von Neumann</h2>
+<p>Aunque fue definida en 1945,
+<mark style="background-color: #ffff00;">la Arquitectura de Von Neumann
+sigue siendo el modelo conceptual sobre el que se construyen la gran
+mayoría de los computadores actuales</mark>.
+<mark style="background-color: #90ee90;">Su diseño estratégico, que
+trata tanto las instrucciones como los datos como información
+almacenable en la misma memoria, revolucionó la computación y sentó las
+bases para la era del software</mark>. Comprender su estructura es, por
+tanto, esencial para entender cómo un conjunto de líneas de código se
+transforma en acciones concretas dentro de un dispositivo.</p>
+<h3 id="las-unidades-funcionales-clave">2.1. Las Unidades Funcionales
+Clave</h3>
+<p>La arquitectura define un sistema compuesto por
+<mark style="background-color: #add8e6;">cuatro unidades funcionales
+interconectadas de forma permanente</mark>, cada una con una misión
+específica:</p>
+<ul>
+<li><strong><mark style="background-color: #add8e6;">Memoria</mark></strong>:
+Almacena tanto las instrucciones que componen un programa como los datos
+que este manipula. Está organizada en celdas, cada una con una dirección
+única.</li>
+<li><strong><mark style="background-color: #add8e6;">CPU (Unidad Central
+de Proceso)</mark></strong>: Es el componente encargado de ejecutar los
+programas almacenados en la memoria principal, procesando las
+instrucciones de forma secuencial.</li>
+<li><strong><mark style="background-color: #add8e6;">Sistema de E/S
+(Entrada/Salida)</mark></strong>: Gestiona la comunicación y conexión
+del sistema con los periféricos externos, como el teclado, el monitor o
+los dispositivos de almacenamiento.</li>
+<li><strong><mark style="background-color: #add8e6;">Buses</mark></strong>:
+Actúan como las “autopistas” de la información, interconectando las
+distintas unidades funcionales para permitir la transmisión de datos,
+direcciones y señales de control.</li>
+</ul>
+<h3
+id="el-cerebro-de-la-operación-la-unidad-central-de-proceso-cpu">2.2. El
+Cerebro de la Operación: La Unidad Central de Proceso (CPU)</h3>
+<p><mark style="background-color: #ffff00;">La CPU es el auténtico
+cerebro del computador, responsable de ejecutar y controlar todas las
+operaciones del sistema</mark>. Sus funciones abarcan desde leer y
+escribir información en la memoria, decodificar instrucciones hasta
+realizar cálculos matemáticos y lógicos. Para cumplir su cometido, se
+compone de <mark style="background-color: #add8e6;">tres elementos
+internos fundamentales</mark>.</p>
+<p><strong><mark style="background-color: #add8e6;">Registros</mark></strong>
+Son unidades de memoria de muy alta velocidad y pequeño tamaño,
+integradas directamente en el procesador.
+<mark style="background-color: #90ee90;">Sirven para almacenar
+información de manera temporal durante la ejecución de un
+programa</mark>. Se dividen en dos categorías:</p>
+<ul>
+<li><strong><mark style="background-color: #add8e6;">De uso
+general</mark></strong>: Almacenan datos o direcciones de memoria de
+forma temporal.</li>
+<li><strong><mark style="background-color: #add8e6;">De uso
+específico</mark></strong>: Tienen un propósito predefinido, como el
+<mark style="background-color: #add8e6;">contador de programa</mark>
+(que apunta a la siguiente instrucción), el
+<mark style="background-color: #add8e6;">registro de instrucción</mark>
+(que almacena la instrucción actual) o el
+<mark style="background-color: #add8e6;">indicador de estado</mark>, que
+veremos en detalle en la ALU.</li>
+</ul>
+<p><strong><mark style="background-color: #add8e6;">Unidad
+Aritmético-Lógica (ALU)</mark></strong> Es la sección de la CPU
+<mark style="background-color: #90ee90;">encargada de realizar las
+operaciones matemáticas (suma, resta) y lógicas (AND, OR, NOT)</mark>
+que se le indican. Sus componentes principales son:</p>
+<ul>
+<li><strong><mark style="background--color: #add8e6;">Registros de
+entrada (RE)</mark></strong>: Almacenan los operandos sobre los que se
+realizará la operación.</li>
+<li><strong><mark style="background-color: #add8e6;">Circuito de
+operaciones (COP)</mark></strong>: Ejecuta la operación propiamente
+dicha.</li>
+<li><strong><mark style="background-color: #add8e6;">Registro acumulador
+(RA)</mark></strong>: Guarda el resultado de la operación
+ejecutada.</li>
+<li><strong><mark style="background-color: #add8e6;">Registro de estado
+(RS)</mark></strong>: Un excelente ejemplo de registro de uso
+específico. Almacena los “flags” o indicadores sobre el resultado de la
+última operación (si fue cero, negativo, si hubo acarreo, etc.).</li>
+<li><strong><mark style="background-color: #add8e6;">Registros
+bandera</mark></strong>: Registros de 16, 32 o 64 bits (como
+<mark style="background-color: #d3d3d3;">EFLAGS</mark> o
+<mark style="background-color: #d3d3d3;">RFLAGS</mark> en la
+arquitectura <mark style="background-color: #d3d3d3;">x86</mark>) que
+contienen el conjunto de flags de estado del sistema.</li>
+</ul>
+<p><strong><mark style="background-color: #add8e6;">Unidad de Control
+(UC)</mark></strong> <mark style="background-color: #ffff00;">Actúa como
+la directora de orquesta del computador</mark>. Su función es
+<mark style="background-color: #90ee90;">leer las instrucciones de la
+memoria, interpretarlas y enviar las órdenes necesarias al resto de
+componentes (CPU, memoria, E/S) para que se ejecuten de forma
+sincronizada</mark>. Sus elementos clave incluyen:</p>
+<ul>
+<li><strong><mark style="background-color: #add8e6;">Contador de
+programa (CP)</mark></strong>: Contiene la dirección de memoria de la
+próxima instrucción a ejecutar.</li>
+<li><strong><mark style="background-color: #add8e6;">Registro de
+instrucción (RI)</mark></strong>: Almacena la instrucción que se está
+ejecutando en el momento.</li>
+<li><strong><mark style="background-color: #add8e6;">Decodificador
+(D)</mark></strong>: Interpreta la instrucción y genera las señales de
+control para su ejecución.</li>
+<li><strong><mark style="background-color: #add8e6;">Reloj
+(R)</mark></strong>: Proporciona una señal de pulsos eléctricos que
+sincroniza todas las operaciones del sistema.</li>
+<li><strong><mark style="background-color: #add8e6;">Secuenciador
+(S)</mark></strong>: Genera las microórdenes detalladas para ejecutar
+cada instrucción paso a paso.</li>
+</ul>
+<h3 id="el-flujo-de-la-ejecución-el-ciclo-de-instrucción">2.3. El Flujo
+de la Ejecución: El Ciclo de Instrucción</h3>
+<p>La CPU ejecuta un programa procesando sus instrucciones una por una,
+de forma secuencial. <mark style="background-color: #ffff00;">Este
+proceso fundamental se conoce como el ciclo de instrucción</mark>, y se
+divide en <mark style="background-color: #add8e6;">dos fases
+principales</mark> para cada instrucción del programa:</p>
+<ol type="1">
+<li><strong><mark style="background-color: #add8e6;">Fase de Búsqueda
+(Captación)</mark></strong>: <mark style="background-color: #90ee90;">El
+objetivo de esta fase es traer la instrucción desde la memoria principal
+hasta la Unidad de Control para que pueda ser interpretada</mark>.</li>
+<li><strong><mark style="background-color: #add8e6;">Fase de
+Ejecución</mark></strong>: Una vez la instrucción ha sido decodificada,
+se llevan a cabo las acciones que esta especifica. El secuenciador envía
+las microórdenes a la ALU o a otras unidades, y el resultado se almacena
+donde corresponda.</li>
+</ol>
+<p>El proceso detallado de la <strong>Fase de Búsqueda</strong> sigue
+los siguientes pasos:</p>
+<ol type="1">
+<li>Se lee la dirección de la instrucción desde el Contador de Programa
+(CP).</li>
+<li>Esta dirección se transfiere al registro de dirección de memoria
+(MAR).</li>
+<li>El decodificador de memoria activa la celda de memoria
+correspondiente y su contenido se transfiere al registro de datos
+(MBR).</li>
+<li>La instrucción completa está ahora disponible en el MBR.</li>
+<li>La instrucción viaja desde el MBR al Registro de Instrucción (RI) de
+la Unidad de Control.</li>
+<li>El decodificador de la UC interpreta la instrucción e informa al
+secuenciador.</li>
+<li>El Contador de Programa (CP) se incrementa para apuntar a la
+siguiente instrucción, preparándose para el próximo ciclo.</li>
+</ol>
+<h3 id="la-jerarquía-de-la-memoria">2.4. La Jerarquía de la Memoria</h3>
+<p>Un computador no utiliza un único tipo de memoria, sino
+<mark style="background-color: #ffff00;">un sistema organizado en
+niveles para equilibrar velocidad, capacidad y coste</mark>.</p>
+<ul>
+<li><strong><mark style="background-color: #add8e6;">Memoria
+Principal</mark></strong>: Es donde se almacenan temporalmente los
+programas y datos en uso. Se divide en
+<mark style="background-color: #add8e6;">ROM</mark> (memoria de solo
+lectura, usada para el arranque o BIOS) y
+<mark style="background-color: #add8e6;">RAM</mark> (memoria de acceso
+aleatorio, volátil y de escritura-lectura).</li>
+<li><strong><mark style="background-color: #add8e6;">Memoria
+Caché</mark></strong>: Una memoria más pequeña y rápida que la RAM,
+situada entre esta y la CPU.
+<mark style="background-color: #90ee90;">Almacena la información
+utilizada con más frecuencia para acelerar el acceso</mark>. Se organiza
+en niveles (<mark style="background-color: #add8e6;">L1, L2, L3</mark>),
+siendo L1 la más cercana a la CPU y, por tanto, la más rápida.</li>
+<li><strong><mark style="background-color: #add8e6;">Memoria
+Virtual</mark></strong>: Una técnica que utiliza espacio en un
+dispositivo más lento (como el disco duro) para simular una mayor
+cantidad de memoria principal.
+<mark style="background-color: #90ee90;">Es útil cuando los programas
+requieren más RAM de la que está físicamente disponible</mark>.</li>
+</ul>
+<p>Este sistema se estructura en una
+<strong><mark style="background-color: #ffff00;">Jerarquía de
+Memoria</mark></strong> para optimizar el rendimiento global:</p>
+<ul>
+<li><strong><mark style="background-color: #add8e6;">Nivel 0:
+Registros</mark></strong> (la más rápida, de menor capacidad y mayor
+coste).</li>
+<li><strong><mark style="background-color: #add8e6;">Nivel 1: Memoria
+caché</mark></strong>.</li>
+<li><strong><mark style="background-color: #add8e6;">Nivel 2: Memoria
+primaria (RAM)</mark></strong>.</li>
+<li><strong><mark style="background-color: #add8e6;">Nivel 3: Disco duro
+(almacenamiento masivo)</mark></strong>.</li>
+<li><strong><mark style="background-color: #add8e6;">Nivel 4: Memorias
+extraíbles</mark></strong> (la más lenta, de mayor capacidad y menor
+coste).</li>
+</ul>
+<p>Comprendida la arquitectura física que obedece ciegamente las
+órdenes, el desafío se traslada a cómo formular dichas órdenes de manera
+eficiente y comprensible para el ser humano. Este es el rol fundamental
+de los lenguajes de programación, el puente abstracto que construimos
+sobre el hardware.</p>
+<h2
+id="el-puente-entre-humano-y-máquina-los-lenguajes-de-programación">3.
+El Puente entre Humano y Máquina: Los Lenguajes de Programación</h2>
+<p><mark style="background-color: #ffff00;">Los lenguajes de
+programación son la herramienta esencial que nos permite instruir a la
+arquitectura de hardware</mark>. Proporcionan un conjunto de reglas
+sintácticas y semánticas que abstraen la complejidad del código máquina
+(secuencias de unos y ceros) y nos permiten expresar algoritmos y lógica
+de una manera más cercana al pensamiento humano. Existen múltiples
+formas de clasificar estos lenguajes, cada una ofreciendo una
+perspectiva diferente sobre su naturaleza y propósito.</p>
+<h3 id="clasificación-por-nivel-de-abstracción">3.1. Clasificación por
+Nivel de Abstracción</h3>
+<p>Este criterio mide la distancia entre el lenguaje y el hardware
+subyacente.</p>
+<ul>
+<li><strong><mark style="background-color: #add8e6;">Bajo Nivel (Primera
+Generación)</mark></strong>: Es el
+<mark style="background-color: #ffff00;">código máquina</mark>, el único
+lenguaje que la CPU entiende de forma nativa. Consiste en secuencias de
+1 y 0, y <mark style="background-color: #ffa07a;">es impracticable para
+el desarrollo humano directo</mark>.</li>
+<li><strong><mark style="background-color: #add8e6;">Medio Nivel
+(Segunda Generación)</mark></strong>: Corresponde al
+<mark style="background-color: #ffff00;">lenguaje ensamblador</mark>.
+Utiliza mnemónicos (palabras cortas) para representar instrucciones
+máquina básicas, ofreciendo una ligera abstracción pero
+<mark style="background-color: #ffa07a;">manteniendo una alta
+dependencia del hardware específico</mark>.</li>
+<li><strong><mark style="background-color: #add8e6;">Alto Nivel (3ª, 4ª
+y 5ª Generación)</mark></strong>: Son lenguajes mucho más cercanos al
+lenguaje humano, independientes de la máquina.
+<ul>
+<li><strong><mark style="background-color: #add8e6;">Tercera
+Generación</mark></strong>: Incluye la mayoría de los lenguajes modernos
+como <mark style="background-color: #d3d3d3;">Java</mark> o
+<mark style="background-color: #d3d3d3;">Python</mark>, muchos de ellos
+orientados a objetos.</li>
+<li><strong><mark style="background-color: #add8e6;">Cuarta
+Generación</mark></strong>:
+<mark style="background-color: #90ee90;">Diseñados para un propósito
+específico</mark>, como la gestión de bases de datos
+(<mark style="background-color: #d3d3d3;">SQL</mark>) o el cálculo
+matemático (<mark style="background-color: #d3d3d3;">MatLab</mark>),
+reduciendo la cantidad de código necesario.</li>
+<li><strong><mark style="background-color: #add8e6;">Quinta
+Generación</mark></strong>: Orientados a la inteligencia artificial y la
+resolución de problemas mediante bases de conocimiento, como
+<mark style="background-color: #d3d3d3;">Prolog</mark> o
+<mark style="background-color: #d3d3d3;">Lisp</mark>.</li>
+</ul></li>
+</ul>
+<h3 id="clasificación-por-forma-de-ejecución">3.2. Clasificación por
+Forma de Ejecución</h3>
+<p>Este criterio se enfoca en cómo el código fuente escrito por un
+programador se convierte en acciones ejecutables por la CPU.</p>
+<ul>
+<li><strong><mark style="background-color: #add8e6;">Lenguajes
+Compilados</mark></strong>: Un programa llamado compilador traduce todo
+el código fuente a código objeto (una versión en bajo nivel) de una sola
+vez. Posteriormente, un enlazador (linker) une este código objeto con
+las librerías necesarias para generar un archivo ejecutable final.
+Ejemplos son <mark style="background-color: #d3d3d3;">C</mark> y
+<mark style="background-color: #d3d3d3;">C++</mark>.</li>
+<li><strong><mark style="background-color: #add8e6;">Lenguajes
+Interpretados</mark></strong>: El código fuente no se traduce
+previamente. Un programa llamado intérprete lee y ejecuta el código
+línea por línea en tiempo real. Este enfoque tiene un claro compromiso:
+<mark style="background-color: #90ee90;">facilita un ciclo de desarrollo
+y depuración más rápido</mark> al no requerir un paso de compilación
+largo, pero <mark style="background-color: #ffa07a;">a costa de un
+rendimiento en ejecución más lento en comparación con el código
+compilado</mark>.</li>
+<li><strong><mark style="background-color: #add8e6;">Lenguajes
+Intermedios</mark></strong>: Combinan ambos enfoques. El código fuente
+se compila a un código intermedio llamado
+<mark style="background-color: #ffff00;">bytecode</mark>, que no es
+específico de ninguna máquina. Este bytecode es luego interpretado por
+una máquina virtual en el sistema de destino.
+<mark style="background-color: #90ee90;">Ofrecen la ventaja de ser
+multisistema (“escribe una vez, ejecuta en cualquier lugar”)</mark>,
+aunque <mark style="background-color: #ffa07a;">son algo más lentos que
+los compilados puros</mark>.
+<mark style="background-color: #d3d3d3;">Java</mark> es el ejemplo
+paradigmático. <mark style="background-color: #d3d3d3;">Python</mark>,
+aunque comúnmente citado como interpretado, en su implementación
+estándar (<mark style="background-color: #d3d3d3;">CPython</mark>)
+primero compila el código fuente a bytecode (archivos .pyc), que es
+luego interpretado por su máquina virtual.</li>
+</ul>
+<h3 id="clasificación-por-paradigma-de-programación">3.3. Clasificación
+por Paradigma de Programación</h3>
+<p><mark style="background-color: #ffff00;">Un paradigma es un estilo o
+una filosofía para estructurar el código y resolver
+problemas</mark>.</p>
+<ul>
+<li><strong><mark style="background-color: #add8e6;">Imperativo</mark></strong>:
+El código describe una secuencia de pasos que modifican el estado del
+programa para alcanzar un resultado.</li>
+<li><strong><mark style="background-color: #add8e6;">Declarativo</mark></strong>:
+Se enfoca en describir qué se quiere lograr, sin detallar el cómo.
+<mark style="background-color: #d3d3d3;">SQL</mark> es un ejemplo claro
+(“selecciona estos datos de esta tabla”).</li>
+<li><strong><mark style="background-color: #add8e6;">Procedimental</mark></strong>:
+Una evolución del imperativo, donde el programa se organiza en
+procedimientos o funciones reutilizables.</li>
+<li><strong><mark style="background-color: #add8e6;">Orientado a
+Objetos</mark></strong>: El código se estructura en torno a “objetos”
+que encapsulan tanto datos (estado) como comportamiento (operaciones),
+modelando entidades del mundo real.</li>
+<li><strong><mark style="background-color: #add8e6;">Funcional</mark></strong>:
+Trata la computación como la evaluación de funciones matemáticas,
+evitando los cambios de estado y los datos mutables.</li>
+<li><strong><mark style="background-color: #add8e6;">Lógico</mark></strong>:
+Se basa en la lógica formal. El programador define un conjunto de reglas
+y hechos, y el sistema utiliza un motor de inferencia para deducir las
+respuestas a las consultas.</li>
+</ul>
+<h3 id="tabla-de-clasificación-de-lenguajes-populares">3.4. Tabla de
+Clasificación de Lenguajes Populares</h3>
+<p>La siguiente tabla resume la clasificación de algunos de los
+lenguajes de programación más utilizados según los criterios
+descritos:</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">Lenguaje</th>
+<th style="text-align: left;">Nivel de Abstracción</th>
+<th style="text-align: left;">Forma de Ejecución</th>
+<th style="text-align: left;">Paradigma de Programación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td
+style="text-align: left;"><mark style="background-color: #d3d3d3;">C</mark></td>
+<td
+style="text-align: left;"><mark style="background-color: #add8e6;">Alto
+Nivel (3ª Gen)</mark></td>
+<td
+style="text-align: left;"><mark style="background-color: #add8e6;">Compilado</mark></td>
+<td
+style="text-align: left;"><mark style="background-color: #add8e6;">Imperativo,
+Procedimental</mark></td>
+</tr>
+<tr>
+<td
+style="text-align: left;"><mark style="background-color: #d3d3d3;">C++</mark></td>
+<td
+style="text-align: left;"><mark style="background-color: #add8e6;">Alto
+Nivel (3ª Gen)</mark></td>
+<td
+style="text-align: left;"><mark style="background-color: #add8e6;">Compilado</mark></td>
+<td
+style="text-align: left;"><mark style="background-color: #add8e6;">Orientado
+a Objetos, Procedimental</mark></td>
+</tr>
+<tr>
+<td
+style="text-align: left;"><mark style="background-color: #d3d3d3;">Java</mark></td>
+<td
+style="text-align: left;"><mark style="background-color: #add8e6;">Alto
+Nivel (3ª Gen)</mark></td>
+<td
+style="text-align: left;"><mark style="background-color: #add8e6;">Intermedio
+(Virtual)</mark></td>
+<td
+style="text-align: left;"><mark style="background-color: #add8e6;">Orientado
+a Objetos</mark></td>
+</tr>
+<tr>
+<td
+style="text-align: left;"><mark style="background-color: #d3d3d3;">Python</mark></td>
+<td
+style="text-align: left;"><mark style="background-color: #add8e6;">Alto
+Nivel (3ª Gen)</mark></td>
+<td
+style="text-align: left;"><mark style="background-color: #add8e6;">Interpretado</mark></td>
+<td
+style="text-align: left;"><mark style="background-color: #add8e6;">Orientado
+a Objetos, Imperativo, Funcional</mark></td>
+</tr>
+<tr>
+<td
+style="text-align: left;"><mark style="background-color: #d3d3d3;">Ruby</mark></td>
+<td
+style="text-align: left;"><mark style="background-color: #add8e6;">Alto
+Nivel (3ª Gen)</mark></td>
+<td
+style="text-align: left;"><mark style="background-color: #add8e6;">Interpretado</mark></td>
+<td
+style="text-align: left;"><mark style="background-color: #add8e6;">Orientado
+a Objetos, Funcional, Imperativo</mark></td>
+</tr>
+<tr>
+<td
+style="text-align: left;"><mark style="background-color: #d3d3d3;">Go</mark></td>
+<td
+style="text-align: left;"><mark style="background-color: #add8e6;">Alto
+Nivel (3ª Gen)</mark></td>
+<td
+style="text-align: left;"><mark style="background-color: #add8e6;">Compilado</mark></td>
+<td
+style="text-align: left;"><mark style="background-color: #add8e6;">Procedimental,
+Imperativo</mark></td>
+</tr>
+<tr>
+<td
+style="text-align: left;"><mark style="background-color: #d3d3d3;">Javascript</mark></td>
+<td
+style="text-align: left;"><mark style="background-color: #add8e6;">Alto
+Nivel (3ª Gen)</mark></td>
+<td
+style="text-align: left;"><mark style="background-color: #add8e6;">Interpretado</mark></td>
+<td
+style="text-align: left;"><mark style="background-color: #add8e6;">Orientado
+a Objetos, Funcional, Imperativo</mark></td>
+</tr>
+<tr>
+<td
+style="text-align: left;"><mark style="background-color: #d3d3d3;">SQL</mark></td>
+<td
+style="text-align: left;"><mark style="background-color: #add8e6;">Alto
+Nivel (4ª Gen)</mark></td>
+<td
+style="text-align: left;"><mark style="background-color: #add8e6;">Interpretado</mark></td>
+<td
+style="text-align: left;"><mark style="background-color: #add8e6;">Declarativo</mark></td>
+</tr>
+<tr>
+<td
+style="text-align: left;"><mark style="background-color: #d3d3d3;">PHP</mark></td>
+<td
+style="text-align: left;"><mark style="background-color: #add8e6;">Alto
+Nivel (3ª Gen)</mark></td>
+<td
+style="text-align: left;"><mark style="background-color: #add8e6;">Interpretado</mark></td>
+<td
+style="text-align: left;"><mark style="background-color: #add8e6;">Orientado
+a Objetos, Procedimental</mark></td>
+</tr>
+<tr>
+<td
+style="text-align: left;"><mark style="background-color: #d3d3d3;">Prolog</mark></td>
+<td
+style="text-align: left;"><mark style="background-color: #add8e6;">Alto
+Nivel (5ª Gen)</mark></td>
+<td
+style="text-align: left;"><mark style="background-color: #add8e6;">Interpretado</mark></td>
+<td
+style="text-align: left;"><mark style="background-color: #add8e6;">Lógico</mark></td>
+</tr>
+</tbody>
+</table>
+<p>Disponer de un lenguaje es fundamental, pero no suficiente. Para
+construir sistemas de software complejos, robustos y mantenibles, es
+imprescindible seguir un proceso estructurado que organice el esfuerzo
+colectivo. Esto nos lleva a la última etapa de nuestro viaje: las
+metodologías de desarrollo.</p>
+<h2
+id="el-arte-de-construir-software-procesos-y-metodologías-de-desarrollo">4.
+El Arte de Construir Software: Procesos y Metodologías de
+Desarrollo</h2>
+<p>La creación de software robusto y fiable va mucho más allá de la
+simple codificación. Requiere un enfoque estructurado que guíe a los
+equipos desde la concepción de una idea hasta la entrega y el
+mantenimiento del producto final.
+<mark style="background-color: #ffff00;">Este marco de trabajo se conoce
+como el ciclo de vida del software</mark>, y las distintas formas de
+organizarlo dan lugar a diferentes metodologías de desarrollo, cada una
+con sus propias fortalezas y debilidades.</p>
+<h3 id="el-modelo-tradicional-cascada">4.1. El Modelo Tradicional:
+Cascada</h3>
+<p>El <mark style="background-color: #d3d3d3;">Modelo en Cascada</mark>
+es un <mark style="background-color: #ffff00;">enfoque estrictamente
+secuencial</mark>. Cada fase del proyecto debe completarse en su
+totalidad antes de poder iniciar la siguiente, de forma similar a una
+cascada de agua que fluye en una única dirección.
+<mark style="background-color: #90ee90;">Es un modelo adecuado para
+proyectos con requisitos muy claros, estables y bien definidos desde el
+principio</mark>. <mark style="background-color: #ffa07a;">Su principal
+desventaja es su rigidez: los cambios son difíciles y costosos de
+implementar, y los errores a menudo no se descubren hasta las etapas
+finales</mark>. Su filosofía se basa en la creación de una documentación
+formal y exhaustiva en cada etapa para garantizar la claridad y el
+acuerdo antes de avanzar.</p>
+<p>Las fases del <mark style="background-color: #d3d3d3;">Modelo en
+Cascada</mark> son:</p>
+<ol type="1">
+<li><strong><mark style="background-color: #add8e6;">Análisis</mark></strong>:
+Se definen los requisitos funcionales y no funcionales del software. El
+entregable clave de esta fase es la
+<mark style="background-color: #d3d3d3;">Especificación de Requisitos
+del Sistema (ERS)</mark>, un documento formal que actúa como contrato
+entre el cliente y el equipo de desarrollo.</li>
+<li><strong><mark style="background-color: #add8e6;">Diseño</mark></strong>:
+Se planifica la arquitectura del sistema. El resultado se plasma en el
+<mark style="background-color: #d3d3d3;">cuaderno de carga</mark>, un
+documento técnico que detalla el funcionamiento general y los recursos
+necesarios, sirviendo de guía para los programadores.</li>
+<li><strong><mark style="background-color: #add8e6;">Codificación</mark></strong>:
+Los programadores traducen las especificaciones del diseño a un lenguaje
+de programación concreto.</li>
+<li><strong><mark style="background-color: #add8e6;">Pruebas</mark></strong>:
+Se verifica que el software funciona correctamente, está libre de
+errores y cumple con todos los requisitos especificados en la ERS.</li>
+<li><strong><mark style="background-color: #add8e6;">Documentación</mark></strong>:
+Se elaboran los manuales de usuario y la documentación técnica para
+futuros mantenimientos.</li>
+<li><strong><mark style="background-color: #add8e6;">Explotación</mark></strong>:
+El software se instala en el entorno del cliente y se pone en
+producción.</li>
+<li><strong><mark style="background-color: #add8e6;">Mantenimiento</mark></strong>:
+Se corrigen los errores (bugs) que surgen durante el uso y se
+implementan mejoras o nuevas funcionalidades.</li>
+</ol>
+<h3 id="la-evolución-hacia-la-flexibilidad-modelos-iterativos">4.2. La
+Evolución hacia la Flexibilidad: Modelos Iterativos</h3>
+<p>Como respuesta a la rigidez del modelo en cascada, surgieron los
+modelos iterativos y evolutivos. La idea central es
+<mark style="background-color: #90ee90;">desarrollar el software a
+través de ciclos repetidos (iteraciones), permitiendo la
+retroalimentación y el refinamiento continuo</mark>.</p>
+<ul>
+<li><strong><mark style="background-color: #add8e6;">Modelo de
+Prototipado</mark></strong>: Se centra en construir una versión temprana
+y simplificada del sistema (un prototipo) para que el usuario pueda
+interactuar con ella y proporcionar feedback. Este proceso se repite,
+refinando el prototipo en cada iteración hasta que cumple las
+expectativas.</li>
+<li><strong><mark style="background-color: #add8e6;">Modelo
+Incremental</mark></strong>: El software se construye y entrega en
+partes funcionales o “incrementos”. Cada incremento añade nuevas
+capacidades al sistema, permitiendo que el cliente disponga de un
+producto funcional mucho antes de que el proyecto esté completamente
+terminado.</li>
+<li><strong><mark style="background-color: #add8e6;">Modelo en
+Espiral</mark></strong>: Combina la naturaleza iterativa con el control
+sistemático del modelo en cascada, añadiendo un fuerte énfasis en el
+análisis y control de riesgos en cada ciclo de la espiral. Es ideal para
+proyectos grandes y complejos donde los riesgos son altos.</li>
+</ul>
+<h3 id="la-revolución-ágil-adaptación-y-colaboración">4.3. La Revolución
+Ágil: Adaptación y Colaboración</h3>
+<p>Los <strong><mark style="background-color: #add8e6;">Modelos
+Ágiles</mark></strong> representan un cambio de mentalidad. En lugar de
+seguir un plan rígido,
+<mark style="background-color: #90ee90;">priorizan la adaptabilidad, la
+colaboración con el cliente, la entrega continua de software funcional y
+la capacidad de responder rápidamente al cambio</mark>.</p>
+<ul>
+<li><strong><mark style="background-color: #d3d3d3;">Scrum</mark></strong>:
+Es un marco de trabajo que organiza el desarrollo en ciclos cortos de
+duración fija llamados
+<mark style="background-color: #ffff00;">sprints</mark> (generalmente de
+2 a 4 semanas). Al final de cada sprint, el equipo entrega un incremento
+de software potencialmente desplegable.</li>
+<li><strong><mark style="background-color: #d3d3d3;">Kanban</mark></strong>:
+Se enfoca en la gestión visual del flujo de trabajo a través de un
+tablero. Su objetivo es
+<mark style="background-color: #90ee90;">optimizar el flujo, limitar el
+trabajo en curso (WIP) para evitar cuellos de botella y fomentar la
+mejora continua del proceso</mark>.</li>
+<li><strong><mark style="background-color: #d3d3d3;">Programación
+Extrema (XP)</mark></strong>: Es una metodología ágil que se centra en
+un conjunto de prácticas de ingeniería de software para mejorar la
+calidad del código y la productividad del equipo, como el desarrollo
+guiado por pruebas (TDD), la programación en parejas y la integración
+continua.</li>
+</ul>
+<h3 id="análisis-comparativo-de-metodologías">4.4. Análisis Comparativo
+de Metodologías</h3>
+<p>La elección de una metodología depende en gran medida del tipo de
+proyecto, el equipo y la cultura de la organización. La siguiente tabla
+compara los modelos descritos:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">Modelo</th>
+<th style="text-align: left;">Ventajas</th>
+<th style="text-align: left;">Inconvenientes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td
+style="text-align: left;"><strong><mark style="background-color: #d3d3d3;">Cascada</mark></strong></td>
+<td style="text-align: left;"><mark style="background-color: #90ee90;">-
+Sencillo y fácil de gestionar.<br>- Fases y entregables bien
+definidos.<br>- Ideal para proyectos con requisitos
+estables.</mark></td>
+<td style="text-align: left;"><mark style="background-color: #ffa07a;">-
+Inflexible y resistente a cambios.<br>- Los errores se detectan tarde y
+son costosos.<br>- El software funcional no se ve hasta el
+final.</mark></td>
+</tr>
+<tr>
+<td
+style="text-align: left;"><strong><mark style="background-color: #add8e6;">Prototipado</mark></strong></td>
+<td style="text-align: left;"><mark style="background-color: #90ee90;">-
+Retroalimentación temprana del usuario.<br>- Reduce el riesgo de no
+cumplir las expectativas.<br>- Mejora la comprensión de los
+requisitos.</mark></td>
+<td style="text-align: left;"><mark style="background-color: #ffa07a;">-
+Puede aumentar la complejidad.<br>- El usuario puede confundir el
+prototipo con el producto final.<br>- Puede consumir más tiempo y
+recursos.</mark></td>
+</tr>
+<tr>
+<td
+style="text-align: left;"><strong><mark style="background-color: #add8e6;">Incremental</mark></strong></td>
+<td style="text-align: left;"><mark style="background-color: #90ee90;">-
+Entrega temprana de software funcional.<br>- Más flexible que el modelo
+en cascada.<br>- Facilita la detección de errores.</mark></td>
+<td style="text-align: left;"><mark style="background-color: #ffa07a;">-
+Requiere una buena planificación inicial.<br>- El coste total puede ser
+superior al de cascada.<br>- La integración de los incrementos puede ser
+compleja.</mark></td>
+</tr>
+<tr>
+<td
+style="text-align: left;"><strong><mark style="background-color: #add8e6;">Espiral</mark></strong></td>
+<td style="text-align: left;"><mark style="background-color: #90ee90;">-
+Fuerte enfoque en el análisis de riesgos.<br>- Bueno para proyectos
+grandes y complejos.<br>- Permite cambios y adaptaciones.</mark></td>
+<td style="text-align: left;"><mark style="background-color: #ffa07a;">-
+Es un modelo complejo y costoso de gestionar.<br>- El análisis de
+riesgos requiere personal experto.<br>- No es adecuado para proyectos
+pequeños.</mark></td>
+</tr>
+<tr>
+<td
+style="text-align: left;"><strong><mark style="background-color: #d3d3d3;">Scrum</mark></strong></td>
+<td style="text-align: left;"><mark style="background-color: #90ee90;">-
+Alta adaptabilidad a los cambios.<br>- Fomenta la colaboración y la
+comunicación.<br>- Transparencia total sobre el progreso del
+proyecto.</mark></td>
+<td style="text-align: left;"><mark style="background-color: #ffa07a;">-
+Requiere un equipo experimentado y autogestionado.<br>- Riesgo de “scope
+creep” (aumento del alcance).<br>- Puede ser difícil de escalar a
+grandes proyectos.</mark></td>
+</tr>
+<tr>
+<td
+style="text-align: left;"><strong><mark style="background-color: #d3d3d3;">Kanban</mark></strong></td>
+<td style="text-align: left;"><mark style="background-color: #90ee90;">-
+Flexible y enfocado en el flujo continuo.<br>- Mejora la eficiencia y
+reduce el desperdicio.<br>- Visualización clara del trabajo.</mark></td>
+<td style="text-align: left;"><mark style="background-color: #ffa07a;">-
+Puede ser demasiado simple para proyectos complejos.<br>- La falta de
+plazos fijos puede ser un problema.<br>- No es un modelo de desarrollo
+en sí mismo.</mark></td>
+</tr>
+<tr>
+<td
+style="text-align: left;"><strong><mark style="background-color: #d3d3d3;">P.
+Extrema (XP)</mark></strong></td>
+<td style="text-align: left;"><mark style="background-color: #90ee90;">-
+Produce software de alta calidad.<br>- Alta satisfacción del
+cliente.<br>- Mejora la colaboración y productividad del
+equipo.</mark></td>
+<td style="text-align: left;"><mark style="background-color: #ffa07a;">-
+Requiere una gran disciplina del equipo.<br>- Puede ser difícil de
+implementar en grandes empresas.<br>- Fuerte dependencia de la
+comunicación directa.</mark></td>
+</tr>
+</tbody>
+</table>
+<p>Hemos diseccionado la máquina, el lenguaje para comunicarnos con ella
+y los procesos para construir software de manera disciplinada. Es hora
+de ensamblar estas piezas para formar una visión unificada del
+campo.</p>
+<h2 id="conclusión-de-los-electrones-a-la-experiencia-de-usuario">5.
+Conclusión: De los Electrones a la Experiencia de Usuario</h2>
+<p>A lo largo de este recorrido, hemos viajado desde el nivel más
+fundamental del hardware hasta las estrategias más abstractas de gestión
+de proyectos. Hemos visto cómo la arquitectura física de
+<mark style="background-color: #d3d3d3;">Von Neumann</mark> establece
+las reglas del juego, definiendo cómo se procesan y almacenan las
+instrucciones. Hemos explorado cómo los
+<mark style="background-color: #ffff00;">lenguajes de
+programación</mark>, con sus diversos niveles de abstracción y
+paradigmas, nos proporcionan las herramientas para jugar ese juego de
+manera efectiva. Finalmente, hemos analizado cómo las
+<mark style="background-color: #ffff00;">metodologías de
+desarrollo</mark>, desde la rigidez secuencial de
+<mark style="background-color: #d3d3d3;">Cascada</mark> hasta la
+flexibilidad adaptativa de
+<mark style="background-color: #d3d3d3;">Agile</mark>, nos ofrecen las
+estrategias para ganar, entregando valor de manera consistente y
+organizada.</p>
+<p><mark style="background-color: #ffff00;">Es la comprensión de esta
+sinergia —entre la limitación física del hardware, la potencia abstracta
+del lenguaje y la disciplina estructural del proceso— lo que permite
+diseñar sistemas tecnológicos que no solo funcionan, sino que son
+robustos, mantenibles y verdaderamente alineados con su
+propósito</mark>. En última instancia, es el dominio de este camino,
+desde los electrones que fluyen en un circuito hasta la experiencia
+final del usuario, lo que define la esencia de la tecnología y el
+desarrollo de software.</p>
