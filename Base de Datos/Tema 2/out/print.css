@@ -1,0 +1,51 @@
+/* Estilos generales para el modo de impresión */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Unifica la fuente */
+    line-height: 1.5;
+}
+
+/* --- 1. Control de Saltos de Página --- */
+/* Crea una clase para forzar un salto de página ANTES de un elemento */
+.page-break-before {
+    page-break-before: always;
+}
+
+/* Evita saltos de página DENTRO de las tablas o imágenes */
+table, figure, img {
+    page-break-inside: avoid;
+}
+
+/* Evita que los títulos queden huérfanos al final de una página */
+h1, h2, h3 {
+    page-break-after: avoid;
+}
+
+/* --- 2. Portada Personalizada --- */
+/* Oculta la portada en la vista de pantalla */
+.cover-page {
+    display: none;
+}
+
+@media print {
+    /* Muestra la portada solo al imprimir */
+    .cover-page {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh; /* Ocupa toda la primera página */
+        page-break-after: always; /* Salto de página después de la portada */
+        text-align: center;
+    }
+
+    /* Oculta el encabezado y pie de página del navegador en la portada */
+    @page:first {
+        margin: 0;
+    }
+
+    /* Define márgenes para el resto de las páginas */
+    @page {
+        margin: 1.5cm;
+    }
+}

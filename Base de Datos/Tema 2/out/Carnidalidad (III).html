@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&ast;&ast;Conversi&oacute;n de Relaciones de Dependencia&ast;&ast;</title>
+            <link rel="stylesheet" href="print.css">
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h3 id="conversión-de-relaciones-de-dependencia"><strong>Conversión de Relaciones de Dependencia</strong></h3>
+<p>Las relaciones de dependencia vinculan una entidad &quot;fuerte&quot; con una &quot;débil&quot;. Una entidad débil es aquella que no puede existir sin la entidad fuerte y, a menudo, necesita la clave de la fuerte para poder identificarse de forma única. Hay dos tipos principales de dependencia: en existencia y en identificación.</p>
+<hr>
+<h3 id="1-relación-de-dependencia-en-existencia"><strong>1. Relación de Dependencia en Existencia</strong></h3>
+<blockquote>
+<p><strong>Regla de Oro:</strong> Se transforma de manera similar a una relación 1:N estándar. La clave primaria <code>🔑</code> de la entidad fuerte (lado &quot;1&quot;) se propaga a la tabla de la entidad débil (lado &quot;N&quot;), donde se convierte en una Clave Foránea <code>🔗</code>.</p>
+</blockquote>
+<h4 id="antes-diagrama-de-dependencia-en-existencia">ANTES (Diagrama de Dependencia en Existencia)</h4>
+<p><em>Un <code>FAMILIAR</code> (entidad débil) depende de la existencia de un <code>PACIENTE</code> (entidad fuerte). La existencia de un familiar en la base de datos no tiene sentido si no está asociado a un paciente.</em>
+<br></p>
+<div style="display: flex; align-items: center; justify-content: flex-start; gap: 15px; flex-wrap: wrap;">
+<!-- Entidad Fuerte -->
+<table style="width: auto; border: 1px solid #555; border-collapse: collapse;">
+    <caption style="background-color: #2c5282; color: white; caption-side: top; text-align: left; padding: 8px; font-weight: bold; border: 1px solid #555; border-bottom: none;">PACIENTE</caption>
+    <tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">🔑 <strong>PacienteID</strong> (PK)</td> </tr>
+    <tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">Nombre</td> </tr>
+    <tr> <td style="padding: 8px;">Tratamiento</td> </tr>
+</table>
+<!-- Conector -->
+<div style="text-align: center; color: #718096;"><span style="font-size: 2.5em;">→</span></div>
+<!-- Relación -->
+<div style="text-align: center;">
+    <div style="font-weight: bold; color: #2c7a7b; margin-bottom: 5px; font-size: 0.9em;">DEPENDENCIA EN EXISTENCIA</div>
+    <table style="width: auto; border: 2px solid #285e61; border-collapse: collapse; margin: 0 auto;">
+        <tr style="background-color: #2c7a7b; color: white; font-weight: bold;"> <td style="padding: 4px 12px;">E</td> </tr>
+        <tr style="background-color: #2c7a7b; color: white;"> <td style="padding: 4px 12px;">tiene</td> </tr>
+    </table>
+</div>
+<!-- Conector -->
+<div style="text-align: center; color: #718096;"><span style="font-size: 2.5em;">→</span></div>
+<!-- Entidad Débil con doble recuadro -->
+<div style="border: 1px solid #888; padding: 3px; display: inline-block;">
+    <table style="width: auto; border: 1px solid #555; border-collapse: collapse;">
+        <caption style="background-color: #2c5282; color: white; caption-side: top; text-align: left; padding: 8px; font-weight: bold; border: 1px solid #555; border-bottom: none;">FAMILIAR</caption>
+        <tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">🔑 <strong>DNI</strong> (PK)</td> </tr>
+        <tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">Nombre_Familiar</td> </tr>
+        <tr> <td style="padding: 8px;">Parentesco</td> </tr>
+    </table>
+</div>
+</div>
+<h4 id="después-propagación-de-clave">DESPUÉS (Propagación de Clave)</h4>
+<p><em>La clave primaria de <code>PACIENTE</code> se añade como clave foránea a la tabla <code>FAMILIAR</code> para establecer el vínculo de dependencia.</em>
+<br></p>
+<div style="display: flex; align-items: flex-start; justify-content: flex-start; gap: 20px; flex-wrap: wrap;">
+<!-- Tabla Entidad Fuerte -->
+<table style="width: auto; border: 1px solid #555; border-collapse: collapse;">
+    <caption style="background-color: #2c5282; color: white; caption-side: top; text-align: left; padding: 8px; font-weight: bold; border: 1px solid #555; border-bottom: none;">PACIENTE</caption>
+    <tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">🔑 <strong>PacienteID</strong> (PK)</td> </tr>
+    <tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">Nombre</td> </tr>
+    <tr> <td style="padding: 8px;">Tratamiento</td> </tr>
+</table>
+<!-- Tabla Entidad Débil -->
+<table style="width: auto; border: 1px solid #555; border-collapse: collapse;">
+    <caption style="background-color: #2c5282; color: white; caption-side: top; text-align: left; padding: 8px; font-weight: bold; border: 1px solid #555; border-bottom: none;">FAMILIAR</caption>
+    <tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">🔑 <strong>DNI</strong> (PK)</td> </tr>
+    <tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">Nombre_Familiar</td> </tr>
+    <tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">Parentesco</td> </tr>
+    <tr><td style="padding: 8px;"><span style="font-size:0.8em; color:#999;"><em>de PACIENTE</em> ➔</span> <strong style="background-color:#4a5568; color:#e2e8f0; padding: 2px 6px; border-radius:4px;">🔗 PacienteID (FK)</strong></td></tr>
+</table>
+</div>
+<hr>
+<h3 id="2-relación-de-dependencia-en-identificación"><strong>2. Relación de Dependencia en Identificación</strong></h3>
+<blockquote>
+<p><strong>Regla de Oro:</strong> La clave primaria <code>🔑</code> de la entidad fuerte se propaga a la tabla de la entidad débil, donde no solo actúa como Clave Foránea <code>🔗</code>, sino que también <strong>forma parte de la Clave Primaria</strong> <code>🔑</code> de la entidad débil.</p>
+</blockquote>
+<h4 id="antes-diagrama-de-dependencia-en-identificación">ANTES (Diagrama de Dependencia en Identificación)</h4>
+<p><em>Un <code>EJEMPLAR</code> (entidad débil) no puede identificarse unívocamente solo con su número de ejemplar, ya que podría repetirse para libros distintos. Necesita el código del <code>LIBRO</code> (entidad fuerte) para tener una identidad única.</em>
+<br></p>
+<div style="display: flex; align-items: center; justify-content: flex-start; gap: 15px; flex-wrap: wrap;">
+<!-- Entidad Fuerte -->
+<table style="width: auto; border: 1px solid #555; border-collapse: collapse;">
+    <caption style="background-color: #2c5282; color: white; caption-side: top; text-align: left; padding: 8px; font-weight: bold; border: 1px solid #555; border-bottom: none;">LIBRO</caption>
+    <tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">🔑 <strong>Cod_libro</strong> (PK)</td> </tr>
+    <tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">Titulo</td> </tr>
+    <tr> <td style="padding: 8px;">Autor</td> </tr>
+</table>
+<!-- Conector -->
+<div style="text-align: center; color: #718096;"><span style="font-family: monospace; font-size: 0.9em;">(1,1)</span><br><span style="font-size: 2.5em;">→</span></div>
+<!-- Relación -->
+<div style="text-align: center;">
+    <div style="font-weight: bold; color: #2c7a7b; margin-bottom: 5px; font-size: 0.9em;">DEPENDENCIA EN IDENTIFICACIÓN</div>
+    <table style="width: auto; border: 2px solid #285e61; border-collapse: collapse; margin: 0 auto;">
+        <tr style="background-color: #2c7a7b; color: white; font-weight: bold;"> <td style="padding: 4px 12px;">ID</td> </tr>
+        <tr style="background-color: #2c7a7b; color: white;"> <td style="padding: 4px 12px;">tiene</td> </tr>
+    </table>
+</div>
+<!-- Conector -->
+<div style="text-align: center; color: #718096;"><span style="font-family: monospace; font-size: 0.9em;">(0,N)</span><br><span style="font-size: 2.5em;">→</span></div>
+<!-- Entidad Débil con doble recuadro -->
+<div style="border: 1px solid #888; padding: 3px; display: inline-block;">
+    <table style="width: auto; border: 1px solid #555; border-collapse: collapse;">
+        <caption style="background-color: #2c5282; color: white; caption-side: top; text-align: left; padding: 8px; font-weight: bold; border: 1px solid #555; border-bottom: none;">EJEMPLAR</caption>
+        <tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">🔑 <strong>Num_ejemplar</strong> (PK parcial)</td> </tr>
+        <tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">Cod_ejem</td> </tr>
+        <tr> <td style="padding: 8px;">Estado</td> </tr>
+    </table>
+</div>
+</div>
+<h4 id="después-clave-primaria-compuesta">DESPUÉS (Clave Primaria Compuesta)</h4>
+<p><em>La clave primaria de la tabla <code>EJEMPLAR</code> se compone de su clave parcial (<code>Num_ejemplar</code>) y la clave foránea de <code>LIBRO</code> (<code>Cod_libro</code>). Adicionalmente, se imponen restricciones de borrado y actualización en cascada para mantener la integridad referencial.</em>
+<br></p>
+<div style="display: flex; align-items: flex-start; justify-content: flex-start; gap: 20px; flex-wrap: wrap;">
+<table style="width: auto; border: 1px solid #555; border-collapse: collapse;">
+    <caption style="background-color: #2c5282; color: white; caption-side: top; text-align: left; padding: 8px; font-weight: bold; border: 1px solid #555; border-bottom: none;">LIBRO</caption>
+    <tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">🔑 <strong>Cod_libro</strong> (PK)</td> </tr>
+    <tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">Titulo</td> </tr>
+    <tr> <td style="padding: 8px;">Autor</td> </tr>
+</table>
+<table style="width: auto; border: 2px solid #285e61; border-collapse: collapse;">
+    <caption style="background-color: #2c7a7b; color: white; caption-side: top; text-align: left; padding: 8px; font-weight: bold; border: 2px solid #285e61; border-bottom: none;">EJEMPLAR</caption>
+    <tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">🔑🔗 <strong>Cod_libro</strong> (PK, FK)</td> </tr>
+    <tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">🔑 <strong>Num_ejemplar</strong> (PK)</td> </tr>
+    <tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">Cod_ejem</td> </tr>
+    <tr> <td style="padding: 8px;">Estado</td> </tr>
+</table>
+</div>
+<div style="margin-top: 15px; font-family: monospace; background-color: #2d3748; color: #a0aec0; padding: 12px; border-left: 4px solid #2c7a7b; border-radius: 4px; font-size: 0.9em;">
+    <strong>Nota sobre la Clave Ajena en EJEMPLAR:</strong><br>
+    Se aplican las siguientes restricciones para mantener la integridad:<br>
+    <span style="color: #e2e8f0;">- ON DELETE CASCADE:</span> Si se borra un libro, se borran todos sus ejemplares.<br>
+    <span style="color: #e2e8f0;">- ON UPDATE CASCADE:</span> Si cambia el código de un libro, se actualiza en todos sus ejemplares.
+</div>
+            
+            
+        </body>
+        </html>
