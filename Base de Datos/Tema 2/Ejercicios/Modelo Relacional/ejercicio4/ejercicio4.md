@@ -13,8 +13,6 @@
 - localidad
 - cod_E(FK) - Relación responsable
 
-
-
 ### PROYECTO
 - cod_P (PK)
 - presupuesto
@@ -23,4 +21,11 @@
 - cod_E (PK)(FK)
 - cod_P (PK)(FK)
 - función
+
+### FAMILIAR
+- dni (PK)
+- nombre
+- cod_E (FK)
+
+
 

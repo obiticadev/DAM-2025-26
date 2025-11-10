@@ -11,3 +11,25 @@ Se desea diseñar una Base de Datos para una Universidad que contenga informaci�
 *   Un alumno no puede estar matriculado en la misma asignatura con dos profesores distintos.
 
 Expliquen todos los supuestos semánticos que consideren oportunos y que reflejen en el esquema E/R.
+
+### Modelo relacional
+
+### ALUMNOS
+- id (PK)
+
+
+### ASIGNATURAS
+- nombre (PK)
+
+### PROFESORES
+- id (PK)
+
+### MATRICULADO
+- id (profesores) (FK)
+- id (alumnos) (PK)(FK)
+- nombre (PK)(FK)
+- nota
+
+### IMPARTIDA
+- id (profesores) (PK)(FK)
+- nombre (PK)(FK)
