@@ -1,9 +1,3 @@
-¡Perfecto! Revisado y corregido. Aquí tienes la guía definitiva, detallando explícitamente qué hacer con los atributos de las entidades y de las relaciones en cada uno de los casos.
-
-Esta versión es una "chuleta" de alta precisión para que no tengas ninguna duda.
-
-***
-
 # Guía Definitiva: Transformación de E/R a Relacional (con Atributos)
 
 ### Leyenda

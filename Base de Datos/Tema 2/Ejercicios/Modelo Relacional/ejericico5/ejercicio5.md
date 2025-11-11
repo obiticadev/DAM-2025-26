@@ -2,13 +2,14 @@
 
 
 ### DEPARTAMENTO
-- nombreID (PK)
+- departamentoID (PK)
+- nombre
 
 ### EMPLEADO
 - dni (PK)
 - nombre
 - dirección
-- nombreID (FK)
+- departamentoID (FK)
 
 ### PROYECTO
 - num_proyecto (PK)
@@ -25,7 +26,7 @@
 - fecha
 
 ### ADMINISTRATIVO
-- dni (PK)(FK)
+- dni (PK)(FK) 
 - idiomas
 
 
