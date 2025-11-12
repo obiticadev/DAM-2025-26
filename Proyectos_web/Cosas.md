@@ -1,1 +1,1 @@
-ya funciona!! habia que hacer esta transformación, lo unico que me gustaría que no pusiera lo de value #### sino que ponga directamente el dato y ya, con eso lo identifico
+quiero que todos usen la misma magnitud sin aplificadores o simplificadores

@@ -42,12 +42,12 @@ int[][] matriz = {
 En Java, no es obligatorio que todas las filas tengan la misma longitud. Se puede definir el número de filas y luego inicializar cada fila con un tamaño diferente.
 
 ```java
-int[][] matrizIrregular = new int; // Se definen 3 filas, pero no las columnas
+int[][] matrizIrregular = new int[3][]; // 3 filas, columnas sin definir
 
 // Se inicializa cada fila con un tamaño diferente
-matrizIrregular = new int; // La primera fila tiene 2 columnas
-matrizIrregular = new int; // La segunda fila tiene 4 columnas
-matrizIrregular = new int; // La tercera fila tiene 3 columnas
+matrizIrregular[0] = new int[2]; // La primera fila tiene 2 columnas
+matrizIrregular[1] = new int[4]; // La segunda fila tiene 4 columnas
+matrizIrregular[2] = new int[3]; // La tercera fila tiene 3 columnas
 ```
 
 ---
@@ -68,12 +68,12 @@ int[][] matriz = {
 };
 
 // Acceder al elemento en la fila 1, columna 2 (el valor es 6)
-int valor = matriz;
+int valor = matriz[1][2];
 System.out.println("El valor es: " + valor); // Salida: 6
 
 // Modificar el elemento en la fila 0, columna 0 (cambiar 1 por 99)
-matriz = 99;
-System.out.println("El nuevo primer valor es: " + matriz); // Salida: 99
+matriz[0][0] = 99;
+System.out.println("El nuevo primer valor es: " + matriz[0][0]); // Salida: 99
 ```
 
 ---
@@ -110,16 +110,30 @@ for (int i = 0; i < matriz.length; i++) {
 Esta sintaxis es más concisa y legible, especialmente cuando no se necesitan los índices.
 
 ```java
-int[][] matriz = { {1, 2, 3}, {4, 5, 6} };
+public class MatrizEjemplo {
+    public static void main(String[] args) {
+        // Declaramos y creamos una matriz de 2 filas y 3 columnas
+        int[][] matriz = {
+            {1, 2, 3},
+            {4, 5, 6}
+        };
 
-// El bucle exterior obtiene cada fila (que es un array de enteros)
-for (int[] fila : matriz) {
-    // El bucle interior obtiene cada elemento de la fila actual
-    for (int elemento : fila) {
-        System.out.print(elemento + " ");
+        // El bucle exterior recorre cada fila (cada una es un array de enteros)
+        for (int[] fila : matriz) {
+            // El bucle interior recorre cada elemento dentro de esa fila
+            for (int elemento : fila) {
+                System.out.print(elemento + " ");
+            }
+            // Salto de línea después de cada fila
+            System.out.println();
+        }
     }
-    System.out.println();
 }
+```
+**Salida:**
+```
+1 2 3 
+4 5 6 
 ```
 
 ---
