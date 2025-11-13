@@ -11,7 +11,7 @@ public class App {
     public static void main(String[] args) {
         final int MIN = 65;
         final int MAX = 90;
-        char[][] sopa = new char[20][20];
+        char[][] sopa = new char[10][10];
         String[] palabras = { "Mariposa", "Sol", "Luz", "Flor" };
         // Variables para inserción de palabras en la sopa de letras
         int insertEnFila;
