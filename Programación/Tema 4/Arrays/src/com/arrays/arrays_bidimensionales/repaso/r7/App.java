@@ -47,7 +47,7 @@ public class App {
             Arrays.sort(basuraFila);
             System.out.println(Arrays.toString(basuraFila));
             minArray[i] = basuraFila[0];
-            maxArray[i] = basuraFila[basuraFila.length];
+            maxArray[i] = basuraFila[basuraFila.length-1];
             media[i] = notaAcumulada / matriz[i].length;
 
 
