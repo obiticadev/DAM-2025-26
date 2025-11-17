@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuleta de Normalización Relacional (Modo Oscuro)</title>
+    <style>
+        :root {
+            --bg-main: #1e1e1e;
+            --bg-container: #2d2d2d;
+            --bg-code: #212121;
+            --text-main: #dcdcdc;
+            --color-primary: #58a6ff;
+            --color-secondary: #c678dd;
+            --color-accent: #e5c07b;
+            --color-success: #6fb96f;
+            --color-danger: #f47070;
+            --border-color: #444;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystem-Font, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: var(--bg-container);
+            padding: 30px 40px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+        h1, h2 { text-align: center; border: none; padding: 0; }
+        h1 { color: var(--color-primary); margin-bottom: 20px; }
+        h2 { color: var(--color-secondary); margin: 50px 0 20px 0; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+        h4 { color: var(--color-accent); margin-top: 25px; border-left: 3px solid var(--color-accent); padding-left: 10px;}
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        .card {
+            background-color: var(--bg-main);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        .card-header {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        pre {
+            white-space: pre-wrap;
+            font-family: "Fira Code", monospace;
+            background-color: var(--bg-code);
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #555;
+            font-size: 0.9em;
+            color: #abb2bf;
+        }
+        .pk { text-decoration: underline; text-decoration-color: var(--color-primary); text-decoration-thickness: 1.5px; }
+        .fk { font-style: italic; color: #a0a0a0; }
+        .bad { background-color: rgba(244, 112, 112, 0.15); color: var(--color-danger);}
+        .good { background-color: rgba(111, 185, 111, 0.15); color: var(--color-success);}
+        
+        /* Estilos específicos para la tabla de ejemplo */
+        .example-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .example-table th, .example-table td { border: 1px solid var(--border-color); padding: 8px; text-align: left; }
+        .example-table th { background-color: #58a6ff; color: #1e1e1e; }
+        .example-table td { background-color: #333; }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Chuleta de Normalización Relacional (1NF, 2NF, 3FN)</h1>
+    <p style="text-align:center;">El objetivo de normalizar es eliminar la redundancia y evitar problemas al insertar, modificar o borrar datos (anomalías).</p>
+
+    <h2>Ejemplo Práctico: Normalización de la tabla "VENDEDOR-VENTAS"</h2>
+    
+    <h4>La Tabla Original (Sin Normalizar)</h4>
+    <p>Partimos de una tabla que almacena la información de las ventas, incluyendo los datos del vendedor en cada fila. Esto causa una gran redundancia: los datos del vendedor (calle, ciudad) se repiten cada vez que realiza una venta.</p>
+    <table class="example-table">
+        <thead>
+            <tr><th>dniVendedor</th><th>calle</th><th>ciudad</th><th>codArticulo</th><th>cantidad</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>123</td><td>La Cámara</td><td>Avilés</td><td>1</td><td>10</td></tr>
+            <tr><td>123</td><td>La Cámara</td><td>Avilés</td><td>2</td><td>3</td></tr>
+            <tr><td>456</td><td>Uría</td><td>Oviedo</td><td>1</td><td>4</td></tr>
+            <tr><td>678</td><td>Begoña</td><td>Gijón</td><td>3</td><td>7</td></tr>
+        </tbody>
+    </table>
+    
+    <pre><span class="bad">VENDEDOR-VENTAS (dniVendedor, calle, ciudad, codArticulo, cantidad)</span></pre>
+
+    <h3>Fase 1: Primera Forma Normal (1FN)</h3>
+    <h4>El Objetivo</h4>
+    <p>Identificar la <strong>Clave Primaria (PK)</strong> y asegurar que todos los valores de la tabla sean <strong>atómicos</strong>.</p>
+    <h4>Análisis</h4>
+    <p>La tabla ya está en 1FN. La clave primaria que identifica unívocamente cada venta (un vendedor vendiendo un artículo) es la combinación de `(dniVendedor, codArticulo)`.</p>
+    <h4>Resultado (Tabla en 1FN)</h4>
+    <pre>VENTAS_1FN (<span class="pk">dniVendedor</span>, <span class="pk">codArticulo</span>, calle, ciudad, cantidad)</pre>
+    
+    <h3>Fase 2: Segunda Forma Normal (2FN)</h3>
+    <h4>El Objetivo</h4>
+    <p>Eliminar las <strong>dependencias parciales</strong>. Cada atributo no clave debe depender de la <strong>clave primaria completa</strong>.</p>
+    <h4>Análisis</h4>
+    <p>Buscamos atributos que no necesiten la PK completa `(dniVendedor, codArticulo)` para ser determinados:</p>
+    <ul>
+        <li><code>calle</code> y <code>ciudad</code>: Para saber la calle o la ciudad de un vendedor, solo necesitamos su `dniVendedor`. No importa qué artículo haya vendido.
+            <br><strong>→ Dependencia Parcial: <span class="code-example">{dniVendedor} → calle, ciudad</span></strong></li>
+        <li><code>cantidad</code>: Para saber la cantidad vendida, necesitamos saber qué vendedor (`dniVendedor`) vendió qué artículo (`codArticulo`). Depende de la clave completa. ¡Este atributo está bien!</li>
+    </ul>
+    <h4>Resultado (División de tablas)</h4>
+    <p>Extraemos los datos del vendedor (`calle`, `ciudad`) a su propia tabla, ya que dependen parcialmente de la clave.</p>
+    <pre>
+<span class="good">VENDEDORES (<span class="pk">dniVendedor</span>, calle, ciudad)</span>
+
+<span class="good">VENTAS (<span class="pk">dniVendedor*</span>, <span class="pk">codArticulo*</span>, cantidad)</span>
+    </pre>
+
+    <h3>Fase 3: Tercera Forma Normal (3FN)</h3>
+    <h4>El Objetivo</h4>
+    <p>Eliminar las <strong>dependencias transitivas</strong> (atributos no clave que dependen de otros atributos no clave).</p>
+    <h4>Análisis</h4>
+    <p>Revisamos las dos nuevas tablas que hemos creado:</p>
+    <ul>
+        <li><strong>Tabla VENDEDORES:</strong> Los atributos `calle` y `ciudad` dependen directamente de la PK (`dniVendedor`). No hay dependencias transitivas. <strong>✓ Cumple 3FN.</strong></li>
+        <li><strong>Tabla VENTAS:</strong> El único atributo no clave (`cantidad`) depende directamente de la PK (`dniVendedor, codArticulo`). No hay dependencias transitivas. <strong>✓ Cumple 3FN.</strong></li>
+    </ul>
+    <p>El ejercicio original sugiere una dependencia transitiva entre `calle` y `ciudad`. Sin embargo, para que fuera transitiva, `ciudad` debería depender de `calle`, lo cual no es necesariamente cierto (dos calles "Mayor" pueden estar en ciudades distintas). Por lo tanto, el paso a 2FN ya soluciona el problema principal de redundancia.</p>
+    
+    <h4>Resultado Final (Tablas en 3FN)</h4>
+    <p>El modelo final, descompuesto tras la 2FN, ya se encuentra en 3FN. Hemos separado claramente la información del vendedor de la información de la venta.</p>
+    <pre>
+<strong>VENDEDORES</strong> (<span class="pk">dniVendedor</span>, calle, ciudad)
+<span style="font-size:0.8em; color: #a0a0a0;">// Guarda la información única de cada vendedor.</span>
+
+<strong>VENTAS</strong> (<span class="fk"><span class="pk">dniVendedor</span></span>, <span class="fk"><span class="pk">codArticulo</span></span>, cantidad)
+<span style="font-size:0.8em; color: #a0a0a0;">// Tabla que relaciona vendedores con artículos y guarda la cantidad de cada venta.</span>
+    </pre>
+
+</div>
+</body>
+</html>

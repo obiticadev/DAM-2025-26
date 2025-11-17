@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuleta de Normalización Relacional (Modo Oscuro)</title>
+    <style>
+        :root {
+            --bg-main: #1e1e1e;
+            --bg-container: #2d2d2d;
+            --bg-code: #212121;
+            --text-main: #dcdcdc;
+            --color-primary: #58a6ff;
+            --color-secondary: #c678dd;
+            --color-accent: #e5c07b;
+            --color-success: #6fb96f;
+            --color-danger: #f47070;
+            --border-color: #444;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystem-Font, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: var(--bg-container);
+            padding: 30px 40px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+        h1, h2 { text-align: center; border: none; padding: 0; }
+        h1 { color: var(--color-primary); margin-bottom: 20px; }
+        h2 { color: var(--color-secondary); margin: 50px 0 20px 0; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+        h4 { color: var(--color-accent); margin-top: 25px; border-left: 3px solid var(--color-accent); padding-left: 10px;}
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        .card {
+            background-color: var(--bg-main);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        .card-header {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        pre {
+            white-space: pre-wrap;
+            font-family: "Fira Code", monospace;
+            background-color: var(--bg-code);
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #555;
+            font-size: 0.9em;
+            color: #abb2bf;
+        }
+        .pk { text-decoration: underline; text-decoration-color: var(--color-primary); text-decoration-thickness: 1.5px; }
+        .fk { font-style: italic; color: #a0a0a0; }
+        .bad { background-color: rgba(244, 112, 112, 0.15); color: var(--color-danger);}
+        .good { background-color: rgba(111, 185, 111, 0.15); color: var(--color-success);}
+        
+        /* Estilos específicos para la tabla de ejemplo */
+        .example-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .example-table th, .example-table td { border: 1px solid var(--border-color); padding: 8px; text-align: left; }
+        .example-table th { background-color: #58a6ff; color: #1e1e1e; }
+        .example-table td { background-color: #333; }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Chuleta de Normalización Relacional (1NF, 2NF, 3FN)</h1>
+    <p style="text-align:center;">El objetivo de normalizar es eliminar la redundancia y evitar problemas al insertar, modificar o borrar datos (anomalías).</p>
+
+    <h2>Ejemplo Práctico: Normalización de la tabla "BIBLIOTECA"</h2>
+    
+    <h4>La Tabla Original (Sin Normalizar)</h4>
+    <p>Esta tabla única almacena los préstamos, mezclando datos de socios, libros y editoriales. Esto provoca una alta redundancia: si un socio saca varios libros, repetimos su nombre; si un libro se presta varias veces, repetimos su título y datos de la editorial.</p>
+    <table class="example-table">
+        <thead>
+            <tr><th>numSocio</th><th>nombre</th><th>apellidos</th><th>codLibro</th><th>titulo</th><th>fechaPrestamo</th><th>editorial</th><th>pais</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>001</td><td>Ángel</td><td>Fernández Álvarez</td><td>035</td><td>Libro-A1</td><td>11/11/16</td><td>Editorial1</td><td>España</td></tr>
+            <tr><td>001</td><td>Ángel</td><td>Fernández Álvarez</td><td>038</td><td>Libro-B2</td><td>11/11/16</td><td>Editorial2</td><td>México</td></tr>
+            <tr><td>002</td><td>Manolo</td><td>García García</td><td>099</td><td>Libro-C3</td><td>10/10/16</td><td>Editorial3</td><td>España</td></tr>
+            <tr><td>003</td><td>María</td><td>López Herrero</td><td>111</td><td>Libro-E5</td><td>10/09/16</td><td>Editorial1</td><td>España</td></tr>
+        </tbody>
+    </table>
+    
+    <pre><span class="bad">BIBLIOTECA_ORIGINAL (numSocio, nombre, apellidos, codLibro, titulo, fechaPrestamo, editorial, pais)</span></pre>
+
+    <h3>Fase 1: Primera Forma Normal (1FN)</h3>
+    <h4>El Objetivo</h4>
+    <p>Identificar la <strong>Clave Primaria (PK)</strong> y asegurar que todos los valores de la tabla sean <strong>atómicos</strong>.</p>
+    <h4>Análisis</h4>
+    <p>La tabla ya es atómica. La clave primaria que identifica unívocamente cada préstamo es la combinación de `(numSocio, codLibro, fechaPrestamo)`, ya que un socio podría volver a llevarse el mismo libro en otra fecha.</p>
+    <h4>Resultado (Tabla en 1FN)</h4>
+    <pre>BIBLIOTECA_1FN (<span class="pk">numSocio</span>, <span class="pk">codLibro</span>, <span class="pk">fechaPrestamo</span>, nombre, apellidos, titulo, editorial, pais)</pre>
+    
+    <h3>Fase 2: Segunda Forma Normal (2FN)</h3>
+    <h4>El Objetivo</h4>
+    <p>Eliminar las <strong>dependencias parciales</strong>. Cada atributo no clave debe depender de la <strong>clave primaria completa</strong>.</p>
+    <h4>Análisis</h4>
+    <p>Buscamos atributos que no necesiten la PK completa `(numSocio, codLibro, fechaPrestamo)` para ser determinados:</p>
+    <ul>
+        <li><code>nombre</code> y <code>apellidos</code>: Solo dependen de `numSocio`.
+            <br><strong>→ Dependencia Parcial: <span class="code-example">{numSocio} → nombre, apellidos</span></strong></li>
+        <li><code>titulo</code>, <code>editorial</code> y <code>pais</code>: Solo dependen de `codLibro`.
+            <br><strong>→ Dependencia Parcial: <span class="code-example">{codLibro} → titulo, editorial, pais</span></strong></li>
+        <li>No hay ningún atributo no clave que dependa de la clave completa.</li>
+    </ul>
+    <h4>Resultado (División de tablas)</h4>
+    <p>Extraemos las dependencias parciales a sus propias tablas. Lo que queda en la tabla original es la relación entre ellas.</p>
+    <pre>
+<span class="good">SOCIOS (<span class="pk">numSocio</span>, nombre, apellidos)</span>
+
+<span class="good">LIBROS_TEMP (<span class="pk">codLibro</span>, titulo, editorial, pais)</span>
+
+<span class="good">PRESTAMOS (<span class="pk">numSocio*</span>, <span class="pk">codLibro*</span>, <span class="pk">fechaPrestamo</span>)</span>
+    </pre>
+
+    <h3>Fase 3: Tercera Forma Normal (3FN)</h3>
+    <h4>El Objetivo</h4>
+    <p>Eliminar las <strong>dependencias transitivas</strong> (atributos no clave que dependen de otros atributos no clave).</p>
+    <h4>Análisis</h4>
+    <p>Revisamos las tablas resultantes de la 2FN:</p>
+    <ul>
+        <li><strong>Tabla SOCIOS:</strong> Los atributos no clave dependen directamente de la PK. <strong>✓ Cumple 3FN.</strong></li>
+        <li><strong>Tabla PRESTAMOS:</strong> No tiene atributos no clave, por lo que no puede tener dependencias transitivas. <strong>✓ Cumple 3FN.</strong></li>
+        <li><strong>Tabla LIBROS_TEMP:</strong> Aquí detectamos un problema. El `país` de la editorial no depende directamente del libro, sino de la editorial.
+            <br><strong>→ Dependencia Transitiva: <span class="code-example">{codLibro} → editorial → pais</span></strong></li>
+    </ul>
+    <h4>Resultado Final (Tablas en 3FN)</h4>
+    <p>Para "curar" la dependencia transitiva, separamos la información de la editorial en su propia tabla.</p>
+    <pre>
+<strong>SOCIOS</strong> (<span class="pk">numSocio</span>, nombre, apellidos)
+<span style="font-size:0.8em; color: #a0a0a0;">// Almacena los datos únicos de cada socio.</span>
+
+<strong>EDITORIALES</strong> (<span class="pk">editorial</span>, pais)
+<span style="font-size:0.8em; color: #a0a0a0;">// Almacena cada editorial y su país, sin repeticiones.</span>
+
+<strong>LIBROS</strong> (<span class="pk">codLibro</span>, titulo, <span class="fk">editorial*</span>)
+<span style="font-size:0.8em; color: #a0a0a0;">// Almacena cada libro y lo relaciona con su editorial.</span>
+
+<strong>PRESTAMOS</strong> (<span class="fk"><span class="pk">numSocio</span></span>, <span class="fk"><span class="pk">codLibro</span></span>, <span class="pk">fechaPrestamo</span>)
+<span style="font-size:0.8em; color: #a0a0a0;">// Tabla de unión que registra cada préstamo único.</span>
+    </pre>
+
+</div>
+</body>
+</html>
