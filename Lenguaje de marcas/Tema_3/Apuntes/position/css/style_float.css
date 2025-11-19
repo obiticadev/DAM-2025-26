@@ -1,0 +1,31 @@
+.container {
+    padding: 20px;
+    margin: 20px;
+    border: 5px solid black;
+    overflow: auto;
+}
+
+.caja {
+    height: 100px;
+    width: 100px;
+    margin: 20px;
+    float: right;
+    
+}
+
+.red {
+    background-color: red;
+}
+
+.green {
+    background-color: green;
+    clear:right;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.grey{
+    background-color: gray;
+}

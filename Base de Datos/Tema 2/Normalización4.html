@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuleta de Normalización Relacional (Modo Oscuro)</title>
+    <style>
+        :root {
+            --bg-main: #1e1e1e;
+            --bg-container: #2d2d2d;
+            --bg-code: #212121;
+            --text-main: #dcdcdc;
+            --color-primary: #58a6ff;
+            --color-secondary: #c678dd;
+            --color-accent: #e5c07b;
+            --color-success: #6fb96f;
+            --color-danger: #f47070;
+            --border-color: #444;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystem-Font, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: var(--bg-container);
+            padding: 30px 40px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+        h1, h2 { text-align: center; border: none; padding: 0; }
+        h1 { color: var(--color-primary); margin-bottom: 20px; }
+        h2 { color: var(--color-secondary); margin: 50px 0 20px 0; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+        h4 { color: var(--color-accent); margin-top: 25px; border-left: 3px solid var(--color-accent); padding-left: 10px;}
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        .card {
+            background-color: var(--bg-main);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        .card-header {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        pre {
+            white-space: pre-wrap;
+            font-family: "Fira Code", monospace;
+            background-color: var(--bg-code);
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #555;
+            font-size: 0.9em;
+            color: #abb2bf;
+        }
+        .pk { text-decoration: underline; text-decoration-color: var(--color-primary); text-decoration-thickness: 1.5px; }
+        .fk { font-style: italic; color: #a0a0a0; }
+        .bad { background-color: rgba(244, 112, 112, 0.15); color: var(--color-danger);}
+        .good { background-color: rgba(111, 185, 111, 0.15); color: var(--color-success);}
+        
+        /* Estilos específicos para la tabla de ejemplo */
+        .example-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .example-table th, .example-table td { border: 1px solid var(--border-color); padding: 8px; text-align: left; }
+        .example-table th { background-color: #58a6ff; color: #1e1e1e; }
+        .example-table td { background-color: #333; }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Chuleta de Normalización Relacional (1NF, 2NF, 3NF)</h1>
+    <p style="text-align:center;">El objetivo de normalizar es eliminar la redundancia y evitar problemas al insertar, modificar o borrar datos (anomalías).</p>
+
+    <h2>Ejemplo Práctico: Normalización de la tabla "CARRERAS"</h2>
+    
+    <h4>La Tabla Original (Sin Normalizar)</h4>
+    <p>Partimos de una única tabla que mezcla información sobre carreras, asignaturas y la duración específica de cada una. Esta estructura provoca redundancia: el nombre de la carrera "Historia del arte" se repite, al igual que el nombre de la asignatura "Inglés".</p>
+    <table class="example-table">
+        <thead>
+            <tr><th>codCarrera</th><th>codAsignatura</th><th>nombreCarrera</th><th>nombreAsignatura</th><th>numHorasAsignatura</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>00AB</td><td>011</td><td>Historia del arte</td><td>Inglés</td><td>300</td></tr>
+            <tr><td>00AB</td><td>024</td><td>Historia del arte</td><td>Lengua Castellana</td><td>450</td></tr>
+            <tr><td>00CC</td><td>011</td><td>Filología Hispánica</td><td>Inglés</td><td>350</td></tr>
+            <tr><td>00CC</td><td>099</td><td>Filología Hispánica</td><td>Literatura española</td><td>400</td></tr>
+        </tbody>
+    </table>
+    
+    <pre><span class="bad">CARRERAS_ORIGINAL (codCarrera, codAsignatura, nombreCarrera, nombreAsignatura, numHorasAsignatura)</span></pre>
+
+    <h3>Fase 1: Primera Forma Normal (1FN)</h3>
+    <h4>El Objetivo</h4>
+    <p>Identificar la <strong>Clave Primaria (PK)</strong> que identifique unívocamente cada fila y asegurar que todos los valores sean <strong>atómicos</strong> (un solo dato por celda).</p>
+    <h4>Análisis</h4>
+    <p>La tabla ya cumple con la atomicidad. Para la PK, ni `codCarrera` ni `codAsignatura` son suficientes por sí solos. La combinación de ambos, `(codCarrera, codAsignatura)`, sí que identifica de forma única cada fila (la relación entre una carrera y una asignatura).</p>
+    <h4>Resultado (Tabla en 1FN)</h4>
+    <pre>CARRERAS_1FN (<span class="pk">codCarrera</span>, <span class="pk">codAsignatura</span>, nombreCarrera, nombreAsignatura, numHorasAsignatura)</pre>
+    
+    <h3>Fase 2: Segunda Forma Normal (2FN)</h3>
+    <h4>El Objetivo</h4>
+    <p>Eliminar las <strong>dependencias parciales</strong>. Cada atributo que no es clave debe depender de la <strong>clave primaria completa</strong>, no solo de una parte de ella.</p>
+    <h4>Análisis</h4>
+    <p>Buscamos atributos que no necesiten la PK completa `(codCarrera, codAsignatura)` para ser determinados:</p>
+    <ul>
+        <li><code>nombreCarrera</code>: Sabiendo que `codCarrera` es "00AB", ya sabemos que el nombre es "Historia del arte". No necesitamos saber la asignatura.
+            <br><strong>→ Dependencia Parcial: <span class="code-example">{codCarrera} → nombreCarrera</span></strong></li>
+        <li><code>nombreAsignatura</code>: Sabiendo que `codAsignatura` es "011", ya sabemos que el nombre es "Inglés". No necesitamos saber la carrera.
+            <br><strong>→ Dependencia Parcial: <span class="code-example">{codAsignatura} → nombreAsignatura</span></strong></li>
+        <li><code>numHorasAsignatura</code>: Para saber que la duración es de 300 horas, necesitamos saber ambas cosas: que es la carrera "00AB" y la asignatura "011". Depende de la clave completa. ¡Este atributo está bien!</li>
+    </ul>
+    <h4>Resultado (División de tablas)</h4>
+    <p>Para "curar" las dependencias parciales, extraemos los atributos problemáticos a sus propias tablas, donde la parte de la clave de la que dependen se convierte en su nueva PK.</p>
+    <pre>
+<span class="good">CARRERAS (<span class="pk">codCarrera</span>, nombreCarrera)</span>
+
+<span class="good">ASIGNATURAS (<span class="pk">codAsignatura</span>, nombreAsignatura)</span>
+
+<span class="good">PENSUM (<span class="pk">codCarrera*</span>, <span class="pk">codAsignatura*</span>, numHorasAsignatura)</span>
+    </pre>
+
+    <h3>Fase 3: Tercera Forma Normal (3FN)</h3>
+    <h4>El Objetivo</h4>
+    <p>Eliminar las <strong>dependencias transitivas</strong>. Esto significa que un atributo que no es clave no puede depender de otro atributo que tampoco es clave.</p>
+    <h4>Análisis</h4>
+    <p>Revisamos las tres nuevas tablas que hemos creado en la Fase 2:</p>
+    <ul>
+        <li><strong>Tabla CARRERAS:</strong> El único atributo no clave (`nombreCarrera`) depende directamente de la PK (`codCarrera`). No hay dependencias transitivas. <strong>✓ Cumple 3FN.</strong></li>
+        <li><strong>Tabla ASIGNATURAS:</strong> El único atributo no clave (`nombreAsignatura`) depende directamente de la PK (`codAsignatura`). No hay dependencias transitivas. <strong>✓ Cumple 3FN.</strong></li>
+        <li><strong>Tabla PENSUM:</strong> El único atributo no clave (`numHorasAsignatura`) depende directamente de la PK (`codCarrera, codAsignatura`). No hay dependencias transitivas. <strong>✓ Cumple 3FN.</strong></li>
+    </ul>
+    <h4>Resultado Final (Tablas en 3FN)</h4>
+    <p>La descomposición realizada para cumplir la 2FN ha sido suficiente para alcanzar también la 3FN. El modelo final, limpio y sin redundancia, queda así:</p>
+    <pre>
+<strong>CARRERAS</strong> (<span class="pk">codCarrera</span>, nombreCarrera)
+<span style="font-size:0.8em; color: #a0a0a0;">// Guarda la información única de cada carrera.</span>
+
+<strong>ASIGNATURAS</strong> (<span class="pk">codAsignatura</span>, nombreAsignatura)
+<span style="font-size:0.8em; color: #a0a0a0;">// Guarda la información única de cada asignatura.</span>
+
+<strong>PENSUM</strong> (<span class="fk"><span class="pk">codCarrera</span></span>, <span class="fk"><span class="pk">codAsignatura</span></span>, numHorasAsignatura)
+<span style="font-size:0.8em; color: #a0a0a0;">// Tabla intermedia que relaciona las otras dos y guarda el dato que depende de ambas: las horas.</span>
+    </pre>
+
+</div>
+</body>
+</html>

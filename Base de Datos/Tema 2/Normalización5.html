@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuleta de Normalización Relacional (Modo Oscuro)</title>
+    <style>
+        :root {
+            --bg-main: #1e1e1e;
+            --bg-container: #2d2d2d;
+            --bg-code: #212121;
+            --text-main: #dcdcdc;
+            --color-primary: #58a6ff;
+            --color-secondary: #c678dd;
+            --color-accent: #e5c07b;
+            --color-success: #6fb96f;
+            --color-danger: #f47070;
+            --border-color: #444;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystem-Font, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: var(--bg-container);
+            padding: 30px 40px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+        h1, h2 { text-align: center; border: none; padding: 0; }
+        h1 { color: var(--color-primary); margin-bottom: 20px; }
+        h2 { color: var(--color-secondary); margin: 50px 0 20px 0; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+        h4 { color: var(--color-accent); margin-top: 25px; border-left: 3px solid var(--color-accent); padding-left: 10px;}
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        .card {
+            background-color: var(--bg-main);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        .card-header {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        pre {
+            white-space: pre-wrap;
+            font-family: "Fira Code", monospace;
+            background-color: var(--bg-code);
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #555;
+            font-size: 0.9em;
+            color: #abb2bf;
+        }
+        .pk { text-decoration: underline; text-decoration-color: var(--color-primary); text-decoration-thickness: 1.5px; }
+        .fk { font-style: italic; color: #a0a0a0; }
+        .bad { background-color: rgba(244, 112, 112, 0.15); color: var(--color-danger);}
+        .good { background-color: rgba(111, 185, 111, 0.15); color: var(--color-success);}
+        
+        /* Estilos específicos para la tabla de ejemplo */
+        .example-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .example-table th, .example-table td { border: 1px solid var(--border-color); padding: 8px; text-align: left; }
+        .example-table th { background-color: #58a6ff; color: #1e1e1e; }
+        .example-table td { background-color: #333; }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Chuleta de Normalización Relacional (1NF, 2NF, 3NF)</h1>
+    <p style="text-align:center;">El objetivo de normalizar es eliminar la redundancia y evitar problemas al insertar, modificar o borrar datos (anomalías).</p>
+
+    <h2>Ejemplo Práctico: Normalización de la tabla "CICLISTAS"</h2>
+    
+    <h4>La Tabla Original (Sin Normalizar)</h4>
+    <p>Partimos de una única tabla que mezcla información sobre torneos, etapas y los tiempos de los ciclistas. Esta estructura causa mucha redundancia de datos (los nombres de los ciclistas y los kilómetros de las etapas se repiten).</p>
+    <table class="example-table">
+        <thead>
+            <tr><th>torneo</th><th>numeEtapa</th><th>codCorredor</th><th>nombreCiclista</th><th>tiempoMin</th><th>recorridoKm</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Vuelta a España</td><td>1</td><td>125</td><td>Indurain</td><td>125</td><td>250</td></tr>
+            <tr><td>Vuelta a España</td><td>1</td><td>135</td><td>Perico</td><td>200</td><td>250</td></tr>
+            <tr><td>Tour de Francia</td><td>1</td><td>135</td><td>Perico</td><td>150</td><td>200</td></tr>
+            <tr><td>Tour de Francia</td><td>1</td><td>188</td><td>Contador</td><td>100</td><td>200</td></tr>
+        </tbody>
+    </table>
+    
+    <pre><span class="bad">CICLISTAS_ORIGINAL (<span class="pk">torneo</span>, <span class="pk">numeEtapa</span>, <span class="pk">codCorredor</span>, nombreCiclista, tiempoMin, recorridoKm)</span></pre>
+
+    <h3>Fase 1: Primera Forma Normal (1FN)</h3>
+    <h4>El Objetivo</h4>
+    <p>Identificar la <strong>Clave Primaria (PK)</strong> y asegurar que todos los valores de la tabla sean <strong>atómicos</strong> (una sola pieza de información por celda, sin listas ni grupos).</p>
+    <h4>Análisis</h4>
+    <p>La tabla ya está en 1FN porque cada celda contiene un valor único. La clave primaria que identifica unívocamente cada fila (cada participación de un ciclista en una etapa) es la combinación de los tres primeros atributos.</p>
+    <h4>Resultado (Tabla en 1FN)</h4>
+    <pre>CICLISTAS_1FN (<span class="pk">torneo</span>, <span class="pk">numeEtapa</span>, <span class="pk">codCorredor</span>, nombreCiclista, tiempoMin, recorridoKm)</pre>
+    
+    <h3>Fase 2: Segunda Forma Normal (2FN)</h3>
+    <h4>El Objetivo</h4>
+    <p>Eliminar las <strong>dependencias parciales</strong>. Esto significa que cada atributo que no es clave debe depender de la <strong>clave primaria completa</strong>, y no solo de una parte de ella.</p>
+    <h4>Análisis</h4>
+    <p>Buscamos atributos que no necesiten la PK completa para ser determinados:</p>
+    <ul>
+        <li><code>nombreCiclista</code>: ¿Depende de `(torneo, numeEtapa, codCorredor)`? No. Sabiendo que `codCorredor` es 135, sabemos que el nombre es "Perico", sin importar el torneo o la etapa.
+            <br><strong>→ Dependencia Parcial: <span class="code-example">{codCorredor} → nombreCiclista</span></strong></li>
+        <li><code>recorridoKm</code>: ¿Depende de la clave completa? No. Sabiendo que estamos en la etapa 1 de la "Vuelta a España", sabemos que el recorrido es de 250 Km, sin importar qué ciclista la corra.
+            <br><strong>→ Dependencia Parcial: <span class="code-example">{torneo, numeEtapa} → recorridoKm</span></strong></li>
+        <li><code>tiempoMin</code>: ¿Depende de la clave completa? Sí. El tiempo de 125 minutos solo tiene sentido para Indurain (125) en la etapa 1 de la Vuelta a España. Depende de los tres. ¡Este atributo está bien!</li>
+    </ul>
+    <h4>Resultado (División de tablas)</h4>
+    <p>Para "curar" las dependencias parciales, extraemos los atributos problemáticos a nuevas tablas:</p>
+    <pre>
+<span class="good">CICLISTAS (<span class="pk">codCorredor</span>, nombreCiclista)</span>
+
+<span class="good">ETAPAS (<span class="pk">torneo</span>, <span class="pk">numeEtapa</span>, recorridoKm)</span>
+
+<span class="good">PARTICIPACIONES (<span class="pk">torneo*</span>, <span class="pk">numeEtapa*</span>, <span class="pk">codCorredor*</span>, tiempoMin)</span>
+    </pre>
+
+    <h3>Fase 3: Tercera Forma Normal (3FN)</h3>
+    <h4>El Objetivo</h4>
+    <p>Eliminar las <strong>dependencias transitivas</strong>. Esto significa que un atributo que no es clave no puede depender de otro atributo que tampoco es clave.</p>
+    <h4>Análisis</h4>
+    <p>Revisamos las tres nuevas tablas que hemos creado en la Fase 2:</p>
+    <ul>
+        <li><strong>Tabla CICLISTAS:</strong> El único atributo no clave (`nombreCiclista`) depende directamente de la PK (`codCorredor`). No hay dependencias transitivas. <strong>✓ Cumple 3FN.</strong></li>
+        <li><strong>Tabla ETAPAS:</strong> El único atributo no clave (`recorridoKm`) depende directamente de la PK (`torneo, numeEtapa`). No hay dependencias transitivas. <strong>✓ Cumple 3FN.</strong></li>
+        <li><strong>Tabla PARTICIPACIONES:</strong> El único atributo no clave (`tiempoMin`) depende directamente de la PK (`torneo, numeEtapa, codCorredor`). No hay dependencias transitivas. <strong>✓ Cumple 3FN.</strong></li>
+    </ul>
+    <h4>Resultado Final (Tablas en 3FN)</h4>
+    <p>En este caso, la descomposición que hicimos para cumplir la 2FN fue suficiente para alcanzar también la 3FN. El modelo final, limpio y sin redundancia, queda así:</p>
+    <pre>
+<strong>CICLISTAS</strong> (<span class="pk">codCorredor</span>, nombreCiclista)
+<span style="font-size:0.8em; color: #a0a0a0;">// Guarda la información única de cada ciclista.</span>
+
+<strong>ETAPAS</strong> (<span class="pk">torneo</span>, <span class="pk">numeEtapa</span>, recorridoKm)
+<span style="font-size:0.8em; color: #a0a0a0;">// Guarda la información única de cada etapa de cada torneo.</span>
+
+<strong>PARTICIPACIONES</strong> (<span class="fk"><span class="pk">torneo</span></span>, <span class="fk"><span class="pk">numeEtapa</span></span>, <span class="fk"><span class="pk">codCorredor</span></span>, tiempoMin)
+<span style="font-size:0.8em; color: #a0a0a0;">// Tabla intermedia que relaciona las otras dos y guarda el dato único de la participación: el tiempo.</span>
+    </pre>
+
+</div>
+</body>
+</html>

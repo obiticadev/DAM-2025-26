@@ -1,0 +1,1 @@
+Un Artista puede ser cantante, actor u otra cosa, por ejemplo, bailarín. Si es cantante se caracteriza por su nombre del álbum y si es actor por el nombre de la película que hace. Puede existir artistas que participen en varios tipos de artes.

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&ast;&ast;Conversi&oacute;n de Relaciones Ternarias y N-arias&ast;&ast;</title>
+            <link rel="stylesheet" href="print.css">
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h3 id="conversión-de-relaciones-ternarias-y-n-arias"><strong>Conversión de Relaciones Ternarias y N-arias</strong></h3>
+<p>Las relaciones de grado superior (ternarias, cuaternarias, etc.) son aquellas que vinculan a más de dos entidades simultáneamente. Su transformación al modelo relacional sigue una regla específica.</p>
+<hr>
+<h3 id="1-relación-de-grado-n-caso-general-nmp"><strong>1. Relación de Grado N (Caso General N:M:P...)</strong></h3>
+<blockquote>
+<p><strong>Regla de Oro:</strong> Se crea una <strong>nueva tabla</strong> para representar la relación. La Clave Primaria <code>🔑</code> de esta nueva tabla se forma por la concatenación de las claves primarias de <strong>todas</strong> las entidades que participan en la relación. Además, los atributos propios de la relación se añaden como columnas a esta nueva tabla.</p>
+</blockquote>
+<h4 id="antes-diagrama-de-relación-ternaria">ANTES (Diagrama de Relación Ternaria)</h4>
+<p><em>Tres entidades (<code>AUTOR</code>, <code>LIBRO</code>, <code>EDITORIAL</code>) se vinculan a través de una única relación <code>PUBLICACION</code>. La cardinalidad es &quot;muchos&quot; en todas las direcciones.</em>
+<br></p>
+<div style="display: flex; justify-content: flex-start;">
+<div style="display: inline-flex; flex-direction: column; align-items: center; gap: 10px;">
+    <!-- Fila Superior -->
+    <div style="display: flex; align-items: center; gap: 10px;">
+        <table style="width: auto; border: 1px solid #555; border-collapse: collapse;"><caption style="background-color: #2c5282; color: white; caption-side: top; text-align: left; padding: 8px; font-weight: bold; border: 1px solid #555; border-bottom: none;">AUTOR</caption><tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">🔑 <strong>dni</strong> (PK)</td> </tr><tr> <td style="padding: 8px;">Nombre</td> </tr></table>
+        <div style="text-align: center; color: #718096;"><span style="font-family: monospace; font-size: 0.9em;">(0,N)</span><br>────────</div>
+        <table style="width: auto; border: 2px solid #285e61; border-collapse: collapse; text-align: center;"><caption style="background-color: #2c7a7b; color: white; caption-side: top; text-align: center; padding: 8px; font-weight: bold; border: 2px solid #285e61; border-bottom: none;">PUBLICACION</caption><tr> <td style="padding: 8px;">Fecha_Publicacion</td> </tr></table>
+        <div style="text-align: center; color: #718096;"><span style="font-family: monospace; font-size: 0.9em;">(0,M)</span><br>────────</div>
+        <table style="width: auto; border: 1px solid #555; border-collapse: collapse;"><caption style="background-color: #2c5282; color: white; caption-side: top; text-align: left; padding: 8px; font-weight: bold; border: 1px solid #555; border-bottom: none;">LIBRO</caption><tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">🔑 <strong>ISBN</strong> (PK)</td> </tr><tr> <td style="padding: 8px;">Titulo</td> </tr></table>
+    </div>
+    <!-- Conexión Vertical -->
+    <div style="text-align: center; color: #718096; line-height: 1;"><span style="font-family: monospace; font-size: 0.9em;">(0,P)</span><br><span style="font-size: 2em;">|</span></div>
+    <!-- Fila Inferior -->
+    <table style="width: auto; border: 1px solid #555; border-collapse: collapse;"><caption style="background-color: #2c5282; color: white; caption-side: top; text-align: left; padding: 8px; font-weight: bold; border: 1px solid #555; border-bottom: none;">EDITORIAL</caption><tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">🔑 <strong>CodEditorial</strong> (PK)</td> </tr><tr> <td style="padding: 8px;">Nombre_Editorial</td> </tr></table>
+</div>
+</div>
+<h4 id="después-propagación-de-claves-a-la-nueva-tabla">DESPUÉS (Propagación de Claves a la Nueva Tabla)</h4>
+<p><em>Se crea la tabla <code>PUBLICACION</code> que hereda las claves de las otras tres para formar su clave primaria compuesta.</em>
+<br></p>
+<div style="display: flex; justify-content: flex-start;">
+<div style="display: inline-flex; flex-direction: column; align-items: center; gap: 10px;">
+    <!-- Fila Superior -->
+    <div style="display: flex; align-items: center; gap: 10px;">
+        <table style="width: auto; border: 1px solid #555; border-collapse: collapse;"><caption style="background-color: #2c5282; color: white; caption-side: top; text-align: left; padding: 8px; font-weight: bold; border: 1px solid #555; border-bottom: none;">AUTOR</caption><tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">🔑 <strong>dni</strong> (PK)</td> </tr><tr> <td style="padding: 8px;">Nombre</td> </tr></table>
+        <div style="text-align: center; color: #718096;">────────</div>
+        <table style="width: auto; border: 2px solid #285e61; border-collapse: collapse;"><caption style="background-color: #2c7a7b; color: white; caption-side: top; text-align: left; padding: 8px; font-weight: bold; border: 2px solid #285e61; border-bottom: none;">PUBLICACION</caption><tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">🔑🔗 <strong>dni</strong> (PK, FK)</td> </tr><tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">🔑🔗 <strong>ISBN</strong> (PK, FK)</td> </tr><tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">🔑🔗 <strong>CodEditorial</strong> (PK, FK)</td> </tr><tr> <td style="padding: 8px;">Fecha_Publicacion</td> </tr></table>
+        <div style="text-align: center; color: #718096;">────────</div>
+        <table style="width: auto; border: 1px solid #555; border-collapse: collapse;"><caption style="background-color: #2c5282; color: white; caption-side: top; text-align: left; padding: 8px; font-weight: bold; border: 1px solid #555; border-bottom: none;">LIBRO</caption><tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">🔑 <strong>ISBN</strong> (PK)</td> </tr><tr> <td style="padding: 8px;">Titulo</td> </tr></table>
+    </div>
+    <!-- Conexión Vertical -->
+    <div style="font-size: 2em; color: #718096;">|</div>
+    <!-- Fila Inferior -->
+    <table style="width: auto; border: 1px solid #555; border-collapse: collapse;"><caption style="background-color: #2c5282; color: white; caption-side: top; text-align: left; padding: 8px; font-weight: bold; border: 1px solid #555; border-bottom: none;">EDITORIAL</caption><tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">🔑 <strong>CodEditorial</strong> (PK)</td> </tr><tr> <td style="padding: 8px;">Nombre_Editorial</td> </tr></table>
+</div>
+</div>
+<hr>
+<h3 id="2-caso-especial-relación-1nm"><strong>2. Caso Especial: Relación 1:N:M</strong></h3>
+<blockquote>
+<p><strong>Regla de Oro:</strong> Se crea una nueva tabla para la relación. La clave primaria <code>🔑</code> se compone únicamente por la concatenación de las claves de las entidades con cardinalidad <strong>N y M</strong>. La clave de la entidad con cardinalidad <strong>1</strong> se añade como una Clave Foránea <code>🔗</code>, pero <strong>no forma parte</strong> de la clave primaria.</p>
+</blockquote>
+<h4 id="antes-diagrama-de-relación-1nm">ANTES (Diagrama de Relación 1:N:M)</h4>
+<p><em>Un <code>AUTOR</code> (N) y un <code>LIBRO</code> (M) se asocian a través de una única <code>EDITORIAL</code> (1).</em>
+<br></p>
+<div style="display: flex; justify-content: flex-start;">
+<div style="display: inline-flex; flex-direction: column; align-items: center; gap: 10px;">
+    <!-- Fila Superior -->
+    <div style="display: flex; align-items: center; gap: 10px;">
+        <table style="width: auto; border: 1px solid #555; border-collapse: collapse;"><caption style="background-color: #2c5282; color: white; caption-side: top; text-align: left; padding: 8px; font-weight: bold; border: 1px solid #555; border-bottom: none;">AUTOR</caption><tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">🔑 <strong>dni</strong> (PK)</td> </tr><tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">Nombre</td> </tr><tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">Ap1</td> </tr><tr> <td style="padding: 8px;">Nacionalidad</td> </tr></table>
+        <div style="text-align: center; color: #718096;"><span style="font-family: monospace; font-size: 0.9em;">(0,N)</span><br>────────</div>
+        <table style="width: auto; border: 2px solid #285e61; border-collapse: collapse; text-align: center;"><caption style="background-color: #2c7a7b; color: white; caption-side: top; text-align: center; padding: 8px; font-weight: bold; border: 2px solid #285e61; border-bottom: none;">PUBLICACION</caption><tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">Fecha_Contrato</td> </tr><tr> <td style="padding: 8px;">Num_Edicion</td> </tr></table>
+        <div style="text-align: center; color: #718096;"><span style="font-family: monospace; font-size: 0.9em;">(0,M)</span><br>────────</div>
+        <table style="width: auto; border: 1px solid #555; border-collapse: collapse;"><caption style="background-color: #2c5282; color: white; caption-side: top; text-align: left; padding: 8px; font-weight: bold; border: 1px solid #555; border-bottom: none;">LIBRO</caption><tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">🔑 <strong>ISBN</strong> (PK)</td> </tr><tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">Titulo</td> </tr><tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">NumEjemplares</td> </tr><tr> <td style="padding: 8px;">Genero</td> </tr></table>
+    </div>
+    <!-- Conexión Vertical -->
+    <div style="text-align: center; color: #718096; line-height: 1;"><span style="font-family: monospace; font-size: 0.9em;">(0,1)</span><br><span style="font-size: 2em;">|</span></div>
+    <!-- Fila Inferior -->
+    <table style="width: auto; border: 1px solid #555; border-collapse: collapse;"><caption style="background-color: #2c5282; color: white; caption-side: top; text-align: left; padding: 8px; font-weight: bold; border: 1px solid #555; border-bottom: none;">EDITORIAL</caption><tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">🔑 <strong>CodEditorial</strong> (PK)</td> </tr><tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">Nombre</td> </tr><tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">Direccion</td> </tr><tr> <td style="padding: 8px;">Pais</td> </tr></table>
+</div>
+</div>
+<h4 id="después-diagrama-relacional-del-ejemplo">DESPUÉS (Diagrama Relacional del Ejemplo)</h4>
+<p><em>La clave primaria de <code>PUBLICACION</code> está formada por <code>AUTOR_dni</code> y <code>LIBRO_ISBN</code>. <code>CodEditorial</code> es solo una clave foránea.</em>
+<br></p>
+<div style="display: flex; justify-content: flex-start;">
+<div style="display: inline-flex; flex-direction: column; align-items: center; gap: 10px;">
+    <!-- Fila Superior -->
+    <div style="display: flex; align-items: center; gap: 10px;">
+        <table style="width: auto; border: 1px solid #555; border-collapse: collapse;"><caption style="background-color: #2c5282; color: white; caption-side: top; text-align: left; padding: 8px; font-weight: bold; border: 1px solid #555; border-bottom: none;">AUTOR</caption><tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">🔑 <strong>dni</strong> (PK)</td> </tr><tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">Nombre</td> </tr><tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">Ap1</td> </tr><tr> <td style="padding: 8px;">Nacionalidad</td> </tr></table>
+        <div style="text-align: center; color: #718096;">────────</div>
+        <table style="width: auto; border: 2px solid #285e61; border-collapse: collapse;"><caption style="background-color: #2c7a7b; color: white; caption-side: top; text-align: left; padding: 8px; font-weight: bold; border: 2px solid #285e61; border-bottom: none;">PUBLICACION</caption><tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">🔑🔗 <strong>AUTOR_dni</strong> (PK, FK)</td> </tr><tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">🔑🔗 <strong>LIBRO_ISBN</strong> (PK, FK)</td> </tr><tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">🔗 <strong>CodEditorial</strong> (FK)</td> </tr><tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">Fecha_Contrato</td> </tr><tr> <td style="padding: 8px;">Num_Edicion</td> </tr></table>
+        <div style="text-align: center; color: #718096;">────────</div>
+        <table style="width: auto; border: 1px solid #555; border-collapse: collapse;"><caption style="background-color: #2c5282; color: white; caption-side: top; text-align: left; padding: 8px; font-weight: bold; border: 1px solid #555; border-bottom: none;">LIBRO</caption><tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">🔑 <strong>ISBN</strong> (PK)</td> </tr><tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">Titulo</td> </tr><tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">NumEjemplares</td> </tr><tr> <td style="padding: 8px;">Genero</td> </tr></table>
+    </div>
+    <!-- Conexión Vertical -->
+    <div style="font-size: 2em; color: #718096;">|</div>
+    <!-- Fila Inferior -->
+    <table style="width: auto; border: 1px solid #555; border-collapse: collapse;"><caption style="background-color: #2c5282; color: white; caption-side: top; text-align: left; padding: 8px; font-weight: bold; border: 1px solid #555; border-bottom: none;">EDITORIAL</caption><tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">🔑 <strong>CodEditorial</strong> (PK)</td> </tr><tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">Nombre</td> </tr><tr style="border-bottom: 1px solid #555;"> <td style="padding: 8px;">Direccion</td> </tr><tr> <td style="padding: 8px;">Pais</td> </tr></table>
+</div>
+</div>
+            
+            
+        </body>
+        </html>

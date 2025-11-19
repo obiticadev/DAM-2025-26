@@ -1,0 +1,1 @@
+quiero que todos usen la misma magnitud sin aplificadores o simplificadores

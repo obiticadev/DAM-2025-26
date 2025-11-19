@@ -1,0 +1,54 @@
+.container{
+    padding: 20px;
+    margin: 20px;
+    border: 5px solid black;
+    position: relative;
+}
+
+.box{
+    color: gray;
+    background-color: aqua;
+    padding: 20px;
+    left: 100px;
+    top: 100px;
+    
+}
+
+.absolute{
+    position: absolute;
+    top: 200px;
+    left: 200px;;
+}
+
+.fixed{
+    position: fixed;
+    top: 10px;
+    left: 10px;
+}
+.caja{
+    height: 100px;
+    width: 100px;
+    position: absolute;
+
+}
+
+.red{
+    background-color: red;
+    z-index: 1;
+    top: 10px;
+    left: 10px;
+
+}
+.green{
+    background-color: green;
+    z-index: 2;
+    top: 20px;
+    left: 20px;
+
+}
+.blue{
+    background-color: blue;
+    z-index: 3;
+    top: 30px;
+    left: 30px;
+}

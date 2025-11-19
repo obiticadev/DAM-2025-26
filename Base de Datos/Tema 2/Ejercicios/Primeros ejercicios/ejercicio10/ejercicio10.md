@@ -1,0 +1,1 @@
+Un empleado en una empresa solo puede ser Gerente o Comercial o Secretario. Y nunca las tres cosas a la vez. Por otra parte, los Secretarios firman varios proyectos si quieren, pero un proyecto solo puede ser firmado por un Secretario.

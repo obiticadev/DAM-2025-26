@@ -1,0 +1,3 @@
+En un centro de salud un médico atiende a varios pacientes y cada paciente está asignado a un solo médico. Tanto de lo médicos como de los pacientes guardaremos sus datos personales (nombre, apellido, dirección, dni). Cada médico, del que también necesitaremos número de cuenta corriente, pasa consulta en una o varias salas.
+En cada sala pasan consulta varios médicos, de las salas tendremos que saber su número (único) y la situación (planta 1, planta 2 o planta 3).
+Se quiere saber en qué sala pasa consulta cada médico en cada momento
