@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rectángulo Interactivo - Solución A3</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --accent-x: #00d4ff; /* Cyan para Base */
+            --accent-y: #ff007a; /* Magenta para Altura */
+            --accent-area: #bb86fc; /* Violeta para Área */
+            --btn-hover: #333;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, Helvetica, sans-serif; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        h1 { font-weight: 300; letter-spacing: 1px; margin-bottom: 10px; text-align: center; }
+        .subtitle { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 25px; text-align: center; }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        /* --- PANEL DE CONTROL --- */
+        .controls {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            width: 320px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            border: 1px solid #333;
+        }
+
+        .preset-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .btn-preset {
+            background: transparent;
+            border: 1px solid var(--accent-area);
+            color: var(--accent-area);
+            padding: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        .btn-preset:hover { background: var(--accent-area); color: #000; font-weight: bold; }
+
+        .input-group { display: flex; flex-direction: column; gap: 5px; }
+        label { font-size: 0.85rem; color: var(--text-muted); }
+        
+        .coord-row { display: flex; gap: 10px; align-items: center; }
+        .coord-label { width: 20px; font-weight: bold; color: var(--text-muted); }
+        
+        input[type="number"] {
+            width: 100%;
+            background: #2c2c2c;
+            border: 1px solid #444;
+            color: #fff;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 1rem;
+            text-align: center;
+        }
+        input[type="number"]:focus { outline: none; border-color: var(--accent-x); }
+
+        .results {
+            background: rgba(0,0,0,0.2);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-area);
+        }
+        .res-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.95rem; }
+        .res-row:last-child { margin-bottom: 0; }
+        .res-val { font-weight: bold; font-family: monospace; font-size: 1.1rem; }
+
+        /* --- ÁREA GRÁFICA --- */
+        .graph-wrapper {
+            flex-grow: 1;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            height: 600px;
+            position: relative;
+            border: 1px solid #333;
+            overflow: hidden; /* Para que el SVG no rompa el borde redondeado */
+        }
+
+        svg { width: 100%; height: 100%; cursor: crosshair; display: block; }
+
+        /* Elementos SVG */
+        text { font-family: monospace; font-size: 11px; fill: #666; user-select: none; }
+        .grid-line { stroke: #2a2a2a; stroke-width: 1; }
+        .axis-line { stroke: #555; stroke-width: 2; }
+        
+        .rect-area {
+            fill: rgba(187, 134, 252, 0.15);
+            stroke: var(--accent-area);
+            stroke-width: 2;
+            transition: fill 0.2s;
+            cursor: help;
+        }
+        .rect-area:hover { fill: rgba(187, 134, 252, 0.35); }
+
+        /* Líneas interactivas */
+        .dim-line { stroke-width: 4; stroke-linecap: round; cursor: help; opacity: 0.6; transition: opacity 0.2s, stroke-width 0.2s; }
+        .dim-line:hover { opacity: 1; stroke-width: 6; }
+        .dim-x { stroke: var(--accent-x); }
+        .dim-y { stroke: var(--accent-y); }
+
+        .corner-point { fill: #fff; stroke: var(--card-bg); stroke-width: 2; }
+
+        /* --- TOOLTIP CORREGIDO --- */
+        #tooltip {
+            position: fixed; /* Clave para evitar problemas de posición */
+            top: 0; left: 0;
+            background: rgba(15, 15, 15, 0.95);
+            border: 1px solid #444;
+            color: #fff;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            pointer-events: none; /* El mouse atraviesa el tooltip */
+            opacity: 0;
+            z-index: 9999;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.9);
+            backdrop-filter: blur(4px);
+            transition: opacity 0.15s;
+            min-width: 200px;
+        }
+        
+        #tooltip h3 { color: var(--accent-x); font-size: 0.95rem; margin-bottom: 6px; border-bottom: 1px solid #333; padding-bottom: 4px; }
+        #tooltip .math-step { font-family: 'Courier New', monospace; color: #aaa; font-size: 0.85rem; display: block; margin-bottom: 4px; }
+        #tooltip .result-big { font-size: 1.1rem; font-weight: bold; color: #fff; margin-top: 5px; display: block; }
+        
+    </style>
+</head>
+<body>
+
+    <h1>Ejercicio A3 – Rectángulo</h1>
+    <p class="subtitle">Visualización gráfica de coordenadas, perímetro y área</p>
+
+    <div class="container">
+        
+        <!-- Controles -->
+        <div class="controls">
+            <div style="font-size:0.8rem; text-transform: uppercase; letter-spacing: 1px; color:var(--text-muted);">Cargar Datos</div>
+            
+            <!-- Botones para los ejemplos específicos -->
+            <div class="preset-buttons">
+                <button class="btn-preset" onclick="loadPreset(0,0,5,5)">Ejemplo 1<br><small>(0,0) a (5,5)</small></button>
+                <button class="btn-preset" onclick="loadPreset(7,9,2,3)">Ejemplo 2<br><small>(7,9) a (2,3)</small></button>
+            </div>
+
+            <hr style="border:0; border-top:1px solid #333;">
+
+            <div class="input-group">
+                <label>Coordenada 1</label>
+                <div class="coord-row">
+                    <span class="coord-label">X1</span>
+                    <input type="number" id="x1" oninput="update()">
+                    <span class="coord-label">Y1</span>
+                    <input type="number" id="y1" oninput="update()">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Coordenada 2</label>
+                <div class="coord-row">
+                    <span class="coord-label">X2</span>
+                    <input type="number" id="x2" oninput="update()">
+                    <span class="coord-label">Y2</span>
+                    <input type="number" id="y2" oninput="update()">
+                </div>
+            </div>
+
+            <div class="results">
+                <div class="res-row">
+                    <span>Ancho (Base):</span>
+                    <span id="out-w" class="res-val" style="color:var(--accent-x)">0</span>
+                </div>
+                <div class="res-row">
+                    <span>Alto (Altura):</span>
+                    <span id="out-h" class="res-val" style="color:var(--accent-y)">0</span>
+                </div>
+                <div class="res-row">
+                    <span>Perímetro:</span>
+                    <span id="out-p" class="res-val">0</span>
+                </div>
+                <div class="res-row">
+                    <span>Área:</span>
+                    <span id="out-a" class="res-val" style="color:var(--accent-area)">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gráfico -->
+        <div class="graph-wrapper" id="graphContainer">
+            <svg id="svgCanvas"></svg>
+            
+            <!-- Tooltip Flotante -->
+            <div id="tooltip">
+                <h3 id="tt-title">Título</h3>
+                <div id="tt-content">Contenido</div>
+            </div>
+        </div>
+
+    </div>
+
+<script>
+    // Referencias DOM
+    const inputs = {
+        x1: document.getElementById('x1'),
+        y1: document.getElementById('y1'),
+        x2: document.getElementById('x2'),
+        y2: document.getElementById('y2')
+    };
+    const outputs = {
+        w: document.getElementById('out-w'),
+        h: document.getElementById('out-h'),
+        p: document.getElementById('out-p'),
+        a: document.getElementById('out-a')
+    };
+    const svg = document.getElementById('svgCanvas');
+    const tooltip = document.getElementById('tooltip');
+    const container = document.getElementById('graphContainer');
+
+    // Cargar presets (Ejemplos del ejercicio)
+    function loadPreset(x1, y1, x2, y2) {
+        inputs.x1.value = x1;
+        inputs.y1.value = y1;
+        inputs.x2.value = x2;
+        inputs.y2.value = y2;
+        update();
+    }
+
+    // Función principal
+    function update() {
+        // Obtener valores
+        const x1 = parseInt(inputs.x1.value) || 0;
+        const y1 = parseInt(inputs.y1.value) || 0;
+        const x2 = parseInt(inputs.x2.value) || 0;
+        const y2 = parseInt(inputs.y2.value) || 0;
+
+        // Cálculos (Lógica Java)
+        const width = Math.abs(x1 - x2);
+        const height = Math.abs(y1 - y2);
+        const perimeter = 2 * (width + height);
+        const area = width * height;
+
+        // Mostrar texto
+        outputs.w.innerText = width;
+        outputs.h.innerText = height;
+        outputs.p.innerText = perimeter;
+        outputs.a.innerText = area;
+
+        // Dibujar
+        draw(x1, y1, x2, y2, width, height, area, perimeter);
+    }
+
+    function draw(x1, y1, x2, y2, w, h, area, perimeter) {
+        svg.innerHTML = ''; // Limpiar
+
+        // Configuración del Viewport y Escala
+        const padding = 60; // Margen interno
+        const viewW = container.clientWidth;
+        const viewH = container.clientHeight;
+
+        // Calcular límites para auto-zoom
+        const minX = Math.min(x1, x2, 0);
+        const maxX = Math.max(x1, x2, 10); // Mínimo 10 para que no se vea enorme si es (0,0)(1,1)
+        const minY = Math.min(y1, y2, 0);
+        const maxY = Math.max(y1, y2, 10);
+
+        const rangeX = (maxX - minX) + 2; // +2 para aire
+        const rangeY = (maxY - minY) + 2;
+
+        // Factores de escala
+        const scaleX = (viewW - (padding * 2)) / rangeX;
+        const scaleY = (viewH - (padding * 2)) / rangeY;
+
+        // Funciones de mapeo (Cartesiano -> SVG Pixel)
+        // SVG Y es invertido (0 arriba), Cartesiano Y es normal (0 abajo)
+        const mapX = (val) => padding + ((val - minX) * scaleX); 
+        const mapY = (val) => viewH - padding - ((val - minY) * scaleY);
+
+        // 1. Dibujar Rejilla (Grid)
+        const startGridX = Math.floor(minX);
+        const endGridX = Math.ceil(maxX + 1);
+        const startGridY = Math.floor(minY);
+        const endGridY = Math.ceil(maxY + 1);
+
+        for (let i = startGridX; i <= endGridX; i++) {
+            line(mapX(i), mapY(startGridY), mapX(i), mapY(endGridY), 'grid-line');
+            text(i, mapX(i) - 4, mapY(startGridY) + 15); // Etiqueta X
+        }
+        for (let i = startGridY; i <= endGridY; i++) {
+            line(mapX(startGridX), mapY(i), mapX(endGridX), mapY(i), 'grid-line');
+            text(i, mapX(startGridX) - 20, mapY(i) + 4); // Etiqueta Y
+        }
+
+        // 2. Ejes principales (X=0, Y=0)
+        // Solo si están en pantalla
+        if(0 >= minX && 0 <= maxX +1) line(mapX(0), mapY(startGridY), mapX(0), mapY(endGridY), 'axis-line');
+        if(0 >= minY && 0 <= maxY +1) line(mapX(startGridX), mapY(0), mapX(endGridX), mapY(0), 'axis-line');
+
+        // 3. Coordenadas visuales del rectángulo
+        // Usamos Math.min/max para saber dónde empieza a dibujar en SVG
+        const rectLeft = mapX(Math.min(x1, x2));
+        const rectTop = mapY(Math.max(y1, y2)); // Top en SVG es el valor Y MAYOR cartesiano
+        const rectWVis = w * scaleX;
+        const rectHVis = h * scaleY;
+
+        // 4. Rectángulo
+        const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        rect.setAttribute("x", rectLeft);
+        rect.setAttribute("y", rectTop);
+        rect.setAttribute("width", rectWVis);
+        rect.setAttribute("height", rectHVis);
+        rect.setAttribute("class", "rect-area");
+        
+        // INTERACCIÓN ÁREA
+        rect.addEventListener('mousemove', (e) => showTooltip(e, 
+            "Área y Perímetro", 
+            `<span>Área = Base × Altura</span><br>
+             <span class="math-step">${w} × ${h}</span>
+             <span class="result-big" style="color:var(--accent-area)">${area}</span>
+             <br>
+             <span>Perímetro = 2 × (Base + Altura)</span><br>
+             <span class="math-step">2 × (${w} + ${h})</span>
+             <span class="result-big">${perimeter}</span>`
+        ));
+        rect.addEventListener('mouseleave', hideTooltip);
+        svg.appendChild(rect);
+
+        // 5. Líneas de cotas (Dimensiones)
+        
+        // Cota Base (X)
+        const lineBase = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        const yBasePos = mapY(Math.min(y1, y2)); // En el borde inferior
+        lineBase.setAttribute("x1", rectLeft);
+        lineBase.setAttribute("y1", yBasePos);
+        lineBase.setAttribute("x2", rectLeft + rectWVis);
+        lineBase.setAttribute("y2", yBasePos);
+        lineBase.setAttribute("class", "dim-line dim-x");
+        
+        lineBase.addEventListener('mousemove', (e) => showTooltip(e,
+            "Base (Ancho)",
+            `<span>Operación: |x1 - x2|</span>
+             <span class="math-step">|${x1} - ${x2}|</span>
+             <span class="result-big" style="color:var(--accent-x)">${w}</span>`
+        ));
+        lineBase.addEventListener('mouseleave', hideTooltip);
+        svg.appendChild(lineBase);
+
+        // Cota Altura (Y)
+        const lineAlt = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        const xAltPos = mapX(Math.max(x1, x2)); // En el borde derecho
+        lineAlt.setAttribute("x1", xAltPos);
+        lineAlt.setAttribute("y1", mapY(Math.min(y1, y2)));
+        lineAlt.setAttribute("x2", xAltPos);
+        lineAlt.setAttribute("y2", mapY(Math.max(y1, y2)));
+        lineAlt.setAttribute("class", "dim-line dim-y");
+        
+        lineAlt.addEventListener('mousemove', (e) => showTooltip(e,
+            "Altura (Alto)",
+            `<span>Operación: |y1 - y2|</span>
+             <span class="math-step">|${y1} - ${y2}|</span>
+             <span class="result-big" style="color:var(--accent-y)">${h}</span>`
+        ));
+        lineAlt.addEventListener('mouseleave', hideTooltip);
+        svg.appendChild(lineAlt);
+
+        // 6. Puntos Esquina
+        point(mapX(x1), mapY(y1));
+        point(mapX(x2), mapY(y2));
+    }
+
+    // Helpers SVG
+    function line(x1, y1, x2, y2, cls) {
+        const l = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        l.setAttribute("x1", x1); l.setAttribute("y1", y1);
+        l.setAttribute("x2", x2); l.setAttribute("y2", y2);
+        l.setAttribute("class", cls);
+        svg.appendChild(l);
+    }
+    function text(str, x, y) {
+        const t = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        t.setAttribute("x", x); t.setAttribute("y", y);
+        t.textContent = str;
+        svg.appendChild(t);
+    }
+    function point(cx, cy) {
+        const c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        c.setAttribute("cx", cx); c.setAttribute("cy", cy);
+        c.setAttribute("r", 5);
+        c.setAttribute("class", "corner-point");
+        svg.appendChild(c);
+    }
+
+    // Lógica del Tooltip (FIXED POSITION)
+    function showTooltip(e, title, htmlContent) {
+        const titleEl = document.getElementById('tt-title');
+        const contentEl = document.getElementById('tt-content');
+        
+        // Configurar contenido
+        titleEl.innerText = title;
+        titleEl.style.color = title.includes("Base") ? "var(--accent-x)" : 
+                              title.includes("Altura") ? "var(--accent-y)" : "var(--accent-area)";
+        contentEl.innerHTML = htmlContent;
+
+        // Mostrar para calcular dimensiones
+        tooltip.style.opacity = 1;
+
+        // Cálculos de posición (Evitar que se salga de la pantalla)
+        const offset = 15;
+        let left = e.clientX + offset;
+        let top = e.clientY + offset;
+
+        const ttRect = tooltip.getBoundingClientRect();
+        
+        // Si se sale por la derecha, mover a la izquierda del cursor
+        if (left + ttRect.width > window.innerWidth) {
+            left = e.clientX - ttRect.width - offset;
+        }
+        // Si se sale por abajo, mover arriba del cursor
+        if (top + ttRect.height > window.innerHeight) {
+            top = e.clientY - ttRect.height - offset;
+        }
+
+        tooltip.style.left = left + 'px';
+        tooltip.style.top = top + 'px';
+    }
+
+    function hideTooltip() {
+        tooltip.style.opacity = 0;
+    }
+
+    // Inicialización: Cargar Ejemplo 1 por defecto
+    loadPreset(0, 0, 5, 5);
+    
+    // Escuchar resize
+    window.addEventListener('resize', update);
+
+</script>
+</body>
+</html>
