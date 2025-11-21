@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+import Clases.Coche;
 import Clases.Personas;
 
 public class App {
@@ -22,5 +23,8 @@ public class App {
         
         instanciaNueva = new Personas(nombre, NIA, fecha);
         System.out.println(instanciaNueva.consultarDatosAlumno());
+
+        
+
     }
 }
