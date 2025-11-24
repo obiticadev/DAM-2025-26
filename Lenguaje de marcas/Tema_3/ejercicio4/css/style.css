@@ -1,0 +1,21 @@
+* {
+    padding: 0%;
+    margin: 0%;
+}
+
+h1, h2, p, ul li, button {
+    text-align: center;
+}
+
+.oferta {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border: 2px solid;
+    width: 250px;
+}
+
+.planes {
+    margin: 0 auto;
+}
