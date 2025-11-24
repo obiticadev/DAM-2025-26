@@ -11,17 +11,18 @@
 ```SQL
 Create table conductores
 (
-    NIF varchar2 (9) Primary Key;
-    Nombre varchar2 (25) NOT NULL;
-    Apellidos varchar2 (50) NOT NULL;
-    Foto bfile NOT NULL;
-    Edad NUMBER (2);
-    Tipo_de_carnet varchar2 (25);
-    Fecha_de_carnet date; 
-    Intentos NUMBER(1);
+    NIF varchar2(9) primary key,
+    Nombre varchar2(25) NOT NULL,
+    Apellidos varchar2(50) NOT NULL,
+    Foto bfile NOT NULL,
+    Edad NUMBER(2),
+    Tipo_de_carnet varchar2(25),
+    Fecha_de_carnet date default sysdate,
+    Intentos NUMBER(1),
 
-    check Tipo_de_carnet in 'A1', 'A2', 'A', 'B1', 'B2', 'C', 'CD', 'E';
-    check Edad between 18 99;
-    
-)
+    check (Tipo_de_carnet in ('A1', 'A2', 'A', 'B1', 'B2', 'C', 'CD', 'E')),
+    check (Edad between 18 and 99),
+    check (Intentos < 10)
+);
+
 ```
