@@ -10,5 +10,8 @@ public class App {
 
         System.out.println("Perímetro del rectángulo 1: " + plano1.perimetro());
         System.out.println("Perímetro del rectángulo 2: " + plano2.perimetro());
+
+        System.out.println(plano1.devolverCuadradoPintado());
+        System.out.println(plano2.devolverCuadradoPintado());
     }
 }

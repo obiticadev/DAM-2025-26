@@ -34,6 +34,21 @@ public class Rectangulo {
 
     }
 
+    public String devolverCuadradoPintado(){
+        String cuadrado = "";
+
+        for (int i = 0; i < base(); i++) {
+            for (int j = 0; j < altura(); j++) {
+                System.out.print("*\t");
+            }
+            System.out.println();
+        }
+        
+        
+        return cuadrado;
+        
+    }
+
     public int getX1() {
         return x1;
     }
