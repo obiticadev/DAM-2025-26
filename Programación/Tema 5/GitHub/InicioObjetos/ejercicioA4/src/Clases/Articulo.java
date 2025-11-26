@@ -35,7 +35,7 @@ public class Articulo {
 
     public String resumenDeEstado(){
         int formateoIVA = (int) (iva * 100);
-        return "Nombre del producto: " + nombre + " - Precio: " + precioSinIva + "EUR - IVA: " + formateoIVA + "% - PVP: " + precioConIva() + "EUR";
+        return "Nombre del producto: " + nombre + " - Precio: " + precioSinIva + "€ - IVA: " + formateoIVA + "% - PVP: " + precioConIva() + "€";
     }
     
 
