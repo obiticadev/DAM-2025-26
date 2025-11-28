@@ -9,11 +9,10 @@ public class App {
     private static int MAX = (FILA * COLUMNA);
     private static final int columnaPortatil = 2;
     private static String[] personas = new String[MAX];
+    private static Puesto[][] puestos = new Puesto[FILA][COLUMNA];
+
     public static void main(String[] args) throws Exception {
 
-        Puesto[][] puestos = new Puesto[FILA][COLUMNA];
-
-        
         for (int fila = 0; fila < FILA; fila++) {
             for (int columna = 0; columna < COLUMNA; columna++) {
                 puestos[fila][columna] = new Puesto();
@@ -24,34 +23,36 @@ public class App {
                 }
             }
         }
-        
+
         crearPersonas();
         asignarPuesto(personas, puestos);
 
         for (int fila = 0; fila < FILA; fila++) {
             for (int columna = 0; columna < COLUMNA; columna++) {
-                System.out.print(puestos[fila][columna].getNombre() + "\t");
+                System.out.print(puestos[fila][columna].devolverDatos());
             }
             System.out.println();
         }
-
-
 
     }
 
     private static String[] crearPersonas() {
         for (int i = 0; i < MAX; i++) {
-            personas[i] = "Alumno" + (i+1);
+            personas[i] = "Alumno " + (i + 1);
         }
         return personas;
     }
 
-    private static void asignarPuesto(String[] personas, Puesto[][] puestos){
+    private static void asignarPuesto(String[] personas, Puesto[][] puestos) {
+
+        int indice = 1;
 
         for (int fila = 0; fila < FILA; fila++) {
             for (int columna = 0; columna < COLUMNA; columna++) {
-                puestos[fila][columna].setNombre(personas[(fila + 1) * (columna + 1)-1]); 
-                puestos[fila][columna].setOcupado(true); 
+                puestos[fila][columna].setPosicion(indice);
+                puestos[fila][columna].setNombre(personas[indice - 1]);
+                puestos[fila][columna].setOcupado(true);
+                indice++;
             }
         }
     }
