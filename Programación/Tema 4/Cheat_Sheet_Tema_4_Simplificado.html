@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Cheat Sheet&colon; Java Core &amp; Estructuras</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="cheat-sheet-java-core--estructuras">Cheat Sheet: Java Core &amp; Estructuras</h1>
+<h2 id="1-math-operaciones-y-aleatoriedad">1. Math: Operaciones y Aleatoriedad</h2>
+<p>Clase estática para cálculos. No requiere <code>new</code>.</p>
+<h3 id="generación-de-números-aleatorios-mathrandom">Generación de Números Aleatorios (<code>Math.random()</code>)</h3>
+<p>Devuelve un <code>double</code> entre <code>0.0</code> (incluido) y <code>1.0</code> (excluido). Para rangos específicos, se usa la fórmula:
+<code>x = (int)(Math.random() * (MAX - MIN + 1)) + MIN;</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Rango Deseado</th>
+<th style="text-align:left">Explicación</th>
+<th style="text-align:left">Fórmula Java (Ejemplo en línea)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>0 a 9</strong></td>
+<td style="text-align:left">Multiplicar por 10 (0 a 9.99) y castear.</td>
+<td style="text-align:left"><code>int n = (int)(Math.random() * 10);</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>1 a 10</strong></td>
+<td style="text-align:left">Rango de 0-9 y sumar 1.</td>
+<td style="text-align:left"><code>int n = (int)(Math.random() * 10) + 1;</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>1 a 100</strong></td>
+<td style="text-align:left">Rango 0-99 y sumar 1.</td>
+<td style="text-align:left"><code>int n = (int)(Math.random() * 100) + 1;</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>5 a 10</strong></td>
+<td style="text-align:left"><code>(10-5+1)</code> = 6 valores posibles. Base 5.</td>
+<td style="text-align:left"><code>int n = (int)(Math.random() * 6) + 5;</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>-10 a 10</strong></td>
+<td style="text-align:left"><code>(10 - (-10) + 1)</code> = 21 valores. Base -10.</td>
+<td style="text-align:left"><code>int n = (int)(Math.random() * 21) - 10;</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="métodos-matemáticos-comunes">Métodos Matemáticos Comunes</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Método</th>
+<th style="text-align:left">Descripción</th>
+<th style="text-align:left">Ejemplo</th>
+<th style="text-align:left">Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong><code>pow(base, exp)</code></strong></td>
+<td style="text-align:left">Potencia (retorna double).</td>
+<td style="text-align:left"><code>Math.pow(2, 3)</code></td>
+<td style="text-align:left"><code>8.0</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>sqrt(n)</code></strong></td>
+<td style="text-align:left">Raíz cuadrada.</td>
+<td style="text-align:left"><code>Math.sqrt(25)</code></td>
+<td style="text-align:left"><code>5.0</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>abs(n)</code></strong></td>
+<td style="text-align:left">Valor absoluto.</td>
+<td style="text-align:left"><code>Math.abs(-5)</code></td>
+<td style="text-align:left"><code>5</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>round(n)</code></strong></td>
+<td style="text-align:left">Redondeo estándar (al más cercano).</td>
+<td style="text-align:left"><code>Math.round(5.6)</code></td>
+<td style="text-align:left"><code>6</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>floor(n)</code></strong></td>
+<td style="text-align:left">Redondeo al suelo (hacia abajo).</td>
+<td style="text-align:left"><code>Math.floor(5.9)</code></td>
+<td style="text-align:left"><code>5.0</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>ceil(n)</code></strong></td>
+<td style="text-align:left">Redondeo al techo (hacia arriba).</td>
+<td style="text-align:left"><code>Math.ceil(5.1)</code></td>
+<td style="text-align:left"><code>6.0</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>max(a, b)</code></strong> / <strong><code>min</code></strong></td>
+<td style="text-align:left">Máximo o mínimo de dos números.</td>
+<td style="text-align:left"><code>Math.max(10, 20)</code></td>
+<td style="text-align:left"><code>20</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="2-string-y-stringbuilder">2. String y StringBuilder</h2>
+<p>Gestión de texto. <strong>String</strong> es inmutable (crea nuevos objetos). <strong>StringBuilder</strong> es mutable (modifica el mismo objeto).</p>
+<h3 id="clase-string">Clase <code>String</code></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Método</th>
+<th style="text-align:left">Descripción</th>
+<th style="text-align:left">Ejemplo (<code>s = &quot;Hola&quot;</code>)</th>
+<th style="text-align:left">Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong><code>length()</code></strong></td>
+<td style="text-align:left">Longitud de la cadena.</td>
+<td style="text-align:left"><code>&quot;Hola&quot;.length()</code></td>
+<td style="text-align:left"><code>4</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>charAt(i)</code></strong></td>
+<td style="text-align:left">Carácter en índice <code>i</code>.</td>
+<td style="text-align:left"><code>&quot;Hola&quot;.charAt(0)</code></td>
+<td style="text-align:left"><code>'H'</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>equals(str)</code></strong></td>
+<td style="text-align:left"><strong>Importante:</strong> Compara contenido.</td>
+<td style="text-align:left"><code>&quot;Hola&quot;.equals(&quot;hola&quot;)</code></td>
+<td style="text-align:left"><code>false</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>equalsIgnoreCase</code></strong></td>
+<td style="text-align:left">Compara ignorando mayús/minús.</td>
+<td style="text-align:left"><code>&quot;Hola&quot;.equalsIgnoreCase(&quot;hola&quot;)</code></td>
+<td style="text-align:left"><code>true</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>substring(ini, fin)</code></strong></td>
+<td style="text-align:left">Extrae rango. <strong><code>fin</code> excluido</strong>.</td>
+<td style="text-align:left"><code>&quot;Java&quot;.substring(0, 2)</code></td>
+<td style="text-align:left"><code>&quot;Ja&quot;</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>indexOf(str)</code></strong></td>
+<td style="text-align:left">Posición de 1ª aparición (-1 si no está).</td>
+<td style="text-align:left"><code>&quot;Banana&quot;.indexOf(&quot;a&quot;)</code></td>
+<td style="text-align:left"><code>1</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>replace(old, new)</code></strong></td>
+<td style="text-align:left">Reemplaza caracteres/texto.</td>
+<td style="text-align:left"><code>&quot;Lala&quot;.replace('a', 'o')</code></td>
+<td style="text-align:left"><code>&quot;Lolo&quot;</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>trim()</code></strong></td>
+<td style="text-align:left">Elimina espacios extremos.</td>
+<td style="text-align:left"><code>&quot;  Hi  &quot;.trim()</code></td>
+<td style="text-align:left"><code>&quot;Hi&quot;</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>split(regex)</code></strong></td>
+<td style="text-align:left">Divide en array por separador.</td>
+<td style="text-align:left"><code>&quot;A,B&quot;.split(&quot;,&quot;)</code></td>
+<td style="text-align:left"><code>[&quot;A&quot;, &quot;B&quot;]</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>String.valueOf(x)</code></strong></td>
+<td style="text-align:left">Convierte primitivo a String.</td>
+<td style="text-align:left"><code>String.valueOf(123)</code></td>
+<td style="text-align:left"><code>&quot;123&quot;</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="clase-stringbuilder">Clase <code>StringBuilder</code></h3>
+<p>Declaración: <code>StringBuilder sb = new StringBuilder(&quot;Texto&quot;);</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Método</th>
+<th style="text-align:left">Descripción</th>
+<th style="text-align:left">Ejemplo (<code>sb = &quot;Hola&quot;</code>)</th>
+<th style="text-align:left">Resultado (sb)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong><code>append(txt)</code></strong></td>
+<td style="text-align:left">Añade al final.</td>
+<td style="text-align:left"><code>sb.append(&quot; Mundo&quot;)</code></td>
+<td style="text-align:left"><code>&quot;Hola Mundo&quot;</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>insert(idx, txt)</code></strong></td>
+<td style="text-align:left">Inserta en posición <code>idx</code>.</td>
+<td style="text-align:left"><code>sb.insert(0, &quot;¡&quot;)</code></td>
+<td style="text-align:left"><code>&quot;¡Hola&quot;</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>delete(ini, fin)</code></strong></td>
+<td style="text-align:left">Borra rango (<code>fin</code> excluido).</td>
+<td style="text-align:left"><code>sb.delete(1, 3)</code></td>
+<td style="text-align:left"><code>&quot;Ha&quot;</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>reverse()</code></strong></td>
+<td style="text-align:left">Invierte el texto.</td>
+<td style="text-align:left"><code>sb.reverse()</code></td>
+<td style="text-align:left"><code>&quot;aloH&quot;</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>toString()</code></strong></td>
+<td style="text-align:left">Convierte a String final.</td>
+<td style="text-align:left"><code>String s = sb.toString()</code></td>
+<td style="text-align:left"><code>&quot;aloH&quot;</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="3-arrays-y-javautilarrays">3. Arrays y java.util.Arrays</h2>
+<p>Colecciones de tamaño fijo. Índices empiezan en <code>0</code>.</p>
+<h3 id="conceptos-básicos">Conceptos Básicos</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Concepto</th>
+<th style="text-align:left">Sintaxis / Descripción</th>
+<th style="text-align:left">Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Declaración</strong></td>
+<td style="text-align:left"><code>Tipo[] nombre = new Tipo[tamaño];</code></td>
+<td style="text-align:left"><code>int[] n = new int[5];</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Con Valores</strong></td>
+<td style="text-align:left">Inicialización directa con llaves.</td>
+<td style="text-align:left"><code>String[] s = {&quot;A&quot;, &quot;B&quot;};</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Longitud</strong></td>
+<td style="text-align:left">Propiedad <code>.length</code> (sin paréntesis).</td>
+<td style="text-align:left"><code>int x = n.length;</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Recorrido</strong></td>
+<td style="text-align:left">Bucle <code>for-each</code> (lectura).</td>
+<td style="text-align:left"><code>for(String i : s) { ... }</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="métodos-avanzados-de-javautilarrays">Métodos Avanzados de <code>java.util.Arrays</code></h3>
+<p>Se asume <code>import java.util.Arrays;</code> y array <code>arr = {10, 20, 30, 40, 50}</code>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Método</th>
+<th style="text-align:left">Detalle / Funcionamiento</th>
+<th style="text-align:left">Ejemplo de Código</th>
+<th style="text-align:left">Salida</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong><code>toString(arr)</code></strong></td>
+<td style="text-align:left">Representación legible del array.</td>
+<td style="text-align:left"><code>Arrays.toString(arr)</code></td>
+<td style="text-align:left"><code>&quot;[10, 20, 30, ...]&quot;</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>sort(arr)</code></strong></td>
+<td style="text-align:left">Ordena el array original (Quick/Merge).</td>
+<td style="text-align:left"><code>int[] x={2,1}; Arrays.sort(x);</code></td>
+<td style="text-align:left"><code>x</code> es <code>[1, 2]</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>equals(a, b)</code></strong></td>
+<td style="text-align:left">Compara contenido (longitud y elementos).</td>
+<td style="text-align:left"><code>Arrays.equals(arr, arr2)</code></td>
+<td style="text-align:left"><code>true</code> / <code>false</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>fill(arr, val)</code></strong></td>
+<td style="text-align:left">Rellena todo el array con <code>val</code>.</td>
+<td style="text-align:left"><code>Arrays.fill(arr, 0)</code></td>
+<td style="text-align:left"><code>[0, 0, 0, 0, 0]</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="profundización-copyof-y-binarysearch">Profundización: <code>copyOf</code> y <code>binarySearch</code></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Método</th>
+<th style="text-align:left">Caso</th>
+<th style="text-align:left">Explicación Técnica</th>
+<th style="text-align:left">Ejemplo</th>
+<th style="text-align:left">Salida</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong><code>copyOf(origen, len)</code></strong><br><em>(Crea nuevo array)</em></td>
+<td style="text-align:left"><strong>Exacta</strong></td>
+<td style="text-align:left">Longitud igual a original.</td>
+<td style="text-align:left"><code>Arrays.copyOf(arr, 5)</code></td>
+<td style="text-align:left"><code>[10, 20, 30, 40, 50]</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><strong>Truncar</strong></td>
+<td style="text-align:left">Longitud menor (corta datos).</td>
+<td style="text-align:left"><code>Arrays.copyOf(arr, 2)</code></td>
+<td style="text-align:left"><code>[10, 20]</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><strong>Padding</strong></td>
+<td style="text-align:left">Longitud mayor (rellena 0/null).</td>
+<td style="text-align:left"><code>Arrays.copyOf(arr, 6)</code></td>
+<td style="text-align:left"><code>[10, ..., 50, 0]</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>binarySearch(arr, key)</code></strong><br><em>(Requiere array ordenado)</em></td>
+<td style="text-align:left"><strong>Éxito</strong></td>
+<td style="text-align:left">Devuelve índice del elemento.</td>
+<td style="text-align:left"><code>Arrays.binarySearch(arr, 30)</code></td>
+<td style="text-align:left"><code>2</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><strong>Fallo</strong></td>
+<td style="text-align:left">Retorna <code>-(punto_inserción) - 1</code>.<br>Si <code>key=35</code> (iría en índice 3): <code>-3-1</code></td>
+<td style="text-align:left"><code>Arrays.binarySearch(arr, 35)</code></td>
+<td style="text-align:left"><code>-4</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><strong>Fallo</strong></td>
+<td style="text-align:left">Menor que todos (iría en 0): <code>-0-1</code></td>
+<td style="text-align:left"><code>Arrays.binarySearch(arr, 5)</code></td>
+<td style="text-align:left"><code>-1</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="4-enum-enumeraciones-detalladas">4. Enum (Enumeraciones Detalladas)</h2>
+<p>Tipo seguro para constantes. Son objetos con métodos y pueden tener atributos.</p>
+<h3 id="uso-básico-y-métodos">Uso Básico y Métodos</h3>
+<p>Declaración: <code>public enum Nivel { BAJO, MEDIO, ALTO }</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Método / Uso</th>
+<th style="text-align:left">Descripción</th>
+<th style="text-align:left">Ejemplo</th>
+<th style="text-align:left">Salida / Acción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Asignación</strong></td>
+<td style="text-align:left">Tipo estricto.</td>
+<td style="text-align:left"><code>Nivel n = Nivel.MEDIO;</code></td>
+<td style="text-align:left">Variable <code>n</code> definida.</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>name()</code></strong></td>
+<td style="text-align:left">Nombre exacto como String.</td>
+<td style="text-align:left"><code>n.name()</code></td>
+<td style="text-align:left"><code>&quot;MEDIO&quot;</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>ordinal()</code></strong></td>
+<td style="text-align:left">Posición (índice base 0).</td>
+<td style="text-align:left"><code>n.ordinal()</code></td>
+<td style="text-align:left"><code>1</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>values()</code></strong></td>
+<td style="text-align:left">Array estático con todas las constantes.</td>
+<td style="text-align:left"><code>Nivel[] todos = Nivel.values();</code></td>
+<td style="text-align:left"><code>[BAJO, MEDIO, ALTO]</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Comparación</strong></td>
+<td style="text-align:left">Seguro usar <code>==</code>.</td>
+<td style="text-align:left"><code>if (n == Nivel.ALTO)</code></td>
+<td style="text-align:left"><code>false</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="enums-avanzados-con-atributos">Enums Avanzados (Con atributos)</h3>
+<p>Los Enums funcionan como clases. Pueden tener constructor privado y campos.</p>
+<pre><code class="language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">Planeta</span> {
+    TIERRA(<span class="hljs-number">1.0</span>), MARTE(<span class="hljs-number">0.38</span>); <span class="hljs-comment">// Invoca al constructor</span>
+    
+    <span class="hljs-keyword">private</span> <span class="hljs-type">double</span> gravedad; <span class="hljs-comment">// Atributo</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-title function_">Planeta</span><span class="hljs-params">(<span class="hljs-type">double</span> g)</span> { <span class="hljs-built_in">this</span>.gravedad = g; } <span class="hljs-comment">// Constructor (privado)</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">double</span> <span class="hljs-title function_">getGravedad</span><span class="hljs-params">()</span> { <span class="hljs-keyword">return</span> gravedad; } <span class="hljs-comment">// Getter</span>
+}
+<span class="hljs-comment">// Uso: double g = Planeta.MARTE.getGravedad(); // 0.38</span>
+</code></pre>
+<h3 id="uso-en-estructuras-de-control">Uso en Estructuras de Control</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Estructura</th>
+<th style="text-align:left">Sintaxis Compacta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Iteración</strong></td>
+<td style="text-align:left"><code>for (Nivel n : Nivel.values()) { System.out.println(n); }</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Switch</strong></td>
+<td style="text-align:left"><code>switch(nivel) { case BAJO: ...; break; case ALTO: ...; break; }</code> <br> <em>(Nota: En los <code>case</code> no se pone <code>Nivel.BAJO</code>, solo <code>BAJO</code>)</em></td>
+</tr>
+</tbody>
+</table>
+
+            
+            
+        </body>
+        </html>
