@@ -1,4 +1,5 @@
 import java.time.Period;
+import java.util.Random;
 
 import Clases.Puesto;
 
@@ -10,6 +11,14 @@ public class App {
     private static final int columnaPortatil = 2;
     private static String[] personas = new String[MAX];
     private static Puesto[][] puestos = new Puesto[FILA][COLUMNA];
+    private static String[] nombresAlumno = {
+
+            "David", "Laura", "Lucas", "Elena", "Clara", "Jorge",
+            "Pedro", "Diana", "Mario", "Julia", "Pablo", "Sofia",
+            "Bruno", "Celia", "Irene", "Jaime", "Marco", "Paula",
+            "Kevin", "Elisa", "Alice", "Sarah", "Felix", "Nadia"
+
+    };
 
     public static void main(String[] args) throws Exception {
 
@@ -25,20 +34,24 @@ public class App {
         }
 
         crearPersonas();
+        mezclarArray(personas);
         asignarPuesto(personas, puestos);
 
         for (int fila = 0; fila < FILA; fila++) {
             for (int columna = 0; columna < COLUMNA; columna++) {
-                System.out.print(puestos[fila][columna].devolverDatos());
+                System.out.print(puestos[fila][columna].devolverDatos() + "\t");
             }
             System.out.println();
         }
+
+
+
 
     }
 
     private static String[] crearPersonas() {
         for (int i = 0; i < MAX; i++) {
-            personas[i] = "Alumno " + (i + 1);
+            personas[i] = nombresAlumno[i] + " " + (i + 1);
         }
         return personas;
     }
@@ -54,6 +67,17 @@ public class App {
                 puestos[fila][columna].setOcupado(true);
                 indice++;
             }
+        }
+    }
+
+    private static void mezclarArray(String[] arAlumno){
+        Random numR = new Random();
+        for (int i = arAlumno.length -1; i > 0; i--) {
+            int index = numR.nextInt(i + 1);
+
+            String a = arAlumno[index];
+            arAlumno[index] = arAlumno[i];
+            arAlumno[i] = a;
         }
     }
 

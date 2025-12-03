@@ -24,7 +24,7 @@ public class Puesto {
     }
 
     public String devolverDatos() {
-        String salida = nombre + "\n" + tipo + "\n" + ocupado;
+        String salida = nombre + " " + tipo;
 
         return salida;
     }
