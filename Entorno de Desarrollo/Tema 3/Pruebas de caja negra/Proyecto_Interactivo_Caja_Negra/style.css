@@ -1,0 +1,238 @@
+:root {
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --text-primary: #e0e0e0;
+    --text-secondary: #a0a0a0;
+    --accent: #7c4dff;
+    --accent-hover: #651fff;
+    --success: #00e676;
+    --error: #ff5252;
+    --border: #333;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 900px;
+    padding: 2rem;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    font-weight: 700;
+    background: linear-gradient(45deg, #7c4dff, #00e676);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.desc {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+}
+
+.tab-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.tab-btn:hover {
+    border-color: var(--accent);
+    color: var(--text-primary);
+}
+
+.tab-btn.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+/* Content */
+.tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+/* Interactive Elements */
+input, select {
+    background: #2d2d2d;
+    border: 1px solid var(--border);
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    width: 200px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+input:focus, select:focus {
+    border-color: var(--accent);
+}
+
+button {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.3s;
+}
+
+button:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+}
+
+.result-box {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+    border-left: 4px solid var(--text-secondary);
+}
+
+.result-box.success { border-color: var(--success); color: var(--success); }
+.result-box.error { border-color: var(--error); color: var(--error); }
+
+/* Activity Specifics */
+.visualization {
+    display: flex;
+    margin-top: 20px;
+    gap: 5px;
+}
+
+.bar-segment {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    background: #333;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    color: #777;
+    transition: all 0.3s;
+}
+
+.bar-segment.active {
+    background: var(--accent);
+    color: white;
+    transform: scale(1.05);
+}
+
+.boundary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    max-width: 400px;
+}
+
+.boundary-input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.decision-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.state-diagram {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.state-node {
+    padding: 10px 20px;
+    background: #333;
+    border-radius: 20px;
+    border: 2px solid #555;
+    transition: all 0.3s;
+}
+
+.state-node.active {
+    border-color: var(--success);
+    background: rgba(0, 230, 118, 0.1);
+    color: var(--success);
+    box-shadow: 0 0 10px rgba(0, 230, 118, 0.3);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.bug-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.bug-list li {
+    background: rgba(255, 82, 82, 0.1);
+    color: var(--error);
+    padding: 8px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 82, 82, 0.3);
+}

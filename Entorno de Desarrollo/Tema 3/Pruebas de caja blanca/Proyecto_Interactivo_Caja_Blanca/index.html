@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratorio de Pruebas de Caja Blanca</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Laboratorio de Caja Blanca</h1>
+            <p>Analiza el código, cubre caminos y domina la lógica interna.</p>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab-btn active" onclick="openTab(event, 'wb1')">1. Cobertura Sentencias</button>
+            <button class="tab-btn" onclick="openTab(event, 'wb2')">2. Cobertura Ramas</button>
+            <button class="tab-btn" onclick="openTab(event, 'wb3')">3. Complejidad Ciclomática</button>
+            <button class="tab-btn" onclick="openTab(event, 'wb4')">4. Caminos (Path)</button>
+            <button class="tab-btn" onclick="openTab(event, 'wb5')">5. Bucles</button>
+        </nav>
+
+        <main>
+            <!-- Actividad 1: Cobertura de Sentencias -->
+            <section id="wb1" class="tab-content active">
+                <div class="card">
+                    <h2>Actividad 1: Cobertura de Sentencias</h2>
+                    <p class="desc">Introduce un valor para ejecutar la línea 3. <br>Objetivo: Ejecutar la línea
+                        crítica.</p>
+
+                    <div class="code-block">
+                        <pre>
+<span id="l1" class="line">1  function check(x) {</span>
+<span id="l2" class="line">2      if (x > 100) {</span>
+<span id="l3" class="line critical">3          console.log("¡Crítico!");</span>
+<span id="l4" class="line">4      }</span>
+<span id="l5" class="line">5      return true;</span>
+<span id="l6" class="line">6  }</span>
+</pre>
+                    </div>
+
+                    <div class="interactive-area">
+                        <input type="number" id="stmtInput" placeholder="Valor de x">
+                        <button onclick="runStatement()">Ejecutar</button>
+                    </div>
+                    <div id="stmtResult" class="result-box">Estado: Línea crítica NO ejecutada.</div>
+                </div>
+            </section>
+
+            <!-- Actividad 2: Cobertura de Ramas -->
+            <section id="wb2" class="tab-content">
+                <div class="card">
+                    <h2>Actividad 2: Cobertura de Ramas (Decision Coverage)</h2>
+                    <p class="desc">Debes probar AMBOS caminos del <code>if</code> (Verdadero y Falso).</p>
+
+                    <div class="code-block">
+                        <pre>
+if (edad >= 18) {
+    status = "Mayor";
+} else {
+    status = "Menor";
+}
+</pre>
+                    </div>
+
+                    <div class="interactive-area">
+                        <input type="number" id="branchInput" placeholder="Edad">
+                        <button onclick="runBranch()">Probar</button>
+                    </div>
+
+                    <div class="progress-container">
+                        <div class="branch-indicator" id="branchTrue">Rama TRUE (>=18)</div>
+                        <div class="branch-indicator" id="branchFalse">Rama FALSE (<18)< /div>
+                        </div>
+                        <div id="branchResult" class="result-box">Cobertura: 0%</div>
+                    </div>
+            </section>
+
+            <!-- Actividad 3: Complejidad Ciclomática -->
+            <section id="wb3" class="tab-content">
+                <div class="card">
+                    <h2>Actividad 3: Calculadora de Complejidad</h2>
+                    <p class="desc">Calcula la Complejidad Ciclomática V(G) del siguiente código.<br>
+                        <em>Pista: Número de condiciones + 1</em>
+                    </p>
+
+                    <div class="code-block">
+                        <pre>
+function process(a, b) {
+    if (a > 0) {          // +1
+        while (b < 5) {   // +1
+            b++;
+        }
+    } else {
+        if (b == 0) {     // +1
+            return -1;
+        }
+    }
+    return 0;
+}
+</pre>
+                    </div>
+
+                    <div class="quiz-options">
+                        <button class="quiz-btn" onclick="checkComplexity(2)">2</button>
+                        <button class="quiz-btn" onclick="checkComplexity(3)">3</button>
+                        <button class="quiz-btn" onclick="checkComplexity(4)">4</button>
+                        <button class="quiz-btn" onclick="checkComplexity(5)">5</button>
+                    </div>
+                    <div id="complexResult" class="result-box">Selecciona tu respuesta.</div>
+                </div>
+            </section>
+
+            <!-- Actividad 4: Cobertura de Caminos -->
+            <section id="wb4" class="tab-content">
+                <div class="card">
+                    <h2>Actividad 4: Cobertura de Caminos (Path Coverage)</h2>
+                    <p class="desc">Encuentra los 4 caminos posibles combinando A y B.</p>
+
+                    <div class="code-block">
+                        <pre>
+if (A) { ... }
+if (B) { ... }
+</pre>
+                    </div>
+
+                    <div class="interactive-area">
+                        <label><input type="checkbox" id="pathA"> A es True</label>
+                        <label><input type="checkbox" id="pathB"> B es True</label>
+                        <button onclick="runPath()">Ejecutar Camino</button>
+                    </div>
+
+                    <div class="badges-container">
+                        <span class="badge" id="p-tt">T-T</span>
+                        <span class="badge" id="p-tf">T-F</span>
+                        <span class="badge" id="p-ft">F-T</span>
+                        <span class="badge" id="p-ff">F-F</span>
+                    </div>
+                    <div id="pathResult" class="result-box">Caminos descubiertos: 0/4</div>
+                </div>
+            </section>
+
+            <!-- Actividad 5: Bucles -->
+            <section id="wb5" class="tab-content">
+                <div class="card">
+                    <h2>Actividad 5: Prueba de Bucles</h2>
+                    <p class="desc">Prueba los escenarios del bucle: 0 veces, 1 vez, varias veces.</p>
+
+                    <div class="code-block">
+                        <pre>
+while (contador < limite) {
+    contador++;
+}
+// Inicialmente contador = 0
+</pre>
+                    </div>
+
+                    <div class="interactive-area">
+                        <input type="number" id="loopInput" placeholder="Valor de 'limite'">
+                        <button onclick="runLoop()">Probar Bucle</button>
+                    </div>
+
+                    <div class="loop-scenarios">
+                        <div class="scenario" id="l-zero">0 iteraciones</div>
+                        <div class="scenario" id="l-one">1 iteración</div>
+                        <div class="scenario" id="l-many">N iteraciones</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

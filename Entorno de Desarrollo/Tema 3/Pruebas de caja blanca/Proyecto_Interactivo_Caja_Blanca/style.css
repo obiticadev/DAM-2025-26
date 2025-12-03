@@ -1,0 +1,265 @@
+/* Inherit base styles from Black Box project but add code specific styles */
+:root {
+    --bg-color: #0d1117;
+    --card-bg: #161b22;
+    --text-primary: #c9d1d9;
+    --text-secondary: #8b949e;
+    --accent: #2f81f7;
+    --accent-hover: #58a6ff;
+    --success: #2ea043;
+    --error: #da3633;
+    --border: #30363d;
+    --code-bg: #0d1117;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 900px;
+    padding: 2rem;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+
+.desc {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+}
+
+.tab-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.tab-btn:hover {
+    border-color: var(--accent);
+    color: var(--text-primary);
+}
+
+.tab-btn.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+/* Content */
+.tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Interactive Elements */
+input,
+select {
+    background: #0d1117;
+    border: 1px solid var(--border);
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    width: 200px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+input:focus,
+select:focus {
+    border-color: var(--accent);
+}
+
+button {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.3s;
+}
+
+button:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+}
+
+.result-box {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border-left: 4px solid var(--text-secondary);
+}
+
+.result-box.success {
+    border-color: var(--success);
+    color: var(--success);
+}
+
+.result-box.error {
+    border-color: var(--error);
+    color: var(--error);
+}
+
+/* Code Blocks */
+.code-block {
+    background: var(--code-bg);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    margin: 15px 0;
+    font-family: 'Fira Code', monospace;
+    overflow-x: auto;
+}
+
+.line {
+    display: block;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line.executed {
+    background: rgba(46, 160, 67, 0.2);
+    color: #7ee787;
+}
+
+.line.critical {
+    border-left: 3px solid var(--error);
+}
+
+/* Activity Specifics */
+.progress-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.branch-indicator {
+    flex: 1;
+    padding: 15px;
+    background: #21262d;
+    text-align: center;
+    border-radius: 6px;
+    opacity: 0.5;
+    transition: all 0.3s;
+}
+
+.branch-indicator.covered {
+    opacity: 1;
+    background: var(--success);
+    color: white;
+    font-weight: bold;
+}
+
+.quiz-options {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.quiz-btn {
+    flex: 1;
+    background: #21262d;
+    border: 1px solid var(--border);
+}
+
+.badges-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.badge {
+    padding: 8px 12px;
+    background: #21262d;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    opacity: 0.3;
+}
+
+.badge.earned {
+    opacity: 1;
+    background: var(--accent);
+    color: white;
+    box-shadow: 0 0 10px var(--accent);
+}
+
+.loop-scenarios {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.scenario {
+    flex: 1;
+    padding: 10px;
+    background: #21262d;
+    text-align: center;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+}
+
+.scenario.hit {
+    border-color: var(--success);
+    color: var(--success);
+    background: rgba(46, 160, 67, 0.1);
+}
