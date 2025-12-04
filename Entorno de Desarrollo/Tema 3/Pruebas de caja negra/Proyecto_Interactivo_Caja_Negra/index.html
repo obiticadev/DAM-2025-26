@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laboratorio de Pruebas de Caja Negra</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div class="container">
         <header>
             <h1>Laboratorio de Caja Negra</h1>
-            <p>Explora y domina las técnicas de prueba sin ver el código.</p>
+            <p>Explora y domina las técnicas de prueba dinámicamente.</p>
         </header>
 
         <nav class="tabs">
@@ -27,21 +29,64 @@
             <section id="act1" class="tab-content active">
                 <div class="card">
                     <h2>Actividad 1: Particiones de Equivalencia</h2>
-                    <p class="desc">Sistema de descuentos: <br>
-                    - <strong>0 a 12 años</strong>: Niño (50%)<br>
-                    - <strong>13 a 64 años</strong>: Adulto (0%)<br>
-                    - <strong>65+ años</strong>: Senior (30%)<br>
-                    Introduce una edad para ver en qué partición cae.</p>
-                    
-                    <div class="interactive-area">
-                        <input type="number" id="ageInput" placeholder="Introduce edad">
-                        <button onclick="checkPartition()">Verificar</button>
+                    <p class="desc">Analiza cómo el sistema clasifica la entrada en grupos equivalentes. Mueve el
+                        deslizador para ver cómo cambia la partición activa en tiempo real.</p>
+
+                    <div class="control-group">
+                        <label for="ageSlider">Edad seleccionada: <span id="ageDisplay"
+                                style="font-weight:bold; color:var(--accent); font-size:1.2rem;">0</span> años</label>
+                        <input type="range" id="ageSlider" min="-10" max="130" value="0" oninput="updatePartition()">
+                        <div
+                            style="display:flex; justify-content:space-between; font-size:0.8rem; color:var(--text-secondary);">
+                            <span>-10</span>
+                            <span>130</span>
+                        </div>
                     </div>
-                    <div id="partitionResult" class="result-box">Esperando entrada...</div>
-                    <div class="visualization">
-                        <div class="bar-segment" id="p-child">Niño (0-12)</div>
-                        <div class="bar-segment" id="p-adult">Adulto (13-64)</div>
-                        <div class="bar-segment" id="p-senior">Senior (65+)</div>
+
+                    <table class="data-table" id="partitionTable">
+                        <thead>
+                            <tr>
+                                <th>Rango</th>
+                                <th>Partición</th>
+                                <th>Descuento</th>
+                                <th>Comportamiento Esperado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id="row-invalid-low">
+                                <td>Edad < 0</td>
+                                <td>Inválida (Inferior)</td>
+                                <td>N/A</td>
+                                <td>Error: Edad no puede ser negativa</td>
+                            </tr>
+                            <tr id="row-child">
+                                <td>0 - 12</td>
+                                <td>Válida (Niño)</td>
+                                <td>50%</td>
+                                <td>Aplicar tarifa reducida</td>
+                            </tr>
+                            <tr id="row-adult">
+                                <td>13 - 64</td>
+                                <td>Válida (Adulto)</td>
+                                <td>0%</td>
+                                <td>Aplicar tarifa estándar</td>
+                            </tr>
+                            <tr id="row-senior">
+                                <td>65 - 120</td>
+                                <td>Válida (Senior)</td>
+                                <td>30%</td>
+                                <td>Aplicar tarifa jubilado</td>
+                            </tr>
+                            <tr id="row-invalid-high">
+                                <td>Edad > 120</td>
+                                <td>Inválida (Superior)</td>
+                                <td>N/A</td>
+                                <td>Error: Edad fuera de rango lógico</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div id="partitionResult" class="result-box info">Mueve el deslizador para comenzar el análisis.
                     </div>
                 </div>
             </section>
@@ -50,19 +95,32 @@
             <section id="act2" class="tab-content">
                 <div class="card">
                     <h2>Actividad 2: Análisis de Valores Límite</h2>
-                    <p class="desc">Un campo acepta valores entre <strong>10 y 50</strong> (inclusive).<br>
-                    Identifica los <strong>6 valores límite</strong> críticos para probar este rango.</p>
-                    
-                    <div class="boundary-grid">
-                        <input type="number" class="boundary-input" placeholder="?" id="b1">
-                        <input type="number" class="boundary-input" placeholder="?" id="b2">
-                        <input type="number" class="boundary-input" placeholder="?" id="b3">
-                        <input type="number" class="boundary-input" placeholder="?" id="b4">
-                        <input type="number" class="boundary-input" placeholder="?" id="b5">
-                        <input type="number" class="boundary-input" placeholder="?" id="b6">
+                    <p class="desc">Un campo acepta valores entre <strong>10 y 50</strong> (inclusive). Identifica los
+                        valores frontera críticos.</p>
+
+                    <div class="control-group">
+                        <h3>Explorador de Rango</h3>
+                        <p style="font-size:0.9rem; color:var(--text-secondary);">Usa este deslizador para visualizar
+                            qué valores son aceptados y cuáles son rechazados.</p>
+                        <label>Valor de prueba: <span id="boundaryDisplay"
+                                style="font-weight:bold; color:var(--accent);">10</span></label>
+                        <input type="range" id="boundarySlider" min="0" max="60" value="10"
+                            oninput="updateBoundaryVisual()">
+                        <div id="boundaryVisualResult" style="margin-top:10px; font-weight:bold;"></div>
                     </div>
-                    <button onclick="checkBoundaries()" style="margin-top: 20px;">Validar Límites</button>
-                    <div id="boundaryResult" class="result-box">Introduce los valores frontera (inferiores y superiores).</div>
+
+                    <h3>Desafío: Identifica los 6 valores límite</h3>
+                    <div class="boundary-grid">
+                        <input type="number" class="boundary-input" placeholder="Límite Inf - 1" id="b1">
+                        <input type="number" class="boundary-input" placeholder="Límite Inf" id="b2">
+                        <input type="number" class="boundary-input" placeholder="Límite Inf + 1" id="b3">
+                        <input type="number" class="boundary-input" placeholder="Límite Sup - 1" id="b4">
+                        <input type="number" class="boundary-input" placeholder="Límite Sup" id="b5">
+                        <input type="number" class="boundary-input" placeholder="Límite Sup + 1" id="b6">
+                    </div>
+                    <button onclick="checkBoundaries()" style="margin-top: 20px;">Validar Respuesta</button>
+                    <div id="boundaryResult" class="result-box">Introduce los valores frontera para validar tu
+                        conocimiento.</div>
                 </div>
             </section>
 
@@ -70,36 +128,67 @@
             <section id="act3" class="tab-content">
                 <div class="card">
                     <h2>Actividad 3: Tabla de Decisión (Login)</h2>
-                    <p class="desc">Configura las condiciones para predecir el resultado del sistema.</p>
-                    
+                    <p class="desc">Observa cómo la combinación de condiciones determina la acción del sistema.</p>
+
                     <div class="decision-controls">
                         <label class="toggle">
-                            <input type="checkbox" id="userExists">
-                            <span class="slider"></span>
+                            <input type="checkbox" id="userExists" onchange="updateDecisionTable()">
                             Usuario Existe
                         </label>
                         <label class="toggle">
-                            <input type="checkbox" id="passCorrect">
-                            <span class="slider"></span>
+                            <input type="checkbox" id="passCorrect" onchange="updateDecisionTable()">
                             Contraseña Correcta
                         </label>
                         <label class="toggle">
-                            <input type="checkbox" id="accountActive">
-                            <span class="slider"></span>
+                            <input type="checkbox" id="accountActive" onchange="updateDecisionTable()">
                             Cuenta Activa
                         </label>
                     </div>
 
-                    <div class="prediction-area">
-                        <p>¿Cuál será el resultado?</p>
-                        <select id="loginPrediction">
-                            <option value="error">Error de Credenciales</option>
-                            <option value="locked">Cuenta Bloqueada</option>
-                            <option value="success">Acceso Permitido</option>
-                        </select>
-                        <button onclick="checkDecision()">Probar Login</button>
-                    </div>
-                    <div id="decisionResult" class="result-box">Configura y prueba.</div>
+                    <table class="data-table" id="decisionTable">
+                        <thead>
+                            <tr>
+                                <th>Regla</th>
+                                <th>Usuario Existe</th>
+                                <th>Pass Correcta</th>
+                                <th>Cuenta Activa</th>
+                                <th>Resultado Esperado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id="rule-1">
+                                <td>1</td>
+                                <td>Falso</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>Error Credenciales</td>
+                            </tr>
+                            <tr id="rule-2">
+                                <td>2</td>
+                                <td>Verdadero</td>
+                                <td>Falso</td>
+                                <td>-</td>
+                                <td>Error Credenciales</td>
+                            </tr>
+                            <tr id="rule-3">
+                                <td>3</td>
+                                <td>Verdadero</td>
+                                <td>Verdadero</td>
+                                <td>Falso</td>
+                                <td>Cuenta Bloqueada</td>
+                            </tr>
+                            <tr id="rule-4">
+                                <td>4</td>
+                                <td>Verdadero</td>
+                                <td>Verdadero</td>
+                                <td>Verdadero</td>
+                                <td>Acceso Permitido</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div id="decisionResult" class="result-box info">Configura los interruptores para ver qué regla
+                        aplica.</div>
                 </div>
             </section>
 
@@ -107,8 +196,9 @@
             <section id="act4" class="tab-content">
                 <div class="card">
                     <h2>Actividad 4: Máquina de Estados (Pedido)</h2>
-                    <p class="desc">Lleva el pedido desde "Nuevo" hasta "Entregado" siguiendo el flujo correcto.</p>
-                    
+                    <p class="desc">Simula el ciclo de vida de un pedido. Observa las transiciones válidas e inválidas.
+                    </p>
+
                     <div class="state-diagram">
                         <div class="state-node" id="s-new">Nuevo</div>
                         <div class="arrow">→</div>
@@ -124,6 +214,8 @@
                         <button onclick="triggerAction('cancel')">Cancelar</button>
                         <button onclick="triggerAction('ship')">Enviar</button>
                         <button onclick="triggerAction('deliver')">Entregar</button>
+                        <button onclick="triggerAction('reset')"
+                            style="background-color: var(--warning);">Reiniciar</button>
                     </div>
                     <div id="stateResult" class="result-box">Estado actual: Nuevo</div>
                 </div>
@@ -133,18 +225,29 @@
             <section id="act5" class="tab-content">
                 <div class="card">
                     <h2>Actividad 5: Adivinanza de Errores (Error Guessing)</h2>
-                    <p class="desc">Este campo es vulnerable. Intenta encontrar los <strong>3 bugs</strong> ocultos probando entradas "maliciosas" o extrañas.</p>
-                    
-                    <div class="interactive-area">
-                        <input type="text" id="bugInput" placeholder="Intenta romperme...">
-                        <button onclick="huntBugs()">Probar</button>
+                    <p class="desc">Usa tu intuición y experiencia para encontrar vulnerabilidades comunes.</p>
+
+                    <div class="control-group">
+                        <input type="text" id="bugInput" placeholder="Escribe aquí tu prueba maliciosa...">
+                        <button onclick="huntBugs()" style="margin-top:10px; width:100%;">Ejecutar Prueba</button>
                     </div>
+
                     <div id="bugResult" class="result-box">Bugs encontrados: 0/3</div>
                     <ul id="bugList" class="bug-list"></ul>
+
+                    <div style="margin-top:20px;">
+                        <p style="color:var(--text-secondary); font-size:0.9rem;">Pistas comunes:</p>
+                        <ul style="color:var(--text-secondary); font-size:0.9rem; padding-left:20px;">
+                            <li>¿Qué pasa si no envías nada?</li>
+                            <li>¿Qué pasa si envías demasiado texto?</li>
+                            <li>¿Qué pasa si intentas inyectar código (XSS)?</li>
+                        </ul>
+                    </div>
                 </div>
             </section>
         </main>
     </div>
     <script src="script.js"></script>
 </body>
+
 </html>

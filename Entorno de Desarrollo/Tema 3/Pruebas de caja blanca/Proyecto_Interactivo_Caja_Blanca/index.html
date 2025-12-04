@@ -7,7 +7,7 @@
     <title>Laboratorio de Pruebas de Caja Blanca</title>
     <link rel="stylesheet" href="style.css">
     <link
-        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;600;700;800&display=swap"
         rel="stylesheet">
 </head>
 
@@ -31,8 +31,8 @@
             <section id="wb1" class="tab-content active">
                 <div class="card">
                     <h2>Actividad 1: Cobertura de Sentencias</h2>
-                    <p class="desc">Introduce un valor para ejecutar la línea 3. <br>Objetivo: Ejecutar la línea
-                        crítica.</p>
+                    <p class="desc">Mueve el deslizador para simular diferentes valores de entrada y observa qué líneas
+                        de código se ejecutan en tiempo real.</p>
 
                     <div class="code-block">
                         <pre>
@@ -45,11 +45,12 @@
 </pre>
                     </div>
 
-                    <div class="interactive-area">
-                        <input type="number" id="stmtInput" placeholder="Valor de x">
-                        <button onclick="runStatement()">Ejecutar</button>
+                    <div class="control-group">
+                        <label>Valor de x: <span id="stmtDisplay"
+                                style="font-weight:bold; color:var(--accent);">50</span></label>
+                        <input type="range" id="stmtSlider" min="0" max="200" value="50" oninput="runStatement()">
                     </div>
-                    <div id="stmtResult" class="result-box">Estado: Línea crítica NO ejecutada.</div>
+                    <div id="stmtResult" class="result-box info">Ajusta el valor para cubrir todas las sentencias.</div>
                 </div>
             </section>
 
@@ -57,7 +58,8 @@
             <section id="wb2" class="tab-content">
                 <div class="card">
                     <h2>Actividad 2: Cobertura de Ramas (Decision Coverage)</h2>
-                    <p class="desc">Debes probar AMBOS caminos del <code>if</code> (Verdadero y Falso).</p>
+                    <p class="desc">Debes probar AMBOS caminos del <code>if</code> (Verdadero y Falso). Usa el
+                        deslizador para cambiar la edad.</p>
 
                     <div class="code-block">
                         <pre>
@@ -69,16 +71,17 @@ if (edad >= 18) {
 </pre>
                     </div>
 
-                    <div class="interactive-area">
-                        <input type="number" id="branchInput" placeholder="Edad">
-                        <button onclick="runBranch()">Probar</button>
+                    <div class="control-group">
+                        <label>Edad: <span id="branchDisplay"
+                                style="font-weight:bold; color:var(--accent);">10</span></label>
+                        <input type="range" id="branchSlider" min="0" max="100" value="10" oninput="runBranch()">
                     </div>
 
                     <div class="progress-container">
                         <div class="branch-indicator" id="branchTrue">Rama TRUE (>=18)</div>
                         <div class="branch-indicator" id="branchFalse">Rama FALSE (<18)< /div>
                         </div>
-                        <div id="branchResult" class="result-box">Cobertura: 0%</div>
+                        <div id="branchResult" class="result-box">Cobertura Actual: 0%</div>
                     </div>
             </section>
 
@@ -87,18 +90,18 @@ if (edad >= 18) {
                 <div class="card">
                     <h2>Actividad 3: Calculadora de Complejidad</h2>
                     <p class="desc">Calcula la Complejidad Ciclomática V(G) del siguiente código.<br>
-                        <em>Pista: Número de condiciones + 1</em>
+                        <em>Fórmula: Número de regiones cerradas + 1 (o Nodos Predicado + 1)</em>
                     </p>
 
                     <div class="code-block">
                         <pre>
 function process(a, b) {
-    if (a > 0) {          // +1
-        while (b < 5) {   // +1
+    if (a > 0) {          // Nodo Predicado 1
+        while (b < 5) {   // Nodo Predicado 2
             b++;
         }
     } else {
-        if (b == 0) {     // +1
+        if (b == 0) {     // Nodo Predicado 3
             return -1;
         }
     }
@@ -113,7 +116,7 @@ function process(a, b) {
                         <button class="quiz-btn" onclick="checkComplexity(4)">4</button>
                         <button class="quiz-btn" onclick="checkComplexity(5)">5</button>
                     </div>
-                    <div id="complexResult" class="result-box">Selecciona tu respuesta.</div>
+                    <div id="complexResult" class="result-box info">Selecciona tu respuesta.</div>
                 </div>
             </section>
 
@@ -121,19 +124,42 @@ function process(a, b) {
             <section id="wb4" class="tab-content">
                 <div class="card">
                     <h2>Actividad 4: Cobertura de Caminos (Path Coverage)</h2>
-                    <p class="desc">Encuentra los 4 caminos posibles combinando A y B.</p>
+                    <p class="desc">Encuentra los 4 caminos posibles combinando las condiciones A y B.</p>
 
-                    <div class="code-block">
-                        <pre>
+                    <div style="display:flex; justify-content:space-around; align-items:center; margin-bottom:20px;">
+                        <div class="code-block" style="flex:1; margin-right:20px;">
+                            <pre>
 if (A) { ... }
 if (B) { ... }
 </pre>
+                        </div>
+                        <div style="flex:1; text-align:center;">
+                            <!-- Simple Flow Graph Visualization -->
+                            <div style="display:flex; flex-direction:column; align-items:center; gap:10px;">
+                                <div style="padding:10px; border:2px solid #555; border-radius:50%;">Start</div>
+                                <div style="font-size:20px;">↓</div>
+                                <div id="node-A"
+                                    style="padding:10px; border:2px solid #555; border-radius:5px; width:100px;">IF A
+                                </div>
+                                <div style="font-size:20px;">↓</div>
+                                <div id="node-B"
+                                    style="padding:10px; border:2px solid #555; border-radius:5px; width:100px;">IF B
+                                </div>
+                                <div style="font-size:20px;">↓</div>
+                                <div style="padding:10px; border:2px solid #555; border-radius:50%;">End</div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="interactive-area">
-                        <label><input type="checkbox" id="pathA"> A es True</label>
-                        <label><input type="checkbox" id="pathB"> B es True</label>
-                        <button onclick="runPath()">Ejecutar Camino</button>
+                    <div class="control-group" style="display:flex; gap:20px; justify-content:center;">
+                        <label class="toggle" style="display:flex; align-items:center; gap:10px; cursor:pointer;">
+                            <input type="checkbox" id="pathA" onchange="runPath()">
+                            <span>Condición A (True/False)</span>
+                        </label>
+                        <label class="toggle" style="display:flex; align-items:center; gap:10px; cursor:pointer;">
+                            <input type="checkbox" id="pathB" onchange="runPath()">
+                            <span>Condición B (True/False)</span>
+                        </label>
                     </div>
 
                     <div class="badges-container">
@@ -161,16 +187,18 @@ while (contador < limite) {
 </pre>
                     </div>
 
-                    <div class="interactive-area">
-                        <input type="number" id="loopInput" placeholder="Valor de 'limite'">
-                        <button onclick="runLoop()">Probar Bucle</button>
+                    <div class="control-group">
+                        <label>Límite: <span id="loopDisplay"
+                                style="font-weight:bold; color:var(--accent);">0</span></label>
+                        <input type="range" id="loopSlider" min="-1" max="10" value="0" oninput="runLoop()">
                     </div>
 
                     <div class="loop-scenarios">
-                        <div class="scenario" id="l-zero">0 iteraciones</div>
-                        <div class="scenario" id="l-one">1 iteración</div>
-                        <div class="scenario" id="l-many">N iteraciones</div>
+                        <div class="scenario" id="l-zero">0 iteraciones (Skip)</div>
+                        <div class="scenario" id="l-one">1 iteración (Single)</div>
+                        <div class="scenario" id="l-many">N iteraciones (Loop)</div>
                     </div>
+                    <div id="loopResult" class="result-box info">Ajusta el límite para probar los casos.</div>
                 </div>
             </section>
         </main>
