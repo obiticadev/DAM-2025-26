@@ -12,41 +12,61 @@ function openTab(evt, tabName) {
 }
 
 // Actividad 1: Particiones
-function checkPartition() {
-    const age = parseInt(document.getElementById('ageInput').value);
+function updatePartition() {
+    const age = parseInt(document.getElementById('ageSlider').value);
+    document.getElementById('ageDisplay').textContent = age;
     const result = document.getElementById('partitionResult');
-    const segments = document.querySelectorAll('.bar-segment');
-    
-    segments.forEach(s => s.classList.remove('active'));
-    
-    if (isNaN(age)) {
-        result.textContent = "Por favor, introduce un número válido.";
-        result.className = "result-box error";
-        return;
+
+    // Reset table rows
+    document.querySelectorAll('#partitionTable tbody tr').forEach(tr => tr.classList.remove('active-row'));
+
+    let rowId = '';
+    let message = '';
+    let type = 'success';
+
+    if (age < 0) {
+        rowId = 'row-invalid-low';
+        message = "Valor Inválido: La edad no puede ser negativa.";
+        type = 'error';
+    } else if (age <= 12) {
+        rowId = 'row-child';
+        message = "Partición Válida (Niño): Se aplica descuento del 50%.";
+    } else if (age <= 64) {
+        rowId = 'row-adult';
+        message = "Partición Válida (Adulto): Tarifa estándar.";
+    } else if (age <= 120) {
+        rowId = 'row-senior';
+        message = "Partición Válida (Senior): Se aplica descuento del 30%.";
+    } else {
+        rowId = 'row-invalid-high';
+        message = "Valor Inválido: Edad fuera del rango lógico humano.";
+        type = 'error';
     }
 
-    if (age < 0 || age > 120) {
-        result.textContent = "Valor inválido (Fuera de rango lógico).";
-        result.className = "result-box error";
-    } else if (age <= 12) {
-        result.textContent = "Partición: Niño. Descuento aplicado: 50%.";
-        result.className = "result-box success";
-        document.getElementById('p-child').classList.add('active');
-    } else if (age <= 64) {
-        result.textContent = "Partición: Adulto. Sin descuento.";
-        result.className = "result-box success";
-        document.getElementById('p-adult').classList.add('active');
-    } else {
-        result.textContent = "Partición: Senior. Descuento aplicado: 30%.";
-        result.className = "result-box success";
-        document.getElementById('p-senior').classList.add('active');
+    if (rowId) {
+        document.getElementById(rowId).classList.add('active-row');
     }
+
+    result.textContent = message;
+    result.className = `result-box ${type}`;
 }
 
 // Actividad 2: Valores Límite
+function updateBoundaryVisual() {
+    const val = parseInt(document.getElementById('boundarySlider').value);
+    document.getElementById('boundaryDisplay').textContent = val;
+    const visualResult = document.getElementById('boundaryVisualResult');
+
+    if (val >= 10 && val <= 50) {
+        visualResult.textContent = "ACEPTADO";
+        visualResult.style.color = "var(--success)";
+    } else {
+        visualResult.textContent = "RECHAZADO";
+        visualResult.style.color = "var(--error)";
+    }
+}
+
 function checkBoundaries() {
-    // Rango 10 - 50
-    // Límites: 9, 10, 11 ... 49, 50, 51
     const inputs = [
         parseInt(document.getElementById('b1').value),
         parseInt(document.getElementById('b2').value),
@@ -56,97 +76,113 @@ function checkBoundaries() {
         parseInt(document.getElementById('b6').value)
     ];
 
+    // Límites esperados: 9, 10, 11 y 49, 50, 51
     const correctValues = [9, 10, 11, 49, 50, 51];
-    const userValues = inputs.filter(n => !isNaN(n)).sort((a,b) => a-b);
-    
-    const isCorrect = correctValues.every(val => userValues.includes(val)) && userValues.length === 6;
+    const userValues = inputs.filter(n => !isNaN(n)).sort((a, b) => a - b);
+
+    // Check if user found all unique correct values
+    const uniqueUserValues = [...new Set(userValues)];
+    const allFound = correctValues.every(val => uniqueUserValues.includes(val));
+
     const result = document.getElementById('boundaryResult');
 
-    if (isCorrect) {
-        result.textContent = "¡Correcto! Has identificado todos los valores frontera críticos.";
+    if (allFound && uniqueUserValues.length === 6) {
+        result.textContent = "¡Correcto! Has identificado perfectamente los valores frontera (n-1, n, n+1).";
         result.className = "result-box success";
     } else {
-        result.textContent = "Incorrecto. Recuerda: Límite-1, Límite, Límite+1 para ambos extremos (10 y 50).";
+        result.textContent = "Incorrecto. Busca los valores justo en el borde y sus vecinos inmediatos (ej: si el límite es 10, prueba 9, 10 y 11).";
         result.className = "result-box error";
     }
 }
 
 // Actividad 3: Tabla de Decisión
-function checkDecision() {
+function updateDecisionTable() {
     const userExists = document.getElementById('userExists').checked;
     const passCorrect = document.getElementById('passCorrect').checked;
     const accountActive = document.getElementById('accountActive').checked;
-    const prediction = document.getElementById('loginPrediction').value;
     const result = document.getElementById('decisionResult');
 
-    let actualOutcome = "error";
-    if (userExists && passCorrect) {
-        if (accountActive) {
-            actualOutcome = "success";
-        } else {
-            actualOutcome = "locked";
-        }
+    // Reset rows
+    document.querySelectorAll('#decisionTable tbody tr').forEach(tr => tr.classList.remove('active-row'));
+
+    let activeRule = '';
+    let outcome = '';
+
+    if (!userExists) {
+        activeRule = 'rule-1';
+        outcome = "Error: Usuario no encontrado.";
+    } else if (!passCorrect) {
+        activeRule = 'rule-2';
+        outcome = "Error: Contraseña incorrecta.";
+    } else if (!accountActive) {
+        activeRule = 'rule-3';
+        outcome = "Error: Cuenta bloqueada o inactiva.";
     } else {
-        actualOutcome = "error";
+        activeRule = 'rule-4';
+        outcome = "Éxito: Acceso permitido.";
     }
 
-    if (prediction === actualOutcome) {
-        result.textContent = "¡Correcto! Tu predicción coincide con la lógica del sistema.";
-        result.className = "result-box success";
-    } else {
-        result.textContent = `Incorrecto. El sistema devolvió: ${actualOutcome.toUpperCase()}. Revisa las condiciones.`;
-        result.className = "result-box error";
+    if (activeRule) {
+        document.getElementById(activeRule).classList.add('active-row');
     }
+
+    result.textContent = outcome;
+    result.className = activeRule === 'rule-4' ? "result-box success" : "result-box error";
 }
 
 // Actividad 4: Estados
 let currentState = "s-new";
-const validTransitions = {
-    "s-new": { action: "pay", next: "s-paid" },
-    "s-paid": { action: "ship", next: "s-shipped" },
-    "s-shipped": { action: "deliver", next: "s-delivered" },
-    // Cancelaciones
-    "s-new": { action: "cancel", next: "s-cancelled" },
-    "s-paid": { action: "cancel", next: "s-cancelled" }
-};
 
 function updateStateUI() {
     document.querySelectorAll('.state-node').forEach(n => n.classList.remove('active'));
     const node = document.getElementById(currentState);
-    if(node) node.classList.add('active');
-    
+    if (node) node.classList.add('active');
+
     const result = document.getElementById('stateResult');
     result.textContent = `Estado actual: ${currentState.replace('s-', '').toUpperCase()}`;
-    result.className = "result-box";
+    result.className = "result-box info";
 }
 
 function triggerAction(action) {
-    // Manejo especial para transiciones múltiples desde un estado
-    let nextState = null;
-    
-    // Lógica simple de transición
-    if (currentState === "s-new" && action === "pay") nextState = "s-paid";
-    else if (currentState === "s-new" && action === "cancel") nextState = "s-new"; // Reset visual demo
-    else if (currentState === "s-paid" && action === "ship") nextState = "s-shipped";
-    else if (currentState === "s-shipped" && action === "deliver") nextState = "s-delivered";
-    else if (action === "cancel" && (currentState === "s-new" || currentState === "s-paid")) {
-        alert("Pedido Cancelado (Fin del flujo)");
+    if (action === 'reset') {
         currentState = "s-new";
         updateStateUI();
         return;
     }
 
+    let nextState = null;
+    let errorMsg = "";
+
+    // Lógica de transición
+    switch (currentState) {
+        case "s-new":
+            if (action === "pay") nextState = "s-paid";
+            else if (action === "cancel") { alert("Pedido Cancelado"); currentState = "s-new"; updateStateUI(); return; }
+            break;
+        case "s-paid":
+            if (action === "ship") nextState = "s-shipped";
+            else if (action === "cancel") { alert("Pedido Cancelado y Reembolsado"); currentState = "s-new"; updateStateUI(); return; }
+            break;
+        case "s-shipped":
+            if (action === "deliver") nextState = "s-delivered";
+            break;
+        case "s-delivered":
+            // Estado final
+            break;
+    }
+
     if (nextState) {
         currentState = nextState;
         updateStateUI();
+        const result = document.getElementById('stateResult');
+        result.className = "result-box success";
+        result.textContent = `Transición exitosa a: ${nextState.replace('s-', '').toUpperCase()}`;
     } else {
         const result = document.getElementById('stateResult');
-        result.textContent = `Acción inválida: No puedes hacer '${action}' desde el estado actual.`;
+        result.textContent = `Acción inválida: No puedes ejecutar '${action}' desde el estado '${currentState.replace('s-', '').toUpperCase()}'.`;
         result.className = "result-box error";
-        setTimeout(updateStateUI, 2000);
     }
 }
-updateStateUI();
 
 // Actividad 5: Bugs
 let bugsFound = new Set();
@@ -154,23 +190,40 @@ function huntBugs() {
     const val = document.getElementById('bugInput').value;
     const list = document.getElementById('bugList');
     const status = document.getElementById('bugResult');
-    
+
     let newBug = null;
 
-    if (val === "") newBug = "Bug #1: Input vacío no controlado (NullPointer)";
-    else if (val.length > 20) newBug = "Bug #2: Desbordamiento de buffer (String muy largo)";
-    else if (val.includes("<script>")) newBug = "Bug #3: Vulnerabilidad XSS detectada";
-    
-    if (newBug && !bugsFound.has(newBug)) {
-        bugsFound.add(newBug);
-        const li = document.createElement('li');
-        li.textContent = newBug;
-        list.appendChild(li);
+    if (val === "") newBug = "Bug #1: Input vacío (NullPointer/Validation Error)";
+    else if (val.length > 20) newBug = "Bug #2: Buffer Overflow (String demasiado largo)";
+    else if (val.includes("<script>") || val.includes("alert(")) newBug = "Bug #3: XSS (Cross Site Scripting)";
+
+    if (newBug) {
+        if (!bugsFound.has(newBug)) {
+            bugsFound.add(newBug);
+            const li = document.createElement('li');
+            li.textContent = newBug;
+            list.appendChild(li);
+            status.textContent = `Bugs encontrados: ${bugsFound.size}/3`;
+            status.className = "result-box success";
+        } else {
+            status.textContent = "¡Ya encontraste este bug! Intenta otro.";
+            status.className = "result-box info";
+        }
+    } else {
+        status.textContent = "El sistema manejó esta entrada correctamente. Sigue intentando romperlo.";
+        status.className = "result-box error";
     }
 
-    status.textContent = `Bugs encontrados: ${bugsFound.size}/3`;
     if (bugsFound.size === 3) {
+        status.textContent = "¡Felicidades! Has encontrado todas las vulnerabilidades.";
         status.className = "result-box success";
-        status.textContent += " ¡Felicidades! Eres un QA experto.";
     }
 }
+
+// Inicialización
+document.addEventListener('DOMContentLoaded', () => {
+    updatePartition();
+    updateDecisionTable();
+    updateStateUI();
+    updateBoundaryVisual();
+});
