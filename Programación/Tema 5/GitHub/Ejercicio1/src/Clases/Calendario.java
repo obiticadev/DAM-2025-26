@@ -5,6 +5,14 @@ public class Calendario {
     private String sorpresa;
     private boolean estado;
 
+    
+
+    public Calendario(int numDia, String sorpresa, boolean estado) {
+        this.numDia = numDia;
+        this.sorpresa = sorpresa;
+        this.estado = estado;
+    }
+
     public Calendario() {
     }
 
@@ -18,10 +26,6 @@ public class Calendario {
 
     public boolean getEstado() {
         return estado;
-    }
-
-    public void setEstado(boolean estado) {
-        this.estado = estado;
     }
 
 }
