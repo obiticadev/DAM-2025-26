@@ -67,7 +67,7 @@ public class GuyFawkes {
                     gana = true;
                     break;
                 }
-                if (distanciaHabitacion == 1) {
+                if (distanciaHabitacion == 1 || distanciaHabitacion == -1) {
                     System.out.println("Estas a un paso");
                 } else {
                     System.out.println("Silencio absoluto");
