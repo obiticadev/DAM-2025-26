@@ -1,5 +1,7 @@
 package Clases;
 
+import java.util.Random;
+
 public class Game {
     private int filas;
     private int columnas;
@@ -7,6 +9,7 @@ public class Game {
     private char prota;
     private char fantasma;
     private char campo;
+    private Random rd = new Random();
 
     public Game(int filas, int columnas) {
         this.filas = filas;
@@ -20,7 +23,8 @@ public class Game {
     public void dibujarMatriz() {
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz[0].length; j++) {
-                System.out.print(matriz[i][j] + " ");
+                
+                System.out.print(this.matriz[i][j] + " ");
             }
             System.out.println();
         }
@@ -29,7 +33,29 @@ public class Game {
     public void resetearMatriz() {
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz[0].length; j++) {
-                matriz[i][j] = '*';
+                if (i == 0 && j == 0) {
+                    this.matriz[i][j] = this.prota;
+                } if ((i == matriz.length - 1) && (j == matriz[0].length - 1)) {
+                    this.matriz[i][j] = this.fantasma;
+                } else {
+                    this.matriz[i][j] = '*';
+                    
+                } 
+            }
+        }
+    }
+
+    public void movimientoFantasma(){
+        int fila = rd.nextInt(this.matriz.length);
+        int columna = rd.nextInt(this.matriz[0].length);
+        char temporal;
+        for (int i = 0; i < this.matriz.length; i++) {
+            for (int j = 0; j < this.matriz[0].length; j++) {
+                if (this.matriz[i][j] == this.fantasma) {
+                    temporal = this.matriz[fila][columna];
+                    this.matriz[fila][columna] = this.matriz[i][j];
+                    this.matriz[i][j] = temporal;
+                }
             }
         }
     }
@@ -53,5 +79,15 @@ public class Game {
     public char getCampo() {
         return campo;
     }
+
+    public int getFilas() {
+        return filas;
+    }
+
+    public int getColumnas() {
+        return columnas;
+    }
+
+    
 
 }
