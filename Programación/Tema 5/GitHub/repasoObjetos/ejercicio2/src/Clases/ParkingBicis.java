@@ -22,14 +22,45 @@ public class ParkingBicis {
         return salida;
     }
 
-    public void registrarEntrada(String candado) {
+    public boolean registrarEntrada(String candado) {
+        boolean registro;
         if (buscarPrimero(this.numClave) != -1) {
             this.numClave[buscarPrimero(this.numClave)] = candado;
-            System.out.println("Bicicleta registrada");
-
+            registro = true;
         } else {
-            System.out.println("Está lleno, no se admiten más bicicletas");
+            registro = false;
         }
+        return registro;
+    }
+
+    public boolean registrarSalida(String candado) {
+        boolean salida = false;
+
+        for (int i = 0; i < this.numClave.length; i++) {
+            if (this.numClave[i].equals(candado)) {
+                this.numClave[i] = "";
+                salida = true;
+                return salida;
+            }
+        }
+        return salida;
+    }
+
+    public String mostrarBicicletas(){
+        String bicicletas = "";
+
+        for (int i = 0; i < this.numClave.length; i++) {
+            if (this.numClave[i] != "") {
+                if (i == 0) {
+                    bicicletas = this.numClave[i] + ", ";
+                } if (i == this.numClave.length-1) {
+                    bicicletas += this.numClave[i];
+                } else {
+                    bicicletas += this.numClave[i] + ", ";
+                }
+            }
+        }
+        return bicicletas;
     }
 
 }
