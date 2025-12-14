@@ -7,9 +7,7 @@
     <title>ejercicio 6</title>
 </head>
 <body>
-    <div id="sombra"></div>
     <div id="formulario">
-        <h1>Formulario de contacto</h1>
         <form action="#" method="post">
             <label for="nombre">Nombre Completo *</label>
             <input type="text" id="name" placeholder="Ej: Juan Pérez García" required>
@@ -17,8 +15,14 @@
             <input type="email" id="correo" placeholder="correo@ejemplo.com">
             <label for="selector">Curso de Interés</label>
             <select name="selector" id="selector">
-                
+                <option value="es">Español</option>
+                <option value="En">English</option>
             </select>
+            <label for="msg">Mensaje *</label>
+            <textarea name="Mensaje" id="msg" placeholder="Escribe tu consulta aquí..."></textarea>
+            <input type="checkbox" id="check" value="Acepta recibir información sobre eventos y novedades">
+            <label for="check">Deseo recibir información sobre eventos y novedades</label>
+            <button>Enviar Mensaje</button>
         </form>
     </div>
 </body>

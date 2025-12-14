@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+
+div {
+    width: 500px;
+    margin: auto;
+    border: 2px solid black;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    background-color: aliceblue;
+    box-shadow: ;
+}
+
+label, input {
+    background-color: antiquewhite;
+    display: block;
+}
+
+#check{
+    display: inline-block;
+}
+
+input[type="cheackbox"] + label {
+    display: inline-block;
+}
