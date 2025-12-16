@@ -19,11 +19,10 @@ public class EstanteLibros {
             this.libros[contador] = titulo;
             contador++;
             aprobado = true;
-            return aprobado;
         } else {
             aprobado = false;
-            return aprobado;
         }
+        return aprobado;
     }
 
     public boolean quitarLibro(String titulo) {

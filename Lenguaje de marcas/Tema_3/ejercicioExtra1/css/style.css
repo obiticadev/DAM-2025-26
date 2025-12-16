@@ -1,0 +1,92 @@
+/* Estilos generales */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.contenedor-tabla {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* --- ESTILOS DE LA TABLA --- */
+table {
+    border-collapse: collapse; /* IMPORTANTE: Fusiona los bordes dobles en uno solo */
+    width: 800px;
+    margin: 0 auto;
+}
+
+caption {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+    text-align: left;
+}
+
+/* Celdas (th y td) */
+th, td {
+    border: 1px solid #bdc3c7; /* Color del borde gris */
+    padding: 12px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Cabecera */
+thead th {
+    background-color: #2c3e50;
+    color: white;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.titulo-principal {
+    background-color: #34495e; /* Un tono ligeramente distinto para el título superior */
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+}
+
+/* Filas del cuerpo */
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Color alterno para filas pares (efecto cebra) */
+}
+
+/* Efecto hover al pasar el ratón por una celda */
+tbody td:hover {
+    background-color: #e8f6f3;
+    cursor: default;
+}
+
+/* --- CLASES ESPECIALES --- */
+
+/* Asignaturas dobles (rowspan) */
+.asignatura-doble {
+    background-color: #dbfadd !important; /* Verde claro */
+    color: #1e8449;
+    font-weight: bold;
+    border-bottom: 2px solid #2ecc71;
+}
+
+/* Recreo (colspan) */
+.recreo td {
+    background-color: #fadbd8; /* Rojo claro */
+    color: #c0392b;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-style: italic;
+}
+
+/* Pie de tabla */
+tfoot td {
+    background-color: #ecf0f1;
+    color: #7f8c8d;
+    font-size: 0.8rem;
+    font-style: italic;
+    text-align: right;
+    border-top: 2px solid #bdc3c7;
+}

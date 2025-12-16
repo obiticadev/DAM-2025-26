@@ -1,31 +1,110 @@
-*{
+/* Reseteo y estilos generales */
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-
 }
 
-div {
-    width: 500px;
-    margin: auto;
-    border: 2px solid black;
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f4f4; /* Fondo gris claro de la página */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
     padding: 20px;
-    margin-top: 20px;
-    border-radius: 10px;
-    background-color: aliceblue;
-    box-shadow: ;
 }
 
-label, input {
-    background-color: antiquewhite;
+/* Contenedor tipo Tarjeta */
+.card {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 600px;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-left: 5px solid #5c6bc0; /* Detalle decorativo superior */
+}
+
+/* Encabezado del formulario */
+.card-header h2 {
+    color: #333;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eee;
+}
+
+/* Grupos del formulario */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Etiquetas (Labels) */
+label {
     display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #444;
+    font-size: 0.9rem;
 }
 
-#check{
-    display: inline-block;
+/* Estilos de los Inputs, Select y Textarea */
+input[type="text"],
+input[type="email"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-input[type="cheackbox"] + label {
-    display: inline-block;
+/* --- REQUISITO 2: ESTADO FOCUS --- */
+/* Cuando el usuario hace clic en el campo, el borde se vuelve azul */
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none; /* Quitamos el borde negro por defecto del navegador */
+    border-color: #5c6bc0; /* Color azul índigo */
+    box-shadow: 0 0 5px rgba(92, 107, 192, 0.3); /* Pequeño resplandor */
+}
+
+/* Estilos específicos para el Checkbox */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkbox-group input {
+    width: auto; /* El checkbox no debe ocupar el 100% */
+    cursor: pointer;
+}
+
+.checkbox-group label {
+    margin-bottom: 0;
+    font-weight: normal;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+/* --- REQUISITO 1: BOTÓN CON HOVER --- */
+.btn-enviar {
+    background-color: #5c6bc0; /* Azul original */
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Botón ancho como en el diseño moderno, o quítalo para que sea pequeño */
+}
+
+/* Cambio de color al pasar el ratón */
+.btn-enviar:hover {
+    background-color: #3f51b5; /* Un azul más oscuro */
 }

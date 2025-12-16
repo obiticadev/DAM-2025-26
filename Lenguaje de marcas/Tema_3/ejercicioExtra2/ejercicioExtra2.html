@@ -1,0 +1,162 @@
+<!DOCTYPE >
+<html>
+<head>
+    <title>Examen Desarrollo Web</title>
+    <!-- Conexión con la hoja de estilos -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+
+    <!-- 1. CABECERA (Header) -->
+    <!-- Usamos ID porque solo hay una cabecera -->
+    <div id="cabecera">
+        <div id="logo">🌟 MiSitio</div>
+        <div id="menu">
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Servicios</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- CONTENEDOR CENTRAL (Para centrar el contenido y dejar márgenes) -->
+    <div id="contenedor-principal">
+
+        <!-- 2. ARTÍCULO PRINCIPAL -->
+        <div id="articulo">
+            <h1>Los Fundamentos del Desarrollo Web</h1>
+            <p class="metadatos">Por María García | 28 de Octubre, 2025</p>
+            
+            <!-- Imagen simulada con un div coloreado (o usas <img> si tienes foto) -->
+            <div class="imagen-destacada"></div> 
+
+            <p>El desarrollo web es una disciplina fascinante que combina creatividad y lógica...</p>
+            <p>HTML y CSS son los pilares básicos de cualquier sitio web...</p>
+
+            <div class="cita">
+                "El buen diseño es obvio. El gran diseño es transparente." - Joe Sparano
+            </div>
+
+            <!-- Etiquetas (Tags) -->
+            <div class="etiquetas">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">Desarrollo Web</span>
+            </div>
+        </div>
+
+        <hr> <!-- Línea separadora -->
+
+        <!-- 3. FORMULARIO DE CONTACTO -->
+        <div id="zona-contacto">
+            <h2>Formulario de Contacto</h2>
+            
+            <form action="enviar.php" method="post">
+                
+                <!-- Campo Nombre -->
+                <div class="campo-form">
+                    <label for="nom">Nombre Completo *</label>
+                    <input type="text" id="nom" name="nombre" class="input-full" placeholder="Ej: Juan Pérez">
+                </div>
+
+                <!-- Campo Correo -->
+                <div class="campo-form">
+                    <label for="mail">Correo Electrónico *</label>
+                    <input type="text" id="mail" name="correo" class="input-full" placeholder="correo@ejemplo.com">
+                </div>
+
+                <!-- Campo Select -->
+                <div class="campo-form">
+                    <label for="curso">Curso de Interés</label>
+                    <select id="curso" name="curso" class="input-full">
+                        <option>Selecciona un curso</option>
+                        <option>Desarrollo Web</option>
+                        <option>Bases de Datos</option>
+                    </select>
+                </div>
+
+                <!-- Campo Mensaje (Textarea) -->
+                <div class="campo-form">
+                    <label for="msg">Mensaje *</label>
+                    <textarea id="msg" name="mensaje" rows="5" class="input-full" placeholder="Escribe tu consulta..."></textarea>
+                </div>
+
+                <!-- Checkbox -->
+                <div class="campo-form">
+                    <input type="checkbox" id="news" name="newsletter">
+                    <label for="news" class="negrita">Deseo recibir información sobre eventos y novedades</label>
+                </div>
+
+                <!-- Botón -->
+                <input type="submit" value="Enviar Mensaje" class="boton-azul">
+            </form>
+        </div>
+
+        <br><br>
+
+        <!-- 4. SECCIÓN NOTICIAS -->
+        <div id="seccion-noticias">
+            <h2>Últimas Noticias <span class="badge-nuevo">NUEVO</span></h2>
+
+            <!-- Noticia 1 (Usamos CLASE porque se repite el diseño) -->
+            <div class="noticia-item">
+                <div class="noticia-img">
+                    <img src="ordenador.jpg" alt="Foto PC" width="150">
+                </div>
+                <div class="noticia-texto">
+                    <h3 class="titulo-azul">Hackathon DAM 2025 - ¡Inscripciones Abiertas!</h3>
+                    <p class="fecha-gris">Publicado: 15 de noviembre de 2025</p>
+                    <p>Se abre el plazo de inscripción para el Hackathon anual...</p>
+                </div>
+            </div>
+
+            <!-- Noticia 2 -->
+            <div class="noticia-item">
+                <div class="noticia-img">
+                    <img src="reunion.jpg" alt="Foto Reunión" width="150">
+                </div>
+                <div class="noticia-texto">
+                    <h3 class="titulo-azul">Convenios con Empresas del Sector</h3>
+                    <p class="fecha-gris">Publicado: 10 de noviembre de 2025</p>
+                    <p>El centro ha firmado nuevos convenios de colaboración...</p>
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- Fin contenedor principal -->
+
+    <!-- 5. PIE DE PÁGINA (Footer) -->
+    <div id="pie">
+        <!-- Usamos CLASES para las 3 columnas iguales -->
+        <div class="columna-pie">
+            <h3>Sobre Nosotros</h3>
+            <p>Quiénes Somos</p>
+            <p>Profesorado</p>
+            <p>Instalaciones</p>
+        </div>
+
+        <div class="columna-pie">
+            <h3>Formación</h3>
+            <p>Plan de Estudios</p>
+            <p>Calendario</p>
+            <p>Evaluación</p>
+        </div>
+
+        <div class="columna-pie">
+            <h3>Contacto</h3>
+            <p>📍 Calle Tecnología, 123</p>
+            <p>📞 +34 965 123 456</p>
+            <p>✉️ info@tecdam.edu</p>
+        </div>
+
+        <!-- Copyright (va abajo del todo y ocupa todo el ancho) -->
+        <div id="copyright">
+            © 2025 Instituto TechDAM - Todos los derechos reservados
+        </div>
+    </div>
+
+</body>
+</html>

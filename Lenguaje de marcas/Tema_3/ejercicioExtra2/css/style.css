@@ -1,0 +1,183 @@
+/* --- RESET BÁSICO --- */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9; /* Fondo gris muy clarito web */
+    color: #333;
+}
+
+/* --- CABECERA (Header) --- */
+#cabecera {
+    background-color: #2c3e50; /* Azul oscuro */
+    color: white;
+    padding: 15px 40px;
+    height: 50px; /* Altura fija */
+}
+
+#logo {
+    font-size: 24px;
+    font-weight: bold;
+    float: left; /* Logo a la izquierda */
+}
+
+#menu {
+    float: right; /* Menú a la derecha */
+    margin-top: 5px;
+}
+
+#menu ul {
+    list-style-type: none; /* Quitar puntos de la lista */
+    margin: 0;
+    padding: 0;
+}
+
+#menu li {
+    display: inline; /* Poner elementos en horizontal */
+    margin-left: 20px;
+}
+
+#menu a {
+    color: white;
+    text-decoration: none; /* Quitar subrayado */
+    font-weight: bold;
+}
+
+/* --- CONTENEDOR PRINCIPAL (Cuerpo) --- */
+#contenedor-principal {
+    width: 800px;
+    margin: 20px auto; /* Centrar en pantalla */
+    background-color: white;
+    padding: 40px;
+    border: 1px solid #ddd;
+}
+
+/* --- ESTILOS DEL ARTÍCULO --- */
+.metadatos {
+    color: #777;
+    font-size: 0.9em;
+}
+
+.imagen-destacada {
+    width: 100%;
+    height: 300px;
+    background-color: #6c5ce7; /* Morado como la foto */
+    margin: 20px 0;
+    border-radius: 5px;
+}
+
+.cita {
+    background-color: #eef2f7;
+    border-left: 5px solid #3498db; /* Borde azul a la izquierda */
+    padding: 15px;
+    font-style: italic;
+    color: #555;
+    margin: 20px 0;
+}
+
+.tag {
+    background-color: #ddd;
+    padding: 5px 10px;
+    margin-right: 5px;
+    font-size: 0.8em;
+}
+
+/* --- ESTILOS DEL FORMULARIO --- */
+#zona-contacto {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #eee;
+}
+
+.campo-form {
+    margin-bottom: 15px;
+}
+
+.campo-form label {
+    font-weight: bold;
+    display: block; /* Para que el label quede encima del input */
+    margin-bottom: 5px;
+}
+
+.input-full {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.boton-azul {
+    background-color: #5dade2;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* --- ESTILOS NOTICIAS --- */
+.badge-nuevo {
+    background-color: #27ae60;
+    color: white;
+    font-size: 12px;
+    padding: 3px 8px;
+    border-radius: 10px;
+    vertical-align: middle;
+}
+
+.noticia-item {
+    border: 1px solid #eee;
+    padding: 15px;
+    margin-bottom: 20px;
+    overflow: hidden; /* Para limpiar floats internos si fuera necesario */
+}
+
+.noticia-img {
+    float: left;
+    width: 20%;
+}
+
+.noticia-texto {
+    float: right;
+    width: 78%;
+}
+
+.titulo-azul {
+    color: #4a69bd;
+    margin-top: 0;
+}
+
+.fecha-gris {
+    color: #999;
+    font-size: 0.8em;
+    font-style: italic;
+}
+
+/* --- PIE DE PÁGINA (Footer) --- */
+#pie {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 40px 20px 10px 20px;
+    overflow: hidden; /* Truco para contener los floats */
+    margin-top: 30px;
+}
+
+.columna-pie {
+    float: left;
+    width: 30%; /* 3 columnas del 30% aprox */
+    margin: 0 1.5%;
+    text-align: center;
+}
+
+.columna-pie h3 {
+    color: #5dade2;
+}
+
+#copyright {
+    clear: both; /* Romper el float para ir abajo */
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #444;
+    font-size: 0.9em;
+}

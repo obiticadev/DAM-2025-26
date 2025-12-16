@@ -1,29 +1,69 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="css/style.css"/>
-    <title>ejercicio 6</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 6 - Formulario con Estados</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div id="formulario">
-        <form action="#" method="post">
-            <label for="nombre">Nombre Completo *</label>
-            <input type="text" id="name" placeholder="Ej: Juan Pérez García" required>
-            <label for="correo">Correo Electrónico *</label>
-            <input type="email" id="correo" placeholder="correo@ejemplo.com">
-            <label for="selector">Curso de Interés</label>
-            <select name="selector" id="selector">
-                <option value="es">Español</option>
-                <option value="En">English</option>
-            </select>
-            <label for="msg">Mensaje *</label>
-            <textarea name="Mensaje" id="msg" placeholder="Escribe tu consulta aquí..."></textarea>
-            <input type="checkbox" id="check" value="Acepta recibir información sobre eventos y novedades">
-            <label for="check">Deseo recibir información sobre eventos y novedades</label>
-            <button>Enviar Mensaje</button>
-        </form>
+
+    <div class="main-container">
+        
+        <!-- Tarjeta del Formulario -->
+        <div class="card">
+            
+            <div class="card-header">
+                <h2>Formulario de Contacto</h2>
+            </div>
+
+            <form action="#" method="post">
+                
+                <!-- Campo: Nombre Completo -->
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo *</label>
+                    <!-- El atributo autofocus simula la imagen donde este campo está seleccionado -->
+                    <input type="text" id="nombre" name="nombre" placeholder="Ej: Juan Pérez García" required autofocus>
+                </div>
+
+                <!-- Campo: Correo Electrónico -->
+                <div class="form-group">
+                    <label for="email">Correo Electrónico *</label>
+                    <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required>
+                </div>
+
+                <!-- Campo: Curso de Interés (Select) -->
+                <div class="form-group">
+                    <label for="curso">Curso de Interés</label>
+                    <select id="curso" name="curso">
+                        <option value="" disabled selected>Selecciona un curso</option>
+                        <option value="dam">Desarrollo de Aplicaciones Multiplataforma</option>
+                        <option value="daw">Desarrollo de Aplicaciones Web</option>
+                        <option value="asir">Administración de Sistemas Informáticos</option>
+                    </select>
+                </div>
+
+                <!-- Campo: Mensaje (Textarea) -->
+                <div class="form-group">
+                    <label for="mensaje">Mensaje *</label>
+                    <textarea id="mensaje" name="mensaje" rows="4" placeholder="Escribe tu consulta aquí..." required></textarea>
+                </div>
+
+                <!-- Checkbox -->
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="novedades" name="novedades">
+                    <label for="novedades">Deseo recibir información sobre eventos y novedades</label>
+                </div>
+
+                <!-- Botón de Envío -->
+                <div class="form-group">
+                    <button type="submit" class="btn-enviar">Enviar Mensaje</button>
+                </div>
+
+            </form>
+        </div>
+
     </div>
+
 </body>
 </html>
