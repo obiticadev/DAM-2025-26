@@ -24,6 +24,11 @@ private static Scanner sc = new Scanner(System.in);
         boolean continuar = true;
         String respuestaMenu;
         int respuestaInterna;
+        boolean arrayEnteroActivado = false;
+        int[] arrayEnteros = null;
+        char[] arrayCaracteres;
+        String[] arrayNombres;
+        double[] arrayDecimales;
 
         do {
             System.out.println("""
@@ -33,35 +38,44 @@ private static Scanner sc = new Scanner(System.in);
                     2. INTRODUCIR 10 CARACTERES
                     3. INTRODUCIR 10 NOMBRES
                     4. INTRODUCIR 10 NÚMEROS DECIMALES
-                    5. SALIR
+                    5. CALCULAR LA SUMA DE LA OPCIÓN 1
+                    6. SALIR
                                     """);
             respuestaMenu = sc.nextLine();
             switch (respuestaMenu) {
                 case "1" -> {
                     System.out.print("Introduce la cantidad de números que quieres guardar: ");
                     respuestaInterna = scNum.nextInt();
-                    int[] arrayEnteros = devolverEnteros(respuestaInterna);
+                    arrayEnteros = devolverEnteros(respuestaInterna);
+                    arrayEnteroActivado = true;
                     System.out.println(Arrays.toString(arrayEnteros));
                 }
                 case "2" -> {
                     System.out.print("Introduce la cantidad de caracteres que quieres guardar: ");
                     respuestaInterna = scNum.nextInt();
-                    char[] arrayCaracteres = devolverCaracteres(respuestaInterna);
+                    arrayCaracteres = devolverCaracteres(respuestaInterna);
                     System.out.println(Arrays.toString(arrayCaracteres));
                 }
                 case "3" -> {
                     System.out.print("Introduce la cantidad de nombres que quieres guardar: ");
                     respuestaInterna = scNum.nextInt();
-                    String[] arrayNombres = devolverNombres(respuestaInterna);
+                    arrayNombres = devolverNombres(respuestaInterna);
                     System.out.println(Arrays.toString(arrayNombres));
                 }
                 case "4" -> {
                     System.out.print("Introduce la cantidad de decimales que quieres guardar: ");
                     respuestaInterna = scNum.nextInt();
-                    double[] arrayDecimales = devolverDecimales(respuestaInterna);
+                    arrayDecimales = devolverDecimales(respuestaInterna);
                     System.out.println(Arrays.toString(arrayDecimales));
                 }
                 case "5" -> {
+                    if (arrayEnteroActivado) {
+                        System.out.println("La suma es: " + devolverSuma(arrayEnteros));
+                    } else {
+                        System.out.println("Pasa por la opción 1 primero");
+                    }
+                }
+                case "6" -> {
                     System.out.println("Saliendo del programa...");
                     continuar = false;
                 }
@@ -115,5 +129,15 @@ private static Scanner sc = new Scanner(System.in);
         }
 
         return array;
+    }
+
+    private static int devolverSuma(int[] array){
+        int suma = 0;
+
+        for (int i = 0; i < array.length; i++) {
+            suma += array[i];
+        }
+
+        return suma;
     }
 }
