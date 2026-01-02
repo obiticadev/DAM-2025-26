@@ -1,0 +1,60 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.contenedor-tabla{
+    margin-top: 10px;
+    border: 1px solid black;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.contenedor-tabla h2{
+    font-size: 175%;
+    border-bottom: 1px solid blue;
+    margin-bottom: 10px;
+    box-shadow: 0, 0, 0, ;
+}
+
+.tabla{
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px 20px; 
+}
+
+tr{
+    text-align: left;
+}
+
+th{
+    color: white;
+    background-color: rgb(30, 76, 213);
+}
+
+
+.fila-resaltada{
+    background-color: bisque;
+    font-weight: bold;
+}
+
+tbody>tr:hover{
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    transform: scale(1.02);
+    transition-duration: 0.5s;
+}
+
+

@@ -5,7 +5,7 @@ public class Utilidades {
     public static String[] getSorpresas() {
         // 1. Lista de sorpresas
         return new String[] {
-                "ChocolateS", "Caramelos", "Figuras de nieve", "Risas con amigos",
+                "Chocolate", "Caramelos", "Figuras de nieve", "Risas con amigos",
                 "Mini puzzles", "Bombones", "Galletas", "Sticker navideños",
                 "Campanitas", "Muñecos pequeños", "Té especial", "Carbón dulce",
                 "Gorro de Papá Noel", "Bola del árbol", "Un ejercicio de Java",

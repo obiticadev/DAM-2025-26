@@ -2,30 +2,112 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-
+    font-family: Arial, sans-serif;
 }
 
-div {
-    width: 500px;
-    margin: auto;
-    border: 2px solid black;
-    padding: 20px;
-    margin-top: 20px;
-    border-radius: 10px;
-    background-color: aliceblue;
-    box-shadow: ;
+/* Estilos generales de la página (simulación del fondo claro) */
+body {
+    background-color: #f4f7f9; /* Fondo muy claro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
 }
 
-label, input {
-    background-color: antiquewhite;
+/* Estilos del contenedor del formulario */
+.contact-form-container {
+    width: 100%;
+    max-width: 500px;
+    background-color: #ffffff;
+    border-radius: 8px; /* Borde redondeado */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+}
+
+/* Estilo del título del formulario */
+.contact-form-container h2 {
+    color: #444;
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    /* Implicando un borde superior sutil como en el diseño */
+    border-bottom: 5px solid #5a86eb; 
+    padding-top: 15px;
+    line-height: 1;
+}
+
+/* Contenedor para cada campo */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
     display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+    font-size: 14px;
 }
 
-#check{
-    display: inline-block;
+/* Estilos de los campos de entrada de texto, selección y área de texto */
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc; /* Borde predeterminado */
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; 
+    /* Transición suave */
 }
 
-input[type="cheackbox"] + label {
-    display: inline-block;
+/* Tarea solicitada 2: Resaltar el borde cuando tienen el foco */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #5a86eb; /* Color de resaltado azul/púrpura */
+    /* Eliminar el outline por defecto del navegador */
+    outline: none; 
+    box-shadow: 0 0 5px rgba(90, 134, 235, 0.5); /* Sombra sutil para el foco */
+}
+
+/* Estilos para el grupo de checkbox */
+.checkbox-group {
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.checkbox-group label {
+    font-weight: normal;
+    color: #555;
+    font-size: 14px;
+}
+
+/* Estilos del botón */
+.submit-button {
+    background-color: #5a86eb; /* Color azul */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    width: 100%; /* Ancho completo */
+    transition: background-color 0.3s ease; /* Transición para el hover */
+}
+
+/* Tarea solicitada 1: El botón cambia de color al pasar por encima */
+.submit-button:hover {
+    background-color: #3c6ed1; /* Color azul más oscuro en hover */
 }

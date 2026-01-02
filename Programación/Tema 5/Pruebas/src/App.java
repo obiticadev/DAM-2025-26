@@ -1,30 +1,37 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
-import Clases.Coche;
-import Clases.Personas;
-
 public class App {
-    
+
     public static void main(String[] args) throws Exception {
+        Scanner scNum = new Scanner(System.in);
 
-        Scanner sc = new Scanner(System.in);
-        Personas instanciaNueva;
+        int entrada;
+        int entradaTemp;
+        int contador = 0;
 
-        String nombre;
-        String NIA;
-        String fecha;
-        
-        System.out.println("¿Cuál es tu nombre?");
-        nombre = sc.nextLine();
-        System.out.println("¿Cuál es tu NIA?");
-        NIA = sc.nextLine();
-        System.out.println("¿Cuál es tu fecha de matrícula?");
-        fecha = sc.nextLine();
-        
-        instanciaNueva = new Personas(nombre, NIA, fecha);
-        System.out.println(instanciaNueva.consultarDatosAlumno());
+        System.out.println("Introduce un número");
+        entrada = scNum.nextInt();
+        entradaTemp = entrada;
 
-        
+        while ((entradaTemp / 2) >= 1) {
+            entradaTemp = entradaTemp / 2;
+            contador++;
+        }
+        System.out.println(contador);
+        int[] array = new int[contador + 1];
+
+        for (int i = 0; i < array.length; i++) {
+            if (i == array.length - 1) {
+                array[i] = entrada;
+            } else {
+                array[i] = entrada % 2;
+                entrada = entrada / 2;
+
+            }
+        }
+
+        System.out.println(Arrays.toString(array));
 
     }
 }
