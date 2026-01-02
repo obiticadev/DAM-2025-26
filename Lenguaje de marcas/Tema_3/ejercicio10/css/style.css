@@ -1,0 +1,95 @@
+/* Reseteo básico de márgenes */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* --- ESTILOS DEL FOOTER --- */
+.pie-pagina {
+    background-color: #2c3e50; /* Fondo oscuro azulado */
+    color: #ecf0f1;            /* Texto claro */
+    padding-top: 40px;
+    width: 100%;
+}
+
+/* Contenedor Flexbox para las 3 columnas */
+.contenedor-footer {
+    display: flex;
+    justify-content: space-around; /* Distribuye el espacio entre columnas */
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 30px;
+}
+
+/* Estilos comunes para cada columna */
+.columna {
+    text-align: center;
+    width: 30%; /* Ancho aproximado para escritorio */
+}
+
+/* Títulos de las secciones (Sobre Nosotros, Formación, Contacto) */
+.columna h3 {
+    color: #3498db; /* Azul claro */
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* Estilos para las listas de enlaces */
+.columna ul {
+    list-style: none; /* Quitar los puntos de la lista */
+}
+
+.columna ul li {
+    margin-bottom: 8px;
+}
+
+.columna ul li a {
+    color: #bdc3c7;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.columna ul li a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* Estilos específicos para la info de contacto */
+.contacto p {
+    color: #bdc3c7;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+/* --- COPYRIGHT (Parte inferior) --- */
+.copyright {
+    background-color: #233140; /* Un tono un poco más oscuro */
+    text-align: center;
+    padding: 15px;
+    font-size: 0.85rem;
+    color: #95a5a6;
+    border-top: 1px solid #34495e;
+}
+
+/* --- RESPONSIVE (Versión Móvil) --- */
+/* Se activa cuando la pantalla es menor a 768px */
+@media screen and (max-width: 768px) {
+    
+    .contenedor-footer {
+        flex-direction: column; /* Cambia de fila a columna vertical */
+        align-items: center;    /* Centra los elementos */
+    }
+
+    .columna {
+        width: 100%;       /* La columna ocupa todo el ancho */
+        margin-bottom: 30px; /* Añade espacio entre bloques apilados */
+    }
+}

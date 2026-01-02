@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprendiendo Position y Z-index</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Botón fijo: Se quedará pegado en la pantalla (Position Fixed) -->
+    <div class="boton-ayuda">
+        ?
+        <span class="tooltip">Ayuda</span>
+    </div>
+
+    <h1>Misión Espacial: Tripulación</h1>
+    <p>Haz scroll si es necesario, el botón de ayuda te seguirá.</p>
+
+    <!-- Contenedor principal de la tarjeta (Position Relative) -->
+    <div class="tarjeta-astronauta">
+        
+        <!-- Elemento decorativo de fondo (Z-index bajo) -->
+        <div class="fondo-galaxia"></div>
+
+        <!-- Medalla (Position Absolute sobre la tarjeta) -->
+        <div class="medalla">TOP 1</div>
+
+        <!-- Imagen del perfil -->
+        <div class="foto-perfil">
+            <!-- Usamos un div con color para simular la foto -->
+            <span>👨‍🚀</span>
+        </div>
+
+        <div class="info">
+            <h2>Comandante Shepard</h2>
+            <p class="descripcion">Explorador de sistemas externos y experto en navegación.</p>
+            
+            <!-- Etiquetas (Display Inline-Block) -->
+            <div class="etiquetas">
+                <span class="tag">Piloto</span>
+                <span class="tag">Ingeniero</span>
+                <span class="tag">Líder</span>
+            </div>
+            
+            <!-- Botón (Display Block vs Inline) -->
+            <button class="btn-contacto">Contactar</button>
+        </div>
+    </div>
+
+    <!-- Texto de relleno para probar el scroll -->
+    <div style="margin-top: 50px; color: #777;">
+        <p>Fin del reporte de misión.</p>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
+    </div>
+
+</body>
+</html>

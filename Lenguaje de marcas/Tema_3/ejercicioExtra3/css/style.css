@@ -1,0 +1,143 @@
+/* Estilos Base */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    padding: 40px;
+    height: 150vh; /* Forzamos altura para que haya scroll */
+}
+
+/* --- 1. POSITION RELATIVE --- 
+   El contenedor padre debe tener position: relative.
+   Esto lo convierte en el "punto de referencia" (coordenada 0,0)
+   para sus hijos absolutos. */
+.tarjeta-astronauta {
+    position: relative; 
+    width: 350px;
+    background-color: white;
+    border-radius: 15px;
+    margin: 0 auto; /* Centrado horizontal */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    overflow: hidden; /* Corta lo que sobresalga de los bordes redondeados */
+    z-index: 1; /* Nivel base de apilamiento */
+}
+
+/* --- 2. Z-INDEX y POSITION ABSOLUTE (Fondo) --- 
+   Queremos que esto esté DETRÁS del texto pero dentro de la tarjeta. */
+.fondo-galaxia {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background: linear-gradient(to right, #2c3e50, #4ca1af);
+    z-index: -1; /* Se va al fondo, detrás del contenido normal de la tarjeta */
+}
+
+/* --- 3. POSITION ABSOLUTE (La Medalla) --- 
+   Al ser absoluto, flota sobre el contenido normal.
+   Se ubica respecto a .tarjeta-astronauta (su padre relativo). */
+.medalla {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: #f1c40f; /* Amarillo dorado */
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 10; /* Aseguramos que esté por encima de todo */
+    transform: rotate(10deg); /* Un toque estético */
+}
+
+/* Estilos de la foto */
+.foto-perfil {
+    width: 100px;
+    height: 100px;
+    background-color: #ecf0f1;
+    border-radius: 50%;
+    border: 4px solid white;
+    margin: 60px auto 10px auto; /* Centrado con margen superior para bajarla de la cabecera */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    position: relative; /* Necesario si quisiéramos usar z-index aquí también */
+}
+
+.info {
+    text-align: center;
+    padding: 20px;
+}
+
+/* --- 4. DISPLAY INLINE-BLOCK --- 
+   Los elementos span son 'inline' por defecto (no aceptan margin-top/bottom).
+   Al poner 'inline-block', se comportan como bloques (aceptan dimensiones)
+   pero se sitúan uno al lado del otro. */
+.tag {
+    display: inline-block;
+    background-color: #e8f6f3;
+    color: #16a085;
+    padding: 5px 12px;
+    margin: 5px;
+    border-radius: 15px;
+    font-size: 0.85rem;
+}
+
+.btn-contacto {
+    display: block; /* Ocupa todo el ancho disponible */
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #34495e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* --- 5. POSITION FIXED (Botón Flotante) --- 
+   Se posiciona respecto a la VENTANA del navegador (viewport).
+   No se mueve al hacer scroll. */
+.boton-ayuda {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #e74c3c;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 60px; /* Centra el texto verticalmente */
+    font-size: 30px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    cursor: pointer;
+    z-index: 999; /* Un número muy alto para que NADA lo tape */
+    transition: transform 0.2s;
+}
+
+.boton-ayuda:hover {
+    transform: scale(1.1);
+}
+
+/* --- DISPLAY: NONE vs BLOCK (Tooltip) --- 
+   Ocultamos el tooltip por defecto y lo mostramos al pasar el ratón */
+.tooltip {
+    display: none; /* No existe visualmente ni ocupa espacio */
+    position: absolute;
+    right: 70px; /* A la izquierda del botón */
+    top: 15px;
+    background-color: #333;
+    color: white;
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+/* Selector: Cuando hago hover en .boton-ayuda, busco a su hijo .tooltip */
+.boton-ayuda:hover .tooltip {
+    display: block; /* Aparece */
+}

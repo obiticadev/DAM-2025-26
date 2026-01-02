@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo Tabla Compleja HTML</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="contenedor-tabla">
+        
+        <table>
+            <!-- Título accesible de la tabla -->
+            <caption>Horario de Clases - 2º de Bachillerato</caption>
+
+            <!-- CABECERA (THEAD) -->
+            <thead>
+                <!-- Fila 1: Título que ocupa todo el ancho -->
+                <tr>
+                    <!-- colspan="6": Ocupa la columna de hora + 5 días -->
+                    <th colspan="6" class="titulo-principal">CURSO ESCOLAR 2024-2025</th>
+                </tr>
+                <!-- Fila 2: Los días de la semana -->
+                <tr>
+                    <th>Hora</th>
+                    <th>Lunes</th>
+                    <th>Martes</th>
+                    <th>Miércoles</th>
+                    <th>Jueves</th>
+                    <th>Viernes</th>
+                </tr>
+            </thead>
+
+            <!-- CUERPO (TBODY) -->
+            <tbody>
+                <!-- 08:00 - 09:00 -->
+                <tr>
+                    <td>08:00 - 09:00</td>
+                    <td>Historia</td>
+                    <!-- rowspan="2": Matemáticas ocupa esta fila y la siguiente (2 horas) -->
+                    <td rowspan="2" class="asignatura-doble">Matemáticas</td>
+                    <td>Inglés</td>
+                    <td>Física</td>
+                    <td>Lengua</td>
+                </tr>
+
+                <!-- 09:00 - 10:00 -->
+                <tr>
+                    <td>09:00 - 10:00</td>
+                    <td>Filosofía</td>
+                    <!-- Aquí NO ponemos la celda del martes porque la ocupa el rowspan de arriba -->
+                    <td>Química</td>
+                    <td>Inglés</td>
+                    <td>Historia</td>
+                </tr>
+
+                <!-- RECREO (Fila especial) -->
+                <tr class="recreo">
+                    <td>10:00 - 10:30</td>
+                    <!-- colspan="5": El texto 'RECREO' ocupa los 5 días -->
+                    <td colspan="5">DESCANSO / RECREO</td>
+                </tr>
+
+                <!-- 10:30 - 11:30 -->
+                <tr>
+                    <td>10:30 - 11:30</td>
+                    <td rowspan="2" class="asignatura-doble">Dibujo Técnico</td>
+                    <td>Lengua</td>
+                    <td rowspan="2" class="asignatura-doble">Programación</td>
+                    <td>Filosofía</td>
+                    <td>Física</td>
+                </tr>
+
+                <!-- 11:30 - 12:30 -->
+                <tr>
+                    <td>11:30 - 12:30</td>
+                    <!-- Lunes ocupado por Dibujo -->
+                    <td>Historia</td>
+                    <!-- Miércoles ocupado por Programación -->
+                    <td>Tutoría</td>
+                    <td>Química</td>
+                </tr>
+            </tbody>
+
+            <!-- PIE DE TABLA (TFOOT) -->
+            <tfoot>
+                <tr>
+                    <!-- colspan="6": Un pie de página que cruza toda la tabla -->
+                    <td colspan="6">
+                        * Las clases de refuerzo se impartirán los martes por la tarde.
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+
+    </div>
+
+</body>
+</html>
