@@ -43,8 +43,7 @@ public class App {
                         subRespuestaMenu = sc.nextLine();
                         switch (subRespuestaMenu) {
                             case "1" -> {
-                                System.out.println("Introduce el valor a convertir:");
-                                entrada = scNum.nextInt();
+
                             }
                             case "2" -> {
 
@@ -75,7 +74,10 @@ public class App {
                         subRespuestaMenu = sc.nextLine();
                         switch (subRespuestaMenu) {
                             case "1" -> {
-
+                                System.out.println("Introduce el valor a convertir:");
+                                entrada = scNum.nextInt();
+                                System.out.println(conversor.decimalABinario(entrada));
+                                subContinuar = false;
                             }
                             case "2" -> {
 
@@ -106,7 +108,10 @@ public class App {
                         subRespuestaMenu = sc.nextLine();
                         switch (subRespuestaMenu) {
                             case "1" -> {
-
+                                System.out.println("Introduce el valor a convertir:");
+                                entrada = scNum.nextInt();
+                                System.out.println(conversor.decimalAOctal(entrada));
+                                subContinuar = false;
                             }
                             case "2" -> {
 
