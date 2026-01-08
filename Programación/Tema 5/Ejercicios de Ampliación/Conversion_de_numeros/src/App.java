@@ -11,6 +11,7 @@ public class App {
         String respuestaMenu;
         String subRespuestaMenu;
         int entrada;
+        long entradaGrande;
 
         boolean continuar = true;
         boolean subContinuar;
@@ -43,7 +44,10 @@ public class App {
                         subRespuestaMenu = sc.nextLine();
                         switch (subRespuestaMenu) {
                             case "1" -> {
-
+                                System.out.println("Introduce el valor a convertir:");
+                                entradaGrande = scNum.nextLong();
+                                System.out.println(conversor.binarioADecimal(entradaGrande));
+                                subContinuar = false;
                             }
                             case "2" -> {
 
@@ -80,7 +84,10 @@ public class App {
                                 subContinuar = false;
                             }
                             case "2" -> {
-
+                                System.out.println("Introduce el valor a convertir:");
+                                entrada = scNum.nextInt();
+                                System.out.println(conversor.decimalABinario(entrada));
+                                subContinuar = false;
                             }
                             case "3" -> {
 
@@ -143,7 +150,10 @@ public class App {
                         subRespuestaMenu = sc.nextLine();
                         switch (subRespuestaMenu) {
                             case "1" -> {
-
+                                System.out.println("Introduce el valor a convertir:");
+                                entrada = scNum.nextInt();
+                                System.out.println(conversor.decimalAHexadecimal(entrada));
+                                subContinuar = false;
                             }
                             case "2" -> {
 
