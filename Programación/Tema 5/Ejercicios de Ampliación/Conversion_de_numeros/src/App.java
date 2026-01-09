@@ -12,6 +12,7 @@ public class App {
         String subRespuestaMenu;
         int entrada;
         long entradaGrande;
+        String entradaString;
 
         boolean continuar = true;
         boolean subContinuar;
@@ -45,15 +46,21 @@ public class App {
                         switch (subRespuestaMenu) {
                             case "1" -> {
                                 System.out.println("Introduce el valor a convertir:");
-                                entradaGrande = scNum.nextLong();
-                                System.out.println(conversor.binarioADecimal(entradaGrande));
+                                entradaString = sc.nextLine();
+                                System.out.println(conversor.binarioADecimal(entradaString));
                                 subContinuar = false;
                             }
                             case "2" -> {
-
+                                System.out.println("Introduce el valor a convertir:");
+                                entradaGrande = scNum.nextLong();
+                                System.out.println(conversor.octalADecimal(entradaGrande));
+                                subContinuar = false;
                             }
                             case "3" -> {
-
+                                System.out.println("Introduce el valor a convertir:");
+                                entradaString = sc.nextLine();
+                                System.out.println(conversor.hexaADecimal(entradaString));
+                                subContinuar = false;
                             }
 
                             default -> {
@@ -85,12 +92,15 @@ public class App {
                             }
                             case "2" -> {
                                 System.out.println("Introduce el valor a convertir:");
-                                entrada = scNum.nextInt();
-                                System.out.println(conversor.decimalABinario(entrada));
+                                entradaGrande = scNum.nextInt();
+                                System.out.println(conversor.octalABinario(entradaGrande));
                                 subContinuar = false;
                             }
                             case "3" -> {
-
+                                System.out.println("Introduce el valor a convertir:");
+                                entradaString = sc.nextLine();
+                                System.out.println(conversor.hexaABinario(entradaString));
+                                subContinuar = false;
                             }
 
                             default -> {
@@ -121,10 +131,16 @@ public class App {
                                 subContinuar = false;
                             }
                             case "2" -> {
-
+                                System.out.println("Introduce el valor a convertir:");
+                                entradaString = sc.nextLine();
+                                System.out.println(conversor.binarioAOctal(entradaString));
+                                subContinuar = false;
                             }
                             case "3" -> {
-
+                                System.out.println("Introduce el valor a convertir:");
+                                entradaString = sc.nextLine();
+                                System.out.println(conversor.hexaAOctal(entradaString));
+                                subContinuar = false;
                             }
 
                             default -> {
@@ -156,10 +172,16 @@ public class App {
                                 subContinuar = false;
                             }
                             case "2" -> {
-
+                                System.out.println("Introduce el valor a convertir:");
+                                entradaString = sc.nextLine();
+                                System.out.println(conversor.binarioAHexa(entradaString));
+                                subContinuar = false;
                             }
                             case "3" -> {
-
+                                System.out.println("Introduce el valor a convertir:");
+                                entradaGrande = scNum.nextInt();
+                                System.out.println(conversor.octalAHexa(entradaGrande));
+                                subContinuar = false;
                             }
 
                             default -> {
