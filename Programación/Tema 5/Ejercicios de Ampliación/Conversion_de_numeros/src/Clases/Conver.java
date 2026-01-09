@@ -1,10 +1,5 @@
 package Clases;
 
-/*
-DATOS NECESARIOS:
-- 
-*/
-
 public class Conver {
 
     public Conver() {
