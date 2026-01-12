@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+    background-color: rgb(255, 255, 255);
+}
+
+.uno {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    gap: 30px;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+ol, ul {
+    padding-left: 20px; /* Esto deja espacio para que se vean los puntos */
+    width: 500px;
+}
+
+li:first-child{
+    margin-top: 20px;
+}
+li {
+    background-color: bisque;
+    margin-bottom: 20px;
+    padding: 10px 5px;
+}
+
+input[type=button]{
+    padding: 5px;
+    margin: 0px 10px;
+}
+
+
+
