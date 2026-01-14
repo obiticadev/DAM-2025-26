@@ -8,10 +8,10 @@ public class Alumno {
     private String num_matricula;
     private Modulo[] listaModulos;
 
-    public Alumno(String nombre) {
+    public Alumno(String nombre, String matricula) {
         this.nombre = nombre;
         this.contador = 0;
-        this.num_matricula = String.valueOf(this.contador + 1000);
+        this.num_matricula = String.valueOf(Integer.parseInt(matricula) + 1000);
         this.listaModulos = new Modulo[1];
     }
 
@@ -46,5 +46,21 @@ public class Alumno {
 
     public void redimensionar() {
         this.listaModulos = Arrays.copyOf(this.listaModulos, listaModulos.length * 2);
+    }
+
+    public int getContador() {
+        return contador;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getNum_matricula() {
+        return num_matricula;
+    }
+
+    public Modulo[] getListaModulos() {
+        return listaModulos;
     }
 }

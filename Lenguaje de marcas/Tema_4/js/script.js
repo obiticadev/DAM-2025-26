@@ -27,3 +27,11 @@ function eliminar(botonPulsado){
     let listaFrutas = document.getElementById("ListaFrutas");
     listaFrutas.removeChild(botonPulsado.parentElement);
 }
+
+function aumentar(imagenPulsada){
+
+    let imagenes = document.querySelectorAll("div > img");
+    
+    imagenes.item
+    
+}

@@ -38,5 +38,21 @@ input[type=button]{
     margin: 0px 10px;
 }
 
+div > img {
+    width: 100px;
+    height: auto;
+}
+
+.centro {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    
+}
+
+div > img:last-child {
+    width: 150px;
+}
 
 
