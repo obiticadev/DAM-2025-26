@@ -79,6 +79,7 @@ public class App {
     public static void menuAlumnoSeleccionado(Alumno registroEntrada){
         boolean continuar = true;
         String respuestaMenu;
+        String respuestaSubMenu;
         do {
             System.out.println("""
                     MENÚ DE ALUMNO
@@ -102,6 +103,7 @@ public class App {
 
                         case "2" -> {
                             System.out.println(registroEntrada.mostrarInfo());
+                            respuestaSubMenu = sc.nextLine();
                         }
 
                         case "S" -> {

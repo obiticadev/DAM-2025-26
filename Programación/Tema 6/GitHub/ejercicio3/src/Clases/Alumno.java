@@ -25,21 +25,26 @@ public class Alumno {
 
     public String mostrarInfo() {
         String respuesta = "";
-        if (this.listaModulos.length != 1) {
+        if (this.contador > 0) {
 
             respuesta += "MÓDULOS:\n";
             for (int i = 0; i < this.contador; i++) {
-                respuesta += listaModulos[i].getNombre_modulo() + " [" + listaModulos[i].getCodigo() + "]\n";
-                respuesta += "NOTAS:\n";
-                Nota listaNotasSalida[] = listaModulos[i].getListaNotas();
-                for (int j = 0; j <= listaModulos[i].getContador(); j++) {
-                    respuesta += "Nota " + (j + 1) + ": " + listaNotasSalida[j].getNota() + " ["
-                            + listaNotasSalida[j].getTipo() + "]\n";
+                respuesta += (i+1) + ") " + listaModulos[i].getNombre_modulo() + " [" + listaModulos[i].getCodigo() + "]\n";
+                if (this.listaModulos[i].getContador() > 0) {
+                    respuesta += "\tNOTAS:\n";
+                    Nota[] listaNotasSalida = listaModulos[i].getListaNotas();
+                    for (int j = 0; j < listaModulos[i].getContador(); j++) {
+                        respuesta += "\t\tNota " + (j + 1) + ": " + listaNotasSalida[j].getNota() + " ["
+                                + listaNotasSalida[j].getTipo() + "]\n";
+                    }
+                    respuesta += "\t\tNota media: " + listaModulos[i].notaMedia() + "\n";
+                    
+                } else {
+                    respuesta += "\t(No hay notas en este módulo)\n";
                 }
-                respuesta += "Nota media: " + listaModulos[i].notaMedia();
             }
         } else {
-            return "No hay datos";
+            return "\n(No hay módulos)\n";
         }
         return respuesta;
     }
