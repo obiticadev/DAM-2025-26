@@ -23,6 +23,10 @@ public class Alumno {
         contador++;
     }
 
+    public void insertarNotaAlModulo(int numArrayModulo, double nota, TipoNota evaluacion){
+        this.listaModulos[numArrayModulo].insertarNota(evaluacion, nota);
+    }
+
     public String mostrarInfo() {
         String respuesta = "";
         if (this.contador > 0) {
