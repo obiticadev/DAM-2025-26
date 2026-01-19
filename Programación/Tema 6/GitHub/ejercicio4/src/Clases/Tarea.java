@@ -18,10 +18,10 @@ public class Tarea {
         this.hora = hora.now();
     }
 
-    public boolean validarCategoria(String nombre){
+    public boolean validarCategoria(String nombre) {
 
         Categoria categoriaSeleccionada = null;
-        
+
         for (Categoria busqueda : this.categoria.values()) {
             if (busqueda.name().equals(nombre)) {
                 categoriaSeleccionada = busqueda;
@@ -34,7 +34,13 @@ public class Tarea {
         } else {
             return false;
         }
-        
+
     }
-    
+
+    @Override
+    public String toString() {
+        return "Tarea [titulo=" + titulo + ", categoria=" + categoria + ", estado=" + estado + ", fecha=" + fecha
+                + ", hora=" + hora + "]";
+    }
+
 }
