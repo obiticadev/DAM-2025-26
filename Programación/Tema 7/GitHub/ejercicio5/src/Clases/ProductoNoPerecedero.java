@@ -13,7 +13,7 @@ public class ProductoNoPerecedero extends Producto {
     protected void mostrarInformacion() {
         super.mostrarInformacion();
         System.out.println("Descuento: " + this.descuento);
-        System.out.println("Tipo: " );
+        System.out.println("Tipo: " + this.tipo.toString());
     }
 
     
