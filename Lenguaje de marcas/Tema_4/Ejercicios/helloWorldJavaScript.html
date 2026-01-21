@@ -1,61 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Javascript</title>
-    <script type="text/Javascript" src="js/script.js"></script>
+    <title>Ejercicios JavaScript - DOM</title>
     <link rel="stylesheet" href="css/style.css">
-    
+    <script src="js/script.js"></script>
 </head>
-
 <body>
-    <h2>Ejercicio 0 y 1</h2>
-    <div class="uno">
-        <input type="button" onclick="Hola();" name="Saludo" value="Ejercicio 0">
-        <input type="button" onclick="cambioDeColor();" name="Cambio de fondo" value="Ejercicio 1">
-    </div>
-    <h2>Ejercicio 2</h2>
-    <form>
-    <label for="name">Nombre de la lista:</label>
-    <input type="text" id="name" name="Lista">
-    <input type="button" onclick="añadir();" value="Añadir">
-    </form>
-    <ol id="miLista">
 
-    </ol>
-    <h2>Ejercicio 3</h2>
-    <ul id="ListaFrutas">
-        <li>
-            <input type="button" onclick="eliminar(this);" value="Eliminar">
-            Manzana
-        </li>
-        <li>
-            <input type="button" onclick="eliminar(this);" value="Eliminar">
-            Pera
-        </li>
-        <li>
-            <input type="button" onclick="eliminar(this);" value="Eliminar">
-            Banana
-        </li>
-        <li>
-            <input type="button" onclick="eliminar(this);" value="Eliminar">
-            Sandía
-        </li>
-        <li>
-            <input type="button" onclick="eliminar(this);" value="Eliminar">
-            Melón
-        </li>
-    </ul>
+    <h1>Prácticas de JavaScript: DOM</h1>
 
-    <h2>Ejercicio 4</h2>
-    <div class="centro">
-        <img src="https://img.freepik.com/vector-gratis/cute-cool-boy-dabbing-pose-dibujos-animados-vector-icono-ilustracion-concepto-icono-moda-personas-aislado_138676-5680.jpg?semt=ais_hybrid&w=740&q=80" alt="Niño con flow" onclick="aumentar(this);">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-MKjqBrUbY2XxX-8o4J0NVXb2N3jOmf5rNg&s" alt="minion" onclick="aumentar(this);">
-        <img src="https://cdn.pixabay.com/photo/2023/03/16/08/42/camping-7856198_640.jpg" alt="noche" onclick="aumentar(this);">
-        <img src="https://carlofarucci.com/wp-content/uploads/2018/09/seo-para-imagenes-2019.jpg" alt="ordenador minimalista" onclick="aumentar(this);">
-        <img src="" alt="">
-    </div>
+    <!-- EJERCICIO 1: Color de fondo -->
+    <section id="ejercicio1">
+        <h2>Ejercicio 1: Cambiar color de fondo</h2>
+        <button onclick="cambiarFondo()">Cambiar a color aleatorio</button>
+    </section>
 
+    <hr>
+
+    <!-- EJERCICIO 2: Lista de tareas -->
+    <section id="ejercicio2">
+        <h2>Ejercicio 2: Lista de tareas dinámica</h2>
+        <input type="text" id="inputTarea" placeholder="Escribe una tarea...">
+        <button onclick="añadirTarea()">Añadir</button>
+        <ul id="listaTareas">
+            <!-- Aquí aparecerán las tareas -->
+        </ul>
+    </section>
+
+    <hr>
+
+    <!-- EJERCICIO 3: Eliminar elementos -->
+    <section id="ejercicio3">
+        <h2>Ejercicio 3: Eliminar elementos (Frutas)</h2>
+        <ul id="listaFrutas">
+            <li>Manzana <button onclick="eliminarElemento(this)">Eliminar</button></li>
+            <li>Pera <button onclick="eliminarElemento(this)">Eliminar</button></li>
+            <li>Plátano <button onclick="eliminarElemento(this)">Eliminar</button></li>
+            <li>Fresa <button onclick="eliminarElemento(this)">Eliminar</button></li>
+            <li>Naranja <button onclick="eliminarElemento(this)">Eliminar</button></li>
+        </ul>
+    </section>
+
+    <hr>
+
+    <!-- EJERCICIO 4: Galería de imágenes -->
+    <section id="ejercicio4">
+        <h2>Ejercicio 4: Galería interactiva</h2>
+        <div class="galeria">
+            <img class="thumbnail" src="https://picsum.photos/id/10/100/100" onclick="actualizarGaleria(this.src)" alt="Miniatura 1">
+            <img class="thumbnail" src="https://picsum.photos/id/20/100/100" onclick="actualizarGaleria(this.src)" alt="Miniatura 2">
+            <img class="thumbnail" src="https://picsum.photos/id/30/100/100" onclick="actualizarGaleria(this.src)" alt="Miniatura 3">
+            <img class="thumbnail" src="https://picsum.photos/id/40/100/100" onclick="actualizarGaleria(this.src)" alt="Miniatura 4">
+        </div>
+        <div class="visor">
+            <p>Imagen principal:</p>
+            <img id="imgPrincipal" src="https://picsum.photos/id/10/400/300" alt="Imagen Grande">
+        </div>
+    </section>
+
+    <hr>
+
+    <!-- EJERCICIO 5: Modificar clases CSS -->
+    <section id="ejercicio5">
+        <h2>Ejercicio 5: Modificar clases CSS</h2>
+        <button onclick="añadirRoja()">Añadir Rojo</button>
+        <button onclick="quitarRoja()">Quitar Rojo</button>
+        <button onclick="alternarGrande()">Alternar Tamaño (Toggle)</button>
+        <button onclick="ponerAzul()">Poner Azul</button>
+        <div id="cajaMuestra" class="caja-base">Caja de prueba</div>
+    </section>
+
+    <!-- Espacio preparado para Ejercicio 6 en adelante... -->
 </body>
 </html>
