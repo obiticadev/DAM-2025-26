@@ -58,8 +58,8 @@ public class App {
                         numTarea = Integer.parseInt(respuestaSubMenu);
                         if (numTarea > 0 && numTarea <= lista.getContador()) {
                             numTarea--;
-                            System.out.println("Selecciona el parámetro que quieras modificar de la tarea "
-                                    + lista.getTarea()[numTarea] + ":");
+                            System.out.println("Selecciona el parámetro que quieras modificar de la tarea\n"
+                                    + lista.getTarea()[numTarea]);
                             System.out.println("""
                                     1) Título
                                     2) Categoría
@@ -75,29 +75,20 @@ public class App {
                                     System.out.println("\nCambio realizado con éxito\n");
                                 }
                                 case "2" -> {
-                                    System.out.println("Introduce la nueva categoría de la tarea: ");
-                                    System.out.println("""
-                                            > TRABAJO
-                                            > ESTUDIO
-                                            > PERSONAL
-                                            > OTRO
-                                            """ //
-                                    //
-                                    //
-                                    );
+                                    lista.getTarea()[numTarea].setCategoria(asignarCategoria());
                                 }
                                 case "3" -> {
-
+                                    lista.getTarea()[numTarea].setEstado(asignarEstado());
                                 }
                                 case "4" -> {
-
+                                    lista.getTarea()[numTarea].setFecha(asignarFecha());
                                 }
                                 case "5" -> {
-
+                                    lista.getTarea()[numTarea].setHora(asignarHora());
                                 }
 
                                 default -> {
-
+                                    System.out.println("Selecciona una opción válida");
                                 }
                             }
                         }
@@ -142,92 +133,22 @@ public class App {
 
     public static void añadirTareaMenu(int num) {
         for (int i = 0; i < num; i++) {
-
             String nombreTarea;
-
             Categoria categoriaElegida = null;
-            String categoriaString;
-
             Estado estadoElegido = null;
-            String estadoString;
-
             LocalDate fechaElegida = null;
-            int diasVencimiento;
-
             LocalTime horaElegida = null;
-
             LocalDateTime fechaCompleta = null;
 
             System.out.print("\n=== TÍTULO " + (i + 1) + " ===\nIntroduce el título de la tarea " + (i + 1) + ": ");
+            
             nombreTarea = sc.nextLine();
+            categoriaElegida = asignarCategoria();
+            estadoElegido = asignarEstado();
+            fechaCompleta = asignarFechaCompleta();
+            fechaElegida = fechaCompleta.toLocalDate();
+            horaElegida = fechaCompleta.toLocalTime();
 
-            // Esto hay que hacer con cada uno
-            asignarCategoria();
-
-            while (estadoElegido == null) {
-                System.out.println("\n=== ESTADO ===");
-                System.out.println("Introduce el estado de la tarea:");
-                System.out.println("""
-                        PENDIENTE
-                        EN_PROGRESO
-                        COMPLETADA
-                        CANCELADA
-                        """ //
-                //
-                //
-                );
-                System.out.print(" > ");
-                try {
-                    estadoString = sc.nextLine().toUpperCase().trim();
-                    estadoElegido = Estado.valueOf(estadoString);
-                    System.out.println();
-                } catch (Exception e) {
-
-                    System.out.println("\nEstado no válido, inténtalo de nuevo\n");
-                }
-            }
-            while (fechaCompleta == null) {
-
-                while (fechaElegida == null) {
-                    System.out.println("=== DÍAS ===");
-                    System.out.print("Introduce cuántos días tienes para completarlo: ");
-                    String entrada = sc.nextLine();
-                    if (validarEntrada(entrada)) {
-                        diasVencimiento = Integer.parseInt(entrada);
-                        fechaElegida = LocalDate.now().plusDays(diasVencimiento);
-                    } else {
-                        System.out.println("\nIntroduce un número entero\n");
-                    }
-                }
-
-                while (horaElegida == null) {
-                    System.out.println("\n=== HORA ===");
-                    System.out.print("Introduce la hora de vencimiento: ");
-                    String entradaHora = sc.nextLine();
-                    if (validarEntrada(entradaHora)) {
-                        System.out.print("\nIntroduce los minutos de vencimiento: ");
-                        String entradaMin = sc.nextLine();
-                        if (validarEntrada(entradaMin)) {
-                            try {
-                                horaElegida = LocalTime.of(Integer.parseInt(entradaHora), Integer.parseInt(entradaMin),
-                                        0);
-
-                            } catch (Exception e) {
-
-                                System.out.println("\nIntroduce una fecha válida\n");
-                            }
-                        }
-
-                    }
-                }
-                fechaCompleta = LocalDateTime.of(fechaElegida.getYear(), fechaElegida.getMonth(),
-                        fechaElegida.getDayOfMonth(), horaElegida.getHour(), horaElegida.getMinute(),
-                        horaElegida.getSecond());
-                if (!lista.validarFechaCompleta(fechaCompleta)) {
-                    fechaCompleta = null;
-                    System.out.println("Fecha duplicada");
-                }
-            }
             Tarea tareaRecopilada = new Tarea(nombreTarea, categoriaElegida, estadoElegido, fechaElegida, horaElegida);
             lista.añadirTarea(tareaRecopilada);
 
@@ -257,7 +178,7 @@ public class App {
 
     }
 
-    public static void asignarCategoria() {
+    public static Categoria asignarCategoria() {
         Categoria categoriaElegida = null;
         String categoriaString;
 
@@ -284,6 +205,98 @@ public class App {
             }
 
         }
+        return categoriaElegida;
+    }
+
+    public static Estado asignarEstado() {
+        Estado estadoElegido = null;
+        String estadoString;
+        while (estadoElegido == null) {
+            System.out.println("\n=== ESTADO ===");
+            System.out.println("Introduce el estado de la tarea:");
+            System.out.println("""
+                    PENDIENTE
+                    EN_PROGRESO
+                    COMPLETADA
+                    CANCELADA
+                    """ //
+            //
+            //
+            );
+            System.out.print(" > ");
+            try {
+                estadoString = sc.nextLine().toUpperCase().trim();
+                estadoElegido = Estado.valueOf(estadoString);
+                System.out.println();
+            } catch (Exception e) {
+
+                System.out.println("\nEstado no válido, inténtalo de nuevo\n");
+            }
+        }
+        return estadoElegido;
+    }
+
+    public static LocalDate asignarFecha() {
+        LocalDate fechaElegida = null;
+        int diasVencimiento;
+        while (fechaElegida == null) {
+            System.out.println("=== DÍAS ===");
+            System.out.print("Introduce cuántos días tienes para completarlo: ");
+            String entrada = sc.nextLine();
+            if (validarEntrada(entrada)) {
+                diasVencimiento = Integer.parseInt(entrada);
+                fechaElegida = LocalDate.now().plusDays(diasVencimiento);
+            } else {
+                System.out.println("\nIntroduce un número entero\n");
+            }
+        }
+        return fechaElegida;
+    }
+
+    public static LocalTime asignarHora() {
+        LocalTime horaElegida = null;
+        while (horaElegida == null) {
+            System.out.println("\n=== HORA ===");
+            System.out.print("Introduce la hora de vencimiento: ");
+            String entradaHora = sc.nextLine();
+            if (validarEntrada(entradaHora)) {
+                System.out.print("\nIntroduce los minutos de vencimiento: ");
+                String entradaMin = sc.nextLine();
+                if (validarEntrada(entradaMin)) {
+                    try {
+                        horaElegida = LocalTime.of(Integer.parseInt(entradaHora), Integer.parseInt(entradaMin),
+                                0);
+
+                    } catch (Exception e) {
+
+                        System.out.println("\nIntroduce una fecha válida\n");
+                    }
+                }
+
+            }
+        }
+        return horaElegida;
+    }
+
+    public static LocalDateTime asignarFechaCompleta() {
+        LocalDate fechaElegida = null;
+
+        LocalTime horaElegida = null;
+        LocalDateTime fechaCompleta = null;
+        while (fechaCompleta == null) {
+
+            fechaElegida = asignarFecha();
+
+            horaElegida = asignarHora();
+            fechaCompleta = LocalDateTime.of(fechaElegida.getYear(), fechaElegida.getMonth(),
+                    fechaElegida.getDayOfMonth(), horaElegida.getHour(), horaElegida.getMinute(),
+                    horaElegida.getSecond());
+            if (!lista.validarFechaCompleta(fechaCompleta)) {
+                fechaCompleta = null;
+                System.out.println("Fecha duplicada");
+            }
+        }
+        return fechaCompleta;
     }
 
 }
