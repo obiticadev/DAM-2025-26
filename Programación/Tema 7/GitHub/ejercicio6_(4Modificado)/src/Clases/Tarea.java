@@ -81,12 +81,36 @@ public class Tarea {
 
     @Override
     public String toString() {
-        return "Tarea [titulo=" + titulo + ", categoria=" + categoria + ", estado=" + estado + ", fecha=" + fecha
-                + ", hora=" + hora + "]";
+        return "titulo: " + titulo + "\ncategoria: " + categoria + "\nestado: " + estado + "\nfecha: " + fecha
+                + "\nhora: " + hora;
     }
 
     public String getTitulo() {
         return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+
+    public void setHora(LocalTime hora) {
+        this.hora = hora;
+    }
+
+    public void setFechaCompleta(LocalDateTime fechaCompleta) {
+        this.fechaCompleta = fechaCompleta;
     }
 
 }
