@@ -84,10 +84,40 @@ function ponerAzul() {
     caja.classList.add("azul");
 }
 
-/* 
-   ¡CONSEJO PROFESIONAL! 
-   Para los ejercicios 6 al 10, sigue esta misma estructura:
-   1. Crea una <section> nueva en el HTML con su ID.
-   2. Crea una función en este archivo JS que haga la lógica.
-   3. Usa document.getElementById() para leer o escribir datos.
-*/
+/* ============================================================
+   EJERCICIO 6: CONTADOR CON ESTILOS DINÁMICOS
+   ============================================================ */
+let contadorGlobal = 0;
+   
+function sumar1(){
+    contadorGlobal++;
+    actualizarPantalla();
+}
+
+function restar1(){
+    contadorGlobal--;
+    actualizarPantalla();
+}
+
+function actualizarPantalla(){
+    let visualizador = document.getElementById("contador");
+
+    visualizador.innerText = contadorGlobal;
+
+    if (contadorGlobal > 0) {
+        visualizador.style.color = "green";
+    } else if (contadorGlobal < 0){
+        visualizador.style.color = "red";
+    } else {
+        visualizador.style.color = "#d35400";
+    }
+}
+
+/* ============================================================
+   EJERCICIO 7: FORMULARIO CON VALIDACIÓN
+   ============================================================ */
+function validar(){
+    let nombre = document.getElementById("nombre");
+    let email = document.getElementById("correo");
+    const mensaje = createElement
+}

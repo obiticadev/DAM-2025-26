@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Ejercicios JavaScript - DOM</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/script.js"></script>
 </head>
+
 <body>
 
     <h1>Prácticas de JavaScript: DOM</h1>
@@ -48,10 +50,14 @@
     <section id="ejercicio4">
         <h2>Ejercicio 4: Galería interactiva</h2>
         <div class="galeria">
-            <img class="thumbnail" src="https://picsum.photos/id/10/100/100" onclick="actualizarGaleria(this.src)" alt="Miniatura 1">
-            <img class="thumbnail" src="https://picsum.photos/id/20/100/100" onclick="actualizarGaleria(this.src)" alt="Miniatura 2">
-            <img class="thumbnail" src="https://picsum.photos/id/30/100/100" onclick="actualizarGaleria(this.src)" alt="Miniatura 3">
-            <img class="thumbnail" src="https://picsum.photos/id/40/100/100" onclick="actualizarGaleria(this.src)" alt="Miniatura 4">
+            <img class="thumbnail" src="https://picsum.photos/id/10/100/100" onclick="actualizarGaleria(this.src)"
+                alt="Miniatura 1">
+            <img class="thumbnail" src="https://picsum.photos/id/20/100/100" onclick="actualizarGaleria(this.src)"
+                alt="Miniatura 2">
+            <img class="thumbnail" src="https://picsum.photos/id/30/100/100" onclick="actualizarGaleria(this.src)"
+                alt="Miniatura 3">
+            <img class="thumbnail" src="https://picsum.photos/id/40/100/100" onclick="actualizarGaleria(this.src)"
+                alt="Miniatura 4">
         </div>
         <div class="visor">
             <p>Imagen principal:</p>
@@ -71,6 +77,33 @@
         <div id="cajaMuestra" class="caja-base">Caja de prueba</div>
     </section>
 
-    <!-- Espacio preparado para Ejercicio 6 en adelante... -->
+    <hr>
+
+    <!-- EJERCICIO 6: Contador con estilos dinámicos -->
+    <section id="ejercicio6">
+        <h2>EJERCICIO 6: Contador con estilos dinámicos</h2>
+        <div id="contendoridE6">
+            <div>
+                <button onclick="sumar1()" class="botonE6 contenedorE6">+</button>
+                <button onclick="restar1()" class="botonE6 contenedorE6">-</button>
+            </div>
+            <h2 id="contador" class="contenedorE6">0</h2>
+        </div>
+    </section>
+
+    <!-- EJERCICIO 7: Formulario con validación -->
+    <section id="ejercicio6">
+        <h2>EJERCICIO 7: Formulario con validación</h2>
+        <form action="#">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre">
+            <label for="correo">Correo:</label>
+            <input type="email" id="correo">
+            <input type="submit" value="enviar">
+        </form>
+    </section>
+
+    
 </body>
+
 </html>

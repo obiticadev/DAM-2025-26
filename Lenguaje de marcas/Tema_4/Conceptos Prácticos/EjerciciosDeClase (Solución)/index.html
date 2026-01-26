@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mastering JavaScript DOM - Ejercicios 1 al 10</title>
+    <!-- Vinculamos el CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Prácticas de JavaScript: Del DOM a la Lógica</h1>
+    </header>
+
+    <main>
+        <!-- EJERCICIO 1: Color de fondo aleatorio -->
+        <section id="ej1" class="contenedor-ejercicio">
+            <h2>1. Color de fondo aleatorio</h2>
+            <button onclick="ej1_cambiarFondo()">Cambiar Color</button>
+        </section>
+
+        <!-- EJERCICIO 2: Crear elementos (Lista tareas) -->
+        <section id="ej2" class="contenedor-ejercicio">
+            <h2>2. Lista de tareas dinámica</h2>
+            <div class="flex-row">
+                <input type="text" id="ej2_input" placeholder="Nueva tarea...">
+                <button onclick="ej2_añadirTarea()">Añadir</button>
+            </div>
+            <ul id="ej2_lista"></ul>
+        </section>
+
+        <!-- EJERCICIO 3: Eliminar elementos (this y parentElement) -->
+        <section id="ej3" class="contenedor-ejercicio">
+            <h2>3. Eliminar frutas (Uso de 'this')</h2>
+            <ul id="ej3_lista">
+                <li>Manzana <button onclick="ej3_eliminar(this)">Eliminar</button></li>
+                <li>Pera <button onclick="ej3_eliminar(this)">Eliminar</button></li>
+                <li>Plátano <button onclick="ej3_eliminar(this)">Eliminar</button></li>
+            </ul>
+        </section>
+
+        <!-- EJERCICIO 4: Galería de imágenes (Atributos) -->
+        <section id="ej4" class="contenedor-ejercicio">
+            <h2>4. Galería Interactiva</h2>
+            <div class="galeria-fotos">
+                <!-- Pasamos el SRC de la pequeña a la función -->
+                <img src="https://picsum.photos/id/10/100" onclick="ej4_verFoto(this.src)" class="mini">
+                <img src="https://picsum.photos/id/20/100" onclick="ej4_verFoto(this.src)" class="mini">
+                <img src="https://picsum.photos/id/30/100" onclick="ej4_verFoto(this.src)" class="mini">
+            </div>
+            <img id="ej4_grande" src="https://picsum.photos/id/10/400/300" alt="Foto grande">
+        </section>
+
+        <!-- EJERCICIO 5: Modificar clases (classList) -->
+        <section id="ej5" class="contenedor-ejercicio">
+            <h2>5. Modificar clases CSS</h2>
+            <div id="ej5_caja" class="caja-base">Caja de prueba</div>
+            <div class="flex-row">
+                <button onclick="ej5_addRojo()">Rojo</button>
+                <button onclick="ej5_toggleGrande()">Toggle Grande</button>
+                <button onclick="ej5_reset()">Reset</button>
+            </div>
+        </section>
+
+        <!-- EJERCICIO 6: Contador con estilos dinámicos -->
+        <section id="ej6" class="contenedor-ejercicio">
+            <h2>6. Contador Dinámico</h2>
+            <h2 id="ej6_valor">0</h2>
+            <div class="flex-row">
+                <button onclick="ej6_operar(1)">+</button>
+                <button onclick="ej6_operar(-1)">-</button>
+            </div>
+        </section>
+
+        <!-- EJERCICIO 7: Validación de Formulario -->
+        <section id="ej7" class="contenedor-ejercicio">
+            <h2>7. Validación de Formulario</h2>
+            <form id="ej7_form" class="flex-col">
+                <div id="ej7_grupo_nombre">
+                    <input type="text" id="ej7_nombre" placeholder="Nombre">
+                </div>
+                <div id="ej7_grupo_email">
+                    <input type="email" id="ej7_email" placeholder="Email">
+                </div>
+                <button type="button" onclick="ej7_validar()">Enviar</button>
+            </form>
+        </section>
+
+        <!-- EJERCICIO 8: Tabla Dinámica -->
+        <section id="ej8" class="contenedor-ejercicio">
+            <h2>8. Tabla de Datos</h2>
+            <div class="flex-row">
+                <input type="text" id="ej8_nom" placeholder="Nombre">
+                <input type="number" id="ej8_edad" placeholder="Edad">
+                <button onclick="ej8_añadir()">Añadir Fila</button>
+            </div>
+            <table id="ej8_tabla" border="1">
+                <tr><th>Nombre</th><th>Edad</th><th>Acción</th></tr>
+            </table>
+        </section>
+
+        <!-- EJERCICIO 9: Menú Desplegable -->
+        <section id="ej9" class="contenedor-ejercicio">
+            <h2>9. Menú Desplegable Animado</h2>
+            <button onclick="ej9_toggleMenu()">Mostrar/Ocultar Menú</button>
+            <ul id="ej9_menu" class="menu-oculto">
+                <li>Opción A</li>
+                <li>Opción B</li>
+                <li>Opción C</li>
+            </ul>
+        </section>
+
+        <!-- EJERCICIO 10: Estilos múltiples (querySelectorAll) -->
+        <section id="ej10" class="contenedor-ejercicio">
+            <h2>10. Estilos Múltiples</h2>
+            <div id="ej10_contenedor">
+                <p>Párrafo uno de prueba.</p>
+                <p>Párrafo dos de prueba.</p>
+                <p>Párrafo tres de prueba.</p>
+            </div>
+            <div class="flex-row">
+                <button onclick="ej10_estilo('24px')">Grande</button>
+                <button onclick="ej10_estilo('12px')">Pequeño</button>
+                <button onclick="ej10_estilo('16px')">Reset</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Cargamos el JS al final para que el HTML ya exista al ejecutarlo -->
+    <script src="script.js"></script>
+</body>
+</html>

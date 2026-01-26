@@ -1,0 +1,77 @@
+/* --- GUÍA MAESTRA DE FLEXBOX --- 
+   1. display: flex -> Activa el modo flexible en el contenedor (el padre).
+   2. flex-direction: 
+        - row (por defecto): elementos en fila (horizontal).
+        - column: elementos en columna (vertical).
+   3. justify-content: Alinea en el eje principal (si es row, alinea horizontal).
+        - center: al centro.
+        - space-between: separados.
+   4. align-items: Alinea en el eje contrario (si es row, alinea vertical).
+*/
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 40px;
+}
+
+/* Contenedor de cada ejercicio */
+.contenedor-ejercicio {
+    background: white;
+    margin-bottom: 30px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    /* Queremos que todo lo de dentro esté centrado en vertical */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; /* Espacio entre los hijos */
+}
+
+/* Clase para poner elementos en fila centrada */
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Clase para poner elementos en columna centrada */
+.flex-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* EJ 4: Galería */
+.mini { width: 80px; cursor: pointer; border: 2px solid transparent; }
+.mini:hover { border-color: orange; }
+#ej4_grande { width: 400px; height: 300px; object-fit: cover; border: 5px solid #333; }
+
+/* EJ 5: Clases */
+.caja-base { width: 200px; height: 100px; background: #ccc; display: flex; justify-content: center; align-items: center; }
+.rojo { background-color: red; color: white; }
+.grande { transform: scale(1.2); font-weight: bold; }
+
+/* EJ 7: Errores formulario */
+/* SELECTOR COMPLEJO: .error-msg es un elemento creado por JS */
+.error-msg {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+}
+
+/* EJ 9: Menú */
+.menu-oculto { display: none; }
+.menu-visible { display: block; background: #eee; padding: 10px; list-style: none; }
+
+/* EXPLICACIÓN SELECTOR: "div > p" 
+   Selecciona todos los <p> que sean HIJOS DIRECTOS de un <div>. 
+   Útil para no pintar párrafos que estén en otras partes de la web. */
+#ej10_contenedor > p {
+    padding: 5px;
+    border-bottom: 1px dashed #ccc;
+}
