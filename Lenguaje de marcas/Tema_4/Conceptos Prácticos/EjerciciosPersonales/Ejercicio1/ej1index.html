@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <title>Ejercicio 1</title>
+</head>
+
+<body>
+    <h1>Prueba 1</h1>
+    <!--     <button onclick="cambiarColor('red')">Cambia el fondo de color rojo</button>
+    <button onclick="cambiarColor('blue')">Cambia el fondo de color azul</button> -->
+    <button onclick="cambiarColor()">Cambia</button>
+    <div>
+        <label for="entradaColor">Introduce un color: </label>
+        <input type="text" id="entradaColor">
+        <button onclick="recogerColor()">Insertar</button>
+    </div>
+    <script>
+        function cambiarColor(color) {
+            let tono = Math.floor(Math.random() * 256);
+            let colorRGB = "rgb(" + tono + "," + tono + "," + tono + ")";
+
+            document.body.style.backgroundColor = colorRGB;
+        }
+
+        function recogerColor() {
+            let etiqueta = document.querySelector('h1');
+            let valorRecibido = document.getElementById('entradaColor').value;
+            if (valorRecibido != "") {
+                etiqueta.style.backgroundColor = valorRecibido;
+            }
+        }
+    </script>
+</body>
+
+</html>

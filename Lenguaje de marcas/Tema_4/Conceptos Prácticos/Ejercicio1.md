@@ -20,10 +20,6 @@ En JavaScript, cuando seleccionamos un elemento del HTML (como el `body` o un `d
 
 ---
 
-## 5 Ejercicios de Entrenamiento para el Nivel 1
-
-He diseñado estos ejercicios para que escales desde lo más simple hasta empezar a usar lógica. Crea un fichero `practica1.html` y un `practica1.js` para probarlos.
-
 ### Ejercicio 1.1: El interruptor básico
 **Objetivo:** Cambiar el fondo a un color fijo (por ejemplo, verde) al pulsar un botón. Es la base de todo.
 
