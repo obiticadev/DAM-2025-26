@@ -5,10 +5,10 @@ public class Tarjeta extends Cuenta {
     protected String numero;
     protected double saldo;
 
-    public Tarjeta(String numero, double saldo) {
+    public Tarjeta(String numero, double saldo, String titular) {
+        super(titular);
         this.numero = numero;
         this.saldo = saldo;
-        
     }
 
     public boolean pagar(double importe) {

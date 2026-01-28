@@ -4,9 +4,9 @@ public class TarjetaDebito extends Tarjeta {
 
     private double comision;
 
-    public TarjetaDebito(String numero, double saldo) {
-        super(numero, saldo);
-        this.comision = 1;
+    public TarjetaDebito(double comision, String numero, double saldo, String titular) {
+        super(numero, saldo, titular);
+        this.comision = comision;
     }
 
     @Override

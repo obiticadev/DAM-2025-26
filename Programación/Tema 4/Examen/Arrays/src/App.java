@@ -1,6 +1,5 @@
-import java.util.Scanner;
-
 import Clases.Plataforma;
+import java.util.Scanner;
 
 public class App {
     private static Plataforma consola = new Plataforma();
@@ -28,15 +27,16 @@ public class App {
                     System.out.println(consola.listarNumeroValoraciones());
                 }
                 case "4" -> {
-                    
+                    System.out.println("=== MEJOR JUEGO VALORADO ===");
+                    System.out.println(consola.mejorJuegoValorado());
                 }
-                case "5" -> {
+                case "0" -> {
                     System.out.println("Saliendo del programa...");
                     continuar = false;
                 }
 
                 default -> {
-
+                    System.out.println("Selecciona una opción válida dentro del MENÚ");
                 }
             }
         } while (continuar);
@@ -77,11 +77,14 @@ public class App {
             juegoSeleccionado = sc.nextLine();
             if (validarEntero(juegoSeleccionado)) {
                 if (consola.validarJuegoSeleccionado(Integer.parseInt(juegoSeleccionado))) {
-                    System.out.println("Introduce la puntuación del " + consola.getPUNTUACION_MIN() + " al " + consola.getPUNTUACION_MAX() + " para " + consola.getJuegos()[Integer.parseInt(juegoSeleccionado)-1]);
+                    System.out.println("Introduce la puntuación del " + consola.getPUNTUACION_MIN() + " al "
+                            + consola.getPUNTUACION_MAX() + " para "
+                            + consola.getJuegos()[Integer.parseInt(juegoSeleccionado) - 1]);
                     puntuacionSeleccionada = sc.nextLine();
                     if (validarEntero(puntuacionSeleccionada)) {
                         if (consola.validarPuntuacion(Integer.parseInt(puntuacionSeleccionada))) {
-                            consola.puntuarJuego(Integer.parseInt(juegoSeleccionado), Integer.parseInt(puntuacionSeleccionada));
+                            consola.puntuarJuego(Integer.parseInt(juegoSeleccionado),
+                                    Integer.parseInt(puntuacionSeleccionada));
                             continuar = false;
                         } else {
                             System.out.println(error);

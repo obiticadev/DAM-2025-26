@@ -15,7 +15,7 @@ public class Cuenta {
         this.tarjeta = new Tarjeta[NUM_MAX];
     }
 
-    public StringBuilder numRandom16(){
+    public StringBuilder numRandom16() {
         StringBuilder numTarjeta = null;
         for (int i = 0; i < NUM_TARJETA; i++) {
             numTarjeta.append(rd.nextInt(10));
@@ -23,12 +23,12 @@ public class Cuenta {
         return numTarjeta;
     }
 
-    public void añadirTarjeta(int tipo){
-        
+    public void añadirTarjeta(int tipo) {
+
         if (contador < NUM_MAX) {
             switch (tipo) {
                 case 1 -> {
-                    tarjeta[contador] = new TarjetaDebito(numRandom16().toString(),0);
+                    tarjeta[contador] = new TarjetaCredito(200, numRandom16().toString(), tipo, titular)
                 }
 
                 case 2 -> {
@@ -36,15 +36,14 @@ public class Cuenta {
                 }
 
                 case 3 -> {
-                    tarjeta[contador] = new Cybertarjeta(numRandom16().toString(), 0)
+                    tarjeta[contador] = new Cybertarjeta(numRandom16().toString(), 0);
                 }
-            
+
                 default -> {
 
                 }
             }
         }
     }
-    
-}
 
+}

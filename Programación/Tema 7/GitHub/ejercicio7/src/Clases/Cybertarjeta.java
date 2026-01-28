@@ -4,9 +4,9 @@ public class Cybertarjeta extends Tarjeta {
 
     private double limiteOperacion;
 
-    public Cybertarjeta(String numero, double saldo) {
-        super(numero, saldo);
-        this.limiteOperacion = 20;
+    public Cybertarjeta(double limiteOperacion, String numero, double saldo, String titular) {
+        super(numero, saldo, titular);
+        this.limiteOperacion = limiteOperacion;
     }
 
     @Override
@@ -14,7 +14,7 @@ public class Cybertarjeta extends Tarjeta {
         if (saldo > importe) {
             if (importe > limiteOperacion) {
                 return false;
-            }else {
+            } else {
                 return true;
             }
         } else {
