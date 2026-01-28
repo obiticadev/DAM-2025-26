@@ -6,33 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
 
-    <title>Ejercicio 1</title>
+    <title>Ejercicio 3</title>
 </head>
 
 <body>
-    <h1>Prueba 1</h1>
-    <!--     <button onclick="cambiarColor('red')">Cambia el fondo de color rojo</button>
-    <button onclick="cambiarColor('blue')">Cambia el fondo de color azul</button> -->
-    <button onclick="cambiarColor()">Cambia</button>
-    <div>
-        <label for="entradaColor">Introduce un color: </label>
-        <input type="text" id="entradaColor">
-        <button onclick="recogerColor()">Insertar</button>
-    </div>
+    <h1>Prueba 3</h1>
+    <button onclick="script(this)">Púlsame</button>
     <script>
-        function cambiarColor(color) {
-            let tono = Math.floor(Math.random() * 256);
-            let colorRGB = "rgb(" + tono + "," + tono + "," + tono + ")";
+        function script(botonPulsado) {
+            let contenedor = document.createElement('div');
+            contenedor.style.border = '3px solid black';
+            contenedor.style.width = '250px';
+            contenedor.style.padding = '25px';
+            contenedor.style.margin = '0 auto';
+            
 
-            document.body.style.backgroundColor = colorRGB;
-        }
-
-        function recogerColor() {
-            let etiqueta = document.querySelector('h1');
-            let valorRecibido = document.getElementById('entradaColor').value;
-            if (valorRecibido != "") {
-                etiqueta.style.backgroundColor = valorRecibido;
-            }
+            document.body.appendChild(contenedor);
         }
     </script>
 </body>
