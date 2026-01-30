@@ -17,4 +17,12 @@ public class TarjetaCredito extends Tarjeta {
         }
         return false;
     }
+
+    @Override
+    public StringBuilder getTarjeta() {
+        super.getTarjeta().append("\nLímite de Crédito: ")
+                .append(this.limiteCredito);
+        return super.getTarjeta();
+    }
+
 }

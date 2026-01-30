@@ -19,4 +19,12 @@ public class TarjetaDebito extends Tarjeta {
         }
         return false;
     }
+
+    @Override
+    public StringBuilder getTarjeta() {
+        super.getTarjeta().append("\nComisión: ")
+                .append(this.comision);
+        return super.getTarjeta();
+    }
+
 }

@@ -1,6 +1,6 @@
 package Clases;
 
-public class Tarjeta extends Cuenta {
+public abstract class Tarjeta extends Cuenta {
 
     protected String numero;
     protected double saldo;
@@ -24,7 +24,13 @@ public class Tarjeta extends Cuenta {
     }
 
     @Override
-    public String toString() {
-        return "Tarjeta de " + titular + " | Saldo: " + saldo;
+    public StringBuilder getTarjeta() {
+        super.getTarjeta().append("\nNúmero: ")
+                .append(this.numero)
+                .append("\nSaldo: ")
+                .append(this.saldo);
+
+        return super.getTarjeta();
     }
+
 }

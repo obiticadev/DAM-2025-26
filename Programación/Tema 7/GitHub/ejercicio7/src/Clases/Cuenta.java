@@ -23,27 +23,58 @@ public class Cuenta {
         return numTarjeta;
     }
 
-    public void añadirTarjeta(int tipo) {
+    public boolean añadirTarjeta(int tipo) {
 
         if (contador < NUM_MAX) {
             switch (tipo) {
                 case 1 -> {
-                    tarjeta[contador] = new TarjetaCredito(200, numRandom16().toString(), tipo, titular)
+                    /*
+                     * public TarjetaCredito(double limiteCredito, String numero, double saldo,
+                     * String titular)
+                     */
+                    tarjeta[contador] = new TarjetaCredito(200, numRandom16().toString(), tipo, titular);
                 }
 
                 case 2 -> {
-                    tarjeta[contador] = new TarjetaCredito(numRandom16().toString(), 0);
+                    /*
+                     * public TarjetaDebito(double comision, String numero, double saldo, String
+                     * titular)
+                     */
+                    tarjeta[contador] = new TarjetaDebito(10, numRandom16().toString(), 0, this.titular);
                 }
 
                 case 3 -> {
-                    tarjeta[contador] = new Cybertarjeta(numRandom16().toString(), 0);
+                    /*
+                     * public Cybertarjeta(double limiteOperacion, String numero, double saldo,
+                     * String titular)
+                     */
+                    tarjeta[contador] = new Cybertarjeta(5, numRandom16().toString(), 0, this.titular);
                 }
 
                 default -> {
 
                 }
             }
-        }
+            this.contador++;
+            return true;
+        } else
+            return false;
+    }
+
+    public StringBuilder getTarjeta() {
+        StringBuilder tarjeta = new StringBuilder();
+        tarjeta.append("Titular: ")
+                .append(this.titular);
+
+        return tarjeta;
+    }
+
+    public int getContador() {
+        return contador;
+    }
+
+    public Tarjeta[] getTarjetaArray() {
+        return this.tarjeta;
     }
 
 }

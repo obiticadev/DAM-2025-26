@@ -21,4 +21,12 @@ public class Cybertarjeta extends Tarjeta {
             return false;
         }
     }
+
+    @Override
+    public StringBuilder getTarjeta() {
+        super.getTarjeta().append("\nLímite de Operaciones: ")
+                .append(this.limiteOperacion);
+        return super.getTarjeta();
+    }
+
 }
