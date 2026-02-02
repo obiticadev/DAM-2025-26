@@ -4,24 +4,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        .imgInicial {
+            width: 20px;
+        }
+
+        .imgGrande {
+            width: 60px;
+        }
+    </style>
 
     <title>Ejercicio 3</title>
 </head>
 
 <body>
     <h1>Prueba 3</h1>
-    <button onclick="script(this)">Púlsame</button>
+    <button onclick="scriptG(this)">Texto grande</button>
+    <button onclick="scriptP(this)">Texto pequeño</button>
+    <button onclick="scriptR(this)">Resetear</button>
+    <p>alksdjflkasdflaksf</p>
+    <p>alksdjflkasdflaksf</p>
+    <p>alksdjflkasdflaksf</p>
+
+    <button onclick="switchButton()">switch</button> <br>
+    <img class="imgInicial" src="https://cdn.pixabay.com/photo/2024/02/10/11/17/link-8564589_1280.png" alt="imagen">
+
     <script>
-        function script(botonPulsado) {
-            let contenedor = document.createElement('div');
-            contenedor.style.border = '3px solid black';
-            contenedor.style.width = '250px';
-            contenedor.style.padding = '25px';
-            contenedor.style.margin = '0 auto';
+        function scriptG(params) {
+            let texto = document.querySelectorAll('p');
+            for (let parrafo = 0; parrafo < texto.length; parrafo++) {
+                const element = texto[parrafo];
+                if (element.style.fontSize == '') {
+                    element.style.fontSize = '17px';
+                } else {
+                    let numero = parseInt(element.style.fontSize);
+                    numero++;
+                    element.style.fontSize = numero + 'px';
+                }
+                
+            }
+            
             
 
-            document.body.appendChild(contenedor);
+        }
+
+        function scriptP(params) {
+            let texto = document.querySelectorAll('p');
+            for (let parrafo = 0; parrafo < texto.length; parrafo++) {
+                const element = texto[parrafo];
+                if (element.style.fontSize == '') {
+                    element.style.fontSize = '17px';
+                } else {
+                    let numero = parseInt(element.style.fontSize);
+                    numero--;
+                    element.style.fontSize = numero + 'px';
+                }
+                
+            }
+        }
+
+        function scriptR(params) {
+            let texto = document.querySelectorAll('p');
+            for (let parrafo = 0; parrafo < texto.length; parrafo++) {
+                const element = texto[parrafo];
+                element.style.fontSize = '16px'
+                
+            }
+        }
+
+        function switchButton() {
+            let imagen = document.querySelector('.imgInicial');
+            imagen.classList.toggle('imgGrande');
+            
         }
     </script>
 </body>
