@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: white;
+        }
+
+        .cambioColor {
+            background-color: black;
+            color: white;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <button onclick="script();">BOTÓN</button>
+    <script>
+        function script() {
+            /* let fondo = document.body.style.backgroundColor;
+            if (fondo != 'black') {
+                document.body.style.backgroundColor = 'black';
+            } else {
+                document.body.style.backgroundColor = 'white';
+            } */
+           document.body.classList.toggle('cambioColor');
+           let boton = document.querySelectorAll('button');
+
+           boton.forEach(b => {
+            b.classList.toggle('cambioColor');
+           });
+
+        }
+    </script>
+</body>
+</html>
