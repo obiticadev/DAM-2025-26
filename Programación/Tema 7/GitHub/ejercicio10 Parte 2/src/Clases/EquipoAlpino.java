@@ -1,6 +1,8 @@
 package Clases;
 
-public class EquipoAlpino extends DeporteInvierno {
+import Interfaz.Evaluable;
+
+public class EquipoAlpino extends DeporteInvierno implements Evaluable{
 
     protected double tiempoSegundos;
     protected int penalizaciones;
@@ -30,5 +32,7 @@ public class EquipoAlpino extends DeporteInvierno {
         return salida;
 
     }
+
+
 
 }

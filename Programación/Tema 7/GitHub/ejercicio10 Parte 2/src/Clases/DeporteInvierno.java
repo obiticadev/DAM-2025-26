@@ -1,6 +1,8 @@
 package Clases;
 
-public abstract class DeporteInvierno {
+import Interfaz.Evaluable;
+
+public abstract class DeporteInvierno implements Evaluable {
     protected String nombre;
     protected int numParticipantes;
 
@@ -9,8 +11,14 @@ public abstract class DeporteInvierno {
         this.numParticipantes = numParticipantes;
     }
 
-    public abstract double calcularPuntuacion();
+    public String getNombre() {
+        return nombre;
+    }
 
-    public abstract StringBuilder mostrarInfo();
+    public int getNumParticipantes() {
+        return numParticipantes;
+    }
+
+    
     
 }

@@ -19,7 +19,8 @@ public class App {
                     
                     1. Agregar patinaje artístico
                     2. Agregar equipo alpino
-                    3. Mostrar todo
+                    3. Mostrar todo sobre patinaje y equipos
+                    4. 
 
                     S. Salir
                     

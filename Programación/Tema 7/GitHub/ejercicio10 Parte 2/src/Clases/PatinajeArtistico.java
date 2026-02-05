@@ -1,6 +1,8 @@
 package Clases;
 
-public class PatinajeArtistico extends DeporteInvierno {
+import Interfaz.Evaluable;
+
+public class PatinajeArtistico extends DeporteInvierno implements Evaluable {
 
     protected int dificultad;
     protected int ejecucion;
