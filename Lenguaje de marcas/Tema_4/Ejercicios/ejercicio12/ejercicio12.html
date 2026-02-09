@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,6 +17,7 @@
             margin: 20px;
 
         }
+
         .contenedor {
             width: auto;
             height: auto;
@@ -23,46 +25,62 @@
             padding: 10px;
             margin: 10px;
         }
+
         .imagen {
-            src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCVSPUdz3daPKic-eORjl2Vdj_txXc4ceUkw&s";
-            alt: "imagen de perro sospechando de humano";
+            width: 100px;
         }
+
         h2 {
             text-decoration: solid;
             color: red;
         }
+
         p {
             color: green;
             text-decoration: underline;
         }
     </style>
 </head>
+
 <body>
     <button onclick="script()">INSERTAR</button>
     <div id="contenedorPadre">
-        <div class="contenedor"></div>
-        <div class="contenedor"></div>
+
     </div>
     <script>
         function script() {
-            let contenedor = document.createElement('div');
-            contenedor.classList.add('contenedor');
-            let imagen = document.createElement('img');
-            imagen.classList.add('imagen');
-            let titulo = document.createElement('h2');
-            titulo.textContent = 'Elemento'
-            let precio = document.createElement('p');
-            precio.innerHTML = '100€'
+            const MAX_GERATED = 5;
 
-            contenedor.append(titulo, imagen, precio);
+            for (let i = 0; i < MAX_GERATED; i++) {
+                let contenedor = document.createElement('div');
+                contenedor.classList.add('contenedor');
+                let boton = document.createElement('button');
+                boton.textContent = 'Cerrar';
+                boton.onclick = function () {
+                    Eliminar(this);
+                };
+                let imagen = document.createElement('img');
+                imagen.classList.add('imagen');
+                imagen.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCVSPUdz3daPKic-eORjl2Vdj_txXc4ceUkw&s';
+                imagen.alt = 'Imagen'
+                let titulo = document.createElement('h2');
+                titulo.textContent = 'Elemento'
+                let precio = document.createElement('p');
+                precio.innerHTML = '100€'
 
-            let padre = document.getElementById('contenedorPadre');
-            padre.append(contenedor);
+                contenedor.append(boton, titulo, imagen, precio);
 
-            
-            
+                let padre = document.getElementById('contenedorPadre');
+                padre.append(contenedor);
+            }
 
+
+        }
+
+        function Eliminar(elementoPulsado) {
+            elementoPulsado.parentElement.remove();
         }
     </script>
 </body>
+
 </html>
