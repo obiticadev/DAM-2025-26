@@ -4,6 +4,11 @@ public class ProductoElectronico extends Producto {
 
     protected Integer garantia;
 
+    
+    public ProductoElectronico(String codigo, String nombre, Double precio, int garantia) {
+        super(codigo, nombre, precio);
+        this.garantia = garantia;
+    }
     public ProductoElectronico(String codigo, String nombre, int garantia) {
         super(codigo, nombre);
         this.garantia = garantia;
@@ -13,8 +18,8 @@ public class ProductoElectronico extends Producto {
     public Double calcularDescuento(Double porcentaje, Double descuentoAdicional) {
         
         Double precioFinal = super.calcularDescuento(porcentaje);
-        if (super.calcularDescuento(porcentaje) != null) {
-            precioFinal = precioFinal*(100-descuentoAdicional);
+        if (precioFinal != null) {
+            precioFinal = precioFinal-descuentoAdicional;
         }
         return precioFinal;
         
