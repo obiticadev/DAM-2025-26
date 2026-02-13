@@ -4,25 +4,27 @@ public class Producto {
     protected String codigo;
     protected String nombre;
     protected Double precio;
+
     public Producto(String codigo, String nombre, Double precio) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.precio = precio;
     }
+
     public Producto(String codigo, String nombre) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.precio = null;
     }
 
-    public Double calcularDescuento(Double porcentaje){
+    public Double calcularDescuento(Double porcentaje) {
         Double precioFinal = precio;
         if (precio != null) {
-            precioFinal = precioFinal*(100-porcentaje);
+            precioFinal = precioFinal * (100 - porcentaje) / 100;
         }
         return precioFinal;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -39,14 +41,17 @@ public class Producto {
             return false;
         return true;
     }
-    
-    
-    
-    
-    
-    
 
-    
+    public String getCodigo() {
+        return codigo;
+    }
 
-    
+    public String getNombre() {
+        return nombre;
+    }
+
+    public Double getPrecio() {
+        return precio;
+    }
+
 }
