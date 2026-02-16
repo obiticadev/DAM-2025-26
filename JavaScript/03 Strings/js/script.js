@@ -143,5 +143,92 @@ console.log('Ejercicio 8: Intercalar mayúsculas');
  */
 
 const intercalarMayusculas = word => {
+    let salidaWord = '';
+    for (let i = 0; i < word.length; i++) {
+        let caracter;
+        if (i % 2 === 0) {
+            caracter = word.charAt(i).toLowerCase();
+        } else {
+            caracter = word.charAt(i).toUpperCase();
+        }
+        salidaWord += caracter;
+    }
+    return salidaWord;
 
 }
+
+console.log(intercalarMayusculas('kdss'));
+
+
+console.log('Ejercicio 9: Generador de nombre de usuario');
+
+/**
+ * 
+ * @param {string} word1 
+ * @param {string} word2 
+ */
+
+const generatorUserName = (word1, word2) => {
+    let finalName;
+    const MAX = 100;
+    const MIN = 1;
+    const num = Math.floor(Math.random() * (MAX - MIN + 1) + MIN);
+    return `${word1[0]}${word2}${num}`;
+}
+
+console.log(generatorUserName('Oliver', 'Bitica'));
+
+console.log('Ejercicio 10: Mayúsculas en los extremos');
+
+/**
+ * 
+ * @param {string} word 
+ */
+
+const capitalLettersAtTheEnds = (word) => {
+    const charStart = word[0].toUpperCase();
+    const charEnd = word.charAt(word.length - 1).toUpperCase();
+    const stringMiddle = word.substring(1, word.length - 1).toLowerCase();
+    return `${charStart}${stringMiddle}${charEnd}`;
+}
+
+console.log(capitalLettersAtTheEnds('aHolasdfasdgae'));
+
+console.log('Ejercicio 11: Formato kebab-Case');
+
+/**
+ * 
+ * @param {string} phrase 
+ */
+
+const kebabCase = (phrase) => {
+    return phrase.replaceAll(' ', '-');
+}
+
+console.log(kebabCase('d s g e s d g   s'));
+
+console.log('Ejercicio 12: Sustitucion de vocales');
+
+const randomLetter = () => {
+    const MIN = 65;
+    const MAX = 90;
+    return String.fromCharCode(Math.floor(Math.random() * (MAX - MIN + 1) + MIN));
+}
+
+/**
+ * 
+ * @param {string} phrase 
+ */
+
+const changeVocal = (phrase) => {
+    let finalPhrase;
+    finalPhrase = phrase.replaceAll('a', randomLetter())
+        .replaceAll('e', randomLetter())
+        .replaceAll('i', randomLetter())
+        .replaceAll('o', randomLetter())
+        .replaceAll('u', randomLetter());
+    return finalPhrase;
+}
+
+console.log(changeVocal('esto es una prueba'));
+

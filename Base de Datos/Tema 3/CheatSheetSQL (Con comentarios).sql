@@ -5,6 +5,7 @@
    - ALTER TABLE: Modifica una tabla ya existente (ADD, MODIFY, RENAME, DROP).
    - ON DELETE CASCADE: Si se borra el padre, se borran automáticamente sus hijos.
    - VIEW: Consulta guardada que se comporta como una tabla virtual.
+   - INDEX: Estructura que acelera la recuperación de datos (búsquedas rápidas).
 ============================================================================= */
 
 -- =============================================================================
@@ -49,6 +50,15 @@ CREATE TABLE CLIENTES (
 -- Inserción estándar de registros
 INSERT INTO VEHICULOS (matricula, antiguedad) VALUES ('1234-ABC', 5);
 
+-- INSERCIÓN CON FECHAS (Oracle): 
+-- Uso de TO_DATE para asegurar que el formato sea independiente de la configuración del PC
+INSERT INTO CONDUCTORES (nif, nombre, apellidos, foto, edad, tipo_carnet, fecha_carnet) 
+VALUES ('12345678X', 'Juan', 'Pérez', EMPTY_BLOB(), 30, 'B1', TO_DATE('25/12/2023', 'DD/MM/YYYY'));
+
+-- Inserción usando la fecha actual del servidor (SYSDATE)
+INSERT INTO CONDUCTORES (nif, nombre, apellidos, foto, edad, tipo_carnet, fecha_carnet) 
+VALUES ('87654321Z', 'Ana', 'García', EMPTY_BLOB(), 25, 'A', SYSDATE);
+
 -- Consulta con ALIAS (Renombrado temporal de campos para el reporte)
 SELECT matricula AS "Placa", antiguedad AS "Años de Uso" 
 FROM VEHICULOS 
@@ -89,7 +99,23 @@ CREATE VIEW VISTA_EMPLEADOS AS
 SELECT table_name FROM ALL_TABLES WHERE OWNER = 'ALUMNO';
 
 -- =============================================================================
--- 6. LIMPIEZA DE ENTORNO (DROP)
+-- 6. OPTIMIZACIÓN DE CONSULTAS (INDEX)
+-- =============================================================================
+
+-- INDEX: Mejora el rendimiento en columnas que se usan mucho en el WHERE
+CREATE INDEX idx_conductor_apellidos ON CONDUCTORES(apellidos);
+
+-- UNIQUE INDEX: Asegura que los valores no se repitan (además de crear el índice)
+CREATE UNIQUE INDEX idx_veh_matricula ON VEHICULOS(matricula);
+
+-- INDEX COMPUESTO: Para búsquedas frecuentes que filtran por varios campos a la vez
+CREATE INDEX idx_nom_ape ON CONDUCTORES(nombre, apellidos);
+
+-- CONSULTA AL DICCIONARIO: Ver índices creados por el usuario actual
+SELECT index_name, table_name FROM USER_INDEXES;
+
+-- =============================================================================
+-- 7. LIMPIEZA DE ENTORNO (DROP)
 -- =============================================================================
 
 -- Eliminar tabla de forma definitiva
@@ -97,3 +123,6 @@ SELECT table_name FROM ALL_TABLES WHERE OWNER = 'ALUMNO';
 
 -- Eliminar vista
 -- DROP VIEW VISTA_EMPLEADOS;
+
+-- Eliminar índice
+-- DROP INDEX idx_conductor_apellidos;
