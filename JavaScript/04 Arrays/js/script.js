@@ -72,15 +72,13 @@ const randomNum = () => {
 }
 
 const returnArrayWithValues = (arrayEmpty) => {
-    const randomNum1 = randomNum;
-    const randomNum2 = randomNum;
-    const randomNum3 = randomNum;
 
     for (let i = 0; i < 3; i++) {
-
+        arrayEmpty[i] = randomNum();
 
     }
+    return arrayEmpty;
 }
 
-let arrayEmpty;
+let arrayEmpty = [];
 console.log(returnArrayWithValues(arrayEmpty));
