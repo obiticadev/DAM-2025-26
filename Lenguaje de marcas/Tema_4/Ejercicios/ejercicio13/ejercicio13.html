@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,23 +11,24 @@
         }
     </style>
 </head>
+
 <body>
     <p ondblclick="seleccionar(this);">Loore debitis tempora labore ipsam possimus nobis voluptas quis, optio sequi?</p>
-    <p ondblclick="seleccionar(this);">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus sapiente illo dolores numquam facilis est asperiores, architecto harum eaque invitis tempora labore ipsam possimus nobis voluptas quis, optio sequi?</p>
-    <p ondblclick="seleccionar(this);">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus sapiente illoaque inventore debitis tempora labore ipsam possimus nobis voluptas quis, optio sequi?</p>
-    <p ondblclick="seleccionar(this);">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus sapiente illo dolores numquam facilis est asperiores, architectnventore debitis tempora labore ipsam possimus nobis voluptas quis, optio sequi?<mark></mark></p>
+    <p ondblclick="seleccionar(this);">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus sapiente
+        illo dolores numquam facilis est asperiores, architecto harum eaque invitis tempora labore ipsam possimus nobis
+        voluptas quis, optio sequi?</p>
+    <p ondblclick="seleccionar(this);">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus sapiente
+        illoaque inventore debitis tempora labore ipsam possimus nobis voluptas quis, optio sequi?</p>
+    <p ondblclick="seleccionar(this);">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus sapiente
+        illo dolores numquam facilis est asperiores, architectnventore debitis tempora labore ipsam possimus nobis
+        voluptas quis, optio sequi?<mark></mark></p>
     <script>
         function seleccionar(elementoPulsado) {
             /* elementoPulsado.classList.toggle('parrafos'); */
-            
-            elementoPulsado.innerHTML='<mark>'+elementoPulsado.textContent+'</mark>';
 
-            
-
-            
-
+            elementoPulsado.innerHTML = '<mark>' + elementoPulsado.textContent + '</mark>';
             if (elementoPulsado.innerHTML.includes("<mark>")) {
-                
+
                 let contenido = elementoPulsado.textContent;
                 let estructuraCompleta = document.createElement('p');
                 estructuraCompleta.textContent = contenido;
@@ -36,4 +38,5 @@
         }
     </script>
 </body>
+
 </html>
