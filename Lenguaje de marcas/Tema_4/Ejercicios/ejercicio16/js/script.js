@@ -9,3 +9,15 @@ const subir = (elemento) => {
 
     lista.insertBefore(elemento, anterior);
 }
+
+/**
+ * 
+ * @param {HTMLLIElement} elemento 
+ */
+
+const bajar = (elemento) => {
+    const lista = elemento.parentElement;
+    const siguiente = elemento.nextElementSibling;
+
+    lista.insertBefore(siguiente, elemento);
+}
