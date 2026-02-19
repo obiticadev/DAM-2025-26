@@ -1,0 +1,24 @@
+INSTRUCCIONES DE USO
+
+1. Preparación:
+   - Asegúrate de tener Python instalado.
+   - Abre una terminal en esta carpeta.
+   - Instala las librerías necesarias ejecutando:
+     pip install -r requirements.txt
+
+2. Ejecución:
+   - Simplemente ejecuta el archivo main.py:
+     python main.py
+
+3. Resultado:
+   - Se creará una carpeta llamada "La vida después de la muerte - Todos los capítulos".
+   - Dentro encontrarás un archivo HTML por cada capítulo.
+   - Si se interrumpe, puedes volver a ejecutarlo; el programa sobreescribirá o saltará según la lógica (actualmente re-descarga para asegurar contenido fresco).
+
+4. Configuración:
+   - Si necesitas cambiar la URL, el rango de capítulos o los tiempos de espera, edita el archivo config.py.
+   - Los selectores están configurados para novelasligera.com según tu captura.
+
+NOTAS:
+- El programa incluye esperas aleatorias (5-15 segundos) para evitar bloqueos. Ten paciencia.
+- Los archivos se guardan con codificación UTF-8 para soportar acentos y caracteres especiales.
