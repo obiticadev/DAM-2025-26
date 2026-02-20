@@ -17,7 +17,7 @@ public class DAOatletas {
 
         Atleta atleta1 = new Atleta("Johansen", 128.5);
         Atleta atleta2 = new Atleta("Frenzel", 130.0);
-        Atleta atleta3 = new Atleta("Lamparter", 125.0);
+        Atleta atleta3 = new Atleta("Lamparter", 130.0);
         Atleta atleta4 = new Atleta("Rehrl", 129.0);
 
         listaAtletas.add(atleta1);

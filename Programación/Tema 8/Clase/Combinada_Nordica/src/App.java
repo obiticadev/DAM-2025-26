@@ -2,11 +2,12 @@ import Clases.Atleta;
 import DAO.DAOatletas;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class App {
     public static void main(String[] args) throws Exception {
         LocalTime horaComienzo = LocalTime.of(15, 0, 0);
-        final double RETRASO = 1.5;
+        final Double RETRASO = 1.5;
 
         DAOatletas dao = new DAOatletas();
         ArrayList<Atleta> lista = dao.entragarDatos();
@@ -15,7 +16,7 @@ public class App {
 
         System.out.println("Hora base de salida: " + horaComienzo.toString() + "\n");
 
-        double PuntuacionMAX = lista.get(primerAtleta(lista)).getPuntuacionSalto();
+        Double PuntuacionMAX = lista.get(primerAtleta(lista)).getPuntuacionSalto();
         System.out.println("Puntuación líder detectada: " + PuntuacionMAX + " ("
                 + lista.get(primerAtleta(lista)).getNombre() + ")\n");
 
@@ -23,17 +24,50 @@ public class App {
 
         for (int i = 0; i < lista.size(); i++) {
             LocalTime horaPartidaAtleta = lista.get(i).Gundersen(PuntuacionMAX, horaComienzo);
+
             lista.get(i).setHoraComienzo(horaPartidaAtleta);
+
             StringBuilder sb = new StringBuilder();
-            sb.append(lista.get(i).getNombre()).append(":\n")
+
+            Double puntuacionSalto = lista.get(i).getPuntuacionSalto();
+            Double diferencia = PuntuacionMAX - puntuacionSalto;
+
+            StringBuilder append = sb.append(lista.get(i).getNombre()).append(":\n")
                     .append("\tDiferencia = ").append(PuntuacionMAX).append(" - ")
-                    .append(lista.get(i).getPuntuacionSalto()).append(" = ")
-                    .append(PuntuacionMAX - lista.get(i).getPuntuacionSalto()).append("\n")
-                    .append("\tRetraso = Math.round(").append(PuntuacionMAX - lista.get(i).getPuntuacionSalto())
+                    .append(puntuacionSalto).append(" = ")
+                    .append(diferencia).append("\n")
+                    .append("\tRetraso = Math.round(").append(diferencia)
                     .append(" * ").append(RETRASO).append(" = ")
-                    .append(Math.round((PuntuacionMAX - lista.get(i).getPuntuacionSalto()) * RETRASO))
+                    .append(Math.round(diferencia * RETRASO))
                     .append(" segundos");
             System.out.println(sb.toString());
+        }
+
+        parrillaDeSalida(lista);
+
+    }
+
+    public static int primerAtleta(ArrayList<Atleta> lista) {
+        Double puntuacionMax = -1.0;
+        int pos = -1;
+        for (int i = 0; i < lista.size(); i++) {
+            if (lista.get(i).getPuntuacionSalto() > puntuacionMax) {
+                puntuacionMax = lista.get(i).getPuntuacionSalto();
+                pos = i;
+            }
+
+        }
+        return pos;
+    }
+
+    public static void parrillaDeSalida(ArrayList<Atleta> lista) {
+        Collections.sort(lista);
+        for (int i = 0; i < lista.size() - 1; i++) {
+            if (lista.get(i).getPuntuacionSalto().equals(lista.get(i + 1).getPuntuacionSalto())) {
+                throw new UnsupportedOperationException(
+                        "Error: 2 Atletas " + lista.get(i).getNombre() + " y " + lista.get(i + 1).getNombre()
+                                + " tienen la misma puntuación de " + lista.get(i).getPuntuacionSalto());
+            }
         }
 
         System.out.println("""
@@ -44,9 +78,14 @@ public class App {
                 """);
         for (int i = 0; i < lista.size(); i++) {
             StringBuilder sb = new StringBuilder();
-            sb.append(i + 1).append(". ").append(lista.get(i).getNombre()).append("\t| ")
-                    .append(lista.get(i).getPuntuacionSalto()).append(" pts | ")
-                    .append(lista.get(i).getHoraComienzo().toString());
+
+            String nombre = lista.get(i).getNombre();
+            Double puntuacionSalto = lista.get(i).getPuntuacionSalto();
+            String horaComienzoAtleta = lista.get(i).getHoraComienzo().toString();
+
+            sb.append(i + 1).append(". ").append(nombre).append("\t| ")
+                    .append(puntuacionSalto).append(" pts | ")
+                    .append(horaComienzoAtleta);
             System.out.println(sb.toString());
         }
         System.out.println("""
@@ -55,19 +94,5 @@ public class App {
                    ¡Listos para la carrera de fondo!
                 ========================================
                 """);
-
-    }
-
-    public static int primerAtleta(ArrayList<Atleta> lista) {
-        double puntuacionMax = -1;
-        int pos = -1;
-        for (int i = 0; i < lista.size(); i++) {
-            if (lista.get(i).getPuntuacionSalto() > puntuacionMax) {
-                puntuacionMax = lista.get(i).getPuntuacionSalto();
-                pos = i;
-            }
-
-        }
-        return pos;
     }
 }

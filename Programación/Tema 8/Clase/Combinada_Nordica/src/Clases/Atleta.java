@@ -2,19 +2,19 @@ package Clases;
 
 import java.time.LocalTime;
 
-public class Atleta {
+public class Atleta implements Comparable<Atleta> {
     private String nombre;
-    private double puntuacionSalto;
+    private Double puntuacionSalto;
     private LocalTime horaComienzo;
 
-    public Atleta(String nombre, double puntuacionSalto) {
+    public Atleta(String nombre, Double puntuacionSalto) {
         this.nombre = nombre;
         this.puntuacionSalto = puntuacionSalto;
 
     }
 
-    public LocalTime Gundersen(double puntuacionMaxima, LocalTime horaPartida) {
-        double diferencia = puntuacionMaxima - puntuacionSalto;
+    public LocalTime Gundersen(Double puntuacionMaxima, LocalTime horaPartida) {
+        Double diferencia = puntuacionMaxima - puntuacionSalto;
         Long retraso = Math.round(diferencia * 1.5);
         horaComienzo = horaPartida.plusSeconds(retraso);
         return horaComienzo;
@@ -30,7 +30,7 @@ public class Atleta {
         return nombre;
     }
 
-    public double getPuntuacionSalto() {
+    public Double getPuntuacionSalto() {
         return puntuacionSalto;
     }
 
@@ -40,6 +40,13 @@ public class Atleta {
 
     public void setHoraComienzo(LocalTime horaComienzo) {
         this.horaComienzo = horaComienzo;
+    }
+
+    @Override
+    public int compareTo(Atleta o) {
+
+        return o.puntuacionSalto.compareTo(this.puntuacionSalto);
+
     }
 
 }
