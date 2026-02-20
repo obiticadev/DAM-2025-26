@@ -6,15 +6,15 @@
 
 # URL base de los capítulos.
 # IMPORTANTE: Usa {} donde iría el número del capítulo.
-# Ejemplo: https://novelasligera.com/novela/la-vida-despues-de-la-muerte/capitulo-{}/
-BASE_URL = "https://novelasligera.com/novela/la-vida-despues-de-la-muerte/capitulo-{}/"
+# Ejemplo: https://novelasligera.com/novela/la-vida-despues-de-la-muerte-8-5/capitulo-{}/
+BASE_URL = "https://novelasligera.com/novela/la-vida-despues-de-la-muerte-8-5/capitulo-{:02d}/"
 
 # Rango de capítulos a descargar
 START_CHAPTER = 1    # Primer capítulo (ej. 1)
-END_CHAPTER = 529    # Último capítulo (ej. 529)
+END_CHAPTER = 60    # Último capítulo (estimado)
 
 # Nombre de la carpeta donde se guardarán los archivos descargados
-OUTPUT_FOLDER_NAME = "La vida después de la muerte - Todos los capítulos"
+OUTPUT_FOLDER_NAME = "La vida después de la muerte 8.5 - Todos los capítulos"
 
 # ==========================================
 # SELECTORES WEB (CSS)
