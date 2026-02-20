@@ -19,9 +19,11 @@ logging.basicConfig(
 def get_chapter_url(chapter_num):
     return config.BASE_URL.format(chapter_num)
 
-def fetch_chapter_content(chapter_num):
-    url = get_chapter_url(chapter_num)
-    logging.info(f"Iniciando descarga del Capítulo {chapter_num}: {url}")
+def fetch_chapter_content(url, chapter_num, just_for_link=False):
+    if just_for_link:
+        logging.info(f"Revisando Capítulo {chapter_num} internamente (No se guardará) solo para obtener enlace al siguiente: {url}")
+    else:
+        logging.info(f"Descargando Capítulo Faltante {chapter_num}: {url}")
     
     headers = {
         'User-Agent': config.USER_AGENT,
@@ -77,21 +79,28 @@ def parse_and_save_chapter(chapter_num, html_content):
         if not paragraphs:
             logging.warning(f"Se encontró el contenedor pero no hay párrafos <p> dentro en el capítulo {chapter_num}.")
 
-        # Construir el HTML del contenido limpio
-        chapter_content_html = ""
+        # Construir el texto del contenido limpio
+        valid_paragraphs = []
         for p in paragraphs:
-            # Opcional: Limpiar atributos sucios si fuera necesario, pero req usuario dice 'todos los parrafos'
-            # Simplemente añadimos el texto o el html del párrafo
-            chapter_content_html += str(p) + "\n"
+            # Extraer texto reemplazando <br> u otros saltos internos con espacios
+            text = p.get_text(separator=' ', strip=True)
+            if text:
+                # Normalizar para eliminar cualquier salto de línea extra que se cuele dentro del párrafo
+                text = " ".join(text.split())
+                valid_paragraphs.append(text)
+                
+        # Unimos los párrafos con exactamente un doble salto de línea (un salto visual entre párrafos)
+        # Esto es lo ideal para programas de creación Epub basados en TXT
+        chapter_content_text = "\n\n".join(valid_paragraphs)
             
     except Exception as e:
         logging.error(f"Error extrayendo contenido: {e}")
         return
 
     # 3. Guardar Archivo
-    save_to_file(chapter_num, title_text, chapter_content_html)
+    save_to_file(chapter_num, title_text, chapter_content_text)
 
-def save_to_file(chapter_num, title, content_html):
+def save_to_file(chapter_num, title, content_text):
     # Asegurar que el directorio de salida existe
     base_dir = os.path.dirname(os.path.abspath(__file__))
     output_dir = os.path.join(base_dir, config.OUTPUT_FOLDER_NAME)
@@ -102,59 +111,16 @@ def save_to_file(chapter_num, title, content_html):
 
     # Limpiar nombre del archivo
     safe_title = "".join([c for c in title if c.isalnum() or c in (' ', '-', '_')]).strip()
-    # Limitar longitud del nombre de archivo por si acaso
-    if len(safe_title) > 50:
-        safe_title = safe_title[:50]
         
-    filename = f"Capitulo_{chapter_num:03d}_{safe_title}.html"
+    filename = f"{safe_title}.txt"
     filepath = os.path.join(output_dir, filename)
 
-    # Plantilla HTML simple y limpia
-    html_template = f"""<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{title}</title>
-    <style>
-        body {{
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f9f9f9;
-        }}
-        h1 {{
-            text-align: center;
-            color: #2c3e50;
-            border-bottom: 2px solid #eaeaea;
-            padding-bottom: 10px;
-        }}
-        .content {{
-            background: white;
-            padding: 30px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            border-radius: 8px;
-        }}
-        p {{
-            margin-bottom: 1.2em;
-            text-align: justify;
-        }}
-    </style>
-</head>
-<body>
-    <div class="content">
-        <h1>{title}</h1>
-        {content_html}
-    </div>
-</body>
-</html>"""
+    # Plantilla TXT simple y limpia
+    txt_template = f"{title}\n\n{content_text}".strip()
 
     try:
         with open(filepath, 'w', encoding='utf-8') as f:
-            f.write(html_template)
+            f.write(txt_template)
         logging.info(f"Guardado exitosamente: {filename}")
     except Exception as e:
         logging.error(f"Error escribiendo archivo {filename}: {e}")
@@ -175,14 +141,69 @@ def main():
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
+    import re
+    
+    # 1. Limpieza de archivos incorrectos (ej. novelas equivocadas en caso de error) y listar válidos
+    valid_chapters_downloaded = set()
+    if os.path.exists(output_dir):
+        for filename in os.listdir(output_dir):
+            if filename.endswith(".txt"):
+                filepath = os.path.join(output_dir, filename)
+                if "TBATE" not in filename.upper():  # Si el nombre no contiene TBATE, lo borramos
+                    logging.info(f"Eliminando archivo incorrecto (no es TBATE): {filename}")
+                    try:
+                        os.remove(filepath)
+                    except Exception as e:
+                        logging.error(f"Error borrando {filename}: {e}")
+                else:
+                    # Extraer número de capítulo correcto
+                    match = re.search(r"Cap[íi]tulo\s+(\d+)", filename, re.IGNORECASE)
+                    if match:
+                        valid_chapters_downloaded.add(int(match.group(1)))
+
+    current_url = get_chapter_url(config.START_CHAPTER)
+
     for chapter in range(config.START_CHAPTER, config.END_CHAPTER + 1):
-        # 1. Descargar y Procesar
-        html = fetch_chapter_content(chapter)
+        # 2. Comprobar si ya tenemos el capítulo correcto
+        if chapter in valid_chapters_downloaded:
+            # Necesitamos obtener la URL para el SIGUIENTE capítulo solo si el siguiente nos falta
+            if chapter < config.END_CHAPTER and (chapter + 1) not in valid_chapters_downloaded:
+                logging.info(f"Capítulo {chapter} existe, accediendo a {current_url} SOLO para obtener URL del Cap {(chapter+1)}...")
+                html = fetch_chapter_content(current_url, chapter, just_for_link=True)
+                if html:
+                    soup = BeautifulSoup(html, 'html.parser')
+                    next_nav = soup.select_one('div.wp-post-navigation-next a')
+                    if next_nav and 'href' in next_nav.attrs:
+                        current_url = next_nav['href']
+                    else:
+                        logging.warning("No se encontró enlace al siguiente capítulo, usando URL por defecto.")
+                        current_url = get_chapter_url(chapter + 1)
+                    
+                    delay = random.uniform(2.0, 5.0)  # Breve pausa por la consulta de enlace
+                    time.sleep(delay)
+                else:
+                    current_url = get_chapter_url(chapter + 1)
+            else:
+                # Si el siguiente también existe, actualizamos a la URL teórica para seguir la cadena con calma
+                current_url = get_chapter_url(chapter + 1)
+            
+            continue
+
+        # 3. Descargar y Procesar Capítulo Faltante usando el URL real
+        html = fetch_chapter_content(current_url, chapter)
         if html:
             parse_and_save_chapter(chapter, html)
+            
+            # 4. Extraer el enlace de "Página Siguiente"
+            soup = BeautifulSoup(html, 'html.parser')
+            next_nav = soup.select_one('div.wp-post-navigation-next a')
+            if next_nav and 'href' in next_nav.attrs:
+                current_url = next_nav['href']
+            else:
+                logging.warning("No se encontró enlace al siguiente capítulo, usando URL por defecto.")
+                current_url = get_chapter_url(chapter + 1)
         
-        # 2. Espera Aleatoria (Humanización)
-        # No esperamos después del último capítulo
+        # 5. Espera Aleatoria (Humanización)
         if chapter < config.END_CHAPTER:
             delay = random.uniform(config.MIN_DELAY_SECONDS, config.MAX_DELAY_SECONDS)
             logging.info(f"Esperando {delay:.1f} segundos para evitar bloqueo...")

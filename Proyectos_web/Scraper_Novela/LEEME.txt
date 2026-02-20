@@ -12,7 +12,7 @@ INSTRUCCIONES DE USO
 
 3. Resultado:
    - Se creará una carpeta llamada "La vida después de la muerte - Todos los capítulos".
-   - Dentro encontrarás un archivo HTML por cada capítulo.
+   - Dentro encontrarás un archivo TXT por cada capítulo.
    - Si se interrumpe, puedes volver a ejecutarlo; el programa sobreescribirá o saltará según la lógica (actualmente re-descarga para asegurar contenido fresco).
 
 4. Configuración:

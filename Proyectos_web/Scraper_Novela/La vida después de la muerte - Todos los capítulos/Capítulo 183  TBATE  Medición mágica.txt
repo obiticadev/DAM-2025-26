@@ -1,0 +1,191 @@
+Capítulo 183 – TBATE – Medición mágica
+
+Punto de Vista de Arthur Leywin.
+
+Medir y registrar de cómo alguien ‘libera magia’ fue una forma poco intuitiva de describir un proceso desconocido a un grupo de magos ancianos y dos adolescentes.
+
+Sin embargo, una vez que Emily reprimió su entusiasmo y comenzó a explicar lentamente las funciones de los discos por toda la sala y el panel de metal lleno de medidores, así como la armadura de cuero que llevaba, pude ver la emoción burbujeando en los rostros de todos.
+
+“¿Entonces las cosas por toda la sala sirven como detectores de algún tipo para registrar cuán poderoso es un hechizo?” Preguntó Camus, inclinando la cabeza.
+
+Emily asintió. “La palabra ‘poderoso’ es un término vago, pero sí. Los discos fueron bastante complicados de hacer porque cada uno de ellos debe ser lo suficientemente resistente para recibir el impacto, pero lo suficientemente sensible para transmitir con precisión la retroalimentación a mi panel de registro. Sin embargo, ese es solo un aspecto; Explicaré lo otro en un momento.”
+
+“¿Que eran esas líneas brillantes que conectaban los discos antes?” Preguntó Hester.
+
+“¡Buena pregunta!” Emily asintió. “Bueno, verás, un hechizo rara vez tendrá el tamaño de un solo sensor, así que necesitaba que los discos estuvieran colocados relativamente cerca uno del otro con sensores en el medio. De esa manera, incluso cuando un hechizo tiene varios metros de diámetro, los discos pueden medir con precisión el impacto o la fuerza del hechizo. A esta medida la llamo fuerza por unidad o fpu. Los resplandecientes rastros de maná que se iluminan una vez que tienen suficiente energía — en este caso, por la princesa Kathyln y los tres ancianos — sirven como sensores que conectan los discos entre sí para que pueda medir con mayor precisión el fpu de un hechizo tan pronto como se lanzado al campo de los discos.”
+
+Pude ver más de unos pocos ojos vidriosos con confusión ante la excitada explicación de Emily. Estuve tentado a quedarme callado y dejar que continuara con las palabras que tenía que decir, pero tenía curiosidad por algo. “Así que los discos actúan como sensores después de haber sido golpeado básicamente con un hechizo. Pero digamos que disparé una ráfaga de viento contra el anciano Buhnd y él la bloqueó. El hechizo nunca llegaría a ninguno de los discos, así que, ¿no se mediría ese hechizo?”
+
+Los ojos de Emily se iluminaron. “Como era de esperar, rápidamente te has dado cuenta de una de las deficiencias. Me di cuenta de lo mismo en las primeras etapas. Si estos discos fueran solo objetivos a los que golpear, entonces el impacto que recibirían es suficiente para obtener una lectura precisa de la fuerza del hechizo. Pero cuando se está llevando a cabo un combate en vivo, más de la mitad de los hechizos serían ilegibles, o inexactos en el mejor de los casos, debido a que fueron parcial o totalmente mitigados por un contraataque del oponente. Dije anteriormente que el registro a través del contacto directo era uno de los aspectos principales de los discos. La otra, es la razón por la que necesitaba cubrir toda la habitación. Cada disco no solo envía rastros visibles de maná a los otros discos que lo rodean, sino que también crea una especie de presión que puede leer la fuerza de un hechizo tan pronto como se forma.”
+
+“¿Es por eso que tuve que ayudarte a poner todos esos discos tan profundamente en el suelo?” Preguntó Buhnd, rascándose la cabeza.
+
+“Exactamente, por lo que los discos no estorban incluso cuando usas magia de tierra”, respondió. “Gracias al anciano Buhnd, la instalación de los discos bajo tierra fue fácil. A través de los sensores en el suelo, en todas las paredes y en el techo, el maná manipulado se puede medir incluso sin que ninguno de los discos sea golpeado físicamente con un hechizo.”
+
+“Está bien, básicamente tener esta habitación completamente rodeada de estos discos crea un área donde se puede medir el maná”, simplifiqué.
+
+Emily frunció los labios. “Bueno … sí, sí solo quieres resumir el trabajo de seis meses completos en una oración, supongo que sí.”
+
+“Créeme”, dije con una sonrisa, “sé muy bien que lo que has creado aquí es una maravilla tecnológica que ayudará a los magos a desarrollarse mucho más rápido en el futuro, pero no creo que nadie aquí tenga planes de ser un artificer.”
+
+“Es cierto”, admitió Emily, todavía haciendo pucheros.
+
+“Así que me explicaste lo que hacen los discos y el panel, pero ¿qué pasa con la armadura que me hiciste usar?” Yo pregunté.
+
+“Ah, la armadura en sí fue una parte temprana de este proceso, uno de mis diseños originales de hecho. Supervisa el flujo de maná a través de un individuo, bueno, te ahorraré los detalles. Los sensores de disco hicieron más o menos obsoleta la armadura. Sin embargo, en tu caso, queríamos tanta información como fuera posible, y la armadura complementa muy bien las habilidades de la señorita Emeria,” respondió la artificer, volviendo la mirada hacia Alanis.
+
+Mi asistente de entrenamiento asintió antes de hablar. “La señorita Wykes notó la posibilidad de que este entorno pudiera tener un efecto negativo en mi capacidad personal, y pensó que el traje podría ayudarme a hacer lecturas precisas a lo largo de su entrenamiento.”
+
+“Esa es una explicación bastante vaga. Si no supiera nada mejor, podría pensar que estás tratando de mantener tu habilidad como una sorpresa, al igual que Emily hizo con su invento”, bromeé con mi asistente robótica.
+
+Sin embargo, ella estaba menos que graciosa. Su expresión permaneció inexpresiva. “General Arthur, pidió detalles específicos del traje de la señorita Wykes, no mi habilidad. Si sientes curiosidad por mi habilidad, por favor dígamelo.”
+
+“Lo haré”, respondí, desconcertado. A diferencia de Emily, mi asistente de entrenamiento no parecía muy interesada en explicar nada ni todo. “Entonces, Alanis, ¿cuál es tu habilidad?”
+
+La elfo de rostro estoico asintió, satisfecha con mi sencilla pregunta. “Después de hacer una conexión física con un individuo, puedo utilizar la magia de afinidad con la naturaleza para observar con precisión el flujo de maná de dicho individuo.”
+
+Escuché una risita de Buhnd. Echando un vistazo, vi al enano empujando a Camus con el codo y susurrando: “Jeje , ‘conexión física’ de hecho.”
+
+Contuve un gemido y Camus simplemente ignoró al lascivo enano.
+
+“Entonces, ¿eso te convierte en una desviada de la magia de la naturaleza?” Pregunté, curioso.
+
+Si bien era de conocimiento común que las formas superiores de magia del viento, el agua, la tierra y el fuego eran el sonido, el hielo, la gravedad y los relámpagos, respectivamente — con la magia de metal y magma específicamente una especialidad de los enanos — se sabía poco acerca de qué era exactamente la magia de la naturaleza. Se reconoció que solo los elfos podían utilizar la magia de la naturaleza, lo que llevó a los investigadores de la magia a creer que era una especie de especialidad desviada del viento y el agua, al igual que el magma era una combinación especializada de fuego y tierra. Un ejemplo de magia de la naturaleza fue la manipulación de las plantas, como lo que Tess pudo hacer, pero nunca había oído hablar de leer el flujo de maná usando magia de la naturaleza.
+
+“No estoy segura de sí mi habilidad es una forma evolucionada de la magia de la naturaleza o un uso periférico especializado de ella”, respondió. “Sin embargo, el Comandante Virion me encargó que proporcionara información precisa sobre su flujo de maná durante el curso de su entrenamiento, como lo he hecho con otras Lanzas.”
+
+“¿Ayudaste a las otros Lanzas, también?” Yo pregunté. No me sorprendió tanto el hecho de que Alanis hubiera trabajado con los demás, sino que Virion no me había hablado de ella.
+
+“Sí”, dijo simplemente.
+
+“Qué intrigante,” intervino Hester. “¿Y qué muestra esta magia sensorial sobre el General Arthur?”
+
+Alanis sacó su tablilla. Pasó varias páginas antes de leer en voz alta: “La tasa de flujo de maná del General Arthur tras la manipulación desde el núcleo de maná hasta las extremidades se mide en aproximadamente un punto entre cuatro y seis segundos para el aumento corporal. Para el canto de hechizos, hay aproximadamente un cuarenta por ciento de aumento en el tiempo para los hechizos del atributo del viento y un cincuenta y cinco por ciento de aumento para los hechizos del atributo de la tierra en comparación con los hechizos del atributo del hielo y rayo. La magia del fuego y agua no fue utilizada lo suficiente durante la sesión, por lo que no se pudieron realizar lecturas.”
+
+“Los cinco – cuatro – puntos es terriblemente específico. ¿Cómo midió el tiempo con tanta precisión?” Camus preguntó, su interés también se despertó.
+
+Alanis sacó un pequeño dispositivo en forma de cubo del interior de su chaqueta tipo traje . “La señorita Wykes me proporcionó generosamente este dispositivo para contar el tiempo.”
+
+Ella presionó un pequeño botón en el costado y el cubo comenzó a zumbar, luego rápidamente lo presionó de nuevo. Nos mostró la parte superior del cubo, y mostraba el tiempo transcurrido, hasta una décima de segundo.
+
+“Nunca pensé que vería una herramienta tan inútil”, se quejó Buhnd, obviamente desinteresado en el análisis de estos números.
+
+“Disparates. Ese dispositivo puede medir qué tan rápido puedes correr de un extremo a otro de la habitación con esos pequeños trozos que llamas piernas,” se burló Hester , con una sonrisa de suficiencia en el rostro.
+
+Buhnd soltó un fuerte bufido. “¿Por qué hacer algo tan plebeyo como correr cuando puedo hacer que la tierra mueva mis pies debajo de mí, vieja bruja?”
+
+Los dos comenzaron a discutir una vez más, haciéndome preguntarme cuál era su relación. Sin embargo, no fueron solo sus peleas; Cuando estábamos entrenando, los tres ancianos habían mostrado un asombroso grado de coordinación, como si hubieran luchado juntos antes. Tomé nota mental de preguntarle a Kathyln o Virion más tarde.
+
+Volví mi atención a los dos elfos. Parecía que Alanis acababa de responder una pregunta de Camus que me había perdido.
+
+“Ya veo,” respondió el viejo elfo pensativo. “No quisiera molestar demasiado a la señorita Wykes sobre esto, así que yo proporcionare algunos materiales.”
+
+“Realmente no hay ningún problema, anciano Camus”, dijo Emily. “Estaba planeando mejorar a Arth — el traje del General Arthur de todos modos. Hacer algunos más no sería una gran tensión, ya que ya tengo varios prototipos a medio terminar. Suponiendo que tenga suficientes materiales a mano, solo necesito actualizarlos a las especificaciones correctas y ajustarlos correctamente.”
+
+“¿Que está pasando?” Susurré, inclinándome hacia Kathyln.
+
+“El anciano Camus preguntó si era posible que la señorita Emeria hiciera lecturas para varias personas”, respondió Kathyln, dando un paso atrás.
+
+‘¡Ups! Un poco demasiado cerca para ella.’
+
+También me distancié, recordando que la princesa siempre había sido cautelosa con su ‘burbuja’ personal. “¿Eso también va para ti?”
+
+Ella asintió. “Tengo curiosidad por saber cómo se compara la velocidad de mi flujo de maná con la de otros.”
+
+El aspecto de la comparación me trajo a la mente un montón de preguntas que quería hacerle a Emily, pero ahora no era el momento para eso. En cambio, me voltee hacia mi asistente de entrenamiento. “Alanis, ¿cuáles fueron mis números después de que usé Realmhea — quiero decir, después de que mi cabello y ojos cambiaron de color?”
+
+Todos miraron expectantes a la elfo de los cordones estrechos. Incluso Hester y Buhnd, cuyas peleas — o tal vez coqueteos — yo había apagado, se detuvieron para escuchar su respuesta.
+
+Alanis solo tuvo que pasar una página de su cuaderno antes de responder. “La eficiencia de lanzamiento de hechizos del General Arthur, desde la etapa de invocación mental hasta la formación física del maná elemental, aumentó casi cinco veces en todos los aspectos de elementos, y …”
+
+“¿Y?” Buhnd presionó mientras todos contenían la respiración.
+
+Alanis negó con la cabeza. “Mis disculpas, General Arthur. No registré su aumento corporal después del cambio en su forma.”
+
+“Está bien”, le aseguré. “¿Fue porque no hubo suficiente diferencia en los tiempos?”
+
+“Oh no. No es por eso”, dijo Alanis con los ojos muy abiertos. “No te grabé simplemente porque no pude . General Arthur, su velocidad de aumento corporal normalmente está a la par con la mayoría de las Lanzas. Sin embargo, después de la transformación, fue demasiado fatídico para mí siquiera intentar medirlo.”
+
+*****
+
+“¿Cómo está tu hermano estos días?” Pregunté, esperando llenar el incómodo silencio en el pasillo.
+
+Kathyln y yo caminábamos por uno de los pisos residenciales del castillo. La vista clara de la luna y las estrellas afuera nos dijo que nuestro entrenamiento había durado mucho más de lo que pretendíamos. Con todos ya dormidos o trabajando en los niveles inferiores, el castillo se sentía casi abandonado.
+
+“Curtis está mucho mejor, ahora que papá finalmente le ha permitido salir del castillo — bajo supervisión, por supuesto”, respondió Kathyln con una pizca de envidia. “En su último pergamino de transmisión, describió lo gratificante que es ser uno de los instructores asistentes de capacitación en la Academia Lanceler.”
+
+“¿No tienes tanta suerte, supongo? ”
+
+“Tenía la esperanza de que volverme más fuerte como mago me permitiría un poco más de libertad, pero la imagen que mi padre tiene de mí sigue siendo la de una pequeña princesa tímida”, suspiró.
+
+“Bueno, para ser justos, eres bastante tímida”, le dije, tratando de mejorar el estado de ánimo.
+
+“Me han dicho que me he vuelto más extrovertida”, respondió Kathyln, nerviosa. “Incluso mi participación como tu compañera de entrenamiento fue por mi propia insistencia …” Su voz se fue apagando.
+
+“¿Qué fue eso?”
+
+Ella aceleró el paso y siguió adelante. “Nada.”
+
+Nosotros continuamos en silencio, y me encontré extrañamente pagar mucha atención a la caminata de Kathyln. Sus pasos tenían una cadencia casi arrulladora, cada pisada se hacía deliberadamente en las puntas de sus pies para minimizar el sonido. Era de complexión pequeña, pero su paso exudaba una confianza que parecía bien ensayado. Si no la conociera, por su forma de andar habría pensado que era solo otra noble arrogante y pretenciosa.
+
+Se detuvo, y cuando levanté los ojos, la encontré mirándome con un leve levantamiento de la ceja izquierda. “¿Todo está bien?”
+
+Al darme cuenta de que había pasado los últimos momentos mirando sus piernas, me sonrojé. “No, quiero decir que sí, todo está bien.”
+
+“Tus pasos son muy silenciosos; No sabía si todavía caminabas detrás de mí”, dijo Kathyln, esperándome para que pudiéramos caminar juntos.
+
+“Podría decir lo mismo de ti”, me reí. “A pesar de la confianza con la que caminas, tus pies apenas parecen tocar el suelo.”
+
+“Mi madre era muy estricta con cualquier cosa que pudieran ver quienes nos rodeaban. Curtis y yo teníamos que tomar lecciones que cubrían todos los aspectos de la etiqueta real”, respondió Kathyln.
+
+“¡Oh! Mi mamá hizo que Ellie asistiera a ese tipo de clases cuando era pequeña. Excepto que lo único que pareció aprender fue cómo librarse de las tareas del hogar diciendo que eran ‘poco femeninas’”, dije.
+
+Kathyln sonrió levemente. “Ellie es tu hermana, ¿cierto? ¿de nombre corto Eleanor?”
+
+“Sí. ¿La conociste? Suele estar en el balcón exterior practicando tiro con arco.”
+
+“La he visto en alguna ocasión, pero nunca hablé con ella”, respondió.
+
+“Ella puede ser un poco intimidante, con ese oso siempre siguiéndole”, admití. “Tendré que presentártela apropiadamente en algún momento . Estoy seguro de que estará emocionada de conocerte.”
+
+La sonrisa de Kathyln se amplió hasta el punto de que en realidad parecía una sonrisa. “Me gustaría eso.”
+
+Seguimos hablando mientras nos dirigíamos a su habitación. Originalmente, se suponía que Hester iba a acompañar a la princesa de regreso, pero yo quería salir de la sala de entrenamiento, en realidad planeaba comer algo después, así que me ofrecí. La anciana maga no estaba dispuesta, pero ella y los otros dos ancianos habían querido quedarse con Emily y Alanis para medir la fuerza de sus hechizos. Sabía que Kathyln sería como una Lanza, y su entusiasmo por medir su fpu superaba a todo lo demás, por lo que cedió .
+
+Si alguien se quedara absolutamente quieto y en silencio, era posible sentir el castillo temblar levemente cuando Hester, Buhnd y Camus soltaban su magia muy abajo.
+
+La habitación de Kathyln estaba solo unos metros más adelante cuando recordé lo que quería preguntarle . “¿Tu guardián conoce personalmente a Buhnd?”
+
+Ella asintió. “Los tres ancianos se conocen.”
+
+Mis cejas se arquearon con sorpresa. “¿En serio? ¿Cómo?”
+
+“Esos tres jugaron un papel crucial en la última guerra entre humanos y elfos. Darv envió soldados para ayudar a Sapin durante la guerra, que es como se conocen Hester y el anciano Buhnd. Después de que terminó la guerra , los líderes de los tres reinos se vieron obligados a asistir a una cumbre que se celebraba cada dos meses en un intento por reparar los puentes rotos. Hester ha mencionado al Anciano Camus y al Anciano Buhndemog varias veces. A menudo se entrenaban juntos antes.”
+
+“Eso explica su impresionante coordinación cuando entrenamos”, señalé.
+
+Quería preguntar más sobre Hester y sobre la Casa Flamesworth en General, pero ya hacía unos momentos que estábamos ante la puerta de Kathyln y me pareció más adecuado preguntarle directamente a Hester.
+
+“¿Estarás bien por ti misma, princesa?” Bromeé mientras Kathyln abría la puerta con cuidado con el toque de una palma. Mi habitación no tenía un lector de firmas de maná, pero nuevamente, probablemente no me hubiera servido de mucho tener uno.
+
+“Padre tomó precauciones adicionales con los refuerzos para mi habitación”, dijo, levantando un colgante de aspecto familiar de alrededor de su cuello. “Yo también tengo esto.”
+
+“Eso está hecho de un dragón fénix, ¿verdad?” Pregunté, sabiendo dónde lo había visto.
+
+“Estoy impresionada de que sepas lo que es a tan solo un vistazo”, respondió. “El artificer, Gideon, los hizo a partir del núcleo y la escama de un wyrm fénix.”
+
+“Es hermoso”, dije, omitiendo el hecho de que había intercambiado dos de los mismos artefactos de Gideon hace casi diez años por los planos de la nave a motor de vapor. Ellie y mi madre todavía los usaban ahora, una de las razones por las que podía dormir un poco mejor por la noche.
+
+“Gracias.” Ella guardó el colgante del wyrm fénix dentro de su camisa. “Y gracias por invitarme. Me alegré de ver a Hester tan ansiosa por unirse, pero, conociéndola, habría insistido en irse conmigo si no hubiera tenido una escolta.”
+
+“No hay problema”, respondí. “Es lo mínimo que puedo hacer a cambio de que te tomes el tiempo para ayudarme con mi entrenamiento.”
+
+Ella sacudió su cabeza. “Es entrenamiento para mí también. No hay necesidad de agradecerme por eso.”
+
+“Bueno, entonces entrenemos duro y seamos aún más fuertes.” Estreche una mano.
+
+Kathyln miró fijamente mi mano abierta por un momento antes de aceptar con cautela el gesto.
+
+Su palma y los dedos estaban calientes al tacto — caliente, incluso — y su mano se mantuvo completamente inmóvil en mi agarre. Asegurándome de que mi gesto amistoso no durara demasiado, apreté suavemente su mano antes de soltarla. “Buenas noches.”
+
+Sin siquiera una pausa, ella apartó la cabeza y cerró la puerta. Desde el otro lado de su puerta, escuché un “Buenas noches, Arthur” ahogado.
