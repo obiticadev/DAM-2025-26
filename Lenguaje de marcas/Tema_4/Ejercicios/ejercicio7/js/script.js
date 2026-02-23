@@ -24,7 +24,8 @@ const validar = (e) => {
         msg.classList.add('msg-error');
         formulario.appendChild(msg);
     } else {
-        name = nombre.value;
+        name = nombre.value.trim();
+        nombre.value = '';
     }
     if (correo.value.trim() === '') {
         const msg = document.createElement('p');
@@ -32,7 +33,15 @@ const validar = (e) => {
         msg.style.color = 'red';
         msg.classList.add('msg-error');
         formulario.appendChild(msg);
+    } else {
+        email = correo.value.trim();
+        correo.value = '';
+    }
+    if (name !== undefined && email !== undefined) {
+        let li = document.createElement('li');
+        li.textContent = `El nombre es ${name} y el correo ${email}`;
+        lista.appendChild(li);
     }
 }
 
-formulario.addEventListener('submit', validar)
+formulario.addEventListener('submit', validar);
