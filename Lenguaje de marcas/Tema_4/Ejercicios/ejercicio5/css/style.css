@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+div {
+    border: 2px solid black;
+    width: 20px;
+    height: 20px;
+    padding: 20px;
+    margin: auto;
+}
+
+body {
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 5px;
+}
+
+.rojo {
+    border-color: red;
+}
+
+.agrandar {
+    width: 50px;
+}
+
+.reducir {
+    width: 10px;
+}

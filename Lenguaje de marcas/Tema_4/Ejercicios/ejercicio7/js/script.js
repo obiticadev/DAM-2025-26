@@ -1,0 +1,38 @@
+const formulario = document.querySelector('form');
+const nombre = document.getElementById('nombre');
+const correo = document.getElementById('email');
+const lista = document.getElementById('lista');
+
+/**
+ * 
+ * @param {SubmitEvent} e 
+ */
+
+const validar = (e) => {
+    e.preventDefault();
+
+    const error = formulario.querySelectorAll('.msg-error');
+    error.forEach(element => {
+        element.remove();
+    });
+    let name;
+    let email;
+    if (nombre.value.trim() === '') {
+        const msg = document.createElement('p');
+        msg.textContent = 'Introduce un nombre';
+        msg.style.color = 'red';
+        msg.classList.add('msg-error');
+        formulario.appendChild(msg);
+    } else {
+        name = nombre.value;
+    }
+    if (correo.value.trim() === '') {
+        const msg = document.createElement('p');
+        msg.textContent = 'Introduce un correo';
+        msg.style.color = 'red';
+        msg.classList.add('msg-error');
+        formulario.appendChild(msg);
+    }
+}
+
+formulario.addEventListener('submit', validar)
