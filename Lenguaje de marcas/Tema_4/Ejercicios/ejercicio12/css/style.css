@@ -1,0 +1,28 @@
+.tarjeta {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    display: inline-block;
+    position: relative;
+    /* Importante para que el botón se posicione respecto a la tarjeta */
+    width: 150px;
+    text-align: center;
+}
+
+.btn-X {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 2px 6px;
+}
+
+.tarjeta-hover {
+    background-color: #e8f4fd;
+    border-color: #007bff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}

@@ -5,8 +5,8 @@
 
 let contador = 0;
 const calcular = (form) => {
-    let monto = form.monto.value;
-    let descuento = form.descuento.value;
+    let monto = document.querySelector('form').monto.value;
+    let descuento = document.querySelector('form').descuento.value;
 
     let precioFinal = monto * (100 - descuento) / 100;
 
