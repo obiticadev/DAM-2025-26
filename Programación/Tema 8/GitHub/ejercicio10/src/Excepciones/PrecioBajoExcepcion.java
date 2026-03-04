@@ -7,7 +7,7 @@ public class PrecioBajoExcepcion extends Exception {
 
     public PrecioBajoExcepcion(String mensaje, Producto p) {
         super(mensaje);
-        this.productoCopia = new Producto(p);
+        this.productoCopia = p;
     }
 
     public Producto getProductoCopiado() {
