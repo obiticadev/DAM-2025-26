@@ -5,19 +5,20 @@ import java.time.LocalTime;
 import Excepciones.MiExcepcion;
 import Interfaz.Lavable;
 
-public class Coche extends VehiculoAparcado implements Lavable {
-    private final double PRECIO_X_HORA = 2.5;
-    private final int PRECIO_LAVADO = 12;
+public class Moto extends VehiculoAparcado implements Lavable {
 
-    private int numeroPuertas;
-    private boolean esSUV;
+    private final double PRECIO_X_HORA = 1.5;
+    private final int PRECIO_LAVADO = 5;
+    
+    private int cilindrada;
 
-    public Coche(String matricula, String marca, String modelo, LocalTime horaEntrada, int numeroPuertas, boolean esSUV)
+    public Moto(String matricula, String marca, String modelo, LocalTime horaEntrada, int cilindrada)
             throws MiExcepcion {
         super(matricula, marca, modelo, horaEntrada);
-        this.numeroPuertas = numeroPuertas;
-        this.esSUV = esSUV;
+        this.cilindrada = cilindrada;
     }
+
+    
 
     @Override
     public double calcularPrecioParking() {
@@ -34,5 +35,6 @@ public class Coche extends VehiculoAparcado implements Lavable {
         return precio;
     }
 
-
+    
+    
 }
