@@ -34,7 +34,7 @@ public class App {
 
             switch (respuestaMenu) {
                 case "1" -> {
-
+                    registrarEntrada();
                 }
                 case "2" -> {
 
@@ -58,6 +58,15 @@ public class App {
                 }
             }
         } while (!continuar);
+
+    }
+
+    private static void registrarEntrada() {
+
+    }
+
+    private static Object capturarRespuesta(String pregunta) {
+        return pregunta;
 
     }
 }
