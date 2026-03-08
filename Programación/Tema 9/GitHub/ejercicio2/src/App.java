@@ -1,14 +1,13 @@
-import java.time.LocalTime;
 import java.util.Scanner;
 
-import Clases.Coche;
 import Clases.VehiculoAparcado;
 import DAO.DAOParking;
 import Excepciones.MiExcepcion;
+import Herramientas.MetodosExternos;
 
 public class App {
     private static DAOParking dao;
-    private static Scanner sc = new Scanner(System.in);
+    public static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
         String respuestaMenu;
@@ -27,26 +26,30 @@ public class App {
             System.out.println("2. Registrar salida");
             System.out.println("3. Lavar vehículo");
             System.out.println("4. Mostrar vehículos");
-            System.out.println("5. Mostrar ingresos aculados");
+            System.out.println("5. Mostrar ingresos acumulados");
             System.out.println("6. Salir");
 
             respuestaMenu = sc.nextLine();
 
             switch (respuestaMenu) {
                 case "1" -> {
-                    registrarEntrada();
+                    dao.agregarVehiculo(MetodosExternos.registrarEntrada());
                 }
                 case "2" -> {
-
+                    System.out.println(MetodosExternos.registrarSalida(dao) ? "Hecho" : "Vehículo no encontrado");
                 }
                 case "3" -> {
-
+                    MetodosExternos.asignarLavado(dao);
                 }
                 case "4" -> {
-
+                    System.out.println("=== VEHÍCULOS ===");
+                    for (VehiculoAparcado vehiculo : dao.getListaVehiculos()) {
+                        System.out.println(vehiculo.mostrarInformacion());
+                        System.out.println("--------------");
+                    }
                 }
                 case "5" -> {
-
+                    System.out.println("Los ingresos acumulados son de " + dao.calcularIngresosParking() + " €");
                 }
                 case "6" -> {
                     System.out.println("Saliendo del programa...");
@@ -58,15 +61,6 @@ public class App {
                 }
             }
         } while (!continuar);
-
-    }
-
-    private static void registrarEntrada() {
-
-    }
-
-    private static Object capturarRespuesta(String pregunta) {
-        return pregunta;
 
     }
 }

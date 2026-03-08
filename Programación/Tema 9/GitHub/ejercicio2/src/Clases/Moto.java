@@ -9,7 +9,7 @@ public class Moto extends VehiculoAparcado implements Lavable {
 
     private final double PRECIO_X_HORA = 1.5;
     private final int PRECIO_LAVADO = 5;
-    
+
     private int cilindrada;
 
     public Moto(String matricula, String marca, String modelo, LocalTime horaEntrada, int cilindrada)
@@ -17,8 +17,6 @@ public class Moto extends VehiculoAparcado implements Lavable {
         super(matricula, marca, modelo, horaEntrada);
         this.cilindrada = cilindrada;
     }
-
-    
 
     @Override
     public double calcularPrecioParking() {
@@ -35,6 +33,13 @@ public class Moto extends VehiculoAparcado implements Lavable {
         return precio;
     }
 
-    
-    
+    public int getCilindrada() {
+        return cilindrada;
+    }
+
+    @Override
+    public void asignarLavado() {
+        this.lavado = true;
+    }
+
 }

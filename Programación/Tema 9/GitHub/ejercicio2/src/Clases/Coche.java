@@ -34,5 +34,17 @@ public class Coche extends VehiculoAparcado implements Lavable {
         return precio;
     }
 
+    public int getNumeroPuertas() {
+        return numeroPuertas;
+    }
+
+    public boolean isEsSUV() {
+        return esSUV;
+    }
+
+    @Override
+    public void asignarLavado() {
+        this.lavado = true;
+    }
 
 }
