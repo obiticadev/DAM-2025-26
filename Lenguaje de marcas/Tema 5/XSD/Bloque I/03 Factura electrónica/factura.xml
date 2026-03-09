@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<factura numero="F2024-001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="factura.xsd">
+    <cliente>
+        <nombre>Pepe López</nombre>
+        <nif>12345678X</nif>
+        <cp>28001</cp>
+    </cliente>
+    <total>350.75</total>
+</factura>

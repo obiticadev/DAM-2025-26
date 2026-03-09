@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reserva xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="reserva.xsd">
+    <huesped>Ana Martínez</huesped>
+    <habitacion>101</habitacion>
+    <entrada>2024-07-15</entrada>
+    <salida>2024-07-20</salida>
+    <numPersonas>4</numPersonas>
+</reserva>

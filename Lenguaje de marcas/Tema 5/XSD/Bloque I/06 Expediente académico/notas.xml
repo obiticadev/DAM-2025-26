@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<expediente alumno="García, Pedro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="notas.xsd">
+
+    <nota asignatura="Matemáticas">8.5</nota>
+    <nota asignatura="Historia">8.0</nota>
+    <nota asignatura="Física">7.0</nota>
+</expediente>

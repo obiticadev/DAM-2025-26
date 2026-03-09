@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<producto xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="producto.xsd">
+    <referencia>ABC-1599</referencia>
+    <nombre>Teclado mecánico</nombre>
+    <categoria>Periféricos</categoria>
+    <stock>5</stock>
+</producto>

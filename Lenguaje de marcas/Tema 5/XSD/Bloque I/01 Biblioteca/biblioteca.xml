@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<biblioteca xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="biblioteca.xsd">
+    <libro id="001">
+        <titulo>El Quijote</titulo>
+        <autor>Miguel de Cervantes</autor>
+        <precio>17.00</precio>
+        <anio>1605</anio>
+    </libro>
+</biblioteca>

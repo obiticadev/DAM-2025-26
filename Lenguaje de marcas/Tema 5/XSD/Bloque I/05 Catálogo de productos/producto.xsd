@@ -1,0 +1,29 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:simpleType name="tipoRef">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[A-Z]{3}-[0-9]{4}" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="tipoCategoria">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Periféricos" />
+            <xs:enumeration value="Monitores" />
+            <xs:enumeration value="Almacenamiento" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="tipoStock">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="0" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="producto">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="referencia" type="tipoRef" />
+                <xs:element name="nombre" type="xs:string" />
+                <xs:element name="categoria" type="tipoCategoria" />
+                <xs:element name="stock" type="tipoStock" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

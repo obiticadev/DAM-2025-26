@@ -1,0 +1,31 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:simpleType name="tipoNIF">
+        <xs:restriction base="xs:string">
+            <xs:length value="9" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="tipoCP">
+        <xs:restriction base="xs:string">
+            <xs:length value="5" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="factura">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="cliente">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="nombre"
+                                type="xs:string" />
+                            <xs:element name="nif" type="tipoNIF" />
+                            <xs:element name="cp" type="tipoCP" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="total"
+                    type="xs:string" />
+            </xs:sequence>
+            <xs:attribute name="numero" type="xs:string" />
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

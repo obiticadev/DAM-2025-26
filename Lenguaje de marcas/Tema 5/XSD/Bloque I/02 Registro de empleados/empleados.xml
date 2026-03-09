@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<empresa xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="empleados.xsd">
+    <empleado>
+        <nombre>Laura García</nombre>
+        <departamento>IT</departamento>
+        <salario>2500.00</salario>
+        <activo>1</activo>
+    </empleado>
+</empresa>
