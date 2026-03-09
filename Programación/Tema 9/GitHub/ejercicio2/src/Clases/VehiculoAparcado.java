@@ -5,7 +5,7 @@ import java.time.LocalTime;
 
 import Excepciones.MiExcepcion;
 
-public abstract class VehiculoAparcado {
+public abstract class VehiculoAparcado implements Comparable<VehiculoAparcado> {
     protected String matricula;
     protected String marca;
     protected String modelo;
@@ -41,13 +41,42 @@ public abstract class VehiculoAparcado {
         return sb.toString();
     }
 
-    protected long calcularHorasFacturables() {
+    protected double calcularHorasFacturables() {
         long dif;
-        dif = Duration.between(horaEntrada, horaSalida).toHours();
+        dif = Duration.between(horaEntrada, horaSalida).toMinutes();
+
+        double horas = dif / 60;
         if (lavado) {
             dif -= 2;
+            if (horas < 0) {
+                horas = 0;
+            }
         }
-        return dif;
+        return horas;
+    }
+
+    public void registrarSalida() {
+        this.horaSalida = LocalTime.now();
+    }
+
+    public int compareTo(VehiculoAparcado o) {
+        return this.matricula.compareTo(o.matricula);
+    }
+
+    public LocalTime getHoraSalida() {
+        return horaSalida;
+    }
+
+    public boolean isLavado() {
+        return lavado;
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setHoraSalida(LocalTime horaSalida) {
+        this.horaSalida = horaSalida;
     }
 
     public abstract double calcularPrecioParking();

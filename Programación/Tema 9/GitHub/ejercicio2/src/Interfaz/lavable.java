@@ -1,5 +1,7 @@
 package Interfaz;
 
-public interface lavable {
+public interface Lavable {
     double calcularPrecioLavado();
+
+    void asignarLavado();
 }
