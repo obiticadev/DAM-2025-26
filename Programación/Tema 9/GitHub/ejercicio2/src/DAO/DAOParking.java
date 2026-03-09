@@ -1,21 +1,37 @@
 package DAO;
 
-import java.time.LocalTime;
-import java.util.ArrayList;
-
 import Clases.Coche;
 import Clases.Moto;
 import Clases.VehiculoAparcado;
 import Excepciones.MiExcepcion;
 import Interfaz.Lavable;
+import java.time.LocalTime;
+import java.util.ArrayList;
 
 public class DAOParking {
+
+    // 1. Creamos una variable estática y privada para guardar la ÚNICA instancia
+    private static DAOParking instancia;
+
     private ArrayList<VehiculoAparcado> listaVehiculos;
 
-    public DAOParking() throws MiExcepcion {
+    // 2. Hacemos el constructor PRIVADO.
+    // ¡Nadie desde fuera podrá hacer "new DAOParking()"!
+    private DAOParking() throws MiExcepcion {
         this.listaVehiculos = new ArrayList<>();
         cargarDatos();
     }
+
+    // 3. Creamos el método público que todos usarán para obtener el DAO
+    public static DAOParking getInstance() throws MiExcepcion {
+        // Si no existe, la creamos. Si ya existe, devolvemos la que hay.
+        if (instancia == null) {
+            instancia = new DAOParking();
+        }
+        return instancia;
+    }
+
+    // ... (El resto de tus métodos siguen exactamente igual) ...
 
     private void cargarDatos() throws MiExcepcion {
         VehiculoAparcado c1 = new Coche("1234ABC", "Ford", "TurboMill", LocalTime.now().minusHours(4), 4, true);

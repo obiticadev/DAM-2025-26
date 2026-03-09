@@ -1,9 +1,8 @@
-import java.util.Scanner;
-
 import Clases.VehiculoAparcado;
 import DAO.DAOParking;
 import Excepciones.MiExcepcion;
 import Herramientas.MetodosExternos;
+import java.util.Scanner;
 
 public class App {
     private static DAOParking dao;
@@ -14,7 +13,7 @@ public class App {
         boolean continuar = false;
 
         try {
-            dao = new DAOParking();
+            dao = DAOParking.getInstance();
         } catch (MiExcepcion e) {
             System.out.println("Revisar la matricula: " + e.getMatricula() + ", con la hora de entrada a las "
                     + e.getHoraEntrada());

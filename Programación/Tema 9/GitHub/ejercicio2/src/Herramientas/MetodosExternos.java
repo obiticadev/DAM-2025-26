@@ -1,13 +1,11 @@
 package Herramientas;
 
-import java.time.LocalTime;
-import java.util.Scanner;
-
-import Clases.Coche;
 import Clases.VehiculoAparcado;
 import DAO.DAOParking;
 import Excepciones.MiExcepcion;
 import Interfaz.Lavable;
+import java.time.LocalTime;
+import java.util.Scanner;
 
 public class MetodosExternos {
     private static Scanner sc = new Scanner(System.in);
@@ -17,21 +15,34 @@ public class MetodosExternos {
     public static VehiculoAparcado registrarEntrada() {
         boolean continuar = false;
         do {
+            System.out.println("¿Qué tipo de vehículo vas a registrar? (1=Coche, 2=Moto)");
+            int tipo = capturarRespuestaInt("Opción: ");
+
             String matricula = capturarRespuesta("Matrícula: ").toUpperCase();
             String marca = capturarRespuesta("Marca: ");
             String modelo = capturarRespuesta("Modelo: ");
             LocalTime horaEntrada = LocalTime.now();
-            int numPuertas = capturarRespuestaInt("Número de puertas: ");
-            Boolean esSuv = capturarRespuestaBool("¿Es suv? responde con 'True' o 'False'");
+
             try {
-                return new Coche(matricula, marca, modelo, horaEntrada, numPuertas, esSuv);
+                if (tipo == 1) {
+                    int numPuertas = capturarRespuestaInt("Número de puertas: ");
+                    boolean esSuv = capturarRespuestaBool("¿Es SUV? (true/false): ");
+                    return VehiculoFactory.crearVehiculo(tipo, matricula, marca, modelo, horaEntrada, numPuertas,
+                            esSuv);
+                } else if (tipo == 2) {
+                    int cilindrada = capturarRespuestaInt("Cilindrada (cc): ");
+                    // Mandamos 'false' en el último parámetro porque la moto no lo usa
+                    return VehiculoFactory.crearVehiculo(tipo, matricula, marca, modelo, horaEntrada, cilindrada,
+                            false);
+                } else {
+                    System.out.println("Opción incorrecta.");
+                }
             } catch (MiExcepcion e) {
-                System.out.println("La matrícula: " + e.getMatricula() + "registrada a las " + e.getHoraEntrada()
-                        + "no cumple con las condiciones de '1234ABC'");
+                System.out.println("La matrícula: " + e.getMatricula() + " no cumple con el formato '1234ABC'.");
             }
         } while (!continuar);
-        return null;
 
+        return null;
     }
 
     public static Boolean registrarSalida(DAOParking dao) {
