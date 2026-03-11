@@ -1,0 +1,20 @@
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://aerolinea.es/vuelos/v1"
+    xmlns:tns="http://aerolinea.es/vuelos/v1"
+    elementFormDefault="qualified">
+    <xs:element name="vuelo">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="codigo"
+                    type="xs:string" />
+                <xs:element name="origen"
+                    type="xs:string" />
+                <xs:element name="destino"
+                    type="xs:string" />
+                <xs:element name="duracion"
+                    type="xs:duration" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

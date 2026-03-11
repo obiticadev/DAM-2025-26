@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pacientes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="paciente.xsd">
+    <paciente id="P001">
+        <nombre>Carlos Ruiz</nombre>
+        <edad>45</edad>
+        <grupo_sanguineo>A+</grupo_sanguineo>
+        <telefono>555-1234</telefono>
+    </paciente>
+</pacientes>

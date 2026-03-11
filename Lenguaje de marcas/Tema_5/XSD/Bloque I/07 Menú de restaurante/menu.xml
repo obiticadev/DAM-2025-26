@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="menu.xsd">
+    <plato>
+        <nombre>Paella Valenciana</nombre>
+        <precio>14.50</precio>
+        <calorias>850</calorias>
+    </plato>
+    <plato>
+        <nombre>Gazpacho</nombre>
+        <precio>10</precio>
+        <calorias>100</calorias>
+    </plato>
+</menu>

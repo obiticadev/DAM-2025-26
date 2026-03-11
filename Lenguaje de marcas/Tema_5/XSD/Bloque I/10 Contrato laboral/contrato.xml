@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<contrato xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="contrato.xsd">
+    <trabajador>María Sánchez</trabajador>
+    <fecha_inicio>2024-01-15</fecha_inicio>
+    <pago>
+        <salario_mensual>1800</salario_mensual>
+        <salario_por_hora>12.5</salario_por_hora>
+    </pago>
+    <duracion_meses>indefinido</duracion_meses>
+</contrato>

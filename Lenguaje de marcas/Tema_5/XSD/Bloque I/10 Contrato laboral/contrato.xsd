@@ -1,0 +1,32 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:complexType name="tipoPago">
+        <xs:all>
+            <xs:element name="salario_mensual"
+                type="xs:decimal" />
+            <xs:element name="salario_por_hora"
+                type="xs:decimal" />
+        </xs:all>
+    </xs:complexType>
+    <xs:simpleType name="tipoDuracion">
+        <xs:union memberTypes="xs:positiveInteger">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="indefinido" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+    </xs:simpleType>
+    <xs:element name="contrato">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="trabajador"
+                    type="xs:string" />
+                <xs:element name="fecha_inicio"
+                    type="xs:date" />
+                <xs:element name="pago" type="tipoPago" />
+                <xs:element name="duracion_meses"
+                    type="tipoDuracion" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

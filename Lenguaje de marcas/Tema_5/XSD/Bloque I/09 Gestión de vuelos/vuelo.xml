@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vuelo
+    xmlns="http://aerolinea.es/vuelos/v1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://aerolinea.es/vuelos/v1 vuelo.xsd">
+    <codigo>IB3456</codigo>
+    <origen>MAD</origen>
+    <destino>BCN</destino>
+    <duracion>PT55M</duracion>
+</vuelo>
