@@ -3,6 +3,7 @@ package DAO;
 import java.util.ArrayList;
 
 import Clases.Participante;
+import MiExcepcion.MiExcepcion;
 
 public class ParticipanteDAO {
     private ArrayList<Participante> listaRegistrados;
@@ -38,6 +39,15 @@ public class ParticipanteDAO {
 
     public ArrayList<Participante> devolverDatos() {
         return new ArrayList<>(listaRegistrados);
+    }
+
+    public boolean agregarRegistro(String nombre, String email) throws MiExcepcion {
+        if (nombre.length() != 0 && email.length() != 0) {
+            Participante p = new Participante(nombre, email);
+            listaRegistrados.add(p);
+            return true;
+        }
+        throw new MiExcepcion("Nombre o email debe contener al menos un caracter");
     }
 
 }

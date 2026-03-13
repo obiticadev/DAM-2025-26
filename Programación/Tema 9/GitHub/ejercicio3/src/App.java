@@ -1,9 +1,12 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Scanner;
 
 import Clases.Participante;
 import DAO.ParticipanteDAO;
+import MiExcepcion.MiExcepcion;
 
 public class App {
     private static ParticipanteDAO dao = new ParticipanteDAO();
@@ -33,6 +36,11 @@ public class App {
                 case "5" -> {
                     cancelarRegistro();
                 }
+                case "6" -> {
+                    if (!ordenarAsistentesConfirmados()) {
+                        System.out.println("No hay participantes con asistencia confirmada");
+                    }
+                }
 
                 case "S" -> {
                     System.out.println("Saliendo del programa...");
@@ -54,6 +62,7 @@ public class App {
                 3. Confirmar asistencia al evento
                 4. Mostrar asistentes al evento
                 5. Cancelar Registro
+                6. Mostrar lista de participantes con asistencia confirmada
 
                 S. Salir
 
@@ -67,11 +76,16 @@ public class App {
         return respuesta;
     }
 
-    private static void registrarParticipante() {
+    private static boolean registrarParticipante() {
         String nombre = preguntaString("Introduce un nombre: ");
         String email = preguntaString("Introduce el email: ");
-        Participante p = new Participante(nombre, email);
-        registrados.add(p);
+        try {
+            dao.agregarRegistro(nombre, email);
+            return true;
+        } catch (MiExcepcion e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
     }
 
     private static void mostrarParticipantes() {
@@ -111,15 +125,27 @@ public class App {
 
     private static void cancelarRegistro() {
         int num = Integer.valueOf(preguntaString("Introduce un número id: "));
-        Integer numId = null;
-        for (Participante p : registrados) {
-            if (p.getId() == num) {
-                numId = num;
+        Participante p;
+        Iterator<Participante> it = registrados.iterator();
+        while (it.hasNext()) {
+            p = it.next();
+            if (p.getId() == num && !asistentesEvento.contains(p)) {
+                it.remove();
             }
         }
-        if (numId != null) {
 
-            registrados.remove();
-        }
     }
+
+    private static boolean ordenarAsistentesConfirmados() {
+        if (asistentesEvento.size() == 0) {
+            return false;
+        }
+        ArrayList<Participante> listaOrdenada = new ArrayList<>(asistentesEvento);
+        Collections.sort(listaOrdenada);
+        for (Participante p : listaOrdenada) {
+            System.out.println(p.toString());
+        }
+        return true;
+    }
+
 }

@@ -1,6 +1,6 @@
 package Clases;
 
-public class Participante {
+public class Participante implements Comparable<Participante> {
     private static int contador = 0;
 
     private int id;
@@ -46,6 +46,11 @@ public class Participante {
 
     public String getEmail() {
         return email;
+    }
+
+    @Override
+    public int compareTo(Participante o) {
+        return this.nombre.compareTo(o.getNombre());
     }
 
 }
