@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<agenda xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="agenda.xsd" propietario="Oliver Bitica">
+    <contacto>
+        <nombre>Alex</nombre>
+        <telefono>600320748</telefono>
+        <email>oliwheel@gmail.com</email>
+    </contacto>
+</agenda>
