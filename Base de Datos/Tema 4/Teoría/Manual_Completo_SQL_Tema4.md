@@ -11,7 +11,8 @@ Este documento unifica todo el temario relacionado con el **Tema 4 de Bases de D
         *   [1.1. Detalles de la Cláusula SELECT](#11-detalles-de-la-cláusula-select)
         *   [1.2. Detalles de la Cláusula FROM](#12-detalles-de-la-cláusula-from)
         *   [1.3. Detalles de la Cláusula WHERE](#13-detalles-de-la-cláusula-where)
-        *   [1.4. Ordenación de registros: Cláusula ORDER BY](#14-ordenación-de-registros-cláusula-order-by)
+        *   [1.4. Paginación y Limitación: Cláusula FETCH (Row Limiting)](#14-paginación-y-limitación-cláusula-fetch)
+        *   [1.5. Ordenación de registros: Cláusula ORDER BY](#15-ordenación-de-registros-cláusula-order-by)
     *   [2. Operadores](#2-operadores)
         *   [2.1. Operadores de comparación (Relacionales)](#21-operadores-de-comparación-relacionales)
         *   [2.2. Operadores aritméticos y de concatenación](#22-operadores-aritméticos-y-de-concatenación)
@@ -39,6 +40,7 @@ Este documento unifica todo el temario relacionado con el **Tema 4 de Bases de D
     *   [9. Subconsultas](#9-subconsultas)
         *   [9.1. Subconsultas de Fila Única](#91-subconsultas-de-fila-única)
         *   [9.2. Subconsultas de Múltiples Filas (IN, ANY, ALL)](#92-subconsultas-de-múltiples-filas-in-any-all)
+        *   [9.3. Operadores de Existencia (EXISTS y NOT EXISTS)](#93-operadores-de-existencia-exists-y-not-exists)
 
 ---
 ---
@@ -51,7 +53,11 @@ Esta primera sección recoge todos los conceptos, cláusulas, operadores y parti
 <a id="1-la-sentencia-select"></a>
 ## 1. La sentencia SELECT
 
-Para recuperar o seleccionar datos de una o varias tablas se utiliza la sentencia `SELECT`. Consta de cuatro partes básicas, siendo dos obligatorias y dos opcionales:
+Para recuperar o seleccionar datos de una o varias tablas se utiliza la sentencia `SELECT`. Esta operación se basa en dos conceptos relacionales:
+*   **Proyección:** Elegir qué columnas queremos ver.
+*   **Selección:** Elegir qué filas (registros) queremos ver basándonos en criterios.
+
+La sentencia consta de cuatro partes básicas, siendo dos obligatorias y dos opcionales:
 
 1. **Cláusula SELECT** (Obligatoria): Indica qué nombres de columnas queremos que se muestren.
 2. **Cláusula FROM** (Obligatoria): Indica de qué tabla(s) se extraerán los datos.
@@ -140,8 +146,35 @@ Se utiliza para restringir la selección a un subconjunto de filas que cumplan u
 
 ---
 
-<a id="14-ordenación-de-registros-cláusula-order-by"></a>
-### 1.4. Ordenación de registros: Cláusula ORDER BY
+<a id="14-paginación-y-limitación-cláusula-fetch"></a>
+### 1.4. Paginación y Limitación: Cláusula FETCH (Row Limiting)
+
+Introducida en versiones modernas (Oracle 12c+), permite limitar el número de filas devueltas de forma limpia, ideal para "Top N" o paginación web.
+
+**Sintaxis Básica:**
+```sql
+[ OFFSET n ROWS ]
+FETCH { FIRST | NEXT } [ n | n PERCENT ] ROWS { ONLY | WITH TIES };
+```
+
+*   **FETCH FIRST n ROWS ONLY**: Devuelve exactamente las primeras n filas.
+*   **OFFSET n ROWS**: Se salta las primeras n filas (útil para ver la "página 2").
+*   **WITH TIES**: Si hay empate en el último registro (según el `ORDER BY`), los devuelve todos.
+*   **PERCENT**: Permite extraer un porcentaje del total (ej. el 10% que más cobra).
+
+> **EJEMPLOS DE LIMITACIÓN:**
+> ```sql
+> -- 1. Los 3 que más cobran:
+> SELECT * FROM EMP ORDER BY SAL DESC FETCH FIRST 3 ROWS ONLY;
+> 
+> -- 2. Paginación (saltar 5 y ver los 5 siguientes):
+> SELECT * FROM EMP ORDER BY ENAME OFFSET 5 ROWS FETCH NEXT 5 ROWS ONLY;
+> ```
+
+---
+
+<a id="15-ordenación-de-registros-cláusula-order-by"></a>
+### 1.5. Ordenación de registros: Cláusula ORDER BY
 
 Permite especificar cómo se ordenará la respuesta de la consulta.
 
@@ -177,7 +210,7 @@ ORDER BY columna1 [ASC | DESC], columna2 [ASC | DESC];
 
 | Operador | Significado |
 | :--- | :--- |
-| `=`, `!=`, `< >`, `^=` | Igualdad / Desigualdad |
+| `=`, `!=`, `< >`, `^=` | Igualdad / Desigualdad (Las 3 últimas equivalentes) |
 | `<`, `>`, `<=`, `>=` | Menor, Mayor, etc. |
 | `IN` / `NOT IN` | Pertenece / No pertenece a una lista |
 | `BETWEEN` / `NOT BETWEEN` | Dentro / Fuera de un rango numérico o de fechas (inclusivo) |
@@ -687,6 +720,22 @@ Si las tripas de la subconsulta exhalan 2 o más resultados, `=` fallará.
 > WHERE Salario > ANY (
 >     SELECT Salario 
 >     FROM EMPLEADOS 
->     WHERE Cod_Dept = 10
 > );
+> ```
+
+---
+
+<a id="93-operadores-de-existencia-exists-y-not-exists"></a>
+### 9.3. Operadores de Existencia (`EXISTS` y `NOT EXISTS`)
+
+El operador `EXISTS` comprueba si una subconsulta retorna al menos un registro. Es muy eficiente para validaciones de presencia.
+
+*   **`EXISTS`**: Cierto si la subconsulta devuelve filas.
+*   **`NOT EXISTS`**: Cierto si la subconsulta no devuelve nada.
+
+> **EJEMPLO CRUCIAL (`EXISTS`):**
+> ```sql
+> -- Mostrar departamentos que tengan al menos un empleado trabajando
+> SELECT dname FROM dept d
+> WHERE EXISTS (SELECT * FROM emp e WHERE e.deptno = d.deptno);
 > ```

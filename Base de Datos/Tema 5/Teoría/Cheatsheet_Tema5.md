@@ -43,6 +43,9 @@ INSERT INTO ROLES VALUES (1, 'Admin', 'Acceso Total');
 
 -- Inserción usando funciones de Oracle:
 INSERT INTO LOGS (Id, Fecha_Accion) VALUES (10, SYSDATE);
+
+-- Consultar estructura (Obligatorio antes de tocar datos):
+DESCRIBE nombre_tabla; -- O simplemente DESC
 ```
 *💡 **Error típico:** `ORA-00913 (demasiados valores)` - Has puesto más valores en `VALUES` que columnas declaradas.*
 
@@ -95,6 +98,9 @@ ON DELETE CASCADE
 -- AL BORRAR AL PADRE, LOS HIJOS QUEDAN HUÉRFANOS (Su campo FK pasa a ser nulo):
 CONSTRAINT FK_Juego FOREIGN KEY (Cod_Juego) REFERENCES JUEGOS (Codigo) 
 ON DELETE SET NULL
+
+-- APLICAR EN TABLA YA EXISTENTE:
+ALTER TABLE PARTIDAS ADD CONSTRAINT FK_Hija FOREIGN KEY (Cod) REFERENCES PADRE (ID) ON DELETE CASCADE;
 ```
 
 ---
@@ -155,6 +161,9 @@ ROLLBACK;
 -- 3. SAVEPOINT: Crear un marcapáginas a mitad de un proceso gigante.
 SAVEPOINT paso_1;
 ROLLBACK TO SAVEPOINT paso_1; -- Vuelve al marcapáginas sin abortarlo todo.
+
+-- 4. NIVEL DE AISLAMIENTO:
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE; -- Máxima seguridad.
 ```
 *🔥 **Aviso letal:** Si ejecutas CUALQUIER comando DDL (CREATE, ALTER, DROP...), Oracle dispara un `COMMIT` automático e implícito, guardando todos tus DML anteriores sin preguntarte.*
 
@@ -171,6 +180,14 @@ En sistemas multiusuario, Oracle usa bloqueos para evitar que dos personas edite
 3.  **Filosofías de Software:**
     *   **Pesimista:** Bloquea la puerta desde que entras a la página a mirar el producto.
     *   **Optimista:** Te deja rellenar el formulario en paz, y solo bloquea atómicamente la DB la fracción de segundo en la que pulsas "Guardar". (El estándar web actual).
+
+### Tipos de Candados
+*   **Compartido (S):** Otros pueden leer, pero nadie puede escribir.
+*   **Exclusivo (X):** Nadie más puede leer con bloqueo ni escribir. (UPDATE/DELETE).
+
+### Bloqueo Manual
+1.  **A nivel de Fila:** `SELECT ... FOR UPDATE;`
+2.  **A nivel de Tabla:** `LOCK TABLE nombre IN EXCLUSIVE MODE;`
 
 ### Bloqueo Manual (FOR UPDATE)
 Si hacemos una app para comprar entradas de cine, queremos que cuando alguien *seleccione* la butaca 12A (con un `SELECT`), esa butaca se bloquee para el resto de España mientras la paga, **comportando el SELECT como un temible Escritor.**

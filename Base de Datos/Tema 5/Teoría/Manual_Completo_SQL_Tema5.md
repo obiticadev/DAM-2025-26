@@ -14,6 +14,7 @@ Este documento unifica todo el temario relacionado con el **Tema 5 de Bases de D
         *   [2.1. Inserción de registros (INSERT)](#21-inserción-de-registros-insert)
         *   [2.2. Modificación de registros (UPDATE)](#22-modificación-de-registros-update)
         *   [2.3. Borrado de registros (DELETE)](#23-borrado-de-registros-delete)
+        *   [2.4. Consulta de Estructura (DESCRIBE)](#24-consulta-de-estructura-describe)
     *   [3. Integridad Referencial](#3-integridad-referencial)
         *   [3.1. Conceptos y Terminología](#31-conceptos-y-terminología)
         *   [3.2. Implicaciones DML](#32-implicaciones-dml)
@@ -30,7 +31,9 @@ Este documento unifica todo el temario relacionado con el **Tema 5 de Bases de D
     *   [6. Problemas asociados al acceso simultáneo (Bloqueos)](#6-problemas-asociados-al-acceso-simultáneo)
         *   [6.1. Reglas de Comportamiento Automático en Oracle](#61-reglas-de-comportamiento-automático)
         *   [6.2. Diferencia entre bloqueos optimistas y pesimistas](#62-bloqueos-optimistas-y-pesimistas)
-        *   [6.3. Forzar bloqueos especiales (FOR UPDATE)](#63-forzar-bloqueos-especiales-for-update)
+        *   [6.3. Tipos de Bloqueos (Compartidos vs Exclusivos)](#63-tipos-de-bloqueos)
+        *   [6.4. Bloqueos Automáticos y Manuales](#64-bloqueos-automáticos-y-manuales)
+        *   [6.5. Niveles de Aislamiento](#65-niveles-de-aislamiento)
 
 ---
 ---
@@ -53,8 +56,14 @@ Para operar, se necesita un espacio de trabajo. Si no existe, se debe crear acce
 *   **Crear Workspace:** Se especifica un *Database User* (nuevo o existente), un *Application Express Username* (ej. `jorge`) y un *Password*.
 *   **Acceso:** Una vez creado, se hace login en APEX introduciendo el *Workspace*, el *Username* y el *Password*.
 
-<a id="12-operaciones-dml-gráficas"></a>
-### 1.2. Operaciones DML desde la Interfaz Gráfica
+<a id="12-herramientas-complementarias"></a>
+### 1.2. Herramientas Complementarias: SQL*Plus y SQL Developer
+Además de APEX, Oracle proporciona otras vías para la gestión de datos:
+*   **SQL Developer:** Entorno gráfico completo de escritorio para desarrolladores.
+*   **SQL*Plus:** Interfaz de línea de comandos clásica. Requiere conexión previa (`CONNECT usuario/password`). Es útil para scripts rápidos y administración liviana.
+
+<a id="13-operaciones-dml-gráficas"></a>
+### 1.3. Operaciones DML desde la Interfaz Gráfica
 Desde el **Explorador de Objetos** de APEX, seleccionando una tabla y yendo a la pestaña **Datos**, se pueden realizar las operaciones visualmente:
 
 *   **Inserción:** Clic en el botón **Insertar Fila**. Se rellenan los campos y se pulsa **Crear**. *(Si se introduce un texto en un campo numérico, saltará el `error ORA-00984: columna no permitida aquí`)*.
@@ -133,6 +142,17 @@ DELETE FROM nombre_tabla [ WHERE condición ];
 > DELETE FROM USUARIOS WHERE Estado = 'Baja';
 > ```
 
+<a id="24-consulta-de-estructura-describe"></a>
+### 2.4. Consulta de Estructura (`DESCRIBE`)
+Antes de insertar o modificar datos, es vital conocer la estructura de la tabla (nombres de columnas, tipos de datos y si aceptan nulos).
+
+**Sintaxis:**
+```sql
+DESCRIBE nombre_tabla;
+-- O su versión abreviada:
+DESC nombre_tabla;
+```
+
 ---
 
 <a id="3-integridad-referencial"></a>
@@ -157,6 +177,18 @@ Para solucionar el bloqueo de borrado del punto anterior, la base de datos permi
 1.  **Restrict (Opción por defecto):** Aborta y lanza error `ORA-02292`.
 2.  **`ON DELETE CASCADE`:** Si borras al Padre (JUEGO), el sistema borrará automáticamente en cascada a todos sus hijos (PARTIDAS).
 3.  **`ON DELETE SET NULL`:** Si borras al Padre, los hijos no se borran, simplemente su FK pasará a `NULL` (quedan huérfanos permitidos).
+
+### 3.4. Modificación de integridad en tablas existentes
+Si la tabla ya está creada y queremos añadir o modificar el comportamiento de integridad referencial, usamos `ALTER TABLE`.
+
+> **MÉTODO CON ALTER TABLE:**
+> ```sql
+> -- Añadir una restricción de clave ajena con borrado en cascada
+> ALTER TABLE PARTIDAS 
+> ADD CONSTRAINT FK_Juego_Cascade 
+> FOREIGN KEY (Cod_Juego) REFERENCES JUEGOS (Codigo) 
+> ON DELETE CASCADE;
+> ```
 
 > **CASO DE USO (Aplicar Cascada en creación de tablas):**
 > ```sql
@@ -242,6 +274,7 @@ Una **transacción** es el concepto más importante en DB transaccionales. Es un
 <a id="52-sentencias-de-control-de-transacciones"></a>
 ### 5.2. Sentencias de Control (COMMIT, ROLLBACK, SAVEPOINT)
 *   `COMMIT`: Hace **permanentes y públicas** las modificaciones en el disco.
+    *   *Sintaxis avanzada:* `COMMIT COMMENT 'texto' WRITE IMMEDIATE NOWAIT;`
     *   *Nota*: Un DDL (`CREATE`, `ALTER`, `DROP`) hace un `COMMIT` implícito automático y te auto-guarda las transacciones en memoria que tuvieras pendientes sin avisar.
 *   `ROLLBACK`: **Deshace, borra y anula** las ediciones DML hechas en tu sesión actuales que no estuvieran confirmadas, y restaura la tabla. (Ocurre automático si hay una desconexión crítica).
 *   `SAVEPOINT nombre`: Crea un marcapáginas/checkpoint en la mitad de la transacción.
@@ -288,8 +321,37 @@ Si dos desarrolladores o clientes entran al mismo tiempo (Concurrencia), Oracle 
 *   **Bloqueos pesimistas / Exclusivos:** Bloquean un registro desde que el usuario lo abre para mirarlo antes de editar. Evitan fallos pero revientan la experiencia de usuario general (Nadie puede apenas usar el software si crecen los usuarios).
 *   **Bloqueos optimistas:** No bloquean nada mientras el usuario rellena el formulario. Solo tiran un min-bloqueo atómico a la base de datos el milisegundo final cuando pulsan al botón "Guardar". (El más usado universalmente de forma moderna por rendimiento web).
 
+<a id="63-tipos-de-bloqueos"></a>
+### 6.3. Tipos de Bloqueos (Compartidos vs Exclusivos)
+Oracle gestiona diferentes "niveles" de candados:
+*   **Bloqueo Compartido (S - Shared):** Permite que otros usuarios lean el dato, pero nadie puede editarlo hasta que se libere.
+*   **Bloqueo Exclusivo (X - Exclusive):** El candado total. Impide tanto que otros editen como que otros bloqueen la fila. Es el que se aplica en un `UPDATE` o `INSERT`.
+
+<a id="64-bloqueos-automáticos-y-manuales"></a>
+### 6.4. Bloqueos Automáticos y Manuales
+#### Bloqueos Automáticos
+Oracle los pone por ti sin que lo pidas:
+*   **Bloqueos DML:** A nivel de fila (exclusivo) cuando editas.
+*   **Bloqueos DDL:** Protegen la estructura de la tabla mientras hay DML activo.
+
+#### Bloqueos Manuales
+A veces el desarrollador necesita tomar el control total:
+1.  **`FOR UPDATE`:** (Ya visto) Convierte un `SELECT` en un bloqueador de filas.
+2.  **`LOCK TABLE`:** Bloquea una tabla entera directamente.
+    ```sql
+    LOCK TABLE empleados IN EXCLUSIVE MODE;
+    ```
+
+<a id="65-niveles-de-aislamiento"></a>
+### 6.5. Niveles de Aislamiento de Transacciones
+*   **READ COMMITTED (Por defecto):** Solo ves los cambios de otros si ya han hecho `COMMIT`.
+*   **SERIALIZABLE:** Nivel máximo de estanqueidad.
+    ```sql
+    SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+    ```
+
 <a id="63-forzar-bloqueos-especiales-for-update"></a>
-### 6.3. Forzar bloqueos especiales (`FOR UPDATE`)
+### 6.6. Forzar bloqueos especiales (`FOR UPDATE`)
 A veces no puedes fiarte del sistema automático. Puedes transmutar un vulgar `SELECT` (que es inofensivo) para que secuestre las filas y las bloquee en exclusiva como si fuera un duro escritor `UPDATE`. **Útil para reservas de stock.**
 
 > **CASO DE USO (Reserva pesimista de Billetes / Stock garantizado):**

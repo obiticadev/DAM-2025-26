@@ -8,6 +8,7 @@ Este documento es una referencia profesional exhaustiva que unifica todo el cono
 
 1. [Fundamentos y Selección de Datos](#1-fundamentos-y-seleccion-de-datos)
    - [Estructura del SELECT y Opciones](#estructura-del-select-y-opciones)
+   - [Paginación y Limitación (FETCH, OFFSET)](#paginacion-y-limitacion-fetch-offset)
    - [Filtrado (WHERE) y Ordenación (ORDER BY)](#filtrado-where-y-ordenacion-order-by)
 2. [Operadores en SQL](#2-operadores-en-sql)
    - [Relacionales y Aritméticos (Concatenación)](#relacionales-y-aritmeticos-concatenacion)
@@ -25,6 +26,7 @@ Este documento es una referencia profesional exhaustiva que unifica todo el cono
 6. [Operaciones de Conjuntos](#6-operaciones-de-conjuntos)
 7. [Subconsultas](#7-subconsultas)
    - [Retorno Escalar vs Múltiples Filas (ANY, ALL, IN)](#retorno-escalar-vs-multiples-filas-any-all-in)
+   - [Operadores de Existencia (EXISTS, NOT EXISTS)](#operadores-de-existencia-exists-not-exists)
 
 ---
 
@@ -32,13 +34,24 @@ Este documento es una referencia profesional exhaustiva que unifica todo el cono
 ## 1. Fundamentos y Selección de Datos
 
 ### Estructura del SELECT y Opciones
-La sentencia `SELECT` extrae información (sin modificar tablas).
+La sentencia `SELECT` extrae información basada en dos conceptos: **Proyección** (columnas) y **Selección** (filas).
 *   **Obligatorio:** `SELECT` (qué mostrar) y `FROM` (de dónde).
 *   **Comodín universal:** `*` devuelve todas las columnas.
 *   **Alias:** Sirven para cambiar la cabecera visible. Se usa `AS` o un simple espacio. Si lleva huecos en blanco, requiere **comillas dobles**.
 *   **Filtros de duplicidad:**
     *   `ALL`: Por defecto, saca todo aunque se repita.
     *   `DISTINCT`: Elimina del resultado visual las filas idénticamente duplicadas. Ejemplo: `SELECT DISTINCT Ciudad FROM Clientes;`
+
+### Paginación y Limitación (FETCH, OFFSET)
+Oracle 12c+ permite limitar resultados de forma limpia:
+- **`FETCH FIRST n ROWS ONLY`**: Solo los _n_ primeros resultados.
+- **`OFFSET n ROWS`**: Salta los _n_ primeros (para paginar).
+- **`WITH TIES`**: Incluye empates al final del ranking.
+- **`ROWNUM`**: Pseudocolumna antigua para limitar (`WHERE ROWNUM <= 10`). No requiere `ORDER BY`.
+
+```sql
+SELECT nombre FROM emp ORDER BY sal DESC OFFSET 5 ROWS FETCH NEXT 5 ROWS ONLY;
+```
 
 ### Filtrado (WHERE) y Ordenación (ORDER BY)
 *   **WHERE:** Aplica las matemáticas restrictivas. **No permite usar alias definidos arriba ni funciones de agregación (`SUM`)**.
@@ -184,3 +197,13 @@ Si la matriz devuelve múltiples líneas de datos, Oracle se quejará con un `er
     *   Ej: `WHERE ID_Juego IN (SELECT ID FROM MAS_VENDIDOS WHERE Mes = 4);`
 *   **`> ANY`** / **`< ANY`**: Verdadero si le ganas o pierdes contra **CUALQUIERA** individual del conjunto.
 *   **`> ALL`** / **`< ALL`**: Verdadero si sobrevive la comparación matemática frente a **TODOS Y ABSOLUTAMENTE CADA UNO** de los listados producidos por el Sub-select en la nube. (Literalmente superar al número máximo/mínimo absoluto extraído de golpe).
+
+### Operadores de Existencia (EXISTS, NOT EXISTS)
+Comprueban si la subconsulta devuelve **algún** dato. Devuelven True/False. No necesitan columnas específicas.
+- **`EXISTS`**: Cierto si hay resultados.
+- **`NOT EXISTS`**: Cierto si no hay resultados.
+
+```sql
+-- Empleados con facturas emitidas:
+WHERE EXISTS (SELECT * FROM facturas f WHERE f.id_emp = emp.id);
+```
