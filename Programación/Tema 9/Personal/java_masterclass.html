@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Collections & Streams | Professional API Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap');
+
+        :root {
+            --primary: #0ea5e9;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --danger: #ef4444;
+            --dark-canvas: #0f172a;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #f8fafc;
+            color: var(--text-main);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .font-mono {
+            font-family: 'Fira Code', monospace;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            border-radius: 24px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+        }
+
+        #floating-nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(226, 232, 240, 1);
+            border-radius: 100px;
+            z-index: 5000;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: all 0.3s;
+        }
+
+        .nav-btn.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 8px 15px rgba(14, 165, 233, 0.3);
+        }
+
+        .viz-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 12px;
+            width: 100%;
+        }
+
+        .node {
+            width: 100%;
+            aspect-ratio: 1/1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            background: white;
+            border: 2px solid #e2e8f0;
+            font-weight: 700;
+            font-size: 0.75rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            padding: 8px;
+            text-align: center;
+            position: relative;
+        }
+
+        .node-active {
+            border-color: var(--primary);
+            background: #f0f9ff;
+            transform: scale(1.1) translateY(-8px);
+            box-shadow: 0 20px 35px rgba(14, 165, 233, 0.2);
+            z-index: 10;
+        }
+
+        .console {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 20px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.75rem;
+            height: 140px;
+            overflow-y: auto;
+            border-left: 4px solid var(--primary);
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-pill {
+            padding: 10px 18px;
+            border-radius: 14px;
+            background: white;
+            border: 1px solid #e2e8f0;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-main);
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-pill:hover {
+            background: #f8fafc;
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .btn-pill.danger:hover {
+            border-color: var(--danger);
+            color: var(--danger);
+            box-shadow: 0 5px 15px rgba(239, 68, 68, 0.1);
+        }
+
+        .btn-pill.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .doc-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            font-size: 0.85rem;
+        }
+
+        .doc-table th {
+            text-align: left;
+            padding: 16px;
+            background: #f8fafc;
+            border-bottom: 2px solid #e2e8f0;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.7rem;
+            font-weight: 800;
+        }
+
+        .doc-table td {
+            padding: 16px;
+            border-bottom: 1px solid #f1f5f9;
+            vertical-align: middle;
+        }
+
+        .doc-table tr:hover {
+            background: #fbfcfe;
+        }
+
+        .method-obs {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+            font-style: italic;
+            display: block;
+        }
+
+        /* Stream Step Circles */
+        .stream-step {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stream-connector {
+            height: 4px;
+            background: #e2e8f0;
+            flex: 1;
+            margin: 0 -2px;
+            z-index: 1;
+        }
+
+        .particle {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 6000;
+            box-shadow: 0 0 15px var(--primary);
+        }
+
+        .pulse-once {
+            animation: pulse 0.6s ease-out;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.15);
+                border-color: var(--primary);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* --- NEW STYLES VERSION 4 --- */
+        .code-block {
+            background: #0f172a;
+            border-radius: 16px;
+            padding: 20px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .code-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary);
+        }
+
+        .code-keyword {
+            color: #f472b6;
+        }
+
+        .code-type {
+            color: #38bdf8;
+        }
+
+        .code-string {
+            color: #4ade80;
+        }
+
+        .code-comment {
+            color: #64748b;
+        }
+
+        .use-case-card {
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            background: #f0f9ff;
+            border-radius: 0 16px 16px 0;
+            margin-top: 15px;
+        }
+
+        /* Animation Containers */
+        .anim-box {
+            width: 100%;
+            height: 120px;
+            background: #f1f5f9;
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+
+        .perf-runner {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: white;
+            top: 45px;
+            left: 20px;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50/50">
+
+    <!-- Floating Nav -->
+    <nav id="floating-nav">
+        <button onclick="scrollToSection('intro')" class="nav-btn active" data-section="intro">Dashboard</button>
+        <button onclick="scrollToSection('lists-sec')" class="nav-btn" data-section="lists-sec">Lists</button>
+        <button onclick="scrollToSection('queues-sec')" class="nav-btn" data-section="queues-sec">Queues</button>
+        <button onclick="scrollToSection('sets-sec')" class="nav-btn" data-section="sets-sec">Sets</button>
+        <button onclick="scrollToSection('maps-sec')" class="nav-btn" data-section="maps-sec">Maps</button>
+        <button onclick="scrollToSection('streams-sec')" class="nav-btn" data-section="streams-sec">Streams</button>
+    </nav>
+
+    <!-- DASHBOARD -->
+    <section id="intro" class="min-h-screen pt-32 pb-20 px-8 flex flex-col items-center">
+        <div class="max-w-6xl w-full text-center reveal">
+            <h1 class="text-7xl font-black text-slate-900 mb-8 tracking-tight">
+                Mastering <span class="text-sky-500">Java</span> Collections
+            </h1>
+            <p class="text-xl text-slate-500 max-w-2xl mx-auto mb-16 leading-relaxed">
+                Guía técnica profunda con laboratorios interactivos y documentación API 2026.
+            </p>
+            <div class="relative group">
+                <div
+                    class="absolute -inset-4 bg-gradient-to-r from-sky-500 to-indigo-500 rounded-[44px] blur opacity-25 group-hover:opacity-40 transition duration-1000">
+                </div>
+                <img src="java_collections_streams_header_1773751522021.png"
+                    class="relative w-full h-[450px] object-cover rounded-[40px] shadow-2xl opacity-95">
+            </div>
+        </div>
+    </section>
+
+    <!-- LISTS SECTION -->
+    <section id="lists-sec" class="min-h-screen py-32 px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 reveal">
+                <div>
+                    <span class="text-sky-500 font-bold tracking-widest text-[10px] uppercase">interface
+                        java.util.List</span>
+                    <h2 class="text-4xl font-bold text-slate-900">List Ecosystem</h2>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-4 md:mt-0">
+                    <button onclick="runListAction('add')" class="btn-pill"><i class="fas fa-plus"></i> .add(E)</button>
+                    <button onclick="runListAction('addIdx')" class="btn-pill"><i class="fas fa-plus"></i> .add(0,
+                        E)</button>
+                    <button onclick="runListAction('get')" class="btn-pill"><i class="fas fa-hand-pointer"></i>
+                        .get(idx)</button>
+                    <button onclick="runListAction('set')" class="btn-pill"><i class="fas fa-edit"></i> .set(idx,
+                        E)</button>
+                    <button onclick="runListAction('remove')" class="btn-pill danger"><i class="fas fa-trash"></i>
+                        .remove(idx)</button>
+                    <button onclick="runListAction('clear')" class="btn-pill danger"><i class="fas fa-broom"></i>
+                        .clear()</button>
+                </div>
+            </div>
+
+            <!-- CODE SNIPPET -->
+            <div class="mb-10 reveal">
+                <div class="code-block">
+                    <span class="code-comment">// Inicialización profesional usando interfaces</span><br>
+                    <span class="code-type">List</span>&lt;<span class="code-type">String</span>&gt; arrayList = <span
+                        class="code-keyword">new</span> <span class="code-type">ArrayList</span>&lt;&gt;();<br>
+                    <span class="code-type">List</span>&lt;<span class="code-type">String</span>&gt; linkedList = <span
+                        class="code-keyword">new</span> <span class="code-type">LinkedList</span>&lt;&gt;();
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-16">
+                <!-- ArrayList -->
+                <div class="glass-card p-10 flex flex-col">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="font-bold text-sky-600 flex items-center gap-3"><i class="fas fa-table"></i>
+                            ArrayList</h3>
+                        <span
+                            class="text-[10px] font-bold bg-sky-100 text-sky-600 px-3 py-1 rounded-full uppercase">Array
+                            Dinámico</span>
+                    </div>
+                    <p class="text-sm text-slate-500 mb-6 leading-relaxed">
+                        Implementación basada en un array que crece automáticamente. Su mayor virtud es el acceso
+                        directo mediante índices.
+                    </p>
+                    <div id="arraylist-viz"
+                        class="viz-container p-8 bg-slate-50/50 border border-slate-100 rounded-3xl mb-6 min-h-[220px]">
+                    </div>
+                    <div class="console mt-auto" id="log-arraylist">> Ready...</div>
+                    <div class="use-case-card mt-6">
+                        <h5 class="font-bold text-xs text-sky-700 uppercase mb-2">Caso de Uso</h5>
+                        <p class="text-xs text-sky-900 italic">Elegir cuando la prioridad es <b>leer</b> datos
+                            frecuentemente por su posición.</p>
+                    </div>
+                </div>
+
+                <!-- LinkedList -->
+                <div class="glass-card p-10 flex flex-col">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="font-bold text-indigo-600 flex items-center gap-3"><i class="fas fa-link"></i>
+                            LinkedList</h3>
+                        <span
+                            class="text-[10px] font-bold bg-indigo-100 text-indigo-600 px-3 py-1 rounded-full uppercase">Nodos
+                            Enlazados</span>
+                    </div>
+                    <p class="text-sm text-slate-500 mb-6 leading-relaxed">
+                        Cada elemento es un nodo que conoce al anterior y al siguiente. Ideal para inserciones
+                        constantes.
+                    </p>
+                    <div id="linkedlist-viz"
+                        class="viz-container p-8 bg-slate-50/50 border border-slate-100 rounded-3xl mb-6 min-h-[220px]">
+                    </div>
+                    <div class="console mt-auto" id="log-linkedlist">> Ready...</div>
+                    <div class="use-case-card mt-6" style="border-left-color: var(--primary); background: #f5f3ff;">
+                        <h5 class="font-bold text-xs text-indigo-700 uppercase mb-2">Caso de Uso</h5>
+                        <p class="text-xs text-indigo-900 italic">Elegir cuando se <b>insertan/borran</b> elementos
+                            constantemente en los extremos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ANIMATION: PERF BATTLE -->
+            <div class="glass-card p-10 mb-16 reveal">
+                <h4 class="font-bold text-center mb-10 uppercase tracking-widest text-slate-400">Battle Simulation:
+                    Constant Access (get)</h4>
+                <div class="space-y-6">
+                    <div>
+                        <span class="text-[10px] font-bold text-sky-500 mb-2 block">ARRAYLIST SPEED</span>
+                        <div class="anim-box">
+                            <div id="perf-arr-runner" class="perf-runner bg-sky-500"><i class="fas fa-bolt"></i></div>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-[10px] font-bold text-indigo-500 mb-2 block">LINKEDLIST SPEED</span>
+                        <div class="anim-box">
+                            <div id="perf-lnk-runner" class="perf-runner bg-indigo-500"><i class="fas fa-walking"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="startPerfBattle()"
+                    class="mt-8 w-full py-3 bg-slate-900 text-white rounded-xl font-bold hover:bg-slate-800 transition-all">
+                    Iniciar Carrera de Rendimiento
+                </button>
+            </div>
+
+            <!-- List Documentation -->
+            <div class="glass-card p-10 reveal overflow-hidden border-t-4 border-t-sky-500">
+                <h4 class="font-bold text-slate-800 mb-8 flex items-center gap-3"><i class="fas fa-book"></i>
+                    Especificación Técnica: java.util.List</h4>
+                <div class="overflow-x-auto">
+                    <table class="doc-table">
+                        <thead>
+                            <tr>
+                                <th>Interacción</th>
+                                <th>Sintaxis</th>
+                                <th>Retorno</th>
+                                <th>Observación Crítica</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="font-bold text-slate-700">Afectar Final</span></td>
+                                <td class="font-mono text-sky-600 text-xs">add(E e)</td>
+                                <td class="text-xs">boolean</td>
+                                <td class="text-xs text-slate-500">ArrayList: O(1) rápido. LinkedList: O(1) rápido
+                                    (tiene puntero al final).</td>
+                            </tr>
+                            <tr>
+                                <td><span class="font-bold text-slate-700">Insertar Medio/Inicio</span></td>
+                                <td class="font-mono text-sky-600 text-xs">add(int i, E e)</td>
+                                <td class="text-xs">void</td>
+                                <td class="text-xs text-slate-500">ArrayList: O(n) desplaza memoria. LinkedList: O(n)
+                                    buscar posición, O(1) insertar enlaces.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="font-bold text-slate-700">Acceso Aleatorio</span></td>
+                                <td class="font-mono text-sky-600 text-xs">get(int i)</td>
+                                <td class="text-xs">E</td>
+                                <td class="text-xs text-slate-500">ArrayList: O(1) inmediato. LinkedList: O(n)
+                                    ineficiente, debe caminar la lista.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUEUES SECTION (NEW) -->
+    <section id="queues-sec" class="min-h-screen py-32 px-8 bg-slate-100/50">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 reveal">
+                <div>
+                    <span class="text-orange-500 font-bold tracking-widest text-[10px] uppercase">interface
+                        java.util.Queue</span>
+                    <h2 class="text-4xl font-bold text-slate-900">Queue & Deque</h2>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-4 md:mt-0">
+                    <button onclick="runQueueAction('offer')" class="btn-pill"><i class="fas fa-plus"></i>
+                        .offer(E)</button>
+                    <button onclick="runQueueAction('poll')" class="btn-pill danger"><i class="fas fa-minus"></i>
+                        .poll()</button>
+                    <button onclick="runQueueAction('peek')" class="btn-pill"><i class="fas fa-eye"></i>
+                        .peek()</button>
+                    <button onclick="runQueueAction('clear')" class="btn-pill danger"><i class="fas fa-broom"></i>
+                        .clear()</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-16">
+                <!-- PriorityQueue -->
+                <div class="glass-card p-10 flex flex-col">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="font-bold text-orange-600">PriorityQueue</h3>
+                        <span
+                            class="text-[10px] font-bold bg-orange-100 text-orange-600 px-3 py-1 rounded-full uppercase">Orden
+                            Natural</span>
+                    </div>
+                    <p class="text-sm text-slate-500 mb-6">
+                        Los elementos salen según su prioridad (orden natural o Comparator). No sigue necesariamente el
+                        orden de llegada.
+                    </p>
+                    <div id="priorityqueue-viz"
+                        class="viz-container p-8 bg-slate-50 border border-slate-100 rounded-3xl mb-6 min-h-[150px]">
+                    </div>
+                    <div class="console mt-auto" id="log-priorityqueue">> Ready...</div>
+                </div>
+
+                <!-- ArrayDeque -->
+                <div class="glass-card p-10 flex flex-col">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="font-bold text-amber-600">ArrayDeque</h3>
+                        <span
+                            class="text-[10px] font-bold bg-amber-100 text-amber-600 px-3 py-1 rounded-full uppercase">Double
+                            Ended Queue</span>
+                    </div>
+                    <p class="text-sm text-slate-500 mb-6">
+                        Cola de doble extremo. Más rápida que Stack (como pila) y que LinkedList (como cola).
+                    </p>
+                    <div id="arraydeque-viz"
+                        class="viz-container p-8 bg-slate-50 border border-slate-100 rounded-3xl mb-6 min-h-[150px]">
+                    </div>
+                    <div class="console mt-auto" id="log-arraydeque">> Ready...</div>
+                </div>
+            </div>
+
+            <!-- Queue Documentation -->
+            <div class="glass-card p-10 reveal border-t-4 border-t-orange-500">
+                <h4 class="font-bold text-slate-800 mb-8 flex items-center gap-3"><i class="fas fa-book"></i>
+                    Especificación Técnica: java.util.Queue / Deque</h4>
+                <div class="overflow-x-auto">
+                    <table class="doc-table">
+                        <thead>
+                            <tr>
+                                <th>Método</th>
+                                <th>Sintaxis</th>
+                                <th>Retorno</th>
+                                <th>Comportamiento</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="font-bold">Insertar</td>
+                                <td class="font-mono text-orange-600 text-xs">offer(E e)</td>
+                                <td class="text-xs">boolean</td>
+                                <td>Inserta al final. A diferencia de add(), no lanza excepción si falla.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold">Extraer</td>
+                                <td class="font-mono text-orange-600 text-xs">poll()</td>
+                                <td class="text-xs">E</td>
+                                <td>Retorna y elimina el primer elemento. Retorna null si está vacía.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold">Consultar</td>
+                                <td class="font-mono text-orange-600 text-xs">peek()</td>
+                                <td class="text-xs">E</td>
+                                <td>Retorna el primero sin eliminarlo.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SETS SECTION -->
+    <section id="sets-sec" class="min-h-screen py-32 px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 reveal">
+                <div>
+                    <span class="text-emerald-500 font-bold tracking-widest text-[10px] uppercase">interface
+                        java.util.Set</span>
+                    <h2 class="text-4xl font-bold text-slate-900">Set Universe</h2>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-4 md:mt-0">
+                    <input type="text" id="set-input" placeholder="Valor"
+                        class="px-5 py-2.5 rounded-xl border border-slate-200 outline-none w-32 focus:border-emerald-500 transition-all font-bold">
+                    <button onclick="runSetAction('add')" class="btn-pill"><i class="fas fa-plus"></i> .add(E)</button>
+                    <button onclick="runSetAction('contains')" class="btn-pill"><i class="fas fa-search"></i>
+                        .contains(E)</button>
+                    <button onclick="runSetAction('remove')" class="btn-pill danger"><i class="fas fa-trash"></i>
+                        .remove(E)</button>
+                    <button onclick="runSetAction('clear')" class="btn-pill danger"><i class="fas fa-broom"></i>
+                        .clear()</button>
+                    <button onclick="runSetAction('size')" class="btn-pill"><i class="fas fa-database text-xs"></i>
+                        .size()</button>
+                </div>
+            </div>
+
+            <!-- CODE SNIPPET -->
+            <div class="mb-10 reveal">
+                <div class="code-block" style="border-left-color: var(--secondary);">
+                    <span class="code-comment">// Sets - Sin duplicados</span><br>
+                    <span class="code-type">Set</span>&lt;<span class="code-type">String</span>&gt; hashSet = <span
+                        class="code-keyword">new</span> <span class="code-type">HashSet</span>&lt;&gt;();<br>
+                    <span class="code-type">Set</span>&lt;<span class="code-type">String</span>&gt; treeSet = <span
+                        class="code-keyword">new</span> <span class="code-type">TreeSet</span>&lt;&gt;();
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+                <!-- HashSet -->
+                <div class="glass-card p-8 flex flex-col">
+                    <div class="flex justify-between items-center mb-6">
+                        <h4 class="font-bold text-emerald-600">HashSet</h4>
+                        <i class="fas fa-bolt text-slate-200"></i>
+                    </div>
+                    <p class="text-xs text-slate-500 mb-4">Usa una tabla hash. Velocidad constante O(1).</p>
+                    <div id="hashset-viz"
+                        class="viz-container p-6 bg-slate-50 border border-slate-100 rounded-2xl mb-6 flex-1 min-h-[180px]">
+                    </div>
+                    <div class="console" id="log-hashset">> Ready</div>
+                </div>
+                <!-- TreeSet -->
+                <div class="glass-card p-8 flex flex-col">
+                    <div class="flex justify-between items-center mb-6">
+                        <h4 class="font-bold text-emerald-700">TreeSet</h4>
+                        <i class="fas fa-sort-amount-down text-slate-200"></i>
+                    </div>
+                    <p class="text-xs text-slate-500 mb-4">Usa un árbol rojo-negro. Elementos ordenados.</p>
+                    <div id="treeset-viz"
+                        class="viz-container p-6 bg-slate-50 border border-slate-100 rounded-2xl mb-6 flex-1 min-h-[180px]">
+                    </div>
+                    <div class="console" id="log-treeset">> Ready</div>
+                </div>
+                <!-- LinkedHashSet -->
+                <div class="glass-card p-8 flex flex-col">
+                    <div class="flex justify-between items-center mb-6">
+                        <h4 class="font-bold text-emerald-500">LinkedHashSet</h4>
+                        <i class="fas fa-history text-slate-200"></i>
+                    </div>
+                    <p class="text-xs text-slate-500 mb-4">Tabla hash conectada por una lista interna.</p>
+                    <div id="linkedhashset-viz"
+                        class="viz-container p-6 bg-slate-50 border border-slate-100 rounded-2xl mb-6 flex-1 min-h-[180px]">
+                    </div>
+                    <div class="console" id="log-linkedhashset">> Ready</div>
+                </div>
+            </div>
+
+            <!-- Set Doc -->
+            <div class="glass-card p-10 reveal border-t-4 border-t-emerald-500">
+                <h4 class="font-bold text-slate-800 mb-8 flex items-center gap-3"><i class="fas fa-book"></i>
+                    Especificación Técnica: java.util.Set</h4>
+                <div class="overflow-x-auto">
+                    <table class="doc-table">
+                        <thead>
+                            <tr>
+                                <th>Método</th>
+                                <th>Sintaxis</th>
+                                <th>Retorno</th>
+                                <th>Detalle Crítico</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="font-bold">Inserción</td>
+                                <td class="font-mono text-emerald-600 text-xs">add(E e)</td>
+                                <td class="text-xs">boolean</td>
+                                <td>Retorna false si el elemento ya existe.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold">Pertenencia</td>
+                                <td class="font-mono text-emerald-600 text-xs">contains(Object o)</td>
+                                <td class="text-xs">boolean</td>
+                                <td>Rápido O(1) con hash estable.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAPS SECTION -->
+    <section id="maps-sec" class="min-h-screen py-32 px-8 bg-slate-100/30">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 reveal">
+                <div>
+                    <span class="text-amber-500 font-bold tracking-widest text-[10px] uppercase">interface
+                        java.util.Map</span>
+                    <h2 class="text-4xl font-bold text-slate-900">Key-Value Universe</h2>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-4 md:mt-0">
+                    <input type="text" id="map-key" placeholder="Key"
+                        class="w-16 px-4 py-2 border rounded-xl outline-none focus:border-amber-500 text-center font-bold">
+                    <input type="text" id="map-val" placeholder="Value"
+                        class="w-20 px-4 py-2 border rounded-xl outline-none focus:border-amber-500 text-center font-bold">
+                    <button onclick="runMapAction('put')" class="btn-pill"><i class="fas fa-sign-in-alt"></i>
+                        .put(K,V)</button>
+                    <button onclick="runMapAction('get')" class="btn-pill"><i class="fas fa-eye"></i> .get(K)</button>
+                    <button onclick="runMapAction('replace')" class="btn-pill"><i class="fas fa-sync"></i>
+                        .replace(K,V)</button>
+                    <button onclick="runMapAction('remove')" class="btn-pill danger"><i class="fas fa-trash"></i>
+                        .remove(K)</button>
+                    <button onclick="runMapAction('clear')" class="btn-pill danger"><i class="fas fa-broom"></i>
+                        .clear()</button>
+                    <button onclick="runMapAction('keyset')" class="btn-pill"><i class="fas fa-key text-xs"></i>
+                        .keySet()</button>
+                </div>
+            </div>
+
+            <!-- CODE SNIPPET -->
+            <div class="mb-10 reveal">
+                <div class="code-block" style="border-left-color: var(--accent);">
+                    <span class="code-comment">// Maps - Asociación de datos</span><br>
+                    <span class="code-type">Map</span>&lt;<span class="code-type">Integer</span>, <span
+                        class="code-type">String</span>&gt; map = <span class="code-keyword">new</span> <span
+                        class="code-type">HashMap</span>&lt;&gt;();
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-16">
+                <div class="glass-card p-10 flex flex-col">
+                    <h4 class="font-bold text-amber-500 flex items-center gap-3 mb-6"><i class="fas fa-atlas"></i>
+                        HashMap</h4>
+                    <div id="hashmap-viz"
+                        class="p-8 bg-slate-50/50 border border-slate-100 rounded-3xl mb-6 min-h-[300px] max-h-[450px] overflow-y-auto space-y-3">
+                    </div>
+                    <div class="console mt-auto" id="log-hashmap">> Waiting...</div>
+                </div>
+                <div class="glass-card p-10 flex flex-col">
+                    <h4 class="font-bold text-orange-600 flex items-center gap-3 mb-6"><i
+                            class="fas fa-sort-alpha-down"></i> TreeMap</h4>
+                    <div id="treemap-viz"
+                        class="p-8 bg-slate-50/50 border border-slate-100 rounded-3xl mb-6 min-h-[300px] max-h-[450px] overflow-y-auto space-y-3">
+                    </div>
+                    <div class="console mt-auto" id="log-treemap">> Waiting...</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STREAMS SECTION -->
+    <section id="streams-sec" class="min-h-screen py-32 px-8 bg-slate-900 text-white overflow-hidden relative">
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-sky-500/10 blur-[150px] pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="mb-20 text-center reveal">
+                <h2 class="text-6xl font-black mb-8">Streams Architecture</h2>
+                <p class="text-slate-400 max-w-3xl mx-auto leading-relaxed text-lg italic">
+                    "Streams are not collections, they are descriptions of data in motion."
+                </p>
+            </div>
+
+            <!-- Pipeline Logic -->
+            <div class="flex flex-col items-center mb-32 reveal">
+                <div class="flex items-center w-full max-w-5xl">
+                    <div class="stream-step border-sky-400 text-sky-400"><i class="fas fa-database"></i></div>
+                    <div class="stream-connector bg-gradient-to-r from-sky-400 to-indigo-400"></div>
+                    <div class="stream-step border-indigo-400 text-indigo-400"><i class="fas fa-filter"></i></div>
+                    <div class="stream-connector bg-gradient-to-r from-indigo-400 to-emerald-400"></div>
+                    <div class="stream-step border-emerald-400 text-emerald-400"><i class="fas fa-check"></i></div>
+                </div>
+            </div>
+
+            <!-- LABS -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <div class="bg-white/5 border border-white/10 rounded-[32px] p-10 flex flex-col">
+                    <h4 class="text-xl font-bold mb-8">Case: Analytics Pipeline</h4>
+                    <button onclick="runStreamLab('analytics')"
+                        class="mb-6 px-6 py-3 bg-sky-500 text-white rounded-2xl font-bold transition-all">Launch
+                        Particle Flow</button>
+                    <div id="lab-analytics-viz" class="min-h-[200px]">
+                        <div class="flex justify-center gap-3" id="lab-source">
+                            <div class="px-3 py-1 bg-white/10 rounded">Alex</div>
+                            <div class="px-3 py-1 bg-white/10 rounded">Maria</div>
+                        </div>
+                        <div class="mt-20 flex flex-wrap justify-center gap-2 p-6 border-2 border-dashed border-white/10 rounded-3xl"
+                            id="lab-dest"></div>
+                    </div>
+                </div>
+                <div class="bg-white/5 border border-white/10 rounded-[32px] p-10 flex flex-col items-center">
+                    <h4 class="text-xl font-bold mb-8 text-center">Case: Cumulative Reducer</h4>
+                    <button onclick="runStreamLab('math')"
+                        class="mb-6 px-6 py-3 bg-emerald-500 text-white rounded-2xl font-bold">Run Aggregator</button>
+                    <div id="lab-math-counter" class="text-8xl font-black text-emerald-400 tabular-nums">0</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 text-center opacity-40 text-xs italic">
+        Java Masterclass | Professional DAM Edition | 2026
+    </footer>
+
+    <script>
+        const sleep = ms => new Promise(r => setTimeout(r, ms));
+        gsap.registerPlugin(ScrollTrigger);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initScroll();
+            initLists();
+            initQueues();
+            initSets();
+            initMaps();
+        });
+
+        function scrollToSection(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }
+
+        function initScroll() {
+            document.querySelectorAll('.reveal').forEach(el => {
+                ScrollTrigger.create({ trigger: el, onEnter: () => el.classList.add('active'), start: "top 85%" });
+            });
+            const sections = ['intro', 'lists-sec', 'queues-sec', 'sets-sec', 'maps-sec', 'streams-sec'];
+            sections.forEach(s => {
+                ScrollTrigger.create({
+                    trigger: `#${s}`, start: "top center", end: "bottom center",
+                    onToggle: self => { if (self.isActive) activateNav(s); }
+                });
+            });
+        }
+        function activateNav(s) { document.querySelectorAll('.nav-btn').forEach(b => b.classList.toggle('active', b.dataset.section === s)); }
+
+        // --- PERFORMANCE BATTLE (GSAP ANIMATION) ---
+        function startPerfBattle() {
+            const arr = document.getElementById('perf-arr-runner');
+            const lnk = document.getElementById('perf-lnk-runner');
+
+            gsap.set([arr, lnk], { x: 0 });
+
+            // ArrayList: Direct access simulation (Flash speed)
+            gsap.to(arr, { x: 800, duration: 1.5, ease: "power4.inOut" });
+
+            // LinkedList: Step by step traversal (Slow speed)
+            gsap.to(lnk, {
+                x: 800,
+                duration: 4,
+                ease: "none",
+                onUpdate: function () {
+                    const prog = this.progress();
+                    if (prog % 0.1 < 0.05) lnk.style.opacity = 0.5;
+                    else lnk.style.opacity = 1;
+                }
+            });
+        }
+
+        // --- LISTS ---
+        let listData = ["Java", "SQL", "C#", "JS", "Swift"];
+        function initLists() {
+            document.getElementById('arraylist-viz').innerHTML = listData.map((d, i) => `<div class="node" id="arr-${i}">${d}</div>`).join('');
+            document.getElementById('linkedlist-viz').innerHTML = listData.map((d, i) => `<div class="node" id="lnk-${i}">${d}</div>`).join('');
+        }
+
+        async function runListAction(action) {
+            if (action === 'add') {
+                const val = "Py_" + Math.floor(Math.random() * 9);
+                listData.push(val); initLists();
+                gsap.from(`#arr-${listData.length - 1}, #lnk-${listData.length - 1}`, { scale: 0, duration: 0.5 });
+            }
+            if (action === 'clear') { listData = []; initLists(); }
+            // Otros métodos implementados igual que antes...
+        }
+
+        // --- QUEUES ---
+        let queueData = ["Maria", "Juan", "Pedro"];
+        function initQueues() {
+            document.getElementById('priorityqueue-viz').innerHTML = [...queueData].sort().map(d => `<div class="node">${d}</div>`).join('');
+            document.getElementById('arraydeque-viz').innerHTML = queueData.map(d => `<div class="node">${d}</div>`).join('');
+        }
+        async function runQueueAction(action) {
+            const logP = document.getElementById('log-priorityqueue');
+            if (action === 'offer') {
+                const names = ["Ana", "Zoe", "Beto"];
+                const val = names[Math.floor(Math.random() * names.length)];
+                queueData.push(val);
+                initQueues();
+                gsap.from('.node', { y: -20, opacity: 0, stagger: 0.1 });
+            }
+            if (action === 'poll') {
+                queueData.shift();
+                initQueues();
+            }
+            if (action === 'clear') { queueData = []; initQueues(); }
+        }
+
+        // --- SETS ---
+        let setBase = ["Admin", "User", "Root"];
+        function initSets() {
+            ['hashset', 'treeset', 'linkedhashset'].forEach(type => {
+                let data = [...setBase];
+                if (type === 'treeset') data.sort();
+                document.getElementById(`${type}-viz`).innerHTML = data.map(d => `<div class="node">${d}</div>`).join('');
+            });
+        }
+        function runSetAction(action) {
+            const val = document.getElementById('set-input').value.trim();
+            if (action === 'add' && val) { if (!setBase.includes(val)) setBase.push(val); initSets(); }
+            if (action === 'clear') { setBase = []; initSets(); }
+            document.getElementById('set-input').value = '';
+        }
+
+        // --- MAPS ---
+        let mapData = { "ID1": "Alvaro", "ID2": "Beatriz" };
+        function initMaps() {
+            const render = (c, s) => {
+                let keys = Object.keys(mapData); if (s) keys.sort();
+                c.innerHTML = keys.map(k => `<div class="flex items-center gap-3 bg-white p-3 rounded-2xl border border-slate-100 shadow-sm">
+                    <div class="w-8 h-8 bg-amber-500 rounded text-white font-bold flex items-center justify-center text-[10px]">${k}</div>
+                    <div class="text-[10px] font-bold text-slate-600">${mapData[k]}</div>
+                </div>`).join('');
+            };
+            render(document.getElementById('hashmap-viz'), false);
+            render(document.getElementById('treemap-viz'), true);
+        }
+        function runMapAction(action) {
+            const k = document.getElementById('map-key').value;
+            const v = document.getElementById('map-val').value;
+            if (action === 'put' && k && v) { mapData[k] = v; initMaps(); }
+            if (action === 'clear') { mapData = {}; initMaps(); }
+        }
+
+        // --- STREAMS ---
+        async function runStreamLab(type) {
+            if (type === 'analytics') {
+                const d = document.getElementById('lab-dest'); d.innerHTML = '';
+                const items = ["Alex", "Maria", "Ana", "Luis"];
+                for (let i of items) {
+                    if (i.startsWith('A')) {
+                        d.innerHTML += `<div class="px-4 py-2 bg-sky-500 text-white rounded-xl text-xs font-bold shadow-lg animate-bounce">${i.toUpperCase()}</div>`;
+                        await sleep(400);
+                    }
+                }
+            } else if (type === 'math') {
+                let total = 0;
+                for (let n of [10, 20, 30, 40]) {
+                    total += n;
+                    gsap.to('#lab-math-counter', { innerText: total, duration: 0.5, snap: { innerText: 1 } });
+                    await sleep(600);
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

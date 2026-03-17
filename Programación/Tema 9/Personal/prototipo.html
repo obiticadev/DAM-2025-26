@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering SQL - Interactive Learning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .font-mono { font-family: 'Fira Code', monospace; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* Animations */
+        .fade-in { animation: fadeIn 0.4s ease-in-out forwards; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .highlight-row {
+            animation: highlightPulse 1.5s ease-in-out;
+            background-color: #fef08a !important; /* yellow-200 */
+            border-color: #eab308 !important; /* yellow-500 */
+            transform: scale(1.02);
+            z-index: 10;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .scan-row {
+            background-color: #bfdbfe !important; /* blue-200 */
+            transition: all 0.3s ease;
+        }
+
+        .match-success {
+            background-color: #bbf7d0 !important; /* green-200 */
+            border-color: #22c55e !important;
+            transition: all 0.3s ease;
+        }
+        
+        .match-fail {
+            background-color: #fecaca !important; /* red-200 */
+            opacity: 0.5;
+            transition: all 0.3s ease;
+        }
+
+        .result-row-enter {
+            animation: slideDown 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes highlightPulse {
+            0% { background-color: white; transform: scale(1); }
+            20% { background-color: #fef08a; transform: scale(1.02); }
+            80% { background-color: #fef08a; transform: scale(1.02); }
+            100% { background-color: white; transform: scale(1); }
+        }
+
+        /* SVG Venn Animations */
+        @keyframes pulse-venn {
+            0%, 100% { transform: scale(1); opacity: 1; filter: drop-shadow(0 0 4px rgba(0,0,0,0.1)); }
+            50% { transform: scale(1.03); opacity: 0.85; filter: drop-shadow(0 0 10px rgba(0,0,0,0.2)); }
+        }
+        .venn-animate {
+            animation: pulse-venn 2s ease-in-out infinite;
+            transform-origin: center;
+        }
+
+        .tab-active {
+            background-color: #eff6ff;
+            color: #2563eb;
+            border-right: 4px solid #2563eb;
+            font-weight: 600;
+        }
+        
+        .sql-keyword { color: #c678dd; font-weight: bold; }
+        .sql-table { color: #e06c75; }
+        .sql-string { color: #98c379; }
+        .sql-operator { color: #56b6c2; }
+
+        .table-container {
+            perspective: 1000px;
+        }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden text-slate-800">
+
+    <!-- Sidebar Navigation -->
+    <aside class="w-72 bg-white border-r border-slate-200 flex flex-col shadow-lg z-20">
+        <div class="p-6 border-b border-slate-200 bg-slate-900 text-white">
+            <h1 class="text-2xl font-bold flex items-center gap-3">
+                <i class="fas fa-database text-blue-400"></i>
+                SQL Visor
+            </h1>
+            <p class="text-xs text-slate-400 mt-2">Ruta interactiva de aprendizaje</p>
+        </div>
+        
+        <nav class="flex-1 overflow-y-auto py-4" id="nav-tabs">
+            <div class="px-4 pb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">Conceptos Fundamentales</div>
+            <button onclick="switchTab('intro')" class="nav-btn w-full text-left px-6 py-3 hover:bg-slate-50 transition-colors tab-active" data-target="intro">
+                <i class="fas fa-map-signs w-6 text-center mr-2 text-slate-400"></i> La Ruta Feliz
+            </button>
+            
+            <div class="px-4 pt-4 pb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">La Familia JOIN</div>
+            <button onclick="switchTab('inner')" class="nav-btn w-full text-left px-6 py-3 hover:bg-slate-50 transition-colors" data-target="inner">
+                <i class="fas fa-link w-6 text-center mr-2 text-blue-500"></i> INNER JOIN
+            </button>
+            <button onclick="switchTab('left')" class="nav-btn w-full text-left px-6 py-3 hover:bg-slate-50 transition-colors" data-target="left">
+                <i class="fas fa-arrow-alt-circle-left w-6 text-center mr-2 text-indigo-500"></i> LEFT JOIN
+            </button>
+            
+            <div class="px-4 pt-4 pb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">Subconsultas Lógicas</div>
+            <button onclick="switchTab('exists')" class="nav-btn w-full text-left px-6 py-3 hover:bg-slate-50 transition-colors" data-target="exists">
+                <i class="fas fa-search w-6 text-center mr-2 text-emerald-500"></i> EXISTS vs IN
+            </button>
+        </nav>
+        
+        <div class="p-4 border-t border-slate-200 text-xs text-center text-slate-500">
+            Diseñado para dominar bases de datos relacionales.
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 flex flex-col h-screen overflow-hidden bg-slate-50 relative">
+        
+        <!-- INTRO SECTION -->
+        <section id="intro" class="content-section p-10 overflow-y-auto h-full fade-in">
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 mb-8">
+                    <h2 class="text-3xl font-bold text-slate-900 mb-4">Bienvenido a la Ruta Visual de SQL</h2>
+                    <p class="text-slate-600 text-lg mb-6 leading-relaxed">
+                        Entender cómo se relacionan las tablas es el 80% del éxito en Bases de Datos. En tu práctica te has enfrentado a consultas donde necesitabas sacar datos de <code>EMP</code> y de <code>DEPT</code> al mismo tiempo. Aquí dejaremos la teoría aburrida y veremos <b>exactamente qué hace el motor de la base de datos</b> cuando ejecutas esas consultas.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                        <div class="bg-blue-50 rounded-xl p-6 border border-blue-100 transform transition hover:-translate-y-1 hover:shadow-md cursor-pointer" onclick="switchTab('inner')">
+                            <div class="w-12 h-12 bg-blue-500 text-white rounded-lg flex items-center justify-center text-xl mb-4 shadow-sm"><i class="fas fa-link"></i></div>
+                            <h3 class="font-bold text-slate-800 mb-2">Uniones (JOINs)</h3>
+                            <p class="text-sm text-slate-600">Descubre cómo combinar información dispersa en diferentes tablas buscando coincidencias.</p>
+                        </div>
+                        <div class="bg-indigo-50 rounded-xl p-6 border border-indigo-100 transform transition hover:-translate-y-1 hover:shadow-md cursor-pointer" onclick="switchTab('left')">
+                            <div class="w-12 h-12 bg-indigo-500 text-white rounded-lg flex items-center justify-center text-xl mb-4 shadow-sm"><i class="fas fa-arrow-alt-circle-left"></i></div>
+                            <h3 class="font-bold text-slate-800 mb-2">Los Inclusivos</h3>
+                            <p class="text-sm text-slate-600">Aprende a mantener datos que "se quedarían fuera" si no encuentran pareja (como los jefes nulos).</p>
+                        </div>
+                        <div class="bg-emerald-50 rounded-xl p-6 border border-emerald-100 transform transition hover:-translate-y-1 hover:shadow-md cursor-pointer" onclick="switchTab('exists')">
+                            <div class="w-12 h-12 bg-emerald-500 text-white rounded-lg flex items-center justify-center text-xl mb-4 shadow-sm"><i class="fas fa-search"></i></div>
+                            <h3 class="font-bold text-slate-800 mb-2">Existencia (EXISTS)</h3>
+                            <p class="text-sm text-slate-600">Comprende cómo crear filtros inteligentes y eficientes sin tener que cruzar toda la base de datos.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabla de datos de prueba restaurada -->
+                <div class="bg-slate-900 rounded-2xl shadow-xl p-8 text-white relative overflow-hidden">
+                    <div class="absolute top-0 right-0 opacity-10 transform translate-x-1/4 -translate-y-1/4">
+                        <i class="fas fa-database text-9xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2"><i class="fas fa-info-circle text-blue-400"></i> Las tablas de prueba</h3>
+                    <p class="text-slate-300 mb-6 text-sm">Para estas simulaciones, hemos extraído una pequeña muestra de tus tablas <code>EMP</code> y <code>DEPT</code> para que sea fácil seguir el rastro a los datos. Presta especial atención al departamento de KING (es Nulo) y al departamento 40 (está vacío).</p>
+                    
+                    <div class="flex flex-wrap gap-8 relative z-10">
+                        <div class="flex-1 min-w-[300px]">
+                            <h4 class="font-mono text-sm text-blue-300 mb-2">Tabla: EMP (Empleados)</h4>
+                            <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden text-xs">
+                                <table class="w-full text-left font-mono">
+                                    <thead class="bg-slate-700"><tr><th class="p-2">EMPNO</th><th class="p-2">ENAME</th><th class="p-2 text-blue-300">DEPTNO</th></tr></thead>
+                                    <tbody class="divide-y divide-slate-700">
+                                        <tr><td class="p-2">7369</td><td class="p-2">SMITH</td><td class="p-2 text-blue-300">20</td></tr>
+                                        <tr><td class="p-2">7499</td><td class="p-2">ALLEN</td><td class="p-2 text-blue-300">30</td></tr>
+                                        <tr><td class="p-2">7839</td><td class="p-2 text-yellow-300 font-bold">KING</td><td class="p-2 text-red-400 italic">NULL</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="flex-1 min-w-[300px]">
+                            <h4 class="font-mono text-sm text-purple-300 mb-2">Tabla: DEPT (Departamentos)</h4>
+                            <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden text-xs">
+                                <table class="w-full text-left font-mono">
+                                    <thead class="bg-slate-700"><tr><th class="p-2 text-purple-300">DEPTNO</th><th class="p-2">DNAME</th></tr></thead>
+                                    <tbody class="divide-y divide-slate-700">
+                                        <tr><td class="p-2 text-purple-300">20</td><td class="p-2">RESEARCH</td></tr>
+                                        <tr><td class="p-2 text-purple-300">30</td><td class="p-2">SALES</td></tr>
+                                        <tr><td class="p-2 text-yellow-300 font-bold">40</td><td class="p-2">OPERATIONS</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INNER JOIN SECTION -->
+        <section id="inner" class="content-section h-full hidden flex flex-col fade-in">
+            <div class="flex-none p-6 bg-white border-b border-slate-200 flex justify-between items-center shadow-sm z-10">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-800 flex items-center gap-2">
+                        <i class="fas fa-link text-blue-500"></i> INNER JOIN <span class="text-sm font-normal text-slate-500 ml-2 bg-slate-100 px-2 py-1 rounded">"La Intersección Perfecta"</span>
+                    </h2>
+                    <p class="text-slate-500 text-sm mt-1">Devuelve filas SOLO si hay coincidencias en ambas tablas.</p>
+                </div>
+                <button onclick="runSimulation('inner')" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-lg font-medium transition-all shadow-md hover:shadow-lg flex items-center gap-2 btn-run">
+                    <i class="fas fa-play text-sm"></i> Ejecutar Animación SQL
+                </button>
+            </div>
+            
+            <div class="flex-1 overflow-y-auto p-6 flex flex-col lg:flex-row gap-6 bg-slate-100">
+                <!-- Left: Animation Canvas -->
+                <div class="flex-1 flex flex-col gap-4 min-w-0 table-container">
+                    <div class="flex gap-4">
+                        <div class="flex-1 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+                            <div class="bg-slate-50 border-b border-slate-200 px-4 py-3 font-mono text-sm font-bold text-slate-700">EMP e</div>
+                            <div class="flex-1 p-2" id="inner-emp-table"></div>
+                        </div>
+                        <div class="flex flex-col justify-center text-slate-400 font-mono text-xs">
+                            <i class="fas fa-key mb-1 text-center text-blue-400"></i>
+                            DEPTNO
+                        </div>
+                        <div class="flex-1 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+                            <div class="bg-slate-50 border-b border-slate-200 px-4 py-3 font-mono text-sm font-bold text-slate-700">DEPT d</div>
+                            <div class="flex-1 p-2" id="inner-dept-table"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 bg-white rounded-xl shadow-md border border-blue-200 overflow-hidden flex-1 flex flex-col min-h-[250px]">
+                        <div class="bg-blue-50 border-b border-blue-100 px-4 py-3 flex justify-between items-center">
+                            <span class="font-mono text-sm font-bold text-blue-800"><i class="fas fa-table mr-2"></i>Resultado Temporal</span>
+                            <span id="inner-status" class="text-xs font-semibold px-2 py-1 rounded-full bg-slate-200 text-slate-600">Esperando ejecución...</span>
+                        </div>
+                        <div class="p-2 overflow-y-auto flex-1 bg-slate-50/50" id="inner-result-table">
+                            <div class="flex items-center justify-center h-full text-slate-400 text-sm italic empty-state">Haz clic en Ejecutar para ver la magia.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Theory Panel -->
+                <div class="w-full lg:w-96 bg-white rounded-xl shadow-sm border border-slate-200 flex flex-col">
+                    <div class="bg-slate-900 rounded-t-xl p-4">
+                        <pre class="text-sm font-mono text-slate-300 whitespace-pre-wrap"><span class="sql-keyword">SELECT</span> e.ENAME, d.DNAME
+<span class="sql-keyword">FROM</span> <span class="sql-table">EMP</span> e
+<span class="sql-keyword">JOIN</span> <span class="sql-table">DEPT</span> d 
+  <span class="sql-keyword">ON</span> e.DEPTNO = d.DEPTNO;</pre>
+                    </div>
+                    <div class="p-6 overflow-y-auto flex-1">
+                        <!-- SVG VENN DIAGRAM -->
+                        <div class="mb-6 flex justify-center items-center flex-col bg-slate-50 p-4 rounded-xl border border-slate-100 relative">
+                            <div class="absolute top-2 right-2 text-slate-300 text-xs"><i class="fas fa-circle-notch fa-spin hidden" id="spinner-inner"></i></div>
+                            <h4 class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-3">Diagrama de Conjuntos</h4>
+                            <svg viewBox="0 0 200 120" class="w-56 h-auto">
+                                <defs>
+                                    <clipPath id="clip-inner-b"><circle cx="130" cy="60" r="45" /></clipPath>
+                                </defs>
+                                <circle id="venn-inner-a" cx="70" cy="60" r="45" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2" class="transition-all duration-700"/>
+                                <circle id="venn-inner-b" cx="130" cy="60" r="45" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2" class="transition-all duration-700"/>
+                                <!-- La intersección -->
+                                <circle id="venn-inner-int" cx="70" cy="60" r="45" fill="transparent" clip-path="url(#clip-inner-b)" class="transition-all duration-700"/>
+                                
+                                <text x="45" y="65" font-size="12" fill="#64748b" font-weight="bold">EMP</text>
+                                <text x="155" y="65" font-size="12" fill="#64748b" font-weight="bold">DEPT</text>
+                            </svg>
+                            <p class="text-[10px] text-slate-400 mt-2 text-center">El área se iluminará al finalizar la consulta para mostrar los datos devueltos.</p>
+                        </div>
+
+                        <h3 class="font-bold text-slate-800 mb-3 text-lg">¿Cómo funciona?</h3>
+                        <ol class="list-decimal pl-5 space-y-3 text-sm text-slate-600 mb-6">
+                            <li>SQL toma la primera fila de <code class="bg-slate-100 px-1 rounded">EMP</code>.</li>
+                            <li>Busca en <code class="bg-slate-100 px-1 rounded">DEPT</code> un <code>DEPTNO</code> igual.</li>
+                            <li>Si lo encuentra, fusiona las columnas y baja la fila al resultado.</li>
+                            <li>Si <b>NO</b> lo encuentra (ej. KING tiene NULL), la fila se descarta completamente.</li>
+                            <li>Si un departamento no tiene empleados (ej. OPERATIONS), nunca es encontrado, así que tampoco sale en el resultado.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LEFT JOIN SECTION -->
+        <section id="left" class="content-section h-full hidden flex flex-col fade-in">
+            <div class="flex-none p-6 bg-white border-b border-slate-200 flex justify-between items-center shadow-sm z-10">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-800 flex items-center gap-2">
+                        <i class="fas fa-arrow-alt-circle-left text-indigo-500"></i> LEFT JOIN <span class="text-sm font-normal text-slate-500 ml-2 bg-slate-100 px-2 py-1 rounded">"El Inclusivo"</span>
+                    </h2>
+                    <p class="text-slate-500 text-sm mt-1">Mantiene TODAS las filas de la tabla izquierda, aunque no tengan pareja en la derecha.</p>
+                </div>
+                <button onclick="runSimulation('left')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2.5 rounded-lg font-medium transition-all shadow-md hover:shadow-lg flex items-center gap-2 btn-run">
+                    <i class="fas fa-play text-sm"></i> Ejecutar Animación SQL
+                </button>
+            </div>
+            
+            <div class="flex-1 overflow-y-auto p-6 flex flex-col lg:flex-row gap-6 bg-slate-100">
+                <!-- Left: Animation Canvas -->
+                <div class="flex-1 flex flex-col gap-4 min-w-0 table-container">
+                    <div class="flex gap-4 relative">
+                        <div class="absolute -top-3 left-10 bg-indigo-500 text-white text-[10px] font-bold px-2 py-1 rounded shadow-sm z-10 uppercase tracking-wide">Prioridad (No se descarta)</div>
+                        
+                        <div class="flex-1 bg-white rounded-xl shadow-md border-2 border-indigo-300 overflow-hidden flex flex-col relative">
+                            <div class="bg-indigo-50 border-b border-indigo-200 px-4 py-3 font-mono text-sm font-bold text-indigo-900">EMP e (Izquierda)</div>
+                            <div class="flex-1 p-2" id="left-emp-table"></div>
+                        </div>
+                        <div class="flex flex-col justify-center text-slate-400 font-mono text-xs">
+                            <i class="fas fa-arrow-right mb-1 text-center text-indigo-400"></i>
+                            Busca
+                        </div>
+                        <div class="flex-1 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col opacity-80">
+                            <div class="bg-slate-50 border-b border-slate-200 px-4 py-3 font-mono text-sm font-bold text-slate-700">DEPT d (Derecha)</div>
+                            <div class="flex-1 p-2" id="left-dept-table"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 bg-white rounded-xl shadow-md border border-indigo-200 overflow-hidden flex-1 flex flex-col min-h-[250px]">
+                        <div class="bg-indigo-50 border-b border-indigo-100 px-4 py-3 flex justify-between items-center">
+                            <span class="font-mono text-sm font-bold text-indigo-800"><i class="fas fa-table mr-2"></i>Resultado Final</span>
+                            <span id="left-status" class="text-xs font-semibold px-2 py-1 rounded-full bg-slate-200 text-slate-600">Esperando ejecución...</span>
+                        </div>
+                        <div class="p-2 overflow-y-auto flex-1 bg-slate-50/50" id="left-result-table">
+                            <div class="flex items-center justify-center h-full text-slate-400 text-sm italic empty-state">Haz clic en Ejecutar para ver la magia.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Theory Panel -->
+                <div class="w-full lg:w-96 bg-white rounded-xl shadow-sm border border-slate-200 flex flex-col">
+                    <div class="bg-slate-900 rounded-t-xl p-4">
+                        <pre class="text-sm font-mono text-slate-300 whitespace-pre-wrap"><span class="sql-keyword">SELECT</span> e.ENAME, d.DNAME
+<span class="sql-keyword">FROM</span> <span class="sql-table">EMP</span> e
+<span class="sql-keyword">LEFT JOIN</span> <span class="sql-table">DEPT</span> d 
+  <span class="sql-keyword">ON</span> e.DEPTNO = d.DEPTNO;</pre>
+                    </div>
+                    <div class="p-6 overflow-y-auto flex-1">
+                        <!-- SVG VENN DIAGRAM -->
+                        <div class="mb-6 flex justify-center items-center flex-col bg-slate-50 p-4 rounded-xl border border-slate-100 relative">
+                            <div class="absolute top-2 right-2 text-slate-300 text-xs"><i class="fas fa-circle-notch fa-spin hidden" id="spinner-left"></i></div>
+                            <h4 class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-3">Diagrama de Conjuntos</h4>
+                            <svg viewBox="0 0 200 120" class="w-56 h-auto">
+                                <defs>
+                                    <clipPath id="clip-left-b"><circle cx="130" cy="60" r="45" /></clipPath>
+                                </defs>
+                                <circle id="venn-left-a" cx="70" cy="60" r="45" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2" class="transition-all duration-700"/>
+                                <circle id="venn-left-b" cx="130" cy="60" r="45" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2" class="transition-all duration-700"/>
+                                <!-- La intersección -->
+                                <circle id="venn-left-int" cx="70" cy="60" r="45" fill="transparent" clip-path="url(#clip-left-b)" class="transition-all duration-700"/>
+                                
+                                <text x="45" y="65" font-size="12" fill="#64748b" font-weight="bold">EMP</text>
+                                <text x="155" y="65" font-size="12" fill="#64748b" font-weight="bold">DEPT</text>
+                            </svg>
+                        </div>
+
+                        <h3 class="font-bold text-slate-800 mb-3 text-lg">La diferencia con INNER</h3>
+                        <p class="text-sm text-slate-600 mb-4">Fíjate atentamente en lo que pasa con <b>KING</b> al ejecutar la animación.</p>
+                        <ol class="list-decimal pl-5 space-y-3 text-sm text-slate-600 mb-6">
+                            <li>SQL procesa fila por fila de la tabla izquierda (EMP).</li>
+                            <li>Si encuentra pareja en DEPT, actúa igual que el INNER JOIN.</li>
+                            <li><b>La Magia:</b> Cuando llega a KING (que tiene NULL), en lugar de borrarlo, <b>lo baja al resultado y rellena el hueco con NULLs</b>.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXISTS SECTION -->
+        <section id="exists" class="content-section h-full hidden flex flex-col fade-in">
+            <div class="flex-none p-6 bg-white border-b border-slate-200 flex justify-between items-center shadow-sm z-10">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-800 flex items-center gap-2">
+                        <i class="fas fa-search text-emerald-500"></i> EXISTS <span class="text-sm font-normal text-slate-500 ml-2 bg-slate-100 px-2 py-1 rounded">"El Detector de Radares"</span>
+                    </h2>
+                    <p class="text-slate-500 text-sm mt-1">Subconsulta correlacionada. No devuelve datos de la subconsulta, solo True o False.</p>
+                </div>
+                <div class="flex gap-2">
+                    <button onclick="runSimulation('exists')" class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2.5 rounded-lg font-medium transition-all shadow-md hover:shadow-lg flex items-center gap-2 btn-run">
+                        <i class="fas fa-satellite-dish text-sm"></i> Simular Escaneo
+                    </button>
+                </div>
+            </div>
+            
+            <div class="flex-1 overflow-y-auto p-6 flex flex-col lg:flex-row gap-6 bg-slate-100">
+                <!-- Left: Animation Canvas -->
+                <div class="flex-1 flex flex-col gap-4 min-w-0 table-container">
+                    <div class="flex gap-4">
+                        <div class="flex-1 bg-white rounded-xl shadow-sm border-2 border-slate-300 overflow-hidden flex flex-col">
+                            <div class="bg-slate-100 border-b border-slate-200 px-4 py-3 font-mono text-sm font-bold text-slate-800">1. Consulta Principal (DEPT)</div>
+                            <div class="flex-1 p-2" id="exists-dept-table"></div>
+                        </div>
+                        
+                        <div class="flex flex-col justify-center items-center text-emerald-500 font-mono text-xs w-16">
+                            <i class="fas fa-wifi fa-rotate-90 text-xl mb-1 radar-icon opacity-30"></i>
+                            <span class="text-center font-bold">¿Existe aquí?</span>
+                        </div>
+
+                        <div class="flex-1 bg-white rounded-xl shadow-sm border border-emerald-200 overflow-hidden flex flex-col">
+                            <div class="bg-emerald-50 border-b border-emerald-100 px-4 py-3 font-mono text-sm font-bold text-emerald-800 flex justify-between items-center">
+                                <span>2. Subconsulta (EMP)</span>
+                                <i class="fas fa-search text-emerald-400"></i>
+                            </div>
+                            <div class="flex-1 p-2" id="exists-emp-table"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 bg-white rounded-xl shadow-md border border-slate-300 overflow-hidden flex-1 flex flex-col min-h-[250px]">
+                        <div class="bg-slate-100 border-b border-slate-200 px-4 py-3 flex justify-between items-center">
+                            <span class="font-mono text-sm font-bold text-slate-800"><i class="fas fa-filter mr-2"></i>Departamentos resultantes</span>
+                            <span id="exists-status" class="text-xs font-semibold px-2 py-1 rounded-full bg-slate-200 text-slate-600">Esperando ejecución...</span>
+                        </div>
+                        <div class="p-2 overflow-y-auto flex-1 bg-slate-50/50" id="exists-result-table">
+                            <div class="flex items-center justify-center h-full text-slate-400 text-sm italic empty-state">Haz clic en Simular para escanear.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Theory Panel -->
+                <div class="w-full lg:w-96 bg-white rounded-xl shadow-sm border border-slate-200 flex flex-col">
+                    <div class="bg-slate-900 rounded-t-xl p-4">
+                        <pre class="text-sm font-mono text-slate-300 whitespace-pre-wrap"><span class="sql-keyword">SELECT</span> d.DNAME
+<span class="sql-keyword">FROM</span> <span class="sql-table">DEPT</span> d
+<span class="sql-keyword">WHERE EXISTS</span> (
+  <span class="sql-keyword">SELECT</span> 1 <span class="sql-keyword">FROM</span> <span class="sql-table">EMP</span> e
+  <span class="sql-keyword">WHERE</span> e.DEPTNO = d.DEPTNO
+);</pre>
+                    </div>
+                    <div class="p-6 overflow-y-auto flex-1">
+                        <!-- SVG VENN DIAGRAM -->
+                        <div class="mb-6 flex justify-center items-center flex-col bg-slate-50 p-4 rounded-xl border border-slate-100 relative">
+                            <div class="absolute top-2 right-2 text-slate-300 text-xs"><i class="fas fa-circle-notch fa-spin hidden" id="spinner-exists"></i></div>
+                            <h4 class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-3">Representación Visual</h4>
+                            <svg viewBox="0 0 200 120" class="w-56 h-auto">
+                                <defs>
+                                    <clipPath id="clip-exists-b"><circle cx="130" cy="60" r="45" /></clipPath>
+                                </defs>
+                                <circle id="venn-exists-a" cx="70" cy="60" r="45" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2" class="transition-all duration-700"/>
+                                <circle id="venn-exists-b" cx="130" cy="60" r="45" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2" class="transition-all duration-700"/>
+                                <circle id="venn-exists-int" cx="70" cy="60" r="45" fill="transparent" clip-path="url(#clip-exists-b)" class="transition-all duration-700"/>
+                                
+                                <text x="45" y="65" font-size="12" fill="#64748b" font-weight="bold">DEPT</text>
+                                <text x="155" y="65" font-size="12" fill="#64748b" font-weight="bold">EMP</text>
+                            </svg>
+                        </div>
+
+                        <h3 class="font-bold text-slate-800 mb-3 text-lg">La Lógica del Radar</h3>
+                        <ol class="list-decimal pl-5 space-y-3 text-sm text-slate-600 mb-6">
+                            <li>El motor coge un departamento (ej. RESEARCH).</li>
+                            <li>Enciende el radar <code>EXISTS</code>.</li>
+                            <li><b>LA CLAVE:</b> En el instante en que encuentra <b>un solo</b> empleado, <b>se detiene y devuelve TRUE</b>.</li>
+                            <li>Si escanea toda la tabla EMP y no halla a nadie, devuelve FALSE.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // --- Data Mockup ---
+        const empData = [
+            { id: 'e1', empno: 7369, ename: 'SMITH', deptno: 20 },
+            { id: 'e2', empno: 7499, ename: 'ALLEN', deptno: 30 },
+            { id: 'e3', empno: 7521, ename: 'WARD', deptno: 30 },
+            { id: 'e4', empno: 7839, ename: 'KING', deptno: null }
+        ];
+
+        const deptData = [
+            { id: 'd1', deptno: 10, dname: 'ACCOUNTING' },
+            { id: 'd2', deptno: 20, dname: 'RESEARCH' },
+            { id: 'd3', deptno: 30, dname: 'SALES' },
+            { id: 'd4', deptno: 40, dname: 'OPERATIONS' }
+        ];
+
+        // --- UI State Management ---
+        let isAnimating = false;
+
+        function switchTab(tabId) {
+            if (isAnimating) return; // Prevent switching during animation
+            
+            // Update Navigation
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                if (btn.dataset.target === tabId) {
+                    btn.classList.add('tab-active');
+                    btn.classList.replace('text-slate-400', 'text-blue-500'); 
+                } else {
+                    btn.classList.remove('tab-active');
+                    const icon = btn.querySelector('i');
+                    if(btn.dataset.target === 'intro') icon.className = 'fas fa-map-signs w-6 text-center mr-2 text-slate-400';
+                    if(btn.dataset.target === 'inner') icon.className = 'fas fa-link w-6 text-center mr-2 text-blue-500';
+                    if(btn.dataset.target === 'left') icon.className = 'fas fa-arrow-alt-circle-left w-6 text-center mr-2 text-indigo-500';
+                    if(btn.dataset.target === 'exists') icon.className = 'fas fa-search w-6 text-center mr-2 text-emerald-500';
+                }
+            });
+
+            // Update Content
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            const activeSection = document.getElementById(tabId);
+            activeSection.classList.remove('hidden');
+            
+            // Reset state for the opened tab
+            if(tabId !== 'intro') {
+                renderTables(tabId);
+                resetResult(tabId);
+            }
+        }
+
+        // --- Rendering Engine ---
+        function renderRow(data, type, context) {
+            let cols = '';
+            if(type === 'emp') {
+                cols = `<div class="w-1/3 text-slate-600">${data.empno}</div>
+                        <div class="w-1/3 font-bold">${data.ename}</div>
+                        <div class="w-1/3 text-blue-600 font-bold bg-blue-50 px-2 rounded ${data.deptno === null ? 'text-red-500 bg-red-50 italic' : ''}">${data.deptno || 'NULL'}</div>`;
+            } else if (type === 'dept') {
+                cols = `<div class="w-1/3 text-purple-600 font-bold bg-purple-50 px-2 rounded">${data.deptno}</div>
+                        <div class="w-2/3 font-bold">${data.dname}</div>`;
+            }
+            return `<div id="row-${context}-${type}-${data.id}" class="flex p-2 mb-1 border border-slate-200 rounded text-sm bg-white font-mono items-center relative overflow-hidden transition-all duration-300">
+                        ${cols}
+                    </div>`;
+        }
+
+        function renderResultRow(emp, dept, type) {
+            const isEmptyDept = !dept;
+            return `<div class="flex p-2 mb-2 border border-blue-200 rounded text-sm bg-white font-mono items-center shadow-sm result-row-enter">
+                        <div class="w-1/4 text-slate-500">${emp.empno}</div>
+                        <div class="w-1/4 font-bold text-slate-800">${emp.ename}</div>
+                        <div class="w-1/4 px-2 text-center">
+                            <i class="fas ${type === 'inner' ? 'fa-link text-blue-400' : 'fa-arrow-right text-indigo-400'}"></i>
+                        </div>
+                        <div class="w-1/4 font-bold ${isEmptyDept ? 'text-red-400 italic' : 'text-slate-800'}">${isEmptyDept ? 'NULL' : dept.dname}</div>
+                    </div>`;
+        }
+        
+        function renderExistsResultRow(dept, hasMatch) {
+            if(!hasMatch) return ''; 
+            return `<div class="flex p-3 mb-2 border border-emerald-200 rounded text-sm bg-emerald-50 font-mono items-center shadow-sm result-row-enter">
+                        <div class="w-1/3 text-emerald-600 font-bold"><i class="fas fa-check-circle mr-2"></i> ${dept.deptno}</div>
+                        <div class="w-2/3 font-bold text-emerald-900">${dept.dname}</div>
+                    </div>`;
+        }
+
+        function renderTables(context) {
+            if(context === 'inner' || context === 'left') {
+                document.getElementById(`${context}-emp-table`).innerHTML = empData.map(e => renderRow(e, 'emp', context)).join('');
+                document.getElementById(`${context}-dept-table`).innerHTML = deptData.map(d => renderRow(d, 'dept', context)).join('');
+            } else if (context === 'exists') {
+                document.getElementById('exists-dept-table').innerHTML = deptData.map(d => renderRow(d, 'dept', context)).join('');
+                document.getElementById('exists-emp-table').innerHTML = empData.map(e => renderRow(e, 'emp', context)).join('');
+            }
+        }
+
+        // --- VENN DIAGRAM ANIMATION LOGIC ---
+        function resetVennAnimation(type) {
+            const a = document.getElementById(`venn-${type}-a`);
+            const b = document.getElementById(`venn-${type}-b`);
+            const int = document.getElementById(`venn-${type}-int`);
+            const spinner = document.getElementById(`spinner-${type}`);
+            
+            if(spinner) spinner.classList.add('hidden');
+
+            if(a) { a.setAttribute('fill', '#f1f5f9'); a.classList.remove('venn-animate'); }
+            if(b) { b.setAttribute('fill', '#f1f5f9'); b.classList.remove('venn-animate'); }
+            if(int) { int.setAttribute('fill', 'transparent'); int.classList.remove('venn-animate'); }
+        }
+
+        function triggerVennAnimation(type) {
+            const a = document.getElementById(`venn-${type}-a`);
+            const b = document.getElementById(`venn-${type}-b`);
+            const int = document.getElementById(`venn-${type}-int`);
+            const spinner = document.getElementById(`spinner-${type}`);
+            
+            if(spinner) spinner.classList.add('hidden');
+            
+            if (type === 'inner') {
+                // Solo la intersección se colorea (Match estricto)
+                if(int) {
+                    int.setAttribute('fill', '#3b82f6'); // Azul fuerte
+                    int.classList.add('venn-animate');
+                }
+            } else if (type === 'left') {
+                // Se colorea todo el conjunto izquierdo y la intersección
+                if(a) {
+                    a.setAttribute('fill', '#c7d2fe'); // Indigo suave
+                    a.classList.add('venn-animate');
+                }
+                if(int) {
+                    int.setAttribute('fill', '#6366f1'); // Indigo fuerte
+                    int.classList.add('venn-animate');
+                }
+            } else if (type === 'exists') {
+                // Exists: Solo obtenemos columnas de A, pero solo las que intersectan con B
+                // Representamos la intersección en verde
+                if(int) {
+                    int.setAttribute('fill', '#10b981'); // Emerald
+                    int.classList.add('venn-animate');
+                }
+            }
+        }
+
+        function resetResult(context) {
+            const resultDiv = document.getElementById(`${context}-result-table`);
+            resultDiv.innerHTML = '<div class="flex items-center justify-center h-full text-slate-400 text-sm italic empty-state">Haz clic en Ejecutar para ver la magia.</div>';
+            document.getElementById(`${context}-status`).textContent = 'Esperando ejecución...';
+            document.getElementById(`${context}-status`).className = 'text-xs font-semibold px-2 py-1 rounded-full bg-slate-200 text-slate-600';
+            
+            // Eliminar clases de highlighting previas
+            document.querySelectorAll('.highlight-row, .scan-row, .match-success, .match-fail').forEach(el => {
+                el.classList.remove('highlight-row', 'scan-row', 'match-success', 'match-fail');
+            });
+            if(context === 'exists') {
+                const radar = document.querySelector('.radar-icon');
+                radar.classList.remove('text-emerald-500', 'animate-pulse', 'opacity-100');
+                radar.classList.add('opacity-30');
+            }
+
+            // Resetear el Diagrama de Venn
+            resetVennAnimation(context);
+        }
+
+        // --- Core Simulation Logic ---
+        const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+        async function runSimulation(type) {
+            if(isAnimating) return;
+            isAnimating = true;
+            
+            // Deshabilitar botones
+            document.querySelectorAll('.btn-run').forEach(btn => btn.classList.add('opacity-50', 'cursor-not-allowed'));
+            
+            resetResult(type);
+            
+            // Activar pequeño indicador de "cargando" en el gráfico de Venn
+            const spinner = document.getElementById(`spinner-${type}`);
+            if(spinner) spinner.classList.remove('hidden');
+
+            const resultContainer = document.getElementById(`${type}-result-table`);
+            const statusBadge = document.getElementById(`${type}-status`);
+            
+            const emptyState = resultContainer.querySelector('.empty-state');
+            if(emptyState) emptyState.remove();
+
+            statusBadge.textContent = 'Ejecutando consulta...';
+            statusBadge.className = 'text-xs font-semibold px-2 py-1 rounded-full bg-blue-500 text-white animate-pulse';
+
+            if(type === 'inner' || type === 'left') {
+                for (let i = 0; i < empData.length; i++) {
+                    const emp = empData[i];
+                    const empRowEl = document.getElementById(`row-${type}-emp-${emp.id}`);
+                    
+                    empRowEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    empRowEl.classList.add('highlight-row');
+                    await sleep(600);
+                    
+                    let matchFound = false;
+                    let matchedDept = null;
+
+                    for (let j = 0; j < deptData.length; j++) {
+                        const dept = deptData[j];
+                        const deptRowEl = document.getElementById(`row-${type}-dept-${dept.id}`);
+                        
+                        deptRowEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        deptRowEl.classList.add('scan-row');
+                        await sleep(400); 
+
+                        if (emp.deptno === dept.deptno) {
+                            deptRowEl.classList.remove('scan-row');
+                            deptRowEl.classList.add('match-success');
+                            empRowEl.classList.add('match-success');
+                            matchFound = true;
+                            matchedDept = dept;
+                            await sleep(500); 
+                            deptRowEl.classList.remove('match-success');
+                            break; 
+                        } else {
+                            deptRowEl.classList.remove('scan-row');
+                        }
+                    }
+
+                    if (matchFound) {
+                        resultContainer.innerHTML += renderResultRow(emp, matchedDept, type);
+                    } else {
+                        empRowEl.classList.add('match-fail');
+                        await sleep(300);
+                        if (type === 'left') {
+                            resultContainer.innerHTML += renderResultRow(emp, null, type);
+                        }
+                    }
+
+                    empRowEl.classList.remove('highlight-row', 'match-success', 'match-fail');
+                    await sleep(300); 
+                    resultContainer.scrollTop = resultContainer.scrollHeight;
+                }
+            } else if (type === 'exists') {
+                const radar = document.querySelector('.radar-icon');
+                radar.classList.remove('opacity-30');
+                
+                for (let i = 0; i < deptData.length; i++) {
+                    const dept = deptData[i];
+                    const deptRowEl = document.getElementById(`row-${type}-dept-${dept.id}`);
+                    
+                    deptRowEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    deptRowEl.classList.add('highlight-row');
+                    radar.classList.add('text-emerald-500', 'animate-pulse', 'opacity-100');
+                    await sleep(600);
+                    
+                    let matchFound = false;
+
+                    for (let j = 0; j < empData.length; j++) {
+                        const emp = empData[j];
+                        const empRowEl = document.getElementById(`row-${type}-emp-${emp.id}`);
+                        
+                        empRowEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        empRowEl.classList.add('scan-row');
+                        await sleep(300);
+
+                        if (emp.deptno === dept.deptno) {
+                            empRowEl.classList.remove('scan-row');
+                            empRowEl.classList.add('match-success');
+                            deptRowEl.classList.add('match-success');
+                            matchFound = true;
+                            
+                            const earlyStopIcon = document.createElement('div');
+                            earlyStopIcon.innerHTML = '<i class="fas fa-hand-paper text-emerald-600 text-2xl absolute right-2 top-2 fade-in"></i>';
+                            empRowEl.appendChild(earlyStopIcon);
+                            
+                            await sleep(800); 
+                            empRowEl.classList.remove('match-success');
+                            if(empRowEl.lastChild === earlyStopIcon) empRowEl.removeChild(earlyStopIcon);
+                            break; 
+                        } else {
+                            empRowEl.classList.remove('scan-row');
+                        }
+                    }
+
+                    radar.classList.remove('text-emerald-500', 'animate-pulse', 'opacity-100');
+                    radar.classList.add('opacity-30');
+
+                    if (matchFound) {
+                        resultContainer.innerHTML += renderExistsResultRow(dept, true);
+                    } else {
+                        deptRowEl.classList.add('match-fail');
+                        await sleep(400);
+                    }
+
+                    deptRowEl.classList.remove('highlight-row', 'match-success', 'match-fail');
+                    await sleep(300);
+                    resultContainer.scrollTop = resultContainer.scrollHeight;
+                }
+            }
+
+            statusBadge.textContent = '¡Consulta finalizada!';
+            statusBadge.className = 'text-xs font-semibold px-2 py-1 rounded-full bg-green-100 text-green-700';
+            
+            // ¡Disparar la animación del Diagrama de Venn como "gran final"!
+            triggerVennAnimation(type);
+            
+            document.querySelectorAll('.btn-run').forEach(btn => btn.classList.remove('opacity-50', 'cursor-not-allowed'));
+            isAnimating = false;
+        }
+
+        // Init
+        switchTab('intro');
+    </script>
+</body>
+</html>
