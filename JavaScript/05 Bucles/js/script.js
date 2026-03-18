@@ -149,7 +149,7 @@ const numPrimo = (num1) => {
         }
 
     }
-    console.log(array.join(' ').toString());
+    console.log(array.join('\n'));
     if (array.length === 2) {
         return true;
     } else {
@@ -157,7 +157,7 @@ const numPrimo = (num1) => {
     }
 }
 
-const num = 74;
+const num = 734;
 
 if (numPrimo(num)) {
     console.log(`El número ${num} es primo`);

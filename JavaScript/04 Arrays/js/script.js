@@ -156,7 +156,7 @@ console.log('Ejercicio 8: Devolver palabra invertida');
  */
 
 const reverseWord = (word) => {
-    return (word.split('').reverse().join(''));
+    return (word.split("").reverse().join(""));
 }
 
 console.log(reverseWord('Oliver'));
