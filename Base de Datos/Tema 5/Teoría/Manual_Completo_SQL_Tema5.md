@@ -20,10 +20,11 @@ Este documento unifica todo el temario relacionado con el **Tema 5 de Bases de D
         *   [3.2. Implicaciones DML](#32-implicaciones-dml)
         *   [3.3. Configuración de la Supresión en Cascada](#33-configuración-de-la-supresión-en-cascada)
 *   **[PARTE II. SUBCONSULTAS, TRANSACCIONES Y CONCURRENCIA](#parte-ii-subconsultas-transacciones-y-concurrencia)**
-    *   [4. Subconsultas en órdenes de edición DML](#4-subconsultas-en-órdenes-de-edición-dml)
+    *   [4. Subconsultas y Operaciones DML Avanzadas](#4-subconsultas-en-órdenes-de-edición-dml)
         *   [4.1. Inserción masiva (INSERT con SELECT)](#41-inserción-masiva-insert-con-select)
-        *   [4.2. Modificación masiva (UPDATE con SELECT)](#42-modificación-masiva-update-con-select)
-        *   [4.3. Supresión avanzada (DELETE condicional)](#43-supresión-avanzada-delete-condicional)
+        *   [4.2. Inserción de múltiples filas (INSERT ALL)](#42-inserción-de-múltiples-filas-insert-all)
+        *   [4.3. Modificación masiva (UPDATE con SELECT)](#43-modificación-masiva-update-con-select)
+        *   [4.4. Supresión avanzada (DELETE condicional)](#44-supresión-avanzada-delete-condicional)
     *   [5. Transacciones](#5-transacciones)
         *   [5.1. Propiedades ACID](#51-propiedades-acid)
         *   [5.2. Sentencias de Control (COMMIT, ROLLBACK, SAVEPOINT)](#52-sentencias-de-control-de-transacciones)
@@ -213,7 +214,7 @@ En bases de datos relacionales, las operaciones de edición (DML) pueden escalar
 ---
 
 <a id="4-subconsultas-en-órdenes-de-edición-dml"></a>
-## 4. Subconsultas en órdenes de edición DML
+## 4. Subconsultas y Operaciones DML Avanzadas
 
 SQL permite utilizar los resultados obtenidos por una consulta (`SELECT`) para alimentar directamente operaciones de inserción (`INSERT`), modificación (`UPDATE`) o supresión (`DELETE`), ahorrando miles de líneas de programación manual.
 
@@ -234,8 +235,26 @@ Volcar datos masivos de una tabla "staging" a otra de producción quitando el `V
 > VALUES ('natsan63', 'VBROMI', 'natsan@mail.com');
 > ```
 
-<a id="42-modificación-masiva-update-con-select"></a>
-### 4.2. Modificación masiva (UPDATE con SELECT)
+<a id="42-inserción-de-múltiples-filas-insert-all"></a>
+### 4.2. Inserción de múltiples filas (`INSERT ALL`)
+Oracle introdujo la cláusula `INSERT ALL` precisamente para poder insertar múltiples filas (incluso en distintas tablas) en una sola ejecución. Esta es considerada la forma "oficial" y más eficiente de realizar cargas múltiples sin recurrir a una tabla origen.
+
+**Sintaxis y Reglas:**
+La sintaxis obligatoria requiere terminar siempre con un `SELECT * FROM dual;`. La tabla `dual` es una tabla especial y temporal que existe en Oracle por defecto para poder completar operaciones lógicas que requieren un `SELECT`.
+
+> **CASO DE USO PRÁCTICO (`INSERT ALL`):**
+> *Problema:* Queremos insertar 3 usuarios nuevos en la tabla `USUARIOS` en un único bloque de ejecución:
+> ```sql
+> INSERT ALL
+>   INTO USUARIOS (Login, Password, Nombre) VALUES ('user1', 'pass1', 'Ana')
+>   INTO USUARIOS (Login, Password, Nombre) VALUES ('user2', 'pass2', 'Luis')
+>   INTO USUARIOS (Login, Password, Nombre) VALUES ('user3', 'pass3', 'Marta')
+> SELECT * FROM dual;
+> ```
+> *Ventaja:* Mejora el rendimiento al reducir el número de llamadas a la base de datos y asegura que todas las inserciones se traten como un solo bloque.
+
+<a id="43-modificación-masiva-update-con-select"></a>
+### 4.3. Modificación masiva (UPDATE con SELECT)
 Actualizaciones potentes referenciadas a datos vivos de otras tablas.
 
 > **CASO DE USO PRÁCTICO (`UPDATE` anidado):**
@@ -247,7 +266,8 @@ Actualizaciones potentes referenciadas a datos vivos de otras tablas.
 > ```
 
 <a id="43-supresión-avanzada-delete-condicional"></a>
-### 4.3. Supresión avanzada (DELETE condicional)
+<a id="44-supresión-avanzada-delete-condicional"></a>
+### 4.4. Supresión avanzada (DELETE condicional)
 Permite borrar datos cuya llave lógica dependa de una evaluación cruzada entre tablas.
 
 > **CASO DE USO PRÁCTICO (`DELETE` anidado):**
