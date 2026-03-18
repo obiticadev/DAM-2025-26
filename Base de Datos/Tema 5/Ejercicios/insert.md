@@ -1,5 +1,3 @@
-Aquí tienes el enunciado del ejercicio formateado para una mayor legibilidad, manteniendo el contenido original y sin incluir las soluciones:
-
 # Ejercicio: Sentencia INSERT INTO
 
 ## 1. Definición de la tabla inicial
