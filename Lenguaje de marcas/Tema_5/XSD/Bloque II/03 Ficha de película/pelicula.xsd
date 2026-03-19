@@ -1,0 +1,39 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="pelicula">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="titulo" type="xs:string" />
+                <xs:element name="anio" type="tipoAnio" />
+                <xs:element name="duracion" type="tipoDuracion" />
+                <xs:element name="genero" type="tipoGenero" />
+                <xs:element name="puntuacion" type="tipoPuntuacion" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="tipoAnio">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="1888" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="tipoDuracion">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="1" />
+            <xs:maxInclusive value="600" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="tipoGenero">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Drama" />
+            <xs:enumeration value="Comedia" />
+            <xs:enumeration value="Terror" />
+            <xs:enumeration value="Ciencia Ficción" />
+            <xs:enumeration value="Documental" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="tipoPuntuacion">
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="0.0" />
+            <xs:maxInclusive value="10.0" />
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

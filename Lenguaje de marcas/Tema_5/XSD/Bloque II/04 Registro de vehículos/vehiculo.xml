@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vehiculo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="vehiculo.xsd" tipo="turismo">
+    <matricula>0214RTG</matricula>
+    <marca>Toyota</marca>
+    <modelo>3000 Supreme</modelo>
+    <anio>1254</anio>
+    <kilometraje>125</kilometraje>
+</vehiculo>

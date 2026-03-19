@@ -1,0 +1,31 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="almacen">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="articulo" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="descripcion" type="xs:string" />
+                            <xs:element name="cantidad" type="tipoCantidad" />
+                            <xs:element name="ubicacion" type="tipoUbicacion" />
+                        </xs:sequence>
+                        <xs:attribute name="codigo" type="xs:string" use="required" />
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="tipoCantidad">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="0" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="tipoUbicacion">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Zona-A" />
+            <xs:enumeration value="Zona-B" />
+            <xs:enumeration value="Zona-C" />
+            <xs:enumeration value="Refrigerado" />
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

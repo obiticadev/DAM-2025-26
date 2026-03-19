@@ -1,0 +1,25 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="vehiculo">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="matricula" type="tipoMatricula" />
+                <xs:element name="marca" type="xs:string" />
+                <xs:element name="modelo" type="xs:string" />
+                <xs:element name="anio" type="xs:gYear" />
+                <xs:element name="kilometraje" type="tipoKm" />
+
+            </xs:sequence>
+            <xs:attribute name="tipo" fixed="turismo" />
+        </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="tipoMatricula">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]{4}[A-Z]{3}" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="tipoKm">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="0" />
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<almacen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="almacen.xsd">
+    <articulo codigo="001">
+        <descripcion>Esta es la primera descripción</descripcion>
+        <cantidad>0</cantidad>
+        <ubicacion>Zona-A</ubicacion>
+    </articulo>
+    <articulo codigo="002">
+        <descripcion>Esta es la segunda descripción</descripcion>
+        <cantidad>4</cantidad>
+        <ubicacion>Zona-B</ubicacion>
+    </articulo>
+    <articulo codigo="003">
+        <descripcion>Esta es la tercera descripción</descripcion>
+        <cantidad>7</cantidad>
+        <ubicacion>Refrigerado</ubicacion>
+    </articulo>
+</almacen>
