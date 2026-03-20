@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<expedicion xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="expedicion.xsd">
+    <nombre>Lucas</nombre>
+    <fecha_de_inicio>1927-02-05</fecha_de_inicio>
+    <duracion_en_dias>25</duracion_en_dias>
+    <investigador id="2" especialidad="Geología">Lorenzo</investigador>
+    <investigador id="3" especialidad="Biología">Pablo</investigador>
+</expedicion>

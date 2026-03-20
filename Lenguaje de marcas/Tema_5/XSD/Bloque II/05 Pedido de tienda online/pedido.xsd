@@ -1,0 +1,38 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="pedido">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="cliente">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="nombre" type="xs:string" />
+                            <xs:element name="dirección" type="xs:string" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="linea" minOccurs="1" maxOccurs="5">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="producto" type="xs:string" />
+                            <xs:element name="cantidad" type="tipoCantPedido" />
+                            <xs:element name="precio" type="tipoPrecio" />
+                        </xs:sequence>
+                        <xs:attribute name="num" type="xs:positiveInteger" />
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="fecha" type="xs:date" use="required" />
+        </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="tipoCantPedido">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="1" />
+            <xs:maxInclusive value="99" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="tipoPrecio">
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="0" />
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

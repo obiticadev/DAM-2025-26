@@ -1,0 +1,35 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="expedicion">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="nombre" type="xs:string" />
+                <xs:element name="fecha_de_inicio" type="xs:date" />
+                <xs:element name="duracion_en_dias" type="duracionDias" />
+                <xs:element name="investigador" type="tipoInvestigador" minOccurs="2" maxOccurs="8" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="tipoEsp">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Biología" />
+            <xs:enumeration value="Geología" />
+            <xs:enumeration value="Climatología" />
+            <xs:enumeration value="Oceanografía" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="tipoInvestigador">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="id" type="xs:string" use="required" />
+                <xs:attribute name="especialidad" type="tipoEsp" use="required" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:simpleType name="duracionDias">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="1" />
+            <xs:maxInclusive value="365" />
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

@@ -1,0 +1,17 @@
+<pedido xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="pedido.xsd" fecha="1997-10-25">
+    <cliente>
+        <nombre>Oliver</nombre>
+        <dirección>Calle Trinidad y Tobago</dirección>
+    </cliente>
+    <linea>
+        <producto>Tomates</producto>
+        <cantidad>25</cantidad>
+        <precio>5</precio>
+    </linea>
+    <linea>
+        <producto>Sandía</producto>
+        <cantidad>1</cantidad>
+        <precio>12</precio>
+    </linea>
+</pedido>
