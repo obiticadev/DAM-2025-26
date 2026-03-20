@@ -1,18 +1,14 @@
-import java.util.ArrayList;
+import Clases.Persona;
+import Clases.Regalo;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
-import Clases.Persona;
-import Clases.Regalo;
-
 public class App {
     private static Scanner sc = new Scanner(System.in);
-    private static Map<Persona, Set<Regalo>> lista = new HashMap<>();
+    private static Map<Persona, Set<Regalo>> lista = ;
 
     public static void main(String[] args) throws Exception {
         boolean continuar = true;
