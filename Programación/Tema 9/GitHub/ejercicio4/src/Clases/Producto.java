@@ -15,6 +15,12 @@ public class Producto implements Comparable<Producto> {
         this.largo = filtrarParamtros(largo, INFERIOR_ALL, SUPERIOR_ANCHO_LARGO);
     }
 
+    public Producto() {
+        this.alto = INFERIOR_ALL;
+        this.ancho = INFERIOR_ALL;
+        this.largo = INFERIOR_ALL;
+    }
+
     private int filtrarParamtros(int num, int limiteInferior, int limiteSuperior) {
         if (num < limiteInferior) {
             return limiteInferior;
