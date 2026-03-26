@@ -1,8 +1,8 @@
 package listas;
 
-import modelos.Producto;
 import java.util.ArrayList;
 import java.util.List;
+import modelos.Producto;
 
 /**
  * MÓDULO 1.1: ARRAYLIST (Implementación de la interfaz List)
@@ -74,13 +74,18 @@ public class Ejercicio01_ArrayList {
         List<String> nombres = new ArrayList<>(); // <-- DESCOMENTA Y COMPLETA AQUÍ SI ES NECESARIO
 
         // TODO: Añade "Juan", "Pedro", "Ana" (en ese orden).
+        nombres.addAll(List.of("Juan", "Pedro", "Ana"));
 
         // TODO: Cambia ("Set") la posición del elemento 1 ("Pedro") para que ahora sea
         // "Maria".
+        nombres.set(1, "Maria");
 
         // TODO: Comprueba si la lista contiene "Maria" (método contains). Guarda en
         // 'existe'
         boolean existe = false;
+        if (nombres.contains("Maria")) {
+            existe = true;
+        }
 
         // --- CÓDIGO DE COMPROBACIÓN (NO MODIFICAR) ---
         if (nombres.size() == 3 && nombres.get(1).equals("Maria") && existe) {
