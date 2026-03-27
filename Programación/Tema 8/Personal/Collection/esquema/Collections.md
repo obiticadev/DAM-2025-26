@@ -9,29 +9,29 @@ flowchart TD
     Collection[["«Interface»<br/>Collection"]]:::interface
     
     %% Nodos Secundarios (Interfaces)
-    List[["«Interface»<br/>List"]]:::interface
     Set[["«Interface»<br/>Set"]]:::interface
+    List[["«Interface»<br/>List"]]:::interface
     Queue[["«Interface»<br/>Queue"]]:::interface
     Deque[["«Interface»<br/>Deque"]]:::interface
     SortedSet[["«Interface»<br/>SortedSet"]]:::interface
     NavigableSet[["«Interface»<br/>NavigableSet"]]:::interface
 
     %% Nodos (Clases)
+    HashSet["HashSet"]:::classNode
+    LinkedHashSet["LinkedHashSet"]:::classNode
+    TreeSet["TreeSet"]:::classNode
     ArrayList["ArrayList"]:::classNode
     LinkedList["LinkedList"]:::classNode
     Vector["Vector"]:::classNode
     Stack["Stack"]:::classNode
     PriorityQueue["PriorityQueue"]:::classNode
     ArrayDeque["ArrayDeque"]:::classNode
-    HashSet["HashSet"]:::classNode
-    LinkedHashSet["LinkedHashSet"]:::classNode
-    TreeSet["TreeSet"]:::classNode
 
     %% Relaciones de Herencia (Interfaces)
     Iterable -->|extends| Collection
 
-    Collection -->|extends| List
     Collection -->|extends| Set
+    Collection -->|extends| List
     Collection -->|extends| Queue
 
     Set -->|extends| SortedSet
@@ -39,6 +39,10 @@ flowchart TD
     Queue -->|extends| Deque
 
     %% Relaciones de Implementación y Herencia (Clases)
+    Set -.->|implements| HashSet
+    HashSet -->|extends| LinkedHashSet
+    NavigableSet -.->|implements| TreeSet
+
     List -.->|implements| ArrayList
     List -.->|implements| Vector
     Vector -->|extends| Stack
@@ -46,10 +50,6 @@ flowchart TD
     %% LinkedList es especial, implementa List y Deque
     List -.->|implements| LinkedList
     Deque -.->|implements| LinkedList
-
-    Set -.->|implements| HashSet
-    HashSet -->|extends| LinkedHashSet
-    NavigableSet -.->|implements| TreeSet
 
     Queue -.->|implements| PriorityQueue
     Deque -.->|implements| ArrayDeque
