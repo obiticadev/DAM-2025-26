@@ -103,9 +103,12 @@ flowchart TD
 - **Casos de Uso**: Cuando necesitas orden secuencial temporal y posibilidad de manipular por índice.
 - **Métodos Exclusivos Mapeados por Índice**:
   - 🔹 `get(int index)`: Lee y devuelve lo que hay en una posición concreta.
-  - 🔹 `set(int index, E element)`: Modifica una variable presente en la lista en un slot puntual.
-  - 🔹 `add(int index, E element)`: Inserta forzosamente incrustando el objeto en la posición, desplazando lo demás.
-  - 🔹 `remove(int index)` / `indexOf(Object o)`: Extrae por ubicación y descubre qué index posee un objeto dado.
+  - 🔹 `set(int index, E element)`: Modifica una variable presente en la lista en un slot puntual, devolviendo el antiguo.
+  - 🔹 `add(int index, E element)`: Inserta forzosamente incrustando el objeto en la posición, desplazando lo demás a la derecha.
+  - 🔹 `remove(int index)`: Extrae y devuelve el elemento de la ubicación específica, desplazando el resto a la izquierda.
+  - 🔹 `indexOf(Object o)` / `lastIndexOf(Object o)`: Descubre en qué índice (primero o último) se encuentra un objeto. Retorna -1 si no existe.
+  - 🔹 `subList(int fromIndex, int toIndex)`: Devuelve una vista recortada de una porción de la lista.
+  - 🔹 `sort(Comparator<? super E> c)`: Ordena la lista utilizando el comparador suministrado.
 
 #### `Set<E>` (Conjuntos puros)
 - **Definición**: Colección que NO permite elementos duplicados en ninguno de sus estados. Modela el concepto de los conjuntos lógicos matemáticos.
@@ -138,15 +141,28 @@ flowchart TD
 #### `ArrayList<E>`
 - **Qué hace**: Lista montada alrededor de un array oculto escalable infinitamente solo pidiendo trozos de mayor capacidad a la CPU.
 - **Cuándo usarla**: Siempre que lo dominante sean **las lecturas rápidas**. El acceso mediante Índice `list.get(200)` es lo más fulgurante.
+- **Métodos Destacados**:
+  - 🔸 Todos los métodos de `List<E>` aplican con un rendimiento altísimo para lectura $\mathcal{O}(1)$.
+  - 🔸 `ensureCapacity(int minCapacity)`: Se usa para aumentar preventivamente la capacidad del array interno si sabemos que vendrá una inserción gigante, ganando muchísimo rendimiento al evitar auto-escalados.
+  - 🔸 `trimToSize()`: Recorta el tamaño de la capacidad interna sobrante en memoria para que encaje puramente al tamaño de datos actual.
 
 #### `LinkedList<E>`
 - **Qué hace**: Lista construyendo eslabones que conocen quién era el objeto anterior a sí mismos y quién viene luego. (A la vez implementa `Deque`).
 - **Cuándo usarla**: Para uso puro como Cola doble por detrás de escena o si sabemos al 100% que la aplicación solo se pasa el día **inyectando cosas o eliminándolas en medio de la estructura**.
+- **Métodos Destacados (derivados de su naturaleza y de `Deque`)**:
+  - 🔸 Tiene acceso a todos los métodos de `List` (pero con mal rendimiento en `get(index)`).
+  - 🔸 `addFirst(E e)` / `addLast(E e)`: Inyecta en cabecera o cola con rendimiento instantáneo.
+  - 🔸 `getFirst()` / `getLast()`: Lee extremos de la lista al instante.
+  - 🔸 `removeFirst()` / `removeLast()`: Desengancha y devuelve el primero o el último.
 
 #### `Vector<E>` / `Stack<E>`
 - **Qué hace**: Es un antecesor viejo de ArrayList con sincronizaciones bloqueantes predeterminadas de hilos que encarece los consumos. `Stack` le heredó para servir de Pila LIFO temporal pre-modernización Java 1.5.
 - **Cuándo usarla**: Es código calificado de **LEGADO**. Totalmente desaconsejable a menos que trabajes adaptando el proyecto antiguo a otra librería. Prioridad sobre `ArrayDeque` si se busca montar una "Pila / Stack" de velocidad alta.
-
+- **Métodos Exclusivos de Stack (LIFO - Last In, First Out)**:
+  - 🔸 `push(E item)`: Empuja el elemento a la parte superior de la pila.
+  - 🔸 `pop()`: Retira el objeto superior de la pila y te lo devuelve.
+  - 🔸 `peek()`: Mira el objeto tope de la pila sin sacarlo.
+  - 🔸 `search(Object o)`: Busca y retorna la "profundidad" (qué tan abajo está) el objeto desde el tope.
 ---
 
 ### 4. Implementaciones concretas (Clases, Sets)
@@ -154,14 +170,20 @@ flowchart TD
 #### `HashSet<E>`
 - **Qué hace**: Emplea hashes subyacentes. El orden visual de lectura final que tendrás tú desde la consola al imprimirla ni existe ni importa.
 - **Cuándo usarla**: Si precisas purgar repetidos a velocidad ultra-sonora en orden $\mathcal{O}(1)$. Colección Set predilecta de cada programador por defecto.
+- **Métodos Destacados**: Comparte integralmente los métodos de `Collection` (`add`, `remove`, `contains`) optimizados para hashes.
 
 #### `LinkedHashSet<E>`
 - **Qué hace**: Versión superior combinativa de array y eslabones de lista por dentro del map que logra retener en un historial el propio orden de inserción sin penalizar casi el hash.
 - **Cuándo usarla**: Para evitar dobles registros (set), pero requieres forzosamente devolver el output listado **en el mismo orden que el listado llegó**.
+- **Métodos Destacados**: No aporta métodos nativos sobre su propio nombre, usará todo lo de `Set` respetando el contrato del orden.
 
 #### `TreeSet<E>`
 - **Qué hace**: Monta una ramificación (Árbol binario). Exige que al inicializarse se provea su norma de cómo será ordenado el set.
 - **Cuándo usarla**: Para asegurar clasificaciones permanentes (si insertas una V se coloca sola junto a la U y la W) saltándose sobreesfuerzos al procesador si necesitas un `Collections.sort` a cada inserción pequeña.
+- **Métodos Destacados (heredados de `NavigableSet`)**:
+  - 🔸 `ceiling(E e)` / `floor(E e)`: Devuelve el elemento más pequeño mayor-o-igual que `e` / el más grande menor-o-igual a `e`.
+  - 🔸 `pollFirst()` / `pollLast()`: Obtiene el primero (más bajo) o el último (más alto) de la lista y lo remueve simultáneamente.
+  - 🔸 `descendingSet()`: Devuelve una vista de todo el Set ordenada de manera perfectamente inversa sin iterarlo manual.
 
 ---
 

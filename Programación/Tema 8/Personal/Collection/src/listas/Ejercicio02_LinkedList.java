@@ -75,14 +75,17 @@ public class Ejercicio02_LinkedList {
 
         // TODO: Acaba de llegar un cliente VIP, añádele ticket 99 para que sea el
         // primero usando un método exclusivo de LinkedList.
+        tickets.addFirst(99);
 
         // TODO: Ha quedado un cliente rezagado al final. Añádele ticket 103 al final.
+        tickets.add(103);
 
         // TODO: Simula que atienes al primer cliente (saca el elemento del principio).
         // Guarda el resultado en 'atendido'.
         // Recuerda que el método para sacar el primero y además borrarlo es
         // removeFirst() o poll().
         int atendido = 0;
+        atendido = tickets.poll();
 
         // --- CÓDIGO DE COMPROBACIÓN (NO MODIFICAR) ---
         if (tickets.size() == 3 && atendido == 99 && tickets.getFirst() == 101 && tickets.getLast() == 103) {
