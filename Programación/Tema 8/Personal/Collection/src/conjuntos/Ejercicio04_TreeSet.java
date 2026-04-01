@@ -1,8 +1,9 @@
 package conjuntos;
 
-import modelos.Estudiante;
+import java.util.Collections;
 import java.util.Set;
 import java.util.TreeSet;
+import modelos.Estudiante;
 
 /**
  * MÓDULO 2.2: TREESET (Implementación de Set y NavigableSet)
@@ -79,10 +80,11 @@ public class Ejercicio04_TreeSet {
         // TODO: Crea un Set llamado 'puntuaciones' del tipo Integer y haz que sea un
         // TreeSet.
         TreeSet<Integer> puntuaciones = null;
+        puntuaciones = new TreeSet<>();
 
         // TODO: Añade las siguientes puntuaciones asíncronas: 50, 10, 80, 25, 10, 50.
         // Observarás que los duplicados desaparecen.
-
+        Collections.addAll(puntuaciones, 50, 10, 80, 25, 10, 50);
         // TODO: Utilizando métodos de TREESET (por eso la variable debe ser TreeSet y
         // no solo Set),
         // guarda en estas variables:
@@ -92,7 +94,8 @@ public class Ejercicio04_TreeSet {
         int maxima = 0;
 
         if (puntuaciones != null && !puntuaciones.isEmpty()) {
-            // Rellena aquí
+            minima = puntuaciones.getFirst();
+            maxima = puntuaciones.getLast();
         }
 
         // --- CÓDIGO DE COMPROBACIÓN (NO MODIFICAR) ---

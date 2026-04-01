@@ -52,7 +52,7 @@ public class App {
             }
 
             ejecutarEjercicio(opcion);
-            
+
             System.out.println("\nPulsa ENTER para volver al índice maestro...");
             scanner.nextLine();
         }

@@ -1,6 +1,7 @@
 package mapas;
 
 import java.util.Map;
+import java.util.SortedMap;
 import java.util.TreeMap;
 
 /**
@@ -73,14 +74,19 @@ public class Ejercicio06_TreeMap {
         // TODO: Declara un Map TreeMap llamado 'lineaTemporal' con Clave 'Integer' y
         // Valor 'String'.
         Map<Integer, String> lineaTemporal = null;
+        lineaTemporal = new TreeMap<>();
 
         // TODO: Añade el año 1969 con el texto "Llegada a la luna"
+        lineaTemporal.put(1969, "Llegada a la luna");
 
         // TODO: Añade el año 1492 con el texto "Descubrimiento de América"
+        lineaTemporal.put(1492, "Descubrimiento de América");
 
         // TODO: Añade el año 1914 con el texto "Primera guerra mundial"
+        lineaTemporal.put(1914, "Primera guerra mundial");
 
         // TODO: Añade el año 2007 con el texto "Presentación del primer iPhone"
+        lineaTemporal.put(2007, "Presentacón del primer iPhone");
 
         // Ahora vamos a extraer todas las llaves en un array o lista para comprobar el
         // orden.
@@ -91,13 +97,19 @@ public class Ejercicio06_TreeMap {
 
         int cont = 0;
         if (lineaTemporal != null) {
-            for (Integer year : lineaTemporal.keySet()) {
-                if (cont == 0)
-                    primerAñoMundial = year;
-                if (cont == lineaTemporal.size() - 1)
-                    ultimoAñoMundial = year;
-                cont++;
-            }
+            /*
+             * for (Integer year : lineaTemporal.keySet()) {
+             * if (cont == 0)
+             * primerAñoMundial = year;
+             * if (cont == lineaTemporal.size() - 1)
+             * ultimoAñoMundial = year;
+             * cont++;
+             * }
+             */
+
+            SortedMap<Integer, String> ordenado = (SortedMap<Integer, String>) lineaTemporal;
+            primerAñoMundial = ordenado.firstKey();
+            ultimoAñoMundial = ordenado.lastKey();
         }
 
         // --- CÓDIGO DE COMPROBACIÓN (NO MODIFICAR) ---

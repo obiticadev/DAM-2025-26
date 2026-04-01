@@ -1,8 +1,8 @@
 package conjuntos;
 
-import modelos.Producto;
 import java.util.HashSet;
 import java.util.Set;
+import modelos.Producto;
 
 /**
  * MÓDULO 2.1: HASHSET (Implementación de la interfaz Set)
@@ -84,11 +84,14 @@ public class Ejercicio03_HashSet {
 
         // TODO: Crea un HashSet de Strings llamado emailsUnicos.
         Set<String> emailsUnicos = null; // <- Inicializa aquí como new HashSet<>()
+        emailsUnicos = new HashSet<>();
 
         // TODO: Mediante un for (o for-each) añade todos los emails del array al
         // HashSet.
         // Comprobarás que el HashSet automáticamente ignora las repeticiones.
-
+        for (String string : emailsRegistrados) {
+            emailsUnicos.add(string);
+        }
         // --- CÓDIGO DE COMPROBACIÓN (NO MODIFICAR) ---
         if (emailsUnicos != null && emailsUnicos.size() == 4 &&
                 emailsUnicos.contains("usuario1@gmail.com") && !emailsUnicos.contains("inventado@mail.com")) {

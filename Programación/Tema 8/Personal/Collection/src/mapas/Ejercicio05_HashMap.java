@@ -1,8 +1,8 @@
 package mapas;
 
-import modelos.Producto;
 import java.util.HashMap;
 import java.util.Map;
+import modelos.Producto;
 
 /**
  * MÓDULO 3.1: HASHMAP (Implementación de la interfaz Map)
@@ -78,17 +78,22 @@ public class Ejercicio05_HashMap {
         // TODO: Declara un HashMap llamado 'diccionario' donde la Clave sea String
         // (Inglés) y el Valor String (Español)
         Map<String, String> diccionario = null;
+        diccionario = new HashMap<>();
 
         // TODO: Inserta (put) las traducciones para "Dog" -> "Perro" y "Cat" -> "Gato".
+        diccionario.putAll(Map.of("Dog", "Perro", "Cat", "Gato"));
 
         // TODO: Oh no, te equivocaste. Inserta "Dog" -> "Perrito". Automáticamente
         // sobrescribirá el valor anterior.
+        diccionario.put("Dog", "Perrito");
 
         // TODO: Recupera (get) la traducción de "Cat" y guárdala en una variable
         // llamada 'traduccionCat'.
         String traduccionCat = "";
+        traduccionCat = diccionario.get("Cat");
 
         // TODO: Usa el método remove(clave) para eliminar a "Dog" del diccionario.
+        diccionario.remove("Dog");
 
         // --- CÓDIGO DE COMPROBACIÓN (NO MODIFICAR) ---
         if (diccionario != null && diccionario.size() == 1 && !diccionario.containsKey("Dog")

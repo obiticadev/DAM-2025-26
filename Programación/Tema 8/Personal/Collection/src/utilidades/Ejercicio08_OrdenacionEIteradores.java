@@ -92,6 +92,7 @@ public class Ejercicio08_OrdenacionEIteradores {
 
         // TODO: Utilizando la clase estática Collections con su método sort(), ordena
         // los IDS de la variable 'ids'
+        Collections.sort(ids);
 
         // PARTE 2 - Iterator
         List<String> plantilla = new ArrayList<>();
@@ -103,11 +104,17 @@ public class Ejercicio08_OrdenacionEIteradores {
         // TODO: 1. Instancia el iterador de la plantilla (plantilla.iterator())
         // guardándolo en la variable it.
         Iterator<String> it = null;
+        it = plantilla.iterator();
 
         // TODO: 2. Haz un bucle while(it.hasNext()), almacena en un String el next()
         // del iterador.
         // Si (if) iguala (equals) a la palabra "Despedido", ejecuta it.remove()
-
+        while (it.hasNext()) {
+            String elem = it.next();
+            if (elem.equals("Despedido")) {
+                it.remove();
+            }
+        }
         // --- CÓDIGO DE COMPROBACIÓN (NO MODIFICAR) ---
         if (ids.get(0) == 1 && ids.get(4) == 99 && plantilla.size() == 2 && plantilla.contains("Alberto")
                 && plantilla.contains("Carmen")) {

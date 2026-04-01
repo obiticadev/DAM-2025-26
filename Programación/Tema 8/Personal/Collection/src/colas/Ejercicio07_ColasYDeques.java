@@ -88,15 +88,20 @@ public class Ejercicio07_ColasYDeques {
         // TODO: Crea un Deque de Strings llamado 'pilaPlatos' inicializado como un
         // ArrayDeque.
         Deque<String> pilaPlatos = null;
+        pilaPlatos = new ArrayDeque<>();
 
         // TODO: Añade 3 platos a la pila usando push() (recuerda usar push() si lo
         // simulamos como Pila/LIFO).
         // Platos: "Plato hondo de sopa", "Plato llano macarrones", "Plato de postre
         // tarta".
+        pilaPlatos.push("Plato hondo de sopa");
+        pilaPlatos.push("Plato llano macarrones");
+        pilaPlatos.push("Plato de postre tarta");
 
         // TODO: Coge el plato superior sacándolo de la pila (usando pop()) y guárdalo
         // en la String 'fregando'.
         String fregando = "";
+        fregando = pilaPlatos.pop();
 
         // --- CÓDIGO DE COMPROBACIÓN (NO MODIFICAR) ---
         if (pilaPlatos != null && pilaPlatos.size() == 2 && "Plato de postre tarta".equals(fregando)) {

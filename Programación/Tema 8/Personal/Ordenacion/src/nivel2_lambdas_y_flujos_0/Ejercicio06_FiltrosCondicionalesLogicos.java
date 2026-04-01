@@ -2,6 +2,7 @@ package nivel2_lambdas_y_flujos_0;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import modelos.Aventurero;
 
@@ -23,18 +24,33 @@ public class Ejercicio06_FiltrosCondicionalesLogicos {
         asalto.add(new Aventurero("Healer D", "Clérigo", 30, 10, true)); // Pasa
         asalto.add(new Aventurero("Guerrero E", "Guerrero", 50, 0, true)); // Pasa
         asalto.add(new Aventurero("Cuerpo F", "Guerrero", 99, 999, false)); // Muerto
-        
-        // TODO: Acabas de heredar una lista ('asalto') en la que algunos hombres han caído en batalla, y otros son nivel bajo.
+
+        // TODO: Acabas de heredar una lista ('asalto') en la que algunos hombres han
+        // caído en batalla, y otros son nivel bajo.
         // Re-Colecta en 'equipoSuperviviente' ÚNICAMENTE a aquellos que:
         // 1. Estén Vivos ( isEstadoVivo() == true )
         // Y 2. Tengan un Nivel MAYOR O IGUAL a 20.
-        
-        List<Aventurero> equipoSuperviviente = null; // <- Aplica stream a la variable 'asalto' y modifícalo.
-        
-        
+
+        List<Aventurero> equipoSuperviviente = asalto.stream()
+                .filter(a -> a.isEstadoVivo())
+                .filter(a -> a.getNivel() >= 20)
+                .collect(Collectors.toList());
+        System.out.println("For original");
+        for (Aventurero aventurero : equipoSuperviviente) {
+            System.out.println(aventurero.toString());
+        }
+        System.out.println("For con group");
+        Map<Boolean, List<Aventurero>> grupos = asalto.stream()
+                .collect(Collectors.groupingBy(a -> a.isEstadoVivo()));
+        for (Map.Entry<Boolean, List<Aventurero>> estado : grupos.entrySet()) {
+            System.out.println(estado);
+        }
+
         // --- VALIDACIÓN ---
-        if (equipoSuperviviente != null && equipoSuperviviente.size() == 2 && equipoSuperviviente.contains(asalto.get(3))) {
-            System.out.println(">> ¡CORRECTO! Dominas las puertas lógicas booleanas AND y OR dentro del stream.\033[0;32m [OK]\033[0m");
+        if (equipoSuperviviente != null && equipoSuperviviente.size() == 2
+                && equipoSuperviviente.contains(asalto.get(3))) {
+            System.out.println(
+                    ">> ¡CORRECTO! Dominas las puertas lógicas booleanas AND y OR dentro del stream.\033[0;32m [OK]\033[0m");
         } else {
             System.err.println(">> [ERROR] Tu filtro dejó pasar guerreros muertos o por debajo de nivel 20.");
         }
