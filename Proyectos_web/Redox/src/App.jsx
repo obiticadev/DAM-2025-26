@@ -8,13 +8,14 @@ const tooltipMap = {
   'SymEsc':   ['Hold → Símbolos', 'Tap → Escape'],
   'SymMo':    ['Hold → Símbolos'],
   'Nav/Spc':  ['Hold → Nav', 'Tap → Espacio'],
-  'RALT_TP':  ['Hold → Extra', 'Doble → AltGr'],
+  'RALT_TP':  ['Hold → AltGr', 'Doble Tap → AltGr'],
   'Meh':      ['Ctrl+Alt+Shift'],
   'BOOTLD':   ['Modo Flash'],
   'NumLk':    ['Bloq Numérico'],
   'Caps':     ['Bloq Mayúsculas'],
   'PrtScn':   ['Captura Pantalla'],
   '`':        ['Hold → Shift', 'Tap → `'],
+  'Accent':   ['One-Shot Acentos'],
 };
 
 // ─── Format label for display ────────────────────────────────────────────────
@@ -48,20 +49,21 @@ const formatLabel = (label) => {
 };
 
 // ─── Keyboard data ───────────────────────────────────────────────────────────
+// Layers: q=QWERTY, s=SYMB, n=NAV, a=ACCENT, g=ALTGR
 const keyboardData = {
   leftHalf: [
-    [{ q: 'Caps', s: 'º', n: '', e: '' }, { q: '1', s: '!', n: 'F1', e: '' }, { q: '2', s: '@', n: 'F2', e: '' }, { q: '3', s: '#', n: 'F3', e: '' }, { q: '4', s: '$', n: 'F4', e: '' }, { q: '5', s: '%', n: 'F5', e: '' }],
-    [{ q: 'Tab', s: 'Bksp', n: 'Del', e: '' }, { q: 'Q', s: 'Nump /', n: 'Alt+F4', e: '' }, { q: 'W', s: 'Nump 7', n: 'Mouse↑', e: '' }, { q: 'E', s: 'Nump 8', n: 'Whl L', e: 'é' }, { q: 'R', s: 'Nump 9', n: 'Whl ↑', e: '' }, { q: 'T', s: 'Nump -', n: 'Whl R', e: '' }, { q: 'SymTgl', s: 'TRANS', n: 'BOOTLD', e: '' }],
-    [{ q: 'SymEsc', s: '', n: '', e: '' }, { q: 'A', s: 'Nump *', n: 'Mouse←', e: 'á' }, { q: 'S', s: 'Nump 4', n: 'Mouse↓', e: '' }, { q: 'D', s: 'Nump 5', n: 'Mouse→', e: '' }, { q: 'F', s: 'Nump 6', n: 'Whl ↓', e: '' }, { q: 'G', s: '+', n: 'Play', e: '' }, { q: '[', s: ',', n: '', e: '' }],
-    [{ q: 'Shift', s: 'Shift', n: '', e: '' }, { q: 'Z', s: '↑', n: 'Prev', e: '' }, { q: 'X', s: 'Nump 1', n: 'Next', e: '' }, { q: 'C', s: 'Nump 2', n: 'Vol -', e: '' }, { q: 'V', s: 'Nump 3', n: 'Vol +', e: '' }, { q: 'B', s: 'Nump .', n: 'Mute', e: '' }, { q: '¡', s: 'PgUp', n: '', e: '' }, { q: '!', s: 'PgDn', n: '', e: '' }],
-    [{ q: 'Ctrl', s: '←', n: '', e: '' }, { q: 'Win', s: '↓', n: '', e: '' }, { q: 'Meh', s: '→', n: '', e: '' }, { q: 'Alt', s: 'Nump 0', n: '', e: '' }, { q: 'Ctrl', s: 'Tab', n: '', e: '' }, { q: 'Space', s: 'Nav/Spc', n: '', e: '' }, { q: 'Enter', s: 'Enter', n: 'TRANS', e: '' }]
+    [{ q:'Caps', s:'º', n:'NONE', a:'TRANS', g:'TRANS' }, { q:'1', s:'!', n:'F1', a:'TRANS', g:'TRANS' }, { q:'2', s:'@', n:'F2', a:'TRANS', g:'TRANS' }, { q:'3', s:'#', n:'F3', a:'TRANS', g:'TRANS' }, { q:'4', s:'$', n:'F4', a:'TRANS', g:'TRANS' }, { q:'5', s:'%', n:'F5', a:'TRANS', g:'TRANS' }],
+    [{ q:'Tab', s:'Bksp', n:'Del', a:'TRANS', g:'TRANS' }, { q:'Q', s:'Nump /', n:'Alt+F4', a:'TRANS', g:'TRANS' }, { q:'W', s:'Nump 7', n:'Mouse↑', a:'TRANS', g:'TRANS' }, { q:'E', s:'Nump 8', n:'Whl L', a:'é', g:'TRANS' }, { q:'R', s:'Nump 9', n:'Whl ↑', a:'TRANS', g:'TRANS' }, { q:'T', s:'Nump -', n:'Whl R', a:'TRANS', g:'TRANS' }, { q:'SymTgl', s:'TRANS', n:'BOOTLD', a:'TRANS', g:'TRANS' }],
+    [{ q:'SymEsc', s:'TRANS', n:'TRANS', a:'TRANS', g:'TRANS' }, { q:'A', s:'Nump *', n:'Mouse←', a:'á', g:'TRANS' }, { q:'S', s:'Nump 4', n:'Mouse↓', a:'TRANS', g:'TRANS' }, { q:'D', s:'Nump 5', n:'Mouse→', a:'TRANS', g:'TRANS' }, { q:'F', s:'Nump 6', n:'Whl ↓', a:'TRANS', g:'TRANS' }, { q:'G', s:'+', n:'Play', a:'TRANS', g:'TRANS' }, { q:'[', s:',', n:'NONE', a:'TRANS', g:'TRANS' }],
+    [{ q:'Shift', s:'Shift', n:'NONE', a:'TRANS', g:'TRANS' }, { q:'Z', s:'↑', n:'Prev', a:'TRANS', g:'TRANS' }, { q:'X', s:'Nump 1', n:'Next', a:'TRANS', g:'TRANS' }, { q:'C', s:'Nump 2', n:'Vol -', a:'TRANS', g:'TRANS' }, { q:'V', s:'Nump 3', n:'Vol +', a:'TRANS', g:'TRANS' }, { q:'B', s:'Nump .', n:'Mute', a:'TRANS', g:'TRANS' }, { q:'¡', s:'PgUp', n:'NONE', a:'TRANS', g:'TRANS' }, { q:'!', s:'PgDn', n:'NONE', a:'TRANS', g:'TRANS' }],
+    [{ q:'Ctrl', s:'←', n:'NONE', a:'TRANS', g:'TRANS' }, { q:'Win', s:'↓', n:'NONE', a:'TRANS', g:'TRANS' }, { q:'Meh', s:'→', n:'NONE', a:'TRANS', g:'TRANS' }, { q:'Alt', s:'Nump 0', n:'NONE', a:'TRANS', g:'TRANS' }, { q:'Ctrl', s:'Tab', n:'NONE', a:'TRANS', g:'TRANS' }, { q:'Space', s:'Nav/Spc', n:'TRANS', a:'TRANS', g:'TRANS' }, { q:'Enter', s:'Enter', n:'TRANS', a:'TRANS', g:'TRANS' }]
   ],
   rightHalf: [
-    [{ q: '6', s: '^', n: 'F6', e: '' }, { q: '7', s: '&', n: 'F7', e: '' }, { q: '8', s: '_', n: 'F8', e: '' }, { q: '9', s: '!', n: 'F9', e: '' }, { q: '0', s: '?', n: 'F10', e: '' }, { q: 'NumLk', s: 'TRANS', n: 'F11', e: '' }],
-    [{ q: 'SymTgl', s: 'TRANS', n: '', e: '' }, { q: 'Y', s: '+', n: '', e: '' }, { q: 'U', s: '[', n: '', e: 'ú' }, { q: 'I', s: ']', n: '', e: 'í' }, { q: 'O', s: '/', n: '', e: 'ó' }, { q: 'P', s: '\\', n: '', e: '' }, { q: '=', s: '|', n: 'PrtScn', e: '' }],
-    [{ q: ']', s: 'NONE', n: '', e: '' }, { q: 'H', s: '-', n: '', e: '' }, { q: 'J', s: '(', n: '', e: '' }, { q: 'K', s: ')', n: '', e: '' }, { q: 'L', s: '=', n: '', e: '' }, { q: ';', s: '`', n: '', e: '' }, { q: '\'', s: '"', n: '', e: '' }],
-    [{ q: '¿', s: 'Home', n: '', e: '' }, { q: '?', s: 'End', n: '', e: '' }, { q: 'N', s: '*', n: '', e: 'ñ' }, { q: 'M', s: '{', n: '', e: '' }, { q: ',', s: '}', n: '', e: '' }, { q: '.', s: '<', n: '', e: '' }, { q: '/', s: '>', n: '', e: '' }, { q: 'Shift', s: '~', n: '', e: '' }],
-    [{ q: 'SymMo', s: 'TRANS', n: 'TRANS', e: '' }, { q: 'Bksp', s: 'Bksp', n: 'TRANS', e: '' }, { q: 'RALT_TP', s: 'RALT_TP', n: '', e: '' }, { q: '←', s: '←', n: '', e: '' }, { q: '↓', s: '↓', n: '', e: '' }, { q: '↑', s: '↑', n: '', e: '' }, { q: '→', s: '→', n: '', e: '' }]
+    [{ q:'6', s:'^', n:'F6', a:'TRANS', g:'TRANS' }, { q:'7', s:'&', n:'F7', a:'TRANS', g:'TRANS' }, { q:'8', s:'_', n:'F8', a:'TRANS', g:'TRANS' }, { q:'9', s:'!', n:'F9', a:'TRANS', g:'TRANS' }, { q:'0', s:'?', n:'F10', a:'TRANS', g:'TRANS' }, { q:'NumLk', s:'TRANS', n:'F11', a:'TRANS', g:'TRANS' }],
+    [{ q:'SymTgl', s:'TRANS', n:'NONE', a:'TRANS', g:'TRANS' }, { q:'Y', s:'+', n:'NONE', a:'TRANS', g:'TRANS' }, { q:'U', s:'[', n:'NONE', a:'ú', g:'TRANS' }, { q:'I', s:']', n:'NONE', a:'í', g:'TRANS' }, { q:'O', s:'/', n:'NONE', a:'ó', g:'TRANS' }, { q:'P', s:'\\', n:'PrtScn', a:'TRANS', g:'TRANS' }, { q:'=', s:'|', n:'F12', a:'TRANS', g:'TRANS' }],
+    [{ q:']', s:'NONE', n:'NONE', a:'TRANS', g:'TRANS' }, { q:'H', s:'-', n:'NONE', a:'TRANS', g:'TRANS' }, { q:'J', s:'(', n:'NONE', a:'TRANS', g:'TRANS' }, { q:'K', s:')', n:'NONE', a:'TRANS', g:'TRANS' }, { q:'L', s:'=', n:'NONE', a:'TRANS', g:'TRANS' }, { q:';', s:'`', n:'NONE', a:'TRANS', g:'TRANS' }, { q:'Accent', s:'"', n:'NONE', a:"'", g:'TRANS' }],
+    [{ q:'¿', s:'Home', n:'NONE', a:'TRANS', g:'TRANS' }, { q:'?', s:'End', n:'NONE', a:'TRANS', g:'TRANS' }, { q:'N', s:'*', n:'NONE', a:'TRANS', g:'ñ' }, { q:'M', s:'{', n:'NONE', a:'TRANS', g:'TRANS' }, { q:',', s:'}', n:'NONE', a:'TRANS', g:'TRANS' }, { q:'.', s:'<', n:'NONE', a:'TRANS', g:'TRANS' }, { q:'/', s:'>', n:'NONE', a:'TRANS', g:'TRANS' }, { q:'Shift', s:'~', n:'NONE', a:'TRANS', g:'TRANS' }],
+    [{ q:'SymMo', s:'TRANS', n:'TRANS', a:'TRANS', g:'TRANS' }, { q:'Bksp', s:'Bksp', n:'TRANS', a:'TRANS', g:'TRANS' }, { q:'RALT_TP', s:'RALT_TP', n:'NONE', a:'TRANS', g:'TRANS' }, { q:'←', s:'←', n:'NONE', a:'TRANS', g:'TRANS' }, { q:'↓', s:'↓', n:'NONE', a:'TRANS', g:'TRANS' }, { q:'↑', s:'↑', n:'NONE', a:'TRANS', g:'TRANS' }, { q:'→', s:'→', n:'NONE', a:'TRANS', g:'TRANS' }]
   ]
 };
 
@@ -92,7 +94,15 @@ const layers = [
     shadow: '#5ee0b1', tagBg: '#d1fae5', tagText: '#065f46', tagBorder: '#6ee7b7'
   },
   {
-    id: 'e', name: '_EXTRA',
+    id: 'a', name: '_ACCENT',
+    color: '#8b5cf6', accent: '#6d28d9',
+    activeBg: '#f5f3ff', activeBorder: '#c4b5fd',
+    emptyBg: 'rgba(91,33,182,0.25)', emptyBorder: 'rgba(91,33,182,0.45)',
+    activeText: '#4c1d95', emptyText: 'rgba(167,139,250,0.5)',
+    shadow: '#c4b5fd', tagBg: '#ede9fe', tagText: '#5b21b6', tagBorder: '#c4b5fd'
+  },
+  {
+    id: 'g', name: '_ALTGR',
     color: '#f59e0b', accent: '#b45309',
     activeBg: '#fffbeb', activeBorder: '#fcd34d',
     emptyBg: 'rgba(124,45,18,0.25)', emptyBorder: 'rgba(124,45,18,0.45)',
@@ -122,40 +132,57 @@ const rightPositions = [
 // Each slot defines where an annotation bubble sits in empty space around the keys.
 const annotationSlots = {
   left: {
-    0:  { ax: -1.5, ay: -0.7 },
-    12: { ax: 7.5,  ay: -1.8 },
-    13: { ax: -2.2, ay: 2.8 },
-    30: { ax: -1.5, ay: 5.8 },
-    33: { ax: 5.5,  ay: 8.3 },
+    0:  { ax: -2.0, ay: -0.8 },
+    12: { ax: 7.5,  ay: -1.5 },
+    13: { ax: -2.5, ay: 2.5 },
+    30: { ax: -2.0, ay: 5.5 },
+    33: { ax: 5.5,  ay: 8.5 },
   },
   right: {
-    5:  { ax: 9.2,  ay: -0.7 },
-    6:  { ax: 0.5,  ay: -0.8 },
-    12: { ax: 9.5,  ay: 2.2 },
-    18: { ax: 9.5,  ay: 3.8 },
-    28: { ax: -1.5, ay: 8.3 },
-    30: { ax: 3.5,  ay: 8.3 },
+    5:  { ax: 9.5,  ay: -0.8 },
+    6:  { ax: 0.5,  ay: -1.5 },
+    11: { ax: 9.5,  ay: 1.5 },
+    18: { ax: 9.5,  ay: 3.5 },
+    19: { ax: 9.5,  ay: 2.5 },
+    28: { ax: -1.5, ay: 8.5 },
+    30: { ax: 3.5,  ay: 8.5 },
   }
 };
 
-// Compute quadratic bezier control point for organic curved arrow
-const bezierControl = (kx, ky, ax, ay) => {
-  const mx = (kx + ax) / 2;
-  const my = (ky + ay) / 2;
+// Compute arrow start point on key EDGE (not center) facing the annotation
+const keyEdgePoint = (kx, ky, kw, kh, ax, ay) => {
   const dx = ax - kx;
   const dy = ay - ky;
+  if (dx === 0 && dy === 0) return { ex: kx, ey: ky };
+  const hw = kw / 2;
+  const hh = kh / 2;
+  const sx = hw / (Math.abs(dx) || 0.001);
+  const sy = hh / (Math.abs(dy) || 0.001);
+  const s = Math.min(sx, sy);
+  const len = Math.sqrt(dx * dx + dy * dy) || 1;
+  const ux = dx / len;
+  const uy = dy / len;
+  return { ex: kx + dx * s + ux * 0.15, ey: ky + dy * s + uy * 0.15 };
+};
+
+// Compute quadratic bezier control point for organic curved arrow
+const bezierControl = (sx, sy, ax, ay) => {
+  const mx = (sx + ax) / 2;
+  const my = (sy + ay) / 2;
+  const dx = ax - sx;
+  const dy = ay - sy;
   const len = Math.sqrt(dx * dx + dy * dy) || 1;
   const nx = -dy / len;
   const ny = dx / len;
-  const curve = len * 0.3;
+  const curve = len * 0.25;
   return { cx: mx + nx * curve, cy: my + ny * curve };
 };
 
 // SVG overlay offsets (keyboard x=0 maps to SVG x=OX)
-const SVG_OX = 3.5;
-const SVG_OY = 2;
-const SVG_W = 15;
-const SVG_H = 12;
+const SVG_OX = 4;
+const SVG_OY = 2.5;
+const SVG_W = 16;
+const SVG_H = 13;
 
 // ─── Annotation layer (SVG curves + HTML bubbles) ────────────────────────────
 const AnnotationLayer = ({ keys, positions, layerData, side, showTooltips }) => {
@@ -167,11 +194,14 @@ const AnnotationLayer = ({ keys, positions, layerData, side, showTooltips }) => 
     const label = k[layerData.id];
     if (!label || !tooltipMap[label] || !slots[i]) return;
     const pos = positions[i];
-    const kx = pos.x + (pos.w || 1) / 2;
-    const ky = pos.y + (pos.h || 1) / 2;
+    const kw = pos.w || 1;
+    const kh = pos.h || 1;
+    const kx = pos.x + kw / 2;
+    const ky = pos.y + kh / 2;
     const { ax, ay } = slots[i];
-    const ctrl = bezierControl(kx, ky, ax, ay);
-    annotations.push({ label, tips: tooltipMap[label], kx, ky, ax, ay, cx: ctrl.cx, cy: ctrl.cy });
+    const edge = keyEdgePoint(kx, ky, kw, kh, ax, ay);
+    const ctrl = bezierControl(edge.ex, edge.ey, ax, ay);
+    annotations.push({ label, tips: tooltipMap[label], ex: edge.ex, ey: edge.ey, ax, ay, cx: ctrl.cx, cy: ctrl.cy });
   });
 
   if (annotations.length === 0) return null;
@@ -192,21 +222,21 @@ const AnnotationLayer = ({ keys, positions, layerData, side, showTooltips }) => 
         }}
       >
         {annotations.map((a, i) => {
-          const sx = a.kx + SVG_OX, sy = a.ky + SVG_OY;
-          const ex = a.ax + SVG_OX, ey = a.ay + SVG_OY;
+          const sx = a.ex + SVG_OX, sy = a.ey + SVG_OY;
+          const eax = a.ax + SVG_OX, eay = a.ay + SVG_OY;
           const cx = a.cx + SVG_OX, cy = a.cy + SVG_OY;
           return (
             <g key={i}>
               <path
-                d={`M${sx} ${sy} Q${cx} ${cy} ${ex} ${ey}`}
+                d={`M${sx} ${sy} Q${cx} ${cy} ${eax} ${eay}`}
                 stroke={layerData.activeBorder}
-                strokeWidth="0.035"
+                strokeWidth="0.03"
                 fill="none"
-                strokeDasharray="0.12 0.08"
-                opacity="0.5"
+                strokeDasharray="0.1 0.07"
+                opacity="0.45"
                 strokeLinecap="round"
               />
-              <circle cx={sx} cy={sy} r="0.08" fill={layerData.color} opacity="0.6" />
+              <circle cx={sx} cy={sy} r="0.07" fill={layerData.color} opacity="0.55" />
             </g>
           );
         })}
@@ -413,10 +443,6 @@ export default function App() {
         ))}
       </main>
 
-      {/* Print-only footer */}
-      <footer className="print-footer">
-        Redox Keyboard Layout · Generated with Redox Layout Visualizer
-      </footer>
     </div>
   );
 }
@@ -673,7 +699,7 @@ const globalStyles = `
     justify-content: center;
     align-items: center;
     background: #1a1b1f;
-    padding: 2.5rem 3rem;
+    padding: calc(2.5 * var(--u)) calc(4 * var(--u)) calc(3.5 * var(--u));
     border-radius: 1.5rem;
     border: 1px solid rgba(255,255,255,0.04);
     box-shadow:
@@ -781,10 +807,10 @@ const globalStyles = `
   .annotation-bubble {
     position: absolute;
     transform: translate(-50%, -50%);
-    padding: 3px 8px;
-    border-radius: 6px;
+    padding: 4px 10px;
+    border-radius: 7px;
     border: 1px solid;
-    font-size: 0.55rem;
+    font-size: 0.65rem;
     font-weight: 600;
     font-family: 'Inter', sans-serif;
     line-height: 1.35;
@@ -795,18 +821,13 @@ const globalStyles = `
     gap: 1px;
     pointer-events: none;
     z-index: 100;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
   }
   @media (min-width: 1024px) {
-    .annotation-bubble { font-size: 0.6rem; padding: 4px 10px; }
+    .annotation-bubble { font-size: 0.72rem; padding: 5px 12px; }
   }
   .annotation-line { display: block; }
   .annotation-svg { z-index: 90; }
-
-  /* ── Print footer ── */
-  .print-footer {
-    display: none;
-  }
 
   /* ═══ PRINT STYLES ═══ */
   @media print {
@@ -872,10 +893,6 @@ const globalStyles = `
     }
     .annotation-svg path { opacity: 0.4 !important; }
 
-    .print-footer {
-      display: none;
-    }
-
-    :root { --u: 44px; --gap: 4px; }
+    :root { --u: 42px; --gap: 4px; }
   }
 `;
