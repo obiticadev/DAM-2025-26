@@ -30,9 +30,14 @@ public class Ejercicio07_OrdenacionMulticriterioThenComparing {
         // Y en caso de EMPATE de Clase (Como Arthur y Lancelot), ordénalos por NIVEL de
         // menor a mayor.
 
-        Comparator<Aventurero> miCriterio1 = Comparator
-                .comparing((Aventurero a) -> a.getClaseClase())
-                .thenComparing(a -> a.getNivel());
+        /*
+         * Comparator<Aventurero> miCriterio1 = Comparator
+         * .comparing((Aventurero a) -> a.getClaseClase())
+         * .thenComparing(a -> a.getNivel());
+         */
+
+        Comparator<Aventurero> miCriterio1 = Comparator.comparing(Aventurero::getClaseClase)
+                .thenComparing(Aventurero::getNivel);
 
         // Aplícalo a la lista gremio
         // gremio.sort(...);
