@@ -29,10 +29,14 @@ public class Ejercicio04_OrdenMulticriterioSinGuia {
         plantilla.add(new Empleado("Lucía", "Backend", "Python", 10, 70000, true, "lucia@corp.com"));
 
         // TODO: Ordena 'plantilla' primero por departamento ASCENDENTE (A-Z),
-        // y cuando empaten en departamento, desempata por salario DESCENDENTE (mayor primero).
-        // No hay pista de sintaxis. Recuerda Comparator.comparing(...).thenComparing(...)
+        // y cuando empaten en departamento, desempata por salario DESCENDENTE (mayor
+        // primero).
+        // No hay pista de sintaxis. Recuerda
+        // Comparator.comparing(...).thenComparing(...)
 
         // >>> ESCRIBE TU CÓDIGO AQUÍ <<<
+        plantilla.sort(Comparator.comparing(Empleado::getDepartamento)
+                .thenComparing(Comparator.comparing(Empleado::getSalario).reversed()));
 
         // --- VALIDACIÓN ---
         boolean deptoOk = plantilla.get(0).getDepartamento().equals("Backend")
@@ -43,7 +47,8 @@ public class Ejercicio04_OrdenMulticriterioSinGuia {
         if (deptoOk && primerBackend && ultimoFrontend) {
             System.out.println(">> CORRECTO: Multicriterio dominado sin pistas.\033[0;32m [OK]\033[0m");
         } else {
-            System.err.println(">> [ERROR] Orden esperado: Lucía(Backend,70k), Ana(Backend,55k), Luis(Backend,35k), Marta(Frontend,48k), Carlos(Frontend,32k)");
+            System.err.println(
+                    ">> [ERROR] Orden esperado: Lucía(Backend,70k), Ana(Backend,55k), Luis(Backend,35k), Marta(Frontend,48k), Carlos(Frontend,32k)");
         }
     }
 }

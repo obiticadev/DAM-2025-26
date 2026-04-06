@@ -32,27 +32,32 @@ public class Ejercicio05_PredicateYConsumer {
         equipo.add(new Empleado("Pedro", "QA", "Java", 3, 30000, false, "pedro@corp.com"));
 
         // TODO 1: Crea un Predicate<Empleado> llamado 'activoYSenior' que devuelva true
-        // si el empleado está activo Y es senior (usa los métodos isActivo() y esSenior()).
+        // si el empleado está activo Y es senior (usa los métodos isActivo() y
+        // esSenior()).
 
-        Predicate<Empleado> activoYSenior = null; // <- Escribe aquí
+        Predicate<Empleado> esActivo = Empleado::isActivo;
+        Predicate<Empleado> esSenior = Empleado::esSenior;
+        Predicate<Empleado> activoYSenior = esActivo.and(esSenior);
+        // TODO 2: Crea un Consumer<Empleado> llamado 'mostrar' que imprima el empleado
+        // por consola.
 
-        // TODO 2: Crea un Consumer<Empleado> llamado 'mostrar' que imprima el empleado por consola.
-
-        Consumer<Empleado> mostrar = null; // <- Escribe aquí
+        Consumer<Empleado> mostrar = System.out::println;
 
         // TODO 3: Usa ambos para filtrar e imprimir con un stream
         List<Empleado> resultado = new ArrayList<>();
         if (activoYSenior != null) {
             equipo.stream().filter(activoYSenior).forEach(e -> {
                 resultado.add(e);
-                if (mostrar != null) mostrar.accept(e);
+                if (mostrar != null)
+                    mostrar.accept(e);
             });
         }
 
         // --- VALIDACIÓN ---
         if (resultado.size() == 2
                 && resultado.stream().allMatch(e -> e.isActivo() && e.esSenior())) {
-            System.out.println(">> CORRECTO: Has almacenado Lambdas en variables funcionales y las has reutilizado.\033[0;32m [OK]\033[0m");
+            System.out.println(
+                    ">> CORRECTO: Has almacenado Lambdas en variables funcionales y las has reutilizado.\033[0;32m [OK]\033[0m");
         } else {
             System.err.println(">> [ERROR] Deberían quedar 2 empleados (Ana y Lucía): activos Y seniors.");
         }

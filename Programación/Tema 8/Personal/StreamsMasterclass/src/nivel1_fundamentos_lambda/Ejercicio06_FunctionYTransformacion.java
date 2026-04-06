@@ -30,15 +30,17 @@ public class Ejercicio06_FunctionYTransformacion {
         equipo.add(new Empleado("Carlos López", "Frontend", "JavaScript", 2, 32000, true, "carlos@corp.com"));
         equipo.add(new Empleado("Lucía Martín", "Data", "Python", 10, 70000, true, "lucia@corp.com"));
 
-        // TODO 1: Crea una Function<Empleado, String> llamada 'aEmail' que extraiga el email del empleado.
-        Function<Empleado, String> aEmail = null; // <- Escribe aquí
+        // TODO 1: Crea una Function<Empleado, String> llamada 'aEmail' que extraiga el
+        // email del empleado.
+        Function<Empleado, String> aEmail = Empleado::getEmail;
 
-        // TODO 2: Crea una Function<String, String> llamada 'aMayusculas' que convierta un String a mayúsculas.
-        Function<String, String> aMayusculas = null; // <- Escribe aquí
+        // TODO 2: Crea una Function<String, String> llamada 'aMayusculas' que convierta
+        // un String a mayúsculas.
+        Function<String, String> aMayusculas = String::toUpperCase;
 
         // TODO 3: Combínalas usando .andThen() para crear 'emailEnMayusculas'.
         // Después aplícala al stream para obtener una lista de emails en mayúsculas.
-        Function<Empleado, String> emailEnMayusculas = null; // <- Escribe aquí
+        Function<Empleado, String> emailEnMayusculas = aEmail.andThen(aMayusculas);
 
         List<String> resultado = new ArrayList<>();
         if (emailEnMayusculas != null) {
@@ -51,7 +53,8 @@ public class Ejercicio06_FunctionYTransformacion {
         if (resultado.size() == 3
                 && resultado.get(0).equals("ANA@CORP.COM")
                 && resultado.get(2).equals("LUCIA@CORP.COM")) {
-            System.out.println(">> CORRECTO: Has encadenado Functions para transformar datos en pipeline.\033[0;32m [OK]\033[0m");
+            System.out.println(
+                    ">> CORRECTO: Has encadenado Functions para transformar datos en pipeline.\033[0;32m [OK]\033[0m");
         } else {
             System.err.println(">> [ERROR] Esperado: [ANA@CORP.COM, CARLOS@CORP.COM, LUCIA@CORP.COM]");
         }
