@@ -1,5 +1,8 @@
 import java.util.Scanner;
-
+import nivel10_foreach_consumer.*;
+import nivel11_composicion_paralelos.*;
+import nivel12_interfaces_funcionales.*;
+import nivel13_maestria_total.*;
 import nivel1_fundamentos_lambda.*;
 import nivel2_streams_basicos.*;
 import nivel3_method_references.*;
@@ -9,10 +12,6 @@ import nivel6_flatmap_reduce.*;
 import nivel7_experto.*;
 import nivel8_generativos_avanzados.*;
 import nivel9_desafios_supremos.*;
-import nivel10_foreach_consumer.*;
-import nivel11_composicion_paralelos.*;
-import nivel12_interfaces_funcionales.*;
-import nivel13_maestria_total.*;
 
 public class App {
 
@@ -23,132 +22,132 @@ public class App {
         do {
             System.out.println();
             System.out.println("+---------------------------------------------------------------+");
-            System.out.println("|          STREAMS MASTERCLASS -- MENU PRINCIPAL                 |");
+            System.out.println("|          STREAMS MASTERCLASS -- MENU PRINCIPAL                |");
             System.out.println("+---------------------------------------------------------------+");
             System.out.println("|  NIVEL 1: FUNDAMENTOS LAMBDA (1-8)                            |");
-            System.out.println("|   1. Primer contacto Lambda              (con guia)            |");
-            System.out.println("|   2. Lambda sin guia                     (sin guia)            |");
-            System.out.println("|   3. Comparator.comparing                (con guia)            |");
-            System.out.println("|   4. Orden multicriterio                 (sin guia)            |");
-            System.out.println("|   5. Predicate y Consumer                (con guia)            |");
-            System.out.println("|   6. Function y transformacion           (sin guia)            |");
-            System.out.println("|   7. Composicion de Predicados           (con guia)            |");
-            System.out.println("|   8. Lambda como parametro               (sin guia)            |");
+            System.out.println("|   1. Primer contacto Lambda              (con guia)           |");
+            System.out.println("|   2. Lambda sin guia                     (sin guia)           |");
+            System.out.println("|   3. Comparator.comparing                (con guia)           |");
+            System.out.println("|   4. Orden multicriterio                 (sin guia)           |");
+            System.out.println("|   5. Predicate y Consumer                (con guia)           |");
+            System.out.println("|   6. Function y transformacion           (sin guia)           |");
+            System.out.println("|   7. Composicion de Predicados           (con guia)           |");
+            System.out.println("|   8. Lambda como parametro               (sin guia)           |");
             System.out.println("+---------------------------------------------------------------+");
             System.out.println("|  NIVEL 2: STREAMS BASICOS (9-16)                              |");
-            System.out.println("|   9. Primer Stream (filter+collect)      (con guia)            |");
-            System.out.println("|  10. Filter encadenado                   (sin guia)            |");
-            System.out.println("|  11. Map transformacion                  (con guia)            |");
-            System.out.println("|  12. Sorted y Distinct                   (sin guia)            |");
-            System.out.println("|  13. Count y forEach                     (con guia)            |");
-            System.out.println("|  14. MapToInt estadisticas               (sin guia)            |");
-            System.out.println("|  15. Limit, Skip, Peek                   (con guia)            |");
-            System.out.println("|  16. Pipeline completo                   (sin guia)            |");
+            System.out.println("|   9. Primer Stream (filter+collect)      (con guia)           |");
+            System.out.println("|  10. Filter encadenado                   (sin guia)           |");
+            System.out.println("|  11. Map transformacion                  (con guia)           |");
+            System.out.println("|  12. Sorted y Distinct                   (sin guia)           |");
+            System.out.println("|  13. Count y forEach                     (con guia)           |");
+            System.out.println("|  14. MapToInt estadisticas               (sin guia)           |");
+            System.out.println("|  15. Limit, Skip, Peek                   (con guia)           |");
+            System.out.println("|  16. Pipeline completo                   (sin guia)           |");
             System.out.println("+---------------------------------------------------------------+");
             System.out.println("|  NIVEL 3: METHOD REFERENCES + COLLECTORS (17-24)              |");
-            System.out.println("|  17. MR: Clase::metodoInstancia          (con guia)            |");
-            System.out.println("|  18. MR: objeto::met y Clase::static     (sin guia)            |");
-            System.out.println("|  19. Comparator.comparing + MR           (con guia)            |");
-            System.out.println("|  20. Collectors.toMap                    (sin guia)            |");
-            System.out.println("|  21. groupingBy y partitioningBy         (con guia)            |");
-            System.out.println("|  22. joining y counting                  (sin guia)            |");
-            System.out.println("|  23. anyMatch, allMatch, noneMatch       (con guia)            |");
-            System.out.println("|  24. findFirst y findAny                 (sin guia)            |");
+            System.out.println("|  17. MR: Clase::metodoInstancia          (con guia)           |");
+            System.out.println("|  18. MR: objeto::met y Clase::static     (sin guia)           |");
+            System.out.println("|  19. Comparator.comparing + MR           (con guia)           |");
+            System.out.println("|  20. Collectors.toMap                    (sin guia)           |");
+            System.out.println("|  21. groupingBy y partitioningBy         (con guia)           |");
+            System.out.println("|  22. joining y counting                  (sin guia)           |");
+            System.out.println("|  23. anyMatch, allMatch, noneMatch       (con guia)           |");
+            System.out.println("|  24. findFirst y findAny                 (sin guia)           |");
             System.out.println("+---------------------------------------------------------------+");
             System.out.println("|  NIVEL 4: OPTIONAL (25-29)                                    |");
-            System.out.println("|  25. Optional creacion basica            (con guia)            |");
-            System.out.println("|  26. Optional.map y orElse               (sin guia)            |");
-            System.out.println("|  27. Optional.flatMap                    (con guia)            |");
-            System.out.println("|  28. orElseGet, orElseThrow, ifPresent   (sin guia)            |");
-            System.out.println("|  29. Optional con Streams                (con guia)            |");
+            System.out.println("|  25. Optional creacion basica            (con guia)           |");
+            System.out.println("|  26. Optional.map y orElse               (sin guia)           |");
+            System.out.println("|  27. Optional.flatMap                    (con guia)           |");
+            System.out.println("|  28. orElseGet, orElseThrow, ifPresent   (sin guia)           |");
+            System.out.println("|  29. Optional con Streams                (con guia)           |");
             System.out.println("+---------------------------------------------------------------+");
             System.out.println("|  NIVEL 5: COLLECTORS AVANZADOS (30-34)                        |");
-            System.out.println("|  30. groupingBy con downstream           (sin guia)            |");
-            System.out.println("|  31. toMap con merge function            (con guia)            |");
-            System.out.println("|  32. toSet y toCollection(TreeSet)       (sin guia)            |");
-            System.out.println("|  33. Productos con Streams               (con guia)            |");
-            System.out.println("|  34. Productos sin guia                  (sin guia)            |");
+            System.out.println("|  30. groupingBy con downstream           (sin guia)           |");
+            System.out.println("|  31. toMap con merge function            (con guia)           |");
+            System.out.println("|  32. toSet y toCollection(TreeSet)       (sin guia)           |");
+            System.out.println("|  33. Productos con Streams               (con guia)           |");
+            System.out.println("|  34. Productos sin guia                  (sin guia)           |");
             System.out.println("+---------------------------------------------------------------+");
-            System.out.println("|  NIVEL 6: FLATMAP, REDUCE, FUENTES (35-42)                   |");
-            System.out.println("|  35. flatMap introduccion                (con guia)            |");
-            System.out.println("|  36. flatMap con Pedidos                 (sin guia)            |");
-            System.out.println("|  37. reduce basico                       (con guia)            |");
-            System.out.println("|  38. reduce avanzado con Pedidos         (sin guia)            |");
-            System.out.println("|  39. flatMap con Strings                 (con guia)            |");
-            System.out.println("|  40. flatMap+reduce+groupingBy           (sin guia)            |");
-            System.out.println("|  41. Streams sobre Maps                  (con guia)            |");
-            System.out.println("|  42. Streams desde Arrays/IntStream      (sin guia)            |");
+            System.out.println("|  NIVEL 6: FLATMAP, REDUCE, FUENTES (35-42)                    |");
+            System.out.println("|  35. flatMap introduccion                (con guia)           |");
+            System.out.println("|  36. flatMap con Pedidos                 (sin guia)           |");
+            System.out.println("|  37. reduce basico                       (con guia)           |");
+            System.out.println("|  38. reduce avanzado con Pedidos         (sin guia)           |");
+            System.out.println("|  39. flatMap con Strings                 (con guia)           |");
+            System.out.println("|  40. flatMap+reduce+groupingBy           (sin guia)           |");
+            System.out.println("|  41. Streams sobre Maps                  (con guia)           |");
+            System.out.println("|  42. Streams desde Arrays/IntStream      (sin guia)           |");
             System.out.println("+---------------------------------------------------------------+");
-            System.out.println("|  NIVEL 7: RETOS EXPERTO (43-50) -- SIN PISTAS                |");
+            System.out.println("|  NIVEL 7: RETOS EXPERTO (43-50) -- SIN PISTAS                 |");
             System.out.println("|  43. Informe completo RRHH                                    |");
-            System.out.println("|  44. Informe de ventas (Pedidos)                               |");
-            System.out.println("|  45. Top-N por categoria                                       |");
-            System.out.println("|  46. Transformacion completa                                   |");
-            System.out.println("|  47. reduce como Collector manual                              |");
-            System.out.println("|  48. Pipeline multi-modelo                                     |");
-            System.out.println("|  49. Optional avanzado cadenas                                 |");
-            System.out.println("|  50. DESAFIO FINAL nivel 7                                     |");
+            System.out.println("|  44. Informe de ventas (Pedidos)                              |");
+            System.out.println("|  45. Top-N por categoria                                      |");
+            System.out.println("|  46. Transformacion completa                                  |");
+            System.out.println("|  47. reduce como Collector manual                             |");
+            System.out.println("|  48. Pipeline multi-modelo                                    |");
+            System.out.println("|  49. Optional avanzado cadenas                                |");
+            System.out.println("|  50. DESAFIO FINAL nivel 7                                    |");
             System.out.println("+---------------------------------------------------------------+");
-            System.out.println("|  NIVEL 8: GENERATIVOS Y COLLECTORS AVANZADOS (51-57)         |");
-            System.out.println("|  51. Stream.generate e iterate           (con guia)            |");
-            System.out.println("|  52. Iterate: Fibonacci y secuencias     (sin guia)            |");
-            System.out.println("|  53. Downstream Collectors avanzados     (con guia)            |");
-            System.out.println("|  54. Summarizing y estadisticas          (sin guia)            |");
-            System.out.println("|  55. Collector.of personalizado          (con guia)            |");
-            System.out.println("|  56. UnaryOperator y BinaryOperator      (sin guia)            |");
-            System.out.println("|  57. Pipeline multinivel combinado       (sin guia)            |");
+            System.out.println("|  NIVEL 8: GENERATIVOS Y COLLECTORS AVANZADOS (51-57)          |");
+            System.out.println("|  51. Stream.generate e iterate           (con guia)           |");
+            System.out.println("|  52. Iterate: Fibonacci y secuencias     (sin guia)           |");
+            System.out.println("|  53. Downstream Collectors avanzados     (con guia)           |");
+            System.out.println("|  54. Summarizing y estadisticas          (sin guia)           |");
+            System.out.println("|  55. Collector.of personalizado          (con guia)           |");
+            System.out.println("|  56. UnaryOperator y BinaryOperator      (sin guia)           |");
+            System.out.println("|  57. Pipeline multinivel combinado       (sin guia)           |");
             System.out.println("+---------------------------------------------------------------+");
-            System.out.println("|  NIVEL 9: DESAFIOS SUPREMOS (58-65) -- SIN PISTAS            |");
-            System.out.println("|  58. Analizador de frecuencia de palabras                      |");
-            System.out.println("|  59. Simulador de consultas SQL                                |");
-            System.out.println("|  60. Motor de reglas con Predicados                            |");
-            System.out.println("|  61. Matrices numericas con Streams                            |");
-            System.out.println("|  62. Ranking ponderado de empleados                            |");
-            System.out.println("|  63. Reportes multi-modelo cruzados                            |");
-            System.out.println("|  64. ETL Pipeline completo                                     |");
-            System.out.println("|  65. DESAFIO SUPREMO FINAL                                     |");
+            System.out.println("|  NIVEL 9: DESAFIOS SUPREMOS (58-65) -- SIN PISTAS             |");
+            System.out.println("|  58. Analizador de frecuencia de palabras                     |");
+            System.out.println("|  59. Simulador de consultas SQL                               |");
+            System.out.println("|  60. Motor de reglas con Predicados                           |");
+            System.out.println("|  61. Matrices numericas con Streams                           |");
+            System.out.println("|  62. Ranking ponderado de empleados                           |");
+            System.out.println("|  63. Reportes multi-modelo cruzados                           |");
+            System.out.println("|  64. ETL Pipeline completo                                    |");
+            System.out.println("|  65. DESAFIO SUPREMO FINAL                                    |");
             System.out.println("+---------------------------------------------------------------+");
             System.out.println("|  NIVEL 10: forEach, CONSUMER Y PINTADO (66-72)                |");
-            System.out.println("|  66. forEach con method references       (con guia)            |");
-            System.out.println("|  67. Consumer.andThen encadenado         (sin guia)            |");
-            System.out.println("|  68. Tablas formateadas con forEach      (con guia)            |");
-            System.out.println("|  69. Stream.concat + forEach             (sin guia)            |");
-            System.out.println("|  70. collectingAndThen                   (con guia)            |");
-            System.out.println("|  71. Reporte visual con forEach          (sin guia)            |");
-            System.out.println("|  72. Dashboard completo                  (sin guia)            |");
+            System.out.println("|  66. forEach con method references       (con guia)           |");
+            System.out.println("|  67. Consumer.andThen encadenado         (sin guia)           |");
+            System.out.println("|  68. Tablas formateadas con forEach      (con guia)           |");
+            System.out.println("|  69. Stream.concat + forEach             (sin guia)           |");
+            System.out.println("|  70. collectingAndThen                   (con guia)           |");
+            System.out.println("|  71. Reporte visual con forEach          (sin guia)           |");
+            System.out.println("|  72. Dashboard completo                  (sin guia)           |");
             System.out.println("+---------------------------------------------------------------+");
-            System.out.println("|  NIVEL 11: COMPOSICION FUNCIONAL Y PARALELOS (73-80)         |");
-            System.out.println("|  73. Function.compose y andThen          (con guia)            |");
-            System.out.println("|  74. Parallel Streams introduccion       (con guia)            |");
-            System.out.println("|  75. Parallel reduce y rendimiento       (sin guia)            |");
-            System.out.println("|  76. Supplier<Stream> reutilizable       (sin guia)            |");
-            System.out.println("|  77. Pipeline de transformaciones        (sin guia)            |");
-            System.out.println("|  78. forEach avanzado sobre Mapas        (sin guia)            |");
-            System.out.println("|  79. Analisis completo todas tecnicas    (sin guia)            |");
-            System.out.println("|  80. DESAFIO MAESTRO FINAL                                     |");
+            System.out.println("|  NIVEL 11: COMPOSICION FUNCIONAL Y PARALELOS (73-80)          |");
+            System.out.println("|  73. Function.compose y andThen          (con guia)           |");
+            System.out.println("|  74. Parallel Streams introduccion       (con guia)           |");
+            System.out.println("|  75. Parallel reduce y rendimiento       (sin guia)           |");
+            System.out.println("|  76. Supplier<Stream> reutilizable       (sin guia)           |");
+            System.out.println("|  77. Pipeline de transformaciones        (sin guia)           |");
+            System.out.println("|  78. forEach avanzado sobre Mapas        (sin guia)           |");
+            System.out.println("|  79. Analisis completo todas tecnicas    (sin guia)           |");
+            System.out.println("|  80. DESAFIO MAESTRO FINAL                                    |");
             System.out.println("+---------------------------------------------------------------+");
             System.out.println("|  NIVEL 12: INTERFACES FUNCIONALES CUSTOM (81-90)              |");
-            System.out.println("|  81. BiFunction y BiConsumer             (con guia)            |");
-            System.out.println("|  82. Interfaz funcional personalizada    (con guia)            |");
-            System.out.println("|  83. Validador generico componible       (sin guia)            |");
-            System.out.println("|  84. Patron Strategy con lambdas         (sin guia)            |");
-            System.out.println("|  85. Patron Decorator con Function       (sin guia)            |");
-            System.out.println("|  86. Map.forEach, compute y merge        (con guia)            |");
-            System.out.println("|  87. Template Method con Consumer        (sin guia)            |");
-            System.out.println("|  88. Procesador generico multi-paso      (sin guia)            |");
-            System.out.println("|  89. Sistema de filtros dinamicos        (sin guia)            |");
-            System.out.println("|  90. Mini-framework de reportes          (sin guia)            |");
+            System.out.println("|  81. BiFunction y BiConsumer             (con guia)           |");
+            System.out.println("|  82. Interfaz funcional personalizada    (con guia)           |");
+            System.out.println("|  83. Validador generico componible       (sin guia)           |");
+            System.out.println("|  84. Patron Strategy con lambdas         (sin guia)           |");
+            System.out.println("|  85. Patron Decorator con Function       (sin guia)           |");
+            System.out.println("|  86. Map.forEach, compute y merge        (con guia)           |");
+            System.out.println("|  87. Template Method con Consumer        (sin guia)           |");
+            System.out.println("|  88. Procesador generico multi-paso      (sin guia)           |");
+            System.out.println("|  89. Sistema de filtros dinamicos        (sin guia)           |");
+            System.out.println("|  90. Mini-framework de reportes          (sin guia)           |");
             System.out.println("+---------------------------------------------------------------+");
             System.out.println("|  NIVEL 13: MAESTRIA TOTAL (91-100) -- SIN PISTAS              |");
-            System.out.println("|  91. Stream + interfaces custom                                |");
-            System.out.println("|  92. Pipeline configurable por usuario                         |");
-            System.out.println("|  93. Motor de transformaciones encadenadas                     |");
-            System.out.println("|  94. Sistema de eventos con Consumer                           |");
-            System.out.println("|  95. Validador multi-campo con reportes                        |");
-            System.out.println("|  96. Query builder funcional                                   |");
-            System.out.println("|  97. Procesador de datos multi-fuente                          |");
-            System.out.println("|  98. Dashboard interactivo funcional                           |");
-            System.out.println("|  99. Framework de analisis completo                            |");
+            System.out.println("|  91. Stream + interfaces custom                               |");
+            System.out.println("|  92. Pipeline configurable por usuario                        |");
+            System.out.println("|  93. Motor de transformaciones encadenadas                    |");
+            System.out.println("|  94. Sistema de eventos con Consumer                          |");
+            System.out.println("|  95. Validador multi-campo con reportes                       |");
+            System.out.println("|  96. Query builder funcional                                  |");
+            System.out.println("|  97. Procesador de datos multi-fuente                         |");
+            System.out.println("|  98. Dashboard interactivo funcional                          |");
+            System.out.println("|  99. Framework de analisis completo                           |");
             System.out.println("| 100. GRAN DESAFIO FINAL                                       |");
             System.out.println("+---------------------------------------------------------------+");
             System.out.println("|   0. SALIR                                                    |");
@@ -159,108 +158,412 @@ public class App {
             System.out.println();
 
             switch (opcion) {
-                case 0: System.out.println("Hasta pronto!"); break;
-                case 1: Ejercicio01_PrimerContactoLambda.demostracion(); Ejercicio01_PrimerContactoLambda.ejercicio(); break;
-                case 2: Ejercicio02_LambdaSinGuia.demostracion(); Ejercicio02_LambdaSinGuia.ejercicio(); break;
-                case 3: Ejercicio03_ComparatorComparing.demostracion(); Ejercicio03_ComparatorComparing.ejercicio(); break;
-                case 4: Ejercicio04_OrdenMulticriterioSinGuia.demostracion(); Ejercicio04_OrdenMulticriterioSinGuia.ejercicio(); break;
-                case 5: Ejercicio05_PredicateYConsumer.demostracion(); Ejercicio05_PredicateYConsumer.ejercicio(); break;
-                case 6: Ejercicio06_FunctionYTransformacion.demostracion(); Ejercicio06_FunctionYTransformacion.ejercicio(); break;
-                case 7: Ejercicio07_ComposicionPredicados.demostracion(); Ejercicio07_ComposicionPredicados.ejercicio(); break;
-                case 8: Ejercicio08_LambdaComoParametro.demostracion(); Ejercicio08_LambdaComoParametro.ejercicio(); break;
-                case 9: Ejercicio09_PrimerStream.demostracion(); Ejercicio09_PrimerStream.ejercicio(); break;
-                case 10: Ejercicio10_FilterEncadenadoSinGuia.demostracion(); Ejercicio10_FilterEncadenadoSinGuia.ejercicio(); break;
-                case 11: Ejercicio11_MapTransformacion.demostracion(); Ejercicio11_MapTransformacion.ejercicio(); break;
-                case 12: Ejercicio12_SortedYDistinct.demostracion(); Ejercicio12_SortedYDistinct.ejercicio(); break;
-                case 13: Ejercicio13_CountYForEach.demostracion(); Ejercicio13_CountYForEach.ejercicio(); break;
-                case 14: Ejercicio14_MapToIntEstadisticas.demostracion(); Ejercicio14_MapToIntEstadisticas.ejercicio(); break;
-                case 15: Ejercicio15_LimitSkipPeek.demostracion(); Ejercicio15_LimitSkipPeek.ejercicio(); break;
-                case 16: Ejercicio16_PipelineCompletoSinGuia.demostracion(); Ejercicio16_PipelineCompletoSinGuia.ejercicio(); break;
-                case 17: Ejercicio17_ReferenciaMetodoInstancia.demostracion(); Ejercicio17_ReferenciaMetodoInstancia.ejercicio(); break;
-                case 18: Ejercicio18_ReferenciaObjetoYEstatico.demostracion(); Ejercicio18_ReferenciaObjetoYEstatico.ejercicio(); break;
-                case 19: Ejercicio19_ComparatorConMR.demostracion(); Ejercicio19_ComparatorConMR.ejercicio(); break;
-                case 20: Ejercicio20_CollectToMapSinGuia.demostracion(); Ejercicio20_CollectToMapSinGuia.ejercicio(); break;
-                case 21: Ejercicio21_GroupingByConGuia.demostracion(); Ejercicio21_GroupingByConGuia.ejercicio(); break;
-                case 22: Ejercicio22_JoiningYCounting.demostracion(); Ejercicio22_JoiningYCounting.ejercicio(); break;
-                case 23: Ejercicio23_AnyMatchAllMatchNoneMatch.demostracion(); Ejercicio23_AnyMatchAllMatchNoneMatch.ejercicio(); break;
-                case 24: Ejercicio24_FindFirstFindAny.demostracion(); Ejercicio24_FindFirstFindAny.ejercicio(); break;
-                case 25: Ejercicio25_OptionalCreacionBasica.demostracion(); Ejercicio25_OptionalCreacionBasica.ejercicio(); break;
-                case 26: Ejercicio26_OptionalMapYOrElse.demostracion(); Ejercicio26_OptionalMapYOrElse.ejercicio(); break;
-                case 27: Ejercicio27_OptionalFlatMap.demostracion(); Ejercicio27_OptionalFlatMap.ejercicio(); break;
-                case 28: Ejercicio28_OptionalOrElseThrow.demostracion(); Ejercicio28_OptionalOrElseThrow.ejercicio(); break;
-                case 29: Ejercicio29_OptionalConStreams.demostracion(); Ejercicio29_OptionalConStreams.ejercicio(); break;
-                case 30: Ejercicio30_GroupingByAvanzado.demostracion(); Ejercicio30_GroupingByAvanzado.ejercicio(); break;
-                case 31: Ejercicio31_ToMapConMerge.demostracion(); Ejercicio31_ToMapConMerge.ejercicio(); break;
-                case 32: Ejercicio32_CollectToSetYTreeSet.demostracion(); Ejercicio32_CollectToSetYTreeSet.ejercicio(); break;
-                case 33: Ejercicio33_ProductosConStreams.demostracion(); Ejercicio33_ProductosConStreams.ejercicio(); break;
-                case 34: Ejercicio34_ProductosSinGuia.demostracion(); Ejercicio34_ProductosSinGuia.ejercicio(); break;
-                case 35: Ejercicio35_FlatMapIntroduccion.demostracion(); Ejercicio35_FlatMapIntroduccion.ejercicio(); break;
-                case 36: Ejercicio36_FlatMapConPedidos.demostracion(); Ejercicio36_FlatMapConPedidos.ejercicio(); break;
-                case 37: Ejercicio37_ReduceBasico.demostracion(); Ejercicio37_ReduceBasico.ejercicio(); break;
-                case 38: Ejercicio38_ReduceAvanzadoSinGuia.demostracion(); Ejercicio38_ReduceAvanzadoSinGuia.ejercicio(); break;
-                case 39: Ejercicio39_FlatMapYStrings.demostracion(); Ejercicio39_FlatMapYStrings.ejercicio(); break;
-                case 40: Ejercicio40_FlatMapReduceCombinado.demostracion(); Ejercicio40_FlatMapReduceCombinado.ejercicio(); break;
-                case 41: Ejercicio41_StreamDeMaps.demostracion(); Ejercicio41_StreamDeMaps.ejercicio(); break;
-                case 42: Ejercicio42_StreamDeArrays.demostracion(); Ejercicio42_StreamDeArrays.ejercicio(); break;
-                case 43: Ejercicio43_InformeEmpleados.demostracion(); Ejercicio43_InformeEmpleados.ejercicio(); break;
-                case 44: Ejercicio44_InformePedidos.demostracion(); Ejercicio44_InformePedidos.ejercicio(); break;
-                case 45: Ejercicio45_TopNPorCategoria.demostracion(); Ejercicio45_TopNPorCategoria.ejercicio(); break;
-                case 46: Ejercicio46_TransformacionCompleta.demostracion(); Ejercicio46_TransformacionCompleta.ejercicio(); break;
-                case 47: Ejercicio47_ReduceCustomCollector.demostracion(); Ejercicio47_ReduceCustomCollector.ejercicio(); break;
-                case 48: Ejercicio48_PipelineMultiModelo.demostracion(); Ejercicio48_PipelineMultiModelo.ejercicio(); break;
-                case 49: Ejercicio49_OptionalAvanzado.demostracion(); Ejercicio49_OptionalAvanzado.ejercicio(); break;
-                case 50: Ejercicio50_DesafioFinal.demostracion(); Ejercicio50_DesafioFinal.ejercicio(); break;
-                case 51: Ejercicio51_StreamGenerateIterate.demostracion(); Ejercicio51_StreamGenerateIterate.ejercicio(); break;
-                case 52: Ejercicio52_IterateFibonacci.demostracion(); Ejercicio52_IterateFibonacci.ejercicio(); break;
-                case 53: Ejercicio53_DownstreamCollectors.demostracion(); Ejercicio53_DownstreamCollectors.ejercicio(); break;
-                case 54: Ejercicio54_SummarizingEstadisticas.demostracion(); Ejercicio54_SummarizingEstadisticas.ejercicio(); break;
-                case 55: Ejercicio55_CollectorOfPersonalizado.demostracion(); Ejercicio55_CollectorOfPersonalizado.ejercicio(); break;
-                case 56: Ejercicio56_UnaryBinaryOperator.demostracion(); Ejercicio56_UnaryBinaryOperator.ejercicio(); break;
-                case 57: Ejercicio57_PipelineMultinivel.demostracion(); Ejercicio57_PipelineMultinivel.ejercicio(); break;
-                case 58: Ejercicio58_AnalizadorFrecuencias.demostracion(); Ejercicio58_AnalizadorFrecuencias.ejercicio(); break;
-                case 59: Ejercicio59_SimuladorSQL.demostracion(); Ejercicio59_SimuladorSQL.ejercicio(); break;
-                case 60: Ejercicio60_MotorReglas.demostracion(); Ejercicio60_MotorReglas.ejercicio(); break;
-                case 61: Ejercicio61_MatricesNumericas.demostracion(); Ejercicio61_MatricesNumericas.ejercicio(); break;
-                case 62: Ejercicio62_RankingPonderado.demostracion(); Ejercicio62_RankingPonderado.ejercicio(); break;
-                case 63: Ejercicio63_ReportesMultiModelo.demostracion(); Ejercicio63_ReportesMultiModelo.ejercicio(); break;
-                case 64: Ejercicio64_ETLPipeline.demostracion(); Ejercicio64_ETLPipeline.ejercicio(); break;
-                case 65: Ejercicio65_DesafioSupremo.demostracion(); Ejercicio65_DesafioSupremo.ejercicio(); break;
-                case 66: Ejercicio66_ForEachMethodReference.demostracion(); Ejercicio66_ForEachMethodReference.ejercicio(); break;
-                case 67: Ejercicio67_ConsumerAndThen.demostracion(); Ejercicio67_ConsumerAndThen.ejercicio(); break;
-                case 68: Ejercicio68_TablaFormateada.demostracion(); Ejercicio68_TablaFormateada.ejercicio(); break;
-                case 69: Ejercicio69_StreamConcatForEach.demostracion(); Ejercicio69_StreamConcatForEach.ejercicio(); break;
-                case 70: Ejercicio70_CollectingAndThen.demostracion(); Ejercicio70_CollectingAndThen.ejercicio(); break;
-                case 71: Ejercicio71_ReporteVisual.demostracion(); Ejercicio71_ReporteVisual.ejercicio(); break;
-                case 72: Ejercicio72_DashboardCompleto.demostracion(); Ejercicio72_DashboardCompleto.ejercicio(); break;
-                case 73: Ejercicio73_FunctionComposeAndThen.demostracion(); Ejercicio73_FunctionComposeAndThen.ejercicio(); break;
-                case 74: Ejercicio74_ParallelStreamsIntro.demostracion(); Ejercicio74_ParallelStreamsIntro.ejercicio(); break;
-                case 75: Ejercicio75_ParallelReduceRendimiento.demostracion(); Ejercicio75_ParallelReduceRendimiento.ejercicio(); break;
-                case 76: Ejercicio76_SupplierStreamReutilizable.demostracion(); Ejercicio76_SupplierStreamReutilizable.ejercicio(); break;
-                case 77: Ejercicio77_PipelineTransformaciones.demostracion(); Ejercicio77_PipelineTransformaciones.ejercicio(); break;
-                case 78: Ejercicio78_ForEachAvanzadoPatrones.demostracion(); Ejercicio78_ForEachAvanzadoPatrones.ejercicio(); break;
-                case 79: Ejercicio79_AnalisisCompletoTecnicas.demostracion(); Ejercicio79_AnalisisCompletoTecnicas.ejercicio(); break;
-                case 80: Ejercicio80_DesafioMaestroFinal.demostracion(); Ejercicio80_DesafioMaestroFinal.ejercicio(); break;
-                case 81: Ejercicio81_BiFunctionBiConsumer.demostracion(); Ejercicio81_BiFunctionBiConsumer.ejercicio(); break;
-                case 82: Ejercicio82_InterfazFuncionalCustom.demostracion(); Ejercicio82_InterfazFuncionalCustom.ejercicio(); break;
-                case 83: Ejercicio83_ValidadorGenerico.demostracion(); Ejercicio83_ValidadorGenerico.ejercicio(); break;
-                case 84: Ejercicio84_PatronStrategy.demostracion(); Ejercicio84_PatronStrategy.ejercicio(); break;
-                case 85: Ejercicio85_PatronDecorator.demostracion(); Ejercicio85_PatronDecorator.ejercicio(); break;
-                case 86: Ejercicio86_MapForEachCompute.demostracion(); Ejercicio86_MapForEachCompute.ejercicio(); break;
-                case 87: Ejercicio87_TemplateMethodConsumer.demostracion(); Ejercicio87_TemplateMethodConsumer.ejercicio(); break;
-                case 88: Ejercicio88_ProcesadorMultiPaso.demostracion(); Ejercicio88_ProcesadorMultiPaso.ejercicio(); break;
-                case 89: Ejercicio89_FiltrosDinamicos.demostracion(); Ejercicio89_FiltrosDinamicos.ejercicio(); break;
-                case 90: Ejercicio90_MiniFrameworkReportes.demostracion(); Ejercicio90_MiniFrameworkReportes.ejercicio(); break;
-                case 91: Ejercicio91_StreamInterfacesCustom.demostracion(); Ejercicio91_StreamInterfacesCustom.ejercicio(); break;
-                case 92: Ejercicio92_PipelineConfigurable.demostracion(); Ejercicio92_PipelineConfigurable.ejercicio(); break;
-                case 93: Ejercicio93_MotorTransformaciones.demostracion(); Ejercicio93_MotorTransformaciones.ejercicio(); break;
-                case 94: Ejercicio94_SistemaEventosConsumer.demostracion(); Ejercicio94_SistemaEventosConsumer.ejercicio(); break;
-                case 95: Ejercicio95_ValidadorMultiCampo.demostracion(); Ejercicio95_ValidadorMultiCampo.ejercicio(); break;
-                case 96: Ejercicio96_QueryBuilderFuncional.demostracion(); Ejercicio96_QueryBuilderFuncional.ejercicio(); break;
-                case 97: Ejercicio97_ProcesadorMultiFuente.demostracion(); Ejercicio97_ProcesadorMultiFuente.ejercicio(); break;
-                case 98: Ejercicio98_DashboardFuncional.demostracion(); Ejercicio98_DashboardFuncional.ejercicio(); break;
-                case 99: Ejercicio99_FrameworkAnalisis.demostracion(); Ejercicio99_FrameworkAnalisis.ejercicio(); break;
-                case 100: Ejercicio100_GranDesafioFinal.demostracion(); Ejercicio100_GranDesafioFinal.ejercicio(); break;
-                default: System.out.println("Opcion no valida. Elige entre 0 y 100."); break;
+                case 0:
+                    System.out.println("Hasta pronto!");
+                    break;
+                case 1:
+                    Ejercicio01_PrimerContactoLambda.demostracion();
+                    Ejercicio01_PrimerContactoLambda.ejercicio();
+                    break;
+                case 2:
+                    Ejercicio02_LambdaSinGuia.demostracion();
+                    Ejercicio02_LambdaSinGuia.ejercicio();
+                    break;
+                case 3:
+                    Ejercicio03_ComparatorComparing.demostracion();
+                    Ejercicio03_ComparatorComparing.ejercicio();
+                    break;
+                case 4:
+                    Ejercicio04_OrdenMulticriterioSinGuia.demostracion();
+                    Ejercicio04_OrdenMulticriterioSinGuia.ejercicio();
+                    break;
+                case 5:
+                    Ejercicio05_PredicateYConsumer.demostracion();
+                    Ejercicio05_PredicateYConsumer.ejercicio();
+                    break;
+                case 6:
+                    Ejercicio06_FunctionYTransformacion.demostracion();
+                    Ejercicio06_FunctionYTransformacion.ejercicio();
+                    break;
+                case 7:
+                    Ejercicio07_ComposicionPredicados.demostracion();
+                    Ejercicio07_ComposicionPredicados.ejercicio();
+                    break;
+                case 8:
+                    Ejercicio08_LambdaComoParametro.demostracion();
+                    Ejercicio08_LambdaComoParametro.ejercicio();
+                    break;
+                case 9:
+                    Ejercicio09_PrimerStream.demostracion();
+                    Ejercicio09_PrimerStream.ejercicio();
+                    break;
+                case 10:
+                    Ejercicio10_FilterEncadenadoSinGuia.demostracion();
+                    Ejercicio10_FilterEncadenadoSinGuia.ejercicio();
+                    break;
+                case 11:
+                    Ejercicio11_MapTransformacion.demostracion();
+                    Ejercicio11_MapTransformacion.ejercicio();
+                    break;
+                case 12:
+                    Ejercicio12_SortedYDistinct.demostracion();
+                    Ejercicio12_SortedYDistinct.ejercicio();
+                    break;
+                case 13:
+                    Ejercicio13_CountYForEach.demostracion();
+                    Ejercicio13_CountYForEach.ejercicio();
+                    break;
+                case 14:
+                    Ejercicio14_MapToIntEstadisticas.demostracion();
+                    Ejercicio14_MapToIntEstadisticas.ejercicio();
+                    break;
+                case 15:
+                    Ejercicio15_LimitSkipPeek.demostracion();
+                    Ejercicio15_LimitSkipPeek.ejercicio();
+                    break;
+                case 16:
+                    Ejercicio16_PipelineCompletoSinGuia.demostracion();
+                    Ejercicio16_PipelineCompletoSinGuia.ejercicio();
+                    break;
+                case 17:
+                    Ejercicio17_ReferenciaMetodoInstancia.demostracion();
+                    Ejercicio17_ReferenciaMetodoInstancia.ejercicio();
+                    break;
+                case 18:
+                    Ejercicio18_ReferenciaObjetoYEstatico.demostracion();
+                    Ejercicio18_ReferenciaObjetoYEstatico.ejercicio();
+                    break;
+                case 19:
+                    Ejercicio19_ComparatorConMR.demostracion();
+                    Ejercicio19_ComparatorConMR.ejercicio();
+                    break;
+                case 20:
+                    Ejercicio20_CollectToMapSinGuia.demostracion();
+                    Ejercicio20_CollectToMapSinGuia.ejercicio();
+                    break;
+                case 21:
+                    Ejercicio21_GroupingByConGuia.demostracion();
+                    Ejercicio21_GroupingByConGuia.ejercicio();
+                    break;
+                case 22:
+                    Ejercicio22_JoiningYCounting.demostracion();
+                    Ejercicio22_JoiningYCounting.ejercicio();
+                    break;
+                case 23:
+                    Ejercicio23_AnyMatchAllMatchNoneMatch.demostracion();
+                    Ejercicio23_AnyMatchAllMatchNoneMatch.ejercicio();
+                    break;
+                case 24:
+                    Ejercicio24_FindFirstFindAny.demostracion();
+                    Ejercicio24_FindFirstFindAny.ejercicio();
+                    break;
+                case 25:
+                    Ejercicio25_OptionalCreacionBasica.demostracion();
+                    Ejercicio25_OptionalCreacionBasica.ejercicio();
+                    break;
+                case 26:
+                    Ejercicio26_OptionalMapYOrElse.demostracion();
+                    Ejercicio26_OptionalMapYOrElse.ejercicio();
+                    break;
+                case 27:
+                    Ejercicio27_OptionalFlatMap.demostracion();
+                    Ejercicio27_OptionalFlatMap.ejercicio();
+                    break;
+                case 28:
+                    Ejercicio28_OptionalOrElseThrow.demostracion();
+                    Ejercicio28_OptionalOrElseThrow.ejercicio();
+                    break;
+                case 29:
+                    Ejercicio29_OptionalConStreams.demostracion();
+                    Ejercicio29_OptionalConStreams.ejercicio();
+                    break;
+                case 30:
+                    Ejercicio30_GroupingByAvanzado.demostracion();
+                    Ejercicio30_GroupingByAvanzado.ejercicio();
+                    break;
+                case 31:
+                    Ejercicio31_ToMapConMerge.demostracion();
+                    Ejercicio31_ToMapConMerge.ejercicio();
+                    break;
+                case 32:
+                    Ejercicio32_CollectToSetYTreeSet.demostracion();
+                    Ejercicio32_CollectToSetYTreeSet.ejercicio();
+                    break;
+                case 33:
+                    Ejercicio33_ProductosConStreams.demostracion();
+                    Ejercicio33_ProductosConStreams.ejercicio();
+                    break;
+                case 34:
+                    Ejercicio34_ProductosSinGuia.demostracion();
+                    Ejercicio34_ProductosSinGuia.ejercicio();
+                    break;
+                case 35:
+                    Ejercicio35_FlatMapIntroduccion.demostracion();
+                    Ejercicio35_FlatMapIntroduccion.ejercicio();
+                    break;
+                case 36:
+                    Ejercicio36_FlatMapConPedidos.demostracion();
+                    Ejercicio36_FlatMapConPedidos.ejercicio();
+                    break;
+                case 37:
+                    Ejercicio37_ReduceBasico.demostracion();
+                    Ejercicio37_ReduceBasico.ejercicio();
+                    break;
+                case 38:
+                    Ejercicio38_ReduceAvanzadoSinGuia.demostracion();
+                    Ejercicio38_ReduceAvanzadoSinGuia.ejercicio();
+                    break;
+                case 39:
+                    Ejercicio39_FlatMapYStrings.demostracion();
+                    Ejercicio39_FlatMapYStrings.ejercicio();
+                    break;
+                case 40:
+                    Ejercicio40_FlatMapReduceCombinado.demostracion();
+                    Ejercicio40_FlatMapReduceCombinado.ejercicio();
+                    break;
+                case 41:
+                    Ejercicio41_StreamDeMaps.demostracion();
+                    Ejercicio41_StreamDeMaps.ejercicio();
+                    break;
+                case 42:
+                    Ejercicio42_StreamDeArrays.demostracion();
+                    Ejercicio42_StreamDeArrays.ejercicio();
+                    break;
+                case 43:
+                    Ejercicio43_InformeEmpleados.demostracion();
+                    Ejercicio43_InformeEmpleados.ejercicio();
+                    break;
+                case 44:
+                    Ejercicio44_InformePedidos.demostracion();
+                    Ejercicio44_InformePedidos.ejercicio();
+                    break;
+                case 45:
+                    Ejercicio45_TopNPorCategoria.demostracion();
+                    Ejercicio45_TopNPorCategoria.ejercicio();
+                    break;
+                case 46:
+                    Ejercicio46_TransformacionCompleta.demostracion();
+                    Ejercicio46_TransformacionCompleta.ejercicio();
+                    break;
+                case 47:
+                    Ejercicio47_ReduceCustomCollector.demostracion();
+                    Ejercicio47_ReduceCustomCollector.ejercicio();
+                    break;
+                case 48:
+                    Ejercicio48_PipelineMultiModelo.demostracion();
+                    Ejercicio48_PipelineMultiModelo.ejercicio();
+                    break;
+                case 49:
+                    Ejercicio49_OptionalAvanzado.demostracion();
+                    Ejercicio49_OptionalAvanzado.ejercicio();
+                    break;
+                case 50:
+                    Ejercicio50_DesafioFinal.demostracion();
+                    Ejercicio50_DesafioFinal.ejercicio();
+                    break;
+                case 51:
+                    Ejercicio51_StreamGenerateIterate.demostracion();
+                    Ejercicio51_StreamGenerateIterate.ejercicio();
+                    break;
+                case 52:
+                    Ejercicio52_IterateFibonacci.demostracion();
+                    Ejercicio52_IterateFibonacci.ejercicio();
+                    break;
+                case 53:
+                    Ejercicio53_DownstreamCollectors.demostracion();
+                    Ejercicio53_DownstreamCollectors.ejercicio();
+                    break;
+                case 54:
+                    Ejercicio54_SummarizingEstadisticas.demostracion();
+                    Ejercicio54_SummarizingEstadisticas.ejercicio();
+                    break;
+                case 55:
+                    Ejercicio55_CollectorOfPersonalizado.demostracion();
+                    Ejercicio55_CollectorOfPersonalizado.ejercicio();
+                    break;
+                case 56:
+                    Ejercicio56_UnaryBinaryOperator.demostracion();
+                    Ejercicio56_UnaryBinaryOperator.ejercicio();
+                    break;
+                case 57:
+                    Ejercicio57_PipelineMultinivel.demostracion();
+                    Ejercicio57_PipelineMultinivel.ejercicio();
+                    break;
+                case 58:
+                    Ejercicio58_AnalizadorFrecuencias.demostracion();
+                    Ejercicio58_AnalizadorFrecuencias.ejercicio();
+                    break;
+                case 59:
+                    Ejercicio59_SimuladorSQL.demostracion();
+                    Ejercicio59_SimuladorSQL.ejercicio();
+                    break;
+                case 60:
+                    Ejercicio60_MotorReglas.demostracion();
+                    Ejercicio60_MotorReglas.ejercicio();
+                    break;
+                case 61:
+                    Ejercicio61_MatricesNumericas.demostracion();
+                    Ejercicio61_MatricesNumericas.ejercicio();
+                    break;
+                case 62:
+                    Ejercicio62_RankingPonderado.demostracion();
+                    Ejercicio62_RankingPonderado.ejercicio();
+                    break;
+                case 63:
+                    Ejercicio63_ReportesMultiModelo.demostracion();
+                    Ejercicio63_ReportesMultiModelo.ejercicio();
+                    break;
+                case 64:
+                    Ejercicio64_ETLPipeline.demostracion();
+                    Ejercicio64_ETLPipeline.ejercicio();
+                    break;
+                case 65:
+                    Ejercicio65_DesafioSupremo.demostracion();
+                    Ejercicio65_DesafioSupremo.ejercicio();
+                    break;
+                case 66:
+                    Ejercicio66_ForEachMethodReference.demostracion();
+                    Ejercicio66_ForEachMethodReference.ejercicio();
+                    break;
+                case 67:
+                    Ejercicio67_ConsumerAndThen.demostracion();
+                    Ejercicio67_ConsumerAndThen.ejercicio();
+                    break;
+                case 68:
+                    Ejercicio68_TablaFormateada.demostracion();
+                    Ejercicio68_TablaFormateada.ejercicio();
+                    break;
+                case 69:
+                    Ejercicio69_StreamConcatForEach.demostracion();
+                    Ejercicio69_StreamConcatForEach.ejercicio();
+                    break;
+                case 70:
+                    Ejercicio70_CollectingAndThen.demostracion();
+                    Ejercicio70_CollectingAndThen.ejercicio();
+                    break;
+                case 71:
+                    Ejercicio71_ReporteVisual.demostracion();
+                    Ejercicio71_ReporteVisual.ejercicio();
+                    break;
+                case 72:
+                    Ejercicio72_DashboardCompleto.demostracion();
+                    Ejercicio72_DashboardCompleto.ejercicio();
+                    break;
+                case 73:
+                    Ejercicio73_FunctionComposeAndThen.demostracion();
+                    Ejercicio73_FunctionComposeAndThen.ejercicio();
+                    break;
+                case 74:
+                    Ejercicio74_ParallelStreamsIntro.demostracion();
+                    Ejercicio74_ParallelStreamsIntro.ejercicio();
+                    break;
+                case 75:
+                    Ejercicio75_ParallelReduceRendimiento.demostracion();
+                    Ejercicio75_ParallelReduceRendimiento.ejercicio();
+                    break;
+                case 76:
+                    Ejercicio76_SupplierStreamReutilizable.demostracion();
+                    Ejercicio76_SupplierStreamReutilizable.ejercicio();
+                    break;
+                case 77:
+                    Ejercicio77_PipelineTransformaciones.demostracion();
+                    Ejercicio77_PipelineTransformaciones.ejercicio();
+                    break;
+                case 78:
+                    Ejercicio78_ForEachAvanzadoPatrones.demostracion();
+                    Ejercicio78_ForEachAvanzadoPatrones.ejercicio();
+                    break;
+                case 79:
+                    Ejercicio79_AnalisisCompletoTecnicas.demostracion();
+                    Ejercicio79_AnalisisCompletoTecnicas.ejercicio();
+                    break;
+                case 80:
+                    Ejercicio80_DesafioMaestroFinal.demostracion();
+                    Ejercicio80_DesafioMaestroFinal.ejercicio();
+                    break;
+                case 81:
+                    Ejercicio81_BiFunctionBiConsumer.demostracion();
+                    Ejercicio81_BiFunctionBiConsumer.ejercicio();
+                    break;
+                case 82:
+                    Ejercicio82_InterfazFuncionalCustom.demostracion();
+                    Ejercicio82_InterfazFuncionalCustom.ejercicio();
+                    break;
+                case 83:
+                    Ejercicio83_ValidadorGenerico.demostracion();
+                    Ejercicio83_ValidadorGenerico.ejercicio();
+                    break;
+                case 84:
+                    Ejercicio84_PatronStrategy.demostracion();
+                    Ejercicio84_PatronStrategy.ejercicio();
+                    break;
+                case 85:
+                    Ejercicio85_PatronDecorator.demostracion();
+                    Ejercicio85_PatronDecorator.ejercicio();
+                    break;
+                case 86:
+                    Ejercicio86_MapForEachCompute.demostracion();
+                    Ejercicio86_MapForEachCompute.ejercicio();
+                    break;
+                case 87:
+                    Ejercicio87_TemplateMethodConsumer.demostracion();
+                    Ejercicio87_TemplateMethodConsumer.ejercicio();
+                    break;
+                case 88:
+                    Ejercicio88_ProcesadorMultiPaso.demostracion();
+                    Ejercicio88_ProcesadorMultiPaso.ejercicio();
+                    break;
+                case 89:
+                    Ejercicio89_FiltrosDinamicos.demostracion();
+                    Ejercicio89_FiltrosDinamicos.ejercicio();
+                    break;
+                case 90:
+                    Ejercicio90_MiniFrameworkReportes.demostracion();
+                    Ejercicio90_MiniFrameworkReportes.ejercicio();
+                    break;
+                case 91:
+                    Ejercicio91_StreamInterfacesCustom.demostracion();
+                    Ejercicio91_StreamInterfacesCustom.ejercicio();
+                    break;
+                case 92:
+                    Ejercicio92_PipelineConfigurable.demostracion();
+                    Ejercicio92_PipelineConfigurable.ejercicio();
+                    break;
+                case 93:
+                    Ejercicio93_MotorTransformaciones.demostracion();
+                    Ejercicio93_MotorTransformaciones.ejercicio();
+                    break;
+                case 94:
+                    Ejercicio94_SistemaEventosConsumer.demostracion();
+                    Ejercicio94_SistemaEventosConsumer.ejercicio();
+                    break;
+                case 95:
+                    Ejercicio95_ValidadorMultiCampo.demostracion();
+                    Ejercicio95_ValidadorMultiCampo.ejercicio();
+                    break;
+                case 96:
+                    Ejercicio96_QueryBuilderFuncional.demostracion();
+                    Ejercicio96_QueryBuilderFuncional.ejercicio();
+                    break;
+                case 97:
+                    Ejercicio97_ProcesadorMultiFuente.demostracion();
+                    Ejercicio97_ProcesadorMultiFuente.ejercicio();
+                    break;
+                case 98:
+                    Ejercicio98_DashboardFuncional.demostracion();
+                    Ejercicio98_DashboardFuncional.ejercicio();
+                    break;
+                case 99:
+                    Ejercicio99_FrameworkAnalisis.demostracion();
+                    Ejercicio99_FrameworkAnalisis.ejercicio();
+                    break;
+                case 100:
+                    Ejercicio100_GranDesafioFinal.demostracion();
+                    Ejercicio100_GranDesafioFinal.ejercicio();
+                    break;
+                default:
+                    System.out.println("Opcion no valida. Elige entre 0 y 100.");
+                    break;
             }
         } while (opcion != 0);
 
