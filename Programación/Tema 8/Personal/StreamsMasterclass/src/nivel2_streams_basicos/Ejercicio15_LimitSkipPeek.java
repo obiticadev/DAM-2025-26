@@ -3,7 +3,6 @@ package nivel2_streams_basicos;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 import modelos.Empleado;
 
 /**
@@ -34,7 +33,11 @@ public class Ejercicio15_LimitSkipPeek {
         // TODO: Ordena por salario descendente, usa .peek() para debug,
         // toma los 3 primeros con .limit() y recoge en lista.
 
-        List<Empleado> top3 = null; // <- Escribe aquí
+        List<Empleado> top3 = empresa.stream()
+                .sorted(Comparator.comparing(Empleado::getSalario).reversed())
+                .peek(System.out::println)
+                .limit(3)
+                .toList();
 
         // --- VALIDACIÓN ---
         if (top3 != null && top3.size() == 3

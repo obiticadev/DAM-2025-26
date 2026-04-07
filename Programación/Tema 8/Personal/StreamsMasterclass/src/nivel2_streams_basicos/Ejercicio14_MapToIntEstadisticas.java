@@ -31,13 +31,15 @@ public class Ejercicio14_MapToIntEstadisticas {
 
         // TODO 1: Usa .stream().mapToInt(e -> (int)e.getSalario()).summaryStatistics()
         // para obtener un IntSummaryStatistics de los salarios.
-        IntSummaryStatistics stats = null; // <- Escribe aquí
+        IntSummaryStatistics stats = empresa.stream()
+                .mapToInt(e -> (int) e.getSalario()).summaryStatistics();
 
-        // TODO 2: Extrae la suma total, la media, el máximo y el mínimo del objeto stats.
-        long suma = 0;
-        double media = 0;
-        int maximo = 0;
-        int minimo = 0;
+        // TODO 2: Extrae la suma total, la media, el máximo y el mínimo del objeto
+        // stats.
+        long suma = stats.getSum();
+        double media = stats.getAverage();
+        int maximo = stats.getMax();
+        int minimo = stats.getMin();
 
         if (stats != null) {
             suma = stats.getSum();

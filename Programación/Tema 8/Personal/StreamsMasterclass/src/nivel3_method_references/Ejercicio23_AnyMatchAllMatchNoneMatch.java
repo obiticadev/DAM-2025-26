@@ -28,13 +28,16 @@ public class Ejercicio23_AnyMatchAllMatchNoneMatch {
         empresa.add(new Empleado("Pedro", "QA", "Java", 3, 30000, true, "pedro@corp.com"));
 
         // TODO 1: ¿Hay ALGÚN empleado que gane más de 60000?
-        boolean hayRico = false; // <- Escribe aquí
+        boolean hayRico = empresa.stream()
+                .anyMatch(e -> e.getSalario() > 60000);
 
         // TODO 2: ¿TODOS los empleados están activos?
-        boolean todosActivos = false; // <- Escribe aquí
+        boolean todosActivos = empresa.stream()
+                .allMatch(Empleado::isActivo);
 
         // TODO 3: ¿NINGÚN empleado usa "Ruby" como lenguaje principal?
-        boolean nadieUsaRuby = false; // <- Escribe aquí
+        boolean nadieUsaRuby = empresa.stream()
+                .noneMatch(e -> e.getLenguajePrincipal().equals("Ruby"));
 
         System.out.println("¿Hay alguien que gane >60k? " + hayRico);
         System.out.println("¿Todos activos? " + todosActivos);

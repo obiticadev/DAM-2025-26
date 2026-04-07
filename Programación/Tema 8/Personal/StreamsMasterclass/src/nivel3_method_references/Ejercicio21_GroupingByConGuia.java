@@ -32,10 +32,13 @@ public class Ejercicio21_GroupingByConGuia {
         empresa.add(new Empleado("Pedro", "QA", "Python", 3, 30000, true, "pedro@corp.com"));
 
         // TODO 1: Agrupa los empleados por lenguaje principal usando groupingBy
-        Map<String, List<Empleado>> porLenguaje = null; // <- Escribe aquí
+        Map<String, List<Empleado>> porLenguaje = empresa.stream()
+                .collect(Collectors.groupingBy(Empleado::getLenguajePrincipal));
 
-        // TODO 2: Particiona los empleados en dos grupos: los que ganan > 40000 y los que no
-        Map<Boolean, List<Empleado>> porSalario = null; // <- Escribe aquí
+        // TODO 2: Particiona los empleados en dos grupos: los que ganan > 40000 y los
+        // que no
+        Map<Boolean, List<Empleado>> porSalario = empresa.stream()
+                .collect(Collectors.partitioningBy(e -> e.getSalario() > 40000));
 
         // --- VALIDACIÓN ---
         boolean agrupOk = porLenguaje != null && porLenguaje.size() == 3
@@ -48,7 +51,8 @@ public class Ejercicio21_GroupingByConGuia {
         if (agrupOk && partOk) {
             System.out.println(">> CORRECTO: Agrupación y partición ejecutadas correctamente.\033[0;32m [OK]\033[0m");
         } else {
-            System.err.println(">> [ERROR] porLenguaje: Java=2, JavaScript=2, Python=2. porSalario: true=3(Ana,Marta,Lucía), false=3.");
+            System.err.println(
+                    ">> [ERROR] porLenguaje: Java=2, JavaScript=2, Python=2. porSalario: true=3(Ana,Marta,Lucía), false=3.");
         }
     }
 }

@@ -3,6 +3,7 @@ package nivel3_method_references;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import modelos.Empleado;
 
 /**
@@ -29,15 +30,22 @@ public class Ejercicio18_ReferenciaObjetoYEstatico {
         // TODO 1: Usa System.out::println en un forEach para imprimir los empleados
         System.out.println("--- Todos los empleados ---");
         // >>> ESCRIBE TU forEach CON System.out::println AQUÍ <<<
+        equipo.forEach(System.out::println);
 
-        // TODO 2: Extrae los nombres y conviértelos a mayúsculas usando Method References
+        // TODO 2: Extrae los nombres y conviértelos a mayúsculas usando Method
+        // References
         // Paso a) .map(Empleado::getNombre) para extraer nombres
         // Paso b) .map(String::toUpperCase) para convertir a mayúsculas
-        List<String> nombresMayus = null; // <- Escribe aquí
+        List<String> nombresMayus = equipo.stream()
+                .map(Empleado::getNombre)
+                .map(String::toUpperCase)
+                .toList();
 
         // TODO 3: Convierte estas strings numéricas a Integer usando Integer::parseInt
         List<String> numerosTexto = List.of("10", "20", "30", "40");
-        List<Integer> numeros = null; // <- Escribe aquí
+        List<Integer> numeros = numerosTexto.stream()
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
 
         // --- VALIDACIÓN ---
         boolean v1 = nombresMayus != null && nombresMayus.size() == 3 && nombresMayus.get(0).equals("ANA");

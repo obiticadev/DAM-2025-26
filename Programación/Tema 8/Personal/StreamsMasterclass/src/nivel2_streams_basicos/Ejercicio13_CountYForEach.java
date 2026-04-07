@@ -2,6 +2,7 @@ package nivel2_streams_basicos;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import modelos.Empleado;
 
 /**
@@ -28,17 +29,26 @@ public class Ejercicio13_CountYForEach {
         equipo.add(new Empleado("Pedro", "QA", "Java", 3, 30000, false, null));
         equipo.add(new Empleado("Elena", "DevOps", "Go", 4, 45000, true, "elena@corp.com"));
 
-        // TODO 1: Usa .stream().filter().count() para contar cuántos empleados ganan más de 40000.
-        long bienPagados = 0; // <- Escribe aquí
+        // TODO 1: Usa .stream().filter().count() para contar cuántos empleados ganan
+        // más de 40000.
+        long bienPagados = equipo.stream()
+                .filter(e -> e.getSalario() > 40000)
+                .count();
 
-        // TODO 2: Usa .stream().filter().forEach() para imprimir por consola SOLO los empleados
+        // TODO 2: Usa .stream().filter().forEach() para imprimir por consola SOLO los
+        // empleados
         // que usan Java. Usa System.out::println como Consumer.
-        System.out.println("Empleados Java:");
-        // >>> ESCRIBE TU CÓDIGO AQUÍ <<<
+
+        System.out.println(equipo.stream()
+                .filter(e -> e.getSalario() > 40000)
+                .map(Empleado::getNombre)
+                .map(String::toUpperCase)
+                .collect(Collectors.joining(" | ", "Empleados Java: ", "")));
 
         // --- VALIDACIÓN ---
         if (bienPagados == 3) {
-            System.out.println(">> CORRECTO: Has contado 3 empleados con salario > 40000 y mostrado los de Java.\033[0;32m [OK]\033[0m");
+            System.out.println(
+                    ">> CORRECTO: Has contado 3 empleados con salario > 40000 y mostrado los de Java.\033[0;32m [OK]\033[0m");
         } else {
             System.err.println(">> [ERROR] Deberían ser 3 los que ganan >40k: Ana(55k), Lucía(70k), Elena(45k).");
         }

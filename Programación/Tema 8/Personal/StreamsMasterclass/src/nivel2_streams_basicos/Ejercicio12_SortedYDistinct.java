@@ -3,7 +3,6 @@ package nivel2_streams_basicos;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 import modelos.Empleado;
 
 /**
@@ -31,11 +30,15 @@ public class Ejercicio12_SortedYDistinct {
         datosCorruptos.add(new Empleado("Elena", "DevOps", "Go", 4, 45000, true, "elena@corp.com"));
 
         // TODO: Crea un pipeline que:
-        //   1. Elimine duplicados con .distinct()
-        //   2. Ordene por nombre A-Z usando .sorted(Comparator.comparing(...))
-        //   3. Recoja en List<Empleado>
+        // 1. Elimine duplicados con .distinct()
+        // 2. Ordene por nombre A-Z usando .sorted(Comparator.comparing(...))
+        // 3. Recoja en List<Empleado>
 
-        List<Empleado> limpios = null; // <- Escribe aquí
+        List<Empleado> limpios = datosCorruptos.stream()
+                .distinct()
+                .sorted(Comparator.comparing(Empleado::getNombre))
+                .peek(System.out::println)
+                .toList();
 
         // --- VALIDACIÓN ---
         if (limpios != null && limpios.size() == 4

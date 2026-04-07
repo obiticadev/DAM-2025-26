@@ -3,7 +3,6 @@ package nivel2_streams_basicos;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 import modelos.Empleado;
 
 /**
@@ -31,22 +30,31 @@ public class Ejercicio16_PipelineCompletoSinGuia {
         empresa.add(new Empleado("Marcos", "Backend", "Rust", 8, 65000, true, "marcos@corp.com"));
 
         // TODO: Crea un pipeline que:
-        //   1. Filtre empleados activos Y seniors (usa esSenior())
-        //   2. Extraiga sus nombres con .map()
-        //   3. Ordene por longitud del nombre DESCENDENTE (el más largo primero)
-        //   4. Tome solo los 2 primeros con .limit()
-        //   5. Recoja en List<String>
+        // 1. Filtre empleados activos Y seniors (usa esSenior())
+        // 2. Extraiga sus nombres con .map()
+        // 3. Ordene por longitud del nombre DESCENDENTE (el más largo primero)
+        // 4. Tome solo los 2 primeros con .limit()
+        // 5. Recoja en List<String>
         // SIN PISTAS DE SINTAXIS.
 
-        List<String> top2NombresLargos = null; // <- Escribe aquí
+        List<String> top2NombresLargos = empresa.stream()
+                .filter(Empleado::isActivo)
+                .filter(Empleado::esSenior)
+                .map(Empleado::getNombre)
+                .sorted(Comparator.comparing(String::length).reversed())
+                .limit(2)
+                .peek(System.out::println)
+                .toList();
 
         // --- VALIDACIÓN ---
         if (top2NombresLargos != null && top2NombresLargos.size() == 2
                 && top2NombresLargos.get(0).equals("Elena Martínez García")
                 && top2NombresLargos.get(1).equals("Lucía Fernández")) {
-            System.out.println(">> CORRECTO: Pipeline completo de 5 operaciones encadenadas sin ayuda.\033[0;32m [OK]\033[0m");
+            System.out.println(
+                    ">> CORRECTO: Pipeline completo de 5 operaciones encadenadas sin ayuda.\033[0;32m [OK]\033[0m");
         } else {
-            System.err.println(">> [ERROR] Esperado: [Elena Martínez García, Lucía Fernández]. Seniors activos, nombres largos primero, top 2.");
+            System.err.println(
+                    ">> [ERROR] Esperado: [Elena Martínez García, Lucía Fernández]. Seniors activos, nombres largos primero, top 2.");
         }
     }
 }

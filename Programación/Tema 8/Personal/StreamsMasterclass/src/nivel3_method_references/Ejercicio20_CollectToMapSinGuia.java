@@ -29,11 +29,12 @@ public class Ejercicio20_CollectToMapSinGuia {
         equipo.add(new Empleado("Pedro", "QA", "Java", 3, 30000, true, "pedro@corp.com"));
 
         // TODO: Crea un Map<String, Double> donde:
-        //   - La clave sea el nombre del empleado
-        //   - El valor sea su salario
+        // - La clave sea el nombre del empleado
+        // - El valor sea su salario
         // Usa Method References donde sea posible.
 
-        Map<String, Double> directorio = null; // <- Escribe aquí
+        Map<String, Double> directorio = equipo.stream()
+                .collect(Collectors.toMap(Empleado::getNombre, Empleado::getSalario));
 
         // --- VALIDACIÓN ---
         if (directorio != null && directorio.size() == 4
@@ -41,7 +42,8 @@ public class Ejercicio20_CollectToMapSinGuia {
                 && directorio.get("Lucía") == 70000.0) {
             System.out.println(">> CORRECTO: Map generado con toMap y Method References.\033[0;32m [OK]\033[0m");
         } else {
-            System.err.println(">> [ERROR] El Map debe tener 4 entradas: Ana->55000, Carlos->25000, Lucía->70000, Pedro->30000.");
+            System.err.println(
+                    ">> [ERROR] El Map debe tener 4 entradas: Ana->55000, Carlos->25000, Lucía->70000, Pedro->30000.");
         }
     }
 }

@@ -2,7 +2,7 @@ package nivel3_method_references;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+import java.util.function.Predicate;
 import modelos.Empleado;
 
 /**
@@ -27,15 +27,26 @@ public class Ejercicio24_FindFirstFindAny {
         empresa.add(new Empleado("Lucía", "Data", "Python", 10, 70000, true, "lucia@corp.com"));
         empresa.add(new Empleado("Pedro", "QA", "Java", 3, 30000, false, null));
 
-        // TODO 1: Encuentra el PRIMER empleado que use Python. Devuelve su nombre o "No encontrado".
-        String primerPython = "No encontrado"; // <- Escribe aquí usando findFirst() + map() + orElse()
+        // TODO 1: Encuentra el PRIMER empleado que use Python. Devuelve su nombre o "No
+        // encontrado".
+        String primerPython = empresa.stream()
+                .filter(e -> e.getLenguajePrincipal().equals("Python"))
+                .map(Empleado::getNombre)
+                .findFirst().orElse("No encontrado");
 
-        // TODO 2: Encuentra CUALQUIER empleado inactivo. Devuelve su nombre o "Todos activos".
-        String algunInactivo = "Todos activos"; // <- Escribe aquí usando findAny()
+        // TODO 2: Encuentra CUALQUIER empleado inactivo. Devuelve su nombre o "Todos
+        // activos".
+        String algunInactivo = empresa.stream()
+                .filter(Predicate.not(Empleado::isActivo))
+                .map(Empleado::getNombre)
+                .findAny().orElse("Todos activos");
 
-        // TODO 3: Intenta encontrar un empleado que use "Kotlin". 
+        // TODO 3: Intenta encontrar un empleado que use "Kotlin".
         // Como no existe, el Optional estará vacío. Devuelve "No hay kotlineros".
-        String kotlinero = "Pendiente"; // <- Escribe aquí
+        String kotlinero = empresa.stream()
+                .filter(e -> e.getLenguajePrincipal().equals("Kotlin"))
+                .map(Empleado::getNombre)
+                .findAny().orElse("No hay kotlineros");
 
         System.out.println("Primer Python: " + primerPython);
         System.out.println("Algún inactivo: " + algunInactivo);

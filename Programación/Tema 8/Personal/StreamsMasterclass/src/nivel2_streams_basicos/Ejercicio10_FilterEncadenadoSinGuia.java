@@ -30,20 +30,26 @@ public class Ejercicio10_FilterEncadenadoSinGuia {
         megacorp.add(new Empleado("Marcos", "Backend", "Go", 2, 35000, true, "marcos@corp.com"));
 
         // TODO: Crea un pipeline que filtre:
-        //   1. Solo empleados del departamento "Backend"
-        //   2. Que estén activos
-        //   3. Que tengan un salario mayor a 40000
+        // 1. Solo empleados del departamento "Backend"
+        // 2. Que estén activos
+        // 3. Que tengan un salario mayor a 40000
         // Recoge el resultado en una List<Empleado>
 
-        List<Empleado> eliteBackend = null; // <- Escribe aquí
+        List<Empleado> eliteBackend = megacorp.stream()
+                .filter(a -> a.getDepartamento().equals("Backend"))
+                .filter(Empleado::isActivo)
+                .filter(a -> a.getSalario() > 40000)
+                .peek(System.out::println)
+                .collect(Collectors.toList());
 
         // --- VALIDACIÓN ---
         if (eliteBackend != null && eliteBackend.size() == 3
-                && eliteBackend.stream().allMatch(e ->
-                    e.getDepartamento().equals("Backend") && e.isActivo() && e.getSalario() > 40000)) {
+                && eliteBackend.stream().allMatch(
+                        e -> e.getDepartamento().equals("Backend") && e.isActivo() && e.getSalario() > 40000)) {
             System.out.println(">> CORRECTO: Triple filtrado ejecutado limpiamente.\033[0;32m [OK]\033[0m");
         } else {
-            System.err.println(">> [ERROR] Deberían quedar 3: Ana(55k), Lucía(70k), Elena(48k). Todos Backend, activos, >40k.");
+            System.err.println(
+                    ">> [ERROR] Deberían quedar 3: Ana(55k), Lucía(70k), Elena(48k). Todos Backend, activos, >40k.");
         }
     }
 }

@@ -29,12 +29,19 @@ public class Ejercicio22_JoiningYCounting {
         empresa.add(new Empleado("Marta", "Frontend", "JavaScript", 5, 48000, true, "marta@corp.com"));
         empresa.add(new Empleado("Lucía", "Data", "Python", 10, 70000, true, "lucia@corp.com"));
 
-        // TODO 1: Crea un String con los nombres de todos los empleados separados por ", "
+        // TODO 1: Crea un String con los nombres de todos los empleados separados por
+        // ", "
         // Resultado esperado: "Ana, Luis, Carlos, Marta, Lucía"
-        String nombresUnidos = null; // <- Escribe aquí
+        String nombresUnidos = empresa.stream()
+                .map(Empleado::getNombre)
+                .collect(Collectors.joining(", "));
+        System.out.println(nombresUnidos);
 
-        // TODO 2: Crea un Map<String, Long> que cuente cuántos empleados hay por departamento
-        Map<String, Long> conteoPorDepto = null; // <- Escribe aquí
+        // TODO 2: Crea un Map<String, Long> que cuente cuántos empleados hay por
+        // departamento
+        Map<String, Long> conteoPorDepto = empresa.stream()
+                .collect(Collectors.groupingBy(Empleado::getDepartamento, Collectors.counting()));
+        conteoPorDepto.forEach((a, b) -> System.out.println(a + ": " + b));
 
         // --- VALIDACIÓN ---
         boolean joinOk = nombresUnidos != null && nombresUnidos.equals("Ana, Luis, Carlos, Marta, Lucía");
@@ -46,7 +53,8 @@ public class Ejercicio22_JoiningYCounting {
         if (joinOk && countOk) {
             System.out.println(">> CORRECTO: joining() y counting() dominados.\033[0;32m [OK]\033[0m");
         } else {
-            System.err.println(">> [ERROR] nombresUnidos='Ana, Luis, Carlos, Marta, Lucía'. conteoPorDepto: Backend=2, Frontend=2, Data=1.");
+            System.err.println(
+                    ">> [ERROR] nombresUnidos='Ana, Luis, Carlos, Marta, Lucía'. conteoPorDepto: Backend=2, Frontend=2, Data=1.");
         }
     }
 }

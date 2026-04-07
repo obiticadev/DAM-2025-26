@@ -31,13 +31,19 @@ public class Ejercicio11_MapTransformacion {
         // extraiga el email con .map(), lo convierta a mayúsculas con otro .map(),
         // y recoja en una List<String>.
 
-        List<String> emailsMayus = null; // <- Escribe aquí
+        List<String> emailsMayus = plantilla.stream()
+                .filter(e -> e.isActivo() && e.getEmail() != null)
+                .map(Empleado::getEmail)
+                .map(String::toUpperCase)
+                .peek(System.out::println)
+                .collect(Collectors.toList());
 
         // --- VALIDACIÓN ---
         if (emailsMayus != null && emailsMayus.size() == 3
                 && emailsMayus.get(0).equals("ANA@CORP.COM")
                 && emailsMayus.get(2).equals("PEDRO@CORP.COM")) {
-            System.out.println(">> CORRECTO: Has mutado el Stream de objetos a Strings en mayúsculas.\033[0;32m [OK]\033[0m");
+            System.out.println(
+                    ">> CORRECTO: Has mutado el Stream de objetos a Strings en mayúsculas.\033[0;32m [OK]\033[0m");
         } else {
             System.err.println(">> [ERROR] Esperado: [ANA@CORP.COM, LUCIA@CORP.COM, PEDRO@CORP.COM]");
         }

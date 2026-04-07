@@ -2,13 +2,13 @@ package nivel2_streams_basicos;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import modelos.Empleado;
 
 /**
  * EJERCICIO 09 — PRIMER STREAM: FILTER + COLLECT (CON GUÍA)
  * 
- * Objetivo: Crear tu primera tubería Stream con .stream(), .filter(), .collect()
+ * Objetivo: Crear tu primera tubería Stream con .stream(), .filter(),
+ * .collect()
  * Lee primero: teoria/04_Streams_Profundizacion.md
  */
 public class Ejercicio09_PrimerStream {
@@ -35,7 +35,10 @@ public class Ejercicio09_PrimerStream {
         // y recógelos en una nueva List<Empleado>.
         // Recuerda la estructura: origen.stream().intermedia(...).terminal()
 
-        List<Empleado> activos = null; // <- Escribe aquí
+        List<Empleado> activos = plantilla.stream()
+                .filter(Empleado::isActivo)
+                .peek(System.out::println)
+                .toList();
 
         // --- VALIDACIÓN ---
         if (activos != null && activos.size() == 3
