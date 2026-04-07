@@ -7,7 +7,8 @@ import java.util.List;
 /**
  * EJERCICIO 02 — LAMBDA SIN GUÍA: ORDENAR NÚMEROS
  * 
- * Objetivo: Aplicar lo aprendido en el Ej01 pero ahora con Integer y sin pistas directas.
+ * Objetivo: Aplicar lo aprendido en el Ej01 pero ahora con Integer y sin pistas
+ * directas.
  */
 public class Ejercicio02_LambdaSinGuia {
 
@@ -25,8 +26,10 @@ public class Ejercicio02_LambdaSinGuia {
 
         System.out.println("Salarios desordenados: " + salarios);
 
-        // TODO: Ordena la lista 'salarios' de MAYOR a MENOR usando una Lambda en .sort()
-        // No hay pista de sintaxis esta vez. Recuerda lo que hiciste en el ejercicio anterior.
+        // TODO: Ordena la lista 'salarios' de MAYOR a MENOR usando una Lambda en
+        // .sort()
+        // No hay pista de sintaxis esta vez. Recuerda lo que hiciste en el ejercicio
+        // anterior.
 
         // >>> ESCRIBE TU CÓDIGO AQUÍ <<<
 

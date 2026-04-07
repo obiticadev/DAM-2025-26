@@ -3,6 +3,7 @@ package nivel1_fundamentos_lambda;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * EJERCICIO 01 — PRIMER CONTACTO CON LAMBDA (CON GUÍA)
@@ -32,7 +33,8 @@ public class Ejercicio01_PrimerContactoLambda {
 
         System.out.println("Lista original: " + lenguajes);
 
-        // TODO: Ordena la lista 'lenguajes' de la Z a la A usando una Lambda dentro de .sort()
+        // TODO: Ordena la lista 'lenguajes' de la Z a la A usando una Lambda dentro de
+        // .sort()
         // PISTA: lista.sort((a, b) -> ??? );
         // Recuerda que compareTo() devuelve negativo/0/positivo.
         // Para invertir el orden, simplemente invierte quién llama a compareTo.
@@ -41,7 +43,8 @@ public class Ejercicio01_PrimerContactoLambda {
 
         // --- VALIDACIÓN ---
         if (lenguajes.size() == 5 && lenguajes.get(0).equals("Rust") && lenguajes.get(4).equals("C")) {
-            System.out.println(">> CORRECTO: Has usado tu primera Lambda para ordenar inversamente.\033[0;32m [OK]\033[0m");
+            System.out.println(
+                    ">> CORRECTO: Has usado tu primera Lambda para ordenar inversamente.\033[0;32m [OK]\033[0m");
         } else {
             System.err.println(">> [ERROR] La lista debería estar ordenada de Z a A: [Rust, Python, Java, Go, C]");
         }
