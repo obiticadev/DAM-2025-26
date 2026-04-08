@@ -1,0 +1,28 @@
+-------------------------------------------------------------------------------
+Test set: com.masterclass.nivel7_excepciones_custom.Ejercicio53_RetryPatternTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.010 s <<< FAILURE! -- in com.masterclass.nivel7_excepciones_custom.Ejercicio53_RetryPatternTest
+com.masterclass.nivel7_excepciones_custom.Ejercicio53_RetryPatternTest.ok -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio53_RetryPattern.reintentar(Ejercicio53_RetryPattern.java:19)
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio53_RetryPatternTest.ok(Ejercicio53_RetryPatternTest.java:10)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel7_excepciones_custom.Ejercicio53_RetryPatternTest.def -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio53_RetryPattern.reintentarODefault(Ejercicio53_RetryPattern.java:26)
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio53_RetryPatternTest.def(Ejercicio53_RetryPatternTest.java:16)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel7_excepciones_custom.Ejercicio53_RetryPatternTest.retry -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio53_RetryPattern.reintentar(Ejercicio53_RetryPattern.java:19)
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio53_RetryPatternTest.retry(Ejercicio53_RetryPatternTest.java:13)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+

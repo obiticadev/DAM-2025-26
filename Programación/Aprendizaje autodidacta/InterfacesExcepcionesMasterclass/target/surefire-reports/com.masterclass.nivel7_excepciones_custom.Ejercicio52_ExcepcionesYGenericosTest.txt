@@ -1,0 +1,36 @@
+-------------------------------------------------------------------------------
+Test set: com.masterclass.nivel7_excepciones_custom.Ejercicio52_ExcepcionesYGenericosTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 4, Skipped: 0, Time elapsed: 0.016 s <<< FAILURE! -- in com.masterclass.nivel7_excepciones_custom.Ejercicio52_ExcepcionesYGenericosTest
+com.masterclass.nivel7_excepciones_custom.Ejercicio52_ExcepcionesYGenericosTest.envFail -- Time elapsed: 0.005 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio52_ExcepcionesYGenericos.envolver(Ejercicio52_ExcepcionesYGenericos.java:32)
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio52_ExcepcionesYGenericosTest.envFail(Ejercicio52_ExcepcionesYGenericosTest.java:13)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel7_excepciones_custom.Ejercicio52_ExcepcionesYGenericosTest.ok -- Time elapsed: 0.005 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio52_ExcepcionesYGenericos.mapearSeguro(Ejercicio52_ExcepcionesYGenericos.java:24)
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio52_ExcepcionesYGenericosTest.ok(Ejercicio52_ExcepcionesYGenericosTest.java:10)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel7_excepciones_custom.Ejercicio52_ExcepcionesYGenericosTest.def -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio52_ExcepcionesYGenericos.mapearSeguro(Ejercicio52_ExcepcionesYGenericos.java:24)
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio52_ExcepcionesYGenericosTest.def(Ejercicio52_ExcepcionesYGenericosTest.java:11)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel7_excepciones_custom.Ejercicio52_ExcepcionesYGenericosTest.envOk -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio52_ExcepcionesYGenericos.envolver(Ejercicio52_ExcepcionesYGenericos.java:32)
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio52_ExcepcionesYGenericosTest.envOk(Ejercicio52_ExcepcionesYGenericosTest.java:12)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+

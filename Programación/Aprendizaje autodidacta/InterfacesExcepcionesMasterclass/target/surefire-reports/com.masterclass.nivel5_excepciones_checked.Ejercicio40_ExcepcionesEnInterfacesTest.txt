@@ -1,0 +1,68 @@
+-------------------------------------------------------------------------------
+Test set: com.masterclass.nivel5_excepciones_checked.Ejercicio40_ExcepcionesEnInterfacesTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 2, Errors: 4, Skipped: 0, Time elapsed: 0.029 s <<< FAILURE! -- in com.masterclass.nivel5_excepciones_checked.Ejercicio40_ExcepcionesEnInterfacesTest
+com.masterclass.nivel5_excepciones_checked.Ejercicio40_ExcepcionesEnInterfacesTest.parseFail -- Time elapsed: 0.004 s <<< FAILURE!
+java.lang.AssertionError: 
+
+Expecting actual throwable to be an instance of:
+  com.masterclass.nivel5_excepciones_checked.Ejercicio40_ExcepcionesEnInterfaces.ParseException
+but was:
+  java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel5_excepciones_checked.Ejercicio40_ExcepcionesEnInterfaces.crearParserEntero(Ejercicio40_ExcepcionesEnInterfaces.java:29)
+	at com.masterclass.nivel5_excepciones_checked.Ejercicio40_ExcepcionesEnInterfacesTest.lambda$parseFail$0(Ejercicio40_ExcepcionesEnInterfacesTest.java:11)
+	at org.assertj.core.api.ThrowableAssert.catchThrowable(ThrowableAssert.java:63)
+	...(73 remaining lines not displayed - this can be changed with Assertions.setMaxStackTraceElementsDisplayed)
+	at com.masterclass.nivel5_excepciones_checked.Ejercicio40_ExcepcionesEnInterfacesTest.parseFail(Ejercicio40_ExcepcionesEnInterfacesTest.java:11)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel5_excepciones_checked.Ejercicio40_ExcepcionesEnInterfacesTest.parseOk -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel5_excepciones_checked.Ejercicio40_ExcepcionesEnInterfaces.crearParserEntero(Ejercicio40_ExcepcionesEnInterfaces.java:29)
+	at com.masterclass.nivel5_excepciones_checked.Ejercicio40_ExcepcionesEnInterfacesTest.parseOk(Ejercicio40_ExcepcionesEnInterfacesTest.java:10)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel5_excepciones_checked.Ejercicio40_ExcepcionesEnInterfacesTest.parsearTodos -- Time elapsed: 0.003 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel5_excepciones_checked.Ejercicio40_ExcepcionesEnInterfaces.crearParserEntero(Ejercicio40_ExcepcionesEnInterfaces.java:29)
+	at com.masterclass.nivel5_excepciones_checked.Ejercicio40_ExcepcionesEnInterfacesTest.parsearTodos(Ejercicio40_ExcepcionesEnInterfacesTest.java:15)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel5_excepciones_checked.Ejercicio40_ExcepcionesEnInterfacesTest.boolFail -- Time elapsed: 0.014 s <<< FAILURE!
+java.lang.AssertionError: 
+
+Expecting actual throwable to be an instance of:
+  com.masterclass.nivel5_excepciones_checked.Ejercicio40_ExcepcionesEnInterfaces.ParseException
+but was:
+  java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel5_excepciones_checked.Ejercicio40_ExcepcionesEnInterfaces.crearParserBooleano(Ejercicio40_ExcepcionesEnInterfaces.java:37)
+	at com.masterclass.nivel5_excepciones_checked.Ejercicio40_ExcepcionesEnInterfacesTest.lambda$boolFail$0(Ejercicio40_ExcepcionesEnInterfacesTest.java:14)
+	at org.assertj.core.api.ThrowableAssert.catchThrowable(ThrowableAssert.java:63)
+	...(73 remaining lines not displayed - this can be changed with Assertions.setMaxStackTraceElementsDisplayed)
+	at com.masterclass.nivel5_excepciones_checked.Ejercicio40_ExcepcionesEnInterfacesTest.boolFail(Ejercicio40_ExcepcionesEnInterfacesTest.java:14)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel5_excepciones_checked.Ejercicio40_ExcepcionesEnInterfacesTest.boolTrue -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel5_excepciones_checked.Ejercicio40_ExcepcionesEnInterfaces.crearParserBooleano(Ejercicio40_ExcepcionesEnInterfaces.java:37)
+	at com.masterclass.nivel5_excepciones_checked.Ejercicio40_ExcepcionesEnInterfacesTest.boolTrue(Ejercicio40_ExcepcionesEnInterfacesTest.java:12)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel5_excepciones_checked.Ejercicio40_ExcepcionesEnInterfacesTest.boolFalse -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel5_excepciones_checked.Ejercicio40_ExcepcionesEnInterfaces.crearParserBooleano(Ejercicio40_ExcepcionesEnInterfaces.java:37)
+	at com.masterclass.nivel5_excepciones_checked.Ejercicio40_ExcepcionesEnInterfacesTest.boolFalse(Ejercicio40_ExcepcionesEnInterfacesTest.java:13)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+

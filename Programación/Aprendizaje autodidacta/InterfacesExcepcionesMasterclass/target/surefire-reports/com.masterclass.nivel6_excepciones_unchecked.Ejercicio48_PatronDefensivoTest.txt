@@ -1,0 +1,76 @@
+-------------------------------------------------------------------------------
+Test set: com.masterclass.nivel6_excepciones_unchecked.Ejercicio48_PatronDefensivoTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 4, Errors: 1, Skipped: 0, Time elapsed: 0.015 s <<< FAILURE! -- in com.masterclass.nivel6_excepciones_unchecked.Ejercicio48_PatronDefensivoTest
+com.masterclass.nivel6_excepciones_unchecked.Ejercicio48_PatronDefensivoTest.ok -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio48_PatronDefensivo.procesarDatos(Ejercicio48_PatronDefensivo.java:25)
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio48_PatronDefensivoTest.ok(Ejercicio48_PatronDefensivoTest.java:11)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel6_excepciones_unchecked.Ejercicio48_PatronDefensivoTest.npe -- Time elapsed: 0.001 s <<< FAILURE!
+java.lang.AssertionError: 
+
+Expecting actual throwable to be an instance of:
+  java.lang.NullPointerException
+but was:
+  java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio48_PatronDefensivo.procesarDatos(Ejercicio48_PatronDefensivo.java:25)
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio48_PatronDefensivoTest.lambda$npe$0(Ejercicio48_PatronDefensivoTest.java:14)
+	at org.assertj.core.api.ThrowableAssert.catchThrowable(ThrowableAssert.java:63)
+	...(73 remaining lines not displayed - this can be changed with Assertions.setMaxStackTraceElementsDisplayed)
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio48_PatronDefensivoTest.npe(Ejercicio48_PatronDefensivoTest.java:14)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel6_excepciones_unchecked.Ejercicio48_PatronDefensivoTest.claveNull -- Time elapsed: 0.004 s <<< FAILURE!
+java.lang.AssertionError: 
+
+Expecting actual throwable to be an instance of:
+  java.lang.IllegalArgumentException
+but was:
+  java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio48_PatronDefensivo.procesarDatos(Ejercicio48_PatronDefensivo.java:25)
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio48_PatronDefensivoTest.lambda$claveNull$0(Ejercicio48_PatronDefensivoTest.java:16)
+	at org.assertj.core.api.ThrowableAssert.catchThrowable(ThrowableAssert.java:63)
+	...(73 remaining lines not displayed - this can be changed with Assertions.setMaxStackTraceElementsDisplayed)
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio48_PatronDefensivoTest.claveNull(Ejercicio48_PatronDefensivoTest.java:16)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel6_excepciones_unchecked.Ejercicio48_PatronDefensivoTest.vacio -- Time elapsed: 0.002 s <<< FAILURE!
+java.lang.AssertionError: 
+
+Expecting actual throwable to be an instance of:
+  java.lang.IllegalArgumentException
+but was:
+  java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio48_PatronDefensivo.procesarDatos(Ejercicio48_PatronDefensivo.java:25)
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio48_PatronDefensivoTest.lambda$vacio$0(Ejercicio48_PatronDefensivoTest.java:15)
+	at org.assertj.core.api.ThrowableAssert.catchThrowable(ThrowableAssert.java:63)
+	...(73 remaining lines not displayed - this can be changed with Assertions.setMaxStackTraceElementsDisplayed)
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio48_PatronDefensivoTest.vacio(Ejercicio48_PatronDefensivoTest.java:15)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel6_excepciones_unchecked.Ejercicio48_PatronDefensivoTest.claveVacia -- Time elapsed: 0.003 s <<< FAILURE!
+java.lang.AssertionError: 
+
+Expecting actual throwable to be an instance of:
+  java.lang.IllegalArgumentException
+but was:
+  java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio48_PatronDefensivo.procesarDatos(Ejercicio48_PatronDefensivo.java:25)
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio48_PatronDefensivoTest.lambda$claveVacia$0(Ejercicio48_PatronDefensivoTest.java:17)
+	at org.assertj.core.api.ThrowableAssert.catchThrowable(ThrowableAssert.java:63)
+	...(73 remaining lines not displayed - this can be changed with Assertions.setMaxStackTraceElementsDisplayed)
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio48_PatronDefensivoTest.claveVacia(Ejercicio48_PatronDefensivoTest.java:17)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+

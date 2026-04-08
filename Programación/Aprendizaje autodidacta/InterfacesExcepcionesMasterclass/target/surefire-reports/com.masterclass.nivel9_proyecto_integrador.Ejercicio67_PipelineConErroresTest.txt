@@ -1,0 +1,20 @@
+-------------------------------------------------------------------------------
+Test set: com.masterclass.nivel9_proyecto_integrador.Ejercicio67_PipelineConErroresTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.007 s <<< FAILURE! -- in com.masterclass.nivel9_proyecto_integrador.Ejercicio67_PipelineConErroresTest
+com.masterclass.nivel9_proyecto_integrador.Ejercicio67_PipelineConErroresTest.ok -- Time elapsed: 0.003 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel9_proyecto_integrador.Ejercicio67_PipelineConErrores.procesarPipeline(Ejercicio67_PipelineConErrores.java:30)
+	at com.masterclass.nivel9_proyecto_integrador.Ejercicio67_PipelineConErroresTest.ok(Ejercicio67_PipelineConErroresTest.java:13)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel9_proyecto_integrador.Ejercicio67_PipelineConErroresTest.err -- Time elapsed: 0.004 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel9_proyecto_integrador.Ejercicio67_PipelineConErrores.procesarPipeline(Ejercicio67_PipelineConErrores.java:30)
+	at com.masterclass.nivel9_proyecto_integrador.Ejercicio67_PipelineConErroresTest.err(Ejercicio67_PipelineConErroresTest.java:21)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+

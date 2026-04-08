@@ -1,0 +1,28 @@
+-------------------------------------------------------------------------------
+Test set: com.masterclass.nivel7_excepciones_custom.Ejercicio55_ValidadorFluidoTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.009 s <<< FAILURE! -- in com.masterclass.nivel7_excepciones_custom.Ejercicio55_ValidadorFluidoTest
+com.masterclass.nivel7_excepciones_custom.Ejercicio55_ValidadorFluidoTest.allBad -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio55_ValidadorFluido.validarUsuario(Ejercicio55_ValidadorFluido.java:28)
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio55_ValidadorFluidoTest.allBad(Ejercicio55_ValidadorFluidoTest.java:10)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel7_excepciones_custom.Ejercicio55_ValidadorFluidoTest.ok -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio55_ValidadorFluido.validarUsuario(Ejercicio55_ValidadorFluido.java:28)
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio55_ValidadorFluidoTest.ok(Ejercicio55_ValidadorFluidoTest.java:9)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel7_excepciones_custom.Ejercicio55_ValidadorFluidoTest.emailBad -- Time elapsed: 0 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio55_ValidadorFluido.validarUsuario(Ejercicio55_ValidadorFluido.java:28)
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio55_ValidadorFluidoTest.emailBad(Ejercicio55_ValidadorFluidoTest.java:11)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+

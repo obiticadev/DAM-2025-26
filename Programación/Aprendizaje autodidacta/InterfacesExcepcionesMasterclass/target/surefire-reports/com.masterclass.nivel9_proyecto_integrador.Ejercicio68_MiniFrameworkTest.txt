@@ -1,0 +1,20 @@
+-------------------------------------------------------------------------------
+Test set: com.masterclass.nivel9_proyecto_integrador.Ejercicio68_MiniFrameworkTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.005 s <<< FAILURE! -- in com.masterclass.nivel9_proyecto_integrador.Ejercicio68_MiniFrameworkTest
+com.masterclass.nivel9_proyecto_integrador.Ejercicio68_MiniFrameworkTest.ok -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel9_proyecto_integrador.Ejercicio68_MiniFramework.crearProcesador(Ejercicio68_MiniFramework.java:45)
+	at com.masterclass.nivel9_proyecto_integrador.Ejercicio68_MiniFrameworkTest.ok(Ejercicio68_MiniFrameworkTest.java:12)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel9_proyecto_integrador.Ejercicio68_MiniFrameworkTest.fail -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel9_proyecto_integrador.Ejercicio68_MiniFramework.crearProcesador(Ejercicio68_MiniFramework.java:45)
+	at com.masterclass.nivel9_proyecto_integrador.Ejercicio68_MiniFrameworkTest.fail(Ejercicio68_MiniFrameworkTest.java:21)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+

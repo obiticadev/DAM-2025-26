@@ -1,0 +1,52 @@
+-------------------------------------------------------------------------------
+Test set: com.masterclass.nivel3_herencia_interfaces.Ejercicio22_BoundedGenericsTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 6, Skipped: 0, Time elapsed: 0.031 s <<< FAILURE! -- in com.masterclass.nivel3_herencia_interfaces.Ejercicio22_BoundedGenericsTest
+com.masterclass.nivel3_herencia_interfaces.Ejercicio22_BoundedGenericsTest.naturalStrings -- Time elapsed: 0.003 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio22_BoundedGenerics.crearOrdenadorNatural(Ejercicio22_BoundedGenerics.java:35)
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio22_BoundedGenericsTest.naturalStrings(Ejercicio22_BoundedGenericsTest.java:44)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel3_herencia_interfaces.Ejercicio22_BoundedGenericsTest.naturalMaximo -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio22_BoundedGenerics.crearOrdenadorNatural(Ejercicio22_BoundedGenerics.java:35)
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio22_BoundedGenericsTest.naturalMaximo(Ejercicio22_BoundedGenericsTest.java:23)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel3_herencia_interfaces.Ejercicio22_BoundedGenericsTest.naturalMinimo -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio22_BoundedGenerics.crearOrdenadorNatural(Ejercicio22_BoundedGenerics.java:35)
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio22_BoundedGenericsTest.naturalMinimo(Ejercicio22_BoundedGenericsTest.java:30)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel3_herencia_interfaces.Ejercicio22_BoundedGenericsTest.inversoDescendente -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio22_BoundedGenerics.crearOrdenadorInverso(Ejercicio22_BoundedGenerics.java:42)
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio22_BoundedGenericsTest.inversoDescendente(Ejercicio22_BoundedGenericsTest.java:37)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel3_herencia_interfaces.Ejercicio22_BoundedGenericsTest.maximoVacio -- Time elapsed: 0.010 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio22_BoundedGenerics.crearOrdenadorNatural(Ejercicio22_BoundedGenerics.java:35)
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio22_BoundedGenericsTest.maximoVacio(Ejercicio22_BoundedGenericsTest.java:51)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel3_herencia_interfaces.Ejercicio22_BoundedGenericsTest.naturalAscendente -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio22_BoundedGenerics.crearOrdenadorNatural(Ejercicio22_BoundedGenerics.java:35)
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio22_BoundedGenericsTest.naturalAscendente(Ejercicio22_BoundedGenericsTest.java:16)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+

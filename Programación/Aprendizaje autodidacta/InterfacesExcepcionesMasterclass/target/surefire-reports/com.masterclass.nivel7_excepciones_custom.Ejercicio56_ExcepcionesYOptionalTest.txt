@@ -1,0 +1,60 @@
+-------------------------------------------------------------------------------
+Test set: com.masterclass.nivel7_excepciones_custom.Ejercicio56_ExcepcionesYOptionalTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 1, Errors: 5, Skipped: 0, Time elapsed: 0.008 s <<< FAILURE! -- in com.masterclass.nivel7_excepciones_custom.Ejercicio56_ExcepcionesYOptionalTest
+com.masterclass.nivel7_excepciones_custom.Ejercicio56_ExcepcionesYOptionalTest.lanzarOk -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio56_ExcepcionesYOptional.parsearOLanzar(Ejercicio56_ExcepcionesYOptional.java:24)
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio56_ExcepcionesYOptionalTest.lanzarOk(Ejercicio56_ExcepcionesYOptionalTest.java:11)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel7_excepciones_custom.Ejercicio56_ExcepcionesYOptionalTest.lanzarFail -- Time elapsed: 0.001 s <<< FAILURE!
+java.lang.AssertionError: 
+
+Expecting actual throwable to be an instance of:
+  java.lang.IllegalArgumentException
+but was:
+  java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio56_ExcepcionesYOptional.parsearOLanzar(Ejercicio56_ExcepcionesYOptional.java:24)
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio56_ExcepcionesYOptionalTest.lambda$lanzarFail$0(Ejercicio56_ExcepcionesYOptionalTest.java:12)
+	at org.assertj.core.api.ThrowableAssert.catchThrowable(ThrowableAssert.java:63)
+	...(73 remaining lines not displayed - this can be changed with Assertions.setMaxStackTraceElementsDisplayed)
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio56_ExcepcionesYOptionalTest.lanzarFail(Ejercicio56_ExcepcionesYOptionalTest.java:12)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel7_excepciones_custom.Ejercicio56_ExcepcionesYOptionalTest.ok -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio56_ExcepcionesYOptional.parsearOptional(Ejercicio56_ExcepcionesYOptional.java:16)
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio56_ExcepcionesYOptionalTest.ok(Ejercicio56_ExcepcionesYOptionalTest.java:9)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel7_excepciones_custom.Ejercicio56_ExcepcionesYOptionalTest.fail -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio56_ExcepcionesYOptional.parsearOptional(Ejercicio56_ExcepcionesYOptional.java:16)
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio56_ExcepcionesYOptionalTest.fail(Ejercicio56_ExcepcionesYOptionalTest.java:10)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel7_excepciones_custom.Ejercicio56_ExcepcionesYOptionalTest.busOk -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio56_ExcepcionesYOptional.buscarSeguro(Ejercicio56_ExcepcionesYOptional.java:31)
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio56_ExcepcionesYOptionalTest.busOk(Ejercicio56_ExcepcionesYOptionalTest.java:13)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel7_excepciones_custom.Ejercicio56_ExcepcionesYOptionalTest.busFail -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio56_ExcepcionesYOptional.buscarSeguro(Ejercicio56_ExcepcionesYOptional.java:31)
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio56_ExcepcionesYOptionalTest.busFail(Ejercicio56_ExcepcionesYOptionalTest.java:14)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+

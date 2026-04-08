@@ -1,0 +1,20 @@
+-------------------------------------------------------------------------------
+Test set: com.masterclass.nivel8_try_with_resources.Ejercicio62_DecoradorCloseableTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.004 s <<< FAILURE! -- in com.masterclass.nivel8_try_with_resources.Ejercicio62_DecoradorCloseableTest
+com.masterclass.nivel8_try_with_resources.Ejercicio62_DecoradorCloseableTest.base -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel8_try_with_resources.Ejercicio62_DecoradorCloseable.crearLogger(Ejercicio62_DecoradorCloseable.java:22)
+	at com.masterclass.nivel8_try_with_resources.Ejercicio62_DecoradorCloseableTest.base(Ejercicio62_DecoradorCloseableTest.java:10)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel8_try_with_resources.Ejercicio62_DecoradorCloseableTest.upper -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel8_try_with_resources.Ejercicio62_DecoradorCloseable.crearLogger(Ejercicio62_DecoradorCloseable.java:22)
+	at com.masterclass.nivel8_try_with_resources.Ejercicio62_DecoradorCloseableTest.upper(Ejercicio62_DecoradorCloseableTest.java:15)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+

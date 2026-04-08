@@ -1,0 +1,36 @@
+-------------------------------------------------------------------------------
+Test set: com.masterclass.nivel8_try_with_resources.Ejercicio59_CustomAutoCloseableTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 4, Skipped: 0, Time elapsed: 0.021 s <<< FAILURE! -- in com.masterclass.nivel8_try_with_resources.Ejercicio59_CustomAutoCloseableTest
+com.masterclass.nivel8_try_with_resources.Ejercicio59_CustomAutoCloseableTest.poolClose -- Time elapsed: 0.010 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel8_try_with_resources.Ejercicio59_CustomAutoCloseable$Pool.close(Ejercicio59_CustomAutoCloseable.java:59)
+	at com.masterclass.nivel8_try_with_resources.Ejercicio59_CustomAutoCloseableTest.poolClose(Ejercicio59_CustomAutoCloseableTest.java:29)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel8_try_with_resources.Ejercicio59_CustomAutoCloseableTest.poolVacio -- Time elapsed: 0.003 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel8_try_with_resources.Ejercicio59_CustomAutoCloseable$Pool.adquirir(Ejercicio59_CustomAutoCloseable.java:48)
+	at com.masterclass.nivel8_try_with_resources.Ejercicio59_CustomAutoCloseableTest.poolVacio(Ejercicio59_CustomAutoCloseableTest.java:24)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel8_try_with_resources.Ejercicio59_CustomAutoCloseableTest.pool -- Time elapsed: 0.005 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel8_try_with_resources.Ejercicio59_CustomAutoCloseable$Pool.adquirir(Ejercicio59_CustomAutoCloseable.java:48)
+	at com.masterclass.nivel8_try_with_resources.Ejercicio59_CustomAutoCloseableTest.pool(Ejercicio59_CustomAutoCloseableTest.java:17)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel8_try_with_resources.Ejercicio59_CustomAutoCloseableTest.timer -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel8_try_with_resources.Ejercicio59_CustomAutoCloseable$Temporizador.close(Ejercicio59_CustomAutoCloseable.java:27)
+	at com.masterclass.nivel8_try_with_resources.Ejercicio59_CustomAutoCloseableTest.timer(Ejercicio59_CustomAutoCloseableTest.java:11)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+

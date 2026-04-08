@@ -1,0 +1,36 @@
+-------------------------------------------------------------------------------
+Test set: com.masterclass.nivel4_interfaces_funcionales.Ejercicio30_MethodReferencesTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 4, Skipped: 0, Time elapsed: 0.007 s <<< FAILURE! -- in com.masterclass.nivel4_interfaces_funcionales.Ejercicio30_MethodReferencesTest
+com.masterclass.nivel4_interfaces_funcionales.Ejercicio30_MethodReferencesTest.entero -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel4_interfaces_funcionales.Ejercicio30_MethodReferences.aEntero(Ejercicio30_MethodReferences.java:40)
+	at com.masterclass.nivel4_interfaces_funcionales.Ejercicio30_MethodReferencesTest.entero(Ejercicio30_MethodReferencesTest.java:12)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel4_interfaces_funcionales.Ejercicio30_MethodReferencesTest.mayus -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel4_interfaces_funcionales.Ejercicio30_MethodReferences.aMayusculas(Ejercicio30_MethodReferences.java:26)
+	at com.masterclass.nivel4_interfaces_funcionales.Ejercicio30_MethodReferencesTest.mayus(Ejercicio30_MethodReferencesTest.java:10)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel4_interfaces_funcionales.Ejercicio30_MethodReferencesTest.vacio -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel4_interfaces_funcionales.Ejercicio30_MethodReferences.esVacio(Ejercicio30_MethodReferences.java:33)
+	at com.masterclass.nivel4_interfaces_funcionales.Ejercicio30_MethodReferencesTest.vacio(Ejercicio30_MethodReferencesTest.java:11)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel4_interfaces_funcionales.Ejercicio30_MethodReferencesTest.filtrarYMayus -- Time elapsed: 0 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel4_interfaces_funcionales.Ejercicio30_MethodReferences.filtrarYMayusculas(Ejercicio30_MethodReferences.java:48)
+	at com.masterclass.nivel4_interfaces_funcionales.Ejercicio30_MethodReferencesTest.filtrarYMayus(Ejercicio30_MethodReferencesTest.java:13)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+

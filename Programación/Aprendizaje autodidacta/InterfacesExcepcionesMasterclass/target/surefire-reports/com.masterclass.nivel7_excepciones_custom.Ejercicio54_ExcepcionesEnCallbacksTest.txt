@@ -1,0 +1,38 @@
+-------------------------------------------------------------------------------
+Test set: com.masterclass.nivel7_excepciones_custom.Ejercicio54_ExcepcionesEnCallbacksTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 1, Errors: 2, Skipped: 0, Time elapsed: 0.010 s <<< FAILURE! -- in com.masterclass.nivel7_excepciones_custom.Ejercicio54_ExcepcionesEnCallbacksTest
+com.masterclass.nivel7_excepciones_custom.Ejercicio54_ExcepcionesEnCallbacksTest.ignora -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.NullPointerException
+	at java.base/java.util.Objects.requireNonNull(Objects.java:220)
+	at java.base/java.util.ImmutableCollections.listFromTrustedArray(ImmutableCollections.java:232)
+	at java.base/java.util.List.of(List.java:970)
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio54_ExcepcionesEnCallbacksTest.ignora(Ejercicio54_ExcepcionesEnCallbacksTest.java:21)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel7_excepciones_custom.Ejercicio54_ExcepcionesEnCallbacksTest.ok -- Time elapsed: 0.004 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio54_ExcepcionesEnCallbacks.ejecutarConCallback(Ejercicio54_ExcepcionesEnCallbacks.java:22)
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio54_ExcepcionesEnCallbacksTest.ok(Ejercicio54_ExcepcionesEnCallbacksTest.java:13)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel7_excepciones_custom.Ejercicio54_ExcepcionesEnCallbacksTest.fail -- Time elapsed: 0.003 s <<< FAILURE!
+java.lang.AssertionError: 
+
+Expecting actual throwable to be an instance of:
+  com.masterclass.nivel7_excepciones_custom.Ejercicio54_ExcepcionesEnCallbacks.CallbackException
+but was:
+  java.lang.NullPointerException
+	at java.base/java.util.Objects.requireNonNull(Objects.java:220)
+	at java.base/java.util.ImmutableCollections$List12.<init>(ImmutableCollections.java:591)
+	at java.base/java.util.List.of(List.java:952)
+	...(75 remaining lines not displayed - this can be changed with Assertions.setMaxStackTraceElementsDisplayed)
+	at com.masterclass.nivel7_excepciones_custom.Ejercicio54_ExcepcionesEnCallbacksTest.fail(Ejercicio54_ExcepcionesEnCallbacksTest.java:18)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+

@@ -1,0 +1,68 @@
+-------------------------------------------------------------------------------
+Test set: com.masterclass.nivel1_interfaces_basicas.Ejercicio08_InterfazVsAbstractaTest
+-------------------------------------------------------------------------------
+Tests run: 8, Failures: 0, Errors: 8, Skipped: 0, Time elapsed: 0.027 s <<< FAILURE! -- in com.masterclass.nivel1_interfaces_basicas.Ejercicio08_InterfazVsAbstractaTest
+com.masterclass.nivel1_interfaces_basicas.Ejercicio08_InterfazVsAbstractaTest.pezSoloNada -- Time elapsed: 0.007 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio08_InterfazVsAbstracta.crearPez(Ejercicio08_InterfazVsAbstracta.java:83)
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio08_InterfazVsAbstractaTest.pezSoloNada(Ejercicio08_InterfazVsAbstractaTest.java:46)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel1_interfaces_basicas.Ejercicio08_InterfazVsAbstractaTest.presentarse -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio08_InterfazVsAbstracta.crearPato(Ejercicio08_InterfazVsAbstracta.java:74)
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio08_InterfazVsAbstractaTest.presentarse(Ejercicio08_InterfazVsAbstractaTest.java:69)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel1_interfaces_basicas.Ejercicio08_InterfazVsAbstractaTest.patoHaceSonido -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio08_InterfazVsAbstracta.crearPato(Ejercicio08_InterfazVsAbstracta.java:74)
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio08_InterfazVsAbstractaTest.patoHaceSonido(Ejercicio08_InterfazVsAbstractaTest.java:29)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel1_interfaces_basicas.Ejercicio08_InterfazVsAbstractaTest.pezNada -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio08_InterfazVsAbstracta.crearPez(Ejercicio08_InterfazVsAbstracta.java:83)
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio08_InterfazVsAbstractaTest.pezNada(Ejercicio08_InterfazVsAbstractaTest.java:61)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel1_interfaces_basicas.Ejercicio08_InterfazVsAbstractaTest.pezHaceSonido -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio08_InterfazVsAbstracta.crearPez(Ejercicio08_InterfazVsAbstracta.java:83)
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio08_InterfazVsAbstractaTest.pezHaceSonido(Ejercicio08_InterfazVsAbstractaTest.java:54)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel1_interfaces_basicas.Ejercicio08_InterfazVsAbstractaTest.patoEsAnimal -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio08_InterfazVsAbstracta.crearPato(Ejercicio08_InterfazVsAbstracta.java:74)
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio08_InterfazVsAbstractaTest.patoEsAnimal(Ejercicio08_InterfazVsAbstractaTest.java:14)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel1_interfaces_basicas.Ejercicio08_InterfazVsAbstractaTest.patoPuedeVolarYNadar -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio08_InterfazVsAbstracta.crearPato(Ejercicio08_InterfazVsAbstracta.java:74)
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio08_InterfazVsAbstractaTest.patoPuedeVolarYNadar(Ejercicio08_InterfazVsAbstractaTest.java:21)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel1_interfaces_basicas.Ejercicio08_InterfazVsAbstractaTest.patoAcciones -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio08_InterfazVsAbstracta.crearPato(Ejercicio08_InterfazVsAbstracta.java:74)
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio08_InterfazVsAbstractaTest.patoAcciones(Ejercicio08_InterfazVsAbstractaTest.java:36)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+

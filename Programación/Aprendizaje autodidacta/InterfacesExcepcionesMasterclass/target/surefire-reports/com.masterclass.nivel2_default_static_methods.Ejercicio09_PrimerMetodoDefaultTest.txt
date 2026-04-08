@@ -1,0 +1,52 @@
+-------------------------------------------------------------------------------
+Test set: com.masterclass.nivel2_default_static_methods.Ejercicio09_PrimerMetodoDefaultTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 6, Skipped: 0, Time elapsed: 0.038 s <<< FAILURE! -- in com.masterclass.nivel2_default_static_methods.Ejercicio09_PrimerMetodoDefaultTest
+com.masterclass.nivel2_default_static_methods.Ejercicio09_PrimerMetodoDefaultTest.defaultRecortarFunciona -- Time elapsed: 0.021 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel2_default_static_methods.Ejercicio09_PrimerMetodoDefault.crearFormateadorMayusculas(Ejercicio09_PrimerMetodoDefault.java:51)
+	at com.masterclass.nivel2_default_static_methods.Ejercicio09_PrimerMetodoDefaultTest.defaultRecortarFunciona(Ejercicio09_PrimerMetodoDefaultTest.java:30)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel2_default_static_methods.Ejercicio09_PrimerMetodoDefaultTest.corchetesConPrefijo -- Time elapsed: 0.003 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel2_default_static_methods.Ejercicio09_PrimerMetodoDefault.crearFormateadorCorchetes(Ejercicio09_PrimerMetodoDefault.java:58)
+	at com.masterclass.nivel2_default_static_methods.Ejercicio09_PrimerMetodoDefaultTest.corchetesConPrefijo(Ejercicio09_PrimerMetodoDefaultTest.java:51)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel2_default_static_methods.Ejercicio09_PrimerMetodoDefaultTest.debeTransformarCorchetes -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel2_default_static_methods.Ejercicio09_PrimerMetodoDefault.crearFormateadorCorchetes(Ejercicio09_PrimerMetodoDefault.java:58)
+	at com.masterclass.nivel2_default_static_methods.Ejercicio09_PrimerMetodoDefaultTest.debeTransformarCorchetes(Ejercicio09_PrimerMetodoDefaultTest.java:44)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel2_default_static_methods.Ejercicio09_PrimerMetodoDefaultTest.defaultNoRecortaSiCabe -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel2_default_static_methods.Ejercicio09_PrimerMetodoDefault.crearFormateadorMayusculas(Ejercicio09_PrimerMetodoDefault.java:51)
+	at com.masterclass.nivel2_default_static_methods.Ejercicio09_PrimerMetodoDefaultTest.defaultNoRecortaSiCabe(Ejercicio09_PrimerMetodoDefaultTest.java:37)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel2_default_static_methods.Ejercicio09_PrimerMetodoDefaultTest.defaultConPrefijoFunciona -- Time elapsed: 0.003 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel2_default_static_methods.Ejercicio09_PrimerMetodoDefault.crearFormateadorMayusculas(Ejercicio09_PrimerMetodoDefault.java:51)
+	at com.masterclass.nivel2_default_static_methods.Ejercicio09_PrimerMetodoDefaultTest.defaultConPrefijoFunciona(Ejercicio09_PrimerMetodoDefaultTest.java:23)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel2_default_static_methods.Ejercicio09_PrimerMetodoDefaultTest.debeTransformarMayusculas -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel2_default_static_methods.Ejercicio09_PrimerMetodoDefault.crearFormateadorMayusculas(Ejercicio09_PrimerMetodoDefault.java:51)
+	at com.masterclass.nivel2_default_static_methods.Ejercicio09_PrimerMetodoDefaultTest.debeTransformarMayusculas(Ejercicio09_PrimerMetodoDefaultTest.java:16)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+

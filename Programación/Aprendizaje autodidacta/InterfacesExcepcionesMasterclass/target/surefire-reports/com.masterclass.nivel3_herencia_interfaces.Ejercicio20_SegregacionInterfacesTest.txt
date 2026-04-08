@@ -1,0 +1,44 @@
+-------------------------------------------------------------------------------
+Test set: com.masterclass.nivel3_herencia_interfaces.Ejercicio20_SegregacionInterfacesTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 5, Skipped: 0, Time elapsed: 0.015 s <<< FAILURE! -- in com.masterclass.nivel3_herencia_interfaces.Ejercicio20_SegregacionInterfacesTest
+com.masterclass.nivel3_herencia_interfaces.Ejercicio20_SegregacionInterfacesTest.intentarEscribirFail -- Time elapsed: 0.003 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio20_SegregacionInterfaces.crearSoloLectura(Ejercicio20_SegregacionInterfaces.java:26)
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio20_SegregacionInterfacesTest.intentarEscribirFail(Ejercicio20_SegregacionInterfacesTest.java:48)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel3_herencia_interfaces.Ejercicio20_SegregacionInterfacesTest.soloLectura -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio20_SegregacionInterfaces.crearSoloLectura(Ejercicio20_SegregacionInterfaces.java:26)
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio20_SegregacionInterfacesTest.soloLectura(Ejercicio20_SegregacionInterfacesTest.java:14)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel3_herencia_interfaces.Ejercicio20_SegregacionInterfacesTest.completo -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio20_SegregacionInterfaces.crearCompleto(Ejercicio20_SegregacionInterfaces.java:44)
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio20_SegregacionInterfacesTest.completo(Ejercicio20_SegregacionInterfacesTest.java:31)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel3_herencia_interfaces.Ejercicio20_SegregacionInterfacesTest.intentarEscribirOk -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio20_SegregacionInterfaces.crearLecturaEscritura(Ejercicio20_SegregacionInterfaces.java:36)
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio20_SegregacionInterfacesTest.intentarEscribirOk(Ejercicio20_SegregacionInterfacesTest.java:40)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel3_herencia_interfaces.Ejercicio20_SegregacionInterfacesTest.lecturaEscritura -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio20_SegregacionInterfaces.crearLecturaEscritura(Ejercicio20_SegregacionInterfaces.java:36)
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio20_SegregacionInterfacesTest.lecturaEscritura(Ejercicio20_SegregacionInterfacesTest.java:22)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+

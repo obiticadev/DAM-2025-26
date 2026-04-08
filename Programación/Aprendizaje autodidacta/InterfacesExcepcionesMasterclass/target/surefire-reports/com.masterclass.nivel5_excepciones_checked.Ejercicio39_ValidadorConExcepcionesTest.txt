@@ -1,0 +1,84 @@
+-------------------------------------------------------------------------------
+Test set: com.masterclass.nivel5_excepciones_checked.Ejercicio39_ValidadorConExcepcionesTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 4, Errors: 2, Skipped: 0, Time elapsed: 0.018 s <<< FAILURE! -- in com.masterclass.nivel5_excepciones_checked.Ejercicio39_ValidadorConExcepcionesTest
+com.masterclass.nivel5_excepciones_checked.Ejercicio39_ValidadorConExcepcionesTest.emailOk -- Time elapsed: 0.003 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel5_excepciones_checked.Ejercicio39_ValidadorConExcepciones.validarEmail(Ejercicio39_ValidadorConExcepciones.java:28)
+	at com.masterclass.nivel5_excepciones_checked.Ejercicio39_ValidadorConExcepcionesTest.emailOk(Ejercicio39_ValidadorConExcepcionesTest.java:9)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel5_excepciones_checked.Ejercicio39_ValidadorConExcepcionesTest.passOk -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel5_excepciones_checked.Ejercicio39_ValidadorConExcepciones.validarPassword(Ejercicio39_ValidadorConExcepciones.java:38)
+	at com.masterclass.nivel5_excepciones_checked.Ejercicio39_ValidadorConExcepcionesTest.passOk(Ejercicio39_ValidadorConExcepcionesTest.java:12)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel5_excepciones_checked.Ejercicio39_ValidadorConExcepcionesTest.passCorta -- Time elapsed: 0.002 s <<< FAILURE!
+java.lang.AssertionError: 
+
+Expecting actual throwable to be an instance of:
+  com.masterclass.nivel5_excepciones_checked.Ejercicio39_ValidadorConExcepciones.ValidacionException
+but was:
+  java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel5_excepciones_checked.Ejercicio39_ValidadorConExcepciones.validarPassword(Ejercicio39_ValidadorConExcepciones.java:38)
+	at com.masterclass.nivel5_excepciones_checked.Ejercicio39_ValidadorConExcepcionesTest.lambda$passCorta$0(Ejercicio39_ValidadorConExcepcionesTest.java:13)
+	at org.assertj.core.api.ThrowableAssert.catchThrowable(ThrowableAssert.java:63)
+	...(73 remaining lines not displayed - this can be changed with Assertions.setMaxStackTraceElementsDisplayed)
+	at com.masterclass.nivel5_excepciones_checked.Ejercicio39_ValidadorConExcepcionesTest.passCorta(Ejercicio39_ValidadorConExcepcionesTest.java:13)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel5_excepciones_checked.Ejercicio39_ValidadorConExcepcionesTest.campo -- Time elapsed: 0.002 s <<< FAILURE!
+java.lang.AssertionError: 
+
+Expecting actual throwable to be an instance of:
+  com.masterclass.nivel5_excepciones_checked.Ejercicio39_ValidadorConExcepciones.ValidacionException
+but was:
+  java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel5_excepciones_checked.Ejercicio39_ValidadorConExcepciones.validarEmail(Ejercicio39_ValidadorConExcepciones.java:28)
+	at com.masterclass.nivel5_excepciones_checked.Ejercicio39_ValidadorConExcepcionesTest.lambda$campo$0(Ejercicio39_ValidadorConExcepcionesTest.java:15)
+	at org.assertj.core.api.ThrowableAssert.catchThrowable(ThrowableAssert.java:63)
+	...(73 remaining lines not displayed - this can be changed with Assertions.setMaxStackTraceElementsDisplayed)
+	at com.masterclass.nivel5_excepciones_checked.Ejercicio39_ValidadorConExcepcionesTest.campo(Ejercicio39_ValidadorConExcepcionesTest.java:16)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel5_excepciones_checked.Ejercicio39_ValidadorConExcepcionesTest.emailSinAt -- Time elapsed: 0.002 s <<< FAILURE!
+java.lang.AssertionError: 
+
+Expecting actual throwable to be an instance of:
+  com.masterclass.nivel5_excepciones_checked.Ejercicio39_ValidadorConExcepciones.ValidacionException
+but was:
+  java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel5_excepciones_checked.Ejercicio39_ValidadorConExcepciones.validarEmail(Ejercicio39_ValidadorConExcepciones.java:28)
+	at com.masterclass.nivel5_excepciones_checked.Ejercicio39_ValidadorConExcepcionesTest.lambda$emailSinAt$0(Ejercicio39_ValidadorConExcepcionesTest.java:11)
+	at org.assertj.core.api.ThrowableAssert.catchThrowable(ThrowableAssert.java:63)
+	...(73 remaining lines not displayed - this can be changed with Assertions.setMaxStackTraceElementsDisplayed)
+	at com.masterclass.nivel5_excepciones_checked.Ejercicio39_ValidadorConExcepcionesTest.emailSinAt(Ejercicio39_ValidadorConExcepcionesTest.java:11)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel5_excepciones_checked.Ejercicio39_ValidadorConExcepcionesTest.emailNull -- Time elapsed: 0.002 s <<< FAILURE!
+java.lang.AssertionError: 
+
+Expecting actual throwable to be an instance of:
+  com.masterclass.nivel5_excepciones_checked.Ejercicio39_ValidadorConExcepciones.ValidacionException
+but was:
+  java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel5_excepciones_checked.Ejercicio39_ValidadorConExcepciones.validarEmail(Ejercicio39_ValidadorConExcepciones.java:28)
+	at com.masterclass.nivel5_excepciones_checked.Ejercicio39_ValidadorConExcepcionesTest.lambda$emailNull$0(Ejercicio39_ValidadorConExcepcionesTest.java:10)
+	at org.assertj.core.api.ThrowableAssert.catchThrowable(ThrowableAssert.java:63)
+	...(73 remaining lines not displayed - this can be changed with Assertions.setMaxStackTraceElementsDisplayed)
+	at com.masterclass.nivel5_excepciones_checked.Ejercicio39_ValidadorConExcepcionesTest.emailNull(Ejercicio39_ValidadorConExcepcionesTest.java:10)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+

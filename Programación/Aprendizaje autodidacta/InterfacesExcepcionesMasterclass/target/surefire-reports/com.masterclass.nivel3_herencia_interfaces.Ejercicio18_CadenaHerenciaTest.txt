@@ -1,0 +1,36 @@
+-------------------------------------------------------------------------------
+Test set: com.masterclass.nivel3_herencia_interfaces.Ejercicio18_CadenaHerenciaTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 4, Skipped: 0, Time elapsed: 0.021 s <<< FAILURE! -- in com.masterclass.nivel3_herencia_interfaces.Ejercicio18_CadenaHerenciaTest
+com.masterclass.nivel3_herencia_interfaces.Ejercicio18_CadenaHerenciaTest.esDescribible -- Time elapsed: 0.005 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio18_CadenaHerencia.crearProducto(Ejercicio18_CadenaHerencia.java:40)
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio18_CadenaHerenciaTest.esDescribible(Ejercicio18_CadenaHerenciaTest.java:39)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel3_herencia_interfaces.Ejercicio18_CadenaHerenciaTest.presentableEsTodas -- Time elapsed: 0.005 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio18_CadenaHerencia.crearProducto(Ejercicio18_CadenaHerencia.java:40)
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio18_CadenaHerenciaTest.presentableEsTodas(Ejercicio18_CadenaHerenciaTest.java:30)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel3_herencia_interfaces.Ejercicio18_CadenaHerenciaTest.debeCrearProducto -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio18_CadenaHerencia.crearProducto(Ejercicio18_CadenaHerencia.java:40)
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio18_CadenaHerenciaTest.debeCrearProducto(Ejercicio18_CadenaHerenciaTest.java:14)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel3_herencia_interfaces.Ejercicio18_CadenaHerenciaTest.presentarFormateaCorrectamente -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio18_CadenaHerencia.crearProducto(Ejercicio18_CadenaHerencia.java:40)
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio18_CadenaHerenciaTest.presentarFormateaCorrectamente(Ejercicio18_CadenaHerenciaTest.java:23)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+

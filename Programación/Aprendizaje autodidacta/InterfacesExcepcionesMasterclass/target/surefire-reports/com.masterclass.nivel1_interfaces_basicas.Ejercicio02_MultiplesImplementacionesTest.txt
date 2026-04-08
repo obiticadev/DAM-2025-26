@@ -1,0 +1,60 @@
+-------------------------------------------------------------------------------
+Test set: com.masterclass.nivel1_interfaces_basicas.Ejercicio02_MultiplesImplementacionesTest
+-------------------------------------------------------------------------------
+Tests run: 7, Failures: 0, Errors: 7, Skipped: 0, Time elapsed: 0.051 s <<< FAILURE! -- in com.masterclass.nivel1_interfaces_basicas.Ejercicio02_MultiplesImplementacionesTest
+com.masterclass.nivel1_interfaces_basicas.Ejercicio02_MultiplesImplementacionesTest.debeSumar -- Time elapsed: 0.004 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio02_MultiplesImplementaciones.crearSuma(Ejercicio02_MultiplesImplementaciones.java:33)
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio02_MultiplesImplementacionesTest.debeSumar(Ejercicio02_MultiplesImplementacionesTest.java:14)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel1_interfaces_basicas.Ejercicio02_MultiplesImplementacionesTest.debeDevolverNaNAlDividirPorCero -- Time elapsed: 0.004 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio02_MultiplesImplementaciones.crearDivision(Ejercicio02_MultiplesImplementaciones.java:55)
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio02_MultiplesImplementacionesTest.debeDevolverNaNAlDividirPorCero(Ejercicio02_MultiplesImplementacionesTest.java:42)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel1_interfaces_basicas.Ejercicio02_MultiplesImplementacionesTest.debeDividir -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio02_MultiplesImplementaciones.crearDivision(Ejercicio02_MultiplesImplementaciones.java:55)
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio02_MultiplesImplementacionesTest.debeDividir(Ejercicio02_MultiplesImplementacionesTest.java:35)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel1_interfaces_basicas.Ejercicio02_MultiplesImplementacionesTest.debeMultiplicar -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio02_MultiplesImplementaciones.crearMultiplicacion(Ejercicio02_MultiplesImplementaciones.java:47)
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio02_MultiplesImplementacionesTest.debeMultiplicar(Ejercicio02_MultiplesImplementacionesTest.java:28)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel1_interfaces_basicas.Ejercicio02_MultiplesImplementacionesTest.debeRestar -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio02_MultiplesImplementaciones.crearResta(Ejercicio02_MultiplesImplementaciones.java:40)
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio02_MultiplesImplementacionesTest.debeRestar(Ejercicio02_MultiplesImplementacionesTest.java:21)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel1_interfaces_basicas.Ejercicio02_MultiplesImplementacionesTest.debeSumarNegativos -- Time elapsed: 0.003 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio02_MultiplesImplementaciones.crearSuma(Ejercicio02_MultiplesImplementaciones.java:33)
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio02_MultiplesImplementacionesTest.debeSumarNegativos(Ejercicio02_MultiplesImplementacionesTest.java:62)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel1_interfaces_basicas.Ejercicio02_MultiplesImplementacionesTest.todasSonOperacionMatematica -- Time elapsed: 0.005 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio02_MultiplesImplementaciones.crearSuma(Ejercicio02_MultiplesImplementaciones.java:33)
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio02_MultiplesImplementacionesTest.todasSonOperacionMatematica(Ejercicio02_MultiplesImplementacionesTest.java:49)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+

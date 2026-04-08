@@ -1,0 +1,60 @@
+-------------------------------------------------------------------------------
+Test set: com.masterclass.nivel1_interfaces_basicas.Ejercicio04_InterfazComoRetornoTest
+-------------------------------------------------------------------------------
+Tests run: 7, Failures: 0, Errors: 7, Skipped: 0, Time elapsed: 0.066 s <<< FAILURE! -- in com.masterclass.nivel1_interfaces_basicas.Ejercicio04_InterfazComoRetornoTest
+com.masterclass.nivel1_interfaces_basicas.Ejercicio04_InterfazComoRetornoTest.debeCensurar -- Time elapsed: 0.006 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio04_InterfazComoRetorno.crearFormateador(Ejercicio04_InterfazComoRetorno.java:40)
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio04_InterfazComoRetornoTest.debeCensurar(Ejercicio04_InterfazComoRetornoTest.java:35)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel1_interfaces_basicas.Ejercicio04_InterfazComoRetornoTest.debeEncadenarFormateadores -- Time elapsed: 0.003 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio04_InterfazComoRetorno.aplicarCadena(Ejercicio04_InterfazComoRetorno.java:51)
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio04_InterfazComoRetornoTest.debeEncadenarFormateadores(Ejercicio04_InterfazComoRetornoTest.java:49)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel1_interfaces_basicas.Ejercicio04_InterfazComoRetornoTest.debeMayusculas -- Time elapsed: 0.003 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio04_InterfazComoRetorno.crearFormateador(Ejercicio04_InterfazComoRetorno.java:40)
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio04_InterfazComoRetornoTest.debeMayusculas(Ejercicio04_InterfazComoRetornoTest.java:14)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel1_interfaces_basicas.Ejercicio04_InterfazComoRetornoTest.debeMinusculas -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio04_InterfazComoRetorno.crearFormateador(Ejercicio04_InterfazComoRetorno.java:40)
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio04_InterfazComoRetornoTest.debeMinusculas(Ejercicio04_InterfazComoRetornoTest.java:21)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel1_interfaces_basicas.Ejercicio04_InterfazComoRetornoTest.debeInvertir -- Time elapsed: 0.004 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio04_InterfazComoRetorno.crearFormateador(Ejercicio04_InterfazComoRetorno.java:40)
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio04_InterfazComoRetornoTest.debeInvertir(Ejercicio04_InterfazComoRetornoTest.java:28)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel1_interfaces_basicas.Ejercicio04_InterfazComoRetornoTest.debeDevolverOriginalSinFormateadores -- Time elapsed: 0.007 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio04_InterfazComoRetorno.aplicarCadena(Ejercicio04_InterfazComoRetorno.java:51)
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio04_InterfazComoRetornoTest.debeDevolverOriginalSinFormateadores(Ejercicio04_InterfazComoRetornoTest.java:56)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel1_interfaces_basicas.Ejercicio04_InterfazComoRetornoTest.debeIdentidad -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio04_InterfazComoRetorno.crearFormateador(Ejercicio04_InterfazComoRetorno.java:40)
+	at com.masterclass.nivel1_interfaces_basicas.Ejercicio04_InterfazComoRetornoTest.debeIdentidad(Ejercicio04_InterfazComoRetornoTest.java:42)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+

@@ -1,0 +1,36 @@
+-------------------------------------------------------------------------------
+Test set: com.masterclass.nivel6_excepciones_unchecked.Ejercicio46_NumberFormatTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 4, Skipped: 0, Time elapsed: 0.007 s <<< FAILURE! -- in com.masterclass.nivel6_excepciones_unchecked.Ejercicio46_NumberFormatTest
+com.masterclass.nivel6_excepciones_unchecked.Ejercicio46_NumberFormatTest.sumaInv -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio46_NumberFormat.sumarValores(Ejercicio46_NumberFormat.java:18)
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio46_NumberFormatTest.sumaInv(Ejercicio46_NumberFormatTest.java:11)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel6_excepciones_unchecked.Ejercicio46_NumberFormatTest.todosInv -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio46_NumberFormat.parsearValidos(Ejercicio46_NumberFormat.java:26)
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio46_NumberFormatTest.todosInv(Ejercicio46_NumberFormatTest.java:13)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel6_excepciones_unchecked.Ejercicio46_NumberFormatTest.sumaOk -- Time elapsed: 0 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio46_NumberFormat.sumarValores(Ejercicio46_NumberFormat.java:18)
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio46_NumberFormatTest.sumaOk(Ejercicio46_NumberFormatTest.java:10)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel6_excepciones_unchecked.Ejercicio46_NumberFormatTest.parsear -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio46_NumberFormat.parsearValidos(Ejercicio46_NumberFormat.java:26)
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio46_NumberFormatTest.parsear(Ejercicio46_NumberFormatTest.java:12)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+

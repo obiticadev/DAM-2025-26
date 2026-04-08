@@ -1,0 +1,44 @@
+-------------------------------------------------------------------------------
+Test set: com.masterclass.nivel6_excepciones_unchecked.Ejercicio47_ClassCastTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 5, Skipped: 0, Time elapsed: 0.008 s <<< FAILURE! -- in com.masterclass.nivel6_excepciones_unchecked.Ejercicio47_ClassCastTest
+com.masterclass.nivel6_excepciones_unchecked.Ejercicio47_ClassCastTest.ok -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio47_ClassCast.castSeguro(Ejercicio47_ClassCast.java:18)
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio47_ClassCastTest.ok(Ejercicio47_ClassCastTest.java:9)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel6_excepciones_unchecked.Ejercicio47_ClassCastTest.fail -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio47_ClassCast.castSeguro(Ejercicio47_ClassCast.java:18)
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio47_ClassCastTest.fail(Ejercicio47_ClassCastTest.java:10)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel6_excepciones_unchecked.Ejercicio47_ClassCastTest.descDbl -- Time elapsed: 0 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio47_ClassCast.describir(Ejercicio47_ClassCast.java:29)
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio47_ClassCastTest.descDbl(Ejercicio47_ClassCastTest.java:13)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel6_excepciones_unchecked.Ejercicio47_ClassCastTest.descInt -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio47_ClassCast.describir(Ejercicio47_ClassCast.java:29)
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio47_ClassCastTest.descInt(Ejercicio47_ClassCastTest.java:11)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel6_excepciones_unchecked.Ejercicio47_ClassCastTest.descStr -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio47_ClassCast.describir(Ejercicio47_ClassCast.java:29)
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio47_ClassCastTest.descStr(Ejercicio47_ClassCastTest.java:12)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+

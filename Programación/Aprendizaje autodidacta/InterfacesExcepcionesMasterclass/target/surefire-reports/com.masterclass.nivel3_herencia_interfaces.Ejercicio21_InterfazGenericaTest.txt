@@ -1,0 +1,44 @@
+-------------------------------------------------------------------------------
+Test set: com.masterclass.nivel3_herencia_interfaces.Ejercicio21_InterfazGenericaTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 5, Skipped: 0, Time elapsed: 0.013 s <<< FAILURE! -- in com.masterclass.nivel3_herencia_interfaces.Ejercicio21_InterfazGenericaTest
+com.masterclass.nivel3_herencia_interfaces.Ejercicio21_InterfazGenericaTest.convertidorBinario -- Time elapsed: 0.003 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio21_InterfazGenerica.crearConvertidorBinario(Ejercicio21_InterfazGenerica.java:41)
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio21_InterfazGenericaTest.convertidorBinario(Ejercicio21_InterfazGenericaTest.java:24)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel3_herencia_interfaces.Ejercicio21_InterfazGenericaTest.convertirListaVacia -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio21_InterfazGenerica.crearConvertidorMayusculas(Ejercicio21_InterfazGenerica.java:48)
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio21_InterfazGenericaTest.convertirListaVacia(Ejercicio21_InterfazGenericaTest.java:51)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel3_herencia_interfaces.Ejercicio21_InterfazGenericaTest.convertirLista -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio21_InterfazGenerica.crearContadorCaracteres(Ejercicio21_InterfazGenerica.java:33)
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio21_InterfazGenericaTest.convertirLista(Ejercicio21_InterfazGenericaTest.java:41)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel3_herencia_interfaces.Ejercicio21_InterfazGenericaTest.contadorCaracteres -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio21_InterfazGenerica.crearContadorCaracteres(Ejercicio21_InterfazGenerica.java:33)
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio21_InterfazGenericaTest.contadorCaracteres(Ejercicio21_InterfazGenericaTest.java:16)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel3_herencia_interfaces.Ejercicio21_InterfazGenericaTest.convertidorMayusculas -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio21_InterfazGenerica.crearConvertidorMayusculas(Ejercicio21_InterfazGenerica.java:48)
+	at com.masterclass.nivel3_herencia_interfaces.Ejercicio21_InterfazGenericaTest.convertidorMayusculas(Ejercicio21_InterfazGenericaTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+

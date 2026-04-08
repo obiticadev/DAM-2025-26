@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: com.masterclass.nivel8_try_with_resources.Ejercicio64_CloseableYFuncionalTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.002 s <<< FAILURE! -- in com.masterclass.nivel8_try_with_resources.Ejercicio64_CloseableYFuncionalTest
+com.masterclass.nivel8_try_with_resources.Ejercicio64_CloseableYFuncionalTest.ok -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel8_try_with_resources.Ejercicio64_CloseableYFuncional.usarRecurso(Ejercicio64_CloseableYFuncional.java:17)
+	at com.masterclass.nivel8_try_with_resources.Ejercicio64_CloseableYFuncionalTest.ok(Ejercicio64_CloseableYFuncionalTest.java:13)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+

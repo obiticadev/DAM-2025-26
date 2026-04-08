@@ -1,0 +1,52 @@
+-------------------------------------------------------------------------------
+Test set: com.masterclass.nivel6_excepciones_unchecked.Ejercicio42_IllegalStateTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 1, Errors: 4, Skipped: 0, Time elapsed: 0.009 s <<< FAILURE! -- in com.masterclass.nivel6_excepciones_unchecked.Ejercicio42_IllegalStateTest
+com.masterclass.nivel6_excepciones_unchecked.Ejercicio42_IllegalStateTest.pushLlena -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio42_IllegalState$Pila.push(Ejercicio42_IllegalState.java:28)
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio42_IllegalStateTest.pushLlena(Ejercicio42_IllegalStateTest.java:13)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel6_excepciones_unchecked.Ejercicio42_IllegalStateTest.pushPop -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio42_IllegalState$Pila.push(Ejercicio42_IllegalState.java:28)
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio42_IllegalStateTest.pushPop(Ejercicio42_IllegalStateTest.java:10)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel6_excepciones_unchecked.Ejercicio42_IllegalStateTest.peek -- Time elapsed: 0 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio42_IllegalState$Pila.push(Ejercicio42_IllegalState.java:28)
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio42_IllegalStateTest.peek(Ejercicio42_IllegalStateTest.java:11)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel6_excepciones_unchecked.Ejercicio42_IllegalStateTest.size -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio42_IllegalState$Pila.size(Ejercicio42_IllegalState.java:40)
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio42_IllegalStateTest.size(Ejercicio42_IllegalStateTest.java:14)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.masterclass.nivel6_excepciones_unchecked.Ejercicio42_IllegalStateTest.popVacia -- Time elapsed: 0.002 s <<< FAILURE!
+java.lang.AssertionError: 
+
+Expecting actual throwable to be an instance of:
+  java.lang.IllegalStateException
+but was:
+  java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio42_IllegalState$Pila.pop(Ejercicio42_IllegalState.java:32)
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio42_IllegalStateTest.lambda$popVacia$0(Ejercicio42_IllegalStateTest.java:12)
+	at org.assertj.core.api.ThrowableAssert.catchThrowable(ThrowableAssert.java:63)
+	...(73 remaining lines not displayed - this can be changed with Assertions.setMaxStackTraceElementsDisplayed)
+	at com.masterclass.nivel6_excepciones_unchecked.Ejercicio42_IllegalStateTest.popVacia(Ejercicio42_IllegalStateTest.java:12)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
