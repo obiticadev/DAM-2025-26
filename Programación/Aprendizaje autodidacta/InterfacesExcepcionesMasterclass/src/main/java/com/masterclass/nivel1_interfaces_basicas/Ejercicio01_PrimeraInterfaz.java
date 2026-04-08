@@ -57,6 +57,6 @@ public class Ejercicio01_PrimeraInterfaz {
      * return nombre -> ...;
      */
     public static Saludable crearSaludador() {
-        throw new UnsupportedOperationException("¡Implementa tu solución aquí!");
+        return nombre -> "Hola, " + nombre + "!";
     }
 }

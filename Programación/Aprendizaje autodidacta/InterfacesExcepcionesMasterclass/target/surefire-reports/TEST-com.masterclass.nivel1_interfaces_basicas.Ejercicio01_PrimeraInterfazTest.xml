@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.masterclass.nivel1_interfaces_basicas.Ejercicio01_PrimeraInterfazTest" time="0.093" tests="5" errors="5" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.masterclass.nivel1_interfaces_basicas.Ejercicio01_PrimeraInterfazTest" time="0.172" tests="5" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="user.country" value="ES"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Users\obitica\AppData\Local\Programs\Eclipse Adoptium\jdk-25.0.0.36-hotspot\bin"/>
-    <property name="sun.java.command" value="C:\Users\obitica\AppData\Local\Temp\surefire8676945116934908032\surefirebooter-20260408124202349_3.jar C:\Users\obitica\AppData\Local\Temp\surefire8676945116934908032 2026-04-08T12-42-02_115-jvmRun1 surefire-20260408124202349_1tmp surefire_0-20260408124202349_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\obitica\AppData\Local\Temp\surefire9062636410492512364\surefirebooter-20260408130749008_3.jar C:\Users\obitica\AppData\Local\Temp\surefire9062636410492512364 2026-04-08T13-07-48_704-jvmRun1 surefire-20260408130749008_1tmp surefire_0-20260408130749008_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="test" value="com.masterclass.nivel1_interfaces_basicas.Ejercicio01_PrimeraInterfazTest"/>
     <property name="surefire.test.class.path" value="C:\Users\obitica\Java\DAM-2025-26\Programación\Aprendizaje autodidacta\InterfacesExcepcionesMasterclass\target\test-classes;C:\Users\obitica\Java\DAM-2025-26\Programación\Aprendizaje autodidacta\InterfacesExcepcionesMasterclass\target\classes;C:\Users\obitica\.m2\repository\com\google\guava\guava\33.1.0-jre\guava-33.1.0-jre.jar;C:\Users\obitica\.m2\repository\com\google\guava\failureaccess\1.0.2\failureaccess-1.0.2.jar;C:\Users\obitica\.m2\repository\com\google\guava\listenablefuture\9999.0-empty-to-avoid-conflict-with-guava\listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar;C:\Users\obitica\.m2\repository\com\google\code\findbugs\jsr305\3.0.2\jsr305-3.0.2.jar;C:\Users\obitica\.m2\repository\org\checkerframework\checker-qual\3.42.0\checker-qual-3.42.0.jar;C:\Users\obitica\.m2\repository\com\google\errorprone\error_prone_annotations\2.26.1\error_prone_annotations-2.26.1.jar;C:\Users\obitica\.m2\repository\com\google\j2objc\j2objc-annotations\3.0.0\j2objc-annotations-3.0.0.jar;C:\Users\obitica\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\obitica\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\obitica\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\obitica\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\obitica\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;C:\Users\obitica\.m2\repository\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;C:\Users\obitica\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.2\junit-jupiter-params-5.10.2.jar;C:\Users\obitica\.m2\repository\org\assertj\assertj-core\3.25.3\assertj-core-3.25.3.jar;C:\Users\obitica\.m2\repository\net\bytebuddy\byte-buddy\1.14.11\byte-buddy-1.14.11.jar;"/>
@@ -31,7 +31,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\obitica\AppData\Local\Temp\surefire8676945116934908032\surefirebooter-20260408124202349_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\obitica\AppData\Local\Temp\surefire9062636410492512364\surefirebooter-20260408130749008_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="25+36-LTS"/>
@@ -62,49 +62,9 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="debeCrearSaludadorNoNulo" classname="com.masterclass.nivel1_interfaces_basicas.Ejercicio01_PrimeraInterfazTest" time="0.035">
-    <error message="¡Implementa tu solución aquí!" type="java.lang.UnsupportedOperationException"><![CDATA[java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
-	at com.masterclass.nivel1_interfaces_basicas.Ejercicio01_PrimeraInterfaz.crearSaludador(Ejercicio01_PrimeraInterfaz.java:60)
-	at com.masterclass.nivel1_interfaces_basicas.Ejercicio01_PrimeraInterfazTest.debeCrearSaludadorNoNulo(Ejercicio01_PrimeraInterfazTest.java:14)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
-]]></error>
-  </testcase>
-  <testcase name="debeSaludarJava" classname="com.masterclass.nivel1_interfaces_basicas.Ejercicio01_PrimeraInterfazTest" time="0.006">
-    <error message="¡Implementa tu solución aquí!" type="java.lang.UnsupportedOperationException"><![CDATA[java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
-	at com.masterclass.nivel1_interfaces_basicas.Ejercicio01_PrimeraInterfaz.crearSaludador(Ejercicio01_PrimeraInterfaz.java:60)
-	at com.masterclass.nivel1_interfaces_basicas.Ejercicio01_PrimeraInterfazTest.debeSaludarJava(Ejercicio01_PrimeraInterfazTest.java:28)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
-]]></error>
-  </testcase>
-  <testcase name="debeSaludarMundo" classname="com.masterclass.nivel1_interfaces_basicas.Ejercicio01_PrimeraInterfazTest" time="0.003">
-    <error message="¡Implementa tu solución aquí!" type="java.lang.UnsupportedOperationException"><![CDATA[java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
-	at com.masterclass.nivel1_interfaces_basicas.Ejercicio01_PrimeraInterfaz.crearSaludador(Ejercicio01_PrimeraInterfaz.java:60)
-	at com.masterclass.nivel1_interfaces_basicas.Ejercicio01_PrimeraInterfazTest.debeSaludarMundo(Ejercicio01_PrimeraInterfazTest.java:21)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
-]]></error>
-  </testcase>
-  <testcase name="debeSaludarVacio" classname="com.masterclass.nivel1_interfaces_basicas.Ejercicio01_PrimeraInterfazTest" time="0.002">
-    <error message="¡Implementa tu solución aquí!" type="java.lang.UnsupportedOperationException"><![CDATA[java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
-	at com.masterclass.nivel1_interfaces_basicas.Ejercicio01_PrimeraInterfaz.crearSaludador(Ejercicio01_PrimeraInterfaz.java:60)
-	at com.masterclass.nivel1_interfaces_basicas.Ejercicio01_PrimeraInterfazTest.debeSaludarVacio(Ejercicio01_PrimeraInterfazTest.java:35)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
-]]></error>
-  </testcase>
-  <testcase name="debeImplementarInterfaz" classname="com.masterclass.nivel1_interfaces_basicas.Ejercicio01_PrimeraInterfazTest" time="0.004">
-    <error message="¡Implementa tu solución aquí!" type="java.lang.UnsupportedOperationException"><![CDATA[java.lang.UnsupportedOperationException: ¡Implementa tu solución aquí!
-	at com.masterclass.nivel1_interfaces_basicas.Ejercicio01_PrimeraInterfaz.crearSaludador(Ejercicio01_PrimeraInterfaz.java:60)
-	at com.masterclass.nivel1_interfaces_basicas.Ejercicio01_PrimeraInterfazTest.debeImplementarInterfaz(Ejercicio01_PrimeraInterfazTest.java:42)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
-]]></error>
-  </testcase>
+  <testcase name="debeCrearSaludadorNoNulo" classname="com.masterclass.nivel1_interfaces_basicas.Ejercicio01_PrimeraInterfazTest" time="0.114"/>
+  <testcase name="debeSaludarJava" classname="com.masterclass.nivel1_interfaces_basicas.Ejercicio01_PrimeraInterfazTest" time="0.007"/>
+  <testcase name="debeSaludarMundo" classname="com.masterclass.nivel1_interfaces_basicas.Ejercicio01_PrimeraInterfazTest" time="0.002"/>
+  <testcase name="debeSaludarVacio" classname="com.masterclass.nivel1_interfaces_basicas.Ejercicio01_PrimeraInterfazTest" time="0.002"/>
+  <testcase name="debeImplementarInterfaz" classname="com.masterclass.nivel1_interfaces_basicas.Ejercicio01_PrimeraInterfazTest" time="0.003"/>
 </testsuite>

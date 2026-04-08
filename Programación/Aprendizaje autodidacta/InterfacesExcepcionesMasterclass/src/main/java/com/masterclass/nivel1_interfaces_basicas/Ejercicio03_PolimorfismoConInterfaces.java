@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * ============================================================================
- *  EJERCICIO 03 — POLIMORFISMO CON INTERFACES (CON GUIA)
+ * EJERCICIO 03 — POLIMORFISMO CON INTERFACES (CON GUIA)
  * ============================================================================
  *
  * CONCEPTO CLAVE: El poder real de las interfaces es el POLIMORFISMO.
@@ -12,10 +12,10 @@ import java.util.List;
  * metodo funcionara con CUALQUIER clase que la implemente, sin saber
  * cual es la clase concreta.
  *
- *   public static double calcularAreaTotal(List<Figura> figuras) {
- *       // Este metodo funciona con circulos, rectangulos, triangulos...
- *       // cualquier Figura que le pases. No necesita saber el tipo concreto.
- *   }
+ * public static double calcularAreaTotal(List<Figura> figuras) {
+ * // Este metodo funciona con circulos, rectangulos, triangulos...
+ * // cualquier Figura que le pases. No necesita saber el tipo concreto.
+ * }
  *
  * Es como un garaje que acepta "cualquier vehiculo": coches, motos, furgonetas.
  * Al garaje no le importa que tipo de vehiculo sea, solo que SEA un vehiculo.
@@ -29,6 +29,7 @@ public class Ejercicio03_PolimorfismoConInterfaces {
      */
     public interface Figura {
         double area();
+
         String nombre();
     }
 
@@ -39,7 +40,21 @@ public class Ejercicio03_PolimorfismoConInterfaces {
      * PISTA: Math.PI te da el valor de PI.
      */
     public static Figura crearCirculo(double radio) {
-        throw new UnsupportedOperationException("¡Implementa tu solución aquí!");
+        class AreaCirculo implements Figura {
+
+            @Override
+            public double area() {
+                double area = Math.PI * Math.pow(radio, 2);
+                return area;
+            }
+
+            @Override
+            public String nombre() {
+                return "Circulo";
+            }
+
+        }
+        return new AreaCirculo();
     }
 
     /**
@@ -47,7 +62,20 @@ public class Ejercicio03_PolimorfismoConInterfaces {
      * El nombre debe ser "Rectangulo".
      */
     public static Figura crearRectangulo(double base, double altura) {
-        throw new UnsupportedOperationException("¡Implementa tu solución aquí!");
+        class AreaRectangulo implements Figura {
+
+            @Override
+            public double area() {
+                return base * altura;
+            }
+
+            @Override
+            public String nombre() {
+                return "Rectangulo";
+            }
+
+        }
+        return new AreaRectangulo();
     }
 
     /**
@@ -55,7 +83,20 @@ public class Ejercicio03_PolimorfismoConInterfaces {
      * El nombre debe ser "Triangulo".
      */
     public static Figura crearTriangulo(double base, double altura) {
-        throw new UnsupportedOperationException("¡Implementa tu solución aquí!");
+        class AreaTriangulo implements Figura {
+
+            @Override
+            public double area() {
+                return base * altura / 2;
+            }
+
+            @Override
+            public String nombre() {
+                return "Triangulo";
+            }
+
+        }
+        return new AreaTriangulo();
     }
 
     /**
@@ -66,6 +107,8 @@ public class Ejercicio03_PolimorfismoConInterfaces {
      * PISTA: Puedes usar un for-each o un stream.
      */
     public static double calcularAreaTotal(List<Figura> figuras) {
-        throw new UnsupportedOperationException("¡Implementa tu solución aquí!");
+        return figuras.stream()
+                .mapToDouble(Figura::area)
+                .sum();
     }
 }

@@ -1,5 +1,6 @@
 {
     "java.compile.nullAnalysis.mode": "automatic",
     "java.configuration.updateBuildConfiguration": "automatic",
-    "maven.executable.path": "C:\\Users\\obitica\\maven\\bin\\mvn.cmd"
+    "maven.executable.path": "C:\\Users\\obitica\\maven\\bin\\mvn.cmd",
+    "java.debug.settings.onBuildFailureProceed": true
 }
