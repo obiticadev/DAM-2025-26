@@ -1,2 +1,14 @@
 *.class
 bin/
+.gradle/
+build/
+.settings/
+.project
+.classpath
+.factorypath
+.idea/
+*.iml
+*.iws
+out/
+.DS_Store
+Thumbs.db
