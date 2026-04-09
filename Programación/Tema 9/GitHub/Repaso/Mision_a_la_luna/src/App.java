@@ -26,7 +26,11 @@ public class App {
                         agregarAstronauta();
                     }
                     case "2" -> {
-                        agregarDiaMision();
+                        if (!artemisII.isMisionFinalizada()) {
+                            agregarDiaMision();
+                        } else {
+                            System.out.println("Misión completada, no se puede avanzar más");
+                        }
                     }
                     case "3" -> {
 
@@ -128,12 +132,17 @@ public class App {
 
     // public DiaMision(int numeroDia, double distanciaRecorrida, Evento evento)
     // throws DistanciaNegativaException
-    private static void agregarDiaMision() throws DistanciaNegativaException, DiaRepetidoOInferior {
+    private static boolean agregarDiaMision() throws DistanciaNegativaException, DiaRepetidoOInferior {
         int numeroDia = (int) (preguntaDouble("Introduce el número del día: "));
         double distanciaRecorrida = preguntaDouble("Distancia recorrida: ");
         Evento evento = preguntaEvento(
                 "Introduce el evento que está ocurriendo (" + Arrays.toString(Evento.values()) + "): ");
         artemisII.agregarDiaMision(new DiaMision(numeroDia, distanciaRecorrida, evento));
+        return artemisII.isMisionFinalizada();
+    }
+
+    private static void mostrarProgreso() {
+
     }
 
 }
