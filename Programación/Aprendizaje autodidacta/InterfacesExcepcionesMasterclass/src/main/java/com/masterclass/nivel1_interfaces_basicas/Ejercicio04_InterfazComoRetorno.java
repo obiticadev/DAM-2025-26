@@ -37,7 +37,39 @@ public class Ejercicio04_InterfazComoRetorno {
      * que retorne el texto sin cambios (identidad).
      */
     public static Formateador crearFormateador(String tipo) {
-        throw new UnsupportedOperationException("¡Implementa tu solución aquí!");
+        switch (tipo) {
+            case "mayusculas" -> {
+                return new  Formateador() {
+
+                    @Override
+                    public String formatear(String texto) {
+                        return texto.toUpperCase();
+                    }
+                    
+                };
+            }
+            case "minusculas" -> {
+                class Minusculas implements Formateador {
+
+                    @Override
+                    public String formatear(String texto) {
+                        return texto.toLowerCase();
+                    }
+                    
+                }
+                return new Minusculas();
+            }
+            case "invertir" -> {
+                return a -> a.
+            }
+            case "censurar" -> {
+
+            }
+        
+            default -> {
+
+            }
+        }
     }
 
     /**
