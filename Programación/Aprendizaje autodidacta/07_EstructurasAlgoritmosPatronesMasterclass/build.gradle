@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'com.masterclass'
+version = '1.0-SNAPSHOT'
+sourceCompatibility = '17'
+targetCompatibility = '17'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Sin dependencias externas por ahora.
+    // Cada ejercicio es autosuficiente y ejecutable de forma aislada.
+}
+
+// ====================================================================
+//  TAREA PERSONALIZADA: Ejecutar cualquier ejercicio por terminal.
+//
+//  USO:
+//    gradle runExercise -PmainClass="modulo1_estructuras_lineales.Ejercicio01_ArrayDinamicoManual"
+//
+//  Esto permite ejecutar cualquier clase que tenga un main() propio
+//  sin necesidad de modificar el build.gradle cada vez.
+// ====================================================================
+task runExercise(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = project.hasProperty('mainClass') ? project.property('mainClass') : ''
+}
+
+// Configuración de codificación para evitar problemas con caracteres especiales (acentos, ñ, etc.)
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
