@@ -29,10 +29,10 @@ public class Ejercicio25_OptionalCreacionBasica {
         String emailNulo = null;
 
         // TODO 1: Crea un Optional con emailExistente usando Optional.of()
-        Optional<String> opt1 = Optional.empty(); // <- Escribe aquí
+        Optional<String> opt1 = Optional.of(emailExistente);
 
         // TODO 2: Crea un Optional con emailNulo usando Optional.ofNullable()
-        Optional<String> opt2 = Optional.empty(); // <- Escribe aquí
+        Optional<String> opt2 = Optional.ofNullable(emailNulo);
 
         // TODO 3: Consulta opt1 con .orElse("sin email")
         String resultado1 = opt1.orElse("sin email");

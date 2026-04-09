@@ -28,16 +28,17 @@ public class Ejercicio26_OptionalMapYOrElse {
         equipo.add(new Empleado("Lucía", "Data", "Python", 10, 70000, true, "lucia@corp.com"));
 
         // TODO: Para cada empleado, extrae su email de forma segura:
-        //   1. Envuelve getEmail() en Optional.ofNullable()
-        //   2. Usa .map(String::toUpperCase) para transformarlo
-        //   3. Usa .orElse("EMAIL NO DISPONIBLE") como fallback
+        // 1. Envuelve getEmail() en Optional.ofNullable()
+        // 2. Usa .map(String::toUpperCase) para transformarlo
+        // 3. Usa .orElse("EMAIL NO DISPONIBLE") como fallback
         // Guarda los resultados en una lista.
 
         List<String> emailsSeguros = new ArrayList<>();
-        for (Empleado e : equipo) {
-            String emailSeguro = "PENDIENTE"; // <- Escribe aquí
-            emailsSeguros.add(emailSeguro);
-        }
+        emailsSeguros = equipo.stream()
+                .map(e -> Optional.ofNullable(e.getEmail())
+                        .map(String::toUpperCase)
+                        .orElse("EMAIL NO DISPONIBLE"))
+                .toList();
 
         emailsSeguros.forEach(System.out::println);
 
@@ -46,7 +47,8 @@ public class Ejercicio26_OptionalMapYOrElse {
                 && emailsSeguros.get(0).equals("ANA@CORP.COM")
                 && emailsSeguros.get(1).equals("EMAIL NO DISPONIBLE")
                 && emailsSeguros.get(2).equals("LUCIA@CORP.COM")) {
-            System.out.println(">> CORRECTO: Optional.map() evita NullPointerException de forma elegante.\033[0;32m [OK]\033[0m");
+            System.out.println(
+                    ">> CORRECTO: Optional.map() evita NullPointerException de forma elegante.\033[0;32m [OK]\033[0m");
         } else {
             System.err.println(">> [ERROR] Esperado: [ANA@CORP.COM, EMAIL NO DISPONIBLE, LUCIA@CORP.COM]");
         }
