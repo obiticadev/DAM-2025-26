@@ -1,6 +1,6 @@
 # 🛠️ Requisitos y Compilación de Google Guava (Nivel 15)
 
-Si quieres que este proyecto funcione en cualquier PC con una instalación básica de Java (JDK), sigue estos comandos en orden desde la terminal. Asegúrate de estar situado en la carpeta raíz del proyecto (`MapsMasterclass`).
+Si quieres que este proyecto funcione en cualquier PC con una instalación básica de Java (JDK), sigue estos comandos en orden desde la terminal. Asegúrate de estar situado en la carpeta raíz del proyecto (`04_MapsMasterclass`).
 
 ## 📋 Pasos de Preparación
 
@@ -51,7 +51,7 @@ Si el código funciona en la terminal pero VS Code muestra errores:
 2. Si persiste, pulsa `Ctrl + Shift + P` y ejecuta: **Java: Clean Java Language Server Workspace**.
 
 ### ¿Faltan los archivos .jar?
-Asegúrate de que dentro de `MapsMasterclass/lib/` se encuentran estos archivos esenciales:
+Asegúrate de que dentro de `04_MapsMasterclass/lib/` se encuentran estos archivos esenciales:
 * `guava-33.0.0-jre.jar`
 * `failureaccess-1.0.2.jar`
 * `jsr305-3.0.2.jar`

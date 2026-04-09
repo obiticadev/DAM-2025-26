@@ -12,7 +12,7 @@ public class App {
         int opcion;
 
         do {
-            System.out.println("\n============ MAPS MASTERCLASS ============");
+            System.out.println("\n============ 04 MAPS MASTERCLASS ============");
             System.out.println("1. Nivel 1: Ejercicio 01 - Put, Get, Remove");
             System.out.println("2. Nivel 1: Ejercicio 02 - Métodos Analíticos");
             System.out.println("3. Nivel 2: Ejercicio 03 - Vistas Parciales (keySet/values)");

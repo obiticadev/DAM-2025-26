@@ -10,22 +10,22 @@ package com.masterclass.nivel1_fundamentos_genericos;
  * APOYO TEÓRICO: 
  * Revisa el archivo '01_Fundamentos_Genericos.md' (Sección: "Solución: El Paradigma Parametrizado")
  */
-// TODO 1: Configura la firma de la clase para que acepte un Tipo parametrizado genérico universal.
-public class Ejercicio01_BoxGenerico {
+public class Ejercicio01_BoxGenerico<T> {
 
-    // TODO 2: Refactoriza la declaración de este estado interno para vincularlo al parametrismo.
-    private Object contenido;
+    private T contenido;
 
-    // TODO 3: Implementa un constructor por defecto para que podamos crear la caja vacía.
-    
-    // TODO 4: Garantiza, a nivel de firma, que obtener el contenido nunca requiera un "Casteo"
-    // devolviendo el tipo que se haya declarado en la instanciación de la clase.
-    public Object obtenerContenido() {
+    public Ejercicio01_BoxGenerico() {
+    }
+
+    public Ejercicio01_BoxGenerico(T contenido) {
+        this.contenido = contenido;
+    }
+
+    public T getContenido() {
         return contenido;
     }
 
-    // TODO 5: Asegura la integridad para que el setter solo admita elementos del tipo declarado.
-    public void cambiarContenido(Object contenidoNuevo) {
+    public void setContenido(T contenidoNuevo) {
         this.contenido = contenidoNuevo;
     }
 
