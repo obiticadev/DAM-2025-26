@@ -29,4 +29,20 @@ public class DiaMision {
         ultimoDiaRegistrado = numeroDia;
     }
 
+    public static int getUltimoDiaRegistrado() {
+        return ultimoDiaRegistrado;
+    }
+
+    public int getNumeroDia() {
+        return numeroDia;
+    }
+
+    public double getDistanciaRecorrida() {
+        return distanciaRecorrida;
+    }
+
+    public Evento getEvento() {
+        return evento;
+    }
+
 }

@@ -14,6 +14,7 @@ public class Mision {
     private double distanciaTotal;
     private List<DiaMision> coleccionDias;
     private Map<Integer, Astronauta> coleccionAstronauta;
+    private boolean misionFinalizada;
 
     public Mision(String nombre, double distanciaTotal) {
         this.nombre = nombre;
@@ -21,6 +22,7 @@ public class Mision {
         this.distanciaRecorrida = 0;
         this.coleccionDias = new ArrayList<>();
         this.coleccionAstronauta = new HashMap<>();
+        this.misionFinalizada = false;
     }
 
     public void agregarAstronauta(Astronauta astronauta) throws IdRepetido {
@@ -34,6 +36,17 @@ public class Mision {
 
     public void agregarDiaMision(DiaMision diaMision) {
         coleccionDias.add(diaMision);
+        if ((distanciaTotal - distanciaRecorrida - diaMision.getDistanciaRecorrida()) < 0) {
+            distanciaRecorrida = distanciaTotal;
+            misionFinalizada = true;
+
+        } else {
+            distanciaRecorrida += diaMision.getDistanciaRecorrida();
+        }
+    }
+
+    public boolean isMisionFinalizada() {
+        return misionFinalizada;
     }
 
 }
