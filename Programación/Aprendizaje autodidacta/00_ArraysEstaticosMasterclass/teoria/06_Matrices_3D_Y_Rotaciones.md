@@ -1,161 +1,109 @@
-# 📘 Nivel 06 — Matrices 3D y Rotaciones
+# 📘 Nivel 06 — Transformaciones de Matrices
 
 ---
 
-## 1. Arrays Tridimensionales (3D)
+## 1. ¿Qué es una Transformación?
 
-Un array 3D es un **array de matrices**: `int[capa][fila][columna]`.
-
-```mermaid
-flowchart TD
-    ref["int[][][] cubo"]
-    c0["Capa 0 (matriz 2D)"]
-    c1["Capa 1 (matriz 2D)"]
-    c2["Capa 2 (matriz 2D)"]
-
-    ref --> c0
-    ref --> c1
-    ref --> c2
-```
-
-### Acceso
-
-| Dimensión | Propiedad | Ejemplo |
-|---|---|---|
-| Número de capas | `cubo.length` | 3 |
-| Filas de capa `c` | `cubo[c].length` | 4 |
-| Columnas de fila `f` en capa `c` | `cubo[c][f].length` | 5 |
-| Elemento específico | `cubo[c][f][col]` | — |
-
-### Recorrido de un array 3D
-
-```
-for (int c = 0; c < cubo.length; c++)          // capas
-    for (int f = 0; f < cubo[c].length; f++)    // filas
-        for (int col = 0; col < cubo[c][f].length; col++)  // columnas
-            // procesar cubo[c][f][col]
-```
+Una transformación sobre una matriz es una operación que altera la disposición de sus elementos basándose en reglas geométricas. Son esenciales en procesamiento de imágenes, motores gráficos y álgebra lineal.
 
 ---
 
-## 2. Rotación de Matrices 2D
+## 2. Transposición de Matrices
 
-### 2.1 Rotación 90° en sentido horario
+La **transposición** consiste en convertir las filas en columnas y viceversa. Matemáticamente: $A[i][j] \rightarrow A[j][i]$.
 
-La rotación 90° horaria de una matriz n×n se logra en **dos pasos**:
+### Tipos de Transposición
 
-**Paso 1**: Transponer la matriz (`M[i][j]` ↔ `M[j][i]`).
-**Paso 2**: Invertir cada fila horizontalmente.
+| Tipo | Método | Memoria |
+| :--- | :--- | :--- |
+| **Cuadrada** | In-place (swap) | O(1) extra |
+| **Rectangular** | Crear nueva [C][F] | O(F*C) extra |
 
-#### Ejemplo
-
-| Paso | Matriz |
-|---|---|
-| **Original** | `1 2 3` / `4 5 6` / `7 8 9` |
-| **Tras transponer** | `1 4 7` / `2 5 8` / `3 6 9` |
-| **Tras invertir filas** | `7 4 1` / `8 5 2` / `9 6 3` |
+### Diagrama: Transposición Cuadrada In-place
 
 ```mermaid
 flowchart LR
-    A["Original"]
-    B["Transponer: M[i][j] swap M[j][i]"]
-    C["Invertir cada fila"]
-    D["Rotado 90° horario ✅"]
-
-    A --> B --> C --> D
+    A["| 1 | 2 |<br>| 3 | 4 |"]
+    B["Swap(2, 3)"]
+    C["| 1 | 3 |<br>| 2 | 4 |"]
+    
+    A --> B --> C
 ```
 
-### 2.2 Rotación 90° en sentido antihorario
-
-**Paso 1**: Transponer la matriz.
-**Paso 2**: Invertir cada **columna** verticalmente.
-
-También se puede hacer así:
-**Paso 1**: Invertir cada fila horizontalmente.
-**Paso 2**: Transponer.
-
-### 2.3 Rotación 180°
-
-Equivale a aplicar la rotación 90° **dos veces**, o bien:
-- Invertir todas las filas verticalmente (flip vertical).
-- Invertir cada fila horizontalmente (flip horizontal).
-
-### 2.4 Tabla resumen de rotaciones
-
-| Rotación | Método |
-|---|---|
-| **90° horario** | Transponer + invertir cada fila |
-| **90° antihorario** | Transponer + invertir cada columna |
-| **180°** | Invertir filas + invertir cada fila (o rotar 90° × 2) |
-| **270° horario** | = 90° antihorario |
+> **Nota**: En una trasposición in-place, solo recorremos la mitad superior (encima de la diagonal principal) para evitar trasponer dos veces el mismo elemento y dejarlo igual.
 
 ---
 
-## 3. Reflexiones (Flip)
+## 3. Rotaciones de 90 Grados
 
-| Reflexión | Operación |
-|---|---|
-| **Flip horizontal** | Invertir cada fila: `swap(M[i][j], M[i][n-1-j])` |
-| **Flip vertical** | Invertir las filas: `swap(fila i, fila n-1-i)` |
-| **Flip diagonal** | Transponer: `swap(M[i][j], M[j][i])` |
+Rotar una matriz 90° es una operación compuesta. No es una simple asignación; requiere entender el movimiento de los ejes.
+
+### 3.1 — Rotación Horaria (90°)
+**Algoritmo**: 
+1. Trasponer la matriz.
+2. Invertir el orden de los elementos en cada fila (**Espejo Vertical**).
+
+```mermaid
+graph TB
+    subgraph Paso 1
+    T[Trasponer]
+    end
+    subgraph Paso 2
+    E[Espejo Vertical]
+    end
+    T --> E
+```
+
+### 3.2 — Rotación Anti-horaria (-90°)
+**Algoritmo**:
+1. Trasponer la matriz.
+2. Invertir el orden de las filas (**Espejo Horizontal**).
+
+---
+
+## 4. Espejos (Flipping)
+
+Los espejos son inversiones de orden sobre un eje específico.
+
+### 4.1 — Espejo Horizontal
+Invertimos el orden de las **filas**. La primera pasa a ser la última.
+```mermaid
+flowchart TD
+    F0[Fila 0] --> F2[Fila 2]
+    F1[Fila 1] --- F1
+    F2 --> F0
+```
+
+### 4.2 — Espejo Vertical
+Invertimos el orden de las **columnas** dentro de cada fila. El elemento `[i][0]` pasa a ser `[i][M-1]`.
+
+---
+
+## 5. Rotaciones de 180 y 270 Grados
+
+Son derivaciones de las rotaciones básicas:
+
+- **180°**: Equivale a dos rotaciones de 90° o a aplicar Espejo Horizontal + Espejo Vertical simultáneamente.
+- **270°**: Equivale a una rotación de 90° anti-horaria.
+
+---
+
+## 6. Manipulación de Submatrices y Marcos
+
+### 6.1 — Extracción de Submatriz
+Consiste en definir una "ventana" mediante coordenadas de inicio `(r1, c1)` y fin `(r2, c2)`.
+
+### 6.2 — El Marco (Borde)
+El marco son todos los elementos `[i][j]` donde `i == 0`, `i == n-1`, `j == 0` o `j == m-1`.
 
 ```mermaid
 flowchart TD
-    original["Original: 1 2 3 / 4 5 6 / 7 8 9"]
-    flipH["Flip horizontal: 3 2 1 / 6 5 4 / 9 8 7"]
-    flipV["Flip vertical: 7 8 9 / 4 5 6 / 1 2 3"]
-    transp["Transpuesta: 1 4 7 / 2 5 8 / 3 6 9"]
-
-    original --> flipH
-    original --> flipV
-    original --> transp
+    subgraph Matrix
+    M00[1] --- M01[2] --- M02[3]
+    M10[4] --- M11[X] --- M12[6]
+    M20[7] --- M21[8] --- M22[9]
+    end
 ```
-
----
-
-## 4. Simulación de Estructuras con Arrays Paralelos
-
-### 4.1 Simular un Map con dos arrays
-
-Usar dos arrays del mismo tamaño: uno para **claves** y otro para **valores**.
-
-| Índice | claves[] | valores[] |
-|---|---|---|
-| 0 | "nombre" | "Ana" |
-| 1 | "edad" | "25" |
-| 2 | "ciudad" | "Madrid" |
-
-**Operaciones**:
-- `put(clave, valor)`: buscar si la clave existe; si sí, actualizar; si no, añadir al final.
-- `get(clave)`: buscar la clave linealmente y devolver el valor en el mismo índice.
-- `remove(clave)`: buscar, eliminar desplazando en ambos arrays.
-- `size()`: tamaño lógico (mismo para ambos arrays).
-
-### 4.2 Simular un Map con un array 2D
-
-Usar un `String[][]` donde cada fila es un par `{clave, valor}`.
-
-```mermaid
-flowchart TD
-    mapa["String[][] mapa"]
-    f0["fila 0: nombre, Ana"]
-    f1["fila 1: edad, 25"]
-    f2["fila 2: ciudad, Madrid"]
-
-    mapa --> f0
-    mapa --> f1
-    mapa --> f2
-```
-
----
-
-## 5. Uso Práctico: Tableros de Juego
-
-Las matrices 2D modelan naturalmente:
-- **Tableros de ajedrez** (8×8)
-- **Tableros de sudoku** (9×9)
-- **Mapas de videojuegos** (n×m)
-- **Imágenes en escala de grises** (píxeles como int[alto][ancho])
 
 ---
 
@@ -163,8 +111,9 @@ Las matrices 2D modelan naturalmente:
 
 | Ejercicio | Archivo | Concepto Principal |
 |---|---|---|
-| 26 | `Ej26_Rotacion90Grados.java` | Rotar 90°/180°/270° con transponer+invertir |
-| 27 | `Ej27_ArrayTridimensional.java` | Crear, recorrer, buscar en 3D |
-| 28 | `Ej28_SimularMapConArrays.java` | Map con arrays paralelos y 2D |
-| 29 | `Ej29_TableroDeJuego.java` | Tablero n×m con operaciones de juego |
-| 30 | `Ej30_TransformacionesMatriz.java` | Flip, espejo, operaciones combinadas |
+| 27 | `Ej27_Transposicion.java` | Cambio de ejes FxC a CxF |
+| 28 | `Ej28_Rotacion90Grados.java` | Combinación de Trasposición + Inversión |
+| 29 | `Ej29_Rotacion180Y270.java` | Transformaciones compuestas |
+| 30 | `Ej30_EspejoHorizontalVertical.java` | Inversiones sobre ejes axiales |
+| 31 | `Ej31_SubmatrizYMarco.java` | Ventaneo y procesamiento de bordes |
+| 32 | `Ej32_SumaMultiplicacionMatrices.java` | Álgebra de matrices (A*B) |

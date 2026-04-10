@@ -1,180 +1,134 @@
-# 📘 Nivel 05 — Matrices Bidimensionales (2D)
+# 📘 Nivel 05 — Matrices Bidimensionales en Java
 
 ---
 
-## 1. ¿Qué es una Matriz 2D?
+## 1. ¿Qué es una Matriz en Java?
 
-Un array bidimensional es un **array de arrays**. Se accede con dos índices: `matriz[fila][columna]`.
+A diferencia de otros lenguajes donde una matriz es un bloque de memoria rectangular rígido, en **Java** una matriz es un **array de arrays**.
 
-En Java, un `int[][]` es un objeto en el Heap que contiene **referencias** a arrays de `int[]`, cada uno representando una fila.
+Esto significa que `int[][] matriz` es un array donde cada posición guarda una **referencia** a otro array de tipo `int[]`.
+
+### Estructura en Memoria (Heap)
 
 ```mermaid
-flowchart TD
-    ref["int[][] matriz"]
-    f0["fila 0: | 1 | 2 | 3 |"]
-    f1["fila 1: | 4 | 5 | 6 |"]
-    f2["fila 2: | 7 | 8 | 9 |"]
-
-    ref --> f0
-    ref --> f1
-    ref --> f2
+graph TD
+    M["matriz (referencia)"] --> R["Array Principal (Filas)"]
+    R --> F0["Fila [0] (int[])"]
+    R --> F1["Fila [1] (int[])"]
+    R --> F2["Fila [2] (int[])"]
+    
+    F0 --> D00["[0][0]"]
+    F0 --> D01["[0][1]"]
+    F1 --> D10["[1][0]"]
+    F1 --> D11["[1][1]"]
+    F2 --> D20["[2][0]"]
+    F2 --> D21["[2][1]"]
 ```
-
-### Propiedades clave
-
-| Propiedad | Acceso | Valor para 3×4 |
-|---|---|---|
-| Número de filas | `matriz.length` | 3 |
-| Número de columnas de fila `i` | `matriz[i].length` | 4 |
-| Elemento en fila 1, columna 2 | `matriz[1][2]` | — |
 
 ---
 
-## 2. Creación e Inicialización
+## 2. Declaración e Inicialización
 
-### 2.1 Con `new`
+Existen varias formas de declarar una matriz según el conocimiento previo de los datos:
 
+### 2.1 — Conociendo dimensiones (Vacía)
+```java
+int[][] grid = new int[3][4]; // 3 filas, 4 columnas. Todas a 0.
 ```
-int[][] m = new int[3][4];  // 3 filas × 4 columnas, todo a 0
-```
 
-### 2.2 Con literal
-
-```
-int[][] m = {
-    {1, 2, 3},
-    {4, 5, 6},
-    {7, 8, 9}
+### 2.2 — Conociendo los datos (Literal)
+```java
+int[][] datos = {
+    {1, 2, 3},  // Fila 0
+    {4, 5, 6},  // Fila 1
+    {7, 8, 9}   // Fila 2
 };
 ```
 
-### 2.3 Jagged arrays (filas de distinto tamaño)
+> ⚠️ **Propiedad .length**: `datos.length` devuelve el número de **filas**. `datos[i].length` devuelve el número de **columnas** de esa fila específica.
 
-```
-int[][] jagged = new int[3][];
-jagged[0] = new int[2];   // fila 0 tiene 2 columnas
-jagged[1] = new int[5];   // fila 1 tiene 5 columnas
-jagged[2] = new int[3];   // fila 2 tiene 3 columnas
-```
+---
+
+## 3. Acceso y Recorrido (Row-Major Order)
+
+El acceso se realiza mediante dos corchetes: `matriz[fila][columna]`. Por defecto, en Java recorremos de forma **Row-Major** (Fila a Fila).
+
+### Algoritmo de Recorrido
 
 ```mermaid
 flowchart TD
-    ref["int[][] jagged"]
-    f0["fila 0: | _ | _ |"]
-    f1["fila 1: | _ | _ | _ | _ | _ |"]
-    f2["fila 2: | _ | _ | _ |"]
-
-    ref --> f0
-    ref --> f1
-    ref --> f2
+    start["Inicio"] --> loopF["Loop Filas (i = 0 a N-1)"]
+    loopF --> loopC["Loop Columnas (j = 0 a M-1)"]
+    loopC --> proc["Procesar matriz[i][j]"]
+    proc --> loopC
+    loopC -- "Fin Fila" --> loopF
+    loopF -- "Fin Matriz" --> endf["Fin"]
 ```
 
 ---
 
-## 3. Patrones de Recorrido en Matrices
+## 4. Jagged Arrays (Arrays Irregulares)
 
-### 3.1 Recorrido por filas (Row-major)
+Como una matriz es un array de arrays, las filas **no tienen por qué tener el mismo tamaño**. Esto se conoce como **Jagged Array**.
 
-Recorre de izquierda a derecha, fila por fila. Es el patrón más eficiente en Java por la **localidad de caché**.
-
-```mermaid
-flowchart LR
-    A["(0,0)"] --> B["(0,1)"] --> C["(0,2)"]
-    C --> D["(1,0)"] --> E["(1,1)"] --> F["(1,2)"]
-    F --> G["(2,0)"] --> H["(2,1)"] --> I["(2,2)"]
+### Ejemplo: Triángulo de Ventas
+```java
+int[][] irregular = new int[3][];
+irregular[0] = new int[2]; // Fila 0 tiene 2 cols
+irregular[1] = new int[5]; // Fila 1 tiene 5 cols
+irregular[2] = new int[1]; // Fila 2 tiene 1 col
 ```
 
-### 3.2 Recorrido por columnas (Column-major)
-
-Recorre de arriba a abajo, columna por columna. Menos eficiente en caché.
+### Representación Visual Jagged
 
 ```mermaid
-flowchart TD
-    A["(0,0)"] --> B["(1,0)"] --> C["(2,0)"]
-    C --> D["(0,1)"] --> E["(1,1)"] --> F["(2,1)"]
-    F --> G["(0,2)"] --> H["(1,2)"] --> I["(2,2)"]
-```
-
-### 3.3 Recorrido diagonal
-
-Para matrices cuadradas: `matriz[i][i]` recorre la diagonal principal.
-
-### 3.4 Recorrido en espiral
-
-Recorrido perímetro → siguiente capa interior → ... hasta el centro.
-
-```mermaid
-flowchart LR
-    paso1["Borde superior: izq→der"]
-    paso2["Borde derecho: arriba→abajo"]
-    paso3["Borde inferior: der→izq"]
-    paso4["Borde izquierdo: abajo→arriba"]
-    paso5["Repetir con capa interior"]
-
-    paso1 --> paso2 --> paso3 --> paso4 --> paso5
+graph LR
+    subgraph Memoria
+    R["Principal"] --> F0["[0, 0]"]
+    R --> F1["[0, 0, 0, 0, 0]"]
+    R --> F2["[0]"]
+    end
 ```
 
 ---
 
-## 4. Transposición de Matriz
+## 5. Operaciones de Diagonales
 
-La **transposición** intercambia filas por columnas: `T[j][i] = M[i][j]`.
+En matrices **cuadradas** (Filas == Columnas), las diagonales son elementos clave.
 
-### Antes (3×3)
+| Diagonal | Condición de Índice | Ejemplo (3x3) |
+| :--- | :--- | :--- |
+| **Principal** | `i == j` | `(0,0), (1,1), (2,2)` |
+| **Secundaria** | `j == (N - 1 - i)` | `(0,2), (1,1), (2,0)` |
 
-| | Col 0 | Col 1 | Col 2 |
-|---|---|---|---|
-| **Fila 0** | 1 | 2 | 3 |
-| **Fila 1** | 4 | 5 | 6 |
-| **Fila 2** | 7 | 8 | 9 |
-
-### Después (transpuesta)
-
-| | Col 0 | Col 1 | Col 2 |
-|---|---|---|---|
-| **Fila 0** | 1 | 4 | 7 |
-| **Fila 1** | 2 | 5 | 8 |
-| **Fila 2** | 3 | 6 | 9 |
-
-Para matrices **cuadradas** se puede hacer in-place: solo recorrer el triángulo superior (`j > i`) y hacer swap.
-
----
-
-## 5. Operaciones Aritméticas con Matrices
-
-| Operación | Fórmula | Requisito |
-|---|---|---|
-| **Suma** | `C[i][j] = A[i][j] + B[i][j]` | Mismas dimensiones |
-| **Resta** | `C[i][j] = A[i][j] - B[i][j]` | Mismas dimensiones |
-| **Multiplicación** | `C[i][j] = Σ A[i][k] * B[k][j]` | cols(A) == filas(B) |
-| **Escalar** | `C[i][j] = A[i][j] * k` | Cualquiera |
-
-### Multiplicación de matrices
-
+### Visualización Diagonales
 ```mermaid
 flowchart TD
-    A["Matriz A: m × n"]
-    B["Matriz B: n × p"]
-    C["Resultado C: m × p"]
-    formula["C[i][j] = sum de A[i][k] * B[k][j] para k=0..n-1"]
-
-    A --> formula
-    B --> formula
-    formula --> C
+    subgraph Cuadrado
+    P1["[0,0]"] --- S1["[0,2]"]
+    P2["[1,1]"]
+    S3["[2,0]"] --- P3["[2,2]"]
+    end
 ```
-
-> La multiplicación de matrices NO es conmutativa: `A × B ≠ B × A`.
 
 ---
 
-## 6. Identidad y Simetría
+## 6. Patrones de Recorrido Avanzado
 
-| Concepto | Definición |
-|---|---|
-| **Matriz identidad** | Diagonal principal = 1, resto = 0 |
-| **Matriz simétrica** | `M[i][j] == M[j][i]` para todo i, j |
-| **Diagonal principal** | Posiciones donde `i == j` |
-| **Diagonal secundaria** | Posiciones donde `i + j == n - 1` |
+### 6.1 — Recorrido en Serpiente (Zig-Zag)
+Consiste en recorrer filas pares de izquierda a derecha y filas impares de derecha a izquierda.
+
+### 6.2 — Recorrido en Espiral (Caracol)
+Se procesa el marco exterior y se reduce progresivamente hacia el centro. Requiere 4 índices de control: `top`, `bottom`, `left`, `right`.
+
+```mermaid
+stateDiagram-v2
+    [*] --> Derecha: filaSuperior
+    Derecha --> Abajo: colDerecha
+    Abajo --> Izquierda: filaInferior
+    Izquierda --> Arriba: colIzquierda
+    Arriba --> Derecha: capaSiguiente
+```
 
 ---
 
@@ -182,8 +136,9 @@ flowchart TD
 
 | Ejercicio | Archivo | Concepto Principal |
 |---|---|---|
-| 21 | `Ej21_CreacionRecorrido2D.java` | Crear, recorrer filas/columnas/diagonales |
-| 22 | `Ej22_OperacionesMatrices.java` | Suma, resta, multiplicación, escalar |
-| 23 | `Ej23_TransposicionYSimetria.java` | Transponer, verificar simetría, identidad |
-| 24 | `Ej24_RecorridoEspiral.java` | Espiral, perímetro, capas concéntricas |
-| 25 | `Ej25_JaggedArrays.java` | Arrays irregulares, triángulos de Pascal |
+| 21 | `Ej21_CreacionYRecorrido2D.java` | Iteración anidada básica |
+| 22 | `Ej22_SumaFilasColumnasMedias.java` | Reducción de datos por ejes |
+| 23 | `Ej23_DiagonalesPrincipalSecundaria.java` | Lógica de índices en matrices cuadradas |
+| 24 | `Ej24_MatrizIdentidadYSimetrica.java` | Verificación de propiedades matemáticas |
+| 25 | `Ej25_JaggedArrays.java` | Gestión de filas con tamaños variables |
+| 26 | `Ej26_MatrizEspiralRecorrido.java` | Algoritmos de recorrido complejos |
