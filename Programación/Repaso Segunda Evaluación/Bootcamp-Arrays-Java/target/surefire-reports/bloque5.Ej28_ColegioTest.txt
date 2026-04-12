@@ -1,0 +1,52 @@
+-------------------------------------------------------------------------------
+Test set: bloque5.Ej28_ColegioTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 1, Errors: 4, Skipped: 0, Time elapsed: 0.007 s <<< FAILURE! -- in bloque5.Ej28_ColegioTest
+bloque5.Ej28_ColegioTest.alumnos -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa constructor
+	at bloque5.Ej28_Colegio$Clase.<init>(Ej28_Colegio.java:22)
+	at bloque5.Ej28_ColegioTest.alumnos(Ej28_ColegioTest.java:21)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque5.Ej28_ColegioTest.dao -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa constructor
+	at bloque5.Ej28_Colegio.<init>(Ej28_Colegio.java:50)
+	at bloque5.Ej28_ColegioTest.dao(Ej28_ColegioTest.java:37)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque5.Ej28_ColegioTest.masAlumnos -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa constructor
+	at bloque5.Ej28_Colegio.<init>(Ej28_Colegio.java:50)
+	at bloque5.Ej28_ColegioTest.masAlumnos(Ej28_ColegioTest.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque5.Ej28_ColegioTest.cursoInvalido -- Time elapsed: 0.001 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Unexpected exception type thrown, expected: <java.lang.IllegalArgumentException> but was: <java.lang.UnsupportedOperationException>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:67)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3115)
+	at bloque5.Ej28_ColegioTest.cursoInvalido(Ej28_ColegioTest.java:29)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+Caused by: java.lang.UnsupportedOperationException: Implementa constructor
+	at bloque5.Ej28_Colegio$Clase.<init>(Ej28_Colegio.java:22)
+	at bloque5.Ej28_ColegioTest.lambda$cursoInvalido$0(Ej28_ColegioTest.java:30)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:53)
+	... 6 more
+
+bloque5.Ej28_ColegioTest.matricularBaja -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa constructor
+	at bloque5.Ej28_Colegio$Clase.<init>(Ej28_Colegio.java:22)
+	at bloque5.Ej28_ColegioTest.matricularBaja(Ej28_ColegioTest.java:12)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+

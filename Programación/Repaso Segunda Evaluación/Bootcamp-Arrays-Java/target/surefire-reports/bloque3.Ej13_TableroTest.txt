@@ -1,0 +1,116 @@
+-------------------------------------------------------------------------------
+Test set: bloque3.Ej13_TableroTest
+-------------------------------------------------------------------------------
+Tests run: 10, Failures: 4, Errors: 6, Skipped: 0, Time elapsed: 0.012 s <<< FAILURE! -- in bloque3.Ej13_TableroTest
+bloque3.Ej13_TableroTest.constructor_valido -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa el constructor
+	at bloque3.Ej13_Tablero.<init>(Ej13_Tablero.java:83)
+	at bloque3.Ej13_TableroTest.constructor_valido(Ej13_TableroTest.java:12)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque3.Ej13_TableroTest.estaVacio -- Time elapsed: 0 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa el constructor
+	at bloque3.Ej13_Tablero.<init>(Ej13_Tablero.java:83)
+	at bloque3.Ej13_TableroTest.estaVacio(Ej13_TableroTest.java:60)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque3.Ej13_TableroTest.constructor_filasMax -- Time elapsed: 0.002 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Unexpected exception type thrown, expected: <java.lang.IllegalArgumentException> but was: <java.lang.UnsupportedOperationException>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:67)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3115)
+	at bloque3.Ej13_TableroTest.constructor_filasMax(Ej13_TableroTest.java:30)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+Caused by: java.lang.UnsupportedOperationException: Implementa el constructor
+	at bloque3.Ej13_Tablero.<init>(Ej13_Tablero.java:83)
+	at bloque3.Ej13_TableroTest.lambda$constructor_filasMax$3(Ej13_TableroTest.java:30)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:53)
+	... 6 more
+
+bloque3.Ej13_TableroTest.constructor_filasNeg -- Time elapsed: 0.002 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Unexpected exception type thrown, expected: <java.lang.IllegalArgumentException> but was: <java.lang.UnsupportedOperationException>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:67)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3115)
+	at bloque3.Ej13_TableroTest.constructor_filasNeg(Ej13_TableroTest.java:19)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+Caused by: java.lang.UnsupportedOperationException: Implementa el constructor
+	at bloque3.Ej13_Tablero.<init>(Ej13_Tablero.java:83)
+	at bloque3.Ej13_TableroTest.lambda$constructor_filasNeg$0(Ej13_TableroTest.java:19)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:53)
+	... 6 more
+
+bloque3.Ej13_TableroTest.setValor_fueraRango -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa el constructor
+	at bloque3.Ej13_Tablero.<init>(Ej13_Tablero.java:83)
+	at bloque3.Ej13_TableroTest.setValor_fueraRango(Ej13_TableroTest.java:54)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque3.Ej13_TableroTest.constructor_colsMax -- Time elapsed: 0.001 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Unexpected exception type thrown, expected: <java.lang.IllegalArgumentException> but was: <java.lang.UnsupportedOperationException>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:67)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3115)
+	at bloque3.Ej13_TableroTest.constructor_colsMax(Ej13_TableroTest.java:35)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+Caused by: java.lang.UnsupportedOperationException: Implementa el constructor
+	at bloque3.Ej13_Tablero.<init>(Ej13_Tablero.java:83)
+	at bloque3.Ej13_TableroTest.lambda$constructor_colsMax$4(Ej13_TableroTest.java:35)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:53)
+	... 6 more
+
+bloque3.Ej13_TableroTest.constructor_colsNeg -- Time elapsed: 0.001 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Unexpected exception type thrown, expected: <java.lang.IllegalArgumentException> but was: <java.lang.UnsupportedOperationException>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:67)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3115)
+	at bloque3.Ej13_TableroTest.constructor_colsNeg(Ej13_TableroTest.java:25)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+Caused by: java.lang.UnsupportedOperationException: Implementa el constructor
+	at bloque3.Ej13_Tablero.<init>(Ej13_Tablero.java:83)
+	at bloque3.Ej13_TableroTest.lambda$constructor_colsNeg$2(Ej13_TableroTest.java:25)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:53)
+	... 6 more
+
+bloque3.Ej13_TableroTest.mostrar -- Time elapsed: 0 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa el constructor
+	at bloque3.Ej13_Tablero.<init>(Ej13_Tablero.java:83)
+	at bloque3.Ej13_TableroTest.mostrar(Ej13_TableroTest.java:68)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque3.Ej13_TableroTest.getValor_fueraRango -- Time elapsed: 0 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa el constructor
+	at bloque3.Ej13_Tablero.<init>(Ej13_Tablero.java:83)
+	at bloque3.Ej13_TableroTest.getValor_fueraRango(Ej13_TableroTest.java:47)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque3.Ej13_TableroTest.getSetValor_valido -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa el constructor
+	at bloque3.Ej13_Tablero.<init>(Ej13_Tablero.java:83)
+	at bloque3.Ej13_TableroTest.getSetValor_valido(Ej13_TableroTest.java:40)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+

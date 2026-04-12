@@ -1,0 +1,68 @@
+-------------------------------------------------------------------------------
+Test set: bloque4.Ej22_DAOAvanzadoTest
+-------------------------------------------------------------------------------
+Tests run: 8, Failures: 0, Errors: 8, Skipped: 0, Time elapsed: 0.007 s <<< FAILURE! -- in bloque4.Ej22_DAOAvanzadoTest
+bloque4.Ej22_DAOAvanzadoTest.stockMinimo -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa el constructor
+	at bloque4.Ej19_Producto.<init>(Ej19_Producto.java:17)
+	at bloque4.Ej22_DAOAvanzadoTest.setUp(Ej22_DAOAvanzadoTest.java:16)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque4.Ej22_DAOAvanzadoTest.existe -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa el constructor
+	at bloque4.Ej19_Producto.<init>(Ej19_Producto.java:17)
+	at bloque4.Ej22_DAOAvanzadoTest.setUp(Ej22_DAOAvanzadoTest.java:16)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque4.Ej22_DAOAvanzadoTest.rangoPrecio -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa el constructor
+	at bloque4.Ej19_Producto.<init>(Ej19_Producto.java:17)
+	at bloque4.Ej22_DAOAvanzadoTest.setUp(Ej22_DAOAvanzadoTest.java:16)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque4.Ej22_DAOAvanzadoTest.porNombre_vacio -- Time elapsed: 0 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa el constructor
+	at bloque4.Ej19_Producto.<init>(Ej19_Producto.java:17)
+	at bloque4.Ej22_DAOAvanzadoTest.setUp(Ej22_DAOAvanzadoTest.java:16)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque4.Ej22_DAOAvanzadoTest.porNombre -- Time elapsed: 0 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa el constructor
+	at bloque4.Ej19_Producto.<init>(Ej19_Producto.java:17)
+	at bloque4.Ej22_DAOAvanzadoTest.setUp(Ej22_DAOAvanzadoTest.java:16)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque4.Ej22_DAOAvanzadoTest.precioMedio -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa el constructor
+	at bloque4.Ej19_Producto.<init>(Ej19_Producto.java:17)
+	at bloque4.Ej22_DAOAvanzadoTest.setUp(Ej22_DAOAvanzadoTest.java:16)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque4.Ej22_DAOAvanzadoTest.masCaro -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa el constructor
+	at bloque4.Ej19_Producto.<init>(Ej19_Producto.java:17)
+	at bloque4.Ej22_DAOAvanzadoTest.setUp(Ej22_DAOAvanzadoTest.java:16)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque4.Ej22_DAOAvanzadoTest.masCaro_vacio -- Time elapsed: 0 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa el constructor
+	at bloque4.Ej19_Producto.<init>(Ej19_Producto.java:17)
+	at bloque4.Ej22_DAOAvanzadoTest.setUp(Ej22_DAOAvanzadoTest.java:16)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+

@@ -1,0 +1,52 @@
+-------------------------------------------------------------------------------
+Test set: bloque5.Ej29_RestauranteTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 6, Skipped: 0, Time elapsed: 0.006 s <<< FAILURE! -- in bloque5.Ej29_RestauranteTest
+bloque5.Ej29_RestauranteTest.comensales -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa constructor
+	at bloque5.Ej29_Restaurante$Sala.<init>(Ej29_Restaurante.java:22)
+	at bloque5.Ej29_RestauranteTest.comensales(Ej29_RestauranteTest.java:28)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque5.Ej29_RestauranteTest.sentarLiberar -- Time elapsed: 0 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa constructor
+	at bloque5.Ej29_Restaurante$Sala.<init>(Ej29_Restaurante.java:22)
+	at bloque5.Ej29_RestauranteTest.sentarLiberar(Ej29_RestauranteTest.java:12)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque5.Ej29_RestauranteTest.totalGlobal -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa constructor
+	at bloque5.Ej29_Restaurante.<init>(Ej29_Restaurante.java:57)
+	at bloque5.Ej29_RestauranteTest.totalGlobal(Ej29_RestauranteTest.java:44)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque5.Ej29_RestauranteTest.sentarExcede -- Time elapsed: 0 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa constructor
+	at bloque5.Ej29_Restaurante$Sala.<init>(Ej29_Restaurante.java:22)
+	at bloque5.Ej29_RestauranteTest.sentarExcede(Ej29_RestauranteTest.java:21)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque5.Ej29_RestauranteTest.dao -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa constructor
+	at bloque5.Ej29_Restaurante.<init>(Ej29_Restaurante.java:57)
+	at bloque5.Ej29_RestauranteTest.dao(Ej29_RestauranteTest.java:36)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque5.Ej29_RestauranteTest.masCapacidad -- Time elapsed: 0 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa constructor
+	at bloque5.Ej29_Restaurante.<init>(Ej29_Restaurante.java:57)
+	at bloque5.Ej29_RestauranteTest.masCapacidad(Ej29_RestauranteTest.java:41)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+

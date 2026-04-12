@@ -1,0 +1,152 @@
+-------------------------------------------------------------------------------
+Test set: bloque1.Ej02_RecorridosTest
+-------------------------------------------------------------------------------
+Tests run: 11, Failures: 10, Errors: 0, Skipped: 0, Time elapsed: 0.016 s <<< FAILURE! -- in bloque1.Ej02_RecorridosTest
+bloque1.Ej02_RecorridosTest.recorridoPorFilas_2x3 -- Time elapsed: 0.004 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: actual array was <null>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertArrayEquals.failActualArrayIsNull(AssertArrayEquals.java:416)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArraysNotNull(AssertArrayEquals.java:401)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArrayEquals(AssertArrayEquals.java:236)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArrayEquals(AssertArrayEquals.java:87)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArrayEquals(AssertArrayEquals.java:83)
+	at org.junit.jupiter.api.Assertions.assertArrayEquals(Assertions.java:1281)
+	at bloque1.Ej02_RecorridosTest.recorridoPorFilas_2x3(Ej02_RecorridosTest.java:24)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque1.Ej02_RecorridosTest.recorridoPorFilas_3x3 -- Time elapsed: 0.001 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: actual array was <null>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertArrayEquals.failActualArrayIsNull(AssertArrayEquals.java:416)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArraysNotNull(AssertArrayEquals.java:401)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArrayEquals(AssertArrayEquals.java:236)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArrayEquals(AssertArrayEquals.java:87)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArrayEquals(AssertArrayEquals.java:83)
+	at org.junit.jupiter.api.Assertions.assertArrayEquals(Assertions.java:1281)
+	at bloque1.Ej02_RecorridosTest.recorridoPorFilas_3x3(Ej02_RecorridosTest.java:17)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque1.Ej02_RecorridosTest.recorridoPorColumnas_2x3 -- Time elapsed: 0 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: actual array was <null>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertArrayEquals.failActualArrayIsNull(AssertArrayEquals.java:416)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArraysNotNull(AssertArrayEquals.java:401)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArrayEquals(AssertArrayEquals.java:236)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArrayEquals(AssertArrayEquals.java:87)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArrayEquals(AssertArrayEquals.java:83)
+	at org.junit.jupiter.api.Assertions.assertArrayEquals(Assertions.java:1281)
+	at bloque1.Ej02_RecorridosTest.recorridoPorColumnas_2x3(Ej02_RecorridosTest.java:38)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque1.Ej02_RecorridosTest.recorridoPorColumnas_3x3 -- Time elapsed: 0.001 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: actual array was <null>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertArrayEquals.failActualArrayIsNull(AssertArrayEquals.java:416)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArraysNotNull(AssertArrayEquals.java:401)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArrayEquals(AssertArrayEquals.java:236)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArrayEquals(AssertArrayEquals.java:87)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArrayEquals(AssertArrayEquals.java:83)
+	at org.junit.jupiter.api.Assertions.assertArrayEquals(Assertions.java:1281)
+	at bloque1.Ej02_RecorridosTest.recorridoPorColumnas_3x3(Ej02_RecorridosTest.java:31)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque1.Ej02_RecorridosTest.diagonalPrincipal_3x3 -- Time elapsed: 0.001 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: actual array was <null>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertArrayEquals.failActualArrayIsNull(AssertArrayEquals.java:416)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArraysNotNull(AssertArrayEquals.java:401)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArrayEquals(AssertArrayEquals.java:236)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArrayEquals(AssertArrayEquals.java:87)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArrayEquals(AssertArrayEquals.java:83)
+	at org.junit.jupiter.api.Assertions.assertArrayEquals(Assertions.java:1281)
+	at bloque1.Ej02_RecorridosTest.diagonalPrincipal_3x3(Ej02_RecorridosTest.java:45)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque1.Ej02_RecorridosTest.diagonalInversa_3x3 -- Time elapsed: 0.001 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: actual array was <null>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertArrayEquals.failActualArrayIsNull(AssertArrayEquals.java:416)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArraysNotNull(AssertArrayEquals.java:401)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArrayEquals(AssertArrayEquals.java:236)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArrayEquals(AssertArrayEquals.java:87)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArrayEquals(AssertArrayEquals.java:83)
+	at org.junit.jupiter.api.Assertions.assertArrayEquals(Assertions.java:1281)
+	at bloque1.Ej02_RecorridosTest.diagonalInversa_3x3(Ej02_RecorridosTest.java:52)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque1.Ej02_RecorridosTest.recorridoBorde_2x2 -- Time elapsed: 0.001 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: actual array was <null>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertArrayEquals.failActualArrayIsNull(AssertArrayEquals.java:416)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArraysNotNull(AssertArrayEquals.java:401)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArrayEquals(AssertArrayEquals.java:236)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArrayEquals(AssertArrayEquals.java:87)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArrayEquals(AssertArrayEquals.java:83)
+	at org.junit.jupiter.api.Assertions.assertArrayEquals(Assertions.java:1281)
+	at bloque1.Ej02_RecorridosTest.recorridoBorde_2x2(Ej02_RecorridosTest.java:67)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque1.Ej02_RecorridosTest.recorridoBorde_3x3 -- Time elapsed: 0.001 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: actual array was <null>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertArrayEquals.failActualArrayIsNull(AssertArrayEquals.java:416)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArraysNotNull(AssertArrayEquals.java:401)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArrayEquals(AssertArrayEquals.java:236)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArrayEquals(AssertArrayEquals.java:87)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArrayEquals(AssertArrayEquals.java:83)
+	at org.junit.jupiter.api.Assertions.assertArrayEquals(Assertions.java:1281)
+	at bloque1.Ej02_RecorridosTest.recorridoBorde_3x3(Ej02_RecorridosTest.java:59)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque1.Ej02_RecorridosTest.esCuadrada_true -- Time elapsed: 0.001 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:31)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:183)
+	at bloque1.Ej02_RecorridosTest.esCuadrada_true(Ej02_RecorridosTest.java:80)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque1.Ej02_RecorridosTest.recorridoZigzag_3x3 -- Time elapsed: 0.001 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: actual array was <null>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertArrayEquals.failActualArrayIsNull(AssertArrayEquals.java:416)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArraysNotNull(AssertArrayEquals.java:401)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArrayEquals(AssertArrayEquals.java:236)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArrayEquals(AssertArrayEquals.java:87)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArrayEquals(AssertArrayEquals.java:83)
+	at org.junit.jupiter.api.Assertions.assertArrayEquals(Assertions.java:1281)
+	at bloque1.Ej02_RecorridosTest.recorridoZigzag_3x3(Ej02_RecorridosTest.java:74)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+

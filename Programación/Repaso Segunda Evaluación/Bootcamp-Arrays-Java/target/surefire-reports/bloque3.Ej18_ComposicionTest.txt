@@ -1,0 +1,76 @@
+-------------------------------------------------------------------------------
+Test set: bloque3.Ej18_ComposicionTest
+-------------------------------------------------------------------------------
+Tests run: 9, Failures: 0, Errors: 9, Skipped: 0, Time elapsed: 0.005 s <<< FAILURE! -- in bloque3.Ej18_ComposicionTest
+bloque3.Ej18_ComposicionTest.constructor -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa el constructor
+	at bloque3.Ej18_Composicion.<init>(Ej18_Composicion.java:19)
+	at bloque3.Ej18_ComposicionTest.setUp(Ej18_ComposicionTest.java:16)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque3.Ej18_ComposicionTest.liberar_inexistente -- Time elapsed: 0 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa el constructor
+	at bloque3.Ej18_Composicion.<init>(Ej18_Composicion.java:19)
+	at bloque3.Ej18_ComposicionTest.setUp(Ej18_ComposicionTest.java:16)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque3.Ej18_ComposicionTest.reservar_fueraRango -- Time elapsed: 0 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa el constructor
+	at bloque3.Ej18_Composicion.<init>(Ej18_Composicion.java:19)
+	at bloque3.Ej18_ComposicionTest.setUp(Ej18_ComposicionTest.java:16)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque3.Ej18_ComposicionTest.celdasIndependientes -- Time elapsed: 0 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa el constructor
+	at bloque3.Ej18_Composicion.<init>(Ej18_Composicion.java:19)
+	at bloque3.Ej18_ComposicionTest.setUp(Ej18_ComposicionTest.java:16)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque3.Ej18_ComposicionTest.reservar_valido -- Time elapsed: 0 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa el constructor
+	at bloque3.Ej18_Composicion.<init>(Ej18_Composicion.java:19)
+	at bloque3.Ej18_ComposicionTest.setUp(Ej18_ComposicionTest.java:16)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque3.Ej18_ComposicionTest.recaudacion -- Time elapsed: 0 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa el constructor
+	at bloque3.Ej18_Composicion.<init>(Ej18_Composicion.java:19)
+	at bloque3.Ej18_ComposicionTest.setUp(Ej18_ComposicionTest.java:16)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque3.Ej18_ComposicionTest.reservar_ocupado -- Time elapsed: 0 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa el constructor
+	at bloque3.Ej18_Composicion.<init>(Ej18_Composicion.java:19)
+	at bloque3.Ej18_ComposicionTest.setUp(Ej18_ComposicionTest.java:16)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque3.Ej18_ComposicionTest.mostrar -- Time elapsed: 0 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa el constructor
+	at bloque3.Ej18_Composicion.<init>(Ej18_Composicion.java:19)
+	at bloque3.Ej18_ComposicionTest.setUp(Ej18_ComposicionTest.java:16)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque3.Ej18_ComposicionTest.liberar_valido -- Time elapsed: 0 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa el constructor
+	at bloque3.Ej18_Composicion.<init>(Ej18_Composicion.java:19)
+	at bloque3.Ej18_ComposicionTest.setUp(Ej18_ComposicionTest.java:16)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+

@@ -1,0 +1,76 @@
+-------------------------------------------------------------------------------
+Test set: bloque4.Ej24_CompletoTest
+-------------------------------------------------------------------------------
+Tests run: 9, Failures: 0, Errors: 9, Skipped: 0, Time elapsed: 0.007 s <<< FAILURE! -- in bloque4.Ej24_CompletoTest
+bloque4.Ej24_CompletoTest.desasignar_inexistente -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa constructor DAO
+	at bloque4.Ej24_Completo.<init>(Ej24_Completo.java:68)
+	at bloque4.Ej24_CompletoTest.setUp(Ej24_CompletoTest.java:16)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque4.Ej24_CompletoTest.constructor -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa constructor DAO
+	at bloque4.Ej24_Completo.<init>(Ej24_Completo.java:68)
+	at bloque4.Ej24_CompletoTest.setUp(Ej24_CompletoTest.java:16)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque4.Ej24_CompletoTest.buscar -- Time elapsed: 0 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa constructor DAO
+	at bloque4.Ej24_Completo.<init>(Ej24_Completo.java:68)
+	at bloque4.Ej24_CompletoTest.setUp(Ej24_CompletoTest.java:16)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque4.Ej24_CompletoTest.asignar_fueraRango -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa constructor DAO
+	at bloque4.Ej24_Completo.<init>(Ej24_Completo.java:68)
+	at bloque4.Ej24_CompletoTest.setUp(Ej24_CompletoTest.java:16)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque4.Ej24_CompletoTest.totalPlazas -- Time elapsed: 0 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa constructor DAO
+	at bloque4.Ej24_Completo.<init>(Ej24_Completo.java:68)
+	at bloque4.Ej24_CompletoTest.setUp(Ej24_CompletoTest.java:16)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque4.Ej24_CompletoTest.masPlazas -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa constructor DAO
+	at bloque4.Ej24_Completo.<init>(Ej24_Completo.java:68)
+	at bloque4.Ej24_CompletoTest.setUp(Ej24_CompletoTest.java:16)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque4.Ej24_CompletoTest.asignar_ocupado -- Time elapsed: 0 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa constructor DAO
+	at bloque4.Ej24_Completo.<init>(Ej24_Completo.java:68)
+	at bloque4.Ej24_CompletoTest.setUp(Ej24_CompletoTest.java:16)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque4.Ej24_CompletoTest.asignarDesasignar -- Time elapsed: 0 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa constructor DAO
+	at bloque4.Ej24_Completo.<init>(Ej24_Completo.java:68)
+	at bloque4.Ej24_CompletoTest.setUp(Ej24_CompletoTest.java:16)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+bloque4.Ej24_CompletoTest.buscar_null -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: Implementa constructor DAO
+	at bloque4.Ej24_Completo.<init>(Ej24_Completo.java:68)
+	at bloque4.Ej24_CompletoTest.setUp(Ej24_CompletoTest.java:16)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
