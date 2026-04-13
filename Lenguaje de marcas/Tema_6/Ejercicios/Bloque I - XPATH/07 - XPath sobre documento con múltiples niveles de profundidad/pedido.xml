@@ -1,0 +1,21 @@
+<pedido id="P2024" fecha="2024-06-01">
+  <cliente>
+    <nombre>Marta Sanz</nombre>
+    <direccion>
+      <calle>Gran Vía 10</calle>
+      <ciudad>Madrid</ciudad>
+    </direccion>
+  </cliente>
+  <lineas>
+    <linea num="1">
+      <producto ref="A1">Teclado</producto>
+      <cantidad>2</cantidad>
+      <precio_unit>45.00</precio_unit>
+    </linea>
+    <linea num="2">
+      <producto ref="B3">Monitor</producto>
+      <cantidad>1</cantidad>
+      <precio_unit>320.00</precio_unit>
+    </linea>
+  </lineas>
+</pedido>

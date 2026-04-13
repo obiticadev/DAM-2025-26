@@ -1,0 +1,6 @@
+<registro>
+  <medicion ciudad="Oslo" temp="-3"/>
+  <medicion ciudad="Madrid" temp="22"/>
+  <medicion ciudad="Sevilla" temp="38"/>
+  <medicion ciudad="Berlín" temp="14"/>
+</registro>

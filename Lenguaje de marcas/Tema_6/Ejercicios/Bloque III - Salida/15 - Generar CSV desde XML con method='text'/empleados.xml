@@ -1,0 +1,12 @@
+<empresa>
+  <empleado>
+    <nombre>Pedro Vega</nombre>
+    <departamento>Ventas</departamento>
+    <salario>2800</salario>
+  </empleado>
+  <empleado>
+    <nombre>Ana Torres</nombre>
+    <departamento>IT</departamento>
+    <salario>3200</salario>
+  </empleado>
+</empresa>
