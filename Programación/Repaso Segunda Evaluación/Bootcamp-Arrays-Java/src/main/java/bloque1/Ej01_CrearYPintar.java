@@ -1,5 +1,7 @@
 package bloque1;
 
+import java.util.StringJoiner;
+
 /**
  * EJERCICIO 01 — Crear y Pintar un Array Bidimensional
  * Teoria: teoria/01_Arrays_Bidi_Fundamentos.md (secciones 1-5)
@@ -38,9 +40,9 @@ public class Ej01_CrearYPintar {
         // e incremente en cada celda (recorriendo por filas).
         int[][] matriz = new int[filas][columnas];
         int contador = 0;
-        for (int i = 0; i < matriz.length; i++) {
+        for (int[] matriz1 : matriz) {
             for (int j = 0; j < matriz[0].length; j++) {
-                matriz[i][j] = ++contador;
+                matriz1[j] = ++contador;
             }
         }
         return matriz;
@@ -104,7 +106,19 @@ public class Ej01_CrearYPintar {
         // TODO 5: Usa StringBuilder y String.format("%3d", valor) para alinear.
         // Primera linea: 3 espacios + numeros de columna.
         // Resto: numero de fila (1-indexed) + valores.
-        return "";
+        StringBuilder sb = new StringBuilder();
+        sb.append("   ");
+        for (int i = 0; i <= matriz[0].length; i++) {
+            sb.append(String.format("%3d", (i + 1)));
+        }
+        sb.append("\n");
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz.length; j++) {
+                sb.append(String.format("%3d", i + 1)).append(String.format("%3d", matriz[i][j]));
+            }
+            sb.append("\n");
+        }
+        return sb.toString();
     }
 
     /**
@@ -118,7 +132,20 @@ public class Ej01_CrearYPintar {
     public static String pintarMatrizSimbolos(int[][] matriz) {
         // TODO 6: Recorre la matriz. Si el valor es 0, anade ".". Si no, anade "X".
         // Separa con espacio entre simbolos, salto de linea entre filas.
-        return "";
+
+        StringJoiner resultadoFinal = new StringJoiner("\n");
+        for (int i = 0; i < matriz.length; i++) {
+            StringJoiner fila = new StringJoiner(" ");
+            for (int j = 0; j < matriz[0].length; j++) {
+                if (matriz[i][j] == 0) {
+                    fila.add(".");
+                } else {
+                    fila.add("X");
+                }
+            }
+            resultadoFinal.add(fila.toString());
+        }
+        return resultadoFinal.toString();
     }
 
     /**
@@ -131,7 +158,14 @@ public class Ej01_CrearYPintar {
         // TODO 7: Recorre toda la matriz. Si encuentras un valor distinto de 0,
         // devuelve false inmediatamente. Si terminas sin encontrar ninguno, devuelve
         // true.
-        return false;
+        for (int[] fila : matriz) {
+            for (int is : fila) {
+                if (is != 0) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     // ══════════════════════════════════════════════

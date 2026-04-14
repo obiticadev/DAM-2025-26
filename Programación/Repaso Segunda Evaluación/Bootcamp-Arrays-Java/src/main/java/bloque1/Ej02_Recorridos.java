@@ -1,5 +1,7 @@
 package bloque1;
 
+import java.util.StringJoiner;
+
 /**
  * EJERCICIO 02 — Recorridos en Distintas Direcciones
  * Teoria: teoria/01_Arrays_Bidi_Fundamentos.md (seccion 4)
@@ -19,8 +21,18 @@ public class Ej02_Recorridos {
      */
     public static int[] recorridoPorFilas(int[][] matriz) {
         // TODO 1: Calcula el tamano total, crea un array unidimensional,
-        //         y rellena recorriendo fila por fila (for i, for j).
-        return null;
+        // y rellena recorriendo fila por fila (for i, for j).
+        int[] arrayUnidimensional = new int[matriz[0].length * matriz.length];
+        int contador = 0;
+        StringJoiner sj = new StringJoiner(" ");
+        for (int[] fila : matriz) {
+            for (int is : fila) {
+                arrayUnidimensional[contador++] = is;
+                sj.add(String.valueOf(is));
+            }
+        }
+        System.out.println(sj);
+        return arrayUnidimensional;
     }
 
     /**
@@ -33,8 +45,15 @@ public class Ej02_Recorridos {
      */
     public static int[] recorridoPorColumnas(int[][] matriz) {
         // TODO 2: Igual que el anterior pero invirtiendo el orden de los bucles:
-        //         el bucle exterior recorre columnas (j) y el interior filas (i).
-        return null;
+        // el bucle exterior recorre columnas (j) y el interior filas (i).
+        int[] arrayUnidimensional = new int[matriz[0].length * matriz.length];
+        int contador = 0;
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[0].length; j++) {
+                arrayUnidimensional[contador++] = matriz[j][i];
+            }
+        }
+        return arrayUnidimensional;
     }
 
     /**
@@ -47,8 +66,15 @@ public class Ej02_Recorridos {
      */
     public static int[] diagonalPrincipal(int[][] matriz) {
         // TODO 3: La diagonal principal son las posiciones donde i == j.
-        //         Un solo bucle: matriz[i][i].
-        return null;
+        // Un solo bucle: matriz[i][i].
+        if (matriz.length != matriz[0].length) {
+            return null;
+        }
+        int[] diagonal = new int[matriz.length];
+        for (int i = 0; i < diagonal.length; i++) {
+            diagonal[i] = matriz[i][i];
+        }
+        return diagonal;
     }
 
     /**
@@ -61,29 +87,44 @@ public class Ej02_Recorridos {
      */
     public static int[] diagonalInversa(int[][] matriz) {
         // TODO 4: La diagonal inversa son las posiciones [i][n-1-i]
-        //         donde n es el numero de filas/columnas.
-        return null;
+        // donde n es el numero de filas/columnas.
+        if (matriz.length != matriz[0].length) {
+            return null;
+        }
+        int[] diagonal = new int[matriz.length];
+        for (int i = 0; i < diagonal.length; i++) {
+            diagonal[i] = matriz[i][matriz.length - 1 - i];
+        }
+        return diagonal;
     }
 
     /**
      * Devuelve un array unidimensional con los elementos del borde de la matriz
-     * recorridos en sentido horario (fila superior -> columna derecha -> fila inferior -> columna izquierda).
+     * recorridos en sentido horario (fila superior -> columna derecha -> fila
+     * inferior -> columna izquierda).
      * Ejemplo para {{1,2,3},{4,5,6},{7,8,9}} -> {1,2,3,6,9,8,7,4}
      *
      * @param matriz array bidimensional
      * @return array con los elementos del borde en sentido horario
      */
     public static int[] recorridoBorde(int[][] matriz) {
-        // TODO 5: Recorre en 4 tramos: fila 0 de izq a der, ultima columna de arriba a abajo
-        //         (sin repetir esquina), ultima fila de der a izq (sin repetir esquina),
-        //         primera columna de abajo a arriba (sin repetir esquinas).
-        //         Cuidado con matrices de 1 fila o 1 columna.
+        // TODO 5: Recorre en 4 tramos: fila 0 de izq a der, ultima columna de arriba a
+        // abajo
+        // (sin repetir esquina), ultima fila de der a izq (sin repetir esquina),
+        // primera columna de abajo a arriba (sin repetir esquinas).
+        // Cuidado con matrices de 1 fila o 1 columna.
+        if (matriz.length <= 1 || matriz[0].length <= 1) {
+            return null;
+        }
+        int[] recorrido = new int[matriz.length * 2 + (matriz[0].length - 2) * 2];
+
         return null;
     }
 
     /**
      * Devuelve un array unidimensional con todos los elementos leidos en zigzag:
-     * fila 0 de izquierda a derecha, fila 1 de derecha a izquierda, fila 2 de izq a der...
+     * fila 0 de izquierda a derecha, fila 1 de derecha a izquierda, fila 2 de izq a
+     * der...
      * Ejemplo {{1,2,3},{4,5,6},{7,8,9}} -> {1,2,3,6,5,4,7,8,9}
      *
      * @param matriz array bidimensional
@@ -91,12 +132,13 @@ public class Ej02_Recorridos {
      */
     public static int[] recorridoZigzag(int[][] matriz) {
         // TODO 6: En el bucle de filas, comprueba si i es par o impar.
-        //         Si par: j va de 0 a columnas. Si impar: j va de columnas-1 a 0.
+        // Si par: j va de 0 a columnas. Si impar: j va de columnas-1 a 0.
         return null;
     }
 
     /**
-     * Devuelve true si la matriz es cuadrada (mismo numero de filas que de columnas).
+     * Devuelve true si la matriz es cuadrada (mismo numero de filas que de
+     * columnas).
      *
      * @param matriz array bidimensional
      * @return true si es cuadrada
@@ -107,12 +149,12 @@ public class Ej02_Recorridos {
     }
 
     // ══════════════════════════════════════════════
-    //  ZONA DE EJECUCION MASTER
+    // ZONA DE EJECUCION MASTER
     // ══════════════════════════════════════════════
     public static void main(String[] args) {
         System.out.println("=== Ejercicio 02: Recorridos ===\n");
 
-        int[][] m = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        int[][] m = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
 
         System.out.print("Por filas: ");
         imprimirArray(recorridoPorFilas(m));
@@ -136,11 +178,15 @@ public class Ej02_Recorridos {
     }
 
     private static void imprimirArray(int[] arr) {
-        if (arr == null) { System.out.println("null"); return; }
+        if (arr == null) {
+            System.out.println("null");
+            return;
+        }
         StringBuilder sb = new StringBuilder("[");
         for (int i = 0; i < arr.length; i++) {
             sb.append(arr[i]);
-            if (i < arr.length - 1) sb.append(", ");
+            if (i < arr.length - 1)
+                sb.append(", ");
         }
         sb.append("]");
         System.out.println(sb);
