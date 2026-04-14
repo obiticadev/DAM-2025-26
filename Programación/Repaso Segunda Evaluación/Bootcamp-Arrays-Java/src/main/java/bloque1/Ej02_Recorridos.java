@@ -117,8 +117,24 @@ public class Ej02_Recorridos {
             return null;
         }
         int[] recorrido = new int[matriz.length * 2 + (matriz[0].length - 2) * 2];
+        int contadorArray = 0;
+        int filas = matriz.length;
+        int columnas = matriz[0].length;
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+                if (i == 0) {
+                    recorrido[contadorArray++] = matriz[i][j];
+                } else if (i != 0 && i != (filas - 1) && j == (columnas - 1)) {
+                    recorrido[contadorArray++] = matriz[i][j];
+                } else if (i == filas - 1) {
+                    recorrido[contadorArray++] = matriz[i][columnas - 1 - j];
+                } else if (i != 0 && i != (filas - 1) && j == 0) {
+                    recorrido[contadorArray++] = matriz[filas - 1 - i][j];
+                }
+            }
 
-        return null;
+        }
+        return recorrido;
     }
 
     /**
