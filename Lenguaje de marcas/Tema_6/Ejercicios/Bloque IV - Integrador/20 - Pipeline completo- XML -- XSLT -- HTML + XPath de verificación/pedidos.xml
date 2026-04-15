@@ -1,0 +1,15 @@
+<pedidos>
+  <pedido id="P01" estado="enviado">
+    <cliente>Ana Ruiz</cliente>
+    <linea producto="Teclado" qty="2" precio="45.00"/>
+    <linea producto="Ratón" qty="1" precio="25.00"/>
+  </pedido>
+  <pedido id="P02" estado="pendiente">
+    <cliente>Luis Mora</cliente>
+    <linea producto="Monitor" qty="1" precio="320.00"/>
+  </pedido>
+  <pedido id="P03" estado="enviado">
+    <cliente>Ana Ruiz</cliente>
+    <linea producto="Auriculares" qty="3" precio="60.00"/>
+  </pedido>
+</pedidos>

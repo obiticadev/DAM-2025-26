@@ -1,0 +1,22 @@
+<inventario>
+  <producto id="P01" categoria="Hardware">
+    <nombre>Teclado mecánico</nombre>
+    <stock>15</stock>
+    <precio>89.99</precio>
+  </producto>
+  <producto id="P02" categoria="Software">
+    <nombre>Licencia Office</nombre>
+    <stock>3</stock>
+    <precio>149.00</precio>
+  </producto>
+  <producto id="P03" categoria="Hardware">
+    <nombre>Monitor 27"</nombre>
+    <stock>0</stock>
+    <precio>349.00</precio>
+  </producto>
+  <producto id="P04" categoria="Periféricos">
+    <nombre>Ratón inalámbrico</nombre>
+    <stock>42</stock>
+    <precio>35.50</precio>
+  </producto>
+</inventario>

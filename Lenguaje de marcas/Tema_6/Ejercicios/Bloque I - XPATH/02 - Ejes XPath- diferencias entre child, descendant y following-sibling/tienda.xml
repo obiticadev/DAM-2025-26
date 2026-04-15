@@ -1,0 +1,9 @@
+<tienda>
+  <seccion nombre="Informática">
+    <producto><nombre>Teclado</nombre></producto>
+    <producto><nombre>Ratón</nombre></producto>
+  </seccion>
+  <seccion nombre="Audio">
+    <producto><nombre>Auriculares</nombre></producto>
+  </seccion>
+</tienda>

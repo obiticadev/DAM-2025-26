@@ -1,0 +1,10 @@
+<articulos>
+  <articulo id="A1">
+    <nombre>Silla ergonómica</nombre>
+    <precio>199.00</precio>
+  </articulo>
+  <articulo id="A2">
+    <nombre>Mesa de oficina</nombre>
+    <precio>349.50</precio>
+  </articulo>
+</articulos>

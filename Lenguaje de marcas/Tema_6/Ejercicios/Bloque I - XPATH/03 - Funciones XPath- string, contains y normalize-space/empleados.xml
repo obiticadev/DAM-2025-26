@@ -1,0 +1,12 @@
+<empresa>
+  <empleado>
+    <nombre>  Ana López  </nombre>
+    <email>ana@empresa.com</email>
+    <puesto>Desarrolladora Senior</puesto>
+  </empleado>
+  <empleado>
+    <nombre>Carlos Ruiz</nombre>
+    <email>carlos@empresa.com</email>
+    <puesto>Analista</puesto>
+  </empleado>
+</empresa>
