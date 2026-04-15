@@ -75,7 +75,7 @@ El único agente que pertenecerá directamente a una oficina y que no formará p
 **Modelo Entidad-Relación:**
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#1e293b', 'secondaryColor': '#1e293b', 'tertiaryColor': '#1e293b', 'quaternaryColor': '#1e293b', 'mainBkg': '#1e293b', 'nodeBkg': '#1e293b', 'attributeFill': '#1e293b', 'primaryTextColor': '#f8fafc', 'primaryBorderColor': '#38bdf8', 'lineColor': '#94a3b8', 'attributeTextColor': '#f8fafc', 'nodeTextColor': '#f8fafc', 'clusterBkg': '#0f172a', 'clusterBorder': '#475569'}}}%%
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#1e293b', 'secondaryColor': '#1e293b', 'tertiaryColor': '#1e293b', 'quaternaryColor': '#1e293b', 'mainBkg': '#1e293b', 'nodeBkg': '#1e293b', 'attributeFill': '#1e293b', 'primaryTextColor': '#878787', 'primaryBorderColor': '#38bdf8', 'lineColor': '#94a3b8', 'attributeTextColor': '#f8fafc', 'nodeTextColor': '#7b7b7b', 'clusterBkg': '#0f172a', 'clusterBorder': '#475569'}}}%%
 erDiagram
     OFICINAS ||--o{ AGENTES : supervisadas
     OFICINAS ||--o{ FAMILIAS : compuestas
