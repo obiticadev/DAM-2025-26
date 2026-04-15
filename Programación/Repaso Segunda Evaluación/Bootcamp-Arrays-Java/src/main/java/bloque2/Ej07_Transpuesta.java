@@ -18,10 +18,17 @@ public class Ej07_Transpuesta {
      * @return nueva matriz transpuesta
      */
     public static int[][] transponer(int[][] matriz) {
-        // TODO 1: Calcula las dimensiones de la transpuesta (filas y columnas invertidas).
-        //         Crea un nuevo array con esas dimensiones.
-        //         Recorre la original con doble bucle y aplica: resultado[j][i] = matriz[i][j].
-        return null;
+        // TODO 1: Calcula las dimensiones de la transpuesta (filas y columnas
+        // invertidas).
+        // Crea un nuevo array con esas dimensiones.
+        // Recorre la original con doble bucle y aplica: resultado[j][i] = matriz[i][j].
+        int[][] resultado = new int[matriz[0].length][matriz.length];
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[0].length; j++) {
+                resultado[j][i] = matriz[i][j];
+            }
+        }
+        return resultado;
     }
 
     /**
@@ -34,13 +41,15 @@ public class Ej07_Transpuesta {
      */
     public static boolean esSimetrica(int[][] matriz) {
         // TODO 2: Primero comprueba que es cuadrada (filas == columnas). Si no, false.
-        //         Recorre solo la mitad superior (j > i). Si matriz[i][j] != matriz[j][i], false.
-        //         Si llegas al final sin diferencias, true.
+        // Recorre solo la mitad superior (j > i). Si matriz[i][j] != matriz[j][i],
+        // false.
+        // Si llegas al final sin diferencias, true.
         return false;
     }
 
     /**
-     * Aplica la transpuesta dos veces y comprueba que el resultado es igual al original.
+     * Aplica la transpuesta dos veces y comprueba que el resultado es igual al
+     * original.
      * Devuelve true si transponer(transponer(matriz)) == matriz.
      *
      * @param matriz array bidimensional
@@ -48,7 +57,7 @@ public class Ej07_Transpuesta {
      */
     public static boolean dobleTransposicionEsOriginal(int[][] matriz) {
         // TODO 3: Llama a transponer dos veces. Compara el resultado con la original
-        //         celda a celda. Devuelve true si son identicas.
+        // celda a celda. Devuelve true si son identicas.
         return false;
     }
 
@@ -62,13 +71,14 @@ public class Ej07_Transpuesta {
      */
     public static String pintar(int[][] matriz) {
         // TODO 4: Usa StringBuilder. Doble bucle. Anade valor + espacio entre valores.
-        //         Salto de linea entre filas. Sin espacio ni salto extra al final.
+        // Salto de linea entre filas. Sin espacio ni salto extra al final.
         return "";
     }
 
     /**
      * Dada una matriz MxN, devuelve una nueva matriz NxM donde cada celda contiene
-     * la suma de la fila original a la que pertenecia ese elemento en la transpuesta.
+     * la suma de la fila original a la que pertenecia ese elemento en la
+     * transpuesta.
      * Es decir: resultado[j][i] = suma de la fila i de la original.
      *
      * @param matriz array bidimensional
@@ -76,8 +86,8 @@ public class Ej07_Transpuesta {
      */
     public static int[][] transponerConSumaFila(int[][] matriz) {
         // TODO 5: Primero calcula la suma de cada fila de la original (array auxiliar).
-        //         Luego crea la transpuesta, pero en vez de copiar el valor,
-        //         pon la suma de la fila original: resultado[j][i] = sumaFila[i].
+        // Luego crea la transpuesta, pero en vez de copiar el valor,
+        // pon la suma de la fila original: resultado[j][i] = sumaFila[i].
         return null;
     }
 
@@ -92,8 +102,8 @@ public class Ej07_Transpuesta {
      */
     public static int[] diagonalTranspuesta(int[][] matriz) {
         // TODO 6: Transponer la matriz. Luego extraer la diagonal principal
-        //         (los elementos donde i == j). El tamano de la diagonal es
-        //         Math.min(transpuesta.length, transpuesta[0].length).
+        // (los elementos donde i == j). El tamano de la diagonal es
+        // Math.min(transpuesta.length, transpuesta[0].length).
         return null;
     }
 
@@ -107,18 +117,18 @@ public class Ej07_Transpuesta {
      */
     public static boolean sumaConservada(int[][] matriz) {
         // TODO 7: Calcula la suma total de la original (doble bucle).
-        //         Transponer. Calcula la suma total de la transpuesta.
-        //         Compara ambas sumas.
+        // Transponer. Calcula la suma total de la transpuesta.
+        // Compara ambas sumas.
         return false;
     }
 
     // ══════════════════════════════════════════════
-    //  ZONA DE EJECUCION MASTER
+    // ZONA DE EJECUCION MASTER
     // ══════════════════════════════════════════════
     public static void main(String[] args) {
         System.out.println("=== Ejercicio 07: Transpuesta ===\n");
 
-        int[][] m = {{1, 2, 3}, {4, 5, 6}};
+        int[][] m = { { 1, 2, 3 }, { 4, 5, 6 } };
         System.out.println("Original (2x3):");
         System.out.println(pintar(m));
 
@@ -126,9 +136,27 @@ public class Ej07_Transpuesta {
         System.out.println("\nTranspuesta (3x2):");
         System.out.println(t != null ? pintar(t) : "null");
 
-        int[][] cuad = {{1, 2, 3}, {2, 5, 6}, {3, 6, 9}};
+        int[][] cuad = { { 1, 2, 3 }, { 2, 5, 6 }, { 3, 6, 9 } };
         System.out.println("\nMatriz simetrica: " + esSimetrica(cuad));
         System.out.println("Doble transposicion = original: " + dobleTransposicionEsOriginal(m));
         System.out.println("Suma conservada: " + sumaConservada(m));
+
+        int[][] matrizPersonalizada = {
+                { 1, 2 },
+                { 3, 4 },
+                { 5, 6 },
+                { 7, 8 }
+        };
+        int[][] traspuesta = transponer(matrizPersonalizada);
+        int[] suma = new int[traspuesta.length];
+        int contador = 0;
+        for (int[] fila : traspuesta) {
+
+            for (int is : fila) {
+                System.out.print(String.format("%3d", is).toString());
+                suma[contador] += is;
+            }
+            System.out.println(" = " + suma[contador++]);
+        }
     }
 }
