@@ -12,3 +12,13 @@ build/
 out/
 .DS_Store
 Thumbs.db
+target/
+.vscode/
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+hs_err_pid*
+replay_pid*

@@ -1,6 +1,0 @@
-{
-    "java.project.referencedLibraries": [
-        "04_MapsMasterclass/lib/**/*.jar"
-    ],
-    "java.compile.nullAnalysis.mode": "automatic"
-}

@@ -1,7 +1,5 @@
 package bloque1;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
@@ -21,14 +19,16 @@ public class Ej01_EscribirBytes {
      * @return true si el directorio ya existia o se creo correctamente
      */
     public static boolean crearDirectorioPadre(String ruta) {
-        // TODO 1: Obtener el directorio padre de la ruta usando new File(ruta).getParentFile().
-        //         Si el padre no es null y no existe, crearlo con mkdirs().
-        //         Devolver true si ya existia o se creo bien, false en caso contrario.
+        // TODO 1: Obtener el directorio padre de la ruta usando new
+        // File(ruta).getParentFile().
+        // Si el padre no es null y no existe, crearlo con mkdirs().
+        // Devolver true si ya existia o se creo bien, false en caso contrario.
         return false;
     }
 
     /**
-     * Escribe un unico byte en un fichero nuevo. Si el fichero existe, lo sobrescribe.
+     * Escribe un unico byte en un fichero nuevo. Si el fichero existe, lo
+     * sobrescribe.
      *
      * @param ruta  ruta del fichero destino
      * @param valor byte a escribir (0-255)
@@ -36,8 +36,8 @@ public class Ej01_EscribirBytes {
      */
     public static void escribirUnByte(String ruta, int valor) throws IOException {
         // TODO 2: Crear un FileOutputStream con la ruta recibida.
-        //         Escribir el valor con write(int).
-        //         Cerrar el stream en un bloque finally o try-finally.
+        // Escribir el valor con write(int).
+        // Cerrar el stream en un bloque finally o try-finally.
         throw new UnsupportedOperationException("TODO 2 no implementado");
     }
 
@@ -51,8 +51,8 @@ public class Ej01_EscribirBytes {
      */
     public static void escribirArrayBytes(String ruta, byte[] datos) throws IOException {
         // TODO 3: Crear un FileOutputStream con la ruta.
-        //         Escribir todo el array con write(byte[]).
-        //         Cerrar el stream.
+        // Escribir todo el array con write(byte[]).
+        // Cerrar el stream.
         throw new UnsupportedOperationException("TODO 3 no implementado");
     }
 
@@ -66,8 +66,8 @@ public class Ej01_EscribirBytes {
      */
     public static void anadirBytes(String ruta, byte[] datos) throws IOException {
         // TODO 4: Crear un FileOutputStream en modo APPEND (segundo parametro true).
-        //         Escribir el array de bytes.
-        //         Cerrar el stream.
+        // Escribir el array de bytes.
+        // Cerrar el stream.
         throw new UnsupportedOperationException("TODO 4 no implementado");
     }
 
@@ -81,8 +81,8 @@ public class Ej01_EscribirBytes {
      */
     public static void escribirTextoComoBytes(String ruta, String texto) throws IOException {
         // TODO 5: Convertir el texto a byte[] con texto.getBytes().
-        //         Usar FileOutputStream para escribir ese array.
-        //         Cerrar el stream.
+        // Usar FileOutputStream para escribir ese array.
+        // Cerrar el stream.
         throw new UnsupportedOperationException("TODO 5 no implementado");
     }
 
@@ -96,10 +96,11 @@ public class Ej01_EscribirBytes {
      * @throws IllegalArgumentException si n es negativo o mayor que 256
      */
     public static void escribirSecuencia(String ruta, int n) throws IOException {
-        // TODO 6: Validar que n >= 0 y n <= 256. Si no, lanzar IllegalArgumentException.
-        //         Crear FileOutputStream.
-        //         En un bucle de 0 a n-1, escribir cada valor con write(int).
-        //         Cerrar el stream.
+        // TODO 6: Validar que n >= 0 y n <= 256. Si no, lanzar
+        // IllegalArgumentException.
+        // Crear FileOutputStream.
+        // En un bucle de 0 a n-1, escribir cada valor con write(int).
+        // Cerrar el stream.
         throw new UnsupportedOperationException("TODO 6 no implementado");
     }
 
@@ -111,13 +112,13 @@ public class Ej01_EscribirBytes {
      */
     public static long obtenerTamano(String ruta) {
         // TODO 7: Crear un objeto File con la ruta.
-        //         Si existe, devolver file.length().
-        //         Si no existe, devolver -1.
+        // Si existe, devolver file.length().
+        // Si no existe, devolver -1.
         return -1;
     }
 
     // ══════════════════════════════════════════════
-    //  ZONA DE EJECUCION — Pulsa Run aqui
+    // ZONA DE EJECUCION — Pulsa Run aqui
     // ══════════════════════════════════════════════
     public static void main(String[] args) throws IOException {
         System.out.println("=== Ejercicio 01: Escribir Bytes ===\n");
@@ -130,11 +131,11 @@ public class Ej01_EscribirBytes {
         System.out.println("   Tamano: " + obtenerTamano(dir + "/un_byte.bin") + " bytes");
 
         System.out.println("2. Escribir array de bytes:");
-        escribirArrayBytes(dir + "/array.bin", new byte[]{72, 111, 108, 97});
+        escribirArrayBytes(dir + "/array.bin", new byte[] { 72, 111, 108, 97 });
         System.out.println("   Tamano: " + obtenerTamano(dir + "/array.bin") + " bytes");
 
         System.out.println("3. Anadir bytes:");
-        anadirBytes(dir + "/array.bin", new byte[]{33});
+        anadirBytes(dir + "/array.bin", new byte[] { 33 });
         System.out.println("   Tamano tras anadir: " + obtenerTamano(dir + "/array.bin") + " bytes");
 
         System.out.println("4. Escribir texto como bytes:");
