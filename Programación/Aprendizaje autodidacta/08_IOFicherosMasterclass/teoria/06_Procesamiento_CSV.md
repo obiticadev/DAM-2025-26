@@ -1,6 +1,18 @@
 # Bloque VI — Procesamiento de Ficheros CSV
 
+> 🔷 **COMPLEMENTARIO** — Este bloque NO entra en el examen del Tema 10, pero
+> es muy util para la practica profesional.
+>
 > Referencia para ejercicios Ej31 a Ej36 en `src/main/java/bloque6/`
+>
+> | Ejercicio | Examen |
+> |-----------|--------|
+> | Ej31_LeerCSV | 🔷 COMPLEMENTARIO |
+> | Ej32_EscribirCSV | 🔷 COMPLEMENTARIO |
+> | Ej33_FiltrarCSV | 🔷 COMPLEMENTARIO |
+> | Ej34_AgruparCSV | 🔷 COMPLEMENTARIO |
+> | Ej35_UnirCSV | 🔷 COMPLEMENTARIO |
+> | Ej36_ValidarCSV | 🔷 COMPLEMENTARIO |
 
 ---
 

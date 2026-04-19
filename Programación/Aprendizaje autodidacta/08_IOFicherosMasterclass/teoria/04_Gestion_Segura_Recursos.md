@@ -1,6 +1,15 @@
 # Bloque IV — Gestion Segura de Recursos (try-with-resources)
 
 > Referencia para ejercicios Ej19 a Ej24 en `src/main/java/bloque4/`
+>
+> | Ejercicio | Examen |
+> |-----------|--------|
+> | Ej19_TryWithResources | 📋 ENTRA EN EXAMEN — Tema 03 (try-with-resources) |
+> | Ej20_MultiRecurso | 📋 ENTRA EN EXAMEN — Tema 03 (multiples recursos) |
+> | Ej21_AutoCloseableCustom | 🔷 COMPLEMENTARIO (no entra en examen) |
+> | Ej22_SuppressedExceptions | 🔷 COMPLEMENTARIO (no entra en examen) |
+> | Ej23_PatronesSeguridad | 📋 ENTRA EN EXAMEN — Tema 03 (buenas practicas) |
+> | Ej24_RefactorTryFinally | 📋 ENTRA EN EXAMEN — Tema 03 (try-finally vs try-with-resources) |
 
 ---
 
@@ -208,3 +217,49 @@ try (FileWriter fw = new FileWriter("f.txt")) {
     System.err.println("Error: " + e.getMessage());
 }
 ```
+
+---
+
+## 7. Modo Append: agregar sin sobrescribir (📋 ENTRA EN EXAMEN)
+
+El modo **append** es crucial para agregar contenido a un fichero **sin borrar**
+lo que ya contiene. Se activa con el segundo parametro `true` en el constructor.
+
+### FileWriter en modo append
+
+```java
+// SOBRESCRIBE el contenido existente
+FileWriter fw = new FileWriter("archivo.txt");
+
+// ANADE al final del contenido existente
+FileWriter fw = new FileWriter("archivo.txt", true);
+```
+
+> **Atencion en el examen:** La diferencia entre `new FileWriter("archivo.txt")`
+> (sobrescribe) y `new FileWriter("archivo.txt", true)` (anade) es un solo
+> argumento booleano. Olvidarlo provoca perdida de datos.
+
+### BufferedWriter en modo append
+
+```java
+try (BufferedWriter bw = new BufferedWriter(new FileWriter("log.txt", true))) {
+    bw.write("Nueva linea anadida");
+    bw.newLine();
+}
+```
+
+### PrintWriter en modo append
+
+```java
+try (PrintWriter pw = new PrintWriter(new FileWriter("datos.txt", true))) {
+    pw.println("Nombre: Ana");
+    pw.printf("Peso: %.2f kg%n", 60.5);
+}
+```
+
+### Cuando usar append
+
+- **Ficheros de log**: para no perder el historial.
+- **Registros de acceso**: cada ejecucion anade nuevos datos.
+- **Acumulacion de datos**: como un diario que crece con cada entrada.
+

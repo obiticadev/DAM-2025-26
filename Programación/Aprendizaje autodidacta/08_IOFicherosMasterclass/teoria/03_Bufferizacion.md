@@ -1,6 +1,15 @@
 # Bloque III — Bufferizacion (Wrappers / Decoradores)
 
 > Referencia para ejercicios Ej13 a Ej18 en `src/main/java/bloque3/`
+>
+> | Ejercicio | Examen |
+> |-----------|--------|
+> | Ej13_BufferedWriterBasico | 📋 ENTRA EN EXAMEN — Tema 04 (BufferedWriter) |
+> | Ej14_BufferedReaderReadLine | 📋 ENTRA EN EXAMEN — Tema 04 (BufferedReader) |
+> | Ej15_PrintWriterFormateado | 📋 ENTRA EN EXAMEN — Tema 03 (PrintWriter) |
+> | Ej16_BufferedBinario | 📋 ENTRA EN EXAMEN — Tema 02 (BufferedInputStream/OutputStream) |
+> | Ej17_CopiarTextoBuffered | 📋 ENTRA EN EXAMEN — Tema 04 (lectura+escritura simultanea) |
+> | Ej18_CadenaDecoradores | 🔷 COMPLEMENTARIO (no entra en examen) |
 
 ---
 
@@ -211,3 +220,75 @@ BufferedWriter bw = new BufferedWriter(new BufferedWriter(new FileWriter("f.txt"
 // BIEN: un solo buffer
 BufferedWriter bw = new BufferedWriter(new FileWriter("f.txt"));
 ```
+
+---
+
+## 8. Scanner para lectura de archivos (📋 ENTRA EN EXAMEN)
+
+`Scanner` (del paquete `java.util`) es una clase versatil que puede leer desde
+teclado, cadenas de texto y **ficheros**. Para leer ficheros, se combina con `File`.
+
+### Constructores mas comunes
+
+| Constructor | Descripcion |
+|-------------|-------------|
+| `Scanner(File fuente)` | Lee desde un archivo |
+| `Scanner(InputStream)` | Lee desde teclado (`System.in`) |
+| `Scanner(String texto)` | Lee desde una cadena de texto |
+
+### Metodos utiles
+
+| Metodo | Descripcion |
+|--------|-------------|
+| `hasNextLine()` | `true` si hay otra linea disponible |
+| `nextLine()` | Lee una linea completa |
+| `next()` | Lee la siguiente palabra (token) |
+| `nextInt()` | Lee el siguiente entero |
+| `nextDouble()` | Lee el siguiente numero decimal |
+| `close()` | Cierra el recurso |
+
+### Ejemplo: leer un fichero con Scanner
+
+```java
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+
+File archivo = new File("datos.txt");
+try (Scanner lector = new Scanner(archivo)) {
+    while (lector.hasNextLine()) {
+        String linea = lector.nextLine();
+        System.out.println("Leido: " + linea);
+    }
+} catch (FileNotFoundException e) {
+    System.out.println("Archivo no encontrado");
+}
+```
+
+### Ejemplo combinado: PrintWriter + Scanner
+
+```java
+import java.io.*;
+import java.util.*;
+
+// Escribir con PrintWriter (modo append)
+try (PrintWriter pw = new PrintWriter(new FileWriter("personas.txt", true))) {
+    pw.println("Ana,25");
+    pw.println("Luis,32");
+}
+
+// Leer con Scanner
+try (Scanner sc = new Scanner(new File("personas.txt"))) {
+    while (sc.hasNextLine()) {
+        System.out.println(sc.nextLine());
+    }
+}
+```
+
+### Comparativa PrintWriter vs Scanner
+
+| Caracteristica | PrintWriter | Scanner |
+|---------------|-------------|----------|
+| Uso principal | Escritura | Lectura |
+| Metodos | `print()`, `println()`, `printf()` | `nextLine()`, `nextInt()`, `hasNextLine()` |
+| Excepcion | `IOException` | `FileNotFoundException` |

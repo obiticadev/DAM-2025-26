@@ -1,6 +1,15 @@
 # Bloque I — Flujos de Datos (Streams I/O): La Tuberia Logica
 
 > Referencia para ejercicios Ej01 a Ej06 en `src/main/java/bloque1/`
+>
+> | Ejercicio | Examen |
+> |-----------|--------|
+> | Ej01_EscribirBytes | 📋 ENTRA EN EXAMEN — Tema 02 (FileOutputStream) |
+> | Ej02_LeerBytes | 📋 ENTRA EN EXAMEN — Tema 02 (FileInputStream) |
+> | Ej03_CopiarFichero | 📋 ENTRA EN EXAMEN — Tema 02 (copia con streams) |
+> | Ej04_CopiarConBufferManual | 📋 ENTRA EN EXAMEN — Tema 02/04 (buffer manual) |
+> | Ej05_FlujoCaracteres | 📋 ENTRA EN EXAMEN — Tema 02 (FileReader/FileWriter) |
+> | Ej06_DetectorDireccion | 🔷 COMPLEMENTARIO (no entra en examen) |
 
 ---
 

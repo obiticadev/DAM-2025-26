@@ -1,6 +1,15 @@
 # Bloque II — Archivos de Texto vs. Archivos Binarios
 
 > Referencia para ejercicios Ej07 a Ej12 en `src/main/java/bloque2/`
+>
+> | Ejercicio | Examen |
+> |-----------|--------|
+> | Ej07_EscribirTexto | 📋 ENTRA EN EXAMEN — Tema 02 (FileWriter) |
+> | Ej08_LeerTexto | 📋 ENTRA EN EXAMEN — Tema 02 (FileReader) |
+> | Ej09_EscribirBinario | 📋 ENTRA EN EXAMEN — Tema 02 (FileOutputStream) |
+> | Ej10_LeerBinario | 📋 ENTRA EN EXAMEN — Tema 02 (FileInputStream) |
+> | Ej11_CorrupcionCruzada | 🔷 COMPLEMENTARIO (no entra en examen) |
+> | Ej12_SelectorEstrategia | 🔷 COMPLEMENTARIO (no entra en examen) |
 
 ---
 

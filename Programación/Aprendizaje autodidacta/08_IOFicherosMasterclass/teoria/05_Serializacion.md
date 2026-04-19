@@ -1,6 +1,15 @@
 # Bloque V — Serializacion de Objetos
 
 > Referencia para ejercicios Ej25 a Ej30 en `src/main/java/bloque5/`
+>
+> | Ejercicio | Examen |
+> |-----------|--------|
+> | Ej25_SerializarObjeto | 📋 ENTRA EN EXAMEN — Tema 07 (ObjectOutputStream) |
+> | Ej26_SerializarLista | 📋 ENTRA EN EXAMEN — Tema 07 (lista de objetos) |
+> | Ej27_SerializarMultiple | 📋 ENTRA EN EXAMEN — Tema 07 (multiples objetos) |
+> | Ej28_TransientYVersion | 📋 ENTRA EN EXAMEN — Tema 07 (transient + serialVersionUID) |
+> | Ej29_SerializarHerencia | 🔷 COMPLEMENTARIO (no entra en examen) |
+> | Ej30_SerializarTextoVsBinario | 🔷 COMPLEMENTARIO (no entra en examen) |
 
 ---
 
