@@ -1,5 +1,7 @@
 package bloque1;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
@@ -23,7 +25,12 @@ public class Ej01_EscribirBytes {
         // File(ruta).getParentFile().
         // Si el padre no es null y no existe, crearlo con mkdirs().
         // Devolver true si ya existia o se creo bien, false en caso contrario.
-        return false;
+        File fichero = new File(ruta);
+        File padre = fichero.getParentFile();
+        if (padre == null || !padre.exists()) {
+            return padre.mkdirs();
+        }
+        return true;
     }
 
     /**
@@ -38,7 +45,11 @@ public class Ej01_EscribirBytes {
         // TODO 2: Crear un FileOutputStream con la ruta recibida.
         // Escribir el valor con write(int).
         // Cerrar el stream en un bloque finally o try-finally.
-        throw new UnsupportedOperationException("TODO 2 no implementado");
+        try (FileOutputStream fos = new FileOutputStream(ruta)) {
+            fos.write(valor);
+        } catch (IOException e) {
+            System.out.println("Error en algún lugar: " + e.getMessage());
+        }
     }
 
     /**
@@ -53,7 +64,11 @@ public class Ej01_EscribirBytes {
         // TODO 3: Crear un FileOutputStream con la ruta.
         // Escribir todo el array con write(byte[]).
         // Cerrar el stream.
-        throw new UnsupportedOperationException("TODO 3 no implementado");
+        try (FileOutputStream fos = new FileOutputStream(ruta)) {
+            fos.write(datos);
+        } catch (Exception e) {
+            System.out.println("Error en algún lugar: " + e.getMessage());
+        }
     }
 
     /**
@@ -68,7 +83,9 @@ public class Ej01_EscribirBytes {
         // TODO 4: Crear un FileOutputStream en modo APPEND (segundo parametro true).
         // Escribir el array de bytes.
         // Cerrar el stream.
-        throw new UnsupportedOperationException("TODO 4 no implementado");
+        FileOutputStream fos = new FileOutputStream(ruta, true);
+        fos.write(datos);
+        fos.close();
     }
 
     /**
@@ -83,7 +100,12 @@ public class Ej01_EscribirBytes {
         // TODO 5: Convertir el texto a byte[] con texto.getBytes().
         // Usar FileOutputStream para escribir ese array.
         // Cerrar el stream.
-        throw new UnsupportedOperationException("TODO 5 no implementado");
+        try (FileOutputStream fos = new FileOutputStream(ruta)) {
+            byte[] array = texto.getBytes();
+            fos.write(array);
+        } catch (Exception e) {
+            e.getMessage();
+        }
     }
 
     /**
@@ -101,7 +123,16 @@ public class Ej01_EscribirBytes {
         // Crear FileOutputStream.
         // En un bucle de 0 a n-1, escribir cada valor con write(int).
         // Cerrar el stream.
-        throw new UnsupportedOperationException("TODO 6 no implementado");
+        if (n < 0 || n > 256) {
+            throw new IllegalArgumentException();
+        }
+        try (FileOutputStream fos = new FileOutputStream(ruta)) {
+            for (int i = 0; i < n; i++) {
+                fos.write(i);
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
     }
 
     /**
@@ -114,7 +145,12 @@ public class Ej01_EscribirBytes {
         // TODO 7: Crear un objeto File con la ruta.
         // Si existe, devolver file.length().
         // Si no existe, devolver -1.
-        return -1;
+        File f = new File(ruta);
+        if (f.exists()) {
+            return f.length();
+        } else {
+            return -1;
+        }
     }
 
     // ══════════════════════════════════════════════
