@@ -1,0 +1,2 @@
+idMesa;localidad;votosA;votosB;votosC;blancos;nulos
+3;Madrid;135;70;47;2;3

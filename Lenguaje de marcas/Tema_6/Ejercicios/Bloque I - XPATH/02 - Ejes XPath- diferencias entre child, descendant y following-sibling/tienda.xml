@@ -6,4 +6,7 @@
   <seccion nombre="Audio">
     <producto><nombre>Auriculares</nombre></producto>
   </seccion>
+  <seccion nombre="radio">
+    <producto><nombre>FM</nombre></producto>
+  </seccion>
 </tienda>
