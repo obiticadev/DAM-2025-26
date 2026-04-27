@@ -64,32 +64,40 @@ public class App {
 
     private static void prestamoEstandar() {
         try {
-            LocalDate fechaPrestamo = LocalDate.parse(preguntaString("Introduce la fecha de préstamo (yyyy-MM-dd): "));
+            LocalDate fechaPrestamo = LocalDate.parse(preguntaString("Introduce la fecha de préstamo (yyyy-MM-dd): ").trim());
             LocalDate fechaDevolucion = LocalDate
-                    .parse(preguntaString("Introduce la fecha de devolución (yyyy-MM-dd): "));
+                    .parse(preguntaString("Introduce la fecha de devolución (yyyy-MM-dd): ").trim());
             String idSocio = preguntaString("Introduce el identificador del socio: ");
             String sala = preguntaString("Introduce la sala de recogida: ");
             daoPrestamos.agregarPrestamo(new PrestamoEstandar(fechaPrestamo, fechaDevolucion, idSocio, sala));
             System.out.println("Préstamo registrado correctamente");
+        } catch (java.time.format.DateTimeParseException e) {
+            System.out.println("Error: El formato de fecha es incorrecto. Debe ser AAAA-MM-DD (ej: 2024-04-26)");
         } catch (Exception e) {
-            System.out.println("Ha ocurrido un error");
+            System.out.println("Ha ocurrido un error inesperado: " + e.getMessage());
         }
 
     }
 
     private static void prestamoReserva() {
         try {
-            LocalDate fechaPrestamo = LocalDate.parse(preguntaString("Introduce la fecha de préstamo (yyyy-MM-dd): "));
+            LocalDate fechaPrestamo = LocalDate.parse(preguntaString("Introduce la fecha de préstamo (yyyy-MM-dd): ").trim());
             LocalDate fechaDevolucion = LocalDate
-                    .parse(preguntaString("Introduce la fecha de devolución (yyyy-MM-dd): "));
+                    .parse(preguntaString("Introduce la fecha de devolución (yyyy-MM-dd): ").trim());
             String idSocio = preguntaString("Introduce el identificador del socio: ");
             String isbn = preguntaString("Introduce el identificador del libro: ");
             Libro libro = daoLibro.buscarPorSignatura(isbn);
-            System.out.println("Libro encontrado: " + libro.toString());
-            daoPrestamos.agregarPrestamo(new PrestamoReserva(fechaPrestamo, fechaDevolucion, idSocio, libro));
-            System.out.println("Préstamo registrado correctamente");
+            if (libro != null) {
+                System.out.println("Libro encontrado: " + libro.toString());
+                daoPrestamos.agregarPrestamo(new PrestamoReserva(fechaPrestamo, fechaDevolucion, idSocio, libro));
+                System.out.println("Préstamo registrado correctamente");
+            } else {
+                System.out.println("Error: El libro con signatura " + isbn + " no existe.");
+            }
+        } catch (java.time.format.DateTimeParseException e) {
+            System.out.println("Error: El formato de fecha es incorrecto. Debe ser AAAA-MM-DD (ej: 2024-04-26)");
         } catch (Exception e) {
-            System.out.println("Ha ocurrido un error");
+            System.out.println("Ha ocurrido un error inesperado: " + e.getMessage());
         }
 
     }
@@ -99,7 +107,16 @@ public class App {
     }
 
     private static void ultimoPrestamo() {
-        String idSocio = preguntaString("Introduce el identificador del socio: ");
-        System.out.println(daoPrestamos.buscarUltimoPrestamoPorSocio(idSocio).toString());
+        try {
+            String idSocio = preguntaString("Introduce el identificador del socio: ");
+            Clases.Prestamo p = daoPrestamos.buscarUltimoPrestamoPorSocio(idSocio);
+            if (p != null) {
+                System.out.println(p.mostrarDetalles());
+            } else {
+                System.out.println("No se han encontrado préstamos para el socio: " + idSocio);
+            }
+        } catch (Exception e) {
+            System.out.println("Ha ocurrido un error al buscar el último préstamo");
+        }
     }
 }
