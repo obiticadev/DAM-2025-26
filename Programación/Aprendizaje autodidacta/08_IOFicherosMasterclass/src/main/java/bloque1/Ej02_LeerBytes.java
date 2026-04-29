@@ -59,19 +59,24 @@ public class Ej02_LeerBytes {
         // Si se llega a EOF antes de la posicion, lanzar IOException.
         // Cerrar stream y devolver el byte.
         if (posicion < 0) {
-            throw new IllegalArgumentException("La posición no puede ser negativa");
+            throw new IllegalArgumentException();
         }
-
-        int unByte = 0;
         try (FileInputStream fis = new FileInputStream(ruta)) {
-            if (fis.read() == -1) {
-                throw new IOException("El fichero es más corto que la posición solicitada");
+            for (int i = 0; i < posicion; i++) {
+                int byteLeido = fis.read();
+
+                if (byteLeido == -1) {
+                    throw new IOException("El fichero terminó antes de llegar a la posición");
+                }
             }
-            int resultado = fis.read();
-            if (resultado == -1) {
-                throw new IOException("No hay datos en la posición: " + posicion);
+
+            int byteFinal = fis.read();
+
+            if (byteFinal == -1) {
+                throw new IOException("No hay datos en la posición " + posicion);
             }
-            return resultado;
+
+            return byteFinal;
 
         }
 
@@ -89,7 +94,16 @@ public class Ej02_LeerBytes {
         // TODO 3: Abrir FileInputStream. Leer byte a byte.
         // Contar cuantas veces el byte leido coincide con valorBusca.
         // Cerrar stream y devolver el contador.
-        return 0;
+        try (FileInputStream fis = new FileInputStream(ruta)) {
+            int contador = 0;
+            int byteLeido;
+            while ((byteLeido = fis.read()) != -1) {
+                if (byteLeido == valorBusca) {
+                    contador++;
+                }
+            }
+            return contador;
+        }
     }
 
     /**
@@ -108,7 +122,11 @@ public class Ej02_LeerBytes {
         // Leer con read(byte[], 0, n) — atencion: puede devolver menos de n.
         // Crear array resultado del tamano exacto leido con Arrays.copyOf.
         // Cerrar stream y devolver el array.
-        return null;
+        if (n < 0) {
+            throw new IllegalArgumentException("Número negativo no permitido");
+        }
+        byte[] buffer = new byte[n];
+
     }
 
     /**
