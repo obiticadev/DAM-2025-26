@@ -1,3 +1,3 @@
 # Listado
 - El primero de todos fue el cómo trabajar con las colecciones y bases de datso al mismo tiempo, pero descubrí que no era necesario crear ninguna ya que si traia los datos de la base de datos a la lista de arrays en algún momento podría quedar desfasada y se desincronizaría. Lo mejor es que si tenemos una base de datos operemos sobre esta siempre y usar las colecciones cuando se quiera entregar de alguna manera en concreto
-- Problema actual: Si creo una clase Conexion para que se instancie en cada dao como funciona la concurrencia con la base de datos? habría que revisar eso
+- Problema actual: Si creo una clase Conexion para que se instancie en cada dao como funciona la concurrencia con la base de datos? habría que revisar eso.
