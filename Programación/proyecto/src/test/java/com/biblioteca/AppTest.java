@@ -1,18 +1,8 @@
 package com.biblioteca;
 
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 /**
- * Unit test for simple App.
+ * Placeholder test class.
  */
 class AppTest {
-    /**
-     * Rigorous Test.
-     */
-    @Test
-    void testApp() {
-        assertEquals(1, 1);
-    }
+    // No se usa, solo existe para cumplir estructura del proyecto
 }

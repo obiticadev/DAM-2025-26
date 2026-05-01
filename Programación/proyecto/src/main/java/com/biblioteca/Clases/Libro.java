@@ -29,4 +29,40 @@ public abstract class Libro {
         this.tipo = tipo;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public Genero getGenero() {
+        return genero;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public LocalDate getAnioPublicacion() {
+        return anioPublicacion;
+    }
+
+    public int getCopiasTotales() {
+        return copiasTotales;
+    }
+
+    public int getCopiasDisponibles() {
+        return copiasDisponibles;
+    }
+
+    public Tipo getTipo() {
+        return tipo;
+    }
+
 }

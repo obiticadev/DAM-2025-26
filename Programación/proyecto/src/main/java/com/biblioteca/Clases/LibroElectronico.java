@@ -21,4 +21,16 @@ public class LibroElectronico extends Libro {
         this.urlDescarga = urlDescarga;
     }
 
+    public int getIdElectronico() {
+        return idElectronico;
+    }
+
+    public Formato getFormato() {
+        return formato;
+    }
+
+    public String getUrlDescarga() {
+        return urlDescarga;
+    }
+
 }

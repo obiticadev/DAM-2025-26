@@ -15,4 +15,13 @@ public class LibroEnPapel extends Libro {
         this.idPapel = idPapel;
         this.ubicacion = ubicacion;
     }
+
+    public int getIdPapel() {
+        return idPapel;
+    }
+
+    public String getUbicacion() {
+        return ubicacion;
+    }
+
 }
