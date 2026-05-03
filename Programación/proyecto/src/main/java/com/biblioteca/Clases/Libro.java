@@ -1,11 +1,12 @@
 package com.biblioteca.Clases;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import com.biblioteca.Enum.Genero;
 import com.biblioteca.Enum.Tipo;
 
-public abstract class Libro {
+public abstract class Libro implements Serializable {
     protected int id;
     protected String titulo;
     protected String autor;

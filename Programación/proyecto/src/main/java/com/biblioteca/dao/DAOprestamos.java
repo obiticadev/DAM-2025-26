@@ -47,9 +47,9 @@ public class DAOprestamos {
     // public Prestamo(int idUsuario, int idLibro, LocalDate fechaPrestamo,
     // LocalDate fechaDevolucionPrevista, LocalDate fechaDevolucionReal, Estado
     // estado)
-    public void insertarUsuario(Prestamo prestamo) {
+    public void insertarPrestamo(Prestamo prestamo) {
         String sql = """
-                INSERT INTO prestamos(int idUsuario, int idLibro, LocalDate fechaPrestamo, LocalDate fechaDevolucionPrevista, LocalDate fechaDevolucionReal, Estado estado)
+                INSERT INTO prestamos(id_usuario, id_libro, fecha_prestamo, fecha_devolucion_prevista, fecha_devolucion_real, estado)
                 VALUES(?, ?, ?, ?, ?, ?)
                         """;
 

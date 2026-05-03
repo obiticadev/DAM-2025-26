@@ -1,8 +1,9 @@
 package com.biblioteca.Clases;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Usuario {
+public class Usuario implements Serializable {
     private int id;
     private String nombre;
     private String apellido;

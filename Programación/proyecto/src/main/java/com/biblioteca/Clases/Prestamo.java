@@ -1,10 +1,11 @@
 package com.biblioteca.Clases;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import com.biblioteca.Enum.Estado;
 
-public class Prestamo {
+public class Prestamo implements Serializable {
     private int id;
     private int idUsuario;
     private int idLibro;
