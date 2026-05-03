@@ -23,9 +23,12 @@ public class Ej07_EscribirTexto {
      */
     public static void escribir(String ruta, String texto) throws IOException {
         // TODO 1: Crear FileWriter con la ruta.
-        //         Escribir el texto con write(String).
-        //         Cerrar el writer.
-        throw new UnsupportedOperationException("TODO 1 no implementado");
+        // Escribir el texto con write(String).
+        // Cerrar el writer.
+        try (FileWriter fileWriter = new FileWriter(ruta)) {
+            fileWriter.write(texto);
+        }
+
     }
 
     /**
@@ -38,9 +41,13 @@ public class Ej07_EscribirTexto {
      */
     public static void escribirLineasConSalto(String ruta, String[] lineas) throws IOException {
         // TODO 2: Crear FileWriter. Recorrer el array.
-        //         Escribir cada linea seguida de '\n'.
-        //         Cerrar el writer.
-        throw new UnsupportedOperationException("TODO 2 no implementado");
+        // Escribir cada linea seguida de '\n'.
+        // Cerrar el writer.
+        try (FileWriter fileWriter = new FileWriter(ruta)) {
+            for (String string : lineas) {
+                fileWriter.write(string + "\n");
+            }
+        }
     }
 
     /**
@@ -63,11 +70,20 @@ public class Ej07_EscribirTexto {
      * @throws IOException si hay error de escritura
      */
     public static void generarFichaHuesped(String ruta, String nombre, String dni,
-                                            int habitacion, int noches) throws IOException {
+            int habitacion, int noches) throws IOException {
         // TODO 3: Construir el String de la ficha con StringBuilder.
-        //         Usar el formato exacto indicado en el Javadoc.
-        //         Escribir el resultado con el metodo escribir.
-        throw new UnsupportedOperationException("TODO 3 no implementado");
+        // Usar el formato exacto indicado en el Javadoc.
+        // Escribir el resultado con el metodo escribir.
+        try (FileWriter fileWriter = new FileWriter(ruta)) {
+            fileWriter.write("============================\n");
+            fileWriter.write("FICHA DE HUESPED\n");
+            fileWriter.write("============================\n");
+            fileWriter.write("Nombre: " + nombre + "\n");
+            fileWriter.write("DNI: " + dni + "\n");
+            fileWriter.write("Habitacion: " + habitacion + "\n");
+            fileWriter.write("Noches: " + noches + "\n");
+            fileWriter.write("============================\n");
+        }
     }
 
     /**
@@ -79,8 +95,10 @@ public class Ej07_EscribirTexto {
      */
     public static void anadirAlFinal(String ruta, String texto) throws IOException {
         // TODO 4: Crear FileWriter en modo append (segundo parametro true).
-        //         Escribir el texto. Cerrar el writer.
-        throw new UnsupportedOperationException("TODO 4 no implementado");
+        // Escribir el texto. Cerrar el writer.
+        try (FileWriter fileWriter = new FileWriter(ruta, true)) {
+            fileWriter.write(texto);
+        }
     }
 
     /**
@@ -88,9 +106,9 @@ public class Ej07_EscribirTexto {
      * Formato de cada linea: "| %-20s | %8.2f EUR |"
      * Con cabecera y separadores:
      * +----------------------+-------------- +
-     * | Servicio             |   Precio      |
+     * | Servicio | Precio |
      * +----------------------+---------------+
-     * | [servicio]           |  [precio] EUR |
+     * | [servicio] | [precio] EUR |
      * ...
      * +----------------------+---------------+
      *
@@ -101,11 +119,19 @@ public class Ej07_EscribirTexto {
      * @throws IllegalArgumentException si los arrays tienen distinta longitud
      */
     public static void generarTablaPrecios(String ruta, String[] servicios,
-                                            double[] precios) throws IOException {
+            double[] precios) throws IOException {
         // TODO 5: Validar que ambos arrays tienen la misma longitud.
-        //         Construir la tabla con StringBuilder usando String.format.
-        //         Escribir con el metodo escribir.
-        throw new UnsupportedOperationException("TODO 5 no implementado");
+        // Construir la tabla con StringBuilder usando String.format.
+        // Escribir con el metodo escribir.
+        if (servicios.length != precios.length) {
+            throw new IllegalArgumentException();
+        }
+        try (FileWriter fileWriter = new FileWriter(ruta)) {
+            for (int i = 0; i < servicios.length; i++) {
+                fileWriter.write("+----------------------+-------------- +\n");
+                fileWriter.write(String.format("| %-20s | %8.2f EUR |\n", servicios[i], precios[i]));
+            }
+        }
     }
 
     /**
@@ -120,9 +146,21 @@ public class Ej07_EscribirTexto {
      */
     public static void escribirRepetido(String ruta, String texto, int veces) throws IOException {
         // TODO 6: Validar veces >= 1. Usar StringBuilder.
-        //         Recorrer cada caracter del texto y anadirlo 'veces' veces.
-        //         Escribir el resultado en el fichero.
-        throw new UnsupportedOperationException("TODO 6 no implementado");
+        // Recorrer cada caracter del texto y anadirlo 'veces' veces.
+        // Escribir el resultado en el fichero.
+        if (veces < 1) {
+            throw new IllegalArgumentException();
+        }
+        try (FileWriter fileWriter = new FileWriter(ruta)) {
+            char[] caracteres = texto.toCharArray();
+            StringBuilder sb = new StringBuilder();
+            for (char c : caracteres) {
+                for (int i = 0; i < veces; i++) {
+                    sb.append(c);
+                }
+            }
+            fileWriter.write(sb.toString());
+        }
     }
 
     /**
@@ -135,11 +173,15 @@ public class Ej07_EscribirTexto {
      */
     public static long caracteresEscritos(String ruta) {
         // TODO 7: Crear File con la ruta. Devolver length() si existe, 0 si no.
+        File file = new File(ruta);
+        if (file.exists() || file.isFile()) {
+            return file.length();
+        }
         return 0;
     }
 
     // ══════════════════════════════════════════════
-    //  ZONA DE EJECUCION — Pulsa Run aqui
+    // ZONA DE EJECUCION — Pulsa Run aqui
     // ══════════════════════════════════════════════
     public static void main(String[] args) throws IOException {
         System.out.println("=== Ejercicio 07: Escribir Texto ===\n");
@@ -151,7 +193,7 @@ public class Ej07_EscribirTexto {
         System.out.println("Caracteres escritos: " + caracteresEscritos(dir + "/simple.txt"));
 
         escribirLineasConSalto(dir + "/lineas.txt",
-                new String[]{"Check-in: 14:00", "Check-out: 12:00", "WiFi: incluido"});
+                new String[] { "Check-in: 14:00", "Check-out: 12:00", "WiFi: incluido" });
 
         generarFichaHuesped(dir + "/ficha.txt", "Ana Garcia", "12345678A", 301, 3);
         System.out.println("Ficha generada: " + caracteresEscritos(dir + "/ficha.txt") + " bytes");
@@ -159,8 +201,8 @@ public class Ej07_EscribirTexto {
         anadirAlFinal(dir + "/simple.txt", "\nSegunda linea");
 
         generarTablaPrecios(dir + "/precios.txt",
-                new String[]{"Habitacion doble", "Desayuno", "Parking"},
-                new double[]{89.50, 12.00, 15.75});
+                new String[] { "Habitacion doble", "Desayuno", "Parking" },
+                new double[] { 89.50, 12.00, 15.75 });
 
         escribirRepetido(dir + "/repetido.txt", "AB", 3);
         System.out.println("Repetido: " + caracteresEscritos(dir + "/repetido.txt") + " bytes");

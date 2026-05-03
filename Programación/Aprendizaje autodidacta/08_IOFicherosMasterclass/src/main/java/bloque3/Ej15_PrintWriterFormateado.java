@@ -20,24 +20,32 @@ public class Ej15_PrintWriterFormateado {
      * Escribe un log de operaciones usando PrintWriter.
      * Cada entrada tiene formato: "[timestamp] [nivel] [mensaje]"
      *
-     * @param ruta      ruta del fichero
-     * @param mensajes  array de mensajes
-     * @param niveles   array de niveles ("INFO", "WARN", "ERROR")
+     * @param ruta     ruta del fichero
+     * @param mensajes array de mensajes
+     * @param niveles  array de niveles ("INFO", "WARN", "ERROR")
      * @throws IOException              si hay error de escritura
      * @throws IllegalArgumentException si los arrays tienen distinta longitud
      */
     public static void escribirLog(String ruta, String[] mensajes, String[] niveles) throws IOException {
-        // TODO 1: Validar longitudes. Crear PrintWriter envolviendo BufferedWriter+FileWriter.
-        //         Para cada mensaje, usar printf con formato:
-        //         "[%03d] %-5s %s%n" donde 03d es el indice (1-indexed).
-        //         Cerrar writer.
-        throw new UnsupportedOperationException("TODO 1 no implementado");
+        // TODO 1: Validar longitudes. Crear PrintWriter envolviendo
+        // BufferedWriter+FileWriter.
+        // Para cada mensaje, usar printf con formato:
+        // "[%03d] %-5s %s%n" donde 03d es el indice (1-indexed).
+        // Cerrar writer.
+        try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(ruta)))) {
+            if (mensajes.length != niveles.length) {
+                throw new IllegalArgumentException();
+            }
+            for (int i = 0; i < mensajes.length; i++) {
+                pw.printf("[%03d] %-5s %s%n", (i + 1), niveles[i], mensajes[i]);
+            }
+        }
     }
 
     /**
      * Genera una tabla de inventario formateada con PrintWriter.
      * Cabecera: "| %-20s | %6s | %10s |"
-     * Filas:    "| %-20s | %6d | %10.2f |"
+     * Filas: "| %-20s | %6d | %10.2f |"
      *
      * @param ruta       ruta del fichero
      * @param productos  nombres de productos
@@ -47,13 +55,25 @@ public class Ej15_PrintWriterFormateado {
      * @throws IllegalArgumentException si los arrays tienen distintas longitudes
      */
     public static void generarInventario(String ruta, String[] productos,
-                                          int[] cantidades, double[] precios) throws IOException {
+            int[] cantidades, double[] precios) throws IOException {
         // TODO 2: Validar longitudes. Crear PrintWriter.
-        //         Escribir cabecera con "Producto", "Uds", "Precio".
-        //         Escribir separador con "-".
-        //         Escribir cada fila con printf.
-        //         Escribir separador final. Cerrar writer.
-        throw new UnsupportedOperationException("TODO 2 no implementado");
+        // Escribir cabecera con "Producto", "Uds", "Precio".
+        // Escribir separador con "-".
+        // Escribir cada fila con printf.
+        // Escribir separador final. Cerrar writer.
+        try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(ruta)))) {
+            if (productos.length != cantidades.length || productos.length != precios.length
+                    || cantidades.length != precios.length) {
+                throw new IllegalArgumentException();
+            }
+            String separador = "-".repeat(46);
+            pw.printf("| %-20s | %6s | %10s |%n", "Producto", "Uds", "Precio");
+            pw.println(separador);
+            for (int i = 0; i < productos.length; i++) {
+                pw.printf("| %-20s | %6d | %10.2f |%n", productos[i], cantidades[i], precios[i]);
+            }
+            pw.println(separador);
+        }
     }
 
     /**
@@ -65,8 +85,12 @@ public class Ej15_PrintWriterFormateado {
      */
     public static void escribirConPrintln(String ruta, String[] lineas) throws IOException {
         // TODO 3: Crear PrintWriter. Usar println() para cada linea.
-        //         Cerrar writer.
-        throw new UnsupportedOperationException("TODO 3 no implementado");
+        // Cerrar writer.
+        try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(ruta)))) {
+            for (String string : lineas) {
+                pw.println(string);
+            }
+        }
     }
 
     /**
@@ -78,17 +102,34 @@ public class Ej15_PrintWriterFormateado {
      * Ingreso total: [suma] EUR
      * Ticket medio: [media] EUR
      *
-     * @param ruta    ruta del fichero
-     * @param fecha   fecha como String
-     * @param ventas  array de importes de cada venta
+     * @param ruta   ruta del fichero
+     * @param fecha  fecha como String
+     * @param ventas array de importes de cada venta
      * @throws IOException si hay error de escritura
      */
     public static void informeVentas(String ruta, String fecha, double[] ventas) throws IOException {
         // TODO 4: Crear PrintWriter. Calcular total e ingreso.
-        //         Calcular ticket medio (ingreso/total, o 0 si no hay ventas).
-        //         Usar printf/println para escribir con el formato indicado.
-        //         Cerrar writer.
-        throw new UnsupportedOperationException("TODO 4 no implementado");
+        // Calcular ticket medio (ingreso/total, o 0 si no hay ventas).
+        // Usar printf/println para escribir con el formato indicado.
+        // Cerrar writer.
+        try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(ruta)))) {
+            pw.println("=== INFORME DE VENTAS ===");
+            pw.printf("Fecha: %s%n", fecha);
+            int numArticulos = ventas.length;
+            double ingresoTotal = 0;
+            double ticketMedio;
+            for (double d : ventas) {
+                ingresoTotal += d;
+            }
+            if (numArticulos != 0) {
+                ticketMedio = ingresoTotal / numArticulos;
+            } else {
+                ticketMedio = 0;
+            }
+            pw.printf("Artículos vendidos: %s%n", numArticulos);
+            pw.printf("Ingreso total: %s%n EUR", ingresoTotal);
+            pw.printf("Ticket media: %s%n EUR", ticketMedio);
+        }
     }
 
     /**
@@ -100,13 +141,14 @@ public class Ej15_PrintWriterFormateado {
      */
     public static void anadirAlLog(String ruta, String[] mensajes) throws IOException {
         // TODO 5: Crear PrintWriter con FileWriter en modo append.
-        //         Usar println() para cada mensaje.
-        //         Cerrar writer.
+        // Usar println() para cada mensaje.
+        // Cerrar writer.
         throw new UnsupportedOperationException("TODO 5 no implementado");
     }
 
     /**
-     * Genera un fichero con una tabla de multiplicar (del numero dado, del 1 al 10).
+     * Genera un fichero con una tabla de multiplicar (del numero dado, del 1 al
+     * 10).
      * Formato por linea: "%d x %2d = %3d"
      *
      * @param ruta   ruta del fichero
@@ -115,8 +157,8 @@ public class Ej15_PrintWriterFormateado {
      */
     public static void tablaMultiplicar(String ruta, int numero) throws IOException {
         // TODO 6: Crear PrintWriter. Bucle de 1 a 10.
-        //         Usar printf con el formato indicado.
-        //         Cerrar writer.
+        // Usar printf con el formato indicado.
+        // Cerrar writer.
         throw new UnsupportedOperationException("TODO 6 no implementado");
     }
 
@@ -133,7 +175,7 @@ public class Ej15_PrintWriterFormateado {
     }
 
     // ══════════════════════════════════════════════
-    //  ZONA DE EJECUCION — Pulsa Run aqui
+    // ZONA DE EJECUCION — Pulsa Run aqui
     // ══════════════════════════════════════════════
     public static void main(String[] args) throws IOException {
         System.out.println("=== Ejercicio 15: PrintWriter Formateado ===\n");
@@ -142,18 +184,18 @@ public class Ej15_PrintWriterFormateado {
         new File(dir).mkdirs();
 
         escribirLog(dir + "/log.txt",
-                new String[]{"Servidor iniciado", "Conexion recibida", "Error de BD"},
-                new String[]{"INFO", "INFO", "ERROR"});
+                new String[] { "Servidor iniciado", "Conexion recibida", "Error de BD" },
+                new String[] { "INFO", "INFO", "ERROR" });
         System.out.println("Log escrito.");
 
         generarInventario(dir + "/inventario.txt",
-                new String[]{"Arroz", "Aceite", "Sal"},
-                new int[]{50, 20, 100},
-                new double[]{1.20, 3.75, 0.80});
+                new String[] { "Arroz", "Aceite", "Sal" },
+                new int[] { 50, 20, 100 },
+                new double[] { 1.20, 3.75, 0.80 });
         System.out.println("Inventario generado.");
 
         informeVentas(dir + "/ventas.txt", "2024-01-15",
-                new double[]{12.50, 8.00, 15.75, 22.00});
+                new double[] { 12.50, 8.00, 15.75, 22.00 });
         System.out.println("Informe de ventas generado.");
 
         tablaMultiplicar(dir + "/tabla7.txt", 7);
