@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -27,8 +28,10 @@ public class Ej26_SerializarLista {
      */
     public static void serializarLista(String ruta, List<Producto> productos) throws IOException {
         // TODO 1: Crear ObjectOutputStream con try-with-resources.
-        //         Escribir la lista con writeObject().
-        throw new UnsupportedOperationException("TODO 1 no implementado");
+        // Escribir la lista con writeObject().
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ruta))) {
+            oos.writeObject(productos);
+        }
     }
 
     /**
@@ -39,13 +42,14 @@ public class Ej26_SerializarLista {
      * @throws IOException            si hay error de lectura
      * @throws ClassNotFoundException si la clase no se encuentra
      */
-    @SuppressWarnings("unchecked")
     public static List<Producto> deserializarLista(String ruta)
             throws IOException, ClassNotFoundException {
         // TODO 2: Crear ObjectInputStream con try-with-resources.
-        //         Leer con readObject() y hacer cast a List<Producto>.
-        //         Devolver la lista.
-        return new ArrayList<>();
+        // Leer con readObject() y hacer cast a List<Producto>.
+        // Devolver la lista.
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ruta))) {
+            return (List<Producto>) ois.readObject();
+        }
     }
 
     /**
@@ -60,9 +64,17 @@ public class Ej26_SerializarLista {
     public static void anadirProducto(String ruta, Producto producto)
             throws IOException, ClassNotFoundException {
         // TODO 3: Deserializar la lista existente.
-        //         Anadir el producto a la lista.
-        //         Serializar la lista actualizada.
-        throw new UnsupportedOperationException("TODO 3 no implementado");
+        // Anadir el producto a la lista.
+        // Serializar la lista actualizada.
+        List<Producto> lista;
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ruta))) {
+            lista = (List<Producto>) ois.readObject();
+            lista.add(producto);
+        }
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ruta))) {
+            oos.writeObject(lista);
+        }
+
     }
 
     /**
@@ -77,7 +89,16 @@ public class Ej26_SerializarLista {
     public static Producto buscarPorNombre(String ruta, String nombre)
             throws IOException, ClassNotFoundException {
         // TODO 4: Deserializar la lista. Buscar el producto cuyo nombre
-        //         coincida (case insensitive). Devolver el primero o null.
+        // coincida (case insensitive). Devolver el primero o null.
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ruta))) {
+            List<Producto> lista = (List<Producto>) ois.readObject();
+            for (Producto producto : lista) {
+                if (producto.getNombre().toLowerCase().equals(nombre.toLowerCase())) {
+                    return producto;
+                }
+
+            }
+        }
         return null;
     }
 
@@ -93,8 +114,28 @@ public class Ej26_SerializarLista {
     public static boolean eliminarPorNombre(String ruta, String nombre)
             throws IOException, ClassNotFoundException {
         // TODO 5: Deserializar. Buscar y eliminar. Serializar.
-        //         Devolver true si se elimino.
-        return false;
+        // Devolver true si se elimino.
+        boolean eliminado = false;
+        List<Producto> lista;
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ruta))) {
+            lista = (List<Producto>) ois.readObject();
+            Iterator<Producto> it = lista.iterator();
+            while (it.hasNext()) {
+                Producto p = it.next();
+
+                if (p.getNombre().equalsIgnoreCase(nombre)) {
+                    it.remove();
+                    eliminado = true;
+                }
+            }
+        }
+
+        if (eliminado) {
+            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ruta))) {
+                oos.writeObject(lista);
+            }
+        }
+        return eliminado;
     }
 
     /**
@@ -107,7 +148,12 @@ public class Ej26_SerializarLista {
      */
     public static int contarConStock(String ruta) throws IOException, ClassNotFoundException {
         // TODO 6: Deserializar. Recorrer y contar los que tienen stock > 0.
-        return 0;
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ruta))) {
+            List<Producto> lista = (List<Producto>) ois.readObject();
+            return (int) lista.stream()
+                    .filter(a -> a.getStock() > 5)
+                    .count();
+        }
     }
 
     /**
@@ -120,11 +166,16 @@ public class Ej26_SerializarLista {
      */
     public static double valorInventario(String ruta) throws IOException, ClassNotFoundException {
         // TODO 7: Deserializar. Sumar precio * stock de cada producto. Devolver total.
-        return 0.0;
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ruta))) {
+            List<Producto> lista = (List<Producto>) ois.readObject();
+            return lista.stream()
+                    .mapToDouble(a -> a.getPrecio() * a.getStock())
+                    .sum();
+        }
     }
 
     // ══════════════════════════════════════════════
-    //  ZONA DE EJECUCION — Pulsa Run aqui
+    // ZONA DE EJECUCION — Pulsa Run aqui
     // ══════════════════════════════════════════════
     public static void main(String[] args) throws Exception {
         System.out.println("=== Ejercicio 26: Serializar Lista ===\n");

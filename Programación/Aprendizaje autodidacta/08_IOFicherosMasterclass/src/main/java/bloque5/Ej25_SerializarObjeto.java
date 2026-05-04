@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
 /**
  * EJERCICIO 25 — Serializar y Deserializar un Objeto
@@ -123,10 +124,11 @@ public class Ej25_SerializarObjeto {
         // TODO 6: Intentar deserializar con try-catch.
         // Si funciona, devolver "OK".
         // Si lanza cualquier Exception, devolver e.getClass().getSimpleName().
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ruta))) {
-                        
+        try (FileInputStream fis = new FileInputStream(ruta); ObjectInputStream ois = new ObjectInputStream(fis)) {
+            ois.readObject();
+            return "OK";
         } catch (Exception e) {
-            // TODO: handle exception
+            return e.getClass().getSimpleName();
         }
     }
 
@@ -137,7 +139,8 @@ public class Ej25_SerializarObjeto {
      */
     public static boolean esSerializable() {
         // TODO 7: Crear un Producto y comprobar con instanceof java.io.Serializable.
-        return false;
+        Producto producto = new Producto("Coche", 15, 5);
+        return producto instanceof Serializable;
     }
 
     // ══════════════════════════════════════════════
