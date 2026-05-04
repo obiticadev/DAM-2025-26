@@ -24,9 +24,12 @@ public class Ej25_SerializarObjeto {
      * @throws IOException si hay error de escritura
      */
     public static void serializar(String ruta, Producto producto) throws IOException {
-        // TODO 1: Crear ObjectOutputStream envolviendo FileOutputStream con try-with-resources.
-        //         Escribir el producto con writeObject().
-        throw new UnsupportedOperationException("TODO 1 no implementado");
+        // TODO 1: Crear ObjectOutputStream envolviendo FileOutputStream con
+        // try-with-resources.
+        // Escribir el producto con writeObject().
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ruta))) {
+            oos.writeObject(producto);
+        }
     }
 
     /**
@@ -38,10 +41,14 @@ public class Ej25_SerializarObjeto {
      * @throws ClassNotFoundException si la clase no se encuentra
      */
     public static Producto deserializar(String ruta) throws IOException, ClassNotFoundException {
-        // TODO 2: Crear ObjectInputStream envolviendo FileInputStream con try-with-resources.
-        //         Leer con readObject() y hacer cast a Producto.
-        //         Devolver el producto.
-        return null;
+        // TODO 2: Crear ObjectInputStream envolviendo FileInputStream con
+        // try-with-resources.
+        // Leer con readObject() y hacer cast a Producto.
+        // Devolver el producto.
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ruta))) {
+            return (Producto) ois.readObject();
+
+        }
     }
 
     /**
@@ -57,7 +64,12 @@ public class Ej25_SerializarObjeto {
     public static boolean verificarIntegridad(String ruta, Producto producto)
             throws IOException, ClassNotFoundException {
         // TODO 3: Serializar el producto. Deserializar. Comparar con equals().
-        return false;
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ruta))) {
+            oos.writeObject(producto);
+        }
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ruta))) {
+            return producto.equals((Producto) ois.readObject());
+        }
     }
 
     /**
@@ -70,7 +82,11 @@ public class Ej25_SerializarObjeto {
      */
     public static long tamanoSerializado(String ruta, Producto producto) throws IOException {
         // TODO 4: Serializar. Obtener tamano con new File(ruta).length().
-        return 0;
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ruta))) {
+            oos.writeObject(producto);
+            File file = new File(ruta);
+            return file.length();
+        }
     }
 
     /**
@@ -85,9 +101,15 @@ public class Ej25_SerializarObjeto {
      */
     public static boolean transientSePierde(String ruta) throws IOException, ClassNotFoundException {
         // TODO 5: Crear Producto con codigoInterno="SEC-001".
-        //         Serializar. Deserializar.
-        //         Devolver true si getCodigoInterno() es null.
-        return false;
+        // Serializar. Deserializar.
+        // Devolver true si getCodigoInterno() es null.
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ruta));
+                ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ruta))) {
+            oos.writeObject(new Producto("Coche", 15.2, 5, "SEC-001"));
+
+            return ((Producto) ois.readObject()).getCodigoInterno() == null;
+
+        }
     }
 
     /**
@@ -99,9 +121,13 @@ public class Ej25_SerializarObjeto {
      */
     public static String intentarDeserializar(String ruta) {
         // TODO 6: Intentar deserializar con try-catch.
-        //         Si funciona, devolver "OK".
-        //         Si lanza cualquier Exception, devolver e.getClass().getSimpleName().
-        return "";
+        // Si funciona, devolver "OK".
+        // Si lanza cualquier Exception, devolver e.getClass().getSimpleName().
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ruta))) {
+                        
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
     }
 
     /**
@@ -115,7 +141,7 @@ public class Ej25_SerializarObjeto {
     }
 
     // ══════════════════════════════════════════════
-    //  ZONA DE EJECUCION — Pulsa Run aqui
+    // ZONA DE EJECUCION — Pulsa Run aqui
     // ══════════════════════════════════════════════
     public static void main(String[] args) throws Exception {
         System.out.println("=== Ejercicio 25: Serializar Objeto ===\n");
