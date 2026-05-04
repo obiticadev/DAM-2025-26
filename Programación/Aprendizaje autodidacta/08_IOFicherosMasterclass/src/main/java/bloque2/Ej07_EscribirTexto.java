@@ -129,7 +129,7 @@ public class Ej07_EscribirTexto {
         try (FileWriter fileWriter = new FileWriter(ruta)) {
             for (int i = 0; i < servicios.length; i++) {
                 fileWriter.write("+----------------------+-------------- +\n");
-                fileWriter.write(String.format("| %-20s | %8.2f EUR |\n", servicios[i], precios[i]));
+                fileWriter.write(String.format("| %-20s | %8.2f EUR |%n", servicios[i], precios[i]));
             }
         }
     }

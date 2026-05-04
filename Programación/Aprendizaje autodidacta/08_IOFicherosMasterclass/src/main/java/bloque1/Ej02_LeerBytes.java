@@ -25,10 +25,21 @@ public class Ej02_LeerBytes {
      */
     public static byte[] leerTodosBytes(String ruta) throws IOException {
         // TODO 1: Abrir FileInputStream. Obtener el tamano del fichero con
-        //         new File(ruta).length() para crear el array del tamano exacto.
-        //         Leer byte a byte con read() en un bucle hasta que devuelva -1.
-        //         Cerrar el stream. Devolver el array.
-        return null;
+        // new File(ruta).length() para crear el array del tamano exacto.
+        // Leer byte a byte con read() en un bucle hasta que devuelva -1.
+        // Cerrar el stream. Devolver el array.
+        File f = new File(ruta);
+        byte[] array = new byte[(int) f.length()];
+
+        try (FileInputStream fis = new FileInputStream(f)) {
+            int unByte;
+            int i = 0;
+            while ((unByte = fis.read()) != -1) {
+                array[i] = (byte) unByte;
+                i++;
+            }
+        }
+        return array;
     }
 
     /**
@@ -43,11 +54,32 @@ public class Ej02_LeerBytes {
      */
     public static int leerByteEnPosicion(String ruta, int posicion) throws IOException {
         // TODO 2: Validar que posicion >= 0. Abrir FileInputStream.
-        //         Leer y descartar 'posicion' bytes con read() en un bucle.
-        //         Leer un byte mas, que es el que queremos.
-        //         Si se llega a EOF antes de la posicion, lanzar IOException.
-        //         Cerrar stream y devolver el byte.
-        return -1;
+        // Leer y descartar 'posicion' bytes con read() en un bucle.
+        // Leer un byte mas, que es el que queremos.
+        // Si se llega a EOF antes de la posicion, lanzar IOException.
+        // Cerrar stream y devolver el byte.
+        if (posicion < 0) {
+            throw new IllegalArgumentException();
+        }
+        try (FileInputStream fis = new FileInputStream(ruta)) {
+            for (int i = 0; i < posicion; i++) {
+                int byteLeido = fis.read();
+
+                if (byteLeido == -1) {
+                    throw new IOException("El fichero terminó antes de llegar a la posición");
+                }
+            }
+
+            int byteFinal = fis.read();
+
+            if (byteFinal == -1) {
+                throw new IOException("No hay datos en la posición " + posicion);
+            }
+
+            return byteFinal;
+
+        }
+
     }
 
     /**
@@ -60,9 +92,18 @@ public class Ej02_LeerBytes {
      */
     public static int contarByte(String ruta, int valorBusca) throws IOException {
         // TODO 3: Abrir FileInputStream. Leer byte a byte.
-        //         Contar cuantas veces el byte leido coincide con valorBusca.
-        //         Cerrar stream y devolver el contador.
-        return 0;
+        // Contar cuantas veces el byte leido coincide con valorBusca.
+        // Cerrar stream y devolver el contador.
+        try (FileInputStream fis = new FileInputStream(ruta)) {
+            int contador = 0;
+            int byteLeido;
+            while ((byteLeido = fis.read()) != -1) {
+                if (byteLeido == valorBusca) {
+                    contador++;
+                }
+            }
+            return contador;
+        }
     }
 
     /**
@@ -77,11 +118,15 @@ public class Ej02_LeerBytes {
      */
     public static byte[] leerPrimeros(String ruta, int n) throws IOException {
         // TODO 4: Validar n >= 0. Abrir FileInputStream.
-        //         Crear buffer temporal de tamano n.
-        //         Leer con read(byte[], 0, n) — atencion: puede devolver menos de n.
-        //         Crear array resultado del tamano exacto leido con Arrays.copyOf.
-        //         Cerrar stream y devolver el array.
-        return null;
+        // Crear buffer temporal de tamano n.
+        // Leer con read(byte[], 0, n) — atencion: puede devolver menos de n.
+        // Crear array resultado del tamano exacto leido con Arrays.copyOf.
+        // Cerrar stream y devolver el array.
+        if (n < 0) {
+            throw new IllegalArgumentException("Número negativo no permitido");
+        }
+        byte[] buffer = new byte[n];
+
     }
 
     /**
@@ -94,16 +139,17 @@ public class Ej02_LeerBytes {
      */
     public static boolean ficherosSonIguales(String ruta1, String ruta2) throws IOException {
         // TODO 5: Si los tamanos son distintos, devolver false directamente.
-        //         Abrir DOS FileInputStream (uno por fichero).
-        //         Leer un byte de cada uno en paralelo y comparar.
-        //         Si algun par difiere, cerrar ambos y devolver false.
-        //         Si se llega al final sin diferencias, devolver true.
-        //         Cerrar ambos streams en todos los casos.
+        // Abrir DOS FileInputStream (uno por fichero).
+        // Leer un byte de cada uno en paralelo y comparar.
+        // Si algun par difiere, cerrar ambos y devolver false.
+        // Si se llega al final sin diferencias, devolver true.
+        // Cerrar ambos streams en todos los casos.
         return false;
     }
 
     /**
-     * Devuelve un String con la representacion hexadecimal de cada byte del fichero,
+     * Devuelve un String con la representacion hexadecimal de cada byte del
+     * fichero,
      * separados por espacio. Ejemplo: "48 6F 6C 61" para un fichero con "Hola".
      *
      * @param ruta ruta del fichero
@@ -112,9 +158,9 @@ public class Ej02_LeerBytes {
      */
     public static String volcarHexadecimal(String ruta) throws IOException {
         // TODO 6: Abrir FileInputStream. Usar StringBuilder.
-        //         Por cada byte leido, formatearlo con String.format("%02X", b).
-        //         Separar con espacio ENTRE bytes (no al final).
-        //         Cerrar stream y devolver el String.
+        // Por cada byte leido, formatearlo con String.format("%02X", b).
+        // Separar con espacio ENTRE bytes (no al final).
+        // Cerrar stream y devolver el String.
         return "";
     }
 
@@ -130,7 +176,7 @@ public class Ej02_LeerBytes {
     }
 
     // ══════════════════════════════════════════════
-    //  ZONA DE EJECUCION — Pulsa Run aqui
+    // ZONA DE EJECUCION — Pulsa Run aqui
     // ══════════════════════════════════════════════
     public static void main(String[] args) throws IOException {
         System.out.println("=== Ejercicio 02: Leer Bytes ===\n");
@@ -140,13 +186,14 @@ public class Ej02_LeerBytes {
 
         // Crear fichero de prueba
         FileOutputStream fos = new FileOutputStream(dir + "/prueba.bin");
-        fos.write(new byte[]{72, 111, 108, 97, 33}); // "Hola!"
+        fos.write(new byte[] { 72, 111, 108, 97, 33 }); // "Hola!"
         fos.close();
 
         System.out.println("1. Leer todos los bytes:");
         byte[] todos = leerTodosBytes(dir + "/prueba.bin");
         if (todos != null) {
-            for (byte b : todos) System.out.print(b + " ");
+            for (byte b : todos)
+                System.out.print(b + " ");
             System.out.println();
         }
 
@@ -156,7 +203,8 @@ public class Ej02_LeerBytes {
         System.out.println("4. Primeros 3 bytes:");
         byte[] primeros = leerPrimeros(dir + "/prueba.bin", 3);
         if (primeros != null) {
-            for (byte b : primeros) System.out.print(b + " ");
+            for (byte b : primeros)
+                System.out.print(b + " ");
             System.out.println();
         }
 
