@@ -1,5 +1,7 @@
+import java.io.IOException;
 import java.util.*;
 
+import AplicacionLectura.AplicacionLectura;
 import Clases.EstadisticasVotacion;
 import Clases.Mesa;
 
@@ -7,10 +9,13 @@ public class App {
     public static void main(String[] args) {
 
         List<Mesa> mesas = new ArrayList<>();
-
-        mesas.add(new Mesa(1, "Madrid", 100, 80, 20, 5, 2));
-        mesas.add(new Mesa(2, "Madrid", 120, 60, 30, 3, 1));
-        mesas.add(new Mesa(3, "Madrid", 90, 110, 40, 4, 3));
+        AplicacionLectura app = new AplicacionLectura();
+        try {
+            mesas.addAll(app.leerArchivoBin());
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
         EstadisticasVotacion est = new EstadisticasVotacion(mesas);
 

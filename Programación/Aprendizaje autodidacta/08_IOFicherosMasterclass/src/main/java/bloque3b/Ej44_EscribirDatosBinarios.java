@@ -21,9 +21,12 @@ public class Ej44_EscribirDatosBinarios {
      * @throws IOException si hay error de escritura
      */
     public static void escribirEntero(String ruta, int valor) throws IOException {
-        // TODO 1: Crear DataOutputStream envolviendo FileOutputStream con try-with-resources.
-        //         Escribir el valor con writeInt().
-        throw new UnsupportedOperationException("TODO 1 no implementado");
+        // TODO 1: Crear DataOutputStream envolviendo FileOutputStream con
+        // try-with-resources.
+        // Escribir el valor con writeInt().
+        try (DataOutputStream dos = new DataOutputStream(new FileOutputStream(ruta))) {
+            dos.writeInt(valor);
+        }
     }
 
     /**
@@ -35,8 +38,10 @@ public class Ej44_EscribirDatosBinarios {
      */
     public static void escribirDouble(String ruta, double valor) throws IOException {
         // TODO 2: Crear DataOutputStream envolviendo FileOutputStream.
-        //         Escribir el valor con writeDouble().
-        throw new UnsupportedOperationException("TODO 2 no implementado");
+        // Escribir el valor con writeDouble().
+        try (DataOutputStream dos = new DataOutputStream(new FileOutputStream(ruta))) {
+            dos.writeDouble(valor);
+        }
     }
 
     /**
@@ -50,24 +55,38 @@ public class Ej44_EscribirDatosBinarios {
      * @throws IOException si hay error
      */
     public static void escribirRegistro(String ruta, int id, double salario,
-                                         boolean activo, String nombre) throws IOException {
+            boolean activo, String nombre) throws IOException {
         // TODO 3: Crear DataOutputStream. Escribir en orden:
-        //         writeInt(id), writeDouble(salario), writeBoolean(activo), writeUTF(nombre).
-        throw new UnsupportedOperationException("TODO 3 no implementado");
+        // writeInt(id), writeDouble(salario), writeBoolean(activo), writeUTF(nombre).
+        try (DataOutputStream dos = new DataOutputStream(new FileOutputStream(ruta))) {
+            dos.writeInt(id);
+            dos.writeDouble(salario);
+            dos.writeBoolean(activo);
+            dos.writeUTF(nombre);
+        }
     }
 
     /**
      * Escribe N registros de empleados con datos generados.
-     * Cada registro: writeInt(i) + writeDouble(1000.0 + i*500) + writeBoolean(i%2==0) + writeUTF("Emp-"+i)
+     * Cada registro: writeInt(i) + writeDouble(1000.0 + i*500) +
+     * writeBoolean(i%2==0) + writeUTF("Emp-"+i)
      *
      * @param ruta ruta del fichero
      * @param n    cantidad de registros
      * @throws IOException si hay error
      */
     public static void escribirMultiplesRegistros(String ruta, int n) throws IOException {
-        // TODO 4: Crear DataOutputStream. En un bucle de 0 a n-1, escribir cada registro
-        //         con los datos indicados en el Javadoc.
-        throw new UnsupportedOperationException("TODO 4 no implementado");
+        // TODO 4: Crear DataOutputStream. En un bucle de 0 a n-1, escribir cada
+        // registro
+        // con los datos indicados en el Javadoc.
+        try (DataOutputStream dos = new DataOutputStream(new FileOutputStream(ruta))) {
+            for (int i = 0; i < n; i++) {
+                dos.writeInt(i);
+                dos.writeDouble(1000.0 + i * 500);
+                dos.writeBoolean(i % 2 == 0);
+                dos.writeUTF("Emp-" + i);
+            }
+        }
     }
 
     /**
@@ -79,7 +98,9 @@ public class Ej44_EscribirDatosBinarios {
      */
     public static void escribirBoolean(String ruta, boolean valor) throws IOException {
         // TODO 5: Crear DataOutputStream. Escribir con writeBoolean().
-        throw new UnsupportedOperationException("TODO 5 no implementado");
+        try (DataOutputStream dos = new DataOutputStream(new FileOutputStream(ruta))) {
+            dos.writeBoolean(valor);
+        }
     }
 
     /**
@@ -91,7 +112,9 @@ public class Ej44_EscribirDatosBinarios {
      */
     public static void escribirUTF(String ruta, String texto) throws IOException {
         // TODO 6: Crear DataOutputStream. Escribir con writeUTF().
-        throw new UnsupportedOperationException("TODO 6 no implementado");
+        try (DataOutputStream dos = new DataOutputStream(new FileOutputStream(ruta))) {
+            dos.writeUTF(texto);
+        }
     }
 
     /**
@@ -102,11 +125,16 @@ public class Ej44_EscribirDatosBinarios {
      */
     public static long obtenerTamano(String ruta) {
         // TODO 7: Crear File con la ruta. Si existe, devolver length(). Si no, -1.
-        return -1;
+        File file = new File(ruta);
+        if (file.exists()) {
+            return file.length();
+        } else {
+            return -1;
+        }
     }
 
     // ══════════════════════════════════════════════
-    //  ZONA DE EJECUCION — Pulsa Run aqui
+    // ZONA DE EJECUCION — Pulsa Run aqui
     // ══════════════════════════════════════════════
     public static void main(String[] args) throws IOException {
         System.out.println("=== Ejercicio 44: Escribir Datos Binarios ===\n");

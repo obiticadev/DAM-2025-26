@@ -1,5 +1,6 @@
 package bloque2;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -24,9 +25,16 @@ public class Ej08_LeerTexto {
      */
     public static String leerTodo(String ruta) throws IOException {
         // TODO 1: Crear FileReader con la ruta. Usar StringBuilder.
-        //         Leer caracter a caracter con read() hasta -1.
-        //         Cast a (char). Cerrar reader. Devolver String.
-        return "";
+        // Leer caracter a caracter con read() hasta -1.
+        // Cast a (char). Cerrar reader. Devolver String.
+        try (FileReader fileReader = new FileReader(ruta)) {
+            StringBuilder sb = new StringBuilder();
+            int salida;
+            while ((salida = fileReader.read()) != -1) {
+                sb.append((char) salida);
+            }
+            return sb.toString();
+        }
     }
 
     /**
@@ -40,8 +48,17 @@ public class Ej08_LeerTexto {
      */
     public static int contarLineas(String ruta) throws IOException {
         // TODO 2: Crear FileReader. Contar '\n' en el contenido.
-        //         Devolver cuenta + 1. Cerrar reader.
-        return 0;
+        // Devolver cuenta + 1. Cerrar reader.
+        try (FileReader fileReader = new FileReader(ruta)) {
+            int salidaActual;
+            int contador = 1;
+            while ((salidaActual = fileReader.read()) != -1) {
+                if ((char) salidaActual == '\n') {
+                    contador++;
+                }
+            }
+            return contador;
+        }
     }
 
     /**
@@ -56,9 +73,13 @@ public class Ej08_LeerTexto {
      */
     public static String obtenerLinea(String ruta, int n) throws IOException {
         // TODO 3: Validar n >= 0. Leer todo el contenido con leerTodo.
-        //         Dividir por '\n' con split.
-        //         Si n < array.length, devolver la linea. Si no, devolver null.
-        return null;
+        // Dividir por '\n' con split.
+        // Si n < array.length, devolver la linea. Si no, devolver null.
+        if (n < 0) {
+            throw new IllegalArgumentException();
+        }
+        String[] lineas = leerTodo(ruta).split("\n");
+        return n < lineas.length ? lineas[n] : null;
     }
 
     /**
@@ -72,7 +93,15 @@ public class Ej08_LeerTexto {
      */
     public static boolean contienePalabra(String ruta, String palabra) throws IOException {
         // TODO 4: Leer todo el contenido. Convertir ambos a minusculas.
-        //         Usar contains() para comprobar.
+        // Usar contains() para comprobar.
+        try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                if (linea.toLowerCase().contains(palabra)) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
@@ -86,9 +115,21 @@ public class Ej08_LeerTexto {
      */
     public static int contarCaracter(String ruta, char objetivo) throws IOException {
         // TODO 5: Crear FileReader. Leer caracter a caracter.
-        //         Comparar con objetivo y contar coincidencias.
-        //         Cerrar reader. Devolver contador.
-        return 0;
+        // Comparar con objetivo y contar coincidencias.
+        // Cerrar reader. Devolver contador.
+        int contador = 0;
+        try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                char[] caracteres = linea.toCharArray();
+                for (char c : caracteres) {
+                    if (c == objetivo) {
+                        contador++;
+                    }
+                }
+            }
+            return contador;
+        }
     }
 
     /**
@@ -101,10 +142,23 @@ public class Ej08_LeerTexto {
      */
     public static String resumenFichero(String ruta) throws IOException {
         // TODO 6: Obtener el nombre del fichero con new File(ruta).getName().
-        //         Contar lineas y caracteres usando los metodos anteriores.
-        //         Obtener tamano con File.length().
-        //         Formatear con String.format.
-        return "";
+        // Contar lineas y caracteres usando los metodos anteriores.
+        // Obtener tamano con File.length().
+        // Formatear con String.format.
+        File file = new File(ruta);
+        int contadorCaracteres = 0;
+        try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                char[] caracteres = linea.toCharArray();
+                for (char c : caracteres) {
+                    contadorCaracteres++;
+                }
+            }
+        }
+        String salida = String.format("Fichero: %s | Lineas: %d | Caracteres: %d | Tamaño: %d bytes", file.getName(),
+                contarLineas(ruta), contadorCaracteres, file.length());
+        return salida;
     }
 
     /**
@@ -119,14 +173,24 @@ public class Ej08_LeerTexto {
      */
     public static String extraerCampo(String ruta, String campo) throws IOException {
         // TODO 7: Leer todo el contenido. Dividir por lineas.
-        //         Buscar una linea que empiece con "campo: " (case insensitive).
-        //         Si la encuentra, devolver el substring despues de ": ".
-        //         Si no la encuentra, devolver null.
-        return null;
+        // Buscar una linea que empiece con "campo: " (case insensitive).
+        // Si la encuentra, devolver el substring despues de ": ".
+        // Si no la encuentra, devolver null.
+        try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
+            String busqueda = campo.toLowerCase();
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                if (linea.toLowerCase().startsWith(busqueda)) {
+                    int pos = linea.indexOf(": ");
+                    return linea.substring(pos + 2).trim();
+                }
+            }
+        }
+        return campo;
     }
 
     // ══════════════════════════════════════════════
-    //  ZONA DE EJECUCION — Pulsa Run aqui
+    // ZONA DE EJECUCION — Pulsa Run aqui
     // ══════════════════════════════════════════════
     public static void main(String[] args) throws IOException {
         System.out.println("=== Ejercicio 08: Leer Texto ===\n");
