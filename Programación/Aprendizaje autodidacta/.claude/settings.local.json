@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(mvn compile *)"
+      "Bash(mvn compile *)",
+      "PowerShell($env:PATH)",
+      "PowerShell($mvn = \"C:\\\\Users\\\\obitica\\\\maven\\\\bin\\\\mvn.cmd\"; cd \"C:\\\\Users\\\\obitica\\\\Java\\\\DAM-2025-26\\\\Programación\\\\Aprendizaje autodidacta\\\\10_JDBCDAOMasterclass\"; & $mvn compile 2>&1)"
     ]
   }
 }

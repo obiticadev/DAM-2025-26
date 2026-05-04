@@ -1,7 +1,19 @@
 # Bloque III-C — Acceso Aleatorio (RandomAccessFile)
 
-> 📋 **ENTRA EN EXAMEN** — Todo este bloque cubre contenido del Tema 10.
+> ❌ **NO ENTRA EN EXAMEN** — Este bloque ha sido excluido del temario evaluable.
+> El examen se centra en acceso **secuencial** (de principio a fin).
+> `RandomAccessFile` y `seek()` no serán evaluados.
+>
 > Referencia para ejercicios Ej50 a Ej55 en `src/main/java/bloque3c/`
+>
+> | Ejercicio | Examen |
+> |-----------|--------|
+> | Ej50_EscrituraSecuencialRAF | ❌ NO ENTRA EN EXAMEN |
+> | Ej51_LecturaConSeek | ❌ NO ENTRA EN EXAMEN |
+> | Ej52_ActualizarRegistro | ❌ NO ENTRA EN EXAMEN |
+> | Ej53_RegistrosEmpleados | ❌ NO ENTRA EN EXAMEN |
+> | Ej54_UltimoRegistro | ❌ NO ENTRA EN EXAMEN |
+> | Ej55_MostrarTodos | ❌ NO ENTRA EN EXAMEN |
 
 ---
 
