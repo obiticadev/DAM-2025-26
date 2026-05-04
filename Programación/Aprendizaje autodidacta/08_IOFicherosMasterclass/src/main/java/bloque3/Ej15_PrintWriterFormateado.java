@@ -127,8 +127,8 @@ public class Ej15_PrintWriterFormateado {
                 ticketMedio = 0;
             }
             pw.printf("Artículos vendidos: %s%n", numArticulos);
-            pw.printf("Ingreso total: %s%n EUR", ingresoTotal);
-            pw.printf("Ticket media: %s%n EUR", ticketMedio);
+            pw.printf("Ingreso total: %s EUR%n", ingresoTotal);
+            pw.printf("Ticket media: %s EUR%n", ticketMedio);
         }
     }
 
@@ -143,7 +143,11 @@ public class Ej15_PrintWriterFormateado {
         // TODO 5: Crear PrintWriter con FileWriter en modo append.
         // Usar println() para cada mensaje.
         // Cerrar writer.
-        throw new UnsupportedOperationException("TODO 5 no implementado");
+        try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(ruta, true)))) {
+            for (int i = 0; i < mensajes.length; i++) {
+                pw.println(mensajes[i]);
+            }
+        }
     }
 
     /**
@@ -159,7 +163,11 @@ public class Ej15_PrintWriterFormateado {
         // TODO 6: Crear PrintWriter. Bucle de 1 a 10.
         // Usar printf con el formato indicado.
         // Cerrar writer.
-        throw new UnsupportedOperationException("TODO 6 no implementado");
+        try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(ruta)))) {
+            for (int i = 1; i <= 10; i++) {
+                pw.printf("%d x %2d = %3d%n", numero, i, (numero * i));
+            }
+        }
     }
 
     /**
@@ -171,7 +179,7 @@ public class Ej15_PrintWriterFormateado {
      */
     public static int lineasEsperadas(int numMensajes) {
         // TODO 7: Devolver el numero de mensajes (cada mensaje = 1 linea con println).
-        return 0;
+        return numMensajes;
     }
 
     // ══════════════════════════════════════════════

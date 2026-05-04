@@ -27,10 +27,17 @@ public class Ej14_BufferedReaderReadLine {
      */
     public static List<String> leerTodasLineas(String ruta) throws IOException {
         // TODO 1: Crear BufferedReader envolviendo FileReader.
-        //         Leer con readLine() en bucle hasta null.
-        //         Anadir cada linea a un ArrayList.
-        //         Cerrar reader. Devolver la lista.
-        return new ArrayList<>();
+        // Leer con readLine() en bucle hasta null.
+        // Anadir cada linea a un ArrayList.
+        // Cerrar reader. Devolver la lista.
+        try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
+            List<String> lista = new ArrayList<>();
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                lista.add(linea);
+            }
+            return lista;
+        }
     }
 
     /**
@@ -42,9 +49,15 @@ public class Ej14_BufferedReaderReadLine {
      */
     public static int contarLineas(String ruta) throws IOException {
         // TODO 2: Crear BufferedReader. Leer con readLine() hasta null.
-        //         Incrementar contador por cada linea leida.
-        //         Cerrar reader. Devolver contador.
-        return 0;
+        // Incrementar contador por cada linea leida.
+        // Cerrar reader. Devolver contador.
+        try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
+            int contador = 0;
+            while (br.readLine() != null) {
+                contador++;
+            }
+            return contador;
+        }
     }
 
     /**
@@ -57,9 +70,18 @@ public class Ej14_BufferedReaderReadLine {
      */
     public static List<String> leerLineasNoVacias(String ruta) throws IOException {
         // TODO 3: Crear BufferedReader. Leer linea a linea.
-        //         Si linea.trim() no es vacio, anadir a la lista.
-        //         Cerrar reader. Devolver lista.
-        return new ArrayList<>();
+        // Si linea.trim() no es vacio, anadir a la lista.
+        // Cerrar reader. Devolver lista.
+        try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
+            List<String> lista = new ArrayList<>();
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                if (linea.trim().length() > 0) {
+                    lista.add(linea);
+                }
+            }
+            return lista;
+        }
     }
 
     /**
@@ -73,10 +95,21 @@ public class Ej14_BufferedReaderReadLine {
      */
     public static List<String> buscarPalabra(String ruta, String palabra) throws IOException {
         // TODO 4: Crear BufferedReader. Llevar contador de linea (1-indexed).
-        //         Por cada linea, comprobar si contiene la palabra (case insensitive).
-        //         Si coincide, anadir "[numLinea]: [linea]" a la lista.
-        //         Cerrar reader. Devolver lista.
-        return new ArrayList<>();
+        // Por cada linea, comprobar si contiene la palabra (case insensitive).
+        // Si coincide, anadir "[numLinea]: [linea]" a la lista.
+        // Cerrar reader. Devolver lista.
+        try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
+            List<String> lista = new ArrayList<>();
+            String linea;
+            int numLinea = 1;
+            while ((linea = br.readLine()) != null) {
+                if (linea.toLowerCase().contains(palabra.toLowerCase())) {
+                    lista.add(String.format("[%03d]: %s", numLinea, linea));
+                }
+                numLinea++;
+            }
+            return lista;
+        }
     }
 
     /**
@@ -90,9 +123,18 @@ public class Ej14_BufferedReaderReadLine {
      */
     public static String lineaMasLarga(String ruta) throws IOException {
         // TODO 5: Crear BufferedReader. Llevar referencia a la linea mas larga.
-        //         Comparar length() de cada linea con la mas larga actual.
-        //         Cerrar reader. Devolver resultado.
-        return null;
+        // Comparar length() de cada linea con la mas larga actual.
+        // Cerrar reader. Devolver resultado.
+        String ganadora = null;
+        try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                if (ganadora == null || linea.length() > ganadora.length()) {
+                    ganadora = linea;
+                }
+            }
+        }
+        return ganadora;
     }
 
     /**
@@ -105,9 +147,28 @@ public class Ej14_BufferedReaderReadLine {
      */
     public static String resumen(String ruta) throws IOException {
         // TODO 6: Crear BufferedReader. Contar lineas totales, vacias y no vacias.
-        //         Encontrar la longitud de la linea mas larga.
-        //         Cerrar reader. Formatear con String.format.
-        return "";
+        // Encontrar la longitud de la linea mas larga.
+        // Cerrar reader. Formatear con String.format.
+        try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
+            int numLineas = 0;
+            int numLineasVacias = 0;
+            int numChars;
+            String masLarga = null;
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                if (linea.length() > 0) {
+                    numLineas++;
+                } else {
+                    numLineasVacias++;
+                }
+                if (masLarga == null || linea.length() > masLarga.length()) {
+                    masLarga = linea;
+                }
+            }
+            numChars = masLarga.length();
+            return String.format("Lineas: %d | Vacias: %d | No vacias: %d | Mas larga: %d chars",
+                    (numLineas + numLineasVacias), numLineasVacias, numLineas, numChars);
+        }
     }
 
     /**
@@ -122,13 +183,26 @@ public class Ej14_BufferedReaderReadLine {
      */
     public static List<String> primerasLineas(String ruta, int n) throws IOException {
         // TODO 7: Validar n >= 0. Crear BufferedReader.
-        //         Leer hasta N lineas o hasta null.
-        //         Cerrar reader. Devolver lista.
-        return new ArrayList<>();
+        // Leer hasta N lineas o hasta null.
+        // Cerrar reader. Devolver lista.
+        try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
+            if (n < 0) {
+                throw new IllegalArgumentException();
+            }
+            int contador = 0;
+            List<String> lista = new ArrayList<>();
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                if (contador++ < n) {
+                    lista.add(linea);
+                }
+            }
+            return lista;
+        }
     }
 
     // ══════════════════════════════════════════════
-    //  ZONA DE EJECUCION — Pulsa Run aqui
+    // ZONA DE EJECUCION — Pulsa Run aqui
     // ══════════════════════════════════════════════
     public static void main(String[] args) throws IOException {
         System.out.println("=== Ejercicio 14: BufferedReader y readLine() ===\n");
@@ -138,11 +212,16 @@ public class Ej14_BufferedReaderReadLine {
 
         // Crear fichero de prueba
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(dir + "/pedidos.txt"))) {
-            bw.write("Paella valenciana"); bw.newLine();
-            bw.write(""); bw.newLine();
-            bw.write("Agua mineral"); bw.newLine();
-            bw.write("Flan casero"); bw.newLine();
-            bw.write(""); bw.newLine();
+            bw.write("Paella valenciana");
+            bw.newLine();
+            bw.write("");
+            bw.newLine();
+            bw.write("Agua mineral");
+            bw.newLine();
+            bw.write("Flan casero");
+            bw.newLine();
+            bw.write("");
+            bw.newLine();
             bw.write("Cafe con leche");
         }
 

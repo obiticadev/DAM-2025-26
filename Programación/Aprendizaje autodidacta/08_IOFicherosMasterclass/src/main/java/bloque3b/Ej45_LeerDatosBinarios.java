@@ -16,9 +16,12 @@ public class Ej45_LeerDatosBinarios {
      * Lee un entero desde un fichero binario.
      */
     public static int leerEntero(String ruta) throws IOException {
-        // TODO 1: Crear DataInputStream envolviendo FileInputStream con try-with-resources.
-        //         Leer con readInt() y devolver el valor.
-        return 0;
+        // TODO 1: Crear DataInputStream envolviendo FileInputStream con
+        // try-with-resources.
+        // Leer con readInt() y devolver el valor.
+        try (DataInputStream dis = new DataInputStream(new FileInputStream(ruta))) {
+            return dis.readInt();
+        }
     }
 
     /**
@@ -26,18 +29,24 @@ public class Ej45_LeerDatosBinarios {
      */
     public static double leerDouble(String ruta) throws IOException {
         // TODO 2: Crear DataInputStream. Leer con readDouble() y devolver.
-        return 0.0;
+        try (DataInputStream dis = new DataInputStream(new FileInputStream(ruta))) {
+            return dis.readDouble();
+        }
     }
 
     /**
-     * Lee un registro completo (int + double + boolean + String) y lo devuelve como String formateado.
+     * Lee un registro completo (int + double + boolean + String) y lo devuelve como
+     * String formateado.
      * Formato: "ID=id, Salario=salario, Activo=activo, Nombre=nombre"
      */
     public static String leerRegistro(String ruta) throws IOException {
         // TODO 3: Crear DataInputStream. Leer en MISMO ORDEN que se escribio:
-        //         readInt(), readDouble(), readBoolean(), readUTF().
-        //         Devolver String formateado.
-        return "";
+        // readInt(), readDouble(), readBoolean(), readUTF().
+        // Devolver String formateado.
+        try (DataInputStream dis = new DataInputStream(new FileInputStream(ruta))) {
+            return String.format("ID=%d, Salario=%.2f, Activo=%b, Nombre=%s", dis.readInt(), dis.readDouble(),
+                    dis.readBoolean(), dis.readUTF());
+        }
     }
 
     /**
@@ -47,9 +56,23 @@ public class Ej45_LeerDatosBinarios {
      */
     public static int contarRegistros(String ruta) throws IOException {
         // TODO 4: Crear DataInputStream. En un bucle infinito, leer un registro
-        //         completo (readInt, readDouble, readBoolean, readUTF).
-        //         Contar cada lectura exitosa. Al llegar EOFException, devolver el contador.
-        return 0;
+        // completo (readInt, readDouble, readBoolean, readUTF).
+        // Contar cada lectura exitosa. Al llegar EOFException, devolver el contador.
+        int contador = 0;
+        try (DataInputStream dis = new DataInputStream(new FileInputStream(ruta))) {
+            while (true) {
+                dis.readInt();
+                dis.readDouble();
+                dis.readBoolean();
+                dis.readUTF();
+
+                contador++;
+            }
+        } catch (EOFException e) {
+
+        }
+        return contador;
+
     }
 
     /**
@@ -57,7 +80,9 @@ public class Ej45_LeerDatosBinarios {
      */
     public static boolean leerBoolean(String ruta) throws IOException {
         // TODO 5: Crear DataInputStream. Leer con readBoolean() y devolver.
-        return false;
+        try (DataInputStream dis = new DataInputStream(new FileInputStream(ruta))) {
+            return dis.readBoolean();
+        }
     }
 
     /**
@@ -65,7 +90,9 @@ public class Ej45_LeerDatosBinarios {
      */
     public static String leerUTF(String ruta) throws IOException {
         // TODO 6: Crear DataInputStream. Leer con readUTF() y devolver.
-        return "";
+        try (DataInputStream dis = new DataInputStream(new FileInputStream(ruta))) {
+            return dis.readUTF();
+        }
     }
 
     /**
@@ -74,13 +101,18 @@ public class Ej45_LeerDatosBinarios {
      */
     public static String intentarLeer(String ruta) {
         // TODO 7: Intentar leer con DataInputStream + readInt().
-        //         Si funciona, devolver "OK".
-        //         Si lanza Exception, devolver e.getClass().getSimpleName().
-        return "";
+        // Si funciona, devolver "OK".
+        // Si lanza Exception, devolver e.getClass().getSimpleName().
+        try (DataInputStream dis = new DataInputStream(new FileInputStream(ruta))) {
+            int num = dis.readInt();
+            return "OK";
+        } catch (IOException io) {
+            return io.getClass().toString();
+        }
     }
 
     // ══════════════════════════════════════════════
-    //  ZONA DE EJECUCION — Pulsa Run aqui
+    // ZONA DE EJECUCION — Pulsa Run aqui
     // ══════════════════════════════════════════════
     public static void main(String[] args) throws IOException {
         System.out.println("=== Ejercicio 45: Leer Datos Binarios ===\n");
