@@ -1795,3 +1795,77 @@ Sin `SET SERVEROUTPUT ON`, `DBMS_OUTPUT.PUT_LINE` produce texto pero nadie lo re
 ---
 
 *Fin del documento — Guía de Estudio con Soluciones PL/SQL*
+
+
+```sql
+CREATE OR REPLACE TRIGGER integridad_agentes
+BEFORE INSERT OR UPDATE ON agentes
+FOR EACH ROW
+BEGIN
+IF (:new.familia IS NULL and :new.oficina IS NULL) THEN
+RAISE_APPLICATION_ERROR(-20201, 'Un agente no puede ser
+huérfano');
+ELSIF (:new.familia IS NOT NULL and :new.oficina IS NOT NULL)
+THEN
+RAISE_APPLICATION_ERROR(-20202, 'Un agente no puede tener
+dos padres');
+END IF;
+END;
+/
+```
+
+```sql
+FOR EACH ROW
+DECLARE
+oficina VARCHAR2(40);
+familia VARCHAR2(40);
+ahora DATE := sysdate;
+BEGIN
+IF INSERTING THEN
+IF (:new.familia IS NOT NULL) THEN
+SELECT nombre INTO familia FROM familias WHERE identificador = :new.familia;
+oficina := NULL;
+ELSIF
+SELECT nombre INTO oficina FROM oficinas WHERE identificador = :new.oficina;
+familia := NULL;
+END IF;
+INSERT INTO histagentes VALUES (ahora, NULL, :new.identificador, :new.nombre, familia, oficina);
+COMMIT;
+ELSIF UPDATING THEN
+UPDATE histagentes SET fecha_hasta = ahora WHERE identificador = :old.identificador and fecha_hasta IS
+NULL;
+IF (:new.familia IS NOT NULL) THEN
+SELECT nombre INTO familia FROM familias WHERE identificador = :new.familia;
+oficina := NULL;
+ELSE
+SELECT nombre INTO oficina FROM oficinas WHERE identificador = :new.oficina;
+familia := NULL;
+END IF;
+INSERT INTO histagentes VALUES (ahora, NULL, :new.identificador, :new.identificador, familia, oficina);
+COMMIT;
+ELSE
+UPDATE histagentes SET fecha_hasta = ahora WHERE identificador = :old.identificador and fecha_hasta IS
+NULL;
+COMMIT;
+END IF;
+END;
+/
+```
+
+```sql
+CREATE OR REPLACE TRIGGER historico_agentes
+AFTER INSERT OR UPDATE OR DELETE ON agentes
+CREATE OR REPLACE TRIGGER jornada_familias
+BEFORE INSERT OR DELETE OR UPDATE ON familias
+DECLARE
+ahora DATE := sysdate;
+BEGIN
+IF (TO_CHAR(ahora, 'DY') = 'SAT' OR TO_CHAR(ahora, 'DY') = 'SUN') THEN
+RAISE_APPLICATION_ERROR(-20301, 'No podemos manipular familias en fines de semana');
+END IF;
+IF (TO_CHAR(ahora, 'HH24') < 8 OR TO_CHAR(ahora, 'HH24') > 18) THEN
+RAISE_APPLICATION_ERROR(-20302, 'No podemos manipular familias fuera del horario de trabajo');
+END IF;
+END;
+/
+```
