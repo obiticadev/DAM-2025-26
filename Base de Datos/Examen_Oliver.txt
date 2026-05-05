@@ -1,0 +1,65 @@
+--ejercicio1
+DECLARE
+	TYPE arrayDatos IS varray(2) OF number(3);
+	datos arrayDatos := arrayDatos(100, 3);
+	espacioRecorrido NUMBER;
+	costeFinal NUMBER;
+BEGIN
+	espacioRecorrido := datos(1)*datos(2);
+	dbms_output.put_line('Espacio recorrido: '||espacioRecorrido || ' km');
+	IF (datos(1) > 80 AND datos(2)>2) THEN
+		costeFinal := espacioRecorrido * 0.34 * 0.90;
+		dbms_output.put_line('Descuento aplicado, precio final: '||costeFinal || ' €');
+	ELSE
+		costeFinal := espacioRecorrido * 0.34;
+		dbms_output.put_line('Precio final sin descuento: '||costeFinal|| ' €');
+
+	END IF;
+END;
+
+--ejercicio2
+DECLARE
+  CURSOR cpruebaa IS SELECT empnu FROM empleadose WHERE depnu = 20;
+  TYPE tvarray IS VARRAY(20) OF NUMBER;
+  varray tvarray := tvarray();
+  idx    NUMBER  := 0;
+  num NUMBER := 0;
+BEGIN
+  FOR reg IN cpruebaa LOOP
+    idx := idx + 1;
+    varray.EXTEND;
+    varray(idx) := reg.empnu;
+  END LOOP;
+
+  FOR j IN 1..varray.COUNT LOOP
+    num := num + 1;
+  END LOOP;
+  dbms_output.put_line('Total: '||num|| ' empleados para el departamento 20');
+
+END;
+
+--ejercicio3
+CREATE OR REPLACE PROCEDURE ptotalpro(num_pedido IN NUMBER, p_unidades OUT NUMBER)
+IS
+BEGIN
+  SELECT count(*) INTO p_unidades
+  FROM pedidose
+  WHERE pedidonu = num_pedido;
+END ptotalpro;
+
+-- Paso 2: Llamarlo desde un bloque anónimo
+DECLARE
+  resultado NUMBER;
+  errorPedido EXCEPTION;
+  num_pedido NUMBER;
+BEGIN
+  ptotalpro(&num_pedido, resultado);
+  IF num_pedido = 1002 THEN
+    raise errorPedido;
+  END IF;
+  DBMS_OUTPUT.PUT_LINE('Unidades para ese pedido: ' || resultado);
+  exception
+  	WHEN errorPedido THEN
+  	  DBMS_OUTPUT.PUT_LINE('El cliente '||num_pedido||' no está habilitado');
+
+END;
