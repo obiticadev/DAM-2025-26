@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.biblioteca.Clases.Usuario;
+import com.biblioteca.Enum.Aviso;
 
 public class DAOusuarios {
 
@@ -34,9 +35,11 @@ public class DAOusuarios {
 
             stmt.execute(sql);
             System.out.println("Tabla USUARIOS lista");
+            new Logs("Tabla usuarios creada", Aviso.INFO).guardarLog();
 
         } catch (SQLException e) {
             e.printStackTrace();
+            new Logs("Error al crear tabla usuarios: " + e.getMessage(), Aviso.PELIGRO).guardarLog();
         }
     }
 
@@ -58,12 +61,15 @@ public class DAOusuarios {
 
             if (num > 0) {
                 System.out.println("Insertado correctamente");
+                new Logs("Usuario insertado: " + usuario.getNombre() + " " + usuario.getApellido(), Aviso.INFO).guardarLog();
             } else {
                 System.out.println("Ha habido un error en alguna parte");
+                new Logs("Error al insertar usuario: " + usuario.getNombre(), Aviso.AVISO).guardarLog();
             }
 
         } catch (SQLException e) {
             System.out.println("Ha ocurrido un error con la Base de Datos");
+            new Logs("Error de base de datos al insertar usuario: " + e.getMessage(), Aviso.PELIGRO).guardarLog();
         }
     }
 
@@ -88,8 +94,10 @@ public class DAOusuarios {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            new Logs("Error al obtener usuarios: " + e.getMessage(), Aviso.PELIGRO).guardarLog();
         }
 
+        new Logs("Obtenidos " + lista.size() + " usuarios", Aviso.INFO).guardarLog();
         return lista;
     }
 

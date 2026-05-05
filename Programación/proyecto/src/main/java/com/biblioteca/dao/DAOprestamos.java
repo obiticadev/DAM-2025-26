@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.biblioteca.Clases.Prestamo;
+import com.biblioteca.Enum.Aviso;
 import com.biblioteca.Enum.Estado;
 
 public class DAOprestamos {
@@ -38,9 +39,11 @@ public class DAOprestamos {
 
             stmt.execute(sql);
             System.out.println("Tabla PRESTAMOS lista");
+            new Logs("Tabla prestamos creada", Aviso.INFO).guardarLog();
 
         } catch (SQLException e) {
             e.printStackTrace();
+            new Logs("Error al crear tabla prestamos: " + e.getMessage(), Aviso.PELIGRO).guardarLog();
         }
     }
 
@@ -67,12 +70,15 @@ public class DAOprestamos {
 
             if (num > 0) {
                 System.out.println("Insertado correctamente");
+                new Logs("Préstamo creado: ID usuario " + prestamo.getIdUsuario() + " - ID libro " + prestamo.getIdLibro(), Aviso.INFO).guardarLog();
             } else {
                 System.out.println("Ha habido un error en alguna parte");
+                new Logs("Error al insertar préstamo", Aviso.AVISO).guardarLog();
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
+            new Logs("Error de base de datos al insertar préstamo: " + e.getMessage(), Aviso.PELIGRO).guardarLog();
         }
     }
 
@@ -98,8 +104,10 @@ public class DAOprestamos {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            new Logs("Error al obtener préstamos: " + e.getMessage(), Aviso.PELIGRO).guardarLog();
         }
 
+        new Logs("Obtenidos " + lista.size() + " préstamos", Aviso.INFO).guardarLog();
         return lista;
     }
 
@@ -125,11 +133,13 @@ public class DAOprestamos {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            new Logs("Error al obtener préstamos activos de usuario: " + e.getMessage(), Aviso.PELIGRO).guardarLog();
         }
     }
 
     // TODO pendiente por revisar
     public void libroMasPrestado() {
+        new Logs("Consulta de libro más prestado", Aviso.INFO).guardarLog();
     }
 
     // TODO pendiente por revisar
@@ -155,6 +165,7 @@ public class DAOprestamos {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            new Logs("Error al obtener género con más préstamos: " + e.getMessage(), Aviso.PELIGRO).guardarLog();
         }
     }
 }

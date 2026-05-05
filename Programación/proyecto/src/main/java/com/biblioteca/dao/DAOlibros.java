@@ -13,6 +13,7 @@ import java.util.List;
 import com.biblioteca.Clases.Libro;
 import com.biblioteca.Clases.LibroElectronico;
 import com.biblioteca.Clases.LibroEnPapel;
+import com.biblioteca.Enum.Aviso;
 import com.biblioteca.Enum.Formato;
 import com.biblioteca.Enum.Genero;
 import com.biblioteca.Enum.Tipo;
@@ -44,8 +45,9 @@ public class DAOlibros {
         try (Connection conn = Conexion.getConexion();
                 Statement stmt = conn.createStatement()) {
 
-            stmt.execute(sql);
+stmt.execute(sql);
             System.out.println("Tabla LIBROS lista");
+            new Logs("Tabla libros creada", Aviso.INFO).guardarLog();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -86,12 +88,15 @@ public class DAOlibros {
 
             if (num > 0) {
                 System.out.println("Insertado correctamente");
+                new Logs("Libro insertado: " + libro.getTitulo() + " - ISBN: " + libro.getIsbn(), Aviso.INFO).guardarLog();
             } else {
                 System.out.println("Ha habido un error en alguna parte");
+                new Logs("Error al insertar libro: " + libro.getTitulo(), Aviso.AVISO).guardarLog();
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
+            new Logs("Error de base de datos al insertar libro: " + e.getMessage(), Aviso.PELIGRO).guardarLog();
         }
     }
 
@@ -130,15 +135,19 @@ public class DAOlibros {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            new Logs("Error al obtener libros: " + e.getMessage(), Aviso.PELIGRO).guardarLog();
         }
+        new Logs("Obtenidos " + lista.size() + " libros", Aviso.INFO).guardarLog();
         return lista;
     }
 
     // TODO pendiente por revisar
     public void librosDisponibles() {
+        new Logs("Consulta de libros disponibles", Aviso.INFO).guardarLog();
     }
 
     // TODO pendiente por revisar
     public void filtrarPorX() {
+        new Logs("Filtro de libros por criterio", Aviso.INFO).guardarLog();
     }
 }
