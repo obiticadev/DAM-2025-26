@@ -6,6 +6,10 @@ import com.biblioteca.Enum.Genero;
 import com.biblioteca.Enum.Tipo;
 
 public class LibroEnPapel extends Libro {
+
+    // TODO [CÓDIGO FALTANTE] Añadir serialVersionUID.
+    //  → private static final long serialVersionUID = 1L;
+
     private int idPapel;
     private String ubicacion;
 
@@ -23,5 +27,9 @@ public class LibroEnPapel extends Libro {
     public String getUbicacion() {
         return ubicacion;
     }
+
+    // TODO [CÓDIGO FALTANTE] Implementar toString().
+    //  → Llamar a super.toString() (una vez implementado en Libro) y concatenar los campos propios: idPapel, ubicacion.
+    //  → Ejemplo: @Override public String toString() { return super.toString() + ", ubicacion='" + ubicacion + "'"; }
 
 }

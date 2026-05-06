@@ -7,6 +7,11 @@ import com.biblioteca.Enum.Genero;
 import com.biblioteca.Enum.Tipo;
 
 public abstract class Libro implements Serializable {
+
+    // TODO [CÓDIGO FALTANTE] Añadir serialVersionUID para garantizar compatibilidad en serialización.
+    //  → private static final long serialVersionUID = 1L;
+    //  Sin este campo, cualquier cambio en la clase romperá la deserialización de objetos guardados.
+
     protected int id;
     protected String titulo;
     protected String autor;
@@ -65,5 +70,18 @@ public abstract class Libro implements Serializable {
     public Tipo getTipo() {
         return tipo;
     }
+
+    // TODO [CÓDIGO FALTANTE] Añadir setter para copiasDisponibles.
+    //  → Se necesita para actualizar las copias cuando se crea/devuelve un préstamo.
+    //  → public void setCopiasDisponibles(int copiasDisponibles) { this.copiasDisponibles = copiasDisponibles; }
+
+    // TODO [CÓDIGO FALTANTE] Implementar toString() en esta clase abstracta.
+    //  → Debe mostrar los campos comunes: id, titulo, autor, genero, isbn, tipo.
+    //  → Las subclases (LibroEnPapel, LibroElectronico) deben llamar a super.toString() y añadir sus campos propios.
+    //  → Ejemplo: @Override public String toString() { return "Libro{id=" + id + ", titulo='" + titulo + "', ...}"; }
+
+    // TODO [RECOMENDACIÓN] Implementar equals() y hashCode() basándose en el campo isbn (que es UNIQUE en BD).
+    //  → Esto permite comparar libros correctamente en colecciones (ej: HashSet, HashMap).
+    //  → equals: comparar isbn. hashCode: Objects.hash(isbn).
 
 }

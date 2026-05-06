@@ -83,9 +83,18 @@ public class DAOusuarios {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String nombre = rs.getString("nombre");
+
+                // TODO [BUG] Corregir el nombre de la columna: la tabla usa "apellidos" (con 's'),
+                //  no "apellido". El error aparece en logs.txt: "no such column: 'apellido'".
+                //  → Cambiar a: rs.getString("apellidos")
                 String apellido = rs.getString("apellido");
+
                 String email = rs.getString("email");
                 String telefono = rs.getString("telefono");
+
+                // TODO [BUG] Corregir el nombre de la columna: la tabla usa "fecha_registro"
+                //  (con guion bajo), no "fechaRegistro" (camelCase).
+                //  → Cambiar a: rs.getString("fecha_registro")
                 LocalDate fechaRegistro = LocalDate.parse(rs.getString("fechaRegistro"));
 
                 lista.add(new Usuario(id, nombre, apellido, email, telefono, fechaRegistro));
@@ -100,5 +109,23 @@ public class DAOusuarios {
         new Logs("Obtenidos " + lista.size() + " usuarios", Aviso.INFO).guardarLog();
         return lista;
     }
+
+    // TODO [CÓDIGO FALTANTE] Implementar buscarUsuarioPorId(int id).
+    //  → Ejecutar: SELECT * FROM usuarios WHERE id = ?
+    //  → Usar PreparedStatement con el parámetro id.
+    //  → Devolver un Optional<Usuario> o null si no se encuentra.
+    //  → Se necesita para validar que el usuario existe antes de crear un préstamo.
+
+    // TODO [CÓDIGO FALTANTE] Implementar actualizarUsuario(Usuario usuario).
+    //  → Ejecutar: UPDATE usuarios SET nombre = ?, apellidos = ?, email = ?, telefono = ? WHERE id = ?
+    //  → Devolver boolean indicando si se actualizó algún registro (executeUpdate() > 0).
+    //  → Añadir la opción correspondiente en el menú de usuarios de App.java.
+
+    // TODO [CÓDIGO FALTANTE] Implementar eliminarUsuario(int id).
+    //  → Ejecutar: DELETE FROM usuarios WHERE id = ?
+    //  → IMPORTANTE: Verificar primero que el usuario no tenga préstamos activos
+    //    (SELECT COUNT(*) FROM prestamos WHERE id_usuario = ? AND estado = 'ACTIVO').
+    //  → Devolver boolean indicando si se eliminó.
+    //  → Añadir la opción correspondiente en el menú de usuarios de App.java.
 
 }

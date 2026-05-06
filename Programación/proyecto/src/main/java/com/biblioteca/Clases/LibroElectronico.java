@@ -7,6 +7,10 @@ import com.biblioteca.Enum.Genero;
 import com.biblioteca.Enum.Tipo;
 
 public class LibroElectronico extends Libro {
+
+    // TODO [CÓDIGO FALTANTE] Añadir serialVersionUID.
+    //  → private static final long serialVersionUID = 1L;
+
     private int idElectronico;
     private Formato formato;
     private String urlDescarga;
@@ -32,5 +36,9 @@ public class LibroElectronico extends Libro {
     public String getUrlDescarga() {
         return urlDescarga;
     }
+
+    // TODO [CÓDIGO FALTANTE] Implementar toString().
+    //  → Llamar a super.toString() y concatenar: formato, urlDescarga.
+    //  → Ejemplo: @Override public String toString() { return super.toString() + ", formato=" + formato + ", url='" + urlDescarga + "'"; }
 
 }

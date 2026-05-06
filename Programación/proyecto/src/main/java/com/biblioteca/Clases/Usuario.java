@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public class Usuario implements Serializable {
+
+    // TODO [CÓDIGO FALTANTE] Añadir serialVersionUID.
+    //  → private static final long serialVersionUID = 1L;
+
     private int id;
     private String nombre;
     private String apellido;
@@ -43,5 +47,12 @@ public class Usuario implements Serializable {
     public LocalDate getFechaRegistro() {
         return fechaRegistro;
     }
+
+    // TODO [CÓDIGO FALTANTE] Implementar toString().
+    //  → Mostrar: id, nombre completo (nombre + apellido), email, teléfono, fechaRegistro.
+    //  → Se usa en listarUsuarios() de App.java para imprimir datos de cada usuario.
+
+    // TODO [RECOMENDACIÓN] Implementar equals() y hashCode() basándose en email (UNIQUE en BD).
+    //  → Permitirá usar correctamente Usuario en colecciones tipo Set o como clave de Map.
 
 }

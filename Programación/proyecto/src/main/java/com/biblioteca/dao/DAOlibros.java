@@ -34,21 +34,18 @@ public class DAOlibros {
                     anio_publicacion    INTEGER NOT NULL,
                     copias_totales      INTEGER NOT NULL DEFAULT 1,
                     copias_disponibles  INTEGER NOT NULL,
-                    tipo                TEXT NOT NULL, -- 'PAPEL' o 'ELECTRONICO'
-                    -- Campos específicos
-                    formato             TEXT,          -- Solo para electrónico
-                    url_descarga        TEXT,          -- Solo para electrónico
-                    ubicacion           TEXT           -- Solo para papel
+                    tipo                TEXT NOT NULL,
+                    formato             TEXT,
+                    url_descarga        TEXT,
+                    ubicacion           TEXT
                 );
                 """;
 
         try (Connection conn = Conexion.getConexion();
                 Statement stmt = conn.createStatement()) {
-
-stmt.execute(sql);
+            stmt.execute(sql);
             System.out.println("Tabla LIBROS lista");
             new Logs("Tabla libros creada", Aviso.INFO).guardarLog();
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -64,7 +61,6 @@ stmt.execute(sql);
 
         try (Connection conn = Conexion.getConexion();
                 PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-
             pstmt.setString(1, libro.getTitulo());
             pstmt.setString(2, libro.getAutor());
             pstmt.setString(3, libro.getGenero().name());
@@ -85,18 +81,16 @@ stmt.execute(sql);
             }
 
             int num = pstmt.executeUpdate();
-
             if (num > 0) {
                 System.out.println("Insertado correctamente");
-                new Logs("Libro insertado: " + libro.getTitulo() + " - ISBN: " + libro.getIsbn(), Aviso.INFO).guardarLog();
+                new Logs("Libro insertado: " + libro.getTitulo(), Aviso.INFO).guardarLog();
             } else {
                 System.out.println("Ha habido un error en alguna parte");
                 new Logs("Error al insertar libro: " + libro.getTitulo(), Aviso.AVISO).guardarLog();
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
-            new Logs("Error de base de datos al insertar libro: " + e.getMessage(), Aviso.PELIGRO).guardarLog();
+            new Logs("Error de BD al insertar libro: " + e.getMessage(), Aviso.PELIGRO).guardarLog();
         }
     }
 
@@ -114,25 +108,32 @@ stmt.execute(sql);
                 String autor = rs.getString("autor");
                 Genero genero = Genero.valueOf(rs.getString("genero"));
                 String isbn = rs.getString("isbn");
+
+                // TODO [BUG] "anio_publicacion" es INTEGER en tabla, no TEXT.
+                //  → Cambiar a: int anioInt = rs.getInt("anio_publicacion");
+                //               LocalDate anioPublicacion = LocalDate.of(anioInt, 1, 1);
                 LocalDate anioPublicacion = LocalDate.parse(rs.getString("anioPublicacion"));
+
+                // TODO [BUG] Nombres de columna incorrectos (usar snake_case):
+                //  → "copiasTotales"     → "copias_totales"
+                //  → "copiasDisponibles" → "copias_disponibles"
                 int copiasTotales = rs.getInt("copiasTotales");
                 int copiasDisponibles = rs.getInt("copiasDisponibles");
+
                 Tipo tipo = Tipo.valueOf(rs.getString("tipo"));
 
                 if (tipo == Tipo.ELECTRONICO) {
                     Formato formato = Formato.valueOf(rs.getString("formato"));
+                    // TODO [BUG] Columna "url" no existe → usar "url_descarga"
                     String url = rs.getString("url");
-
-                    lista.add(new LibroElectronico(id, titulo, autor, genero, isbn, anioPublicacion, copiasTotales,
-                            copiasDisponibles, tipo, id, formato, url));
+                    lista.add(new LibroElectronico(id, titulo, autor, genero, isbn,
+                            anioPublicacion, copiasTotales, copiasDisponibles, tipo, id, formato, url));
                 } else {
                     String ubicacion = rs.getString("ubicacion");
-
-                    lista.add(new LibroEnPapel(id, titulo, autor, genero, isbn, anioPublicacion, copiasTotales,
-                            copiasDisponibles, tipo, id, ubicacion));
+                    lista.add(new LibroEnPapel(id, titulo, autor, genero, isbn,
+                            anioPublicacion, copiasTotales, copiasDisponibles, tipo, id, ubicacion));
                 }
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
             new Logs("Error al obtener libros: " + e.getMessage(), Aviso.PELIGRO).guardarLog();
@@ -141,13 +142,32 @@ stmt.execute(sql);
         return lista;
     }
 
-    // TODO pendiente por revisar
+    // TODO [CÓDIGO FALTANTE] Implementar librosDisponibles().
+    //  → SQL: SELECT * FROM libros WHERE copias_disponibles > 0
+    //  → Devolver List<Libro>. Reutilizar lógica de mapeo (ver RECOMENDACIÓN abajo).
+    //  → Imprimir resultados en consola.
     public void librosDisponibles() {
         new Logs("Consulta de libros disponibles", Aviso.INFO).guardarLog();
     }
 
-    // TODO pendiente por revisar
+    // TODO [CÓDIGO FALTANTE] Reemplazar filtrarPorX() por:
+    //  1) buscarPorAutor(String autor) → SQL: WHERE autor LIKE '%' || ? || '%'
+    //  2) buscarPorGenero(Genero genero) → SQL: WHERE genero = ?
+    //  → Añadir opciones en el menú de libros de App.java.
     public void filtrarPorX() {
         new Logs("Filtro de libros por criterio", Aviso.INFO).guardarLog();
     }
+
+    // TODO [CÓDIGO FALTANTE] Implementar buscarLibroPorId(int id).
+    //  → SQL: SELECT * FROM libros WHERE id = ?
+    //  → Necesario para validar existencia antes de crear préstamo.
+
+    // TODO [CÓDIGO FALTANTE] Implementar actualizarLibro(Libro libro).
+    //  → SQL: UPDATE libros SET titulo=?, autor=?, ... WHERE id=?
+
+    // TODO [CÓDIGO FALTANTE] Implementar eliminarLibro(int id).
+    //  → Verificar que no tenga préstamos activos antes de borrar.
+
+    // TODO [RECOMENDACIÓN] Extraer método privado mapearLibro(ResultSet rs).
+    //  → Evita duplicar la lógica de mapeo en cada método SELECT.
 }

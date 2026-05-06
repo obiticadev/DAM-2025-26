@@ -29,6 +29,9 @@ public class Logs {
             pw.printf("[%s] [%s] %s%n", timestamp.toString(), aviso.toString(), mensaje);
 
         } catch (IOException e) {
+            // TODO [RECOMENDACIÓN] Si falla la escritura del log, imprimir por System.err
+            //  para no perder información de depuración:
+            //  System.err.println("[LOG FALLIDO] " + timestamp + " " + aviso + " " + mensaje);
             System.out.println("Error al escribir en el archivo de logs");
         }
     }

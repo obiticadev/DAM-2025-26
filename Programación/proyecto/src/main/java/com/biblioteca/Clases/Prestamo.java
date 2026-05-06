@@ -6,6 +6,10 @@ import java.time.LocalDate;
 import com.biblioteca.Enum.Estado;
 
 public class Prestamo implements Serializable {
+
+    // TODO [CÓDIGO FALTANTE] Añadir serialVersionUID.
+    //  → private static final long serialVersionUID = 1L;
+
     private int id;
     private int idUsuario;
     private int idLibro;
@@ -52,5 +56,17 @@ public class Prestamo implements Serializable {
     public Estado getEstado() {
         return estado;
     }
+
+    // TODO [CÓDIGO FALTANTE] Añadir setter para estado.
+    //  → Se necesita para cambiar el estado del préstamo (ACTIVO → DEVUELTO / RETRASADO).
+    //  → public void setEstado(Estado estado) { this.estado = estado; }
+
+    // TODO [CÓDIGO FALTANTE] Añadir setter para fechaDevolucionReal.
+    //  → Se necesita cuando el usuario devuelve el libro: setFechaDevolucionReal(LocalDate.now()).
+    //  → public void setFechaDevolucionReal(LocalDate fecha) { this.fechaDevolucionReal = fecha; }
+
+    // TODO [CÓDIGO FALTANTE] Implementar toString().
+    //  → Mostrar: id, idUsuario, idLibro, fechaPrestamo, fechaDevolucionPrevista, fechaDevolucionReal, estado.
+    //  → Ojo: fechaDevolucionReal puede ser null, manejar con operador ternario.
 
 }
