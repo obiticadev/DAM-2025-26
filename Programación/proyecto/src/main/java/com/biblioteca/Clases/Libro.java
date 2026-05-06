@@ -8,21 +8,19 @@ import com.biblioteca.Enum.Tipo;
 
 public abstract class Libro implements Serializable {
 
-    // TODO [CÓDIGO FALTANTE] Añadir serialVersionUID para garantizar compatibilidad en serialización.
-    //  → private static final long serialVersionUID = 1L;
-    //  Sin este campo, cualquier cambio en la clase romperá la deserialización de objetos guardados.
+    private static final long serialVersionUID = 1L;
 
     protected int id;
     protected String titulo;
     protected String autor;
     protected Genero genero;
     protected String isbn;
-    protected LocalDate anioPublicacion;
+    protected int anioPublicacion;
     protected int copiasTotales;
     protected int copiasDisponibles;
     protected Tipo tipo;
 
-    public Libro(int id, String titulo, String autor, Genero genero, String isbn, LocalDate anioPublicacion,
+    public Libro(int id, String titulo, String autor, Genero genero, String isbn, int anioPublicacion,
             int copiasTotales, int copiasDisponibles, Tipo tipo) {
         this.id = id;
         this.titulo = titulo;
@@ -55,7 +53,7 @@ public abstract class Libro implements Serializable {
         return isbn;
     }
 
-    public LocalDate getAnioPublicacion() {
+    public int getAnioPublicacion() {
         return anioPublicacion;
     }
 
@@ -71,17 +69,40 @@ public abstract class Libro implements Serializable {
         return tipo;
     }
 
-    // TODO [CÓDIGO FALTANTE] Añadir setter para copiasDisponibles.
-    //  → Se necesita para actualizar las copias cuando se crea/devuelve un préstamo.
-    //  → public void setCopiasDisponibles(int copiasDisponibles) { this.copiasDisponibles = copiasDisponibles; }
+    public void setCopiasDisponibles(int copiasDisponibles) {
+        this.copiasDisponibles = copiasDisponibles;
+    }
 
-    // TODO [CÓDIGO FALTANTE] Implementar toString() en esta clase abstracta.
-    //  → Debe mostrar los campos comunes: id, titulo, autor, genero, isbn, tipo.
-    //  → Las subclases (LibroEnPapel, LibroElectronico) deben llamar a super.toString() y añadir sus campos propios.
-    //  → Ejemplo: @Override public String toString() { return "Libro{id=" + id + ", titulo='" + titulo + "', ...}"; }
+    @Override
+    public String toString() {
+        return "Libro [id=" + id + ", titulo=" + titulo + ", autor=" + autor + ", genero=" + genero + ", isbn=" + isbn
+                + ", anioPublicacion=" + anioPublicacion + ", copiasTotales=" + copiasTotales + ", copiasDisponibles="
+                + copiasDisponibles + ",";
+    }
 
-    // TODO [RECOMENDACIÓN] Implementar equals() y hashCode() basándose en el campo isbn (que es UNIQUE en BD).
-    //  → Esto permite comparar libros correctamente en colecciones (ej: HashSet, HashMap).
-    //  → equals: comparar isbn. hashCode: Objects.hash(isbn).
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((isbn == null) ? 0 : isbn.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Libro other = (Libro) obj;
+        if (isbn == null) {
+            if (other.isbn != null)
+                return false;
+        } else if (!isbn.equals(other.isbn))
+            return false;
+        return true;
+    }
 
 }

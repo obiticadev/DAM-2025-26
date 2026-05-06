@@ -9,13 +9,13 @@ import com.biblioteca.Enum.Tipo;
 public class LibroElectronico extends Libro {
 
     // TODO [CÓDIGO FALTANTE] Añadir serialVersionUID.
-    //  → private static final long serialVersionUID = 1L;
+    // → private static final long serialVersionUID = 1L;
 
     private int idElectronico;
     private Formato formato;
     private String urlDescarga;
 
-    public LibroElectronico(int id, String titulo, String autor, Genero genero, String isbn, LocalDate anioPublicacion,
+    public LibroElectronico(int id, String titulo, String autor, Genero genero, String isbn, int anioPublicacion,
             int copiasTotales, int copiasDisponibles, Tipo tipo, int idElectronico, Formato formato,
             String urlDescarga) {
         super(id, titulo, autor, genero, isbn, anioPublicacion, copiasTotales, copiasDisponibles, tipo);
@@ -37,8 +37,10 @@ public class LibroElectronico extends Libro {
         return urlDescarga;
     }
 
-    // TODO [CÓDIGO FALTANTE] Implementar toString().
-    //  → Llamar a super.toString() y concatenar: formato, urlDescarga.
-    //  → Ejemplo: @Override public String toString() { return super.toString() + ", formato=" + formato + ", url='" + urlDescarga + "'"; }
+    @Override
+    public String toString() {
+        return super.toString() + " LibroElectronico [idElectronico=" + idElectronico +
+                ", formato=" + formato + ", urlDescarga=" + urlDescarga + "]]";
+    }
 
 }

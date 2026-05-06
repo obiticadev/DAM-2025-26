@@ -5,6 +5,7 @@ package com.biblioteca;
 //  Esto facilita futuros cambios (ej: migrar de consola a GUI).
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -56,9 +57,9 @@ public class App {
             case 4 -> menuPrestamos();
             case 0 -> {
                 // TODO [RECOMENDACIÓN] Cerrar recursos al salir:
-                //  → Conexion.cerrarConexion();
-                //  → scanner.close();
-                //  Esto libera la conexión a SQLite y el flujo de System.in.
+                // → Conexion.cerrarConexion();
+                // → scanner.close();
+                // Esto libera la conexión a SQLite y el flujo de System.in.
                 System.out.println("¡Hasta luego!");
             }
             default -> System.out.println("Opción inválida");
@@ -75,9 +76,11 @@ public class App {
         int opcion;
         do {
             // TODO [CÓDIGO FALTANTE] Ampliar menú de usuarios con opciones CRUD completas:
-            //  3. Buscar usuario por ID   → pedir ID, llamar a daoUsuarios.buscarUsuarioPorId(id)
-            //  4. Actualizar usuario       → pedir ID, leer nuevos datos, llamar a daoUsuarios.actualizarUsuario()
-            //  5. Eliminar usuario         → pedir ID, llamar a daoUsuarios.eliminarUsuario(id)
+            // 3. Buscar usuario por ID → pedir ID, llamar a
+            // daoUsuarios.buscarUsuarioPorId(id)
+            // 4. Actualizar usuario → pedir ID, leer nuevos datos, llamar a
+            // daoUsuarios.actualizarUsuario()
+            // 5. Eliminar usuario → pedir ID, llamar a daoUsuarios.eliminarUsuario(id)
             System.out.println("""
                     --- Usuarios ---
                     1. Insertar usuario
@@ -120,9 +123,11 @@ public class App {
         int opcion;
         do {
             // TODO [CÓDIGO FALTANTE] Ampliar menú de libros con opciones de búsqueda:
-            //  5. Buscar por autor   → pedir String autor, llamar a daoLibros.buscarPorAutor(autor)
-            //  6. Buscar por género  → mostrar géneros, pedir Genero, llamar a daoLibros.buscarPorGenero(genero)
-            //  7. Eliminar libro     → pedir ID, llamar a daoLibros.eliminarLibro(id)
+            // 5. Buscar por autor → pedir String autor, llamar a
+            // daoLibros.buscarPorAutor(autor)
+            // 6. Buscar por género → mostrar géneros, pedir Genero, llamar a
+            // daoLibros.buscarPorGenero(genero)
+            // 7. Eliminar libro → pedir ID, llamar a daoLibros.eliminarLibro(id)
             System.out.println("""
                     --- Libros ---
                     1. Insertar libro en papel
@@ -151,10 +156,10 @@ public class App {
         int copias = leerInt("Copias totales");
         String ubicacion = leerString("Ubicación");
 
-        System.out.println("Géneros disponibles: " + java.util.Arrays.toString(Genero.values()));
+        System.out.println("Géneros disponibles: " + Arrays.toString(Genero.values()));
         Genero genero = leerEnum(Genero.class, "Género");
 
-        Libro libro = new LibroEnPapel(0, titulo, autor, genero, isbn, LocalDate.of(anio, 1, 1), copias, copias,
+        Libro libro = new LibroEnPapel(0, titulo, autor, genero, isbn, anio, copias, copias,
                 Tipo.PAPEL, 0, ubicacion);
         daoLibros.insertarLibro(libro);
     }
@@ -172,7 +177,7 @@ public class App {
         System.out.println("Formatos disponibles: " + java.util.Arrays.toString(Formato.values()));
         Formato formato = leerEnum(Formato.class, "Formato");
 
-        Libro libro = new LibroElectronico(0, titulo, autor, genero, isbn, LocalDate.of(anio, 1, 1), 1, 1,
+        Libro libro = new LibroElectronico(0, titulo, autor, genero, isbn, anio, 1, 1,
                 Tipo.ELECTRONICO, 0, formato, url);
         daoLibros.insertarLibro(libro);
     }
@@ -193,8 +198,9 @@ public class App {
         int opcion;
         do {
             // TODO [CÓDIGO FALTANTE] Añadir opción "6. Devolver préstamo" al menú.
-            //  → Pedir ID del préstamo, llamar a daoPrestamos.devolverPrestamo(idPrestamo).
-            //  → Este método debe actualizar estado y fecha_devolucion_real, e incrementar copias del libro.
+            // → Pedir ID del préstamo, llamar a daoPrestamos.devolverPrestamo(idPrestamo).
+            // → Este método debe actualizar estado y fecha_devolucion_real, e incrementar
+            // copias del libro.
             System.out.println("""
                     --- Préstamos ---
                     1. Crear préstamo
@@ -245,8 +251,8 @@ public class App {
     private static void prestamosActivosUsuario() {
         int idUsuario = leerInt("ID Usuario");
         // TODO [BUG] El idUsuario se lee pero NO se pasa al DAO.
-        //  → Cuando corrijas prestamosActivosDeUnUsuario(int idUsuario) en DAOprestamos,
-        //    cambiar esta línea a: daoPrestamos.prestamosActivosDeUnUsuario(idUsuario);
+        // → Cuando corrijas prestamosActivosDeUnUsuario(int idUsuario) en DAOprestamos,
+        // cambiar esta línea a: daoPrestamos.prestamosActivosDeUnUsuario(idUsuario);
         daoPrestamos.prestamosActivosDeUnUsuario();
     }
 

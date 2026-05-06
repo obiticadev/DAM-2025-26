@@ -65,7 +65,7 @@ public class DAOlibros {
             pstmt.setString(2, libro.getAutor());
             pstmt.setString(3, libro.getGenero().name());
             pstmt.setString(4, libro.getIsbn());
-            pstmt.setInt(5, libro.getAnioPublicacion().getYear());
+            pstmt.setInt(5, libro.getAnioPublicacion());
             pstmt.setInt(6, libro.getCopiasTotales());
             pstmt.setInt(7, libro.getCopiasDisponibles());
             pstmt.setString(8, libro.getTipo().name());
@@ -108,15 +108,11 @@ public class DAOlibros {
                 String autor = rs.getString("autor");
                 Genero genero = Genero.valueOf(rs.getString("genero"));
                 String isbn = rs.getString("isbn");
-
-                // TODO [BUG] "anio_publicacion" es INTEGER en tabla, no TEXT.
-                //  → Cambiar a: int anioInt = rs.getInt("anio_publicacion");
-                //               LocalDate anioPublicacion = LocalDate.of(anioInt, 1, 1);
-                LocalDate anioPublicacion = LocalDate.parse(rs.getString("anioPublicacion"));
+                int anioPublicacion = rs.getInt("anio_Publicacion");
 
                 // TODO [BUG] Nombres de columna incorrectos (usar snake_case):
-                //  → "copiasTotales"     → "copias_totales"
-                //  → "copiasDisponibles" → "copias_disponibles"
+                // → "copiasTotales" → "copias_totales"
+                // → "copiasDisponibles" → "copias_disponibles"
                 int copiasTotales = rs.getInt("copiasTotales");
                 int copiasDisponibles = rs.getInt("copiasDisponibles");
 
@@ -143,31 +139,31 @@ public class DAOlibros {
     }
 
     // TODO [CÓDIGO FALTANTE] Implementar librosDisponibles().
-    //  → SQL: SELECT * FROM libros WHERE copias_disponibles > 0
-    //  → Devolver List<Libro>. Reutilizar lógica de mapeo (ver RECOMENDACIÓN abajo).
-    //  → Imprimir resultados en consola.
+    // → SQL: SELECT * FROM libros WHERE copias_disponibles > 0
+    // → Devolver List<Libro>. Reutilizar lógica de mapeo (ver RECOMENDACIÓN abajo).
+    // → Imprimir resultados en consola.
     public void librosDisponibles() {
         new Logs("Consulta de libros disponibles", Aviso.INFO).guardarLog();
     }
 
     // TODO [CÓDIGO FALTANTE] Reemplazar filtrarPorX() por:
-    //  1) buscarPorAutor(String autor) → SQL: WHERE autor LIKE '%' || ? || '%'
-    //  2) buscarPorGenero(Genero genero) → SQL: WHERE genero = ?
-    //  → Añadir opciones en el menú de libros de App.java.
+    // 1) buscarPorAutor(String autor) → SQL: WHERE autor LIKE '%' || ? || '%'
+    // 2) buscarPorGenero(Genero genero) → SQL: WHERE genero = ?
+    // → Añadir opciones en el menú de libros de App.java.
     public void filtrarPorX() {
         new Logs("Filtro de libros por criterio", Aviso.INFO).guardarLog();
     }
 
     // TODO [CÓDIGO FALTANTE] Implementar buscarLibroPorId(int id).
-    //  → SQL: SELECT * FROM libros WHERE id = ?
-    //  → Necesario para validar existencia antes de crear préstamo.
+    // → SQL: SELECT * FROM libros WHERE id = ?
+    // → Necesario para validar existencia antes de crear préstamo.
 
     // TODO [CÓDIGO FALTANTE] Implementar actualizarLibro(Libro libro).
-    //  → SQL: UPDATE libros SET titulo=?, autor=?, ... WHERE id=?
+    // → SQL: UPDATE libros SET titulo=?, autor=?, ... WHERE id=?
 
     // TODO [CÓDIGO FALTANTE] Implementar eliminarLibro(int id).
-    //  → Verificar que no tenga préstamos activos antes de borrar.
+    // → Verificar que no tenga préstamos activos antes de borrar.
 
     // TODO [RECOMENDACIÓN] Extraer método privado mapearLibro(ResultSet rs).
-    //  → Evita duplicar la lógica de mapeo en cada método SELECT.
+    // → Evita duplicar la lógica de mapeo en cada método SELECT.
 }

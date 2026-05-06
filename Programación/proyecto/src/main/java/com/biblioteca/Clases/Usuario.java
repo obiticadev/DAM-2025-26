@@ -5,8 +5,7 @@ import java.time.LocalDate;
 
 public class Usuario implements Serializable {
 
-    // TODO [CÓDIGO FALTANTE] Añadir serialVersionUID.
-    //  → private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     private int id;
     private String nombre;
@@ -48,11 +47,35 @@ public class Usuario implements Serializable {
         return fechaRegistro;
     }
 
-    // TODO [CÓDIGO FALTANTE] Implementar toString().
-    //  → Mostrar: id, nombre completo (nombre + apellido), email, teléfono, fechaRegistro.
-    //  → Se usa en listarUsuarios() de App.java para imprimir datos de cada usuario.
+    @Override
+    public String toString() {
+        return "Usuario [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email
+                + ", telefono=" + telefono + ", fechaRegistro=" + fechaRegistro + "]";
+    }
 
-    // TODO [RECOMENDACIÓN] Implementar equals() y hashCode() basándose en email (UNIQUE en BD).
-    //  → Permitirá usar correctamente Usuario en colecciones tipo Set o como clave de Map.
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((email == null) ? 0 : email.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Usuario other = (Usuario) obj;
+        if (email == null) {
+            if (other.email != null)
+                return false;
+        } else if (!email.equals(other.email))
+            return false;
+        return true;
+    }
 
 }

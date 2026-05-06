@@ -26,13 +26,14 @@ public class Logs {
                 PrintWriter pw = new PrintWriter(fw)) {
 
             String timestamp = LocalDateTime.now().format(FORMATO);
-            pw.printf("[%s] [%s] %s%n", timestamp.toString(), aviso.toString(), mensaje);
+            pw.printf("[%s] [%s] %s%n", timestamp, aviso.toString(), mensaje);
 
         } catch (IOException e) {
             // TODO [RECOMENDACIÓN] Si falla la escritura del log, imprimir por System.err
-            //  para no perder información de depuración:
-            //  System.err.println("[LOG FALLIDO] " + timestamp + " " + aviso + " " + mensaje);
-            System.out.println("Error al escribir en el archivo de logs");
+            // para no perder información de depuración:
+            // System.err.println("[LOG FALLIDO] " + timestamp + " " + aviso + " " +
+            // mensaje);
+            System.out.println("[LOG FALLIDO] No se ha podido escribir en el archivo de logs");
         }
     }
 }
