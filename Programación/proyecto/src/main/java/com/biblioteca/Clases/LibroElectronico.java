@@ -1,15 +1,12 @@
 package com.biblioteca.Clases;
 
-import java.time.LocalDate;
-
 import com.biblioteca.Enum.Formato;
 import com.biblioteca.Enum.Genero;
 import com.biblioteca.Enum.Tipo;
 
 public class LibroElectronico extends Libro {
 
-    // TODO [CÓDIGO FALTANTE] Añadir serialVersionUID.
-    // → private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     private int idElectronico;
     private Formato formato;

@@ -15,7 +15,10 @@ import com.biblioteca.Enum.Aviso;
 
 public class DAOusuarios {
 
+    private List<Usuario> listaUsuarios;
+
     public DAOusuarios() {
+        this.listaUsuarios
     }
 
     public void crearTabla() {
@@ -43,8 +46,6 @@ public class DAOusuarios {
         }
     }
 
-    // public Usuario(int id, String nombre, String apellido, String email, String
-    // telefono, LocalDate fechaRegistro)
     public void insertarUsuario(Usuario usuario) {
         String sql = "INSERT INTO usuarios(nombre, apellidos, email, telefono, fecha_registro) VALUES(?, ?, ?, ?, ?)";
 
@@ -61,7 +62,8 @@ public class DAOusuarios {
 
             if (num > 0) {
                 System.out.println("Insertado correctamente");
-                new Logs("Usuario insertado: " + usuario.getNombre() + " " + usuario.getApellido(), Aviso.INFO).guardarLog();
+                new Logs("Usuario insertado: " + usuario.getNombre() + " " + usuario.getApellido(), Aviso.INFO)
+                        .guardarLog();
             } else {
                 System.out.println("Ha habido un error en alguna parte");
                 new Logs("Error al insertar usuario: " + usuario.getNombre(), Aviso.AVISO).guardarLog();
@@ -84,18 +86,12 @@ public class DAOusuarios {
                 int id = rs.getInt("id");
                 String nombre = rs.getString("nombre");
 
-                // TODO [BUG] Corregir el nombre de la columna: la tabla usa "apellidos" (con 's'),
-                //  no "apellido". El error aparece en logs.txt: "no such column: 'apellido'".
-                //  → Cambiar a: rs.getString("apellidos")
-                String apellido = rs.getString("apellido");
+                String apellido = rs.getString("apellidos");
 
                 String email = rs.getString("email");
                 String telefono = rs.getString("telefono");
 
-                // TODO [BUG] Corregir el nombre de la columna: la tabla usa "fecha_registro"
-                //  (con guion bajo), no "fechaRegistro" (camelCase).
-                //  → Cambiar a: rs.getString("fecha_registro")
-                LocalDate fechaRegistro = LocalDate.parse(rs.getString("fechaRegistro"));
+                LocalDate fechaRegistro = LocalDate.parse(rs.getString("fecha_registro"));
 
                 lista.add(new Usuario(id, nombre, apellido, email, telefono, fechaRegistro));
 
@@ -111,21 +107,26 @@ public class DAOusuarios {
     }
 
     // TODO [CÓDIGO FALTANTE] Implementar buscarUsuarioPorId(int id).
-    //  → Ejecutar: SELECT * FROM usuarios WHERE id = ?
-    //  → Usar PreparedStatement con el parámetro id.
-    //  → Devolver un Optional<Usuario> o null si no se encuentra.
-    //  → Se necesita para validar que el usuario existe antes de crear un préstamo.
+    // → Ejecutar: SELECT * FROM usuarios WHERE id = ?
+    // → Usar PreparedStatement con el parámetro id.
+    // → Devolver un Optional<Usuario> o null si no se encuentra.
+    // → Se necesita para validar que el usuario existe antes de crear un préstamo.
+    public void buscarUsuarioPorId(int id) {
+        this.
+    }
 
     // TODO [CÓDIGO FALTANTE] Implementar actualizarUsuario(Usuario usuario).
-    //  → Ejecutar: UPDATE usuarios SET nombre = ?, apellidos = ?, email = ?, telefono = ? WHERE id = ?
-    //  → Devolver boolean indicando si se actualizó algún registro (executeUpdate() > 0).
-    //  → Añadir la opción correspondiente en el menú de usuarios de App.java.
+    // → Ejecutar: UPDATE usuarios SET nombre = ?, apellidos = ?, email = ?,
+    // telefono = ? WHERE id = ?
+    // → Devolver boolean indicando si se actualizó algún registro (executeUpdate()
+    // > 0).
+    // → Añadir la opción correspondiente en el menú de usuarios de App.java.
 
     // TODO [CÓDIGO FALTANTE] Implementar eliminarUsuario(int id).
-    //  → Ejecutar: DELETE FROM usuarios WHERE id = ?
-    //  → IMPORTANTE: Verificar primero que el usuario no tenga préstamos activos
-    //    (SELECT COUNT(*) FROM prestamos WHERE id_usuario = ? AND estado = 'ACTIVO').
-    //  → Devolver boolean indicando si se eliminó.
-    //  → Añadir la opción correspondiente en el menú de usuarios de App.java.
+    // → Ejecutar: DELETE FROM usuarios WHERE id = ?
+    // → IMPORTANTE: Verificar primero que el usuario no tenga préstamos activos
+    // (SELECT COUNT(*) FROM prestamos WHERE id_usuario = ? AND estado = 'ACTIVO').
+    // → Devolver boolean indicando si se eliminó.
+    // → Añadir la opción correspondiente en el menú de usuarios de App.java.
 
 }

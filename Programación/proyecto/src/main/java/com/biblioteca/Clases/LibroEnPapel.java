@@ -1,7 +1,5 @@
 package com.biblioteca.Clases;
 
-import java.time.LocalDate;
-
 import com.biblioteca.Enum.Genero;
 import com.biblioteca.Enum.Tipo;
 
@@ -29,7 +27,6 @@ public class LibroEnPapel extends Libro {
 
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
         return super.toString() + " LibroEnPapel [idPapel=" + idPapel + ", ubicacion=" + ubicacion + "]]";
     }
 
