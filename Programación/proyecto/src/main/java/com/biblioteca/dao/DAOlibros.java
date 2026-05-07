@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -137,8 +136,10 @@ public class DAOlibros {
     }
 
     // TODO [PRÁCTICA STREAMS] Implementar librosDisponibles().
-    // → Objetivo: En lugar de usar una nueva consulta SQL, reutiliza obtenerTodosLosLibros()
-    // → Usa Streams y Lambdas (filter) para quedarte solo con los libros donde copias_disponibles > 0.
+    // → Objetivo: En lugar de usar una nueva consulta SQL, reutiliza
+    // obtenerTodosLosLibros()
+    // → Usa Streams y Lambdas (filter) para quedarte solo con los libros donde
+    // copias_disponibles > 0.
     // → Imprimir los resultados usando un foreach con expresión lambda.
     public void librosDisponibles() {
         new Logs("Consulta de libros disponibles", Aviso.INFO).guardarLog();
@@ -147,20 +148,23 @@ public class DAOlibros {
     // TODO [PRÁCTICA STREAMS] Reemplazar filtrarPorX() por:
     // 1) buscarPorAutor(String autor)
     // 2) buscarPorGenero(Genero genero)
-    // → Objetivo: Recuperar la lista completa de libros y utilizar Streams (.filter()) para encontrar los que coinciden con el autor o género pasado por parámetro.
+    // → Objetivo: Recuperar la lista completa de libros y utilizar Streams
+    // (.filter()) para encontrar los que coinciden con el autor o género pasado por
+    // parámetro.
     // → Añadir opciones en el menú de libros de App.java.
     public void filtrarPorX() {
         new Logs("Filtro de libros por criterio", Aviso.INFO).guardarLog();
     }
 
     // TODO [PRÁCTICA STREAMS] Implementar buscarLibroPorId(int id).
-    // → Objetivo: Reutilizar la lista en memoria y buscar con Streams (.filter().findFirst()).
+    // → Objetivo: Reutilizar la lista en memoria y buscar con Streams
+    // (.filter().findFirst()).
     // → Necesario para validar existencia antes de crear préstamo.
 
     public boolean actualizarLibro(Libro libro) {
         String sql = "UPDATE libros SET titulo=?, autor=?, genero=?, isbn=?, anio_publicacion=?, copias_totales=?, copias_disponibles=?, tipo=?, formato=?, url_descarga=?, ubicacion=? WHERE id=?";
         try (Connection conn = Conexion.getConexion();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, libro.getTitulo());
             pstmt.setString(2, libro.getAutor());
             pstmt.setString(3, libro.getGenero().name());
@@ -199,12 +203,13 @@ public class DAOlibros {
     public boolean eliminarLibro(int id) {
         String checkSql = "SELECT COUNT(*) FROM prestamos WHERE id_libro = ? AND estado = 'ACTIVO'";
         try (Connection conn = Conexion.getConexion();
-             PreparedStatement checkStmt = conn.prepareStatement(checkSql)) {
+                PreparedStatement checkStmt = conn.prepareStatement(checkSql)) {
             checkStmt.setInt(1, id);
             ResultSet rs = checkStmt.executeQuery();
             if (rs.next() && rs.getInt(1) > 0) {
                 System.out.println("No se puede eliminar: el libro tiene préstamos activos.");
-                new Logs("Intento fallido de eliminar libro " + id + " con préstamos activos", Aviso.AVISO).guardarLog();
+                new Logs("Intento fallido de eliminar libro " + id + " con préstamos activos", Aviso.AVISO)
+                        .guardarLog();
                 return false;
             }
         } catch (SQLException e) {
@@ -214,7 +219,7 @@ public class DAOlibros {
 
         String sql = "DELETE FROM libros WHERE id = ?";
         try (Connection conn = Conexion.getConexion();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, id);
             int num = pstmt.executeUpdate();
             if (num > 0) {
