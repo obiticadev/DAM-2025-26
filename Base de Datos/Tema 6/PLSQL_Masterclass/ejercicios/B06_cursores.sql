@@ -8,107 +8,158 @@
 SET SERVEROUTPUT ON;
 
 -- ────────────────────────────────────────────────────────────
--- Ejercicio 6.1 — Cursor explícito con FORMA 1 (WHILE)
+-- Ejercicio 6.1 — Cursor explícito con WHILE (FORMA 1)
 -- ────────────────────────────────────────────────────────────
--- Declara un cursor que seleccione depnu de sedes.
--- Usa OPEN, FETCH, WHILE %FOUND, FETCH, CLOSE para recorrerlo.
--- Imprime cada número de departamento.
+-- Declara un cursor "c1" que seleccione depnu de la tabla sedes.
+-- Declara una variable "vdepnu" del tipo correspondiente: sedes.depnu%TYPE
+--
+-- Lógica:
+--   1. OPEN c1
+--   2. FETCH c1 INTO vdepnu (primer fetch para "cebar" el bucle)
+--   3. WHILE c1%FOUND LOOP
+--        Imprime: 'Departamento: ' || vdepnu
+--        FETCH c1 INTO vdepnu
+--      END LOOP
+--   4. CLOSE c1
 -- ────────────────────────────────────────────────────────────
-DECLARE
-  CURSOR c1 IS SELECT depnu FROM sedes;
-  vdepnu sedes.depnu%TYPE;
-BEGIN
-  -- TODO: OPEN c1
-  -- TODO: Primer FETCH c1 INTO vdepnu (para "cebar" el WHILE)
-  -- TODO: WHILE c1%FOUND LOOP
-  --         Imprime 'Departamento: ' || vdepnu
-  --         FETCH c1 INTO vdepnu  (¡no olvides el segundo FETCH!)
-  --       END LOOP
-  -- TODO: CLOSE c1
-  NULL;
-END;
-/
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
 
 -- ────────────────────────────────────────────────────────────
 -- Ejercicio 6.2 — Cursor FOR combinado con VARRAY (FORMA 2)
 -- ────────────────────────────────────────────────────────────
--- Usa FOR reg IN c1 LOOP para recorrer departamentos.
--- Almacena cada depnu en un VARRAY(20) usando EXTEND.
--- Al final, recorre el VARRAY e imprime su contenido.
+-- Declara cursor "c1": SELECT depnu FROM sedes
+-- Declara TYPE "tvarray" IS VARRAY(20) OF NUMBER
+-- Declara "varray" inicializado vacío: tvarray()
+-- Declara variable "idx" inicializada a 0.
+--
+-- Usa FOR reg IN c1 LOOP:
+--   - Incrementa idx
+--   - Haz varray.EXTEND
+--   - Guarda reg.depnu en varray(idx)
+-- END LOOP
+--
+-- Imprime "--- Contenido del VARRAY ---"
+-- Recorre el VARRAY con FOR j IN 1..varray.COUNT e imprime cada elemento.
 -- ────────────────────────────────────────────────────────────
-DECLARE
-  CURSOR c1 IS SELECT depnu FROM sedes;
-  TYPE tvarray IS VARRAY(20) OF NUMBER;
-  varray tvarray := tvarray();
-  idx    NUMBER  := 0;
-BEGIN
-  -- TODO: FOR reg IN c1 LOOP
-  --         Incrementa idx, haz EXTEND, guarda reg.depnu en varray(idx)
-  --       END LOOP
-  -- TODO: Imprime '--- Contenido del VARRAY ---'
-  -- TODO: FOR j IN 1..varray.COUNT LOOP, imprime cada elemento
-  NULL;
-END;
-/
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
 
 -- ────────────────────────────────────────────────────────────
 -- Ejercicio 6.3 — Cursor con parámetros
 -- ────────────────────────────────────────────────────────────
--- Declara un cursor con parámetro (param NUMBER) que busque
--- el nombre de un producto por productonu.
--- Ábrelo con &param por teclado.
--- Recorre con WHILE %FOUND.
+-- Declara cursor "c1(param NUMBER)" que busque el nombre de un producto:
+--   SELECT nombre FROM items WHERE productonu = param
+-- Declara variable "vnombre" del tipo: items.nombre%TYPE
+--
+-- El parámetro se lee por teclado: &param
+-- Abre con: OPEN c1(&param)
+-- Recorre con WHILE %FOUND e imprime el resultado.
+-- Cierra el cursor.
 -- ────────────────────────────────────────────────────────────
-DECLARE
-  CURSOR c1(param NUMBER) IS
-    SELECT nombre FROM items WHERE productonu = param;
-  vnombre items.nombre%TYPE;
-BEGIN
-  -- TODO: OPEN c1(&param)
-  -- TODO: FETCH, WHILE %FOUND, imprimir, FETCH, CLOSE
-  NULL;
-END;
-/
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
 
 -- ────────────────────────────────────────────────────────────
 -- Ejercicio 6.4 — REF CURSOR sobre productos (WHILE)
 -- ────────────────────────────────────────────────────────────
--- Declara TYPE ref_cur IS REF CURSOR y una variable c2.
--- Primera apertura: todos los productos.
--- Segunda apertura: solo productos 20 y 40.
--- Recorre ambos con WHILE %FOUND.
+-- Declara TYPE "ref_cur" IS REF CURSOR
+-- Declara variable "c2" de tipo ref_cur
+-- Declara "vnombre" del tipo: items.nombre%TYPE
+--
+-- Primera apertura: OPEN c2 FOR SELECT nombre FROM items
+-- Recorre con FETCH y WHILE %FOUND, imprime: 'Producto: ' || vnombre
+-- Cierra c2
+--
+-- Segunda apertura: OPEN c2 FOR SELECT nombre FROM items WHERE productonu IN (20, 40)
+-- Recorre e imprime: 'Producto (filtrado): ' || vnombre
+-- Cierra c2
 -- ────────────────────────────────────────────────────────────
-DECLARE
-  TYPE ref_cur IS REF CURSOR;
-  c2      ref_cur;
-  vnombre items.nombre%TYPE;
-BEGIN
-  -- TODO: OPEN c2 FOR SELECT nombre FROM items
-  -- TODO: FETCH, WHILE, imprimir 'Producto: ' || vnombre, FETCH, CLOSE
-
-  -- TODO: OPEN c2 FOR SELECT nombre FROM items WHERE productonu IN (20, 40)
-  -- TODO: FETCH, WHILE, imprimir 'Producto (filtrado): ' || vnombre, FETCH, CLOSE
-  NULL;
-END;
-/
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
 
 -- ────────────────────────────────────────────────────────────
 -- Ejercicio 6.5 — REF CURSOR sobre departamentos (LOOP)
 -- ────────────────────────────────────────────────────────────
--- Igual que 6.4 pero con LOOP + EXIT WHEN %NOTFOUND.
--- Primera apertura: todos los departamentos.
--- Segunda apertura: departamentos 10, 20 y 40.
+-- Declara TYPE "ref_cur" IS REF CURSOR
+-- Declara variable "c3" de tipo ref_cur
+-- Declara "vnombre" del tipo: sedes.nombre%TYPE
+--
+-- Primera apertura: OPEN c3 FOR SELECT nombre FROM sedes
+-- Recorre con LOOP + EXIT WHEN %NOTFOUND, imprime el nombre.
+-- Cierra c3
+--
+-- Segunda apertura: OPEN c3 FOR SELECT nombre FROM sedes WHERE depnu IN (10,20,40)
+-- Recorre e imprime los departamentos filtrados.
+-- Cierra c3
 -- ────────────────────────────────────────────────────────────
-DECLARE
-  TYPE ref_cur IS REF CURSOR;
-  c3      ref_cur;
-  vnombre sedes.nombre%TYPE;
-BEGIN
-  -- TODO: OPEN c3 FOR SELECT nombre FROM sedes
-  -- TODO: LOOP, FETCH, EXIT WHEN %NOTFOUND, imprimir, END LOOP, CLOSE
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
 
-  -- TODO: OPEN c3 FOR SELECT nombre FROM sedes WHERE depnu IN (10,20,40)
-  -- TODO: LOOP, FETCH, EXIT WHEN %NOTFOUND, imprimir filtrado, END LOOP, CLOSE
-  NULL;
-END;
-/
+-- ────────────────────────────────────────────────────────────
+-- Ejercicio 6.6 — Cursor con JOIN (varios campos)
+-- ────────────────────────────────────────────────────────────
+-- Declara cursor "c_pedidos" que seleccione:
+--   - v.pedidonu
+--   - c.nombre (nombre del cliente)
+--   - v.unidades
+-- Desde ventas v JOIN clientes c ON v.clientenu = c.clientenu
+--
+-- Recorre con FOR reg IN c_pedidos LOOP
+-- Imprime: "Pedido X: cliente Y, unidades Z"
+-- ────────────────────────────────────────────────────────────
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
+
+-- ────────────────────────────────────────────────────────────
+-- Ejercicio 6.7 — Cursor para sumar unidades por producto
+-- ────────────────────────────────────────────────────────────
+-- Declara cursor "c_productos":
+--   SELECT productonu, SUM(unidades) as total
+--   FROM ventas GROUP BY productonu
+--
+-- Recorre con FOR e imprime el total de unidades por producto.
+-- Formato: "Producto X: Total unidades = Y"
+-- ────────────────────────────────────────────────────────────
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
+
+-- ────────────────────────────────────────────────────────────
+-- Ejercicio 6.8 — Cursor con filtro por teclado
+-- ────────────────────────────────────────────────────────────
+-- Declara variable "busqueda" leída por teclado.
+-- Declara cursor "c_sedes(p_localidad VARCHAR2)":
+--   SELECT depnu, nombre, localidad FROM sedes
+--   WHERE localidad LIKE '%' || p_localidad || '%'
+--
+-- Abre con OPEN c_sedes(busqueda)
+-- Recorre e imprime los departamentos encontrados.
+-- ────────────────────────────────────────────────────────────
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
+
+-- ────────────────────────────────────────────────────────────
+-- Ejercicio 6.9 — REF CURSOR dinámico
+-- ────────────────────────────────────────────────────────────
+-- Declara TYPE "ref_cur" IS REF CURSOR
+-- Declara variable "c_5" de tipo ref_cur
+-- Declara variables para pedidonu y clientenu.
+--
+-- Abre con OPEN c_5 FOR una consulta que obtenga los 5 primeros pedidos.
+-- (Usa ROWNUM o FETCH FIRST 5 ROWS ONLY según tu versión)
+-- Recorre con LOOP + EXIT WHEN %NOTFOUND.
+-- Imprime cada pedido.
+-- ────────────────────────────────────────────────────────────
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
+
+-- ────────────────────────────────────────────────────────────
+-- Ejercicio 6.10 — Cursor con ordenación
+-- ────────────────────────────────────────────────────────────
+-- Declara cursor "c_productos":
+--   SELECT nombre, precio FROM items ORDER BY precio DESC
+--
+-- Recorre con FOR e imprime: "X - Precio: Y"
+-- ────────────────────────────────────────────────────────────
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────

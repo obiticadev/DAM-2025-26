@@ -8,90 +8,136 @@
 SET SERVEROUTPUT ON;
 
 -- ────────────────────────────────────────────────────────────
--- Ejercicio 7.1 — Consulta básica con excepción de usuario
+-- Ejercicio 7.1 — Consulta básica con SELECT INTO
 -- ────────────────────────────────────────────────────────────
--- Parte 1.1: Obtén el clientenu del pedido 1002 e imprímelo.
+-- Declara una variable "ncli" de tipo: ventas.clientenu%TYPE
+-- Obtén el clientenu del pedido 1002 con SELECT INTO.
+-- Imprime: "Número de cliente: X"
 -- ────────────────────────────────────────────────────────────
-DECLARE
-  ncli ventas.clientenu%TYPE;
-BEGIN
-  -- TODO: SELECT clientenu INTO ncli FROM ventas WHERE pedidonu = 1002
-  -- TODO: Imprime 'Número de cliente: ' || ncli
-  NULL;
-END;
-/
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
 
 -- ────────────────────────────────────────────────────────────
--- Parte 1.2: Declara una excepción de usuario "errorcliente".
--- Después del SELECT, si ncli <> 103, lanza la excepción.
--- Captúrala e imprime un mensaje.
+-- Ejercicio 7.2 — Excepción de usuario
 -- ────────────────────────────────────────────────────────────
-DECLARE
-  ncli         ventas.clientenu%TYPE;
-  errorcliente EXCEPTION;
-BEGIN
-  -- TODO: SELECT clientenu INTO ncli FROM ventas WHERE pedidonu = 1002
-  -- TODO: IF ncli <> 103 THEN RAISE errorcliente; END IF;
-  -- TODO: Imprime 'Número de cliente: ' || ncli
-  NULL;
-EXCEPTION
-  WHEN errorcliente THEN
-    DBMS_OUTPUT.PUT_LINE('el cliente no es 101');
-END;
-/
+-- Declara una variable "ncli" de tipo: ventas.clientenu%TYPE
+-- Declara una excepción "errorcliente" EXCEPTION
+-- Obtén el clientenu del pedido 1002 con SELECT INTO.
+--
+-- Después del SELECT, comprueba:
+--   IF ncli <> 103 THEN RAISE errorcliente; END IF;
+--
+-- En el bloque EXCEPTION:
+--   WHEN errorcliente THEN imprime 'el cliente no es 101'
+-- ────────────────────────────────────────────────────────────
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
 
 -- ────────────────────────────────────────────────────────────
--- Ejercicio 7.2 — NO_DATA_FOUND sin OTHERS
+-- Ejercicio 7.3 — NO_DATA_FOUND
 -- ────────────────────────────────────────────────────────────
--- Busca la localidad del departamento 50 (que no existe).
--- Captura NO_DATA_FOUND e imprime un mensaje.
+-- Declara variable "vlocalidad" de tipo: sedes.localidad%TYPE
+-- Intenta obtener la localidad del departamento 50 (no existe).
+-- Captura la excepción NO_DATA_FOUND.
+-- Imprime: "No existe el departamento 50."
 -- ────────────────────────────────────────────────────────────
-DECLARE
-  vlocalidad sedes.localidad%TYPE;
-BEGIN
-  -- TODO: SELECT localidad INTO vlocalidad FROM sedes WHERE depnu = 50
-  -- TODO: Imprime 'Localidad: ' || vlocalidad
-  NULL;
-EXCEPTION
-  -- TODO: WHEN NO_DATA_FOUND THEN imprime 'No existe el departamento 50.'
-  WHEN OTHERS THEN NULL; -- Reemplaza este WHEN por el correcto
-END;
-/
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
 
 -- ────────────────────────────────────────────────────────────
--- Ejercicio 7.3 — Excepción capturada con OTHERS
+-- Ejercicio 7.4 — OTHERS con SQLCODE y SQLERRM
 -- ────────────────────────────────────────────────────────────
--- Igual que 7.2 pero captura con WHEN OTHERS.
--- Imprime SQLCODE y SQLERRM.
+-- Declara variable "vlocalidad" de tipo: sedes.localidad%TYPE
+-- Intenta la misma consulta del ejercicio anterior.
+-- Captura con WHEN OTHERS e imprime:
+--   - 'Error código: ' || SQLCODE
+--   - 'Error mensaje: ' || SQLERRM
 -- ────────────────────────────────────────────────────────────
-DECLARE
-  vlocalidad sedes.localidad%TYPE;
-BEGIN
-  -- TODO: SELECT localidad INTO vlocalidad FROM sedes WHERE depnu = 50
-  -- TODO: Imprime 'Localidad: ' || vlocalidad
-  NULL;
-EXCEPTION
-  WHEN OTHERS THEN
-    -- TODO: Imprime 'Error código: ' || SQLCODE
-    -- TODO: Imprime 'Error mensaje: ' || SQLERRM
-    NULL;
-END;
-/
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
 
 -- ────────────────────────────────────────────────────────────
--- Ejercicio 7.4 — TOO_MANY_ROWS
+-- Ejercicio 7.5 — TOO_MANY_ROWS
 -- ────────────────────────────────────────────────────────────
--- Busca el pedidonu de los pedidos del producto 20.
--- Como hay varios, saltará TOO_MANY_ROWS. Captúralo.
+-- Declara variable "vpedidonu" de tipo: ventas.pedidonu%TYPE
+-- Intenta obtener el pedidonu de los pedidos del producto 20
+-- (hay varios, por lo que saltará TOO_MANY_ROWS).
+-- Captura la excepción e imprime: "Hay más de un pedido para ese producto"
+-- ────────────────────────────────────────────────────────────
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
+
+-- ────────────────────────────────────────────────────────────
+-- Ejercicio 7.6 — ZERO_DIVIDE
+-- ────────────────────────────────────────────────────────────
+-- Declara variable "divisor" leída por teclado.
+-- Declara variable "resultado".
+-- Intenta calcular: resultado := 10 / divisor
+-- Captura ZERO_DIVIDE e imprime: "No se puede dividir entre cero"
+-- ────────────────────────────────────────────────────────────
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
+
+-- ────────────────────────────────────────────────────────────
+-- Ejercicio 7.7 — RAISE_APPLICATION_ERROR
+-- ────────────────────────────────────────────────────────────
+-- Declara variable "nota" leída por teclado (0-10).
+-- Si la nota está fuera de rango (< 0 o > 10), usa:
+--   RAISE_APPLICATION_ERROR(-20001, 'Nota fuera de rango')
+-- En EXCEPTION, captura OTHERS e imprime el mensaje.
+-- ────────────────────────────────────────────────────────────
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
+
+-- ────────────────────────────────────────────────────────────
+-- Ejercicio 7.8 — Excepciones con insert
+-- ────────────────────────────────────────────────────────────
+-- Declara variables para productonu, nombre, precio, stock.
+-- Intenta insertar en la tabla items un registro que viole
+-- alguna restricción (por ejemplo, un código duplicado).
+-- Captura la excepción y muéstrala.
+-- ────────────────────────────────────────────────────────────
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
+
+-- ────────────────────────────────────────────────────────────
+-- Ejercicio 7.9 — %TYPE con excepción
+-- ────────────────────────────────────────────────────────────
+-- Declara variable "pnu" leída por teclado.
+-- Declara variable "precio" de tipo: items.precio%TYPE
+-- Intenta obtener el precio del producto indicado.
+-- Captura NO_DATA_FOUND e imprime: "Producto no encontrado"
+-- ────────────────────────────────────────────────────────────
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
+
+-- ────────────────────────────────────────────────────────────
+-- Ejercicio 7.10 — Excepciones en funciones
+-- ────────────────────────────────────────────────────────────
+-- Crea una función local "fn_localidad" que:
+--   - Reciba un parámetro "p_depnu" (NUMBER)
+--   - Declare variable "v_localidad" de tipo sedes.localidad%TYPE
+--   - Intente obtener la localidad del departamento
+--   - Capture cualquier excepción internamente y devuelva NULL
+--   - Retorne v_localidad
+--
+-- En el bloque principal, llama a la función con un valor por teclado.
+-- Imprime el resultado.
 -- ────────────────────────────────────────────────────────────
 DECLARE
-  vpedidonu ventas.pedidonu%TYPE;
+  resultado VARCHAR2(30);
+  FUNCTION fn_localidad(p_depnu NUMBER) RETURN VARCHAR2
+  IS
+    v_localidad sedes.localidad%TYPE;
+  BEGIN
+    -- Escribe aquí tu código
+    RETURN v_localidad;
+  EXCEPTION
+    WHEN OTHERS THEN
+      RETURN NULL;
+  END fn_localidad;
 BEGIN
-  -- TODO: SELECT pedidonu INTO vpedidonu FROM ventas WHERE productonu = 20
-  -- TODO: Imprime 'Pedido: ' || vpedidonu
-  NULL;
-EXCEPTION
-  -- TODO: WHEN TOO_MANY_ROWS THEN imprime mensaje sobre usar cursor
-  WHEN OTHERS THEN NULL;
+  resultado := fn_localidad(&p_depnu);
+  DBMS_OUTPUT.PUT_LINE('Localidad: ' || resultado);
 END;
 /

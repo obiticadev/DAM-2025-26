@@ -10,69 +10,113 @@ SET SERVEROUTPUT ON;
 -- ────────────────────────────────────────────────────────────
 -- Ejercicio 4.1 — Tipo registro con INSERT en tabla
 -- ────────────────────────────────────────────────────────────
--- Define un TYPE tipopro IS RECORD con 4 campos que coincidan
--- con items (NUMBER, VARCHAR2(40), NUMBER(6,2), NUMBER).
--- Asigna valores: 100, 'tablon', 234.56, 34.
--- Imprímelos separados por " | " y luego insértalos en items.
+-- Declara un TYPE "tipopro" IS RECORD con estos 4 campos:
+--   - campo1: NUMBER (coincide con productonu)
+--   - campo2: VARCHAR2(40) (coincide con nombre)
+--   - campo3: NUMBER(6,2) (coincide con precio)
+--   - campo4: NUMBER (coincide con stock)
+-- Declara una variable "vtipopro" de ese tipo.
+--
+-- Asigna estos valores:
+--   - vtipopro.campo1 := 100
+--   - vtipopro.campo2 := 'tablon'
+--   - vtipopro.campo3 := 234.56
+--   - vtipopro.campo4 := 34
+--
+-- Imprime los 4 campos separados por " | "
+-- Inserta la fila en la tabla items.
+-- Imprime: "Fila insertada correctamente."
 -- ────────────────────────────────────────────────────────────
-DECLARE
-  TYPE tipopro IS RECORD (
-    campo1 NUMBER,
-    campo2 VARCHAR2(40),
-    campo3 NUMBER(6,2),
-    campo4 NUMBER
-  );
-  vtipopro tipopro;
-BEGIN
-  -- TODO: Asigna los 4 valores al registro campo a campo
-  -- TODO: Imprime los 4 campos separados por ' | '
-  -- TODO: INSERT INTO items (productonu, nombre, precio, stock)
-  --       VALUES (vtipopro.campo1, vtipopro.campo2, vtipopro.campo3, vtipopro.campo4)
-  -- TODO: Imprime 'Fila insertada correctamente.'
-  NULL;
-END;
-/
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
 
 -- ────────────────────────────────────────────────────────────
--- Ejercicio 4.2.1 — SELECT INTO sobre variable registro
+-- Ejercicio 4.2 — SELECT INTO sobre variable registro
 -- ────────────────────────────────────────────────────────────
--- Usando el mismo TYPE tipopro, carga el producto 30 con
--- SELECT INTO y luego imprime los 4 campos.
+-- Declara el mismo TYPE tipopro del ejercicio anterior.
+-- Declara una variable "vtipopro" de ese tipo.
+--
+-- Carga el producto 30 usando:
+--   SELECT productonu, nombre, precio, stock INTO vtipopro
+--   FROM items WHERE productonu = 30
+--
+-- Imprime: "Producto: X | Y | Z | W"
 -- ────────────────────────────────────────────────────────────
-DECLARE
-  TYPE tipopro IS RECORD (
-    campo1 NUMBER,
-    campo2 VARCHAR2(40),
-    campo3 NUMBER(6,2),
-    campo4 NUMBER
-  );
-  vtipopro tipopro;
-BEGIN
-  -- TODO: SELECT productonu, nombre, precio, stock INTO vtipopro
-  --       FROM items WHERE productonu = 30
-  -- TODO: Imprime "Producto: campo1 | campo2 | campo3 | campo4"
-  NULL;
-END;
-/
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
 
 -- ────────────────────────────────────────────────────────────
--- Ejercicio 4.2.2 — DELETE usando registro pedido por teclado
+-- Ejercicio 4.3 — DELETE usando registro
 -- ────────────────────────────────────────────────────────────
--- Pide el productonu por teclado, guárdalo en campo1 del registro,
--- y haz un DELETE usando ese valor. Imprime SQL%ROWCOUNT.
+-- Declara el TYPE tipopro con los mismos 4 campos.
+-- Declara una variable "vtipopro" de ese tipo.
+-- Asigna a vtipopro.campo1 el valor leído por teclado (productonu).
+--
+-- Ejecuta: DELETE FROM items WHERE productonu = vtipopro.campo1
+-- Imprime: "Filas borradas: X" (usa SQL%ROWCOUNT)
 -- ────────────────────────────────────────────────────────────
-DECLARE
-  TYPE tipopro IS RECORD (
-    campo1 NUMBER,
-    campo2 VARCHAR2(40),
-    campo3 NUMBER(6,2),
-    campo4 NUMBER
-  );
-  vtipopro tipopro;
-BEGIN
-  vtipopro.campo1 := &productonu;
-  -- TODO: DELETE FROM items WHERE productonu = vtipopro.campo1
-  -- TODO: Imprime 'Filas borradas: ' || SQL%ROWCOUNT
-  NULL;
-END;
-/
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
+
+-- ────────────────────────────────────────────────────────────
+-- Ejercicio 4.4 — Registro para almacenar datos de un pedido
+-- ────────────────────────────────────────────────────────────
+-- Declara un TYPE "tipopedido" IS RECORD con estos campos:
+--   - v_pedidonu: ventas.pedidonu%TYPE
+--   - v_clientenu: ventas.clientenu%TYPE
+--   - v_productonu: ventas.productonu%TYPE
+--   - v_unidades: ventas.unidades%TYPE
+-- Declara una variable "pedido" de ese tipo.
+-- Declara una variable "pnu" leída por teclado.
+--
+-- Carga los datos del pedido indicado con SELECT INTO.
+-- Imprime los 4 datos del pedido.
+-- ────────────────────────────────────────────────────────────
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
+
+-- ────────────────────────────────────────────────────────────
+-- Ejercicio 4.5 — Registro con %ROWTYPE
+-- ────────────────────────────────────────────────────────────
+-- Declara una variable "depnu" leída por teclado.
+-- Declara una variable "fila" usando: sedes%ROWTYPE
+--
+-- Carga los datos del departamento indicado con SELECT * INTO.
+-- Imprime todos los datos: depnu, nombre, localidad.
+-- ────────────────────────────────────────────────────────────
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
+
+-- ────────────────────────────────────────────────────────────
+-- Ejercicio 4.6 — UPDATE con registro
+-- ────────────────────────────────────────────────────────────
+-- Declara un TYPE "tipopro" IS RECORD con:
+--   - v_productonu: items.productonu%TYPE
+--   - v_nombre: items.nombre%TYPE
+--   - v_precio: items.precio%TYPE
+--   - v_stock: items.stock%TYPE
+-- Declara una variable "producto" de ese tipo.
+--
+-- Carga el producto 20 con SELECT INTO.
+-- Modifica los valores:
+--   - v_precio := v_precio * 1.10 (aumentar 10%)
+--   - v_stock := v_stock - 5
+-- Ejecuta UPDATE usando los campos del registro.
+-- Imprime: "Filas actualizadas: X" (SQL%ROWCOUNT)
+-- ────────────────────────────────────────────────────────────
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
+
+-- ────────────────────────────────────────────────────────────
+-- Ejercicio 4.7 — Copiar datos entre registros
+-- ────────────────────────────────────────────────────────────
+-- Declara dos variables tipo registro basadas en %ROWTYPE:
+--   - reg_origen: para la tabla sedes (carga el dep 20)
+--   - reg_destino: para la tabla sedes (vacío)
+-- Copia los datos de reg_origen a reg_destino campo a campo.
+-- Modifica reg_destino.nombre := reg_destino.nombre || ' (copia)'
+-- Inserta reg_destino en la tabla sedes.
+-- Imprime los datos del registro insertado.
+-- ────────────────────────────────────────────────────────────
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────

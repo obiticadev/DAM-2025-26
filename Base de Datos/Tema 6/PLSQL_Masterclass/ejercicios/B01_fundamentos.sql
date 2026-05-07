@@ -10,70 +10,122 @@ SET SERVEROUTPUT ON;
 -- ────────────────────────────────────────────────────────────
 -- Ejercicio 1.1 — Variables numéricas y suma básica
 -- ────────────────────────────────────────────────────────────
--- Crea un bloque que tenga una variable inicializada a 5 y
--- otra leída por teclado. Imprime la suma de ambas.
--- Formato de salida: "La suma es: X"
+-- Crea un bloque PL/SQL que declare:
+--   - Una variable numérica inicializada a 5
+--   - Otra variable numérica leída por teclado
+-- Imprime la suma de ambas con formato: "La suma es: X"
 -- ────────────────────────────────────────────────────────────
-DECLARE
-  num1 NUMBER := 5;
-  num2 NUMBER := &num2;
-BEGIN
-  -- TODO: Imprime la suma de num1 y num2 usando DBMS_OUTPUT.PUT_LINE
-  -- PISTA: usa paréntesis alrededor de la suma para que || no interfiera
-  NULL;
-END;
-/
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
 
 -- ────────────────────────────────────────────────────────────
 -- Ejercicio 1.2 — Variables con límites y formato de salida
 -- ────────────────────────────────────────────────────────────
--- Crea un bloque con num1 NUMBER(1) y num2 NUMBER(2), ambas
--- leídas por teclado.
--- Formato de salida: "La suma X + Y = Z"
+-- Crea un bloque PL/SQL que declare:
+--   - Una variable numérica NUMBER(1) leída por teclado
+--   - Otra variable numérica NUMBER(2) leída por teclado
+-- Imprime con formato: "La suma X + Y = Z"
 -- ────────────────────────────────────────────────────────────
-DECLARE
-  num1 NUMBER(1) := &num1;
-  num2 NUMBER(2) := &num2;
-BEGIN
-  -- TODO: Imprime con formato "La suma X + Y = Z"
-  -- PISTA: concatena num1, ' + ', num2, ' = ' y la suma
-  NULL;
-END;
-/
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
 
 -- ────────────────────────────────────────────────────────────
--- Ejercicio 1.3 — Variables mixtas, condicional IF
+-- Ejercicio 1.3 — Variables mixtas y condicional IF
 -- ────────────────────────────────────────────────────────────
--- Declara: num (NUMBER, teclado), nota (NUMBER, teclado),
--- nombre (VARCHAR2, valor fijo 'Andres'), apellido (VARCHAR2, teclado).
+-- Crea un bloque PL/SQL que declare:
+--   - Una variable numérica leída por teclado
+--   - Una variable nota (NUMBER) leída por teclado
+--   - Una variable nombre (VARCHAR2) con valor fijo 'Andres'
+--   - Una variable apellido (VARCHAR2) leída por teclado
 -- Si la nota > 5, imprime: "El alumno Andres Garcia ha aprobado"
+-- (usa el valor de las variables nombre y apellido en el mensaje)
 -- ────────────────────────────────────────────────────────────
-DECLARE
-  num      NUMBER       := &num;
-  nota     NUMBER       := &nota;
-  nombre   VARCHAR2(10) := 'Andres';
-  apellido VARCHAR2(20) := '&apellido';
-BEGIN
-  -- TODO: Usa un IF para comprobar si nota > 5
-  -- Si es así, imprime el mensaje con nombre y apellido concatenados
-  NULL;
-END;
-/
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
 
 -- ────────────────────────────────────────────────────────────
--- Ejercicio 1.4 — Boolean e IF/ELSE
+-- Ejercicio 1.4 — Condicional IF/ELSE
 -- ────────────────────────────────────────────────────────────
--- Lee una cifra y un "combo" (1=TRUE, 0=FALSE) por teclado.
--- Si combo = 1, imprime "Te ha tocado X" (X = cifra al cuadrado).
--- Si combo = 0, imprime "Te ha tocado Y" (Y = cifra original).
+-- Crea un bloque PL/SQL que declare:
+--   - Una variable "cifra" (NUMBER) leída por teclado
+--   - Una variable "combo" (NUMBER) leída por teclado (1=TRUE, 0=FALSE)
+-- Si combo = 1, imprime "Te ha tocado X" donde X es cifra^2
+-- Si combo = 0, imprime "Te ha tocado Y" donde Y es la cifra original
+-- Usa POWER(cifra, 2) para calcular el cuadrado
 -- ────────────────────────────────────────────────────────────
-DECLARE
-  cifra NUMBER := &cifra;
-  combo NUMBER := &combo;
-BEGIN
-  -- TODO: Usa IF/ELSE para comprobar el valor de combo
-  -- Si combo = 1, usa POWER(cifra, 2) para elevar al cuadrado
-  -- Si no, imprime la cifra directamente
-  NULL;
-END;
-/
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
+
+-- ────────────────────────────────────────────────────────────
+-- Ejercicio 1.5 — Mayor de tres números con ELSIF
+-- ────────────────────────────────────────────────────────────
+-- Crea un bloque PL/SQL que declare:
+--   - Tres variables numéricas (n1, n2, n3) leídas por teclado
+--   - Una variable "mayor" para almacenar el resultado
+-- Determina cuál es el mayor de los tres usando IF/ELSIF/ELSE
+-- Imprime: "El mayor es: X"
+-- ────────────────────────────────────────────────────────────
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
+
+-- ────────────────────────────────────────────────────────────
+-- Ejercicio 1.6 — Operaciones con reales
+-- ────────────────────────────────────────────────────────────
+-- Crea un bloque PL/SQL que declare:
+--   - Una variable "base" de tipo FLOAT leída por teclado
+--   - Una variable "altura" de tipo FLOAT leída por teclado
+-- Calcula e imprime el área de un rectángulo (base * altura)
+-- Formato: "El área del rectángulo es: X"
+-- ────────────────────────────────────────────────────────────
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
+
+-- ────────────────────────────────────────────────────────────
+-- Ejercicio 1.7 — Concatenación y formato de texto
+-- ────────────────────────────────────────────────────────────
+-- Crea un bloque PL/SQL que declare:
+--   - Una variable "nombre" (VARCHAR2) leída por teclado
+--   - Una variable "edad" (NUMBER) leída por teclado
+-- Imprime: "Me llamo X y tengo Y años"
+-- ────────────────────────────────────────────────────────────
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
+
+-- ────────────────────────────────────────────────────────────
+-- Ejercicio 1.8 — Condicional anidado (nota a texto)
+-- ────────────────────────────────────────────────────────────
+-- Crea un bloque PL/SQL que declare:
+--   - Una variable "nota" (NUMBER) leída por teclado (0-10)
+-- Imprime:
+--   - "Suspenso" si nota < 5
+--   - "Aprobado" si nota >= 5 y nota < 7
+--   - "Notable" si nota >= 7 y nota < 9
+--   - "Sobresaliente" si nota >= 9
+-- ────────────────────────────────────────────────────────────
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
+
+-- ────────────────────────────────────────────────────────────
+-- Ejercicio 1.9 — Uso de CASE (opcional)
+-- ────────────────────────────────────────────────────────────
+-- Crea un bloque PL/SQL que declare:
+--   - Una variable "dia" (NUMBER) leída por teclado (1-7)
+-- Usa CASE para imprimir el nombre del día:
+--   1=Lunes, 2=Martes, 3=Miércoles, 4=Jueves,
+--   5=Viernes, 6=Sábado, 7=Domingo
+-- ────────────────────────────────────────────────────────────
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
+
+-- ────────────────────────────────────────────────────────────
+-- Ejercicio 1.10 — Calculadora simple
+-- ────────────────────────────────────────────────────────────
+-- Crea un bloque PL/SQL que declare:
+--   - Dos variables numéricas (a, b) leídas por teclado
+--   - Una variable "operacion" (VARCHAR2) leída por teclado
+--     con valores: 'suma', 'resta', 'multi', 'div'
+-- Según la operación, calcula e imprime el resultado
+-- Si la operación es 'div' y b=0, imprime "No se puede dividir"
+-- ────────────────────────────────────────────────────────────
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────

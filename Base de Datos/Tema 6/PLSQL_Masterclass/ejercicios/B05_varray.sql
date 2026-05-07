@@ -10,58 +10,109 @@ SET SERVEROUTPUT ON;
 -- ────────────────────────────────────────────────────────────
 -- Ejercicio 5.1 — VARRAY de cadenas con métodos básicos
 -- ────────────────────────────────────────────────────────────
--- Crea un TYPE VARRAY(4) OF VARCHAR2(30).
--- Inicialízalo con 3 valores: 'Hola', 'Mundo', 'PL/SQL'.
--- Imprime FIRST, COUNT, LAST, LIMIT y el elemento en posición 3.
+-- Declara un TYPE "tacad" IS VARRAY(4) OF VARCHAR2(30).
+-- Declara "vtacad" inicializado con: tacad('Hola', 'Mundo', 'PL/SQL')
+--
+-- Imprime:
+--   - vtacad.FIRST
+--   - vtacad.COUNT
+--   - vtacad.LAST
+--   - vtacad.LIMIT
+--   - El elemento en posición 3: vtacad(3)
 -- ────────────────────────────────────────────────────────────
-DECLARE
-  TYPE tacad IS VARRAY(4) OF VARCHAR2(30);
-  vtacad tacad := tacad('Hola', 'Mundo', 'PL/SQL');
-BEGIN
-  -- TODO: Imprime vtacad.FIRST, vtacad.COUNT, vtacad.LAST, vtacad.LIMIT
-  -- TODO: Imprime 'Posición 3: ' || vtacad(3)
-  NULL;
-END;
-/
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
 
 -- ────────────────────────────────────────────────────────────
 -- Ejercicio 5.2 — VARRAY de registros TPERSONA
 -- ────────────────────────────────────────────────────────────
--- Crea TYPE tpersona IS RECORD (edad NUMBER, nombre VARCHAR2(30)).
--- Crea TYPE tapersona IS VARRAY(3) OF tpersona.
--- Inicializa vacío, extiende 3 posiciones.
--- Asigna: (1,'ANA'), (2,'ANDRES'), (edad y nombre por teclado).
--- Recorre con FOR e imprime todos los nombres.
+-- Declara TYPE "tpersona" IS RECORD con: edad (NUMBER), nombre (VARCHAR2(30))
+-- Declara TYPE "tapersona" IS VARRAY(3) OF tpersona
+-- Declara "vtapersona" inicializado vacío: tapersona()
+-- Declara variables para edad y nombre (teclado) del tercer elemento.
+--
+-- Haz EXTEND(3) para reservar 3 posiciones.
+-- Asigna a vtapersona(1): edad=1, nombre='ANA'
+-- Asigna a vtapersona(2): edad=2, nombre='ANDRES'
+-- Asigna a vtapersona(3): los valores leídos por teclado.
+--
+-- Recorre con FOR desde FIRST hasta LAST e imprime cada nombre.
 -- ────────────────────────────────────────────────────────────
-DECLARE
-  TYPE tpersona IS RECORD (edad NUMBER, nombre VARCHAR2(30));
-  TYPE tapersona IS VARRAY(3) OF tpersona;
-  vtapersona tapersona := tapersona();
-BEGIN
-  -- TODO: EXTEND(3) para reservar posiciones
-  -- TODO: Asigna edad y nombre para las posiciones 1, 2 y 3
-  -- TODO: Recorre con FOR desde FIRST hasta LAST e imprime cada nombre
-  NULL;
-END;
-/
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
 
 -- ────────────────────────────────────────────────────────────
 -- Ejercicio 5.3 — VARRAY numérico rellenado con bucle
 -- ────────────────────────────────────────────────────────────
--- Crea TYPE VARRAY(4) OF NUMBER, inicializa con 4 ceros.
--- Usa un FOR para asignar i*3 a cada posición.
--- Imprime FIRST, COUNT, LAST, LIMIT, posición 3.
--- Luego imprime todo el contenido con un segundo FOR.
+-- Declara TYPE "tavnum" IS VARRAY(4) OF NUMBER
+-- Declara "vtavnum" inicializado con 4 ceros: tavnum(0, 0, 0, 0)
+--
+-- Usa un bucle FOR de 1 a 4 para asignar vtavnum(i) := i * 3
+--
+-- Imprime: FIRST, COUNT, LAST, LIMIT, vtavnum(3)
+-- Imprime "--- Contenido completo ---"
+-- Recorre el VARRAY con un segundo FOR e imprime cada posición y su valor.
 -- ────────────────────────────────────────────────────────────
-DECLARE
-  TYPE tavnum IS VARRAY(4) OF NUMBER;
-  vtavnum tavnum := tavnum(0, 0, 0, 0);
-BEGIN
-  -- TODO: FOR de 1 a 4, asigna vtavnum(i) := i * 3
-  -- TODO: Imprime los métodos FIRST, COUNT, LAST, LIMIT
-  -- TODO: Imprime 'Posición 3: ' || vtavnum(3)
-  -- TODO: Imprime '--- Contenido completo ---'
-  -- TODO: FOR de FIRST a LAST, imprime cada posición y su valor
-  NULL;
-END;
-/
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
+
+-- ────────────────────────────────────────────────────────────
+-- Ejercicio 5.4 — VARRAY de VARCHAR2 para almacenar ciudades
+-- ────────────────────────────────────────────────────────────
+-- Declara TYPE "tciudades" IS VARRAY(5) OF VARCHAR2(30)
+-- Declara "ciudades" inicializado vacío.
+--
+-- Pide 5 ciudades por teclado (usa &ciudad1, &ciudad2, etc.)
+-- o almacénalas con EXTEND y asignación directa.
+-- Imprime todas las ciudades.
+-- ────────────────────────────────────────────────────────────
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
+
+-- ────────────────────────────────────────────────────────────
+-- Ejercicio 5.5 — VARRAY con TRIM y DELETE
+-- ────────────────────────────────────────────────────────────
+-- Declara TYPE "tnums" IS VARRAY(5) OF NUMBER
+-- Declara "nums" inicializado: tnums(1, 2, 3, 4, 5)
+--
+-- Imprime "COUNT inicial: " || nums.COUNT
+-- Haz TRIM(2) para eliminar los últimos 2 elementos.
+-- Imprime "COUNT tras TRIM(2): " || nums.COUNT
+-- Imprime el contenido actual del VARRAY.
+-- Haz DELETE para vaciarlo completamente.
+-- Imprime "COUNT tras DELETE: " || nums.COUNT
+-- ────────────────────────────────────────────────────────────
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
+
+-- ────────────────────────────────────────────────────────────
+-- Ejercicio 5.6 — VARRAY de registros para productos
+-- ────────────────────────────────────────────────────────────
+-- Declara TYPE "tproducto" IS RECORD con:
+--   - codigo: items.productonu%TYPE
+--   - nombre: items.nombre%TYPE
+--   - precio: items.precio%TYPE
+-- Declara TYPE "taproductos" IS VARRAY(3) OF tproducto
+-- Declara "productos" inicializado vacío.
+--
+-- Carga los productos 10, 20 y 30 de la tabla items.
+-- Usa EXTEND para cada uno y SELECT INTO para cada registro.
+-- Imprime los 3 productos.
+-- ────────────────────────────────────────────────────────────
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
+
+-- ────────────────────────────────────────────────────────────
+-- Ejercicio 5.7 — VARRAY con datos de clientes
+-- ────────────────────────────────────────────────────────────
+-- Declara TYPE "tcliente" IS RECORD con:
+--   - codigo: clientes.clientenu%TYPE
+--   - nombre: clientes.nombre%TYPE
+-- Declara TYPE "taclientes" IS VARRAY(10) OF tcliente
+-- Declara "clientes" inicializado vacío.
+--
+-- Carga los 3 primeros clientes de la tabla clientes.
+-- Imprime cuántos clientes se cargaron.
+-- ────────────────────────────────────────────────────────────
+-- Escribe tu código aquí
+-- ────────────────────────────────────────────────────────────
