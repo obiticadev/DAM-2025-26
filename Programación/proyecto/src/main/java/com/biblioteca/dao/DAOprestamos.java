@@ -61,16 +61,12 @@ public class DAOprestamos {
             pstmt.setDate(3, Date.valueOf(prestamo.getFechaPrestamo()));
             pstmt.setDate(4, Date.valueOf(prestamo.getFechaDevolucionPrevista()));
 
-            // TODO [BUG CRÍTICO] NullPointerException aquí.
-            //  → Al crear un préstamo, fechaDevolucionReal es null.
-            //  → Date.valueOf(null) lanza NullPointerException.
-            //  → SOLUCIÓN: Comprobar si es null antes:
-            //     if (prestamo.getFechaDevolucionReal() != null) {
-            //         pstmt.setDate(5, Date.valueOf(prestamo.getFechaDevolucionReal()));
-            //     } else {
-            //         pstmt.setNull(5, Types.DATE);
-            //     }
-            pstmt.setDate(5, Date.valueOf(prestamo.getFechaDevolucionReal()));
+            // TODO [CORREGIDO] NullPointerException al insertar fecha de devolucion real solucionado.
+            if (prestamo.getFechaDevolucionReal() != null) {
+                pstmt.setDate(5, Date.valueOf(prestamo.getFechaDevolucionReal()));
+            } else {
+                pstmt.setNull(5, Types.DATE);
+            }
 
             pstmt.setString(6, prestamo.getEstado().name());
 
@@ -104,27 +100,18 @@ public class DAOprestamos {
             while (rs.next()) {
                 int id = rs.getInt("id");
 
-                // TODO [BUG] Nombres de columna incorrectos (usar snake_case):
-                //  → "idUsuario" → "id_usuario"
-                //  → "idLibro"   → "id_libro"
-                int idUsuario = rs.getInt("idUsuario");
-                int idLibro = rs.getInt("idLibro");
+                // TODO [CORREGIDO] Nombres de columna en BD aplicados.
+                int idUsuario = rs.getInt("id_usuario");
+                int idLibro = rs.getInt("id_libro");
 
-                // TODO [BUG] Nombres de columna incorrectos:
-                //  → "fechaPrestamo"            → "fecha_prestamo"
-                //  → "fechaDevolucionPrevista"  → "fecha_devolucion_prevista"
-                //  → "fechaDevolucionReal"      → "fecha_devolucion_real"
-                LocalDate fechaPrestamo = LocalDate.parse(rs.getString("fechaPrestamo"));
+                // TODO [CORREGIDO] Nombres de columna en BD aplicados.
+                LocalDate fechaPrestamo = LocalDate.parse(rs.getString("fecha_prestamo"));
                 LocalDate fechaDevolucionPrevista = LocalDate.parse(
-                        rs.getString("fechaDevolucionPrevista"));
+                        rs.getString("fecha_devolucion_prevista"));
 
-                // TODO [BUG] fecha_devolucion_real puede ser NULL en la BD.
-                //  → LocalDate.parse(null) lanza NullPointerException.
-                //  → SOLUCIÓN:
-                //     String fdrStr = rs.getString("fecha_devolucion_real");
-                //     LocalDate fechaDevolucionReal = fdrStr != null ? LocalDate.parse(fdrStr) : null;
-                LocalDate fechaDevolucionReal = LocalDate.parse(
-                        rs.getString("fechaDevolucionReal"));
+                // TODO [CORREGIDO] Bug null pointer al parsear fecha_devolucion_real
+                String fdrStr = rs.getString("fecha_devolucion_real");
+                LocalDate fechaDevolucionReal = fdrStr != null ? LocalDate.parse(fdrStr) : null;
 
                 Estado estado = Estado.valueOf(rs.getString("estado"));
 
@@ -139,21 +126,10 @@ public class DAOprestamos {
         return lista;
     }
 
-    // TODO [BUG + CÓDIGO FALTANTE] Reescribir prestamosActivosDeUnUsuario() completo.
-    //  ERRORES ACTUALES:
-    //  1) Usa Statement pero el SQL tiene ? → debe usar PreparedStatement.
-    //  2) No recibe idUsuario como parámetro → añadirlo: (int idUsuario).
-    //  3) Compara estado = 'activo' (minúscula) pero el enum guarda 'ACTIVO' (mayúscula).
-    //  4) El while lee columnas id/nombre/edad que NO existen en el SELECT.
-    //
-    //  IMPLEMENTACIÓN CORRECTA:
-    //  → Firma: public List<Prestamo> prestamosActivosDeUnUsuario(int idUsuario)
-    //  → SQL: SELECT l.titulo, p.fecha_prestamo, p.fecha_devolucion_prevista
-    //         FROM prestamos p JOIN libros l ON p.id_libro = l.id
-    //         WHERE p.id_usuario = ? AND p.estado = 'ACTIVO'
-    //  → Usar PreparedStatement y setInt(1, idUsuario).
-    //  → Leer las columnas reales del SELECT: titulo, fecha_prestamo, fecha_devolucion_prevista.
-    //  → En App.java, pasar el idUsuario leído al método.
+    // TODO [PRÁCTICA STREAMS] Reescribir prestamosActivosDeUnUsuario(int idUsuario) completo.
+    // → Objetivo: Obtener la lista completa de préstamos con obtenerTodosLosPrestamos() y usar Streams.
+    // → Filtrar aquellos préstamos cuyo idUsuario coincida con el pasado por parámetro y cuyo estado sea Estado.ACTIVO.
+    // → Opcionalmente, imprimir el título del libro recuperando el objeto Libro con DAOlibros.
     public void prestamosActivosDeUnUsuario() {
         String sql = """
                 SELECT l.titulo, p.fecha_prestamo, p.fecha_devolucion_prevista
@@ -178,22 +154,18 @@ public class DAOprestamos {
         }
     }
 
-    // TODO [CÓDIGO FALTANTE] Implementar libroMasPrestado().
-    //  → SQL (ya definido en doc/base_de_datos.md):
-    //     SELECT l.titulo, COUNT(*) AS total
-    //     FROM prestamos p JOIN libros l ON p.id_libro = l.id
-    //     GROUP BY p.id_libro ORDER BY total DESC LIMIT 1
-    //  → Imprimir: "El libro más prestado es: <titulo> con <total> préstamos"
-    //  → Si no hay préstamos, mostrar mensaje informativo.
+    // TODO [PRÁCTICA STREAMS] Implementar libroMasPrestado().
+    // → Objetivo: Usar la lista de préstamos de obtenerTodosLosPrestamos() para agrupar por idLibro (Collectors.groupingBy)
+    // y contar el número de préstamos (Collectors.counting). Encontrar la entrada del mapa con el valor máximo.
+    // → Imprimir el resultado (puedes apoyarte en DAOlibros para mostrar el título).
     public void libroMasPrestado() {
         new Logs("Consulta de libro más prestado", Aviso.INFO).guardarLog();
     }
 
-    // TODO [BUG] Corregir generoConMasPrestamos(): el while lee id/nombre/edad
-    //  pero el SELECT devuelve genero y total.
-    //  → Cambiar el while a:
-    //     System.out.println(rs.getString("genero") + " - " + rs.getInt("total") + " préstamos");
-    //  → Cambiar el mensaje "Lista de usuarios:" → "Géneros más prestados:"
+    // TODO [PRÁCTICA STREAMS] Corregir generoConMasPrestamos().
+    // → Objetivo: Obtener la lista de préstamos, y por cada uno, buscar su género a través del DAOlibros.
+    // → Agrupar por género y contar con Streams, encontrando luego el género más frecuente.
+    // → Reemplazar por completo el código SQL incorrecto de este método por la solución con colecciones.
     public void generoConMasPrestamos() {
         String sql = """
                 SELECT l.genero, COUNT(*) AS total
@@ -219,11 +191,51 @@ public class DAOprestamos {
         }
     }
 
-    // TODO [CÓDIGO FALTANTE] Implementar devolverPrestamo(int idPrestamo).
-    //  → SQL: UPDATE prestamos SET estado = 'DEVUELTO', fecha_devolucion_real = ? WHERE id = ?
-    //  → Además, incrementar copias_disponibles del libro:
-    //     UPDATE libros SET copias_disponibles = copias_disponibles + 1 WHERE id = ?
-    //  → Verificar si la devolución es tardía (fecha actual > fecha_devolucion_prevista)
-    //    y en ese caso poner estado = 'RETRASADO' en vez de 'DEVUELTO'.
-    //  → Añadir opción "Devolver préstamo" en el menú de préstamos de App.java.
+    public boolean devolverPrestamo(int idPrestamo) {
+        String selectSql = "SELECT id_libro, fecha_devolucion_prevista FROM prestamos WHERE id = ? AND estado = 'ACTIVO'";
+        String updatePrestamoSql = "UPDATE prestamos SET estado = ?, fecha_devolucion_real = ? WHERE id = ?";
+        String updateLibroSql = "UPDATE libros SET copias_disponibles = copias_disponibles + 1 WHERE id = ?";
+
+        try (Connection conn = Conexion.getConexion()) {
+            conn.setAutoCommit(false);
+
+            int idLibro = -1;
+            LocalDate fechaPrevista = null;
+
+            try (PreparedStatement selStmt = conn.prepareStatement(selectSql)) {
+                selStmt.setInt(1, idPrestamo);
+                ResultSet rs = selStmt.executeQuery();
+                if (rs.next()) {
+                    idLibro = rs.getInt("id_libro");
+                    fechaPrevista = LocalDate.parse(rs.getString("fecha_devolucion_prevista"));
+                } else {
+                    System.out.println("No se encontró el préstamo activo con ID " + idPrestamo);
+                    return false;
+                }
+            }
+
+            LocalDate fechaReal = LocalDate.now();
+            Estado nuevoEstado = fechaReal.isAfter(fechaPrevista) ? Estado.RETRASADO : Estado.DEVUELTO;
+
+            try (PreparedStatement updPStmt = conn.prepareStatement(updatePrestamoSql)) {
+                updPStmt.setString(1, nuevoEstado.name());
+                updPStmt.setDate(2, Date.valueOf(fechaReal));
+                updPStmt.setInt(3, idPrestamo);
+                updPStmt.executeUpdate();
+            }
+
+            try (PreparedStatement updLStmt = conn.prepareStatement(updateLibroSql)) {
+                updLStmt.setInt(1, idLibro);
+                updLStmt.executeUpdate();
+            }
+
+            conn.commit();
+            new Logs("Préstamo " + idPrestamo + " devuelto con estado " + nuevoEstado, Aviso.INFO).guardarLog();
+            System.out.println("Préstamo devuelto correctamente. Estado: " + nuevoEstado);
+            return true;
+        } catch (SQLException e) {
+            new Logs("Error devolviendo préstamo: " + e.getMessage(), Aviso.PELIGRO).guardarLog();
+            return false;
+        }
+    }
 }

@@ -18,7 +18,8 @@ public class DAOusuarios {
     private List<Usuario> listaUsuarios;
 
     public DAOusuarios() {
-        this.listaUsuarios
+        // TODO [COMPLETAR] Inicializar lista correctamente si vas a usarla de caché
+        this.listaUsuarios = new ArrayList<>();
     }
 
     public void crearTabla() {
@@ -106,27 +107,65 @@ public class DAOusuarios {
         return lista;
     }
 
-    // TODO [CÓDIGO FALTANTE] Implementar buscarUsuarioPorId(int id).
-    // → Ejecutar: SELECT * FROM usuarios WHERE id = ?
-    // → Usar PreparedStatement con el parámetro id.
+    // TODO [PRÁCTICA STREAMS] Implementar buscarUsuarioPorId(int id).
+    // → Objetivo: Obtener la lista de usuarios con obtenerTodosLosUsuarios() y
+    // buscar el que coincida con el id usando filter() y findFirst() de Streams.
     // → Devolver un Optional<Usuario> o null si no se encuentra.
     // → Se necesita para validar que el usuario existe antes de crear un préstamo.
     public void buscarUsuarioPorId(int id) {
-        this.
+
     }
 
-    // TODO [CÓDIGO FALTANTE] Implementar actualizarUsuario(Usuario usuario).
-    // → Ejecutar: UPDATE usuarios SET nombre = ?, apellidos = ?, email = ?,
-    // telefono = ? WHERE id = ?
-    // → Devolver boolean indicando si se actualizó algún registro (executeUpdate()
-    // > 0).
-    // → Añadir la opción correspondiente en el menú de usuarios de App.java.
+    public boolean actualizarUsuario(Usuario usuario) {
+        String sql = "UPDATE usuarios SET nombre = ?, apellidos = ?, email = ?, telefono = ? WHERE id = ?";
+        try (Connection conn = Conexion.getConexion();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, usuario.getNombre());
+            pstmt.setString(2, usuario.getApellido());
+            pstmt.setString(3, usuario.getEmail());
+            pstmt.setString(4, usuario.getTelefono());
+            pstmt.setInt(5, usuario.getId());
+            int num = pstmt.executeUpdate();
+            if (num > 0) {
+                new Logs("Usuario actualizado: " + usuario.getId(), Aviso.INFO).guardarLog();
+                return true;
+            }
+        } catch (SQLException e) {
+            new Logs("Error actualizando usuario: " + e.getMessage(), Aviso.PELIGRO).guardarLog();
+        }
+        return false;
+    }
 
-    // TODO [CÓDIGO FALTANTE] Implementar eliminarUsuario(int id).
-    // → Ejecutar: DELETE FROM usuarios WHERE id = ?
-    // → IMPORTANTE: Verificar primero que el usuario no tenga préstamos activos
-    // (SELECT COUNT(*) FROM prestamos WHERE id_usuario = ? AND estado = 'ACTIVO').
-    // → Devolver boolean indicando si se eliminó.
-    // → Añadir la opción correspondiente en el menú de usuarios de App.java.
+    public boolean eliminarUsuario(int id) {
+        String checkSql = "SELECT COUNT(*) FROM prestamos WHERE id_usuario = ? AND estado = 'ACTIVO'";
+        try (Connection conn = Conexion.getConexion();
+                PreparedStatement checkStmt = conn.prepareStatement(checkSql)) {
+            checkStmt.setInt(1, id);
+            ResultSet rs = checkStmt.executeQuery();
+            if (rs.next() && rs.getInt(1) > 0) {
+                System.out.println("No se puede eliminar: el usuario tiene préstamos activos.");
+                new Logs("Intento fallido de eliminar usuario " + id + " con préstamos activos", Aviso.AVISO)
+                        .guardarLog();
+                return false;
+            }
+        } catch (SQLException e) {
+            new Logs("Error comprobando préstamos de usuario: " + e.getMessage(), Aviso.PELIGRO).guardarLog();
+            return false;
+        }
+
+        String sql = "DELETE FROM usuarios WHERE id = ?";
+        try (Connection conn = Conexion.getConexion();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            int num = pstmt.executeUpdate();
+            if (num > 0) {
+                new Logs("Usuario eliminado: " + id, Aviso.INFO).guardarLog();
+                return true;
+            }
+        } catch (SQLException e) {
+            new Logs("Error eliminando usuario: " + e.getMessage(), Aviso.PELIGRO).guardarLog();
+        }
+        return false;
+    }
 
 }

@@ -108,20 +108,18 @@ public class DAOlibros {
                 String autor = rs.getString("autor");
                 Genero genero = Genero.valueOf(rs.getString("genero"));
                 String isbn = rs.getString("isbn");
-                int anioPublicacion = rs.getInt("anio_Publicacion");
+                int anioPublicacion = rs.getInt("anio_publicacion");
 
-                // TODO [BUG] Nombres de columna incorrectos (usar snake_case):
-                // → "copiasTotales" → "copias_totales"
-                // → "copiasDisponibles" → "copias_disponibles"
-                int copiasTotales = rs.getInt("copiasTotales");
-                int copiasDisponibles = rs.getInt("copiasDisponibles");
+                // TODO [CORREGIDO] Nombres de columna en DB aplicados.
+                int copiasTotales = rs.getInt("copias_totales");
+                int copiasDisponibles = rs.getInt("copias_disponibles");
 
                 Tipo tipo = Tipo.valueOf(rs.getString("tipo"));
 
                 if (tipo == Tipo.ELECTRONICO) {
                     Formato formato = Formato.valueOf(rs.getString("formato"));
-                    // TODO [BUG] Columna "url" no existe → usar "url_descarga"
-                    String url = rs.getString("url");
+                    // TODO [CORREGIDO] Columna url -> url_descarga
+                    String url = rs.getString("url_descarga");
                     lista.add(new LibroElectronico(id, titulo, autor, genero, isbn,
                             anioPublicacion, copiasTotales, copiasDisponibles, tipo, id, formato, url));
                 } else {
@@ -138,31 +136,96 @@ public class DAOlibros {
         return lista;
     }
 
-    // TODO [CÓDIGO FALTANTE] Implementar librosDisponibles().
-    // → SQL: SELECT * FROM libros WHERE copias_disponibles > 0
-    // → Devolver List<Libro>. Reutilizar lógica de mapeo (ver RECOMENDACIÓN abajo).
-    // → Imprimir resultados en consola.
+    // TODO [PRÁCTICA STREAMS] Implementar librosDisponibles().
+    // → Objetivo: En lugar de usar una nueva consulta SQL, reutiliza obtenerTodosLosLibros()
+    // → Usa Streams y Lambdas (filter) para quedarte solo con los libros donde copias_disponibles > 0.
+    // → Imprimir los resultados usando un foreach con expresión lambda.
     public void librosDisponibles() {
         new Logs("Consulta de libros disponibles", Aviso.INFO).guardarLog();
     }
 
-    // TODO [CÓDIGO FALTANTE] Reemplazar filtrarPorX() por:
-    // 1) buscarPorAutor(String autor) → SQL: WHERE autor LIKE '%' || ? || '%'
-    // 2) buscarPorGenero(Genero genero) → SQL: WHERE genero = ?
+    // TODO [PRÁCTICA STREAMS] Reemplazar filtrarPorX() por:
+    // 1) buscarPorAutor(String autor)
+    // 2) buscarPorGenero(Genero genero)
+    // → Objetivo: Recuperar la lista completa de libros y utilizar Streams (.filter()) para encontrar los que coinciden con el autor o género pasado por parámetro.
     // → Añadir opciones en el menú de libros de App.java.
     public void filtrarPorX() {
         new Logs("Filtro de libros por criterio", Aviso.INFO).guardarLog();
     }
 
-    // TODO [CÓDIGO FALTANTE] Implementar buscarLibroPorId(int id).
-    // → SQL: SELECT * FROM libros WHERE id = ?
+    // TODO [PRÁCTICA STREAMS] Implementar buscarLibroPorId(int id).
+    // → Objetivo: Reutilizar la lista en memoria y buscar con Streams (.filter().findFirst()).
     // → Necesario para validar existencia antes de crear préstamo.
 
-    // TODO [CÓDIGO FALTANTE] Implementar actualizarLibro(Libro libro).
-    // → SQL: UPDATE libros SET titulo=?, autor=?, ... WHERE id=?
+    public boolean actualizarLibro(Libro libro) {
+        String sql = "UPDATE libros SET titulo=?, autor=?, genero=?, isbn=?, anio_publicacion=?, copias_totales=?, copias_disponibles=?, tipo=?, formato=?, url_descarga=?, ubicacion=? WHERE id=?";
+        try (Connection conn = Conexion.getConexion();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, libro.getTitulo());
+            pstmt.setString(2, libro.getAutor());
+            pstmt.setString(3, libro.getGenero().name());
+            pstmt.setString(4, libro.getIsbn());
+            pstmt.setInt(5, libro.getAnioPublicacion());
+            pstmt.setInt(6, libro.getCopiasTotales());
+            pstmt.setInt(7, libro.getCopiasDisponibles());
+            pstmt.setString(8, libro.getTipo().name());
 
-    // TODO [CÓDIGO FALTANTE] Implementar eliminarLibro(int id).
-    // → Verificar que no tenga préstamos activos antes de borrar.
+            if (libro instanceof LibroElectronico le) {
+                pstmt.setString(9, le.getFormato().name());
+                pstmt.setString(10, le.getUrlDescarga());
+                pstmt.setNull(11, Types.VARCHAR);
+            } else if (libro instanceof LibroEnPapel lp) {
+                pstmt.setNull(9, Types.VARCHAR);
+                pstmt.setNull(10, Types.VARCHAR);
+                pstmt.setString(11, lp.getUbicacion());
+            } else {
+                pstmt.setNull(9, Types.VARCHAR);
+                pstmt.setNull(10, Types.VARCHAR);
+                pstmt.setNull(11, Types.VARCHAR);
+            }
+            pstmt.setInt(12, libro.getId());
+
+            int num = pstmt.executeUpdate();
+            if (num > 0) {
+                new Logs("Libro actualizado: " + libro.getId(), Aviso.INFO).guardarLog();
+                return true;
+            }
+        } catch (SQLException e) {
+            new Logs("Error actualizando libro: " + e.getMessage(), Aviso.PELIGRO).guardarLog();
+        }
+        return false;
+    }
+
+    public boolean eliminarLibro(int id) {
+        String checkSql = "SELECT COUNT(*) FROM prestamos WHERE id_libro = ? AND estado = 'ACTIVO'";
+        try (Connection conn = Conexion.getConexion();
+             PreparedStatement checkStmt = conn.prepareStatement(checkSql)) {
+            checkStmt.setInt(1, id);
+            ResultSet rs = checkStmt.executeQuery();
+            if (rs.next() && rs.getInt(1) > 0) {
+                System.out.println("No se puede eliminar: el libro tiene préstamos activos.");
+                new Logs("Intento fallido de eliminar libro " + id + " con préstamos activos", Aviso.AVISO).guardarLog();
+                return false;
+            }
+        } catch (SQLException e) {
+            new Logs("Error comprobando préstamos de libro: " + e.getMessage(), Aviso.PELIGRO).guardarLog();
+            return false;
+        }
+
+        String sql = "DELETE FROM libros WHERE id = ?";
+        try (Connection conn = Conexion.getConexion();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            int num = pstmt.executeUpdate();
+            if (num > 0) {
+                new Logs("Libro eliminado: " + id, Aviso.INFO).guardarLog();
+                return true;
+            }
+        } catch (SQLException e) {
+            new Logs("Error eliminando libro: " + e.getMessage(), Aviso.PELIGRO).guardarLog();
+        }
+        return false;
+    }
 
     // TODO [RECOMENDACIÓN] Extraer método privado mapearLibro(ResultSet rs).
     // → Evita duplicar la lógica de mapeo en cada método SELECT.
