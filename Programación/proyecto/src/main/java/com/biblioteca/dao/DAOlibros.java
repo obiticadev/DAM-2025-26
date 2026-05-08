@@ -153,14 +153,11 @@ public class DAOlibros {
         new Logs("Filtro de libros por criterio", Aviso.INFO).guardarLog();
     }
 
-    // TODO [PRÁCTICA STREAMS] Implementar buscarLibroPorId(int id).
-    // → Objetivo: Reutilizar la lista en memoria y buscar con Streams
-    // (.filter().findFirst()).
-    // → Necesario para validar existencia antes de crear préstamo.
     public Optional<Libro> buscarLibroPorId(int id) {
         return obtenerTodosLosLibros().stream()
                 .filter(a -> a.getId() == id)
                 .findFirst();
+        new Logs("Búsqueda del libro por ID", Aviso.INFO).guardarLog();
     }
 
     public boolean actualizarLibro(Libro libro) {
