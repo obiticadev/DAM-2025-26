@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.biblioteca.Clases.Usuario;
 import com.biblioteca.Enum.Aviso;
@@ -112,8 +113,10 @@ public class DAOusuarios {
     // buscar el que coincida con el id usando filter() y findFirst() de Streams.
     // → Devolver un Optional<Usuario> o null si no se encuentra.
     // → Se necesita para validar que el usuario existe antes de crear un préstamo.
-    public void buscarUsuarioPorId(int id) {
-
+    public Optional<Usuario> buscarUsuarioPorId(int id) {
+        return obtenerTodosLosUsuarios().stream()
+                .filter(a -> a.getId() == id)
+                .findFirst();
     }
 
     public boolean actualizarUsuario(Usuario usuario) {

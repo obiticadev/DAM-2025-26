@@ -9,6 +9,7 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import com.biblioteca.Clases.Libro;
 import com.biblioteca.Clases.LibroElectronico;
@@ -135,11 +136,11 @@ public class DAOlibros {
         return lista;
     }
 
-    public void librosDisponibles() {
-        obtenerTodosLosLibros().stream()
-                .filter(a -> a.getCopiasDisponibles() > 0)
-                .forEach(a -> System.out.println(a.getTitulo()));
+    public List<Libro> librosDisponibles() {
         new Logs("Consulta de libros disponibles", Aviso.INFO).guardarLog();
+        return obtenerTodosLosLibros().stream()
+                .filter(a -> a.getCopiasDisponibles() > 0)
+                .collect(Collectors.toList());
     }
 
     // TODO [PRÁCTICA STREAMS] Reemplazar filtrarPorX() por:
@@ -154,10 +155,10 @@ public class DAOlibros {
     }
 
     public Optional<Libro> buscarLibroPorId(int id) {
+        new Logs("Búsqueda del libro por ID", Aviso.INFO).guardarLog();
         return obtenerTodosLosLibros().stream()
                 .filter(a -> a.getId() == id)
                 .findFirst();
-        new Logs("Búsqueda del libro por ID", Aviso.INFO).guardarLog();
     }
 
     public boolean actualizarLibro(Libro libro) {

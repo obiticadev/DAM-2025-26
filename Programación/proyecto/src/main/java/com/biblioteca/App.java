@@ -61,6 +61,8 @@ public class App {
                 // → scanner.close();
                 // Esto libera la conexión a SQLite y el flujo de System.in.
                 System.out.println("¡Hasta luego!");
+                Conexion.close();
+                scanner.close();
             }
             default -> System.out.println("Opción inválida");
         }
@@ -75,7 +77,8 @@ public class App {
     private static void menuUsuarios() {
         int opcion;
         do {
-            // TODO [PRÁCTICA STREAMS] Faltaría añadir una opción para "Buscar usuario por ID" 
+            // TODO [PRÁCTICA STREAMS] Faltaría añadir una opción para "Buscar usuario por
+            // ID"
             // llamando a daoUsuarios.buscarUsuarioPorId(id) una vez lo implementes.
             System.out.println("""
                     --- Usuarios ---
@@ -136,7 +139,8 @@ public class App {
             System.out.println("No hay usuarios");
         } else {
             System.out.println("\n--- Lista de Usuarios ---");
-            // TODO [PRÁCTICA STREAMS] Reemplaza este bucle for-each tradicional por el método .forEach() con una expresión lambda.
+            // TODO [PRÁCTICA STREAMS] Reemplaza este bucle for-each tradicional por el
+            // método .forEach() con una expresión lambda.
             for (Usuario u : usuarios) {
                 System.out.println(u.getId() + ": " + u.getNombre() + " " + u.getApellido() + " - " + u.getEmail());
             }
@@ -146,8 +150,10 @@ public class App {
     private static void menuLibros() {
         int opcion;
         do {
-            // TODO [PRÁCTICA STREAMS] Faltaría añadir opciones para buscar por autor y género
-            // llamando a los métodos correspondientes en DAOlibros una vez los implementes con Streams.
+            // TODO [PRÁCTICA STREAMS] Faltaría añadir opciones para buscar por autor y
+            // género
+            // llamando a los métodos correspondientes en DAOlibros una vez los implementes
+            // con Streams.
             System.out.println("""
                     --- Libros ---
                     1. Insertar libro en papel
@@ -189,10 +195,12 @@ public class App {
         if (tipo == Tipo.ELECTRONICO) {
             Formato formato = leerFormato();
             String url = leerString("Nueva URL descarga");
-            libro = new LibroElectronico(id, titulo, autor, genero, isbn, anio, copiasTotales, copiasDisponibles, tipo, id, formato, url);
+            libro = new LibroElectronico(id, titulo, autor, genero, isbn, anio, copiasTotales, copiasDisponibles, tipo,
+                    id, formato, url);
         } else {
             String ubicacion = leerString("Nueva Ubicación");
-            libro = new LibroEnPapel(id, titulo, autor, genero, isbn, anio, copiasTotales, copiasDisponibles, tipo, id, ubicacion);
+            libro = new LibroEnPapel(id, titulo, autor, genero, isbn, anio, copiasTotales, copiasDisponibles, tipo, id,
+                    ubicacion);
         }
 
         if (daoLibros.actualizarLibro(libro)) {
@@ -247,7 +255,8 @@ public class App {
             System.out.println("No hay libros");
         } else {
             System.out.println("\n--- Lista de Libros ---");
-            // TODO [PRÁCTICA STREAMS] Reemplaza este bucle for-each tradicional por el método .forEach() con una expresión lambda.
+            // TODO [PRÁCTICA STREAMS] Reemplaza este bucle for-each tradicional por el
+            // método .forEach() con una expresión lambda.
             for (Libro l : libros) {
                 System.out.println(l.getId() + ": " + l.getTitulo() + " - " + l.getAutor() + " (" + l.getTipo() + ")");
             }
@@ -309,7 +318,8 @@ public class App {
             System.out.println("No hay préstamos");
         } else {
             System.out.println("\n--- Lista de Préstamos ---");
-            // TODO [PRÁCTICA STREAMS] Reemplaza este bucle for-each tradicional por el método .forEach() con una expresión lambda.
+            // TODO [PRÁCTICA STREAMS] Reemplaza este bucle for-each tradicional por el
+            // método .forEach() con una expresión lambda.
             for (Prestamo p : prestamos) {
                 System.out.printf("%03d: Usuario %03d - Libro %03d - Estado: %s%n", p.getId(), p.getIdUsuario(),
                         p.getIdLibro(), p.getEstado().toString());

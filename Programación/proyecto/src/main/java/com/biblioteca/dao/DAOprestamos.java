@@ -10,6 +10,10 @@ import java.sql.Types;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import com.biblioteca.Clases.Prestamo;
 import com.biblioteca.Enum.Aviso;
@@ -61,7 +65,6 @@ public class DAOprestamos {
             pstmt.setDate(3, Date.valueOf(prestamo.getFechaPrestamo()));
             pstmt.setDate(4, Date.valueOf(prestamo.getFechaDevolucionPrevista()));
 
-            // TODO [CORREGIDO] NullPointerException al insertar fecha de devolucion real solucionado.
             if (prestamo.getFechaDevolucionReal() != null) {
                 pstmt.setDate(5, Date.valueOf(prestamo.getFechaDevolucionReal()));
             } else {
@@ -86,9 +89,10 @@ public class DAOprestamos {
     }
 
     // TODO [CÓDIGO FALTANTE] Añadir validación antes de insertar préstamo:
-    //  → Verificar que el usuario exista (DAOusuarios.buscarUsuarioPorId).
-    //  → Verificar que el libro exista y tenga copias_disponibles > 0.
-    //  → Al insertar, decrementar copias_disponibles del libro (UPDATE libros SET copias_disponibles = copias_disponibles - 1 WHERE id = ?).
+    // → Verificar que el usuario exista (DAOusuarios.buscarUsuarioPorId).
+    // → Verificar que el libro exista y tenga copias_disponibles > 0.
+    // → Al insertar, decrementar copias_disponibles del libro (UPDATE libros SET
+    // copias_disponibles = copias_disponibles - 1 WHERE id = ?).
 
     public List<Prestamo> obtenerTodosLosPrestamos() {
         List<Prestamo> lista = new ArrayList<>();
@@ -100,16 +104,13 @@ public class DAOprestamos {
             while (rs.next()) {
                 int id = rs.getInt("id");
 
-                // TODO [CORREGIDO] Nombres de columna en BD aplicados.
                 int idUsuario = rs.getInt("id_usuario");
                 int idLibro = rs.getInt("id_libro");
 
-                // TODO [CORREGIDO] Nombres de columna en BD aplicados.
                 LocalDate fechaPrestamo = LocalDate.parse(rs.getString("fecha_prestamo"));
                 LocalDate fechaDevolucionPrevista = LocalDate.parse(
                         rs.getString("fecha_devolucion_prevista"));
 
-                // TODO [CORREGIDO] Bug null pointer al parsear fecha_devolucion_real
                 String fdrStr = rs.getString("fecha_devolucion_real");
                 LocalDate fechaDevolucionReal = fdrStr != null ? LocalDate.parse(fdrStr) : null;
 
@@ -126,46 +127,28 @@ public class DAOprestamos {
         return lista;
     }
 
-    // TODO [PRÁCTICA STREAMS] Reescribir prestamosActivosDeUnUsuario(int idUsuario) completo.
-    // → Objetivo: Obtener la lista completa de préstamos con obtenerTodosLosPrestamos() y usar Streams.
-    // → Filtrar aquellos préstamos cuyo idUsuario coincida con el pasado por parámetro y cuyo estado sea Estado.ACTIVO.
-    // → Opcionalmente, imprimir el título del libro recuperando el objeto Libro con DAOlibros.
-    public void prestamosActivosDeUnUsuario() {
-        String sql = """
-                SELECT l.titulo, p.fecha_prestamo, p.fecha_devolucion_prevista
-                FROM prestamos p
-                JOIN libros l ON p.id_libro = l.id
-                WHERE p.id_usuario = ? AND p.estado = 'activo'""";
+    public List<Prestamo> prestamosActivosDeUnUsuario(int idUsuario) {
+        return obtenerTodosLosPrestamos().stream()
+                .filter(a -> a.getIdUsuario() == idUsuario && a.getEstado().equals(Estado.ACTIVO))
+                .toList();
 
-        try (Connection conn = Conexion.getConexion();
-                Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery(sql)) {
-
-            System.out.println("Lista de usuarios:");
-            while (rs.next()) {
-                System.out.println(
-                        rs.getInt("id") + " - " +
-                                rs.getString("nombre") + " - " +
-                                rs.getInt("edad"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            new Logs("Error préstamos activos: " + e.getMessage(), Aviso.PELIGRO).guardarLog();
-        }
     }
 
-    // TODO [PRÁCTICA STREAMS] Implementar libroMasPrestado().
-    // → Objetivo: Usar la lista de préstamos de obtenerTodosLosPrestamos() para agrupar por idLibro (Collectors.groupingBy)
-    // y contar el número de préstamos (Collectors.counting). Encontrar la entrada del mapa con el valor máximo.
-    // → Imprimir el resultado (puedes apoyarte en DAOlibros para mostrar el título).
-    public void libroMasPrestado() {
+    public Optional<Entry<Integer, Long>> libroMasPrestado() {
         new Logs("Consulta de libro más prestado", Aviso.INFO).guardarLog();
+        return obtenerTodosLosPrestamos().stream()
+                .collect(Collectors.groupingBy(Prestamo::getIdLibro, Collectors.counting()))
+                .entrySet().stream()
+                .max(Map.Entry.comparingByValue());
     }
 
     // TODO [PRÁCTICA STREAMS] Corregir generoConMasPrestamos().
-    // → Objetivo: Obtener la lista de préstamos, y por cada uno, buscar su género a través del DAOlibros.
-    // → Agrupar por género y contar con Streams, encontrando luego el género más frecuente.
-    // → Reemplazar por completo el código SQL incorrecto de este método por la solución con colecciones.
+    // → Objetivo: Obtener la lista de préstamos, y por cada uno, buscar su género a
+    // través del DAOlibros.
+    // → Agrupar por género y contar con Streams, encontrando luego el género más
+    // frecuente.
+    // → Reemplazar por completo el código SQL incorrecto de este método por la
+    // solución con colecciones.
     public void generoConMasPrestamos() {
         String sql = """
                 SELECT l.genero, COUNT(*) AS total
