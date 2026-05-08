@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.biblioteca.Clases.Libro;
 import com.biblioteca.Clases.LibroElectronico;
@@ -109,7 +110,6 @@ public class DAOlibros {
                 String isbn = rs.getString("isbn");
                 int anioPublicacion = rs.getInt("anio_publicacion");
 
-                // TODO [CORREGIDO] Nombres de columna en DB aplicados.
                 int copiasTotales = rs.getInt("copias_totales");
                 int copiasDisponibles = rs.getInt("copias_disponibles");
 
@@ -117,7 +117,7 @@ public class DAOlibros {
 
                 if (tipo == Tipo.ELECTRONICO) {
                     Formato formato = Formato.valueOf(rs.getString("formato"));
-                    // TODO [CORREGIDO] Columna url -> url_descarga
+
                     String url = rs.getString("url_descarga");
                     lista.add(new LibroElectronico(id, titulo, autor, genero, isbn,
                             anioPublicacion, copiasTotales, copiasDisponibles, tipo, id, formato, url));
@@ -135,13 +135,10 @@ public class DAOlibros {
         return lista;
     }
 
-    // TODO [PRÁCTICA STREAMS] Implementar librosDisponibles().
-    // → Objetivo: En lugar de usar una nueva consulta SQL, reutiliza
-    // obtenerTodosLosLibros()
-    // → Usa Streams y Lambdas (filter) para quedarte solo con los libros donde
-    // copias_disponibles > 0.
-    // → Imprimir los resultados usando un foreach con expresión lambda.
     public void librosDisponibles() {
+        obtenerTodosLosLibros().stream()
+                .filter(a -> a.getCopiasDisponibles() > 0)
+                .forEach(a -> System.out.println(a.getTitulo()));
         new Logs("Consulta de libros disponibles", Aviso.INFO).guardarLog();
     }
 
@@ -160,6 +157,11 @@ public class DAOlibros {
     // → Objetivo: Reutilizar la lista en memoria y buscar con Streams
     // (.filter().findFirst()).
     // → Necesario para validar existencia antes de crear préstamo.
+    public Optional<Libro> buscarLibroPorId(int id) {
+        return obtenerTodosLosLibros().stream()
+                .filter(a -> a.getId() == id)
+                .findFirst();
+    }
 
     public boolean actualizarLibro(Libro libro) {
         String sql = "UPDATE libros SET titulo=?, autor=?, genero=?, isbn=?, anio_publicacion=?, copias_totales=?, copias_disponibles=?, tipo=?, formato=?, url_descarga=?, ubicacion=? WHERE id=?";
