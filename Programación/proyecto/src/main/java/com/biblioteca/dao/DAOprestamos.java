@@ -1,7 +1,6 @@
 package com.biblioteca.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,16 +11,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Optional;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
+import com.biblioteca.Clases.Libro;
 import com.biblioteca.Clases.Prestamo;
+import com.biblioteca.Clases.Usuario;
 import com.biblioteca.Enum.Aviso;
 import com.biblioteca.Enum.Estado;
+import com.biblioteca.Enum.Genero;
 
 public class DAOprestamos {
 
+    private final DAOlibros daoLibros;
+    private final DAOusuarios daoUsuarios;
+
     public DAOprestamos() {
+        this.daoLibros = new DAOlibros();
+        this.daoUsuarios = new DAOusuarios();
     }
 
     public void crearTabla() {
@@ -51,48 +58,71 @@ public class DAOprestamos {
     }
 
     public void insertarPrestamo(Prestamo prestamo) {
+        Usuario usuario = daoUsuarios.buscarUsuarioPorId(prestamo.getIdUsuario());
+        if (usuario == null) {
+            System.out.println("No existe el usuario con ID " + prestamo.getIdUsuario());
+            new Logs("Préstamo rechazado: usuario inexistente " + prestamo.getIdUsuario(), Aviso.AVISO).guardarLog();
+            return;
+        }
+
+        Libro libro = daoLibros.buscarLibroPorId(prestamo.getIdLibro());
+        if (libro == null) {
+            System.out.println("No existe el libro con ID " + prestamo.getIdLibro());
+            new Logs("Préstamo rechazado: libro inexistente " + prestamo.getIdLibro(), Aviso.AVISO).guardarLog();
+            return;
+        }
+        if (libro.getCopiasDisponibles() <= 0) {
+            System.out.println("No hay copias disponibles del libro " + libro.getTitulo());
+            new Logs("Préstamo rechazado: sin copias disponibles del libro " + prestamo.getIdLibro(), Aviso.AVISO)
+                    .guardarLog();
+            return;
+        }
+
         String sql = """
                 INSERT INTO prestamos(id_usuario, id_libro, fecha_prestamo,
                     fecha_devolucion_prevista, fecha_devolucion_real, estado)
                 VALUES(?, ?, ?, ?, ?, ?)
                 """;
+        String updateLibroSql = "UPDATE libros SET copias_disponibles = copias_disponibles - 1 WHERE id = ?";
 
-        try (Connection conn = Conexion.getConexion();
-                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (Connection conn = Conexion.getConexion()) {
+            conn.setAutoCommit(false);
 
-            pstmt.setInt(1, prestamo.getIdUsuario());
-            pstmt.setInt(2, prestamo.getIdLibro());
-            pstmt.setDate(3, Date.valueOf(prestamo.getFechaPrestamo()));
-            pstmt.setDate(4, Date.valueOf(prestamo.getFechaDevolucionPrevista()));
+            try (PreparedStatement pstmt = conn.prepareStatement(sql);
+                    PreparedStatement updLStmt = conn.prepareStatement(updateLibroSql)) {
 
-            if (prestamo.getFechaDevolucionReal() != null) {
-                pstmt.setDate(5, Date.valueOf(prestamo.getFechaDevolucionReal()));
-            } else {
-                pstmt.setNull(5, Types.DATE);
-            }
+                pstmt.setInt(1, prestamo.getIdUsuario());
+                pstmt.setInt(2, prestamo.getIdLibro());
+                pstmt.setString(3, prestamo.getFechaPrestamo().toString());
+                pstmt.setString(4, prestamo.getFechaDevolucionPrevista().toString());
 
-            pstmt.setString(6, prestamo.getEstado().name());
+                if (prestamo.getFechaDevolucionReal() != null) {
+                    pstmt.setString(5, prestamo.getFechaDevolucionReal().toString());
+                } else {
+                    pstmt.setNull(5, Types.VARCHAR);
+                }
 
-            int num = pstmt.executeUpdate();
-            if (num > 0) {
-                System.out.println("Insertado correctamente");
-                new Logs("Préstamo creado: usuario " + prestamo.getIdUsuario()
-                        + " libro " + prestamo.getIdLibro(), Aviso.INFO).guardarLog();
-            } else {
-                System.out.println("Ha habido un error en alguna parte");
-                new Logs("Error al insertar préstamo", Aviso.AVISO).guardarLog();
+                pstmt.setString(6, prestamo.getEstado().name());
+
+                int num = pstmt.executeUpdate();
+                if (num > 0) {
+                    updLStmt.setInt(1, prestamo.getIdLibro());
+                    updLStmt.executeUpdate();
+                    conn.commit();
+                    System.out.println("Insertado correctamente");
+                    new Logs("Préstamo creado: usuario " + prestamo.getIdUsuario()
+                            + " libro " + prestamo.getIdLibro(), Aviso.INFO).guardarLog();
+                } else {
+                    conn.rollback();
+                    System.out.println("Ha habido un error en alguna parte");
+                    new Logs("Error al insertar préstamo", Aviso.AVISO).guardarLog();
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
             new Logs("Error de BD al insertar préstamo: " + e.getMessage(), Aviso.PELIGRO).guardarLog();
         }
     }
-
-    // TODO [CÓDIGO FALTANTE] Añadir validación antes de insertar préstamo:
-    // → Verificar que el usuario exista (DAOusuarios.buscarUsuarioPorId).
-    // → Verificar que el libro exista y tenga copias_disponibles > 0.
-    // → Al insertar, decrementar copias_disponibles del libro (UPDATE libros SET
-    // copias_disponibles = copias_disponibles - 1 WHERE id = ?).
 
     public List<Prestamo> obtenerTodosLosPrestamos() {
         List<Prestamo> lista = new ArrayList<>();
@@ -128,50 +158,35 @@ public class DAOprestamos {
     }
 
     public List<Prestamo> prestamosActivosDeUnUsuario(int idUsuario) {
+        new Logs("Consulta de préstamos activos del usuario " + idUsuario, Aviso.INFO).guardarLog();
         return obtenerTodosLosPrestamos().stream()
                 .filter(a -> a.getIdUsuario() == idUsuario && a.getEstado().equals(Estado.ACTIVO))
                 .toList();
-
     }
 
-    public Optional<Entry<Integer, Long>> libroMasPrestado() {
+    public Entry<Integer, Long> libroMasPrestado() {
         new Logs("Consulta de libro más prestado", Aviso.INFO).guardarLog();
         return obtenerTodosLosPrestamos().stream()
                 .collect(Collectors.groupingBy(Prestamo::getIdLibro, Collectors.counting()))
                 .entrySet().stream()
-                .max(Map.Entry.comparingByValue());
+                .max(Map.Entry.comparingByValue())
+                .orElse(null);
     }
 
-    // TODO [PRÁCTICA STREAMS] Corregir generoConMasPrestamos().
-    // → Objetivo: Obtener la lista de préstamos, y por cada uno, buscar su género a
-    // través del DAOlibros.
-    // → Agrupar por género y contar con Streams, encontrando luego el género más
-    // frecuente.
-    // → Reemplazar por completo el código SQL incorrecto de este método por la
-    // solución con colecciones.
-    public void generoConMasPrestamos() {
-        String sql = """
-                SELECT l.genero, COUNT(*) AS total
-                FROM prestamos p
-                JOIN libros l ON p.id_libro = l.id
-                GROUP BY l.genero
-                ORDER BY total DESC""";
+    public Entry<Genero, Long> generoConMasPrestamos() {
+        new Logs("Consulta de género con más préstamos", Aviso.INFO).guardarLog();
+        List<Libro> libros = daoLibros.obtenerTodosLosLibros();
 
-        try (Connection conn = Conexion.getConexion();
-                Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery(sql)) {
-
-            System.out.println("Lista de usuarios:");
-            while (rs.next()) {
-                System.out.println(
-                        rs.getInt("id") + " - " +
-                                rs.getString("nombre") + " - " +
-                                rs.getInt("edad"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            new Logs("Error género más prestado: " + e.getMessage(), Aviso.PELIGRO).guardarLog();
-        }
+        return obtenerTodosLosPrestamos().stream()
+                .map(p -> libros.stream()
+                        .filter(l -> l.getId() == p.getIdLibro())
+                        .findFirst()
+                        .orElse(null))
+                .filter(Objects::nonNull)
+                .collect(Collectors.groupingBy(Libro::getGenero, Collectors.counting()))
+                .entrySet().stream()
+                .max(Map.Entry.comparingByValue())
+                .orElse(null);
     }
 
     public boolean devolverPrestamo(int idPrestamo) {
@@ -193,6 +208,8 @@ public class DAOprestamos {
                     fechaPrevista = LocalDate.parse(rs.getString("fecha_devolucion_prevista"));
                 } else {
                     System.out.println("No se encontró el préstamo activo con ID " + idPrestamo);
+                    new Logs("Devolución fallida: préstamo activo no encontrado " + idPrestamo, Aviso.AVISO)
+                            .guardarLog();
                     return false;
                 }
             }
@@ -202,7 +219,7 @@ public class DAOprestamos {
 
             try (PreparedStatement updPStmt = conn.prepareStatement(updatePrestamoSql)) {
                 updPStmt.setString(1, nuevoEstado.name());
-                updPStmt.setDate(2, Date.valueOf(fechaReal));
+                updPStmt.setString(2, fechaReal.toString());
                 updPStmt.setInt(3, idPrestamo);
                 updPStmt.executeUpdate();
             }

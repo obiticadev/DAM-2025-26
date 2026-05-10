@@ -1,12 +1,9 @@
 package com.biblioteca;
 
-// TODO [RECOMENDACIÓN] Considerar separar la lógica del menú en una clase aparte (ej: MenuConsola.java)
-//  para que App.java solo contenga el main y la orquestación de alto nivel.
-//  Esto facilita futuros cambios (ej: migrar de consola a GUI).
-
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Scanner;
 
 import com.biblioteca.Clases.Libro;
@@ -18,6 +15,7 @@ import com.biblioteca.Enum.Estado;
 import com.biblioteca.Enum.Formato;
 import com.biblioteca.Enum.Genero;
 import com.biblioteca.Enum.Tipo;
+import com.biblioteca.dao.Conexion;
 import com.biblioteca.dao.DAOlibros;
 import com.biblioteca.dao.DAOprestamos;
 import com.biblioteca.dao.DAOusuarios;
@@ -56,10 +54,6 @@ public class App {
             case 3 -> menuLibros();
             case 4 -> menuPrestamos();
             case 0 -> {
-                // TODO [RECOMENDACIÓN] Cerrar recursos al salir:
-                // → Conexion.cerrarConexion();
-                // → scanner.close();
-                // Esto libera la conexión a SQLite y el flujo de System.in.
                 System.out.println("¡Hasta luego!");
                 Conexion.close();
                 scanner.close();
@@ -77,15 +71,13 @@ public class App {
     private static void menuUsuarios() {
         int opcion;
         do {
-            // TODO [PRÁCTICA STREAMS] Faltaría añadir una opción para "Buscar usuario por
-            // ID"
-            // llamando a daoUsuarios.buscarUsuarioPorId(id) una vez lo implementes.
             System.out.println("""
                     --- Usuarios ---
                     1. Insertar usuario
                     2. Listar usuarios
                     3. Actualizar usuario
                     4. Eliminar usuario
+                    5. Buscar usuario por ID
                     0. Volver
                     """);
             opcion = leerInt("Opción");
@@ -94,10 +86,21 @@ public class App {
                 case 2 -> listarUsuarios();
                 case 3 -> actualizarUsuario();
                 case 4 -> eliminarUsuario();
+                case 5 -> buscarUsuarioPorId();
                 case 0 -> System.out.println();
                 default -> System.out.println("Opción inválida");
             }
         } while (opcion != 0);
+    }
+
+    private static void buscarUsuarioPorId() {
+        int id = leerInt("ID del usuario");
+        Usuario u = daoUsuarios.buscarUsuarioPorId(id);
+        if (u != null) {
+            System.out.println(u.getId() + ": " + u.getNombre() + " " + u.getApellido() + " - " + u.getEmail());
+        } else {
+            System.out.println("No se ha encontrado ningún usuario con ID " + id);
+        }
     }
 
     private static void actualizarUsuario() {
@@ -139,21 +142,14 @@ public class App {
             System.out.println("No hay usuarios");
         } else {
             System.out.println("\n--- Lista de Usuarios ---");
-            // TODO [PRÁCTICA STREAMS] Reemplaza este bucle for-each tradicional por el
-            // método .forEach() con una expresión lambda.
-            for (Usuario u : usuarios) {
-                System.out.println(u.getId() + ": " + u.getNombre() + " " + u.getApellido() + " - " + u.getEmail());
-            }
+            usuarios.forEach(u -> System.out.println(
+                    u.getId() + ": " + u.getNombre() + " " + u.getApellido() + " - " + u.getEmail()));
         }
     }
 
     private static void menuLibros() {
         int opcion;
         do {
-            // TODO [PRÁCTICA STREAMS] Faltaría añadir opciones para buscar por autor y
-            // género
-            // llamando a los métodos correspondientes en DAOlibros una vez los implementes
-            // con Streams.
             System.out.println("""
                     --- Libros ---
                     1. Insertar libro en papel
@@ -162,6 +158,8 @@ public class App {
                     4. Libros disponibles
                     5. Actualizar libro
                     6. Eliminar libro
+                    7. Buscar por autor
+                    8. Buscar por género
                     0. Volver
                     """);
             opcion = leerInt("Opción");
@@ -169,13 +167,42 @@ public class App {
                 case 1 -> insertarLibroEnPapel();
                 case 2 -> insertarLibroElectronico();
                 case 3 -> listarLibros();
-                case 4 -> daoLibros.librosDisponibles();
+                case 4 -> mostrarLibrosDisponibles();
                 case 5 -> actualizarLibro();
                 case 6 -> eliminarLibro();
+                case 7 -> buscarLibrosPorAutor();
+                case 8 -> buscarLibrosPorGenero();
                 case 0 -> System.out.println();
                 default -> System.out.println("Opción inválida");
             }
         } while (opcion != 0);
+    }
+
+    private static void mostrarLibrosDisponibles() {
+        List<Libro> libros = daoLibros.librosDisponibles();
+        imprimirListaLibros(libros, "No hay libros disponibles", "--- Libros disponibles ---");
+    }
+
+    private static void buscarLibrosPorAutor() {
+        String autor = leerString("Autor");
+        List<Libro> libros = daoLibros.buscarPorAutor(autor);
+        imprimirListaLibros(libros, "No hay libros de ese autor", "--- Libros de " + autor + " ---");
+    }
+
+    private static void buscarLibrosPorGenero() {
+        Genero genero = leerGenero();
+        List<Libro> libros = daoLibros.buscarPorGenero(genero);
+        imprimirListaLibros(libros, "No hay libros de ese género", "--- Libros de género " + genero + " ---");
+    }
+
+    private static void imprimirListaLibros(List<Libro> libros, String mensajeVacio, String cabecera) {
+        if (libros.isEmpty()) {
+            System.out.println(mensajeVacio);
+        } else {
+            System.out.println("\n" + cabecera);
+            libros.forEach(l -> System.out.println(
+                    l.getId() + ": " + l.getTitulo() + " - " + l.getAutor() + " (" + l.getTipo() + ")"));
+        }
     }
 
     private static void actualizarLibro() {
@@ -251,22 +278,12 @@ public class App {
 
     private static void listarLibros() {
         List<Libro> libros = daoLibros.obtenerTodosLosLibros();
-        if (libros.isEmpty()) {
-            System.out.println("No hay libros");
-        } else {
-            System.out.println("\n--- Lista de Libros ---");
-            // TODO [PRÁCTICA STREAMS] Reemplaza este bucle for-each tradicional por el
-            // método .forEach() con una expresión lambda.
-            for (Libro l : libros) {
-                System.out.println(l.getId() + ": " + l.getTitulo() + " - " + l.getAutor() + " (" + l.getTipo() + ")");
-            }
-        }
+        imprimirListaLibros(libros, "No hay libros", "--- Lista de Libros ---");
     }
 
     private static void menuPrestamos() {
         int opcion;
         do {
-            // (Las opciones CRUD principales de préstamos ya están completadas)
             System.out.println("""
                     --- Préstamos ---
                     1. Crear préstamo
@@ -282,13 +299,35 @@ public class App {
                 case 1 -> insertarPrestamo();
                 case 2 -> listarPrestamos();
                 case 3 -> prestamosActivosUsuario();
-                case 4 -> daoPrestamos.libroMasPrestado();
-                case 5 -> daoPrestamos.generoConMasPrestamos();
+                case 4 -> mostrarLibroMasPrestado();
+                case 5 -> mostrarGeneroConMasPrestamos();
                 case 6 -> devolverPrestamo();
                 case 0 -> System.out.println();
                 default -> System.out.println("Opción inválida");
             }
         } while (opcion != 0);
+    }
+
+    private static void mostrarLibroMasPrestado() {
+        Entry<Integer, Long> entry = daoPrestamos.libroMasPrestado();
+        if (entry == null) {
+            System.out.println("No hay préstamos registrados");
+            return;
+        }
+        Libro libro = daoLibros.buscarLibroPorId(entry.getKey());
+        String titulo = libro != null ? libro.getTitulo() : "Desconocido";
+        System.out.println("Libro más prestado: " + titulo
+                + " (ID " + entry.getKey() + ", " + entry.getValue() + " préstamos)");
+    }
+
+    private static void mostrarGeneroConMasPrestamos() {
+        Entry<Genero, Long> entry = daoPrestamos.generoConMasPrestamos();
+        if (entry == null) {
+            System.out.println("No hay préstamos registrados");
+            return;
+        }
+        System.out.println("Género con más préstamos: " + entry.getKey()
+                + " (" + entry.getValue() + " préstamos)");
     }
 
     private static void devolverPrestamo() {
@@ -318,21 +357,24 @@ public class App {
             System.out.println("No hay préstamos");
         } else {
             System.out.println("\n--- Lista de Préstamos ---");
-            // TODO [PRÁCTICA STREAMS] Reemplaza este bucle for-each tradicional por el
-            // método .forEach() con una expresión lambda.
-            for (Prestamo p : prestamos) {
-                System.out.printf("%03d: Usuario %03d - Libro %03d - Estado: %s%n", p.getId(), p.getIdUsuario(),
-                        p.getIdLibro(), p.getEstado().toString());
-            }
+            prestamos.forEach(App::imprimirPrestamo);
         }
     }
 
     private static void prestamosActivosUsuario() {
         int idUsuario = leerInt("ID Usuario");
-        // TODO [BUG] El idUsuario se lee pero NO se pasa al DAO.
-        // → Cuando corrijas prestamosActivosDeUnUsuario(int idUsuario) en DAOprestamos,
-        // cambiar esta línea a: daoPrestamos.prestamosActivosDeUnUsuario(idUsuario);
-        daoPrestamos.prestamosActivosDeUnUsuario();
+        List<Prestamo> prestamos = daoPrestamos.prestamosActivosDeUnUsuario(idUsuario);
+        if (prestamos.isEmpty()) {
+            System.out.println("El usuario " + idUsuario + " no tiene préstamos activos");
+        } else {
+            System.out.println("\n--- Préstamos activos del usuario " + idUsuario + " ---");
+            prestamos.forEach(App::imprimirPrestamo);
+        }
+    }
+
+    private static void imprimirPrestamo(Prestamo p) {
+        System.out.printf("%03d: Usuario %03d - Libro %03d - Estado: %s%n",
+                p.getId(), p.getIdUsuario(), p.getIdLibro(), p.getEstado().toString());
     }
 
     private static String leerString(String pregunta) {

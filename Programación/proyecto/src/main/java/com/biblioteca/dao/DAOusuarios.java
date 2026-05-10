@@ -1,7 +1,6 @@
 package com.biblioteca.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,18 +8,13 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import com.biblioteca.Clases.Usuario;
 import com.biblioteca.Enum.Aviso;
 
 public class DAOusuarios {
 
-    private List<Usuario> listaUsuarios;
-
     public DAOusuarios() {
-        // TODO [COMPLETAR] Inicializar lista correctamente si vas a usarla de caché
-        this.listaUsuarios = new ArrayList<>();
     }
 
     public void crearTabla() {
@@ -58,7 +52,7 @@ public class DAOusuarios {
             pstmt.setString(2, usuario.getApellido());
             pstmt.setString(3, usuario.getEmail());
             pstmt.setString(4, usuario.getTelefono());
-            pstmt.setDate(5, Date.valueOf(usuario.getFechaRegistro()));
+            pstmt.setString(5, usuario.getFechaRegistro().toString());
 
             int num = pstmt.executeUpdate();
 
@@ -108,15 +102,12 @@ public class DAOusuarios {
         return lista;
     }
 
-    // TODO [PRÁCTICA STREAMS] Implementar buscarUsuarioPorId(int id).
-    // → Objetivo: Obtener la lista de usuarios con obtenerTodosLosUsuarios() y
-    // buscar el que coincida con el id usando filter() y findFirst() de Streams.
-    // → Devolver un Optional<Usuario> o null si no se encuentra.
-    // → Se necesita para validar que el usuario existe antes de crear un préstamo.
-    public Optional<Usuario> buscarUsuarioPorId(int id) {
+    public Usuario buscarUsuarioPorId(int id) {
+        new Logs("Búsqueda de usuario por ID: " + id, Aviso.INFO).guardarLog();
         return obtenerTodosLosUsuarios().stream()
                 .filter(a -> a.getId() == id)
-                .findFirst();
+                .findFirst()
+                .orElse(null);
     }
 
     public boolean actualizarUsuario(Usuario usuario) {

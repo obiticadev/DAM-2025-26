@@ -4,3 +4,6 @@
 [2026-05-06 00:05:16] [INFO] Usuario insertado: Oliver Bitica
 [2026-05-06 00:05:26] [PELIGRO] Error al obtener usuarios: no such column: 'apellido'
 [2026-05-06 00:05:26] [INFO] Obtenidos 0 usuarios
+[2026-05-09 17:50:38] [INFO] Tabla usuarios creada
+[2026-05-09 17:50:38] [INFO] Tabla libros creada
+[2026-05-09 17:50:38] [INFO] Tabla prestamos creada

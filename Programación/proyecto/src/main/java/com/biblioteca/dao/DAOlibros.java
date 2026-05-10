@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.biblioteca.Clases.Libro;
@@ -49,6 +48,7 @@ public class DAOlibros {
             new Logs("Tabla libros creada", Aviso.INFO).guardarLog();
         } catch (SQLException e) {
             e.printStackTrace();
+            new Logs("Error al crear tabla libros: " + e.getMessage(), Aviso.PELIGRO).guardarLog();
         }
     }
 
@@ -143,22 +143,26 @@ public class DAOlibros {
                 .collect(Collectors.toList());
     }
 
-    // TODO [PRÁCTICA STREAMS] Reemplazar filtrarPorX() por:
-    // 1) buscarPorAutor(String autor)
-    // 2) buscarPorGenero(Genero genero)
-    // → Objetivo: Recuperar la lista completa de libros y utilizar Streams
-    // (.filter()) para encontrar los que coinciden con el autor o género pasado por
-    // parámetro.
-    // → Añadir opciones en el menú de libros de App.java.
-    public void filtrarPorX() {
-        new Logs("Filtro de libros por criterio", Aviso.INFO).guardarLog();
+    public List<Libro> buscarPorAutor(String autor) {
+        new Logs("Búsqueda de libros por autor: " + autor, Aviso.INFO).guardarLog();
+        return obtenerTodosLosLibros().stream()
+                .filter(l -> l.getAutor().equalsIgnoreCase(autor))
+                .collect(Collectors.toList());
     }
 
-    public Optional<Libro> buscarLibroPorId(int id) {
-        new Logs("Búsqueda del libro por ID", Aviso.INFO).guardarLog();
+    public List<Libro> buscarPorGenero(Genero genero) {
+        new Logs("Búsqueda de libros por género: " + genero, Aviso.INFO).guardarLog();
+        return obtenerTodosLosLibros().stream()
+                .filter(l -> l.getGenero() == genero)
+                .collect(Collectors.toList());
+    }
+
+    public Libro buscarLibroPorId(int id) {
+        new Logs("Búsqueda del libro por ID: " + id, Aviso.INFO).guardarLog();
         return obtenerTodosLosLibros().stream()
                 .filter(a -> a.getId() == id)
-                .findFirst();
+                .findFirst()
+                .orElse(null);
     }
 
     public boolean actualizarLibro(Libro libro) {
@@ -231,7 +235,4 @@ public class DAOlibros {
         }
         return false;
     }
-
-    // TODO [RECOMENDACIÓN] Extraer método privado mapearLibro(ResultSet rs).
-    // → Evita duplicar la lógica de mapeo en cada método SELECT.
 }
