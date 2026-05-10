@@ -1,0 +1,30 @@
+# =============================================================================
+# Ejercicio 02 — Atributos (XPath)
+# XML fuente: src/xml_data/catalogo.xml
+# Concepto: Acceso a atributos con @, @*, filtrado por atributo
+# =============================================================================
+#
+# INSTRUCCIONES:
+# Escribe UNA expresión XPath por línea.
+#
+# --- APARTADOS ---
+#
+# a) Selecciona el atributo "id" de TODOS los libros
+#
+/catalogo/libro/@id
+# b) Selecciona el atributo "id" del SEGUNDO libro
+#
+/catalogo/libro[2]/@id
+# c) Selecciona TODOS los atributos del primer libro (id y disponible)
+#
+/catalogo/libro[1]/@*
+# d) Selecciona los libros que tienen el atributo disponible="true"
+#
+/catalogo/libro[@disponible="true"]
+# e) Selecciona el atributo "moneda" de todos los precios
+#
+//precio/@moneda
+# f) Selecciona el título del libro cuyo id es "003"
+#
+/catalogo/libro[@id="003"]/titulo
+

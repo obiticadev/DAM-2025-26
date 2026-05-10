@@ -1,0 +1,47 @@
+# =============================================================================
+# Ejercicio 03 — Ejes (XPath)
+# XML fuente: src/xml_data/tienda.xml
+# Concepto: child, descendant, parent, following-sibling, preceding-sibling
+# =============================================================================
+#
+# INSTRUCCIONES:
+# Escribe UNA expresión XPath por línea.
+# Contexto: las expresiones se evalúan desde la raíz del documento.
+#
+# --- APARTADOS ---
+#
+# a) Selecciona todos los <nombre> que son DESCENDIENTES de la sección "Informatica"
+#    (usa el eje descendant o la abreviatura //)
+#
+
+//seccion[@nombre="Informatica"]/descendant::nombre
+
+# b) Selecciona las secciones que son HERMANAS POSTERIORES de la sección "Informatica"
+#    (usa following-sibling)
+#
+
+//seccion[@nombre="Informatica"]/following-sibling::seccion
+
+# c) Selecciona el nombre del ÚLTIMO producto de la PRIMERA sección
+#    (usa last())
+#
+
+//seccion[1]/producto[last()]/nombre
+
+# d) Selecciona el PADRE del producto con id="T04"
+#    (debe devolver el elemento <seccion>)
+#
+
+//producto[@id="T04"]/parent::seccion
+
+# e) Selecciona TODOS los nombres de producto del documento completo,
+#    sin importar en qué sección estén (usa descendant-or-self / //)
+#
+
+//nombre
+
+# f) Selecciona las secciones HERMANAS ANTERIORES de la sección "Mobiliario"
+#    (usa preceding-sibling)
+#
+
+//seccion[@nombre="Mobiliario"]/preceding-sibling::seccion

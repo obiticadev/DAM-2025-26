@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autores>
+  <autor id="A1">
+    <nombre>Cervantes</nombre>
+    <nacionalidad>Española</nacionalidad>
+    <siglo>XVII</siglo>
+  </autor>
+  <autor id="A2">
+    <nombre>García Márquez</nombre>
+    <nacionalidad>Colombiana</nacionalidad>
+    <siglo>XX</siglo>
+  </autor>
+  <autor id="A3">
+    <nombre>Kafka</nombre>
+    <nacionalidad>Checa</nacionalidad>
+    <siglo>XX</siglo>
+  </autor>
+  <autor id="A4">
+    <nombre>Neruda</nombre>
+    <nacionalidad>Chilena</nacionalidad>
+    <siglo>XX</siglo>
+  </autor>
+  <autor id="A5">
+    <nombre>Sun Tzu</nombre>
+    <nacionalidad>China</nacionalidad>
+    <siglo>V a.C.</siglo>
+  </autor>
+</autores>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<biblioteca>
+  <libro id="1" genero="novela">
+    <titulo>Don Quijote</titulo>
+    <autor>Cervantes</autor>
+    <precio>17.50</precio>
+    <anio>1605</anio>
+  </libro>
+  <libro id="2" genero="novela">
+    <titulo>Cien años de soledad</titulo>
+    <autor>García Márquez</autor>
+    <precio>22.00</precio>
+    <anio>1967</anio>
+  </libro>
+  <libro id="3" genero="novela">
+    <titulo>La metamorfosis</titulo>
+    <autor>Kafka</autor>
+    <precio>8.99</precio>
+    <anio>1915</anio>
+  </libro>
+  <libro id="4" genero="poesia">
+    <titulo>Veinte poemas de amor</titulo>
+    <autor>Neruda</autor>
+    <precio>12.00</precio>
+    <anio>1924</anio>
+  </libro>
+  <libro id="5" genero="ensayo">
+    <titulo>El arte de la guerra</titulo>
+    <autor>Sun Tzu</autor>
+    <precio>9.50</precio>
+    <anio>-500</anio>
+  </libro>
+</biblioteca>

@@ -1,0 +1,41 @@
+# =============================================================================
+# Ejercicio 04 — Predicados de Posición (XPath)
+# XML fuente: src/xml_data/catalogo.xml
+# Concepto: [1], [last()], position(), position() mod
+# =============================================================================
+#
+# INSTRUCCIONES:
+# Escribe UNA expresión XPath por línea.
+#
+# --- APARTADOS ---
+#
+# a) Selecciona el PRIMER libro del catálogo
+#
+
+//libro[position()=1]
+
+# b) Selecciona el ÚLTIMO libro del catálogo
+#
+
+//libro[position()=last()]
+
+# c) Selecciona el SEGUNDO libro del catálogo (usando position())
+#
+
+//libro[position()=2]
+
+# d) Selecciona los libros en posición PAR (2º, 4º...)
+#
+
+//libro[position() mod 2 = 0]
+
+# e) Selecciona los 3 primeros libros (posición <= 3)
+#
+
+//libro[position() <= 3]
+
+# f) Selecciona el título del penúltimo libro (último - 1)
+#
+
+//libro[last()-1]/titulo
+

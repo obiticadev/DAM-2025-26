@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inventario-completo>
+  <item id="PROD-001" categoria="Hardware" stock="5">
+    <nombre>Servidor Blade X1</nombre>
+    <precio>2500.00</precio>
+    <proveedor>TechCorp Solutions</proveedor>
+    <pais>USA</pais>
+  </item>
+  <item id="PROD-002" categoria="Software" stock="999">
+    <nombre>Licencia Cloud ERP</nombre>
+    <precio>1200.00</precio>
+    <proveedor>SoftSys International</proveedor>
+    <pais>Irlanda</pais>
+  </item>
+  <item id="PROD-003" categoria="Hardware" stock="0">
+    <nombre>Switch 48 puertos</nombre>
+    <precio>450.00</precio>
+    <proveedor>TechCorp Solutions</proveedor>
+    <pais>USA</pais>
+  </item>
+</inventario-completo>

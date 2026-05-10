@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tienda>
+  <seccion nombre="Informatica">
+    <producto id="T01">
+      <nombre>Ratón</nombre>
+      <precio>15.99</precio>
+      <stock>50</stock>
+    </producto>
+    <producto id="T02">
+      <nombre>Teclado</nombre>
+      <precio>45.00</precio>
+      <stock>30</stock>
+    </producto>
+    <producto id="T03">
+      <nombre>Monitor</nombre>
+      <precio>299.99</precio>
+      <stock>10</stock>
+    </producto>
+  </seccion>
+  <seccion nombre="Papeleria">
+    <producto id="T04">
+      <nombre>Bolígrafo</nombre>
+      <precio>1.50</precio>
+      <stock>200</stock>
+    </producto>
+    <producto id="T05">
+      <nombre>Cuaderno</nombre>
+      <precio>3.95</precio>
+      <stock>150</stock>
+    </producto>
+  </seccion>
+  <seccion nombre="Mobiliario">
+    <producto id="T06">
+      <nombre>Silla ergonómica</nombre>
+      <precio>189.00</precio>
+      <stock>5</stock>
+    </producto>
+  </seccion>
+</tienda>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<empresa>
+  <empleado id="E01" activo="true">
+    <nombre>  Ana López  </nombre>
+    <email>ana@empresa.com</email>
+    <departamento>Desarrollo</departamento>
+    <puesto>Desarrolladora Senior</puesto>
+    <salario>3200</salario>
+  </empleado>
+  <empleado id="E02" activo="true">
+    <nombre>Carlos Ruiz</nombre>
+    <email>carlos@empresa.com</email>
+    <departamento>Analítica</departamento>
+    <puesto>Analista</puesto>
+    <salario>2800</salario>
+  </empleado>
+  <empleado id="E03" activo="false">
+    <nombre>María García</nombre>
+    <email>maria@empresa.com</email>
+    <departamento>Desarrollo</departamento>
+    <puesto>Desarrolladora Junior</puesto>
+    <salario>1900</salario>
+  </empleado>
+  <empleado id="E04" activo="true">
+    <nombre>Pedro Vega</nombre>
+    <email>pedro@externo.org</email>
+    <departamento></departamento>
+    <puesto>Consultor Externo</puesto>
+    <salario>4100</salario>
+  </empleado>
+  <empleado id="E05" activo="true">
+    <nombre>Laura Desmond</nombre>
+    <email>laura@empresa.com</email>
+    <departamento>Diseño</departamento>
+    <puesto>Diseñadora UX</puesto>
+    <salario>2950</salario>
+  </empleado>
+</empresa>

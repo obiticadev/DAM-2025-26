@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<erp>
+  <proveedores>
+    <proveedor id="PR-A">
+      <empresa>TechCorp Solutions</empresa>
+      <pais>USA</pais>
+      <rating>5</rating>
+    </proveedor>
+    <proveedor id="PR-B">
+      <empresa>SoftSys International</empresa>
+      <pais>Irlanda</pais>
+      <rating>4</rating>
+    </proveedor>
+    <proveedor id="PR-C">
+      <empresa>OldTech Components</empresa>
+      <pais>China</pais>
+      <rating>2</rating>
+    </proveedor>
+  </proveedores>
+</erp>

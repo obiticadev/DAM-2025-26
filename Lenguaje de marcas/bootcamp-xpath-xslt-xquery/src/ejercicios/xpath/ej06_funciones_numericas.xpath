@@ -1,0 +1,42 @@
+# =============================================================================
+# Ejercicio 06 — Funciones Numéricas (XPath)
+# XML fuente: src/xml_data/catalogo.xml
+# Concepto: count(), sum(), round(), floor(), ceiling()
+# =============================================================================
+#
+# INSTRUCCIONES:
+# Escribe UNA expresión XPath por línea.
+# Estas expresiones devuelven valores atómicos (números), no nodos.
+#
+# --- APARTADOS ---
+#
+# a) Cuenta el número total de libros en el catálogo
+#
+
+count(//libro)
+
+# b) Suma todos los precios del catálogo
+#
+
+sum(//precio)
+
+# c) Cuenta cuántos libros están disponibles (disponible="true")
+#
+
+count(//libro[@disponible="true"])
+
+# d) Redondea el precio del primer libro al entero más cercano (round)
+#
+
+round(//libro[1]/precio)
+
+# e) Aplica floor() al precio del tercer libro
+#
+
+floor(//libro[3]/precio)
+
+# f) Aplica ceiling() al precio del segundo libro
+#
+
+ceiling(//libro[2]/precio)
+

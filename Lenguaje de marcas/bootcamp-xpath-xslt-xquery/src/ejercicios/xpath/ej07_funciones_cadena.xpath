@@ -1,0 +1,42 @@
+# =============================================================================
+# Ejercicio 07 — Funciones de Cadena (XPath)
+# XML fuente: src/xml_data/empleados.xml
+# Concepto: contains(), starts-with(), string-length(), normalize-space(), concat()
+# =============================================================================
+#
+# INSTRUCCIONES:
+# Escribe UNA expresión XPath por línea.
+#
+# --- APARTADOS ---
+#
+# a) Selecciona los empleados cuyo email contenga "empresa.com"
+#
+
+//empleado[contains(email,"empresa.com")]
+
+# b) Selecciona los empleados cuyo puesto empiece por "Desar"
+#
+
+//empleado[starts-with(puesto, "Desar")]
+
+# c) Obtén la longitud (string-length) del nombre del PRIMER empleado
+#    (tal cual aparece en el XML, CON los espacios)
+#
+
+string-length(//empleado[1]/nombre/text())
+
+# d) Obtén el nombre del primer empleado SIN espacios extra (normalize-space)
+#
+
+normalize-space(//empleado[1]/nombre)
+
+# e) Concatena el nombre y el puesto del segundo empleado separados por " - "
+#
+
+concat(//empleado[2]/nombre, " - ", //empleado[2]/puesto)
+
+# f) Selecciona los empleados cuyo nombre tenga más de 10 caracteres
+#    (usa string-length dentro de un predicado)
+#
+
+//empleado[string-length(nombre) > 10]

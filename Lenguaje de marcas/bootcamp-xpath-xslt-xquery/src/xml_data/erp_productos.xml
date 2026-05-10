@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<erp>
+  <productos>
+    <producto id="PROD-001" prov_id="PR-A">
+      <nombre>Servidor Blade X1</nombre>
+      <categoria>Hardware</categoria>
+      <precio>2500.00</precio>
+      <stock>5</stock>
+      <estado>activo</estado>
+    </producto>
+    <producto id="PROD-002" prov_id="PR-B">
+      <nombre>Licencia Cloud ERP</nombre>
+      <categoria>Software</categoria>
+      <precio>1200.00</precio>
+      <stock>999</stock>
+      <estado>activo</estado>
+    </producto>
+    <producto id="PROD-003" prov_id="PR-A">
+      <nombre>Switch 48 puertos</nombre>
+      <categoria>Hardware</categoria>
+      <precio>450.00</precio>
+      <stock>0</stock>
+      <estado>activo</estado>
+    </producto>
+    <producto id="PROD-004" prov_id="PR-C">
+      <nombre>Teclado PS/2 (obsoleto)</nombre>
+      <categoria>Periféricos</categoria>
+      <precio>5.00</precio>
+      <stock>0</stock>
+      <estado>obsoleto</estado>
+    </producto>
+  </productos>
+  <pedidos>
+  </pedidos>
+</erp>

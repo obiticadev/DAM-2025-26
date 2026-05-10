@@ -1,0 +1,44 @@
+# =============================================================================
+# Ejercicio 08 — Funciones Avanzadas (XPath)
+# XML fuente: src/xml_data/empleados.xml
+# Concepto: translate(), substring(), predicados con funciones combinadas
+# =============================================================================
+#
+# INSTRUCCIONES:
+# Escribe UNA expresión XPath por línea.
+#
+# --- APARTADOS ---
+#
+# a) Convierte el nombre del segundo empleado a MAYÚSCULAS usando translate()
+#    (traduce "abcdefghijklmnopqrstuvwxyzáéíóúñ" a "ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÑ")
+#
+
+translate(//empleado[2]/nombre, "abcdefghijklmnopqrstuvwxyzáéíóúñ", "ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÑ")
+
+# b) Extrae los 3 primeros caracteres del puesto del primer empleado (substring)
+#
+
+substring(//empleado[1]/puesto, 1, 3)
+
+# c) Selecciona los empleados activos (activo="true") cuyo salario sea mayor que 3000
+#
+
+//empleado[@activo="true" and salario > 3000]
+
+# d) Selecciona los empleados cuyo departamento NO esté vacío
+#    (pista: string-length(departamento) > 0)
+#
+
+//empleado[string-length(departamento) > 0]
+
+# e) Cuenta el número de empleados del departamento "Desarrollo"
+#
+
+count(//empleado[departamento="Desarrollo"])
+
+# f) Selecciona el email de los empleados cuyo nombre NO empiece por la letra "P"
+#    (combina not() con starts-with())
+#
+
+//empleado[not(starts-with(nombre, "P"))]
+

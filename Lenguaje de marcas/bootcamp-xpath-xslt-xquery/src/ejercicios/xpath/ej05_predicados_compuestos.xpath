@@ -1,0 +1,40 @@
+# =============================================================================
+# Ejercicio 05 — Predicados Compuestos (XPath)
+# XML fuente: src/xml_data/catalogo.xml
+# Concepto: and, or, not(), comparaciones de valor, predicados encadenados
+# =============================================================================
+#
+# INSTRUCCIONES:
+# Escribe UNA expresión XPath por línea.
+#
+# --- APARTADOS ---
+#
+# a) Selecciona los libros disponibles (disponible="true") con precio mayor que 15
+#
+
+//libro[@disponible="true" and precio > 15]
+
+# b) Selecciona los libros con precio mayor que 20 O cuyo id sea "001"
+#
+
+//libro[precio > 20 or @id="001"]
+
+# c) Selecciona los libros que NO están disponibles (disponible="false")
+#
+
+//libro[@disponible="false"]
+
+# d) Selecciona los títulos de libros publicados después de 1900 y antes de 2000
+#
+
+//libro[anio > 1900 and anio < 2000]/titulo
+
+# e) Selecciona los libros disponibles cuya moneda del precio sea "EUR"
+#
+
+//libro[@disponible="true" and precio/@moneda="EUR"]
+
+# f) Selecciona los autores de libros con precio entre 15 y 20 (ambos inclusive)
+#
+
+//libro[precio >= 15 and precio <= 20]/autor

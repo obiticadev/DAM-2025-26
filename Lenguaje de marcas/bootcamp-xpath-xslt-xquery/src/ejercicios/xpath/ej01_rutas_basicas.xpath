@@ -1,0 +1,32 @@
+# =============================================================================
+# Ejercicio 01 — Rutas Básicas (XPath)
+# XML fuente: src/xml_data/catalogo.xml
+# Concepto: Rutas absolutas y relativas, diferencia entre / y //
+# =============================================================================
+#
+# INSTRUCCIONES:
+# Escribe UNA expresión XPath por línea. Cada línea corresponde a un apartado.
+# No añadas comentarios en las líneas de respuesta.
+# Las líneas que empiezan con # son ignoradas por los tests.
+#
+# --- APARTADOS ---
+#
+# a) Selecciona el elemento raíz <catalogo>
+#
+/catalogo
+# b) Selecciona TODOS los elementos <libro> (hijos directos de catalogo)
+#
+/catalogo/libro
+# c) Selecciona TODOS los elementos <titulo> del documento (en cualquier nivel)
+#
+//titulo
+# d) Selecciona el elemento <titulo> del PRIMER libro
+#
+//libro[1]/titulo
+# e) Selecciona el TEXTO (contenido textual) de todos los títulos
+#
+//titulo/text()
+# f) Selecciona todos los elementos hijos directos del primer libro (sin importar su nombre)
+#
+/catalogo/libro[1]/*
+
