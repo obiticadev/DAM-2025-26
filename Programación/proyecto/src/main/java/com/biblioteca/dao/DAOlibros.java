@@ -20,8 +20,12 @@ import com.biblioteca.Enum.Tipo;
 
 public class DAOlibros {
 
+    // CONSTRUCTOR ----------------------------
+
     public DAOlibros() {
     }
+
+    // MÉTODOS ----------------------------
 
     public void crearTabla() {
         String sql = """
@@ -139,28 +143,28 @@ public class DAOlibros {
     public List<Libro> librosDisponibles() {
         new Logs("Consulta de libros disponibles", Aviso.INFO).guardarLog();
         return obtenerTodosLosLibros().stream()
-                .filter(a -> a.getCopiasDisponibles() > 0)
+                .filter(libro -> libro.getCopiasDisponibles() > 0)
                 .collect(Collectors.toList());
     }
 
     public List<Libro> buscarPorAutor(String autor) {
         new Logs("Búsqueda de libros por autor: " + autor, Aviso.INFO).guardarLog();
         return obtenerTodosLosLibros().stream()
-                .filter(l -> l.getAutor().equalsIgnoreCase(autor))
+                .filter(libro -> libro.getAutor().equalsIgnoreCase(autor))
                 .collect(Collectors.toList());
     }
 
     public List<Libro> buscarPorGenero(Genero genero) {
         new Logs("Búsqueda de libros por género: " + genero, Aviso.INFO).guardarLog();
         return obtenerTodosLosLibros().stream()
-                .filter(l -> l.getGenero() == genero)
+                .filter(libro -> libro.getGenero() == genero)
                 .collect(Collectors.toList());
     }
 
     public Libro buscarLibroPorId(int id) {
         new Logs("Búsqueda del libro por ID: " + id, Aviso.INFO).guardarLog();
         return obtenerTodosLosLibros().stream()
-                .filter(a -> a.getId() == id)
+                .filter(libro -> libro.getId() == id)
                 .findFirst()
                 .orElse(null);
     }
@@ -205,22 +209,6 @@ public class DAOlibros {
     }
 
     public boolean eliminarLibro(int id) {
-        String checkSql = "SELECT COUNT(*) FROM prestamos WHERE id_libro = ? AND estado = 'ACTIVO'";
-        try (Connection conn = Conexion.getConexion();
-                PreparedStatement checkStmt = conn.prepareStatement(checkSql)) {
-            checkStmt.setInt(1, id);
-            ResultSet rs = checkStmt.executeQuery();
-            if (rs.next() && rs.getInt(1) > 0) {
-                System.out.println("No se puede eliminar: el libro tiene préstamos activos.");
-                new Logs("Intento fallido de eliminar libro " + id + " con préstamos activos", Aviso.AVISO)
-                        .guardarLog();
-                return false;
-            }
-        } catch (SQLException e) {
-            new Logs("Error comprobando préstamos de libro: " + e.getMessage(), Aviso.PELIGRO).guardarLog();
-            return false;
-        }
-
         String sql = "DELETE FROM libros WHERE id = ?";
         try (Connection conn = Conexion.getConexion();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {

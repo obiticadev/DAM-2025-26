@@ -17,6 +17,10 @@ public class Prestamo implements Serializable {
     private LocalDate fechaDevolucionReal;
     private Estado estado;
 
+    // CONSTRUCTOR ----------------------------
+
+    // CONSTRUCTOR ----------------------------
+
     public Prestamo(int id, int idUsuario, int idLibro, LocalDate fechaPrestamo, LocalDate fechaDevolucionPrevista,
             LocalDate fechaDevolucionReal, Estado estado) {
         this.id = id;
@@ -27,6 +31,8 @@ public class Prestamo implements Serializable {
         this.fechaDevolucionReal = fechaDevolucionReal;
         this.estado = estado;
     }
+
+    // GETTERS ----------------------------
 
     public int getId() {
         return id;
@@ -56,6 +62,8 @@ public class Prestamo implements Serializable {
         return estado;
     }
 
+    // SETTERS ----------------------------
+
     public void setEstado(Estado estado) {
         this.estado = estado;
     }
@@ -63,6 +71,8 @@ public class Prestamo implements Serializable {
     public void setFechaDevolucionReal(LocalDate fechaDevolucionReal) {
         this.fechaDevolucionReal = fechaDevolucionReal;
     }
+
+    // MÉTODOS DE OBJETO ----------------------------
 
     @Override
     public String toString() {

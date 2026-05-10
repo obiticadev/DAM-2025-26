@@ -7,3 +7,380 @@
 [2026-05-09 17:50:38] [INFO] Tabla usuarios creada
 [2026-05-09 17:50:38] [INFO] Tabla libros creada
 [2026-05-09 17:50:38] [INFO] Tabla prestamos creada
+[2026-05-10 07:52:30] [INFO] Tabla usuarios creada
+[2026-05-10 07:52:30] [INFO] Tabla libros creada
+[2026-05-10 07:52:30] [INFO] Tabla prestamos creada
+[2026-05-10 07:52:32] [INFO] Tabla usuarios creada
+[2026-05-10 07:52:32] [INFO] Tabla libros creada
+[2026-05-10 07:52:32] [INFO] Tabla prestamos creada
+[2026-05-10 07:58:11] [INFO] Obtenidos 1 usuarios
+[2026-05-10 07:58:42] [INFO] Usuario actualizado: 1
+[2026-05-10 07:58:46] [INFO] Obtenidos 1 usuarios
+[2026-05-10 07:59:29] [INFO] Usuario actualizado: 1
+[2026-05-10 07:59:32] [INFO] Obtenidos 1 usuarios
+[2026-05-10 07:59:56] [INFO] Búsqueda de usuario por ID: 1
+[2026-05-10 07:59:56] [INFO] Obtenidos 1 usuarios
+[2026-05-10 08:00:10] [INFO] Obtenidos 0 libros
+[2026-05-10 08:00:14] [INFO] Consulta de libros disponibles
+[2026-05-10 08:00:14] [INFO] Obtenidos 0 libros
+[2026-05-10 08:00:33] [INFO] Búsqueda de libros por autor: arthur
+[2026-05-10 08:00:33] [INFO] Obtenidos 0 libros
+[2026-05-10 08:02:10] [INFO] Libro insertado: La vida despu�s de la muerte
+[2026-05-10 08:02:15] [INFO] Obtenidos 1 libros
+[2026-05-10 08:02:26] [INFO] Consulta de libros disponibles
+[2026-05-10 08:02:26] [INFO] Obtenidos 1 libros
+[2026-05-10 08:03:23] [INFO] Obtenidos 1 libros
+[2026-05-10 08:04:02] [INFO] Búsqueda de usuario por ID: 1
+[2026-05-10 08:04:02] [INFO] Obtenidos 1 usuarios
+[2026-05-10 08:04:02] [INFO] Búsqueda del libro por ID: 1
+[2026-05-10 08:04:02] [INFO] Obtenidos 1 libros
+[2026-05-10 08:04:02] [INFO] Préstamo creado: usuario 1 libro 1
+[2026-05-10 08:04:05] [INFO] Obtenidos 1 préstamos
+[2026-05-10 08:04:18] [INFO] Consulta de préstamos activos del usuario 1
+[2026-05-10 08:04:18] [INFO] Obtenidos 1 préstamos
+[2026-05-10 08:04:30] [INFO] Préstamo 1 devuelto con estado DEVUELTO
+[2026-05-10 08:04:32] [INFO] Obtenidos 1 préstamos
+[2026-05-10 08:04:40] [AVISO] Devolución fallida: préstamo activo no encontrado 1
+[2026-05-10 08:04:46] [INFO] Obtenidos 1 préstamos
+[2026-05-10 08:05:01] [INFO] Búsqueda de usuario por ID: 1
+[2026-05-10 08:05:01] [INFO] Obtenidos 1 usuarios
+[2026-05-10 08:05:01] [INFO] Búsqueda del libro por ID: 1
+[2026-05-10 08:05:01] [INFO] Obtenidos 1 libros
+[2026-05-10 08:05:01] [INFO] Préstamo creado: usuario 1 libro 1
+[2026-05-10 08:05:02] [INFO] Obtenidos 2 préstamos
+[2026-05-10 08:05:15] [INFO] Consulta de género con más préstamos
+[2026-05-10 08:05:15] [INFO] Obtenidos 1 libros
+[2026-05-10 08:05:15] [INFO] Obtenidos 2 préstamos
+[2026-05-10 08:05:22] [INFO] Consulta de libro más prestado
+[2026-05-10 08:05:22] [INFO] Obtenidos 2 préstamos
+[2026-05-10 08:05:23] [INFO] Búsqueda del libro por ID: 1
+[2026-05-10 08:05:23] [INFO] Obtenidos 1 libros
+[2026-05-10 08:05:40] [INFO] Cierre de la aplicación: liberando recursos de Conexion
+[2026-05-10 08:30:05] [INFO] Tabla usuarios creada
+[2026-05-10 08:30:05] [INFO] Tabla libros creada
+[2026-05-10 08:30:05] [INFO] Tabla prestamos creada
+[2026-05-10 08:30:17] [INFO] Obtenidos 1 usuarios
+[2026-05-10 08:30:54] [INFO] Obtenidos 1 libros
+[2026-05-10 08:33:27] [INFO] Obtenidos 1 libros
+[2026-05-10 08:33:27] [INFO] Exportado listado de 1 libros a libros_todos_20260510_083327.csv
+[2026-05-10 08:34:05] [INFO] Obtenidos 1 libros
+[2026-05-10 08:34:05] [INFO] Exportado listado de 1 libros a libros_todos_20260510_083405.csv
+[2026-05-10 08:49:33] [INFO] Obtenidos 1 usuarios
+[2026-05-10 08:50:20] [INFO] Búsqueda de usuario por ID: 1
+[2026-05-10 08:50:20] [INFO] Obtenidos 1 usuarios
+[2026-05-10 08:55:22] [INFO] Obtenidos 6 usuarios
+[2026-05-10 08:55:54] [INFO] Consulta de préstamos activos del usuario 5
+[2026-05-10 08:55:54] [INFO] Obtenidos 10 préstamos
+[2026-05-10 08:55:56] [INFO] Obtenidos 6 usuarios
+[2026-05-10 08:56:08] [INFO] Cierre de la aplicación: liberando recursos de Conexion
+[2026-05-10 08:56:17] [INFO] Tabla usuarios creada
+[2026-05-10 08:56:17] [INFO] Tabla libros creada
+[2026-05-10 08:56:17] [INFO] Tabla prestamos creada
+[2026-05-10 08:56:21] [INFO] Obtenidos 6 usuarios
+[2026-05-10 08:56:30] [INFO] Consulta de préstamos activos del usuario 5
+[2026-05-10 08:56:30] [INFO] Obtenidos 10 préstamos
+[2026-05-10 08:56:51] [INFO] Consulta de préstamos activos del usuario 5
+[2026-05-10 08:56:51] [INFO] Obtenidos 10 préstamos
+[2026-05-10 08:56:51] [INFO] Búsqueda de usuario por ID: 5
+[2026-05-10 08:56:51] [INFO] Obtenidos 6 usuarios
+[2026-05-10 08:56:51] [INFO] Búsqueda del libro por ID: 5
+[2026-05-10 08:56:51] [INFO] Obtenidos 10 libros
+[2026-05-10 08:57:14] [INFO] Obtenidos 10 préstamos
+[2026-05-10 08:57:14] [INFO] Búsqueda de usuario por ID: 1
+[2026-05-10 08:57:14] [INFO] Obtenidos 6 usuarios
+[2026-05-10 08:57:14] [INFO] Búsqueda del libro por ID: 1
+[2026-05-10 08:57:14] [INFO] Obtenidos 10 libros
+[2026-05-10 08:57:14] [INFO] Búsqueda de usuario por ID: 1
+[2026-05-10 08:57:14] [INFO] Obtenidos 6 usuarios
+[2026-05-10 08:57:14] [INFO] Búsqueda del libro por ID: 1
+[2026-05-10 08:57:14] [INFO] Obtenidos 10 libros
+[2026-05-10 08:57:14] [INFO] Búsqueda de usuario por ID: 2
+[2026-05-10 08:57:14] [INFO] Obtenidos 6 usuarios
+[2026-05-10 08:57:14] [INFO] Búsqueda del libro por ID: 2
+[2026-05-10 08:57:14] [INFO] Obtenidos 10 libros
+[2026-05-10 08:57:14] [INFO] Búsqueda de usuario por ID: 3
+[2026-05-10 08:57:14] [INFO] Obtenidos 6 usuarios
+[2026-05-10 08:57:14] [INFO] Búsqueda del libro por ID: 3
+[2026-05-10 08:57:14] [INFO] Obtenidos 10 libros
+[2026-05-10 08:57:14] [INFO] Búsqueda de usuario por ID: 4
+[2026-05-10 08:57:14] [INFO] Obtenidos 6 usuarios
+[2026-05-10 08:57:14] [INFO] Búsqueda del libro por ID: 4
+[2026-05-10 08:57:14] [INFO] Obtenidos 10 libros
+[2026-05-10 08:57:14] [INFO] Búsqueda de usuario por ID: 5
+[2026-05-10 08:57:14] [INFO] Obtenidos 6 usuarios
+[2026-05-10 08:57:14] [INFO] Búsqueda del libro por ID: 5
+[2026-05-10 08:57:14] [INFO] Obtenidos 10 libros
+[2026-05-10 08:57:14] [INFO] Búsqueda de usuario por ID: 6
+[2026-05-10 08:57:14] [INFO] Obtenidos 6 usuarios
+[2026-05-10 08:57:14] [INFO] Búsqueda del libro por ID: 6
+[2026-05-10 08:57:14] [INFO] Obtenidos 10 libros
+[2026-05-10 08:57:14] [INFO] Búsqueda de usuario por ID: 2
+[2026-05-10 08:57:14] [INFO] Obtenidos 6 usuarios
+[2026-05-10 08:57:14] [INFO] Búsqueda del libro por ID: 8
+[2026-05-10 08:57:14] [INFO] Obtenidos 10 libros
+[2026-05-10 08:57:14] [INFO] Búsqueda de usuario por ID: 3
+[2026-05-10 08:57:14] [INFO] Obtenidos 6 usuarios
+[2026-05-10 08:57:14] [INFO] Búsqueda del libro por ID: 9
+[2026-05-10 08:57:14] [INFO] Obtenidos 10 libros
+[2026-05-10 08:57:14] [INFO] Búsqueda de usuario por ID: 4
+[2026-05-10 08:57:14] [INFO] Obtenidos 6 usuarios
+[2026-05-10 08:57:14] [INFO] Búsqueda del libro por ID: 10
+[2026-05-10 08:57:14] [INFO] Obtenidos 10 libros
+[2026-05-10 08:57:52] [INFO] Consulta de género con más préstamos
+[2026-05-10 08:57:52] [INFO] Obtenidos 10 libros
+[2026-05-10 08:57:52] [INFO] Obtenidos 10 préstamos
+[2026-05-10 08:58:00] [INFO] Consulta de libro más prestado
+[2026-05-10 08:58:00] [INFO] Obtenidos 10 préstamos
+[2026-05-10 08:58:00] [INFO] Búsqueda del libro por ID: 1
+[2026-05-10 08:58:00] [INFO] Obtenidos 10 libros
+[2026-05-10 08:58:05] [INFO] Obtenidos 10 préstamos
+[2026-05-10 08:58:05] [INFO] Búsqueda de usuario por ID: 1
+[2026-05-10 08:58:05] [INFO] Obtenidos 6 usuarios
+[2026-05-10 08:58:05] [INFO] Búsqueda del libro por ID: 1
+[2026-05-10 08:58:05] [INFO] Obtenidos 10 libros
+[2026-05-10 08:58:05] [INFO] Búsqueda de usuario por ID: 1
+[2026-05-10 08:58:05] [INFO] Obtenidos 6 usuarios
+[2026-05-10 08:58:05] [INFO] Búsqueda del libro por ID: 1
+[2026-05-10 08:58:05] [INFO] Obtenidos 10 libros
+[2026-05-10 08:58:05] [INFO] Búsqueda de usuario por ID: 2
+[2026-05-10 08:58:05] [INFO] Obtenidos 6 usuarios
+[2026-05-10 08:58:05] [INFO] Búsqueda del libro por ID: 2
+[2026-05-10 08:58:05] [INFO] Obtenidos 10 libros
+[2026-05-10 08:58:05] [INFO] Búsqueda de usuario por ID: 3
+[2026-05-10 08:58:05] [INFO] Obtenidos 6 usuarios
+[2026-05-10 08:58:05] [INFO] Búsqueda del libro por ID: 3
+[2026-05-10 08:58:05] [INFO] Obtenidos 10 libros
+[2026-05-10 08:58:05] [INFO] Búsqueda de usuario por ID: 4
+[2026-05-10 08:58:05] [INFO] Obtenidos 6 usuarios
+[2026-05-10 08:58:05] [INFO] Búsqueda del libro por ID: 4
+[2026-05-10 08:58:05] [INFO] Obtenidos 10 libros
+[2026-05-10 08:58:05] [INFO] Búsqueda de usuario por ID: 5
+[2026-05-10 08:58:05] [INFO] Obtenidos 6 usuarios
+[2026-05-10 08:58:05] [INFO] Búsqueda del libro por ID: 5
+[2026-05-10 08:58:05] [INFO] Obtenidos 10 libros
+[2026-05-10 08:58:05] [INFO] Búsqueda de usuario por ID: 6
+[2026-05-10 08:58:05] [INFO] Obtenidos 6 usuarios
+[2026-05-10 08:58:05] [INFO] Búsqueda del libro por ID: 6
+[2026-05-10 08:58:05] [INFO] Obtenidos 10 libros
+[2026-05-10 08:58:05] [INFO] Búsqueda de usuario por ID: 2
+[2026-05-10 08:58:05] [INFO] Obtenidos 6 usuarios
+[2026-05-10 08:58:05] [INFO] Búsqueda del libro por ID: 8
+[2026-05-10 08:58:05] [INFO] Obtenidos 10 libros
+[2026-05-10 08:58:05] [INFO] Búsqueda de usuario por ID: 3
+[2026-05-10 08:58:05] [INFO] Obtenidos 6 usuarios
+[2026-05-10 08:58:05] [INFO] Búsqueda del libro por ID: 9
+[2026-05-10 08:58:05] [INFO] Obtenidos 10 libros
+[2026-05-10 08:58:05] [INFO] Búsqueda de usuario por ID: 4
+[2026-05-10 08:58:05] [INFO] Obtenidos 6 usuarios
+[2026-05-10 08:58:05] [INFO] Búsqueda del libro por ID: 10
+[2026-05-10 08:58:05] [INFO] Obtenidos 10 libros
+[2026-05-10 08:58:18] [INFO] Obtenidos 10 libros
+[2026-05-10 08:58:35] [INFO] Consulta de libros disponibles
+[2026-05-10 08:58:35] [INFO] Obtenidos 10 libros
+[2026-05-10 08:58:35] [INFO] Exportado listado de 8 libros a libros_disponibles_20260510_085835.csv
+[2026-05-10 08:59:05] [INFO] Búsqueda de libros por género: FANTASIA_EPICA
+[2026-05-10 08:59:05] [INFO] Obtenidos 10 libros
+[2026-05-10 08:59:05] [INFO] Exportado listado de 2 libros a libros_genero_FANTASIA_EPICA_20260510_085905.csv
+[2026-05-10 11:14:48] [INFO] Obtenidos 10 libros
+[2026-05-10 11:20:31] [INFO] Obtenidos 10 libros
+[2026-05-10 11:21:11] [INFO] Obtenidos 10 libros
+[2026-05-10 11:21:49] [INFO] Obtenidos 10 libros
+[2026-05-10 11:22:17] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:25:12] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:25:30] [INFO] Obtenidos 10 préstamos
+[2026-05-10 11:25:30] [INFO] Búsqueda de usuario por ID: 1
+[2026-05-10 11:25:30] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:25:30] [INFO] Búsqueda del libro por ID: 1
+[2026-05-10 11:25:30] [INFO] Obtenidos 10 libros
+[2026-05-10 11:25:30] [INFO] Búsqueda de usuario por ID: 1
+[2026-05-10 11:25:30] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:25:30] [INFO] Búsqueda del libro por ID: 1
+[2026-05-10 11:25:30] [INFO] Obtenidos 10 libros
+[2026-05-10 11:25:30] [INFO] Búsqueda de usuario por ID: 2
+[2026-05-10 11:25:30] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:25:30] [INFO] Búsqueda del libro por ID: 2
+[2026-05-10 11:25:30] [INFO] Obtenidos 10 libros
+[2026-05-10 11:25:30] [INFO] Búsqueda de usuario por ID: 3
+[2026-05-10 11:25:30] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:25:30] [INFO] Búsqueda del libro por ID: 3
+[2026-05-10 11:25:30] [INFO] Obtenidos 10 libros
+[2026-05-10 11:25:30] [INFO] Búsqueda de usuario por ID: 4
+[2026-05-10 11:25:30] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:25:30] [INFO] Búsqueda del libro por ID: 4
+[2026-05-10 11:25:30] [INFO] Obtenidos 10 libros
+[2026-05-10 11:25:30] [INFO] Búsqueda de usuario por ID: 5
+[2026-05-10 11:25:30] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:25:30] [INFO] Búsqueda del libro por ID: 5
+[2026-05-10 11:25:30] [INFO] Obtenidos 10 libros
+[2026-05-10 11:25:30] [INFO] Búsqueda de usuario por ID: 6
+[2026-05-10 11:25:30] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:25:30] [INFO] Búsqueda del libro por ID: 6
+[2026-05-10 11:25:30] [INFO] Obtenidos 10 libros
+[2026-05-10 11:25:30] [INFO] Búsqueda de usuario por ID: 2
+[2026-05-10 11:25:30] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:25:30] [INFO] Búsqueda del libro por ID: 8
+[2026-05-10 11:25:30] [INFO] Obtenidos 10 libros
+[2026-05-10 11:25:30] [INFO] Búsqueda de usuario por ID: 3
+[2026-05-10 11:25:30] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:25:30] [INFO] Búsqueda del libro por ID: 9
+[2026-05-10 11:25:30] [INFO] Obtenidos 10 libros
+[2026-05-10 11:25:30] [INFO] Búsqueda de usuario por ID: 4
+[2026-05-10 11:25:30] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:25:30] [INFO] Búsqueda del libro por ID: 10
+[2026-05-10 11:25:30] [INFO] Obtenidos 10 libros
+[2026-05-10 11:25:43] [INFO] Consulta de género con más préstamos
+[2026-05-10 11:25:43] [INFO] Obtenidos 10 libros
+[2026-05-10 11:25:43] [INFO] Obtenidos 10 préstamos
+[2026-05-10 11:25:47] [INFO] Consulta de libro más prestado
+[2026-05-10 11:25:47] [INFO] Obtenidos 10 préstamos
+[2026-05-10 11:25:47] [INFO] Búsqueda del libro por ID: 1
+[2026-05-10 11:25:47] [INFO] Obtenidos 10 libros
+[2026-05-10 11:26:01] [INFO] Consulta de préstamos activos del usuario 1
+[2026-05-10 11:26:01] [INFO] Obtenidos 10 préstamos
+[2026-05-10 11:26:01] [INFO] Búsqueda de usuario por ID: 1
+[2026-05-10 11:26:01] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:26:01] [INFO] Búsqueda del libro por ID: 1
+[2026-05-10 11:26:01] [INFO] Obtenidos 10 libros
+[2026-05-10 11:26:09] [INFO] Consulta de préstamos activos del usuario 1
+[2026-05-10 11:26:09] [INFO] Obtenidos 10 préstamos
+[2026-05-10 11:26:09] [INFO] Búsqueda de usuario por ID: 1
+[2026-05-10 11:26:09] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:26:09] [INFO] Búsqueda del libro por ID: 1
+[2026-05-10 11:26:09] [INFO] Obtenidos 10 libros
+[2026-05-10 11:26:13] [INFO] Obtenidos 10 préstamos
+[2026-05-10 11:26:13] [INFO] Búsqueda de usuario por ID: 1
+[2026-05-10 11:26:13] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:26:13] [INFO] Búsqueda del libro por ID: 1
+[2026-05-10 11:26:13] [INFO] Obtenidos 10 libros
+[2026-05-10 11:26:13] [INFO] Búsqueda de usuario por ID: 1
+[2026-05-10 11:26:13] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:26:13] [INFO] Búsqueda del libro por ID: 1
+[2026-05-10 11:26:13] [INFO] Obtenidos 10 libros
+[2026-05-10 11:26:13] [INFO] Búsqueda de usuario por ID: 2
+[2026-05-10 11:26:13] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:26:13] [INFO] Búsqueda del libro por ID: 2
+[2026-05-10 11:26:13] [INFO] Obtenidos 10 libros
+[2026-05-10 11:26:13] [INFO] Búsqueda de usuario por ID: 3
+[2026-05-10 11:26:13] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:26:13] [INFO] Búsqueda del libro por ID: 3
+[2026-05-10 11:26:13] [INFO] Obtenidos 10 libros
+[2026-05-10 11:26:13] [INFO] Búsqueda de usuario por ID: 4
+[2026-05-10 11:26:13] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:26:13] [INFO] Búsqueda del libro por ID: 4
+[2026-05-10 11:26:13] [INFO] Obtenidos 10 libros
+[2026-05-10 11:26:13] [INFO] Búsqueda de usuario por ID: 5
+[2026-05-10 11:26:13] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:26:13] [INFO] Búsqueda del libro por ID: 5
+[2026-05-10 11:26:13] [INFO] Obtenidos 10 libros
+[2026-05-10 11:26:13] [INFO] Búsqueda de usuario por ID: 6
+[2026-05-10 11:26:13] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:26:13] [INFO] Búsqueda del libro por ID: 6
+[2026-05-10 11:26:13] [INFO] Obtenidos 10 libros
+[2026-05-10 11:26:13] [INFO] Búsqueda de usuario por ID: 2
+[2026-05-10 11:26:13] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:26:13] [INFO] Búsqueda del libro por ID: 8
+[2026-05-10 11:26:13] [INFO] Obtenidos 10 libros
+[2026-05-10 11:26:13] [INFO] Búsqueda de usuario por ID: 3
+[2026-05-10 11:26:13] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:26:13] [INFO] Búsqueda del libro por ID: 9
+[2026-05-10 11:26:13] [INFO] Obtenidos 10 libros
+[2026-05-10 11:26:13] [INFO] Búsqueda de usuario por ID: 4
+[2026-05-10 11:26:13] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:26:13] [INFO] Búsqueda del libro por ID: 10
+[2026-05-10 11:26:13] [INFO] Obtenidos 10 libros
+[2026-05-10 11:57:49] [INFO] Obtenidos 10 libros
+[2026-05-10 11:58:00] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:58:15] [INFO] Obtenidos 10 préstamos
+[2026-05-10 11:58:15] [INFO] Búsqueda de usuario por ID: 1
+[2026-05-10 11:58:15] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:58:15] [INFO] Búsqueda del libro por ID: 1
+[2026-05-10 11:58:15] [INFO] Obtenidos 10 libros
+[2026-05-10 11:58:15] [INFO] Búsqueda de usuario por ID: 1
+[2026-05-10 11:58:15] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:58:15] [INFO] Búsqueda del libro por ID: 1
+[2026-05-10 11:58:15] [INFO] Obtenidos 10 libros
+[2026-05-10 11:58:15] [INFO] Búsqueda de usuario por ID: 2
+[2026-05-10 11:58:15] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:58:15] [INFO] Búsqueda del libro por ID: 2
+[2026-05-10 11:58:15] [INFO] Obtenidos 10 libros
+[2026-05-10 11:58:15] [INFO] Búsqueda de usuario por ID: 3
+[2026-05-10 11:58:15] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:58:15] [INFO] Búsqueda del libro por ID: 3
+[2026-05-10 11:58:15] [INFO] Obtenidos 10 libros
+[2026-05-10 11:58:15] [INFO] Búsqueda de usuario por ID: 4
+[2026-05-10 11:58:15] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:58:15] [INFO] Búsqueda del libro por ID: 4
+[2026-05-10 11:58:15] [INFO] Obtenidos 10 libros
+[2026-05-10 11:58:15] [INFO] Búsqueda de usuario por ID: 5
+[2026-05-10 11:58:15] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:58:15] [INFO] Búsqueda del libro por ID: 5
+[2026-05-10 11:58:15] [INFO] Obtenidos 10 libros
+[2026-05-10 11:58:15] [INFO] Búsqueda de usuario por ID: 6
+[2026-05-10 11:58:15] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:58:15] [INFO] Búsqueda del libro por ID: 6
+[2026-05-10 11:58:15] [INFO] Obtenidos 10 libros
+[2026-05-10 11:58:15] [INFO] Búsqueda de usuario por ID: 2
+[2026-05-10 11:58:15] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:58:15] [INFO] Búsqueda del libro por ID: 8
+[2026-05-10 11:58:15] [INFO] Obtenidos 10 libros
+[2026-05-10 11:58:15] [INFO] Búsqueda de usuario por ID: 3
+[2026-05-10 11:58:15] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:58:15] [INFO] Búsqueda del libro por ID: 9
+[2026-05-10 11:58:15] [INFO] Obtenidos 10 libros
+[2026-05-10 11:58:15] [INFO] Búsqueda de usuario por ID: 4
+[2026-05-10 11:58:15] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:58:15] [INFO] Búsqueda del libro por ID: 10
+[2026-05-10 11:58:15] [INFO] Obtenidos 10 libros
+[2026-05-10 11:58:37] [INFO] Consulta de préstamos activos del usuario 1
+[2026-05-10 11:58:37] [INFO] Obtenidos 10 préstamos
+[2026-05-10 11:58:37] [INFO] Búsqueda de usuario por ID: 1
+[2026-05-10 11:58:37] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:58:37] [INFO] Búsqueda del libro por ID: 1
+[2026-05-10 11:58:37] [INFO] Obtenidos 10 libros
+[2026-05-10 11:58:42] [INFO] Obtenidos 10 préstamos
+[2026-05-10 11:58:42] [INFO] Búsqueda de usuario por ID: 1
+[2026-05-10 11:58:42] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:58:42] [INFO] Búsqueda del libro por ID: 1
+[2026-05-10 11:58:42] [INFO] Obtenidos 10 libros
+[2026-05-10 11:58:42] [INFO] Búsqueda de usuario por ID: 1
+[2026-05-10 11:58:42] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:58:42] [INFO] Búsqueda del libro por ID: 1
+[2026-05-10 11:58:42] [INFO] Obtenidos 10 libros
+[2026-05-10 11:58:42] [INFO] Búsqueda de usuario por ID: 2
+[2026-05-10 11:58:42] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:58:42] [INFO] Búsqueda del libro por ID: 2
+[2026-05-10 11:58:42] [INFO] Obtenidos 10 libros
+[2026-05-10 11:58:42] [INFO] Búsqueda de usuario por ID: 3
+[2026-05-10 11:58:42] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:58:42] [INFO] Búsqueda del libro por ID: 3
+[2026-05-10 11:58:42] [INFO] Obtenidos 10 libros
+[2026-05-10 11:58:42] [INFO] Búsqueda de usuario por ID: 4
+[2026-05-10 11:58:42] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:58:42] [INFO] Búsqueda del libro por ID: 4
+[2026-05-10 11:58:42] [INFO] Obtenidos 10 libros
+[2026-05-10 11:58:42] [INFO] Búsqueda de usuario por ID: 5
+[2026-05-10 11:58:42] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:58:42] [INFO] Búsqueda del libro por ID: 5
+[2026-05-10 11:58:42] [INFO] Obtenidos 10 libros
+[2026-05-10 11:58:42] [INFO] Búsqueda de usuario por ID: 6
+[2026-05-10 11:58:42] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:58:42] [INFO] Búsqueda del libro por ID: 6
+[2026-05-10 11:58:42] [INFO] Obtenidos 10 libros
+[2026-05-10 11:58:42] [INFO] Búsqueda de usuario por ID: 2
+[2026-05-10 11:58:42] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:58:42] [INFO] Búsqueda del libro por ID: 8
+[2026-05-10 11:58:42] [INFO] Obtenidos 10 libros
+[2026-05-10 11:58:42] [INFO] Búsqueda de usuario por ID: 3
+[2026-05-10 11:58:42] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:58:42] [INFO] Búsqueda del libro por ID: 9
+[2026-05-10 11:58:42] [INFO] Obtenidos 10 libros
+[2026-05-10 11:58:42] [INFO] Búsqueda de usuario por ID: 4
+[2026-05-10 11:58:42] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:58:42] [INFO] Búsqueda del libro por ID: 10
+[2026-05-10 11:58:42] [INFO] Obtenidos 10 libros
+[2026-05-10 11:58:49] [INFO] Consulta de préstamos activos del usuario 2
+[2026-05-10 11:58:49] [INFO] Obtenidos 10 préstamos
+[2026-05-10 11:58:49] [INFO] Búsqueda de usuario por ID: 2
+[2026-05-10 11:58:49] [INFO] Obtenidos 6 usuarios
+[2026-05-10 11:58:49] [INFO] Búsqueda del libro por ID: 8
+[2026-05-10 11:58:49] [INFO] Obtenidos 10 libros

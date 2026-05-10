@@ -1,0 +1,9 @@
+id,titulo,autor,genero,isbn,anio_publicacion,copias_totales,copias_disponibles,tipo
+1,"La vida despu�s de la muerte","TurtleMe",FANTASIA_EPICA,"123456789",2008,10,9,PAPEL
+2,"Don Quijote de la Mancha","Miguel de Cervantes",NOVELA,"978-84-376-0494-7",1605,3,3,PAPEL
+3,"Cien anos de soledad","Gabriel Garcia Marquez",REALISMO_MAGICO,"978-84-397-2077-4",1967,2,1,PAPEL
+4,"1984","George Orwell",DISTOPIA,"978-84-233-0778-3",1949,4,4,PAPEL
+6,"Dune","Frank Herbert",CIENCIA_FICCION,"978-84-480-2731-4",1965,3,2,PAPEL
+7,"Sapiens","Yuval Noah Harari",HISTORIA,"978-84-9992-525-5",2011,2,2,PAPEL
+8,"Clean Code","Robert C. Martin",TECNOLOGIA,"978-0-13-235088-4",2008,1,1,ELECTRONICO
+9,"El codigo Da Vinci","Dan Brown",THRILLER,"978-84-08-05883-7",2003,1,1,ELECTRONICO

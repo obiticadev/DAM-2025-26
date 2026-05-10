@@ -12,6 +12,10 @@ public class LibroElectronico extends Libro {
     private Formato formato;
     private String urlDescarga;
 
+    // CONSTRUCTOR ----------------------------
+
+    // CONSTRUCTOR ----------------------------
+
     public LibroElectronico(int id, String titulo, String autor, Genero genero, String isbn, int anioPublicacion,
             int copiasTotales, int copiasDisponibles, Tipo tipo, int idElectronico, Formato formato,
             String urlDescarga) {
@@ -21,6 +25,8 @@ public class LibroElectronico extends Libro {
         this.formato = formato;
         this.urlDescarga = urlDescarga;
     }
+
+    // GETTERS ----------------------------
 
     public int getIdElectronico() {
         return idElectronico;
@@ -33,6 +39,8 @@ public class LibroElectronico extends Libro {
     public String getUrlDescarga() {
         return urlDescarga;
     }
+
+    // MÉTODOS DE OBJETO ----------------------------
 
     @Override
     public String toString() {

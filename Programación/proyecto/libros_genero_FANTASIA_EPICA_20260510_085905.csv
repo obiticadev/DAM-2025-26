@@ -1,0 +1,3 @@
+id,titulo,autor,genero,isbn,anio_publicacion,copias_totales,copias_disponibles,tipo
+1,"La vida despu�s de la muerte","TurtleMe",FANTASIA_EPICA,"123456789",2008,10,9,PAPEL
+5,"El senor de los anillos","J.R.R. Tolkien",FANTASIA_EPICA,"978-84-450-7179-9",1954,2,0,PAPEL

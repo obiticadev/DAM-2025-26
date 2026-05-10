@@ -6,7 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -26,10 +29,14 @@ public class DAOprestamos {
     private final DAOlibros daoLibros;
     private final DAOusuarios daoUsuarios;
 
+    // CONSTRUCTOR ----------------------------
+
     public DAOprestamos() {
         this.daoLibros = new DAOlibros();
         this.daoUsuarios = new DAOusuarios();
     }
+
+    // CREACIÓN DE TABLA ----------------------------
 
     public void crearTabla() {
         String sql = """
@@ -56,6 +63,8 @@ public class DAOprestamos {
             new Logs("Error al crear tabla prestamos: " + e.getMessage(), Aviso.PELIGRO).guardarLog();
         }
     }
+
+    // MÉTODOS CON DEPENDENCIAS ----------------------------
 
     public void insertarPrestamo(Prestamo prestamo) {
         Usuario usuario = daoUsuarios.buscarUsuarioPorId(prestamo.getIdUsuario());
@@ -124,6 +133,8 @@ public class DAOprestamos {
         }
     }
 
+    // MÉTODOS PROPIOS ----------------------------
+
     public List<Prestamo> obtenerTodosLosPrestamos() {
         List<Prestamo> lista = new ArrayList<>();
         String sql = "SELECT * FROM prestamos";
@@ -137,12 +148,11 @@ public class DAOprestamos {
                 int idUsuario = rs.getInt("id_usuario");
                 int idLibro = rs.getInt("id_libro");
 
-                LocalDate fechaPrestamo = LocalDate.parse(rs.getString("fecha_prestamo"));
-                LocalDate fechaDevolucionPrevista = LocalDate.parse(
-                        rs.getString("fecha_devolucion_prevista"));
+                LocalDate fechaPrestamo = parseFecha(rs.getString("fecha_prestamo"));
+                LocalDate fechaDevolucionPrevista = parseFecha(rs.getString("fecha_devolucion_prevista"));
 
                 String fdrStr = rs.getString("fecha_devolucion_real");
-                LocalDate fechaDevolucionReal = fdrStr != null ? LocalDate.parse(fdrStr) : null;
+                LocalDate fechaDevolucionReal = parseFecha(fdrStr);
 
                 Estado estado = Estado.valueOf(rs.getString("estado"));
 
@@ -160,7 +170,14 @@ public class DAOprestamos {
     public List<Prestamo> prestamosActivosDeUnUsuario(int idUsuario) {
         new Logs("Consulta de préstamos activos del usuario " + idUsuario, Aviso.INFO).guardarLog();
         return obtenerTodosLosPrestamos().stream()
-                .filter(a -> a.getIdUsuario() == idUsuario && a.getEstado().equals(Estado.ACTIVO))
+                .filter(prestamo -> prestamo.getIdUsuario() == idUsuario && prestamo.getEstado().equals(Estado.ACTIVO))
+                .toList();
+    }
+
+    public List<Prestamo> prestamosActivosDeUnLibro(int idLibro) {
+        new Logs("Consulta de préstamos activos del libro " + idLibro, Aviso.INFO).guardarLog();
+        return obtenerTodosLosPrestamos().stream()
+                .filter(prestamo -> prestamo.getIdLibro() == idLibro && prestamo.getEstado().equals(Estado.ACTIVO))
                 .toList();
     }
 
@@ -173,13 +190,15 @@ public class DAOprestamos {
                 .orElse(null);
     }
 
+    // ESTADÍSTICAS CON DEPENDENCIAS ----------------------------
+
     public Entry<Genero, Long> generoConMasPrestamos() {
         new Logs("Consulta de género con más préstamos", Aviso.INFO).guardarLog();
         List<Libro> libros = daoLibros.obtenerTodosLosLibros();
 
         return obtenerTodosLosPrestamos().stream()
-                .map(p -> libros.stream()
-                        .filter(l -> l.getId() == p.getIdLibro())
+                .map(prestamo -> libros.stream()
+                        .filter(libro -> libro.getId() == prestamo.getIdLibro())
                         .findFirst()
                         .orElse(null))
                 .filter(Objects::nonNull)
@@ -189,23 +208,33 @@ public class DAOprestamos {
                 .orElse(null);
     }
 
+    // AUXILIARES ----------------------------
+
+    private static LocalDate parseFecha(String valor) {
+        if (valor == null) return null;
+        try {
+            return LocalDate.parse(valor);
+        } catch (DateTimeParseException e) {
+            return Instant.ofEpochMilli(Long.parseLong(valor))
+                    .atZone(ZoneId.systemDefault()).toLocalDate();
+        }
+    }
+
     public boolean devolverPrestamo(int idPrestamo) {
-        String selectSql = "SELECT id_libro, fecha_devolucion_prevista FROM prestamos WHERE id = ? AND estado = 'ACTIVO'";
+        String selectSql = "SELECT fecha_devolucion_prevista FROM prestamos WHERE id = ? AND estado = 'ACTIVO'";
         String updatePrestamoSql = "UPDATE prestamos SET estado = ?, fecha_devolucion_real = ? WHERE id = ?";
-        String updateLibroSql = "UPDATE libros SET copias_disponibles = copias_disponibles + 1 WHERE id = ?";
+        String updateLibroSql = "UPDATE libros SET copias_disponibles = copias_disponibles + 1 WHERE id = (SELECT id_libro FROM prestamos WHERE id = ?)";
 
         try (Connection conn = Conexion.getConexion()) {
             conn.setAutoCommit(false);
 
-            int idLibro = -1;
             LocalDate fechaPrevista = null;
 
             try (PreparedStatement selStmt = conn.prepareStatement(selectSql)) {
                 selStmt.setInt(1, idPrestamo);
                 ResultSet rs = selStmt.executeQuery();
                 if (rs.next()) {
-                    idLibro = rs.getInt("id_libro");
-                    fechaPrevista = LocalDate.parse(rs.getString("fecha_devolucion_prevista"));
+                    fechaPrevista = parseFecha(rs.getString("fecha_devolucion_prevista"));
                 } else {
                     System.out.println("No se encontró el préstamo activo con ID " + idPrestamo);
                     new Logs("Devolución fallida: préstamo activo no encontrado " + idPrestamo, Aviso.AVISO)
@@ -215,7 +244,12 @@ public class DAOprestamos {
             }
 
             LocalDate fechaReal = LocalDate.now();
-            Estado nuevoEstado = fechaReal.isAfter(fechaPrevista) ? Estado.RETRASADO : Estado.DEVUELTO;
+            Estado nuevoEstado;
+            if (fechaReal.isAfter(fechaPrevista)) {
+                nuevoEstado = Estado.RETRASADO;
+            } else {
+                nuevoEstado = Estado.DEVUELTO;
+            }
 
             try (PreparedStatement updPStmt = conn.prepareStatement(updatePrestamoSql)) {
                 updPStmt.setString(1, nuevoEstado.name());
@@ -225,7 +259,7 @@ public class DAOprestamos {
             }
 
             try (PreparedStatement updLStmt = conn.prepareStatement(updateLibroSql)) {
-                updLStmt.setInt(1, idLibro);
+                updLStmt.setInt(1, idPrestamo);
                 updLStmt.executeUpdate();
             }
 

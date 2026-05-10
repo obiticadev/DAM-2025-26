@@ -14,6 +14,10 @@ public class Usuario implements Serializable {
     private String telefono;
     private LocalDate fechaRegistro;
 
+    // CONSTRUCTOR ----------------------------
+
+    // CONSTRUCTOR ----------------------------
+
     public Usuario(int id, String nombre, String apellido, String email, String telefono, LocalDate fechaRegistro) {
         this.id = id;
         this.nombre = nombre;
@@ -22,6 +26,8 @@ public class Usuario implements Serializable {
         this.telefono = telefono;
         this.fechaRegistro = fechaRegistro;
     }
+
+    // GETTERS ----------------------------
 
     public int getId() {
         return id;
@@ -46,6 +52,8 @@ public class Usuario implements Serializable {
     public LocalDate getFechaRegistro() {
         return fechaRegistro;
     }
+
+    // MÉTODOS DE OBJETO ----------------------------
 
     @Override
     public String toString() {

@@ -19,6 +19,8 @@ public abstract class Libro implements Serializable {
     protected int copiasDisponibles;
     protected Tipo tipo;
 
+    // CONSTRUCTOR ----------------------------
+
     public Libro(int id, String titulo, String autor, Genero genero, String isbn, int anioPublicacion,
             int copiasTotales, int copiasDisponibles, Tipo tipo) {
         this.id = id;
@@ -31,6 +33,8 @@ public abstract class Libro implements Serializable {
         this.copiasDisponibles = copiasDisponibles;
         this.tipo = tipo;
     }
+
+    // GETTERS ----------------------------
 
     public int getId() {
         return id;
@@ -68,9 +72,13 @@ public abstract class Libro implements Serializable {
         return tipo;
     }
 
+    // SETTER ----------------------------
+
     public void setCopiasDisponibles(int copiasDisponibles) {
         this.copiasDisponibles = copiasDisponibles;
     }
+
+    // MÉTODOS DE OBJETO ----------------------------
 
     @Override
     public String toString() {

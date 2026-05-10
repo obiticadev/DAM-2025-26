@@ -5,7 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,8 +17,12 @@ import com.biblioteca.Enum.Aviso;
 
 public class DAOusuarios {
 
+    // CONSTRUCTOR ----------------------------
+
     public DAOusuarios() {
     }
+
+    // MÉTODOS ----------------------------
 
     public void crearTabla() {
         String sql = """
@@ -87,7 +94,7 @@ public class DAOusuarios {
                 String email = rs.getString("email");
                 String telefono = rs.getString("telefono");
 
-                LocalDate fechaRegistro = LocalDate.parse(rs.getString("fecha_registro"));
+                LocalDate fechaRegistro = parseFecha(rs.getString("fecha_registro"));
 
                 lista.add(new Usuario(id, nombre, apellido, email, telefono, fechaRegistro));
 
@@ -130,23 +137,19 @@ public class DAOusuarios {
         return false;
     }
 
-    public boolean eliminarUsuario(int id) {
-        String checkSql = "SELECT COUNT(*) FROM prestamos WHERE id_usuario = ? AND estado = 'ACTIVO'";
-        try (Connection conn = Conexion.getConexion();
-                PreparedStatement checkStmt = conn.prepareStatement(checkSql)) {
-            checkStmt.setInt(1, id);
-            ResultSet rs = checkStmt.executeQuery();
-            if (rs.next() && rs.getInt(1) > 0) {
-                System.out.println("No se puede eliminar: el usuario tiene préstamos activos.");
-                new Logs("Intento fallido de eliminar usuario " + id + " con préstamos activos", Aviso.AVISO)
-                        .guardarLog();
-                return false;
-            }
-        } catch (SQLException e) {
-            new Logs("Error comprobando préstamos de usuario: " + e.getMessage(), Aviso.PELIGRO).guardarLog();
-            return false;
-        }
+    // AUXILIARES ----------------------------
 
+    private static LocalDate parseFecha(String valor) {
+        if (valor == null) return null;
+        try {
+            return LocalDate.parse(valor);
+        } catch (DateTimeParseException e) {
+            return Instant.ofEpochMilli(Long.parseLong(valor))
+                    .atZone(ZoneId.systemDefault()).toLocalDate();
+        }
+    }
+
+    public boolean eliminarUsuario(int id) {
         String sql = "DELETE FROM usuarios WHERE id = ?";
         try (Connection conn = Conexion.getConexion();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {

@@ -10,12 +10,18 @@ public class LibroEnPapel extends Libro {
     private int idPapel;
     private String ubicacion;
 
+    // CONSTRUCTOR ----------------------------
+
+    // CONSTRUCTOR ----------------------------
+
     public LibroEnPapel(int id, String titulo, String autor, Genero genero, String isbn, int anioPublicacion,
             int copiasTotales, int copiasDisponibles, Tipo tipo, int idPapel, String ubicacion) {
         super(id, titulo, autor, genero, isbn, anioPublicacion, copiasTotales, copiasDisponibles, tipo);
         this.idPapel = idPapel;
         this.ubicacion = ubicacion;
     }
+
+    // GETTERS ----------------------------
 
     public int getIdPapel() {
         return idPapel;
@@ -24,6 +30,8 @@ public class LibroEnPapel extends Libro {
     public String getUbicacion() {
         return ubicacion;
     }
+
+    // MÉTODOS DE OBJETO ----------------------------
 
     @Override
     public String toString() {
