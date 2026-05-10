@@ -47,4 +47,8 @@ return
    Devuelve <titulo-upper>{ título en mayúsculas }</titulo-upper> para cada libro
 :)
 (: TODO :)
-()
+for $libro in /biblioteca/libro
+return
+   <titulo-largo>
+      <titulo>{upper-case($libro/titulo)}</titulo>
+   </titulo-largo>
