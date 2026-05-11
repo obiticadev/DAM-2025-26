@@ -21,4 +21,21 @@
 
    PISTA: Usa let para asignar las secuencias de precios y luego return.
 :)
-()
+let $libros := /biblioteca/libro
+let $totalLibros := count($libros)
+let $precioTotal := sum($libros/precio)
+let $precioMedio := avg($libros/precio)
+let $precioMin := min($libros/precio)
+let $precioMax := max($libros/precio)
+let $librosNovela := $libros[@genero="novela"]
+let $precioMedioNovela := avg($librosNovela/precio)
+return
+   <estadisticas>
+     <total-libros>{ $totalLibros }</total-libros>
+     <precio-total>{ $precioTotal }</precio-total>
+     <precio-medio>{ $precioMedio }</precio-medio>
+     <precio-minimo>{ $precioMin }</precio-minimo>
+     <precio-maximo>{ $precioMax }</precio-maximo>
+     <libros-novela>{ string-join($librosNovela/titulo, ', ') }</libros-novela>
+     <precio-medio-novela>{ $precioMedioNovela }</precio-medio-novela>
+   </estadisticas>
