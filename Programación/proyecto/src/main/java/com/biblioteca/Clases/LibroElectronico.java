@@ -14,8 +14,6 @@ public class LibroElectronico extends Libro {
 
     // CONSTRUCTOR ----------------------------
 
-    // CONSTRUCTOR ----------------------------
-
     public LibroElectronico(int id, String titulo, String autor, Genero genero, String isbn, int anioPublicacion,
             int copiasTotales, int copiasDisponibles, Tipo tipo, int idElectronico, Formato formato,
             String urlDescarga) {

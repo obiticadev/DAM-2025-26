@@ -16,8 +16,6 @@ public class Usuario implements Serializable {
 
     // CONSTRUCTOR ----------------------------
 
-    // CONSTRUCTOR ----------------------------
-
     public Usuario(int id, String nombre, String apellido, String email, String telefono, LocalDate fechaRegistro) {
         this.id = id;
         this.nombre = nombre;

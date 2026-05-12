@@ -12,8 +12,6 @@ public class LibroEnPapel extends Libro {
 
     // CONSTRUCTOR ----------------------------
 
-    // CONSTRUCTOR ----------------------------
-
     public LibroEnPapel(int id, String titulo, String autor, Genero genero, String isbn, int anioPublicacion,
             int copiasTotales, int copiasDisponibles, Tipo tipo, int idPapel, String ubicacion) {
         super(id, titulo, autor, genero, isbn, anioPublicacion, copiasTotales, copiasDisponibles, tipo);

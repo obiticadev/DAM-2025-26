@@ -19,8 +19,6 @@ public class Prestamo implements Serializable {
 
     // CONSTRUCTOR ----------------------------
 
-    // CONSTRUCTOR ----------------------------
-
     public Prestamo(int id, int idUsuario, int idLibro, LocalDate fechaPrestamo, LocalDate fechaDevolucionPrevista,
             LocalDate fechaDevolucionReal, Estado estado) {
         this.id = id;
