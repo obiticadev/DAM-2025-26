@@ -3,12 +3,14 @@ package jdbc_masterclass.nivel01;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
 
 public class Nivel01_E_ScriptInit {
 
     /**
      * Misión: Inserción Masiva (Batch Processing Básico)
-     * Vamos a aprovechar la tabla 'libros' que creaste antes e inyectarle 3 registros de golpe.
+     * Vamos a aprovechar la tabla 'libros' que creaste antes e inyectarle 3
+     * registros de golpe.
      * 
      * @param conn Conexión activa
      * @return El número de comandos ejecutados con éxito en el batch.
@@ -17,12 +19,23 @@ public class Nivel01_E_ScriptInit {
         String insert1 = "INSERT INTO libros (titulo, autor) VALUES ('El Quijote', 'Cervantes')";
         String insert2 = "INSERT INTO libros (titulo, autor) VALUES ('1984', 'George Orwell')";
         String insert3 = "INSERT INTO libros (titulo, autor) VALUES ('Dune', 'Frank Herbert')";
-        
+
         // TODO: Abre un Statement con try-with-resources
         // TODO: Usa stmt.addBatch() para añadir los 3 inserts a la cola
-        // TODO: Ejecuta la cola con stmt.executeBatch() y guarda el array de enteros resultante
+        // TODO: Ejecuta la cola con stmt.executeBatch() y guarda el array de enteros
+        // resultante
         // TODO: Suma cuántas operaciones fueron exitosas y retorna ese número
-        
+
+        try (Statement stmt = conn.createStatement()) {
+            stmt.addBatch(insert1);
+            stmt.addBatch(insert2);
+            stmt.addBatch(insert3);
+
+            return Arrays.stream(stmt.executeBatch()).sum();
+
+        } catch (SQLException e) {
+            System.out.println("ERROR");
+        }
         return 0;
     }
 

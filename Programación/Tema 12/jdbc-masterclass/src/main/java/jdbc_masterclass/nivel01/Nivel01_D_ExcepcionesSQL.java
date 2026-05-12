@@ -8,18 +8,24 @@ public class Nivel01_D_ExcepcionesSQL {
 
     /**
      * Misión: Análisis de Errores SQL
-     * Ejecuta una consulta a sabiendas de que tiene un error de sintaxis y analiza la excepción.
+     * Ejecuta una consulta a sabiendas de que tiene un error de sintaxis y analiza
+     * la excepción.
      * 
      * @param conn Conexión activa
      * @return El mensaje de error nativo devuelto por el motor de BD.
      */
     public static String forzarYCapturarErrorSintaxis(Connection conn) {
         String sqlInvalido = "SELCT * FRO tabla_falsa"; // Mal escrito a propósito
-        
+
         // TODO: Abre un Statement y haz un executeQuery con la variable sqlInvalido
         // TODO: En el bloque catch (SQLException e), retorna e.getMessage()
         // TODO: Si por un milagro no salta excepción, retorna "SIN ERROR"
-        
+
+        try (Statement stmt = conn.createStatement()) {
+            stmt.executeQuery(sqlInvalido);
+        } catch (SQLException e) {
+            return e.getMessage();
+        }
         return "SIN ERROR";
     }
 
