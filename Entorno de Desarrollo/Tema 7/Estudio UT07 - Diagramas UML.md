@@ -173,30 +173,34 @@ Tabla de **palabras clave → elemento del diagrama**:
 
 **Enunciado:** *"Una biblioteca universitaria necesita un sistema para gestionar el préstamo de libros. Los socios pueden buscar el catálogo, tomar libros prestados y devolver los que han leído. Si un socio devuelve un libro con retraso, el sistema debe gestionar el pago de una multa. El bibliotecario es responsable de mantener actualizado el fondo."*
 
-```mermaid
-flowchart LR
-    Socio((Socio))
-    Bibliotecario((Bibliotecario))
-    Pago((Sistema de Pago))
+```plantuml
+@startuml
+left to right direction
+skinparam packageStyle rectangle
 
-    subgraph Sistema_Biblioteca[Sistema de Biblioteca]
-        UC1([Buscar catálogo])
-        UC2([Tomar prestado libro])
-        UC3([Devolver libro])
-        UC4([Pagar multa])
-        UC5([Gestionar fondo])
-        UC6([Verificar socio])
-    end
+actor Socio
+actor Bibliotecario
+actor "Sistema de Pago" as Pago
 
-    Socio --- UC1
-    Socio --- UC2
-    Socio --- UC3
-    Socio --- UC4
-    Bibliotecario --- UC5
-    Pago --- UC4
+rectangle "Sistema de Biblioteca" {
+  usecase "Buscar catálogo" as UC1
+  usecase "Tomar prestado libro" as UC2
+  usecase "Devolver libro" as UC3
+  usecase "Pagar multa" as UC4
+  usecase "Gestionar fondo" as UC5
+  usecase "Verificar socio" as UC6
+}
 
-    UC2 -. "«include»" .-> UC6
-    UC4 -. "«extend»" .-> UC3
+Socio --> UC1
+Socio --> UC2
+Socio --> UC3
+Socio --> UC4
+Bibliotecario --> UC5
+Pago --> UC4
+
+UC2 ..> UC6 : «include»
+UC4 ..> UC3 : «extend»
+@enduml
 ```
 
 **🛠️ Análisis paso a paso:**
@@ -211,41 +215,45 @@ flowchart LR
 
 **Solución propuesta:**
 
-```mermaid
-flowchart LR
-    Est((Estudiante))
-    Prem((Estudiante Premium))
-    Prof((Profesor))
-    Adm((Administrador))
-    Pasa((Pasarela Pago))
+```plantuml
+@startuml
+left to right direction
+skinparam packageStyle rectangle
 
-    subgraph Sistema[Sistema E-learning]
-        U1([Matricularse en curso])
-        U2([Ver lección])
-        U3([Entregar ejercicio])
-        U4([Recibir tutoría])
-        U5([Crear curso])
-        U6([Subir material])
-        U7([Corregir entrega])
-        U8([Gestionar cursos])
-        U9([Verificar pago])
-        U10([Aplicar penalización])
-    end
+actor Estudiante as Est
+actor "Estudiante Premium" as Prem
+actor Profesor as Prof
+actor Administrador as Adm
+actor "Pasarela Pago" as Pasa
 
-    Est --- U1
-    Est --- U2
-    Est --- U3
-    Prof --- U5
-    Prof --- U6
-    Prof --- U7
-    Adm --- U8
-    Pasa --- U9
+Prem --|> Est
 
-    Prem -- generalización --> Est
-    Prem --- U4
+rectangle "Sistema E-learning" {
+  usecase "Matricularse en curso" as U1
+  usecase "Ver lección" as U2
+  usecase "Entregar ejercicio" as U3
+  usecase "Recibir tutoría" as U4
+  usecase "Crear curso" as U5
+  usecase "Subir material" as U6
+  usecase "Corregir entrega" as U7
+  usecase "Gestionar cursos" as U8
+  usecase "Verificar pago" as U9
+  usecase "Aplicar penalización" as U10
+}
 
-    U1 -. "«include»" .-> U9
-    U10 -. "«extend»" .-> U3
+Est --> U1
+Est --> U2
+Est --> U3
+Prem --> U4
+Prof --> U5
+Prof --> U6
+Prof --> U7
+Adm --> U8
+Pasa --> U9
+
+U1 ..> U9 : «include»
+U10 ..> U3 : «extend»
+@enduml
 ```
 
 **🛠️ Análisis paso a paso:**
@@ -373,24 +381,27 @@ Tabla de **palabras clave → elemento del diagrama**:
 
 **Enunciado:** *"Un alumno solicita su matrícula. El sistema verifica su expediente y comprueba plazas. Si cumple requisitos, se le asigna plaza, se genera recibo y, una vez pagado, secretaría confirma la matrícula. Si no cumple requisitos o no hay plazas, se notifica el rechazo."*
 
-```mermaid
-flowchart TD
-    Start([●])
-    Solicitar[Solicitar matrícula]
-    Verificar[Verificar expediente]
-    Dec{¿OK?}
-    Rechazo[Notificar rechazo]
-    FinFlujo([⊗])
-    Asignar[Asignar plaza]
-    Recibo[Generar recibo]
-    Pagar[Realizar pago]
-    Registrar[Registrar alumno]
-    Confirmar[Confirmar matrícula]
-    End([⦿])
-
-    Start --> Solicitar --> Verificar --> Dec
-    Dec -- "[No]" --> Rechazo --> FinFlujo
-    Dec -- "[Sí]" --> Asignar --> Recibo --> Pagar --> Registrar --> Confirmar --> End
+```plantuml
+@startuml
+|Alumno|
+start
+:Solicitar matrícula;
+|Sistema|
+:Verificar expediente;
+if (¿OK?) then (Sí)
+  :Asignar plaza;
+  :Generar recibo;
+  |Alumno|
+  :Realizar pago;
+  |Secretaría|
+  :Registrar alumno;
+  :Confirmar matrícula;
+  stop
+else (No)
+  :Notificar rechazo;
+  end
+endif
+@enduml
 ```
 
 **🛠️ Análisis paso a paso:**
@@ -406,32 +417,34 @@ flowchart TD
 
 **Solución propuesta:**
 
-```mermaid
-flowchart TD
-    Start([●])
-    Enviar["Enviar CV<br/><i>(Candidato)</i>"]
-    Revisar["Revisar CV<br/><i>(RRHH)</i>"]
-    Dec1{¿Cumple perfil?}
-    Notif1["Notificar rechazo<br/><i>(RRHH)</i>"]
-    FinFlujo([⊗])
-    Fork[/Fork/]
-    Entrev["Entrevista<br/><i>(RRHH)</i>"]
-    Prueba["Prueba técnica<br/><i>(Técnico)</i>"]
-    Join[/Join/]
-    Dec2{¿Decisión positiva?}
-    Redactar["Redactar oferta<br/><i>(RRHH)</i>"]
-    Enviar2["Enviar oferta<br/><i>(RRHH)</i>"]
-    Notif2["Notificar rechazo<br/><i>(RRHH)</i>"]
-    End([⦿])
-
-    Start --> Enviar --> Revisar --> Dec1
-    Dec1 -- "[No]" --> Notif1 --> FinFlujo
-    Dec1 -- "[Sí]" --> Fork
-    Fork --> Entrev --> Join
-    Fork --> Prueba --> Join
-    Join --> Dec2
-    Dec2 -- "[Sí]" --> Redactar --> Enviar2 --> End
-    Dec2 -- "[No]" --> Notif2 --> End
+```plantuml
+@startuml
+|Candidato|
+start
+:Enviar CV;
+|RRHH|
+:Revisar CV;
+if (¿Cumple perfil?) then (Sí)
+  fork
+    :Entrevista;
+  fork again
+    |Técnico|
+    :Prueba técnica;
+  end fork
+  |RRHH|
+  if (¿Decisión positiva?) then (Sí)
+    :Redactar oferta;
+    :Enviar oferta;
+    stop
+  else (No)
+    :Notificar rechazo;
+    stop
+  endif
+else (No)
+  :Notificar rechazo;
+  end
+endif
+@enduml
 ```
 
 **🛠️ Análisis paso a paso:**
@@ -567,21 +580,28 @@ Tabla de **palabras clave → elemento del diagrama**:
 
 **Enunciado:** *"Una cuenta bancaria, tras ser creada, queda Activa. Puede Bloquearse temporalmente por seguridad o Suspenderse por impago. Desde Bloqueada o Suspendida se puede reactivar. La cuenta puede cerrarse definitivamente siempre que el saldo sea cero. Mientras está Activa, acumula intereses. Al entrar en Bloqueada se avisa al titular."*
 
-```mermaid
-stateDiagram-v2
-    [*] --> Activa
-    Activa : entry / crear cuenta
-    Activa : do / acumular interés
-    Bloqueada : entry / avisar titular
+```plantuml
+@startuml
+[*] --> Activa
 
-    Activa --> Bloqueada : bloquear / notificar
-    Activa --> Suspendida : suspender
-    Bloqueada --> Activa : reactivar
-    Suspendida --> Activa : reactivar
-    Activa --> Cerrada : cerrar [saldo=0]
-    Bloqueada --> Cerrada : cerrar [saldo=0]
-    Suspendida --> Cerrada : cerrar [saldo=0]
-    Cerrada --> [*]
+state Activa {
+  Activa : entry / crear cuenta
+  Activa : do / acumular interés
+}
+
+state Bloqueada {
+  Bloqueada : entry / avisar titular
+}
+
+Activa --> Bloqueada : bloquear / notificar
+Activa --> Suspendida : suspender
+Bloqueada --> Activa : reactivar
+Suspendida --> Activa : reactivar
+Activa --> Cerrada : cerrar [saldo=0]
+Bloqueada --> Cerrada : cerrar [saldo=0]
+Suspendida --> Cerrada : cerrar [saldo=0]
+Cerrada --> [*]
+@enduml
 ```
 
 **🛠️ Análisis paso a paso:**
@@ -598,22 +618,27 @@ stateDiagram-v2
 
 **Solución propuesta:**
 
-```mermaid
-stateDiagram-v2
-    [*] --> Abierto
-    Abierto --> EnProgreso : asignar / registrar técnico
-    EnProgreso --> EnEspera : pedir info
-    EnEspera : entry / enviar email
-    EnEspera --> EnProgreso : responder
-    EnProgreso --> Resuelto : resolver
-    Resuelto --> Cerrado : confirmar
-    Resuelto --> EnProgreso : reabrir
-    Resuelto --> Cerrado : timeout [7 días sin respuesta]
-    Abierto --> Cancelado : timeout [30 días sin actividad]
-    EnProgreso --> Cancelado : timeout [30 días sin actividad]
-    EnEspera --> Cancelado : timeout [30 días sin actividad]
-    Cerrado --> [*]
-    Cancelado --> [*]
+```plantuml
+@startuml
+[*] --> Abierto
+Abierto --> EnProgreso : asignar / registrar técnico
+EnProgreso --> EnEspera : pedir info
+
+state EnEspera {
+  EnEspera : entry / enviar email
+}
+
+EnEspera --> EnProgreso : responder
+EnProgreso --> Resuelto : resolver
+Resuelto --> Cerrado : confirmar
+Resuelto --> EnProgreso : reabrir
+Resuelto --> Cerrado : timeout [7 días sin respuesta]
+Abierto --> Cancelado : timeout [30 días sin actividad]
+EnProgreso --> Cancelado : timeout [30 días sin actividad]
+EnEspera --> Cancelado : timeout [30 días sin actividad]
+Cerrado --> [*]
+Cancelado --> [*]
+@enduml
 ```
 
 **🛠️ Análisis paso a paso:**
@@ -768,30 +793,33 @@ Tabla de **palabras clave → elemento del diagrama**:
 
 **Enunciado:** *"Un usuario accede a una aplicación introduciendo usuario y contraseña. El formulario envía los datos al controlador, que los verifica contra la BD. Si las credenciales son correctas, se crea sesión y se redirige al panel. Si son incorrectas, se muestra error."*
 
-```mermaid
-sequenceDiagram
-    actor U as Usuario
-    participant F as :FormLogin
-    participant C as :ControlAcceso
-    participant B as :BaseDatos
+```plantuml
+@startuml
+actor Usuario as U
+participant ":FormLogin" as F
+participant ":ControlAcceso" as C
+participant ":BaseDatos" as B
 
-    U->>F: login(usuario, pwd)
-    activate F
-    F->>C: verificar(usuario, pwd)
-    activate C
-    C->>B: buscarCredenciales(usuario)
-    activate B
-    B-->>C: datos
-    deactivate B
-    alt credenciales OK
-        C->>C: crearSesion()
-        C-->>F: redirigir(panel)
-    else credenciales NOK
-        C-->>F: mostrarError()
-    end
-    deactivate C
-    F-->>U: respuesta
-    deactivate F
+U -> F : login(usuario, pwd)
+activate F
+F -> C : verificar(usuario, pwd)
+activate C
+C -> B : buscarCredenciales(usuario)
+activate B
+B --> C : datos
+deactivate B
+
+alt credenciales OK
+    C -> C : crearSesion()
+    C --> F : redirigir(panel)
+else credenciales NOK
+    C --> F : mostrarError()
+end
+
+deactivate C
+F --> U : respuesta
+deactivate F
+@enduml
 ```
 
 **🛠️ Análisis paso a paso:**
@@ -808,41 +836,44 @@ sequenceDiagram
 
 **Solución propuesta:**
 
-```mermaid
-sequenceDiagram
-    actor Cli as Cliente
-    participant Car as :Carrito
-    participant BD as :BD
-    participant Pas as :Pasarela
-    participant Mail as :ServicioMail
+```plantuml
+@startuml
+actor Cliente as Cli
+participant ":Carrito" as Car
+participant ":BD" as BD
+participant ":Pasarela" as Pas
+participant ":ServicioMail" as Mail
 
-    Cli->>Car: confirmarCompra()
-    activate Car
-    Car->>BD: comprobarStock(items)
-    activate BD
-    BD-->>Car: stockOK / stockKO
-    deactivate BD
-    alt stock disponible
-        loop hasta 3 reintentos
-            Car->>Pas: cobrar(total)
-            activate Pas
-            Pas-->>Car: resultado
-            deactivate Pas
-        end
-        alt pago confirmado
-            Car->>BD: crearPedido()
-            activate BD
-            BD-->>Car: pedidoOK
-            deactivate BD
-            Car-)Mail: enviarConfirmacion(email)
-            Car-->>Cli: compraOK
-        else pago fallido
-            Car-->>Cli: errorPago
-        end
-    else sin stock
-        Car-->>Cli: errorStock
+Cli -> Car : confirmarCompra()
+activate Car
+Car -> BD : comprobarStock(items)
+activate BD
+BD --> Car : stockOK / stockKO
+deactivate BD
+
+alt stock disponible
+    loop hasta 3 reintentos
+        Car -> Pas : cobrar(total)
+        activate Pas
+        Pas --> Car : resultado
+        deactivate Pas
     end
-    deactivate Car
+    alt pago confirmado
+        Car -> BD : crearPedido()
+        activate BD
+        BD --> Car : pedidoOK
+        deactivate BD
+        Car ->> Mail : enviarConfirmacion(email)
+        Car --> Cli : compraOK
+    else pago fallido
+        Car --> Cli : errorPago
+    end
+else sin stock
+    Car --> Cli : errorStock
+end
+
+deactivate Car
+@enduml
 ```
 
 **🛠️ Análisis paso a paso (CRÍTICO — modelo este ejemplo en casa):**
@@ -1008,12 +1039,23 @@ Cada enlace en el diagrama de comunicación es una **instancia de asociación** 
 
 ### Flujo de trabajo profesional (workflow DAM)
 
-```mermaid
-flowchart LR
-    A[1. Casos de Uso<br/>¿Qué hace el sistema?] --> B[2. Actividad<br/>¿Cómo funciona cada proceso?]
-    B --> C[3. Secuencia<br/>¿Cómo colaboran los objetos en el tiempo?]
-    C --> D[4. Comunicación<br/>Verificar topología]
-    C --> E[5. Estados<br/>Ciclo de vida de clases complejas]
+```plantuml
+@startuml
+skinparam ranksep 30
+skinparam nodesep 25
+left to right direction
+
+rectangle "1. Casos de Uso\n¿Qué hace el sistema?" as A
+rectangle "2. Actividad\n¿Cómo funciona cada proceso?" as B
+rectangle "3. Secuencia\n¿Cómo colaboran los objetos en el tiempo?" as C
+rectangle "4. Comunicación\nVerificar topología" as D
+rectangle "5. Estados\nCiclo de vida de clases complejas" as E
+
+A --> B
+B --> C
+C --> D
+C --> E
+@enduml
 ```
 
 1. **Casos de Uso** → captura de requisitos funcionales.

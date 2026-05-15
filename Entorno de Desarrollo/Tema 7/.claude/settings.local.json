@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "PowerShell($path = \"C:\\\\Users\\\\Oliwheel\\\\Documents\\\\0 DAM Primer Curso\\\\DAM-2025-26\\\\Entorno de Desarrollo\\\\Tema 7\\\\Estudio UT07 - Diagramas UML.md\"; $bytes = [System.IO.File]::ReadAllBytes\\($path\\); Write-Output \\(\"Total bytes: \" + $bytes.Count\\); Write-Output \\(\"Primeros 30 bytes \\(hex\\): \" + \\(\\($bytes[0..29] | ForEach-Object { '{0:X2}' -f $_ }\\) -join ' '\\)\\); $utf8 = New-Object System.Text.UTF8Encoding $false; $text = $utf8.GetString\\($bytes\\); Write-Output \\(\"Primeros 80 chars: \" + $text.Substring\\(0,80\\)\\))"
+      "PowerShell($path = \"C:\\\\Users\\\\Oliwheel\\\\Documents\\\\0 DAM Primer Curso\\\\DAM-2025-26\\\\Entorno de Desarrollo\\\\Tema 7\\\\Estudio UT07 - Diagramas UML.md\"; $bytes = [System.IO.File]::ReadAllBytes\\($path\\); Write-Output \\(\"Total bytes: \" + $bytes.Count\\); Write-Output \\(\"Primeros 30 bytes \\(hex\\): \" + \\(\\($bytes[0..29] | ForEach-Object { '{0:X2}' -f $_ }\\) -join ' '\\)\\); $utf8 = New-Object System.Text.UTF8Encoding $false; $text = $utf8.GetString\\($bytes\\); Write-Output \\(\"Primeros 80 chars: \" + $text.Substring\\(0,80\\)\\))",
+      "Read(//c/Users/Oliwheel/Documents/0 DAM Primer Curso/DAM-2025-26/**)",
+      "Read(//c/Users/Oliwheel/Documents/0 DAM Primer Curso/**)",
+      "Read(//c/Users/Oliwheel/AppData/Roaming/Code/User/**)",
+      "Bash(ls \"C:\\\\Users\\\\Oliwheel\\\\.vscode\\\\extensions\" 2>&1 | grep -i plantuml)"
     ]
   }
 }
