@@ -173,30 +173,50 @@ Tabla de **palabras clave → elemento del diagrama**:
 
 **Enunciado:** *"Una biblioteca universitaria necesita un sistema para gestionar el préstamo de libros. Los socios pueden buscar el catálogo, tomar libros prestados y devolver los que han leído. Si un socio devuelve un libro con retraso, el sistema debe gestionar el pago de una multa. El bibliotecario es responsable de mantener actualizado el fondo."*
 
-```mermaid
-flowchart LR
-    Socio((Socio))
-    Bibliotecario((Bibliotecario))
-    Pago((Sistema de Pago))
+```plantuml
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+skinparam usecase {
+    BackgroundColor #FEFECE
+    BorderColor #3A6B8A
+    ArrowColor #3A6B8A
+}
+skinparam actor {
+    BackgroundColor #E1F5FE
+    BorderColor #01579B
+}
 
-    subgraph Sistema_Biblioteca[Sistema de Biblioteca]
-        UC1([Buscar catálogo])
-        UC2([Tomar prestado libro])
-        UC3([Devolver libro])
-        UC4([Pagar multa])
-        UC5([Gestionar fondo])
-        UC6([Verificar socio])
-    end
+' Actor primario a la IZQUIERDA
+actor "Socio" as Socio
 
-    Socio --- UC1
-    Socio --- UC2
-    Socio --- UC3
-    Socio --- UC4
-    Bibliotecario --- UC5
-    Pago --- UC4
+rectangle "Sistema de Biblioteca" {
+    usecase "Buscar catálogo"        as UC1
+    usecase "Tomar prestado libro"   as UC2
+    usecase "Verificar socio"        as UC6
+    usecase "Devolver libro"         as UC3
+    usecase "Pagar multa"            as UC4
+    usecase "Gestionar fondo"        as UC5
+}
 
-    UC2 -. "«include»" .-> UC6
-    UC4 -. "«extend»" .-> UC3
+' Actores secundarios a la DERECHA
+actor "Bibliotecario"    as Biblio
+actor "Sistema de Pago"  as Pago <<secundario>>
+
+' Asociaciones izquierda (actor primario)
+Socio -- UC1
+Socio -- UC2
+Socio -- UC3
+Socio -- UC4
+
+' Asociaciones derecha (actores secundarios)
+UC5 -- Biblio
+UC4 -- Pago
+
+' Include y extend PERPENDICULARES (arriba/abajo) — distintos de las asociaciones
+UC2 .down.>  UC6 : <<include>>
+UC4 .up.>    UC3 : <<extend>>\n[devolución con retraso]
+@enduml
 ```
 
 **🛠️ Análisis paso a paso:**
@@ -211,41 +231,60 @@ flowchart LR
 
 **Solución propuesta:**
 
-```mermaid
-flowchart LR
-    Est((Estudiante))
-    Prem((Estudiante Premium))
-    Prof((Profesor))
-    Adm((Administrador))
-    Pasa((Pasarela Pago))
+```plantuml
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+skinparam usecase {
+    BackgroundColor #FEFECE
+    BorderColor #3A6B8A
+    ArrowColor #3A6B8A
+}
+skinparam actor {
+    BackgroundColor #E1F5FE
+    BorderColor #01579B
+}
 
-    subgraph Sistema[Sistema E-learning]
-        U1([Matricularse en curso])
-        U2([Ver lección])
-        U3([Entregar ejercicio])
-        U4([Recibir tutoría])
-        U5([Crear curso])
-        U6([Subir material])
-        U7([Corregir entrega])
-        U8([Gestionar cursos])
-        U9([Verificar pago])
-        U10([Aplicar penalización])
-    end
+' TODOS los actores humanos a la IZQUIERDA (declarados antes del rectángulo)
+actor "Estudiante"          as Est
+actor "Estudiante Premium"  as Prem
+actor "Profesor"            as Prof
+actor "Administrador"       as Adm
+Prem --|> Est
 
-    Est --- U1
-    Est --- U2
-    Est --- U3
-    Prof --- U5
-    Prof --- U6
-    Prof --- U7
-    Adm --- U8
-    Pasa --- U9
+rectangle "Sistema E-learning" {
+    usecase "Matricularse en curso" as U1
+    usecase "Verificar pago"        as U9
+    usecase "Ver lección"           as U2
+    usecase "Entregar ejercicio"    as U3
+    usecase "Aplicar penalización"  as U10
+    usecase "Recibir tutoría"       as U4
+    usecase "Crear curso"           as U5
+    usecase "Subir material"        as U6
+    usecase "Corregir entrega"      as U7
+    usecase "Gestionar cursos"      as U8
+}
 
-    Prem -- generalización --> Est
-    Prem --- U4
+' Solo la pasarela (sistema externo) a la DERECHA
+actor "Pasarela Pago" as Pasa <<secundario>>
 
-    U1 -. "«include»" .-> U9
-    U10 -. "«extend»" .-> U3
+' Asociaciones desde la izquierda (todos los actores humanos)
+Est  -- U1
+Est  -- U2
+Est  -- U3
+Prem -- U4
+Prof -- U5
+Prof -- U6
+Prof -- U7
+Adm  -- U8
+
+' Asociación derecha (única, pasarela externa)
+U9 -- Pasa
+
+' Include y extend PERPENDICULARES (arriba/abajo) — distintos de las asociaciones
+U1  .down.>  U9 : <<include>>
+U10 .up.>    U3 : <<extend>>\n[entrega tardía]
+@enduml
 ```
 
 **🛠️ Análisis paso a paso:**
@@ -373,24 +412,41 @@ Tabla de **palabras clave → elemento del diagrama**:
 
 **Enunciado:** *"Un alumno solicita su matrícula. El sistema verifica su expediente y comprueba plazas. Si cumple requisitos, se le asigna plaza, se genera recibo y, una vez pagado, secretaría confirma la matrícula. Si no cumple requisitos o no hay plazas, se notifica el rechazo."*
 
-```mermaid
-flowchart TD
-    Start([●])
-    Solicitar[Solicitar matrícula]
-    Verificar[Verificar expediente]
-    Dec{¿OK?}
-    Rechazo[Notificar rechazo]
-    FinFlujo([⊗])
-    Asignar[Asignar plaza]
-    Recibo[Generar recibo]
-    Pagar[Realizar pago]
-    Registrar[Registrar alumno]
-    Confirmar[Confirmar matrícula]
-    End([⦿])
+```plantuml
+@startuml
+skinparam backgroundColor #FFFFFF
+skinparam activity {
+    BackgroundColor #FEFECE
+    BorderColor #3A6B8A
+    ArrowColor #3A6B8A
+    DiamondBackgroundColor #FFF3CD
+    DiamondBorderColor #B58900
+}
 
-    Start --> Solicitar --> Verificar --> Dec
-    Dec -- "[No]" --> Rechazo --> FinFlujo
-    Dec -- "[Sí]" --> Asignar --> Recibo --> Pagar --> Registrar --> Confirmar --> End
+|#E8F4F8|Alumno|
+start
+:Solicitar matrícula;
+
+|#FFF3CD|Sistema|
+:Verificar expediente;
+
+if (¿Cumple requisitos\ny hay plaza?) then ([Sí])
+    :Asignar plaza;
+    :Generar recibo;
+
+    |#E8F4F8|Alumno|
+    :Realizar pago;
+
+    |#E8E8F4|Secretaría|
+    :Registrar alumno;
+    :Confirmar matrícula;
+    stop
+else ([No])
+    |#FFF3CD|Sistema|
+    :Notificar rechazo;
+    end
+endif
+@enduml
 ```
 
 **🛠️ Análisis paso a paso:**
@@ -406,32 +462,51 @@ flowchart TD
 
 **Solución propuesta:**
 
-```mermaid
-flowchart TD
-    Start([●])
-    Enviar["Enviar CV<br/><i>(Candidato)</i>"]
-    Revisar["Revisar CV<br/><i>(RRHH)</i>"]
-    Dec1{¿Cumple perfil?}
-    Notif1["Notificar rechazo<br/><i>(RRHH)</i>"]
-    FinFlujo([⊗])
-    Fork[/Fork/]
-    Entrev["Entrevista<br/><i>(RRHH)</i>"]
-    Prueba["Prueba técnica<br/><i>(Técnico)</i>"]
-    Join[/Join/]
-    Dec2{¿Decisión positiva?}
-    Redactar["Redactar oferta<br/><i>(RRHH)</i>"]
-    Enviar2["Enviar oferta<br/><i>(RRHH)</i>"]
-    Notif2["Notificar rechazo<br/><i>(RRHH)</i>"]
-    End([⦿])
+```plantuml
+@startuml
+skinparam backgroundColor #FFFFFF
+skinparam activity {
+    BackgroundColor #FEFECE
+    BorderColor #3A6B8A
+    ArrowColor #3A6B8A
+    DiamondBackgroundColor #FFF3CD
+    DiamondBorderColor #B58900
+    BarColor #555555
+}
 
-    Start --> Enviar --> Revisar --> Dec1
-    Dec1 -- "[No]" --> Notif1 --> FinFlujo
-    Dec1 -- "[Sí]" --> Fork
-    Fork --> Entrev --> Join
-    Fork --> Prueba --> Join
-    Join --> Dec2
-    Dec2 -- "[Sí]" --> Redactar --> Enviar2 --> End
-    Dec2 -- "[No]" --> Notif2 --> End
+|#E8F4F8|Candidato|
+start
+:Enviar CV;
+
+|#FFF3CD|RRHH|
+:Revisar CV;
+
+if (¿Cumple perfil mínimo?) then ([Sí])
+
+    fork
+        |#FFF3CD|RRHH|
+        :Realizar entrevista;
+    fork again
+        |#E8F4E8|Técnico|
+        :Realizar prueba técnica online;
+    end fork
+
+    |#FFF3CD|RRHH|
+    if (¿Decisión final positiva?) then ([Sí])
+        :Redactar oferta;
+        :Enviar oferta al candidato;
+        stop
+    else ([No])
+        :Notificar rechazo (post-entrevista);
+        stop
+    endif
+
+else ([No])
+    |#FFF3CD|RRHH|
+    :Notificar rechazo (filtro CV);
+    end
+endif
+@enduml
 ```
 
 **🛠️ Análisis paso a paso:**
@@ -567,21 +642,50 @@ Tabla de **palabras clave → elemento del diagrama**:
 
 **Enunciado:** *"Una cuenta bancaria, tras ser creada, queda Activa. Puede Bloquearse temporalmente por seguridad o Suspenderse por impago. Desde Bloqueada o Suspendida se puede reactivar. La cuenta puede cerrarse definitivamente siempre que el saldo sea cero. Mientras está Activa, acumula intereses. Al entrar en Bloqueada se avisa al titular."*
 
-```mermaid
-stateDiagram-v2
-    [*] --> Activa
-    Activa : entry / crear cuenta
-    Activa : do / acumular interés
-    Bloqueada : entry / avisar titular
+```plantuml
+@startuml
+skinparam backgroundColor #FFFFFF
+skinparam linetype polyline
+skinparam nodesep 70
+skinparam ranksep 60
+skinparam state {
+    BackgroundColor    #FEFECE
+    BorderColor        #3A6B8A
+    ArrowColor         #3A6B8A
+    FontStyle          bold
+    AttributeFontSize  11
+}
 
-    Activa --> Bloqueada : bloquear / notificar
-    Activa --> Suspendida : suspender
-    Bloqueada --> Activa : reactivar
-    Suspendida --> Activa : reactivar
-    Activa --> Cerrada : cerrar [saldo=0]
-    Bloqueada --> Cerrada : cerrar [saldo=0]
-    Suspendida --> Cerrada : cerrar [saldo=0]
-    Cerrada --> [*]
+[*] --> Activa
+
+state Activa {
+    Activa : **entry** / crear cuenta
+    Activa : **do** / acumular interés
+}
+
+state Bloqueada {
+    Bloqueada : **entry** / avisar titular
+}
+
+state Suspendida {
+    Suspendida : **entry** / marcar impago
+}
+
+state Cerrada <<final>>
+
+' === Activa en el centro, Bloqueada izq., Suspendida der. ===
+Activa     -left->  Bloqueada  : bloquear / notificar
+Activa     -right-> Suspendida : suspender
+Bloqueada  -up->    Activa     : reactivar
+Suspendida -up->    Activa     : reactivar
+
+' === Cierre con saldo = 0: todos a Cerrada (abajo) ===
+Activa     --> Cerrada : cerrar [saldo = 0]
+Bloqueada  --> Cerrada : cerrar [saldo = 0]
+Suspendida --> Cerrada : cerrar [saldo = 0]
+
+Cerrada --> [*]
+@enduml
 ```
 
 **🛠️ Análisis paso a paso:**
@@ -598,22 +702,50 @@ stateDiagram-v2
 
 **Solución propuesta:**
 
-```mermaid
-stateDiagram-v2
-    [*] --> Abierto
-    Abierto --> EnProgreso : asignar / registrar técnico
-    EnProgreso --> EnEspera : pedir info
-    EnEspera : entry / enviar email
-    EnEspera --> EnProgreso : responder
-    EnProgreso --> Resuelto : resolver
-    Resuelto --> Cerrado : confirmar
-    Resuelto --> EnProgreso : reabrir
-    Resuelto --> Cerrado : timeout [7 días sin respuesta]
-    Abierto --> Cancelado : timeout [30 días sin actividad]
-    EnProgreso --> Cancelado : timeout [30 días sin actividad]
-    EnEspera --> Cancelado : timeout [30 días sin actividad]
-    Cerrado --> [*]
-    Cancelado --> [*]
+```plantuml
+@startuml
+skinparam backgroundColor #FFFFFF
+skinparam linetype polyline
+skinparam nodesep 60
+skinparam ranksep 55
+skinparam state {
+    BackgroundColor #FEFECE
+    BorderColor     #3A6B8A
+    ArrowColor      #3A6B8A
+    FontStyle       bold
+}
+
+[*] --> Abierto
+
+state Abierto
+state "En progreso" as EnProgreso
+state "En espera"   as EnEspera
+EnEspera : **entry** / enviar email al usuario
+state Resuelto
+state Cerrado   <<final>>
+state Cancelado <<final>>
+
+' === Flujo principal (vertical, hacia abajo) ===
+Abierto    --> EnProgreso : asignar / registrar técnico
+EnProgreso --> Resuelto   : resolver
+Resuelto   --> Cerrado    : confirmar
+
+' === Rama lateral derecha: ciclo EnEspera ↔ EnProgreso ===
+EnProgreso -right-> EnEspera   : pedir info al usuario
+EnEspera   -left->  EnProgreso : responder
+
+' === Reapertura y timeout de cierre automático ===
+Resuelto --> EnProgreso : reabrir
+Resuelto --> Cerrado    : timeout\n[7 días sin respuesta]
+
+' === Cancelación automática: Cancelado al lado de Cerrado (abajo) ===
+Abierto    --> Cancelado : timeout [30 días\nsin actividad]
+EnProgreso --> Cancelado : timeout [30 días\nsin actividad]
+EnEspera   --> Cancelado : timeout [30 días\nsin actividad]
+
+Cerrado   --> [*]
+Cancelado --> [*]
+@enduml
 ```
 
 **🛠️ Análisis paso a paso:**
@@ -768,30 +900,50 @@ Tabla de **palabras clave → elemento del diagrama**:
 
 **Enunciado:** *"Un usuario accede a una aplicación introduciendo usuario y contraseña. El formulario envía los datos al controlador, que los verifica contra la BD. Si las credenciales son correctas, se crea sesión y se redirige al panel. Si son incorrectas, se muestra error."*
 
-```mermaid
-sequenceDiagram
-    actor U as Usuario
-    participant F as :FormLogin
-    participant C as :ControlAcceso
-    participant B as :BaseDatos
+```plantuml
+@startuml
+skinparam backgroundColor #FFFFFF
+skinparam sequence {
+    ArrowColor              #3A6B8A
+    LifeLineBorderColor     #3A6B8A
+    LifeLineBackgroundColor #E8F4F8
+    ParticipantBorderColor  #3A6B8A
+    ParticipantBackgroundColor #FEFECE
+    ParticipantFontStyle    bold
+    ActorBorderColor        #01579B
+    ActorBackgroundColor    #E1F5FE
+}
 
-    U->>F: login(usuario, pwd)
-    activate F
-    F->>C: verificar(usuario, pwd)
+actor       "Usuario"        as U
+participant ":FormLogin"     as F
+participant ":ControlAcceso" as C
+database    ":BaseDatos"     as B
+
+U  ->  F : login(usuario, pwd)
+activate F
+
+    F  ->  C : verificar(usuario, pwd)
     activate C
-    C->>B: buscarCredenciales(usuario)
-    activate B
-    B-->>C: datos
-    deactivate B
-    alt credenciales OK
-        C->>C: crearSesion()
-        C-->>F: redirigir(panel)
-    else credenciales NOK
-        C-->>F: mostrarError()
-    end
+
+        C  ->  B : buscarCredenciales(usuario)
+        activate B
+        B --> C : datos
+        deactivate B
+
+        alt credenciales OK
+            C  ->  C : crearSesion()
+            activate C #DDDDDD
+            deactivate C
+            C --> F : redirigir(panel)
+        else credenciales NOK
+            C --> F : mostrarError()
+        end
+
     deactivate C
-    F-->>U: respuesta
-    deactivate F
+
+F --> U : respuesta
+deactivate F
+@enduml
 ```
 
 **🛠️ Análisis paso a paso:**
@@ -808,41 +960,63 @@ sequenceDiagram
 
 **Solución propuesta:**
 
-```mermaid
-sequenceDiagram
-    actor Cli as Cliente
-    participant Car as :Carrito
-    participant BD as :BD
-    participant Pas as :Pasarela
-    participant Mail as :ServicioMail
+```plantuml
+@startuml
+skinparam backgroundColor #FFFFFF
+skinparam sequence {
+    ArrowColor                  #3A6B8A
+    LifeLineBorderColor         #3A6B8A
+    LifeLineBackgroundColor     #E8F4F8
+    ParticipantBorderColor      #3A6B8A
+    ParticipantBackgroundColor  #FEFECE
+    ParticipantFontStyle        bold
+    ActorBorderColor            #01579B
+    ActorBackgroundColor        #E1F5FE
+    GroupBorderColor            #B58900
+    GroupBackgroundColor        #FFF8DC
+}
 
-    Cli->>Car: confirmarCompra()
-    activate Car
-    Car->>BD: comprobarStock(items)
+actor       "Cliente"        as Cli
+participant ":Carrito"       as Car
+database    ":BD"            as BD
+participant ":Pasarela"      as Pas
+participant ":ServicioMail"  as Mail
+
+Cli ->  Car : confirmarCompra()
+activate Car
+
+    Car ->  BD : comprobarStock(items)
     activate BD
-    BD-->>Car: stockOK / stockKO
+    BD --> Car : stockOK / stockKO
     deactivate BD
+
     alt stock disponible
-        loop hasta 3 reintentos
-            Car->>Pas: cobrar(total)
+        loop hasta 3 reintentos / [pasarela no responde]
+            Car ->  Pas : cobrar(total)
             activate Pas
-            Pas-->>Car: resultado
+            Pas --> Car : resultado
             deactivate Pas
         end
+
         alt pago confirmado
-            Car->>BD: crearPedido()
+            Car ->  BD : crearPedido()
             activate BD
-            BD-->>Car: pedidoOK
+            BD --> Car : pedidoOK
             deactivate BD
-            Car-)Mail: enviarConfirmacion(email)
-            Car-->>Cli: compraOK
+
+            ' Mensaje asíncrono (cabeza abierta) → no espera respuesta
+            Car ->> Mail : enviarConfirmacion(email)
+            Car --> Cli  : compraOK
         else pago fallido
-            Car-->>Cli: errorPago
+            Car --> Cli  : errorPago
         end
+
     else sin stock
-        Car-->>Cli: errorStock
+        Car --> Cli : errorStock
     end
-    deactivate Car
+
+deactivate Car
+@enduml
 ```
 
 **🛠️ Análisis paso a paso (CRÍTICO — modelo este ejemplo en casa):**
@@ -1008,12 +1182,28 @@ Cada enlace en el diagrama de comunicación es una **instancia de asociación** 
 
 ### Flujo de trabajo profesional (workflow DAM)
 
-```mermaid
-flowchart LR
-    A[1. Casos de Uso<br/>¿Qué hace el sistema?] --> B[2. Actividad<br/>¿Cómo funciona cada proceso?]
-    B --> C[3. Secuencia<br/>¿Cómo colaboran los objetos en el tiempo?]
-    C --> D[4. Comunicación<br/>Verificar topología]
-    C --> E[5. Estados<br/>Ciclo de vida de clases complejas]
+```plantuml
+@startuml
+left to right direction
+skinparam backgroundColor #FFFFFF
+skinparam rectangle {
+    BackgroundColor #FEFECE
+    BorderColor     #3A6B8A
+    FontStyle       bold
+}
+skinparam ArrowColor #3A6B8A
+
+rectangle "**1. Casos de Uso**\n¿Qué hace el sistema?"                       as A #E1F5FE
+rectangle "**2. Actividad**\n¿Cómo funciona cada proceso?"                   as B #FFF3CD
+rectangle "**3. Secuencia**\n¿Cómo colaboran los objetos\nen el tiempo?"     as C #E8F4E8
+rectangle "**4. Comunicación**\nVerificar topología\n(opcional)"             as D #F4E8E8
+rectangle "**5. Estados**\nCiclo de vida\nde clases complejas"               as E #F4E8F4
+
+A --> B : "detallar flujos"
+B --> C : "definir colaboración"
+C --> D : "verificar enlaces"
+C --> E : "modelar clases\ncon estado interno"
+@enduml
 ```
 
 1. **Casos de Uso** → captura de requisitos funcionales.
