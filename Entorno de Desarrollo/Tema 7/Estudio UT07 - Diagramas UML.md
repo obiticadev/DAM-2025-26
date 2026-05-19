@@ -177,45 +177,29 @@ Tabla de **palabras clave → elemento del diagrama**:
 @startuml
 left to right direction
 skinparam packageStyle rectangle
-skinparam usecase {
-    BackgroundColor #FEFECE
-    BorderColor #3A6B8A
-    ArrowColor #3A6B8A
-}
-skinparam actor {
-    BackgroundColor #E1F5FE
-    BorderColor #01579B
-}
 
-' Actor primario a la IZQUIERDA
-actor "Socio" as Socio
+actor Socio
+actor Bibliotecario
+actor "Sistema de Pago" as Pago
 
 rectangle "Sistema de Biblioteca" {
-    usecase "Buscar catálogo"        as UC1
-    usecase "Tomar prestado libro"   as UC2
-    usecase "Verificar socio"        as UC6
-    usecase "Devolver libro"         as UC3
-    usecase "Pagar multa"            as UC4
-    usecase "Gestionar fondo"        as UC5
+  usecase "Buscar catálogo" as UC1
+  usecase "Tomar prestado libro" as UC2
+  usecase "Devolver libro" as UC3
+  usecase "Pagar multa" as UC4
+  usecase "Gestionar fondo" as UC5
+  usecase "Verificar socio" as UC6
 }
 
-' Actores secundarios a la DERECHA
-actor "Bibliotecario"    as Biblio
-actor "Sistema de Pago"  as Pago <<secundario>>
+Socio --> UC1
+Socio --> UC2
+Socio --> UC3
+Socio --> UC4
+Bibliotecario --> UC5
+Pago --> UC4
 
-' Asociaciones izquierda (actor primario)
-Socio -- UC1
-Socio -- UC2
-Socio -- UC3
-Socio -- UC4
-
-' Asociaciones derecha (actores secundarios)
-UC5 -- Biblio
-UC4 -- Pago
-
-' Include y extend PERPENDICULARES (arriba/abajo) — distintos de las asociaciones
-UC2 .down.>  UC6 : <<include>>
-UC4 .up.>    UC3 : <<extend>>\n[devolución con retraso]
+UC2 ..> UC6 : «include»
+UC4 ..> UC3 : «extend»
 @enduml
 ```
 
@@ -235,55 +219,40 @@ UC4 .up.>    UC3 : <<extend>>\n[devolución con retraso]
 @startuml
 left to right direction
 skinparam packageStyle rectangle
-skinparam usecase {
-    BackgroundColor #FEFECE
-    BorderColor #3A6B8A
-    ArrowColor #3A6B8A
-}
-skinparam actor {
-    BackgroundColor #E1F5FE
-    BorderColor #01579B
-}
 
-' TODOS los actores humanos a la IZQUIERDA (declarados antes del rectángulo)
-actor "Estudiante"          as Est
-actor "Estudiante Premium"  as Prem
-actor "Profesor"            as Prof
-actor "Administrador"       as Adm
+actor Estudiante as Est
+actor "Estudiante Premium" as Prem
+actor Profesor as Prof
+actor Administrador as Adm
+actor "Pasarela Pago" as Pasa
+
 Prem --|> Est
 
 rectangle "Sistema E-learning" {
-    usecase "Matricularse en curso" as U1
-    usecase "Verificar pago"        as U9
-    usecase "Ver lección"           as U2
-    usecase "Entregar ejercicio"    as U3
-    usecase "Aplicar penalización"  as U10
-    usecase "Recibir tutoría"       as U4
-    usecase "Crear curso"           as U5
-    usecase "Subir material"        as U6
-    usecase "Corregir entrega"      as U7
-    usecase "Gestionar cursos"      as U8
+  usecase "Matricularse en curso" as U1
+  usecase "Ver lección" as U2
+  usecase "Entregar ejercicio" as U3
+  usecase "Recibir tutoría" as U4
+  usecase "Crear curso" as U5
+  usecase "Subir material" as U6
+  usecase "Corregir entrega" as U7
+  usecase "Gestionar cursos" as U8
+  usecase "Verificar pago" as U9
+  usecase "Aplicar penalización" as U10
 }
 
-' Solo la pasarela (sistema externo) a la DERECHA
-actor "Pasarela Pago" as Pasa <<secundario>>
+Est --> U1
+Est --> U2
+Est --> U3
+Prem --> U4
+Prof --> U5
+Prof --> U6
+Prof --> U7
+Adm --> U8
+Pasa --> U9
 
-' Asociaciones desde la izquierda (todos los actores humanos)
-Est  -- U1
-Est  -- U2
-Est  -- U3
-Prem -- U4
-Prof -- U5
-Prof -- U6
-Prof -- U7
-Adm  -- U8
-
-' Asociación derecha (única, pasarela externa)
-U9 -- Pasa
-
-' Include y extend PERPENDICULARES (arriba/abajo) — distintos de las asociaciones
-U1  .down.>  U9 : <<include>>
-U10 .up.>    U3 : <<extend>>\n[entrega tardía]
+U1 ..> U9 : «include»
+U10 ..> U3 : «extend»
 @enduml
 ```
 
@@ -414,37 +383,23 @@ Tabla de **palabras clave → elemento del diagrama**:
 
 ```plantuml
 @startuml
-skinparam backgroundColor #FFFFFF
-skinparam activity {
-    BackgroundColor #FEFECE
-    BorderColor #3A6B8A
-    ArrowColor #3A6B8A
-    DiamondBackgroundColor #FFF3CD
-    DiamondBorderColor #B58900
-}
-
-|#E8F4F8|Alumno|
+|Alumno|
 start
 :Solicitar matrícula;
-
-|#FFF3CD|Sistema|
+|Sistema|
 :Verificar expediente;
-
-if (¿Cumple requisitos\ny hay plaza?) then ([Sí])
-    :Asignar plaza;
-    :Generar recibo;
-
-    |#E8F4F8|Alumno|
-    :Realizar pago;
-
-    |#E8E8F4|Secretaría|
-    :Registrar alumno;
-    :Confirmar matrícula;
-    stop
-else ([No])
-    |#FFF3CD|Sistema|
-    :Notificar rechazo;
-    end
+if (¿OK?) then (Sí)
+  :Asignar plaza;
+  :Generar recibo;
+  |Alumno|
+  :Realizar pago;
+  |Secretaría|
+  :Registrar alumno;
+  :Confirmar matrícula;
+  stop
+else (No)
+  :Notificar rechazo;
+  end
 endif
 @enduml
 ```
@@ -464,47 +419,30 @@ endif
 
 ```plantuml
 @startuml
-skinparam backgroundColor #FFFFFF
-skinparam activity {
-    BackgroundColor #FEFECE
-    BorderColor #3A6B8A
-    ArrowColor #3A6B8A
-    DiamondBackgroundColor #FFF3CD
-    DiamondBorderColor #B58900
-    BarColor #555555
-}
-
-|#E8F4F8|Candidato|
+|Candidato|
 start
 :Enviar CV;
-
-|#FFF3CD|RRHH|
+|RRHH|
 :Revisar CV;
-
-if (¿Cumple perfil mínimo?) then ([Sí])
-
-    fork
-        |#FFF3CD|RRHH|
-        :Realizar entrevista;
-    fork again
-        |#E8F4E8|Técnico|
-        :Realizar prueba técnica online;
-    end fork
-
-    |#FFF3CD|RRHH|
-    if (¿Decisión final positiva?) then ([Sí])
-        :Redactar oferta;
-        :Enviar oferta al candidato;
-        stop
-    else ([No])
-        :Notificar rechazo (post-entrevista);
-        stop
-    endif
-
-else ([No])
-    |#FFF3CD|RRHH|
-    :Notificar rechazo (filtro CV);
-    end
+if (¿Cumple perfil?) then (Sí)
+  fork
+    :Entrevista;
+  fork again
+    |Técnico|
+    :Prueba técnica;
+  end fork
+  |RRHH|
+  if (¿Decisión positiva?) then (Sí)
+    :Redactar oferta;
+    :Enviar oferta;
+    stop
+  else (No)
+    :Notificar rechazo;
+    stop
+  endif
+else (No)
+  :Notificar rechazo;
+  end
 endif
 @enduml
 ```
@@ -644,46 +582,24 @@ Tabla de **palabras clave → elemento del diagrama**:
 
 ```plantuml
 @startuml
-skinparam backgroundColor #FFFFFF
-skinparam linetype polyline
-skinparam nodesep 70
-skinparam ranksep 60
-skinparam state {
-    BackgroundColor    #FEFECE
-    BorderColor        #3A6B8A
-    ArrowColor         #3A6B8A
-    FontStyle          bold
-    AttributeFontSize  11
-}
-
 [*] --> Activa
 
 state Activa {
-    Activa : **entry** / crear cuenta
-    Activa : **do** / acumular interés
+  Activa : entry / crear cuenta
+  Activa : do / acumular interés
 }
 
 state Bloqueada {
-    Bloqueada : **entry** / avisar titular
+  Bloqueada : entry / avisar titular
 }
 
-state Suspendida {
-    Suspendida : **entry** / marcar impago
-}
-
-state Cerrada <<final>>
-
-' === Activa en el centro, Bloqueada izq., Suspendida der. ===
-Activa     -left->  Bloqueada  : bloquear / notificar
-Activa     -right-> Suspendida : suspender
-Bloqueada  -up->    Activa     : reactivar
-Suspendida -up->    Activa     : reactivar
-
-' === Cierre con saldo = 0: todos a Cerrada (abajo) ===
-Activa     --> Cerrada : cerrar [saldo = 0]
-Bloqueada  --> Cerrada : cerrar [saldo = 0]
-Suspendida --> Cerrada : cerrar [saldo = 0]
-
+Activa --> Bloqueada : bloquear / notificar
+Activa --> Suspendida : suspender
+Bloqueada --> Activa : reactivar
+Suspendida --> Activa : reactivar
+Activa --> Cerrada : cerrar [saldo=0]
+Bloqueada --> Cerrada : cerrar [saldo=0]
+Suspendida --> Cerrada : cerrar [saldo=0]
 Cerrada --> [*]
 @enduml
 ```
@@ -704,46 +620,23 @@ Cerrada --> [*]
 
 ```plantuml
 @startuml
-skinparam backgroundColor #FFFFFF
-skinparam linetype polyline
-skinparam nodesep 60
-skinparam ranksep 55
-skinparam state {
-    BackgroundColor #FEFECE
-    BorderColor     #3A6B8A
-    ArrowColor      #3A6B8A
-    FontStyle       bold
+[*] --> Abierto
+Abierto --> EnProgreso : asignar / registrar técnico
+EnProgreso --> EnEspera : pedir info
+
+state EnEspera {
+  EnEspera : entry / enviar email
 }
 
-[*] --> Abierto
-
-state Abierto
-state "En progreso" as EnProgreso
-state "En espera"   as EnEspera
-EnEspera : **entry** / enviar email al usuario
-state Resuelto
-state Cerrado   <<final>>
-state Cancelado <<final>>
-
-' === Flujo principal (vertical, hacia abajo) ===
-Abierto    --> EnProgreso : asignar / registrar técnico
-EnProgreso --> Resuelto   : resolver
-Resuelto   --> Cerrado    : confirmar
-
-' === Rama lateral derecha: ciclo EnEspera ↔ EnProgreso ===
-EnProgreso -right-> EnEspera   : pedir info al usuario
-EnEspera   -left->  EnProgreso : responder
-
-' === Reapertura y timeout de cierre automático ===
+EnEspera --> EnProgreso : responder
+EnProgreso --> Resuelto : resolver
+Resuelto --> Cerrado : confirmar
 Resuelto --> EnProgreso : reabrir
-Resuelto --> Cerrado    : timeout\n[7 días sin respuesta]
-
-' === Cancelación automática: Cancelado al lado de Cerrado (abajo) ===
-Abierto    --> Cancelado : timeout [30 días\nsin actividad]
-EnProgreso --> Cancelado : timeout [30 días\nsin actividad]
-EnEspera   --> Cancelado : timeout [30 días\nsin actividad]
-
-Cerrado   --> [*]
+Resuelto --> Cerrado : timeout [7 días sin respuesta]
+Abierto --> Cancelado : timeout [30 días sin actividad]
+EnProgreso --> Cancelado : timeout [30 días sin actividad]
+EnEspera --> Cancelado : timeout [30 días sin actividad]
+Cerrado --> [*]
 Cancelado --> [*]
 @enduml
 ```
@@ -902,45 +795,28 @@ Tabla de **palabras clave → elemento del diagrama**:
 
 ```plantuml
 @startuml
-skinparam backgroundColor #FFFFFF
-skinparam sequence {
-    ArrowColor              #3A6B8A
-    LifeLineBorderColor     #3A6B8A
-    LifeLineBackgroundColor #E8F4F8
-    ParticipantBorderColor  #3A6B8A
-    ParticipantBackgroundColor #FEFECE
-    ParticipantFontStyle    bold
-    ActorBorderColor        #01579B
-    ActorBackgroundColor    #E1F5FE
-}
-
-actor       "Usuario"        as U
-participant ":FormLogin"     as F
+actor Usuario as U
+participant ":FormLogin" as F
 participant ":ControlAcceso" as C
-database    ":BaseDatos"     as B
+participant ":BaseDatos" as B
 
-U  ->  F : login(usuario, pwd)
+U -> F : login(usuario, pwd)
 activate F
+F -> C : verificar(usuario, pwd)
+activate C
+C -> B : buscarCredenciales(usuario)
+activate B
+B --> C : datos
+deactivate B
 
-    F  ->  C : verificar(usuario, pwd)
-    activate C
+alt credenciales OK
+    C -> C : crearSesion()
+    C --> F : redirigir(panel)
+else credenciales NOK
+    C --> F : mostrarError()
+end
 
-        C  ->  B : buscarCredenciales(usuario)
-        activate B
-        B --> C : datos
-        deactivate B
-
-        alt credenciales OK
-            C  ->  C : crearSesion()
-            activate C #DDDDDD
-            deactivate C
-            C --> F : redirigir(panel)
-        else credenciales NOK
-            C --> F : mostrarError()
-        end
-
-    deactivate C
-
+deactivate C
 F --> U : respuesta
 deactivate F
 @enduml
@@ -962,58 +838,39 @@ deactivate F
 
 ```plantuml
 @startuml
-skinparam backgroundColor #FFFFFF
-skinparam sequence {
-    ArrowColor                  #3A6B8A
-    LifeLineBorderColor         #3A6B8A
-    LifeLineBackgroundColor     #E8F4F8
-    ParticipantBorderColor      #3A6B8A
-    ParticipantBackgroundColor  #FEFECE
-    ParticipantFontStyle        bold
-    ActorBorderColor            #01579B
-    ActorBackgroundColor        #E1F5FE
-    GroupBorderColor            #B58900
-    GroupBackgroundColor        #FFF8DC
-}
+actor Cliente as Cli
+participant ":Carrito" as Car
+participant ":BD" as BD
+participant ":Pasarela" as Pas
+participant ":ServicioMail" as Mail
 
-actor       "Cliente"        as Cli
-participant ":Carrito"       as Car
-database    ":BD"            as BD
-participant ":Pasarela"      as Pas
-participant ":ServicioMail"  as Mail
-
-Cli ->  Car : confirmarCompra()
+Cli -> Car : confirmarCompra()
 activate Car
+Car -> BD : comprobarStock(items)
+activate BD
+BD --> Car : stockOK / stockKO
+deactivate BD
 
-    Car ->  BD : comprobarStock(items)
-    activate BD
-    BD --> Car : stockOK / stockKO
-    deactivate BD
-
-    alt stock disponible
-        loop hasta 3 reintentos / [pasarela no responde]
-            Car ->  Pas : cobrar(total)
-            activate Pas
-            Pas --> Car : resultado
-            deactivate Pas
-        end
-
-        alt pago confirmado
-            Car ->  BD : crearPedido()
-            activate BD
-            BD --> Car : pedidoOK
-            deactivate BD
-
-            ' Mensaje asíncrono (cabeza abierta) → no espera respuesta
-            Car ->> Mail : enviarConfirmacion(email)
-            Car --> Cli  : compraOK
-        else pago fallido
-            Car --> Cli  : errorPago
-        end
-
-    else sin stock
-        Car --> Cli : errorStock
+alt stock disponible
+    loop hasta 3 reintentos
+        Car -> Pas : cobrar(total)
+        activate Pas
+        Pas --> Car : resultado
+        deactivate Pas
     end
+    alt pago confirmado
+        Car -> BD : crearPedido()
+        activate BD
+        BD --> Car : pedidoOK
+        deactivate BD
+        Car ->> Mail : enviarConfirmacion(email)
+        Car --> Cli : compraOK
+    else pago fallido
+        Car --> Cli : errorPago
+    end
+else sin stock
+    Car --> Cli : errorStock
+end
 
 deactivate Car
 @enduml
@@ -1184,25 +1041,20 @@ Cada enlace en el diagrama de comunicación es una **instancia de asociación** 
 
 ```plantuml
 @startuml
+skinparam ranksep 30
+skinparam nodesep 25
 left to right direction
-skinparam backgroundColor #FFFFFF
-skinparam rectangle {
-    BackgroundColor #FEFECE
-    BorderColor     #3A6B8A
-    FontStyle       bold
-}
-skinparam ArrowColor #3A6B8A
 
-rectangle "**1. Casos de Uso**\n¿Qué hace el sistema?"                       as A #E1F5FE
-rectangle "**2. Actividad**\n¿Cómo funciona cada proceso?"                   as B #FFF3CD
-rectangle "**3. Secuencia**\n¿Cómo colaboran los objetos\nen el tiempo?"     as C #E8F4E8
-rectangle "**4. Comunicación**\nVerificar topología\n(opcional)"             as D #F4E8E8
-rectangle "**5. Estados**\nCiclo de vida\nde clases complejas"               as E #F4E8F4
+rectangle "1. Casos de Uso\n¿Qué hace el sistema?" as A
+rectangle "2. Actividad\n¿Cómo funciona cada proceso?" as B
+rectangle "3. Secuencia\n¿Cómo colaboran los objetos en el tiempo?" as C
+rectangle "4. Comunicación\nVerificar topología" as D
+rectangle "5. Estados\nCiclo de vida de clases complejas" as E
 
-A --> B : "detallar flujos"
-B --> C : "definir colaboración"
-C --> D : "verificar enlaces"
-C --> E : "modelar clases\ncon estado interno"
+A --> B
+B --> C
+C --> D
+C --> E
 @enduml
 ```
 

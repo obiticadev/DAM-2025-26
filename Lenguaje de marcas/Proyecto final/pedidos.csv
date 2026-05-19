@@ -1,0 +1,31 @@
+id_pedido,fecha_pedido,id_cliente,nombre_cliente,id_producto,referencia_producto,descripcion_producto,cantidad,precio_unitario,descuento_pct,subtotal,estado,fecha_entrega_prevista,observaciones
+PV-2024-001,2024-09-03,2,Consultora ITSolves SL,LEN-IP3-001,Portátil Lenovo IdeaPad 3,5,599.00,5,2845.25,Entregado,2024-09-10,Entrega en oficina central
+PV-2024-002,2024-09-05,7,Distribuidora Alimentos Norte SA,SAM-M24-004,Monitor Samsung 24",10,189.00,10,1701.00,Entregado,2024-09-12,Instalación incluida
+PV-2024-003,2024-09-08,1,Colegio Público La Encina,LOG-TK-007,Teclado Logitech MK470,15,49.00,0,735.00,Entregado,2024-09-15,Pedido inicio de curso
+PV-2024-004,2024-09-10,8,Academia de Idiomas GlobalTalk,HP-15S-002,Portátil HP 15s,3,549.00,0,1647.00,Entregado,2024-09-17,
+PV-2024-005,2024-09-12,12,Editorial Páginas Vivas SL,LG-M27-005,Monitor LG 27" 4K,4,349.00,5,1326.20,Entregado,2024-09-19,Para departamento de diseño
+PV-2024-006,2024-09-15,16,Supermercados Frescos SA,INT-PC-038,Torre PC Sobremesa i5 16GB,6,749.00,10,4044.60,Entregado,2024-09-22,Renovación cajas registradoras
+PV-2024-007,2024-09-17,3,Clínica Dental Sonrisa Sana,HP-IMP-025,Impresora HP LaserJet M110w,2,159.00,0,318.00,Entregado,2024-09-24,
+PV-2024-008,2024-09-19,15,Ingeniería Técnica Valdés SL,NVI-GPU-016,Tarjeta gráfica RTX 3060,3,329.00,5,937.65,Entregado,2024-09-26,Para estaciones de renderizado
+PV-2024-009,2024-09-22,4,Arquitectura & Diseño Morales,LOG-RM-009,Ratón Logitech MX Master 3,5,99.00,0,495.00,Entregado,2024-09-29,
+PV-2024-010,2024-09-24,19,Constructora Vial Murillo SA,TP-RT-021,Router TP-Link AX3000,8,79.00,5,600.40,Entregado,2024-10-01,Para oficinas de obra
+PV-2024-011,2024-10-01,2,Consultora ITSolves SL,SAM-SSD-011,Disco SSD Samsung 870 EVO 1TB,10,89.00,10,801.00,Entregado,2024-10-08,Ampliación almacenamiento
+PV-2024-012,2024-10-03,6,Gestoría Fernández e Hijos SL,MIC-LIC-047,Licencia Windows 11 Pro OEM,5,139.00,0,695.00,Entregado,2024-10-10,
+PV-2024-013,2024-10-07,11,Centro Deportivo FitLife,LOG-WEB-029,Webcam Logitech C920,4,89.00,0,356.00,Entregado,2024-10-14,Para clases online
+PV-2024-014,2024-10-09,14,Hotel Boutique Casa Solera,APC-SAI-036,SAI APC BX700U-GR,6,89.00,5,507.30,Entregado,2024-10-16,CPD recepción
+PV-2024-015,2024-10-11,7,Distribuidora Alimentos Norte SA,TP-SW-022,Switch TP-Link 8 puertos,5,29.00,0,145.00,Entregado,2024-10-18,
+PV-2024-016,2024-10-14,18,Centro de Formación NextStep,ACE-AS5-003,Portátil Acer Aspire 5,8,479.00,5,3638.40,Entregado,2024-10-21,Aula de informática nueva
+PV-2024-017,2024-10-16,10,Estudio Jurídico Peña & Asociados,BEN-M24-006,Monitor BenQ 24" IPS,4,215.00,0,860.00,Entregado,2024-10-23,
+PV-2024-018,2024-10-18,5,Restaurante El Rincón de Mar,EPS-IMP-026,Impresora Epson EcoTank ET-2850,1,299.00,0,299.00,Entregado,2024-10-25,Para cocina
+PV-2024-019,2024-10-21,16,Supermercados Frescos SA,KIN-RAM-014,Memoria RAM Kingston 16GB,20,39.00,10,702.00,Entregado,2024-10-28,
+PV-2024-020,2024-10-23,2,Consultora ITSolves SL,JAB-AUR-030,Auriculares Jabra Evolve2 55,5,299.00,10,1345.50,Entregado,2024-10-30,Equipo de soporte remoto
+PV-2024-021,2024-11-04,1,Colegio Público La Encina,EPS-PRO-045,Proyector Epson EB-E01,2,379.00,0,758.00,Entregado,2024-11-11,Aulas nuevas
+PV-2024-022,2024-11-06,12,Editorial Páginas Vivas SL,AMD-CPU-019,Procesador AMD Ryzen 5 7600X,4,229.00,5,871.40,Entregado,2024-11-13,
+PV-2024-023,2024-11-08,19,Constructora Vial Murillo SA,ANK-HUB-031,Hub USB-C 7 en 1,12,39.00,0,468.00,Entregado,2024-11-15,
+PV-2024-024,2024-11-12,15,Ingeniería Técnica Valdés SL,INT-NUC-039,Mini PC Intel NUC i7,4,599.00,5,2276.20,En tránsito,2024-11-19,Servidores de oficina
+PV-2024-025,2024-11-14,7,Distribuidora Alimentos Norte SA,COR-RAM-015,Memoria RAM Corsair 32GB Kit,8,75.00,10,540.00,En tránsito,2024-11-21,
+PV-2024-026,2024-11-15,6,Gestoría Fernández e Hijos SL,MIC-365-048,Licencia Microsoft 365 Business,10,12.50,0,125.00,Confirmado,2024-11-22,Suscripción mensual 10 usuarios
+PV-2024-027,2024-11-18,8,Academia de Idiomas GlobalTalk,GEN-HDMI-042,Cable HDMI 2.0 2m,20,9.00,0,180.00,Confirmado,2024-11-25,Para todas las aulas
+PV-2024-028,2024-11-19,3,Clínica Dental Sonrisa Sana,ESE-ANT-049,Antivirus ESET NOD32 1 año,5,29.00,0,145.00,Confirmado,2024-11-26,
+PV-2024-029,2024-11-20,20,Óptica Visión Clara,LOG-TK-007,Teclado Logitech MK470,3,49.00,0,147.00,Confirmado,2024-11-27,
+PV-2024-030,2024-11-21,4,Arquitectura & Diseño Morales,SAM-TAB-040,Tablet Samsung Galaxy Tab S9,2,699.00,5,1328.10,Confirmado,2024-11-28,Para visitas de obra
