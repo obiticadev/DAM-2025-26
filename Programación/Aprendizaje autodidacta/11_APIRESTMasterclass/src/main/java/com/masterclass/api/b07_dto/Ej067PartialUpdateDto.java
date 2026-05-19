@@ -47,4 +47,45 @@ public final class Ej067PartialUpdateDto {
         var u = new Usuario("Ana", "a@b.com", true);
         System.out.println(aplicar(u, new PatchDto(Optional.of("Bea"), Optional.empty(), Optional.empty())));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si actual o patch son null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: parte de los valores actuales como base.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si patch.nombre() está presente, usa su valor; si no, conserva el actual.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: aplica la misma regla para email.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: aplica la misma regla para activo.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: usa Optional.orElse(valorActual) para resolver cada campo.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: NO trates Optional.empty() como "poner a null": significa "no tocar".
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: el record es inmutable: crea uno nuevo (no muta 'actual').
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: construye el nuevo Usuario con los 3 campos resueltos.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuélvelo.
+    }
+
 }

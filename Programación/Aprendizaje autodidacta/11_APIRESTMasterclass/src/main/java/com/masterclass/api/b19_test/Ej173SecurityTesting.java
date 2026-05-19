@@ -42,4 +42,45 @@ public final class Ej173SecurityTesting {
     public static void main(String[] args) {
         System.out.println(statusEndpointProtegido(true, Set.of("ROLE_ADMIN"), "ROLE_ADMIN"));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si rolesUsuario es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si rolRequerido es null o blank -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si !tokenPresente -> 401 (no autenticado, da igual el rol).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: con token, comprueba si rolesUsuario contiene rolRequerido.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: si NO contiene el rol -> 403 (autenticado pero sin permiso).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: si SÍ contiene el rol -> 200.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: 401 != 403: no los confundas (distinción de seguridad clave).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: no muta el Set de roles de entrada.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: no devuelvas 5xx para decisiones de autorización.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el código HTTP entero.
+    }
+
 }

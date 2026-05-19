@@ -44,6 +44,47 @@ public final class Ej170DataJpaTest {
         RepoMem170 repo = () -> Map.of("Ada", 30, "Bob", 18);
         System.out.println(findByEdadMayorQue(repo, 20));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si repo es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: obtén todas las entidades con repo.findAll().
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: filtra las entradas cuya edad sea estrictamente > edad.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: queda con la clave (nombre) de cada entrada que pasa el filtro.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: ordena los nombres ascendentemente (consulta JPA con OrderBy).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: recoge a List.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: no mutes el mapa interno del repositorio (aislamiento del test).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: si nadie supera el umbral -> devuelve lista vacía, no null.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: este filtro modela la query derivada que JPA generaría.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve la lista resultante.
+    }
+
 }
 
 /** Repositorio en memoria (doble de @DataJpaTest): nombre -> edad. */

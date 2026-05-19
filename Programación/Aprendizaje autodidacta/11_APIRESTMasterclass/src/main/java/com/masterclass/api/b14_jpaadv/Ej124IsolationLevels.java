@@ -44,4 +44,45 @@ public final class Ej124IsolationLevels {
     public static void main(String[] args) {
         System.out.println(previene(Nivel.REPEATABLE_READ));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: READ_UNCOMMITTED -> no previene nada (set vacío).
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: READ_COMMITTED -> previene DIRTY_READ.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: REPEATABLE_READ -> previene DIRTY_READ y NON_REPEATABLE_READ.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: SERIALIZABLE -> previene los TRES fenómenos.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: la relación es ACUMULATIVA (cada nivel previene lo del anterior + más).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: usa un switch sobre 'nivel'.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: devuelve un Set (EnumSet/Set.of) según el caso.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: READ_UNCOMMITTED permite leer datos no confirmados (dirty).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: SERIALIZABLE es el más estricto (y más lento).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el conjunto correspondiente.
+    }
+
 }

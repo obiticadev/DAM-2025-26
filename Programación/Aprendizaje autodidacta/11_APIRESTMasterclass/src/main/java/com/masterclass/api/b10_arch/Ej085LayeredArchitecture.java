@@ -67,4 +67,45 @@ public final class Ej085LayeredArchitecture {
     public static void main(String[] args) {
         System.out.println("capas listas");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: valida importe > 0; si no, IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: recupera la cuenta vía repo.findById(id).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si no existe, lanza NoSuchElementException.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: calcula el nuevo saldo (saldo + importe).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: crea una Cuenta NUEVA (record inmutable) con ese saldo.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: persiste con repo.save(...) y devuelve lo guardado.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: el Service NO conoce HTTP ni status codes (separación de capas).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: obtén todas las cuentas con repo.findAll().
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: suma sus saldos con un stream (mapToDouble + sum).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el total (0.0 si no hay cuentas).
+    }
+
 }

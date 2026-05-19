@@ -69,4 +69,45 @@ public final class Ej186RetryAndCircuitBreaker {
     public static void main(String[] args) {
         System.out.println(transicion("CLOSED", false, 5, 3));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si accion es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si maxIntentos < 1 -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si contador es null o contador.length != 1 -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: bucle desde intento 1 hasta maxIntentos.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: en cada vuelta incrementa contador[0] (intento realmente ejecutado).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: intenta accion.get(); si no lanza, devuelve su resultado de inmediato.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: si lanza, captura la excepcion y guardala como "ultimoFallo".
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: si aun quedan intentos, continua el bucle (aqui iria el backoff).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: si era el ultimo intento, sal del bucle sin reintentar mas.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: agotados los intentos, relanza el ultimo fallo como RuntimeException.
+    }
+
 }

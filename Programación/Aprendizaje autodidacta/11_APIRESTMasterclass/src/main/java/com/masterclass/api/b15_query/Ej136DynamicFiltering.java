@@ -42,6 +42,47 @@ public final class Ej136DynamicFiltering {
     public static void main(String[] args) {
         System.out.println("usa el test con EMF aislado");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: empieza con un JPQL base "select c from Coche136 c".
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si 'marca' != null, añade la condición "c.marca = :marca" a 'condiciones'.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si 'precioMax' != null, añade "c.precio <= :precioMax".
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: si hay condiciones, únelas con " and " y antepón " where ".
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: añade " order by c.id" al final.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: crea la query tipada con el JPQL resultante.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: setParameter SOLO de los parámetros que realmente se usaron.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: usa parámetros con nombre (NUNCA concatenes valores).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: getResultList().
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: si no hay filtros, devuelve todos (where ausente).
+    }
+
 }
 
 @Entity

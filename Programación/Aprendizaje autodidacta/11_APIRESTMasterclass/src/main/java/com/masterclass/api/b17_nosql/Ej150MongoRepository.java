@@ -25,6 +25,47 @@ public final class Ej150MongoRepository {
         System.out.println(repo.findById("p1"));
         System.out.println(repo.findByCliente("ana"));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si pedido es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si pedido.id() es null o vacío -> IllegalArgumentException
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: usa pedido.id() como clave del mapa.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: si la clave ya existe, save SOBRESCRIBE (upsert), no duplica.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: inserta/actualiza la entrada en 'almacen'.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: save devuelve la entidad persistida (la misma instancia aquí).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: no devuelvas null.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: documenta que el orden de inserción se conserva (LinkedHashMap).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: no muta otros documentos.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: retorna el pedido guardado.
+    }
+
 }
 
 /** Repositorio en memoria que imita el contrato de {@code MongoRepository}. */

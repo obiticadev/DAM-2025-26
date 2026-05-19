@@ -45,6 +45,47 @@ public final class Ej103EntityMapping {
     public static void main(String[] args) {
         System.out.println("usa el test con EMF aislado");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: inicia la transacción (em.getTransaction().begin()).
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: persiste la entidad con em.persist(p).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: haz commit (em.getTransaction().commit()).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: devuelve p.getId() (ya poblado tras persistir).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: si algo falla, deja propagar (el test verá el error).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: usa em.find(Producto103.class, id) (devuelve null si no existe).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: anota la clase con @jakarta.persistence.Entity.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: anota con @jakarta.persistence.Table(name = "PRODUCTO").
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: anota 'id' con @Id (clave primaria).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: anota 'nombre' con @Column(nullable = false, length = 80).
+    }
+
 }
 
 /**

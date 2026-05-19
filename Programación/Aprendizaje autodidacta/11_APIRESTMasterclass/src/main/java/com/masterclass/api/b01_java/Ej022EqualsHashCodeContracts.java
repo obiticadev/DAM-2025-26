@@ -68,4 +68,45 @@ public final class Ej022EqualsHashCodeContracts {
         System.out.println("equals=" + a.equals(b) + " mismoHash=" + (a.hashCode() == b.hashCode()));
         System.out.println(Objects.equals(a, b));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si o == this, devuelve true (reflexividad, atajo).
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si o es null, devuelve false.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si la clase de o no es Articulo, devuelve false.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: castea o a Articulo.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: compara ÚNICAMENTE el campo 'codigo' con Objects.equals.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: devuelve el resultado de esa comparación.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: el hashCode DEBE basarse en los mismos campos que equals (solo 'codigo').
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: usa Objects.hash(codigo) (o codigo.hashCode() controlando null).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: dos objetos equals() deben tener el MISMO hashCode (contrato).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve ese valor.
+    }
+
 }

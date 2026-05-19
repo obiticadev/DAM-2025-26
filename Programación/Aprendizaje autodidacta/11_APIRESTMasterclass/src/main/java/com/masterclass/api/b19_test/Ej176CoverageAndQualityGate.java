@@ -62,4 +62,45 @@ public final class Ej176CoverageAndQualityGate {
         double c = porcentajeCobertura(80, 100);
         System.out.println(c + " -> " + pasaQualityGate(c, 70.0));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si lineasTotales <= 0 -> IllegalArgumentException (no divides por 0).
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si lineasCubiertas < 0 -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si lineasCubiertas > lineasTotales -> IllegalArgumentException (incoherente).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: calcula la fracción cubiertas/totales en punto flotante (cast a double).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: multiplica por 100 para obtener porcentaje.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: redondea a 2 decimales (Math.round(x*100)/100.0).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: 0 cubiertas -> 0.0; todas cubiertas -> 100.0 (casos límite).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: el resultado siempre cae en [0,100].
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: función determinista y sin efectos secundarios.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el porcentaje.
+    }
+
 }

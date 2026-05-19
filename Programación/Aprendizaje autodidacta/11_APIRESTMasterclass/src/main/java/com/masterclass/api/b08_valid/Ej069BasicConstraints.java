@@ -66,4 +66,45 @@ public final class Ej069BasicConstraints {
     public static void main(String[] args) {
         System.out.println(camposInvalidos(new RegistroDto("", "malo", 10, "abc")));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: anota 'nombre' con @jakarta.validation.constraints.NotBlank.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: anota además 'nombre' con @Size(min=2, max=50).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: anota 'email' con @NotBlank.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: anota 'email' con @Email.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: anota 'edad' con @NotNull.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: anota 'edad' con @Min(18) (mayoría de edad).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: anota 'edad' con @Max(120) (límite razonable).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: anota 'telefono' con @Pattern(regexp = "\\d{9}") (9 dígitos).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: este método ya está implementado (infraestructura de validación).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: tu trabajo es que las ANOTACIONES de arriba hagan que este Set
+    }
+
 }

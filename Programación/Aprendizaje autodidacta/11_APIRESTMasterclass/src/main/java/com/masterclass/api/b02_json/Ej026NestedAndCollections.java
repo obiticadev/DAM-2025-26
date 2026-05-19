@@ -55,4 +55,45 @@ public final class Ej026NestedAndCollections {
     public static void main(String[] args) {
         System.out.println(toJson(new Pedido(1L, List.of(new Linea("cafe", 2)))));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: abre try alrededor de la serialización.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: usa MAPPER.writeValueAsString(p).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: el array "lineas" debe anidarse automáticamente (Jackson recorre el record).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: devuelve la cadena.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: captura JsonProcessingException y relánzala como RuntimeException.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: para colecciones genéricas necesitas un TypeReference (borrado de tipos).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: crea new TypeReference<List<Linea>>(){}.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: usa MAPPER.readValue(jsonArray, eseTypeReference).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: devuelve la lista resultante.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: captura JsonProcessingException y relánzala como RuntimeException.
+    }
+
 }

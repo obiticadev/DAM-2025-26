@@ -62,6 +62,47 @@ public final class Ej106DerivedQueryMethods {
     public static void main(String[] args) {
         System.out.println("usa el test con EMF aislado");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: JPQL "select a from Articulo106 a where a.categoria = :cat order by a.id".
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: usa createQuery con la clase tipada.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: setParameter("cat", categoria) (NUNCA concatenes).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: getResultList().
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: JPQL con "where a.precio > :min".
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: setParameter("min", min).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: getResultList().
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: JPQL "select count(a) from Articulo106 a where a.categoria = :cat".
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: getSingleResult() devuelve Long.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve ese long.
+    }
+
 }
 
 @jakarta.persistence.Entity

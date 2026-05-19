@@ -67,4 +67,45 @@ public final class Ej184AsyncEndpoints {
     public static void main(String[] args) {
         System.out.println(sumarEnParalelo(List.of(1, 2, 3), x -> x * x));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si entradas es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si tarea es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si alguna entrada es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: crea un CompletableFuture por entrada con supplyAsync(() -> tarea.apply(e)).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: recoge todos los futures en una lista.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: usa CompletableFuture.allOf(...) para esperar a que todos terminen.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: tras allOf, join() ya no bloquea de forma indefinida.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: mapea cada future a su resultado con join() y suma con reduce/sum.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: si entradas esta vacia, el resultado es 0 (identidad de la suma).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve la suma combinada.
+    }
+
 }

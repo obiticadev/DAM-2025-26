@@ -39,4 +39,45 @@ public final class Ej165UnitTestJUnit5 {
     public static void main(String[] args) {
         System.out.println(aplicarDescuento(100.0, 20.0));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si precioBase <= 0 -> IllegalArgumentException (un precio no negativo).
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si porcentaje < 0 -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si porcentaje > 100 -> IllegalArgumentException (no se regala dinero).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: calcula el factor de descuento: 1 - porcentaje/100.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: multiplica precioBase por el factor.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: redondea a 2 decimales (Math.round(x*100)/100.0).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: porcentaje 0 -> devuelve el precio base intacto (caso límite).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: porcentaje 100 -> devuelve 0.0 (caso límite).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: la función debe ser determinista (mismos inputs -> mismo output).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el resultado redondeado.
+    }
+
 }

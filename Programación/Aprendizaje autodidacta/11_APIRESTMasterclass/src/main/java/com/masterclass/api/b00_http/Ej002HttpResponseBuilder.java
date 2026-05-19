@@ -50,4 +50,45 @@ public final class Ej002HttpResponseBuilder {
     public static void main(String[] args) {
         System.out.println(build(200, Map.of("Content-Type", "application/json"), "{\"ok\":true}"));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: mapea 200 -> "OK" y 201 -> "Created".
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: mapea 204 -> "No Content".
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: mapea 400 -> "Bad Request" y 401 -> "Unauthorized".
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: mapea 404 -> "Not Found".
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: mapea 500 -> "Internal Server Error".
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: cualquier otro código -> "Unknown".
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: escribe la primera línea "HTTP/1.1 <status> <reasonPhrase(status)>".
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: añade una línea "Clave: Valor" por cada cabecera, en orden de iteración.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: añade SIEMPRE una línea en blanco tras las cabeceras (separador).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: si body no es null ni vacío, concaténalo después de la línea en blanco.
+    }
+
 }

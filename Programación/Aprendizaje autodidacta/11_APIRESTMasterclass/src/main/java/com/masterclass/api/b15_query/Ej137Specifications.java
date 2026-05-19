@@ -42,6 +42,47 @@ public final class Ej137Specifications {
     public static void main(String[] args) {
         System.out.println("usa el test con EMF aislado");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: obtén CriteriaBuilder con em.getCriteriaBuilder().
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: crea CriteriaQuery<Libro137> cq = cb.createQuery(Libro137.class).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: Root<Libro137> root = cq.from(Libro137.class).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: crea una List<Predicate> vacía.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: si generoOpt != null, añade cb.equal(root.get("genero"), generoOpt).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: si paginasMin != null, añade cb.ge(root.get("paginas"), paginasMin).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: cq.where(cb.and(predicados.toArray(new Predicate[0]))).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: cq.orderBy(cb.asc(root.get("id"))).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: em.createQuery(cq).getResultList().
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve la lista (predicados combinados con AND).
+    }
+
 }
 
 @Entity

@@ -62,4 +62,45 @@ public final class Ej071NestedValidation {
     public static void main(String[] args) {
         System.out.println(rutasInvalidas(new Cliente("Ana", new Direccion("", "abc"))));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: 'calle' con @NotBlank.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: 'cp' con @Pattern(regexp = "\\d{5}").
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: 'nombre' con @NotBlank.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: anota 'direccion' con @NotNull.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: anota 'direccion' con @jakarta.validation.Valid para validar EN CASCADA.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: sin @Valid las constraints internas de Direccion NO se evalúan.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: método infraestructura ya hecho.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: para que aparezca "direccion.calle" debe estar @Valid en el campo.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: para que aparezca "direccion" (null) debe estar @NotNull.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: el test comprobará rutas concretas: ajusta las anotaciones.
+    }
+
 }

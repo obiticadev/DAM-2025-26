@@ -43,6 +43,47 @@ public final class Ej174ParameterizedTests {
         List<Caso174> casos = List.of(new Caso174(2, 4), new Caso174(3, 9));
         System.out.println(casosFallidos(casos, x -> x * x));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si casos es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si funcion es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: recorre los casos con su índice (como hace @ParameterizedTest).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: para cada caso aplica funcion.applyAsInt(caso.entrada).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: compara el resultado con caso.esperado.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: si difieren, registra el índice del caso fallido.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: un caso no debe abortar los demás (cada caso es independiente).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: si todos pasan -> devuelve lista vacía (no null).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: no mutes la lista de casos de entrada.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve la lista de índices fallidos en orden ascendente.
+    }
+
 }
 
 /** Un caso parametrizado: entrada y resultado esperado. */

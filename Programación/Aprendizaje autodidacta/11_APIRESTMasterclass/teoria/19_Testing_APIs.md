@@ -99,3 +99,61 @@ sobre JSON con Jackson, `@DataJpaTest` con repositorio en memoria,
 integración e2e, Testcontainers/Postgres modelado, testing de
 endpoints protegidos, tests parametrizados, slices y perfil test, y
 cálculo de cobertura con quality gate como función pura.
+
+
+## Teoría Extendida y Ejemplos de Código
+
+### 1. Test Unitario Puro (Mockito)
+Velocidad extrema. No arranca Spring. Aísla la lógica del negocio.
+```java
+@ExtendWith(MockitoExtension.class)
+class UsuarioServiceTest {
+    @Mock private UsuarioRepository repo;
+    @InjectMocks private UsuarioService service;
+
+    @Test
+    void siUsuarioNoExiste_lanzaExcepcion() {
+        when(repo.findById(1L)).thenReturn(Optional.empty());
+        
+        assertThrows(RecursoNoEncontradoException.class, () -> {
+            service.obtener(1L);
+        });
+        
+        verify(repo).findById(1L); // Verifica que el repo se llamó
+    }
+}
+```
+
+### 2. Test de Capa Web (@WebMvcTest)
+Arranca solo el Controller para testear validaciones HTTP y Seguridad. Usa `MockMvc`.
+```java
+@WebMvcTest(UsuarioController.class)
+class UsuarioControllerTest {
+    @Autowired private MockMvc mockMvc;
+    @MockBean private UsuarioService service;
+
+    @Test
+    void postInvalido_devuelve400() throws Exception {
+        mockMvc.perform(post("/usuarios")
+               .contentType(MediaType.APPLICATION_JSON)
+               .content("{\"email\": \"invalido\" }")) // Falla Bean Validation
+               .andExpect(status().isBadRequest())
+               .andExpect(jsonPath("$.errores_detalle").exists());
+    }
+}
+```
+
+### 3. Test de Integración E2E (@SpringBootTest)
+Prueba todo el sistema integrado, desde la petición HTTP hasta la base de datos (con Testcontainers o H2).
+```java
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+class ApiTest {
+    @Autowired private TestRestTemplate restTemplate;
+    
+    @Test
+    void getUsuarioFunciona() {
+        ResponseEntity<UsuarioDto> response = restTemplate.getForEntity("/usuarios/1", UsuarioDto.class);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
+}
+```

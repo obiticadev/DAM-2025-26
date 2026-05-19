@@ -40,4 +40,45 @@ public class Ej050PutFullUpdate {
     public static void main(String[] args) {
         System.out.println(new Ej050PutFullUpdate().reemplazar(7, new ItemBody("nuevo")));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: anota la clase con @RestController.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: anota la clase con @RequestMapping("/api/items").
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: anota el método con @PutMapping("/{id}").
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: anota 'id' con @PathVariable.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: anota 'cuerpo' con @RequestBody.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: PUT reemplaza TODO el recurso (no parchea campos sueltos).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: valida que cuerpo.nombre() no sea null (PUT exige representación completa).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: construye un ItemDto con el id de la ruta y el nombre del cuerpo.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: PUT es idempotente: repetir la misma petición da el mismo resultado.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el ItemDto (200 implícito).
+    }
+
 }

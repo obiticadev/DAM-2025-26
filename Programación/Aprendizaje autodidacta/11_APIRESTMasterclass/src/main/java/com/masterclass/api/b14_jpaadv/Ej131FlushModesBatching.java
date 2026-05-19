@@ -38,6 +38,47 @@ public final class Ej131FlushModesBatching {
     public static void main(String[] args) {
         System.out.println("usa el test con EMF aislado");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: begin tx.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: bucle: persiste n entidades Item131.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: llama a em.flush() explícitamente (envía los INSERT a la BD ya).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: ejecuta un COUNT con SQL nativo
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: tras flush, el COUNT ya ve las n filas (aún dentro de la tx).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: guarda ese count.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: commit (confirma definitivamente).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: convierte el resultado a long (((Number)x).longValue()).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: flush != commit: flush sincroniza, commit confirma.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el count observado tras el flush.
+    }
+
 }
 
 @Entity

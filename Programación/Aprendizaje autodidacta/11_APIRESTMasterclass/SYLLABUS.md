@@ -76,7 +76,8 @@ Cada paquete de `src/` referencia su `.md` homónimo en `teoria/`.
 | XXII | Docker y despliegue | 189–194 | 6 |
 | XXIII | CI/CD y calidad | 195–198 | 4 |
 | XXIV | Boss Final (multi-parte) | 199–200 | 2 |
-| | **TOTAL** | | **200** |
+| XXV | Plantillas y PDF (Thymeleaf) | 201–206 | 6 |
+| | **TOTAL** | | **206** |
 
 ---
 
@@ -382,6 +383,16 @@ Cada paquete de `src/` referencia su `.md` homónimo en `teoria/`.
 | 199 | `b24_boss/Ej199_TaskTrackerCoreApi.java` | **API corporativa**: dominio + JPA + relaciones + validación + errores RFC7807 + paginación/filtrado |
 | 200 | `b24_boss/Ej200_TaskTrackerSecuredObservable.java` | **El Boss Final**: + JWT/roles + caché + Actuator + dockerizable, con la suite de tests más rigurosa del bootcamp (integra los 24 bloques) |
 
+### Bloque XXV · Plantillas Dinámicas y PDF — Thymeleaf (201–206)
+| # | Archivo | Concepto clave |
+|---|---|---|
+| 201 | `b25_thymeleaf/Ej201_ThymeleafStandalone.java` | Configuración motor Standalone aislado |
+| 202 | `b25_thymeleaf/Ej202_VariablesSimplesFactura.java` | Inyección simple, formateo numérico/fechas |
+| 203 | `b25_thymeleaf/Ej203_IteracionesCondicionales.java` | Bucles para líneas de albarán, condicionales |
+| 204 | `b25_thymeleaf/Ej204_FragmentosReutilizables.java` | `th:replace` para cabeceras fiscales |
+| 205 | `b25_thymeleaf/Ej205_Internacionalizacion.java` | I18n de facturas multi-idioma |
+| 206 | `b25_thymeleaf/Ej206_HtmlToPdfGenerator.java` | Transición HTML renderizado a binario PDF |
+
 ---
 
 ## 5. Progreso
@@ -408,6 +419,7 @@ Cada paquete de `src/` referencia su `.md` homónimo en `teoria/`.
 - [x] B19 · Testing (165–176) ✅ compila
 - [x] B20 · Observabilidad y docs (177–182) ✅ compila
 - [x] B21 · Rendimiento y resiliencia (183–188) ✅ compila
-- [ ] B22 · Docker y despliegue (189–194)
-- [ ] B23 · CI/CD y calidad (195–198)
-- [ ] B24 · Boss Final (199–200)
+- [x] B22 · Docker y despliegue (189–194) ✅ compila
+- [x] B23 · CI/CD y calidad (195–198) ✅ compila
+- [x] B24 · Boss Final (199–200) ✅ compila
+- [x] B25 · Plantillas y PDF Thymeleaf (201–206) ✅ compila

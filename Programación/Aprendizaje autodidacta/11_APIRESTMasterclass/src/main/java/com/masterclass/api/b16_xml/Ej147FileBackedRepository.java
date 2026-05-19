@@ -103,4 +103,45 @@ public final class Ej147FileBackedRepository {
         System.out.println(repo.findById(1L));
         System.out.println(repo.findAll());
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si fichero es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: guarda la ruta en el campo final.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si el fichero no existe, créalo vacío con Files.createFile.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: si existe el directorio padre inexistente, créalo con createDirectories.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: captura IOException de la inicialización como RuntimeException.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: no leas todo el fichero aquí: solo asegura que exista.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: usa StandardCharsets.UTF_8 como codificación canónica del repo.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: no asumas separador de SO: define ';' como delimitador fijo.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: el id es Long y el texto no debe contener ';' (precondición).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: deja el repositorio listo para save/findById/findAll.
+    }
+
 }

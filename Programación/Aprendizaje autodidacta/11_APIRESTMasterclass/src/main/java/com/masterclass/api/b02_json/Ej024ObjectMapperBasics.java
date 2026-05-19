@@ -54,4 +54,45 @@ public final class Ej024ObjectMapperBasics {
         String j = toJson(new Cliente(1L, "Ana"));
         System.out.println(j + " -> " + fromJson(j));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: abre un try alrededor de la serialización.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: usa MAPPER.writeValueAsString(c).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: devuelve la cadena resultante.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: captura JsonProcessingException.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: relánzala envuelta en una RuntimeException (no la silencies).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: abre un try alrededor de la deserialización.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: usa MAPPER.readValue(json, Cliente.class).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: devuelve el objeto poblado.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: captura JsonProcessingException.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: relánzala como RuntimeException con el mensaje original.
+    }
+
 }

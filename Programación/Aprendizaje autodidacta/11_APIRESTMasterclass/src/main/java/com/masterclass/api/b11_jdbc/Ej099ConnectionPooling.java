@@ -52,4 +52,45 @@ public final class Ej099ConnectionPooling {
     public static void main(String[] args) {
         System.out.println("usa el test con H2 en memoria");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: valida maxPool > 0.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: crea un HikariConfig.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: config.setJdbcUrl(url).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: config.setMaximumPoolSize(maxPool).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: config.setUsername("sa") y setPassword("") para H2.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: crea y devuelve new HikariDataSource(config).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: bucle n veces.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: en cada vuelta, try-with-resources ds.getConnection().
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: comprueba isValid(1); si alguna falla, devuelve false.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: cerrar la conexión la DEVUELVE al pool (no la destruye): devuelve true.
+    }
+
 }

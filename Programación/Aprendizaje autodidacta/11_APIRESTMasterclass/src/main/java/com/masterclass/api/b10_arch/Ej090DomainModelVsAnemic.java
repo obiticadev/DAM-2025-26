@@ -68,4 +68,45 @@ public final class Ej090DomainModelVsAnemic {
         c.pagar();
         System.out.println(c.unidades() + " pagado=" + c.pagado());
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: el carrito nace con 0 unidades y sin pagar.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si n <= 0 -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si ya está pagado -> IllegalStateException (invariante: no mutar tras pago).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: incrementa 'unidades' en n.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: si unidades == 0 -> IllegalStateException ("carrito vacío").
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: si ya estaba pagado -> IllegalStateException.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: marca pagado = true (transición de estado controlada).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: devuelve el número de unidades.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: devuelve el flag 'pagado'.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: NO expongas setters: el estado solo cambia por anadir()/pagar().
+    }
+
 }

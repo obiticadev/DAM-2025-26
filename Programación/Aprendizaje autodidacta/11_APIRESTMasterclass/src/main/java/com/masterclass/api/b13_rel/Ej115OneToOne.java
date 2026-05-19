@@ -31,6 +31,47 @@ public final class Ej115OneToOne {
     public static void main(String[] args) {
         System.out.println("usa el test con EMF aislado");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: begin tx.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: persist(u) — con cascade debe persistir también el perfil.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: commit.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: em.clear() para leer fresco desde BD.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: devuelve em.find(Usuario115.class, u.getId()).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: anota 'perfil' con @OneToOne.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: añade cascade = CascadeType.ALL (al guardar el usuario, guarda el perfil).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: usa @JoinColumn(name = "perfil_id") para la FK.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: asigna nombre y perfil.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: la relación es 1–1: un usuario tiene exactamente un perfil.
+    }
+
 }
 
 @Entity

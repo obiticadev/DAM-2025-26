@@ -57,4 +57,45 @@ public final class Ej100JdbcTemplate {
     public static void main(String[] args) {
         System.out.println("usa el test con H2 en memoria");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: crea el JdbcTemplate a partir del DataSource (new JdbcTemplate(ds)).
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: usa jdbc.update("INSERT INTO TAREA(id,titulo) VALUES (?,?)", id, titulo).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: NO abras Connection ni PreparedStatement a mano (de eso se encarga).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: devuelve el nº de filas que devuelve update().
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: usa jdbc.queryForObject("SELECT COUNT(*) FROM TAREA", Integer.class).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: maneja el posible null (no debería, COUNT siempre devuelve fila).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: devuelve el entero.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: usa jdbc.query(...) o queryForObject con manejo de "no rows".
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: si no hay fila, devuelve null (captura EmptyResultDataAccessException).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: si hay, devuelve el título.
+    }
+
 }

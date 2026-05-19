@@ -63,4 +63,45 @@ public class Ej053CrudInMemory {
         var c = new Ej053CrudInMemory();
         System.out.println(c.crear(new Tarea(null, "x")));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: anota la clase con @RestController y @RequestMapping("/api/tareas").
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: anota con @GetMapping; devuelve la colección de db.values() como List.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: devuelve una nueva List a partir de db.values().
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: anota con @GetMapping("/{id}") y 'id' con @PathVariable.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: busca en db; si está -> ResponseEntity.ok(tarea); si no -> notFound().
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: anota con @PostMapping y 'nueva' con @RequestBody.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: genera id con seq.incrementAndGet(), crea la Tarea y guárdala en db.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: devuelve 201 (ResponseEntity.status(CREATED).body(creada)).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: anota con @DeleteMapping("/{id}") y 'id' con @PathVariable.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: db.remove(id); si devolvió algo -> 204 noContent; si null -> 404 notFound.
+    }
+
 }

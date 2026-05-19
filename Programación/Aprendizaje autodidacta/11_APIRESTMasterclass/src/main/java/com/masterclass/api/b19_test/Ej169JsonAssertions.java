@@ -64,4 +64,45 @@ public final class Ej169JsonAssertions {
     public static void main(String[] args) {
         System.out.println(jsonIguales("{\"a\":1,\"b\":2}", "{\"b\":2,\"a\":1}"));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si jsonEsperado o jsonReal son null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: crea un ObjectMapper (Jackson ya está en el pom).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: parsea ambas cadenas a JsonNode (readTree).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: si el parseo falla (JsonProcessingException) -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: usa JsonNode.equals: compara estructura y valores, no texto.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: el orden de claves de un objeto NO debe afectar el resultado.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: el orden de elementos de un array SÍ importa (semántica de lista).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: tipos distintos (número vs string) -> no iguales.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: no compares por String.equals de las cadenas crudas.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el booleano de equivalencia.
+    }
+
 }

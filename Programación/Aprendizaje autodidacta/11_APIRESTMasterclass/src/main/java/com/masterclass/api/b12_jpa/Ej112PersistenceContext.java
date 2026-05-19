@@ -45,6 +45,47 @@ public final class Ej112PersistenceContext {
     public static void main(String[] args) {
         System.out.println("usa el test con EMF aislado");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: begin tx.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: recupera la entidad con em.find (queda MANAGED en el contexto).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: cambia su nombre con el setter (NO llames persist ni merge).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: commit -> Hibernate detecta el cambio (dirty checking) y hace UPDATE.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: esto solo funciona con entidades MANAGED dentro de la transacción.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: begin tx, find la entidad.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: em.detach(entidad) -> pasa a estado DETACHED.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: cambia su nombre tras el detach.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: commit -> el cambio NO se persiste (ya no está gestionada).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: para persistir un detached habría que em.merge(entidad) (no lo hagas aquí).
+    }
+
 }
 
 @jakarta.persistence.Entity

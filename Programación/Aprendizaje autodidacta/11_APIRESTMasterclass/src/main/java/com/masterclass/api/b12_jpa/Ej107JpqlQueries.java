@@ -60,6 +60,47 @@ public final class Ej107JpqlQueries {
     public static void main(String[] args) {
         System.out.println("usa el test con EMF aislado");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: JPQL que SELECCIONA un campo: "select e.nombre from Empleado107 e
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: el tipo de resultado es String.class (proyección de columna).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: setParameter("d", dep).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: getResultList().
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: JPQL de agregación "select avg(e.salario) from Empleado107 e where e.departamento=:d".
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: getSingleResult() devuelve Double (o null si no hay filas).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: si es null, devuelve 0.0 (caso límite: departamento vacío).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: si no, devuelve el valor.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: JPQL "... where e.nombre like :patron"; patrón = "%" + fragmento + "%".
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: setParameter y getResultList.
+    }
+
 }
 
 @jakarta.persistence.Entity

@@ -69,6 +69,47 @@ public final class Ej163RefreshTokens {
     public static void main(String[] args) {
         System.out.println("refresh token rotation playground");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si almacen es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si refreshToken es null o blank -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: busca la info en el almacén por el token.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: si no existe -> Optional.empty() (token desconocido o ya rotado).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: si info.revoked == true -> Optional.empty().
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: si info.expiraMillis <= ahoraMillis -> Optional.empty() (caducado).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: NO loguees el token completo.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: documenta que detectar reuso de un token rotado = posible robo.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: envuelve la info válida en Optional.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el Optional.
+    }
+
 }
 
 /**

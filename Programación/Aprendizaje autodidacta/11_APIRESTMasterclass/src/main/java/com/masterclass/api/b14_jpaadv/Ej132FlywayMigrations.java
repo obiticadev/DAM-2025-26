@@ -48,4 +48,45 @@ public final class Ej132FlywayMigrations {
     public static void main(String[] args) {
         System.out.println(siguienteVersion(List.of("V1__init.sql", "V3__x.sql", "V2__y.sql")));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si fichero es null/blank -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: debe empezar por 'V' (mayúscula).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: debe contener el separador "__".
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: la versión es lo que va entre 'V' y "__".
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: parsea ese fragmento a int (try/catch -> IllegalArgumentException).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: devuelve la versión.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: si la lista es null o vacía -> devuelve 1 (primera migración).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: mapea cada fichero a su versión con versionDe (stream).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: obtén el máximo (max()).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve max + 1 (la siguiente migración a aplicar).
+    }
+
 }

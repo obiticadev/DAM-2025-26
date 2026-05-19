@@ -49,4 +49,45 @@ public final class Ej007UrlAndQueryParser {
         System.out.println(pathOnly(u));
         System.out.println(queryParams(u));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si url es null, devuelve "" (defensa de entrada).
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: localiza el índice del primer '?'.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si no hay '?', devuelve la url tal cual (no tiene query).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: si hay '?', devuelve la subcadena anterior a esa posición.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: si url es null o no contiene '?', devuelve el mapa vacío.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: extrae la subcadena posterior al primer '?'.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: separa esa subcadena por '&' en pares.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: para cada par, divide por el PRIMER '=' (el valor puede contener '=').
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: si el par no tiene '=', guarda la clave con valor "".
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: inserta en 'result' respetando el orden de aparición (LinkedHashMap ya lo hace).
+    }
+
 }

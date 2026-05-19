@@ -65,6 +65,47 @@ public final class Ej156InMemoryUsers {
                 "ana", new Usuario156("ana", "{bcrypt}xxx", Set.of("ROLE_ADMIN"), true));
         System.out.println(buscar(db, "ANA"));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si almacen es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si username es null o blank -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: la búsqueda de username debe ser case-insensitive (normaliza).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: recupera el usuario del mapa por la clave normalizada.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: si no existe -> Optional.empty().
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: si existe pero enabled == false -> Optional.empty().
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: nunca lances excepción por usuario no encontrado (evita user enumeration).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: no devuelvas la contraseña en logs.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: envuelve el resultado en Optional.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el Optional.
+    }
+
 }
 
 /**

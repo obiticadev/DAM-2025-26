@@ -63,4 +63,45 @@ public final class Ej032QualifierAndPrimary {
         System.out.println(resolver("sms").enviar("hi"));
         System.out.println(primario().enviar("hi"));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si qualifier es null, lanza IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: normaliza el qualifier (trim + minúsculas) para comparar.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: usa un switch sobre el valor normalizado.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: caso "email" -> new EmailNotificador().
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: caso "sms" -> new SmsNotificador().
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: default -> IllegalArgumentException con mensaje indicando el valor inválido.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: @Primary significa "el elegido cuando no se especifica qualifier".
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: aquí el primario es EmailNotificador.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: reutiliza resolver("email") para no duplicar la construcción.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve esa instancia.
+    }
+
 }

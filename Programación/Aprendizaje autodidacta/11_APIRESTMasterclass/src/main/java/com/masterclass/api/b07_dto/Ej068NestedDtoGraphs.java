@@ -49,4 +49,45 @@ public final class Ej068NestedDtoGraphs {
         var e = new ClienteEntity(1L, "Ana", new DireccionEntity("C/ Mayor", "Madrid"), List.of("600"));
         System.out.println(toDto(e));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si e es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: mapea la dirección anidada por separado (sub-mapper mental).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si e.direccion() es null, el DTO de dirección debe ser null (no NPE).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: si no es null, crea DireccionDto con calle y ciudad.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: copia id y nombre del cliente.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: calcula numTelefonos: tamaño de la lista (0 si la lista es null).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: NO expongas la List de teléfonos: solo su conteo (decisión de contrato).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: ensambla el ClienteDto con la DireccionDto anidada.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: respeta la inmutabilidad (records nuevos, sin mutar la entidad).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el ClienteDto.
+    }
+
 }

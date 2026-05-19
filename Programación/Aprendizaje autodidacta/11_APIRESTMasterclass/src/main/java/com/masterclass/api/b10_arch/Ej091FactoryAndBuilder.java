@@ -59,4 +59,45 @@ public final class Ej091FactoryAndBuilder {
     public static void main(String[] args) {
         System.out.println(crearAdmin("admin@x.com"));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: asigna 'e' y devuelve this (API fluida).
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: asigna 'r' y devuelve this.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: asigna 'a' y devuelve this.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: valida que email no sea null/blank (invariante de construcción).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: construye y devuelve el Usuario con los campos acumulados.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: si no se tocó rol/activo, deben usarse los valores por defecto.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: usa el UsuarioBuilder (no construyas el record a mano).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: fija rol "ADMIN" y activo true.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: la Factory encapsula la "receta" de un tipo concreto de usuario.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el Usuario construido.
+    }
+
 }

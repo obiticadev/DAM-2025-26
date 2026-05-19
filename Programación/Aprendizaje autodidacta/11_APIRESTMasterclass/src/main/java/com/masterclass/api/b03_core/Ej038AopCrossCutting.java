@@ -48,4 +48,45 @@ public class Ej038AopCrossCutting {
         aop.alrededor(() -> "b");
         System.out.println(aop.invocaciones());
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: valida que 'accion' no sea null.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: el "advice before" se ejecuta ANTES de la lógica de negocio.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: incrementa el contador 'invocaciones' como parte del advice before.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: ejecuta la lógica real con accion.get() y guarda el resultado.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: NO modifiques el resultado (un around transparente lo devuelve igual).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: (conceptual) aquí iría un "advice after" si lo hubiera.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: devuelve el resultado obtenido.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: el contador debe reflejar el nº de veces invocado, no de éxitos.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: ten presente que si 'accion' lanza, el contador ya se incrementó (before).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: mantén el método genérico (<T>) para envolver cualquier tipo de retorno.
+    }
+
 }

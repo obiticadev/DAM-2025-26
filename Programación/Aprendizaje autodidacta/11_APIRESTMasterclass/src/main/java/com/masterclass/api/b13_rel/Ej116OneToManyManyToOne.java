@@ -32,6 +32,47 @@ public final class Ej116OneToManyManyToOne {
     public static void main(String[] args) {
         System.out.println("usa el test con EMF aislado");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: begin tx, persist(p), commit (cascade persiste las líneas).
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: em.clear().
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: recarga el pedido por id.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: devuelve el tamaño de su lista de líneas.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: anota 'lineas' con @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: añade 'l' a la lista.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: sincroniza el lado inverso: l.setPedido(this).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: anota 'pedido' con @ManyToOne (este es el lado DUEÑO de la FK).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: añade @JoinColumn(name = "pedido_id").
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: asigna el producto.
+    }
+
 }
 
 @Entity

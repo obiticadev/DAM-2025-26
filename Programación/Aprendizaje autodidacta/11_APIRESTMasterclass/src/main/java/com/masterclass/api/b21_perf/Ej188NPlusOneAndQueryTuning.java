@@ -64,4 +64,45 @@ public final class Ej188NPlusOneAndQueryTuning {
         System.out.println("naive=" + consultasNaive(ids));
         System.out.println("opt=" + consultasOptimizadas(ids, 2));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si ids es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si algun id es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: contabiliza 1 consulta inicial: la que trae la lista de padres.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: por cada id de la lista se dispara 1 consulta adicional (lazy).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: N = ids.size() (numero de padres).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: total = 1 + N (de ahi el nombre "N+1").
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: si la lista esta vacia, solo hay 1 consulta (la inicial).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: no agrupes ni cachees aqui: este metodo modela el caso MALO.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: el coste crece linealmente con el numero de padres.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el total de consultas del acceso naive.
+    }
+
 }

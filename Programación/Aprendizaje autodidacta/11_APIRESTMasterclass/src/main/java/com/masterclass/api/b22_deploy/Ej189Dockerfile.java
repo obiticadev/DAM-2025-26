@@ -72,4 +72,45 @@ public final class Ej189Dockerfile {
         df.forEach(System.out::println);
         System.out.println("seguro=" + esSeguro(df));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: valida que imagenBuilder, imagenRuntime y nombreJar no sean null ni blank -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: valida que el puerto esté en (0, 65536) -> IllegalArgumentException (rango TCP válido).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: abre el stage builder: "FROM <imagenBuilder> AS build" (alias 'build' para referenciarlo luego).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: en el builder, fija WORKDIR /app, copia el código y ejecuta el empaquetado (mvn -q -DskipTests package).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: abre el stage runtime: "FROM <imagenRuntime>" (imagen mínima, solo JRE: sin compilador).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: crea un usuario no-root y cámbiate a él (RUN adduser ... + USER appuser) por principio de menor privilegio.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: fija WORKDIR /app y copia SOLO el jar desde el stage build: "COPY --from=build /app/target/<jar> app.jar".
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: declara EXPOSE <puerto> (documenta el puerto; no abre nada por sí solo).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: define ENTRYPOINT en forma exec (JSON array) para que la JVM reciba señales: ["java","-jar","app.jar"].
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve la lista de líneas en orden; el stage final NO debe contener "mvn" ni el código fuente.
+    }
+
 }

@@ -39,4 +39,45 @@ public final class Ej078ProblemDetail {
     public static void main(String[] args) {
         System.out.println(build(404, "Usuario 7 no existe", "/api/users/7"));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: valida que status >= 400 (un ProblemDetail describe un error).
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si no, lanza IllegalArgumentException.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: crea el ProblemDetail con ProblemDetail.forStatus(status).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: fija el 'detail' con setDetail(detail).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: deriva el 'title' a partir de HttpStatus.valueOf(status).getReasonPhrase().
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: fija el title con setTitle(...).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: fija la 'instance' con setInstance(URI.create(instance)) si no es null.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: añade una propiedad extra "timestamp" con setProperty (Instant.now()).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: el 'type' por defecto es about:blank: déjalo así.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el ProblemDetail.
+    }
+
 }

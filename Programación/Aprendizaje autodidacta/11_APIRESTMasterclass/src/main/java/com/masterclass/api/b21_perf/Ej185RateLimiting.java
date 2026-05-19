@@ -46,4 +46,45 @@ public final class Ej185RateLimiting {
         long[] est = {2, 0};
         System.out.println(permitido(est, 5, 1000, 0));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si estado es null o estado.length != 2 -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si capacidad <= 0 o refillMs <= 0 -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si ahora < estado[1] (reloj hacia atras) -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: calcula transcurrido = ahora - estado[1] (ms desde ultima recarga).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: tokensARecargar = transcurrido / refillMs (division entera).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: si tokensARecargar > 0, suma esos tokens limitando a 'capacidad' (cap).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: avanza estado[1] solo por los ms consumidos: + tokensARecargar*refillMs.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: si tokens disponibles >= 1, consume uno (resta 1) y la peticion se permite.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: si no hay tokens, NO restes nada y rechaza la peticion.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: actualiza estado[0] y devuelve true (permitida) o false (rechazada).
+    }
+
 }

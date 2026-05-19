@@ -34,4 +34,45 @@ public class Ej049ResponseEntity {
     public static void main(String[] args) {
         System.out.println(new Ej049ResponseEntity().teapot());
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: anota la clase con @RestController.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: anota la clase con @RequestMapping("/api").
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: anota el método con @GetMapping("/teapot").
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: parte de ResponseEntity.status(418) (I'm a teapot).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: añade la cabecera con .header("X-Powered-By", "masterclass").
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: el body debe ser exactamente "no coffee".
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: usa .body("no coffee") para fijar el cuerpo.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: NO uses ResponseEntity.ok() (eso forzaría 200).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: el status 418 debe llegar literal al cliente.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve la ResponseEntity construida.
+    }
+
 }

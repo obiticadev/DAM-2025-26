@@ -42,4 +42,45 @@ public final class Ej098BatchOperations {
     public static void main(String[] args) {
         System.out.println("usa el test con H2 en memoria");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si mensajes es null/vacío, devuelve 0 (nada que insertar).
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: prepara "INSERT INTO LOG(id,msg) VALUES (?,?)".
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: recorre la lista con índice.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: para cada elemento, setInt(1, indice) y setString(2, msg).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: ps.addBatch() acumula la operación (NO ejecuta aún).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: tras el bucle, ps.executeBatch() envía TODO de una vez.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: executeBatch devuelve un int[] con filas por sentencia.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: suma ese array para obtener el total de filas.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: usa try-with-resources para el PreparedStatement.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el total insertado.
+    }
+
 }

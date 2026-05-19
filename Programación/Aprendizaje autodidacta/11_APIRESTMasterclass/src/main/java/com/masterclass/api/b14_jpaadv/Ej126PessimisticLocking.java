@@ -37,6 +37,47 @@ public final class Ej126PessimisticLocking {
     public static void main(String[] args) {
         System.out.println("usa el test con EMF aislado");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: begin tx.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: usa em.find(ArtStock126.class, id, LockModeType.PESSIMISTIC_WRITE)
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si la entidad es null -> IllegalStateException.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: comprueba que stock >= cantidad; si no -> IllegalStateException.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: resta 'cantidad' al stock.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: commit (libera el lock).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: el lock pesimista evita que dos reservas concurrentes sobrevendan.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: devuelve el stock resultante.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: asigna id y stock.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: asigna el nuevo stock.
+    }
+
 }
 
 @Entity

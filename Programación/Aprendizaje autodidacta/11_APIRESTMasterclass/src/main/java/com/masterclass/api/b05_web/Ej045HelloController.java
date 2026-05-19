@@ -32,4 +32,45 @@ public class Ej045HelloController {
     public static void main(String[] args) {
         System.out.println(new Ej045HelloController().hello());
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: anota la clase con @org.springframework.web.bind.annotation.RestController.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: anota la clase con @RequestMapping("/api") para prefijar la ruta.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: anota el método con @GetMapping("/hello").
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: asegúrate de que la firma siga devolviendo String (cuerpo de la respuesta).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: por defecto un @RestController serializa el return como cuerpo.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: NO uses System.out: el valor RETORNADO es la respuesta HTTP.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: el cuerpo esperado por el test es exactamente "hola" (sin comillas extra).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: el Content-Type por defecto será text/plain para un String: es correcto aquí.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: no añadas saltos de línea ni espacios alrededor.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve "hola".
+    }
+
 }

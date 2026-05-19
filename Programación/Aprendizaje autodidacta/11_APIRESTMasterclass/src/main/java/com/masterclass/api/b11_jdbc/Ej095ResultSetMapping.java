@@ -47,4 +47,45 @@ public final class Ej095ResultSetMapping {
     public static void main(String[] args) {
         System.out.println("usa el test con H2 en memoria");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: SQL "SELECT id,nombre,precio FROM PRODUCTO ORDER BY id".
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: try-with-resources para PreparedStatement.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: try-with-resources para el ResultSet (ps.executeQuery()).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: itera con while (rs.next()).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: lee rs.getInt("id").
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: lee rs.getString("nombre").
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: lee rs.getDouble("precio").
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: construye un Producto con esos 3 valores.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: añádelo a 'out'.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: tras el bucle, devuelve 'out' (orden por id garantizado por el ORDER BY).
+    }
+
 }

@@ -52,4 +52,45 @@ public final class Ej065MapStructIntro {
     public static void main(String[] args) {
         System.out.println(mapper().apply(new Origen("x", 5)));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: declara una lambda Function<Origen,Destino>.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: en ella, valida que el origen no sea null.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: mapea campo 'a' directamente (mismo nombre/tipo).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: mapea 'b' a 'bDoble' aplicando *2 (transformación).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: construye y devuelve el Destino dentro de la lambda.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: devuelve la propia función (declarativa, reutilizable).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: parte de mapper() (no reescribas el mapeo base).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: usa andThen para post-procesar el Destino.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: en el post, crea un Destino con a.toUpperCase() y el mismo bDoble.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve la función compuesta.
+    }
+
 }

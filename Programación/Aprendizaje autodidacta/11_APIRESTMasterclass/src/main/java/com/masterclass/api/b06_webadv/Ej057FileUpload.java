@@ -35,4 +35,45 @@ public class Ej057FileUpload {
     public static void main(String[] args) {
         System.out.println("Endpoint de subida listo");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: anota la clase con @RestController y @RequestMapping("/api").
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: anota el método con @PostMapping("/upload").
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: anota 'file' con @RequestParam("file").
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: si file es null o file.isEmpty(), devuelve "vacio" (caso límite).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: obtén el nombre original con file.getOriginalFilename().
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: si el nombre es null, usa "desconocido".
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: obtén el tamaño con file.getSize().
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: (conceptual) aquí persistirías el contenido (no en este test).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: construye "nombre:tamaño".
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve esa cadena.
+    }
+
 }

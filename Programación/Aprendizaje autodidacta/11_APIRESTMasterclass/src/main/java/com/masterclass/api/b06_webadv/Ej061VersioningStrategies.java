@@ -41,4 +41,45 @@ public final class Ej061VersioningStrategies {
         System.out.println(resolveVersion("/api/v2/users", null));
         System.out.println(resolveVersion("/api/users", "3"));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si headerVersion no es null/blank, tiene prioridad.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: parsea headerVersion a int (try/catch -> IllegalArgumentException).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si la versión del header es < 1 -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: si hay header válido, devuélvelo (ignora la ruta).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: si no hay header, intenta extraer "/v{n}/" de la ruta.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: localiza el segmento que empiece por 'v' seguido de dígitos.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: si lo encuentras, parsea el número tras la 'v'.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: valida que sea >= 1 (si no, IllegalArgumentException).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: si la ruta no tiene versión, usa la versión por defecto 1.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve la versión resuelta.
+    }
+
 }

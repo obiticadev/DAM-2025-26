@@ -42,6 +42,47 @@ public final class Ej167ServiceUnitTest {
         SaldoRepo167 repo = c -> "A".equals(c) ? 100.0 : 0.0;
         System.out.println(transferir(repo, "A", "B", 30.0));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si saldos es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si origen o destino son null/blank -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si origen.equals(destino) -> IllegalArgumentException (no a sí mismo).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: si importe <= 0 -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: lee saldoOrigen = saldos.saldoDe(origen).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: si saldoOrigen < importe -> IllegalStateException (fondos insuficientes).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: calcula nuevoSaldoOrigen = saldoOrigen - importe.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: la regla de negocio no escribe BD aquí: el repo es un doble.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: no debe mutar el repo de entrada (lógica pura verificable).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve nuevoSaldoOrigen.
+    }
+
 }
 
 /** Colaborador del servicio: repositorio de saldos (doble de prueba). */

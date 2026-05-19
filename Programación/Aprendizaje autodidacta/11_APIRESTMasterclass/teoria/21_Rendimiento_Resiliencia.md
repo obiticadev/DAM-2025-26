@@ -70,3 +70,50 @@ flowchart LR
 Cache get-or-compute y evict, composicion de `CompletableFuture`, algoritmo
 token-bucket, maquina de estados de circuit breaker con reintentos, timeouts
 deterministas y bulkhead con semaforo, y diagnostico/solucion del N+1.
+
+
+## Teoría Extendida y Ejemplos de Código
+
+### 1. Caché Absoluta (@Cacheable)
+Guarda en memoria RAM (o en Redis) resultados pesados para no martillear la base de datos.
+```java
+@Cacheable(value = "tarifas", key = "#codigoPais")
+public TarifaDto calcularTarifaCompleja(String codigoPais) {
+    // Si esta línea se ejecuta, es un Cache Miss. Tarda 3 segundos.
+    // La próxima vez, ni entrará a este método.
+    return calculoPesado(codigoPais); 
+}
+
+@CacheEvict(value = "tarifas", allEntries = true)
+public void actualizarTarifas() {
+    // Limpia la caché cuando los precios base cambian
+}
+```
+
+### 2. Rate Limiting (Protección contra DDoS/Scraping)
+Limita la cantidad de peticiones que un cliente/IP puede hacer. Usa librerías como Bucket4j.
+```java
+// Ejemplo conceptual con Token Bucket
+Bucket bucket = Bucket.builder()
+        .addLimit(Bandwidth.classic(10, Refill.intervally(10, Duration.ofMinutes(1))))
+        .build();
+
+if (bucket.tryConsume(1)) {
+    return procesarPeticion();
+} else {
+    return ResponseEntity.status(429).body("Too Many Requests");
+}
+```
+
+### 3. Tareas Asíncronas Fire-And-Forget
+Si envías un email tras un registro, no hagas que el usuario espere 2 segundos viendo un "Cargando...".
+```java
+@Service
+public class EmailService {
+    
+    @Async // Se ejecuta en un Thread Pool separado (Requiere @EnableAsync)
+    public void enviarEmailBienvenida(String email) {
+        servidorSmtp.send(...);
+    }
+}
+```

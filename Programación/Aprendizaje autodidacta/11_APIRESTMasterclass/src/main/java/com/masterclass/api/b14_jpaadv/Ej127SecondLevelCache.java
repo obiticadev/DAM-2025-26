@@ -70,4 +70,45 @@ public class Ej127SecondLevelCache<K, V> {
         c.get(1);
         System.out.println(c.hitRatio());
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si 'cache' contiene 'key' -> es un HIT.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: incrementa 'hits' y devuelve el valor cacheado.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si NO está -> es un MISS.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: incrementa 'misses'.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: carga con loaderBD.apply(key).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: guarda el valor en 'cache' para futuras lecturas.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: devuelve el valor cargado.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: elimina 'key' de la caché.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: no toques los contadores aquí (invalidar no es hit ni miss).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: total = hits + misses; si total==0 -> 0.0; si no, hits/total.
+    }
+
 }

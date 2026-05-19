@@ -51,4 +51,45 @@ public final class Ej064ManualMapper {
     public static void main(String[] args) {
         System.out.println(toDto(new ProductoEntity(1L, "x", 100)));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si e es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: copia id y nombre tal cual.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: calcula precioConIva = precioSinIva * 1.21.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: construye y devuelve el ProductoDto.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: si 'entidades' es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: abre un stream sobre la lista.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: aplica .map usando la referencia a método toDto.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: NO dupliques la lógica de conversión (reutiliza toDto).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: recoge a List preservando el orden.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve la lista resultante.
+    }
+
 }

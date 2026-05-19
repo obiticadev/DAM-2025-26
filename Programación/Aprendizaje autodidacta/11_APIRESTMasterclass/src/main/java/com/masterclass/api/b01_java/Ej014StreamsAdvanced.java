@@ -57,4 +57,45 @@ public final class Ej014StreamsAdvanced {
         System.out.println(aplanar(List.of(List.of(1, 2), List.of(3))));
         System.out.println(unirConComas(List.of("a", "b", "c")));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: abre stream sobre 'listas' (cada elemento es una sublista).
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: usa flatMap(List::stream) para fundir las sublistas en un solo flujo.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: recoge a List respetando el orden de aparición y devuélvela.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: abre stream sobre 'palabras'.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: define la clave de agrupación: p -> p.charAt(0).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: usa Collectors.groupingBy con esa función clave.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: el value por defecto de groupingBy ya es una List que preserva orden: devuélvelo.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: abre stream sobre 'nombres'.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: usa Collectors.joining(", ") (el caso vacío produce "" naturalmente).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve la cadena resultante.
+    }
+
 }

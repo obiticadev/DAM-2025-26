@@ -41,4 +41,45 @@ public final class Ej006ContentTypeNegotiation {
         System.out.println(negotiate("application/xml, application/json",
                 List.of("application/json", "application/xml")));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si supported es null o vacío, devuelve "" (no hay nada que ofrecer).
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si accept es null o en blanco, trátalo como "*/*" (cliente no exige).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: separa 'accept' por coma en una lista de tokens.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: recorta espacios de cada token.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: descarta los parámetros de calidad ";q=..." si vinieran (quédate con el tipo).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: si algún token es exactamente "*/*", devuelve supported.get(0).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: recorre 'supported' EN ORDEN (la preferencia del servidor manda).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: para cada soportado, comprueba si está en la lista del cliente.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: devuelve el primer soportado que el cliente acepte.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: si tras recorrer todo no hay coincidencia, devuelve "".
+    }
+
 }

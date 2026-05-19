@@ -54,4 +54,45 @@ public final class Ej102NamedParameterJdbc {
     public static void main(String[] args) {
         System.out.println("usa el test con H2 en memoria");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: crea el NamedParameterJdbcTemplate a partir del DataSource.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: SQL "INSERT INTO EVENTO(id,tipo) VALUES (:id, :tipo)".
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: crea un MapSqlParameterSource.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: addValue("id", id).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: addValue("tipo", tipo).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: npjt.update(sql, params) y devuelve el resultado.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: SQL "SELECT COUNT(*) FROM EVENTO WHERE tipo = :tipo".
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: pasa el parámetro nombrado :tipo.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: usa npjt.queryForObject(sql, params, Integer.class).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el conteo (no debe ser null para COUNT).
+    }
+
 }

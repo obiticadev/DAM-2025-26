@@ -34,4 +34,45 @@ public class Ej047QueryParams {
     public static void main(String[] args) {
         System.out.println(new Ej047QueryParams().sum(2, 3));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: anota la clase con @RestController.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: anota la clase con @RequestMapping("/api").
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: anota el método con @GetMapping("/sum").
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: anota 'a' con @RequestParam (obligatorio por defecto).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: anota 'b' con @RequestParam(defaultValue = "0") (opcional).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: Spring convierte los query params a int automáticamente.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: si falta 'a' Spring responde 400 (no lo gestionas tú aquí).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: calcula a + b.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: el cuerpo debe ser el número como String (usa String.valueOf).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve esa cadena.
+    }
+
 }

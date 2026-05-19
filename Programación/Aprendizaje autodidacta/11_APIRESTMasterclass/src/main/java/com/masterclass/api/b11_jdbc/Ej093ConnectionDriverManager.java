@@ -40,4 +40,45 @@ public final class Ej093ConnectionDriverManager {
     public static void main(String[] args) throws SQLException {
         System.out.println(conectaYValida("jdbc:h2:mem:demo", "sa", ""));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: usa try-with-resources con DriverManager.getConnection(url,user,pass).
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: dentro del try, obtén la Connection.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: comprueba conn.isValid(2) (timeout 2s).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: devuelve ese booleano.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: el try-with-resources cierra la conexión automáticamente.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: NO cierres la conexión a mano (lo hace el recurso).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: deja que SQLException se propague (la declara el método).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: no captures y silencies la excepción.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: una conexión cerrada NO es válida (por eso validamos dentro del try).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve false solo si isValid devolvió false.
+    }
+
 }

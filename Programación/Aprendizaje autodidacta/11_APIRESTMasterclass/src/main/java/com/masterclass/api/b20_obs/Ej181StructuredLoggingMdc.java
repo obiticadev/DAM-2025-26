@@ -44,4 +44,45 @@ public final class Ej181StructuredLoggingMdc {
     public static void main(String[] args) {
         System.out.println(formatear("INFO", "ok", Map.of("traceId", "abc")));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si nivel es null o en blanco -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si mensaje es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si mdc es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: crea un LinkedHashMap para preservar orden de las claves.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: pon "level" con el nivel normalizado a mayusculas (trim).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: pon "message" con el mensaje tal cual.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: copia todos los pares del mdc al mapa (no sobrescribas level/message).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: crea un com.fasterxml.jackson.databind.ObjectMapper.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: serializa el mapa a JSON (writeValueAsString); envuelve la
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve la cadena JSON resultante.
+    }
+
 }

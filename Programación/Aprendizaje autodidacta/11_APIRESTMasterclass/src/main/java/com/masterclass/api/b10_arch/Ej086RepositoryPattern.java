@@ -78,4 +78,45 @@ public final class Ej086RepositoryPattern {
     public static void main(String[] args) {
         System.out.println(escenario(new LibroRepositoryMem()));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: valida entity y entity.id() no null.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: guarda en 'db' usando el id como clave (upsert).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: devuelve la entidad guardada.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: devuelve Optional.ofNullable del valor en 'db'.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: devuelve una copia (nueva List) de db.values().
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: db.remove(id); devuelve si había algo.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: devuelve db.size() como long.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: count debe reflejar el estado tras saves/deletes.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: guarda dos libros (id 1 y 2), borra el 1.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve repo.count() (debe ser 1). El cliente no sabe la impl.
+    }
+
 }

@@ -62,4 +62,45 @@ public class Ej062FilterAndInterceptor implements HandlerInterceptor {
     public static void main(String[] args) {
         System.out.println("Interceptor listo");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: incrementa el contador interno 'conteo' (una petición más).
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: añade a 'response' la cabecera "X-Handled" = "true".
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: guarda el instante de inicio como atributo de 'request'
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: devuelve true para que la petición continúe hacia el controller.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: si devolvieras false, la petición se cortaría aquí (no lo hagas).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: recupera el atributo "inicio" de 'request'.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: si existe, calcula la duración = System.nanoTime() - inicio.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: añade la cabecera "X-Duration-Nanos" con esa duración.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: no lances excepción aquí aunque 'ex' no sea null (solo observas).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: este punto SIEMPRE se ejecuta (haya error o no): ideal para métricas.
+    }
+
 }

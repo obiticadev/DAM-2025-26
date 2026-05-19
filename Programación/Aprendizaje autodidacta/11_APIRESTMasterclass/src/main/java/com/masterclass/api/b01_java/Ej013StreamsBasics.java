@@ -57,4 +57,45 @@ public final class Ej013StreamsBasics {
         System.out.println(total(List.of(10.0, 20.0, 5.5)));
         System.out.println(contarPares(List.of(1, 2, 3, 4)));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: abre un stream sobre 'precios'.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: filtra las entradas cuyo getValue() sea > umbral (estricto).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: mapea cada entrada a su getKey().
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: transforma cada clave a mayúsculas.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: recoge a List preservando el orden y devuélvela.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: usa mapToDouble(Double::doubleValue) sobre el stream.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: aplica sum() (el caso lista vacía debe dar 0.0 de forma natural).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: abre stream sobre 'numeros'.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: filtra los que cumplan n % 2 == 0.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve count().
+    }
+
 }

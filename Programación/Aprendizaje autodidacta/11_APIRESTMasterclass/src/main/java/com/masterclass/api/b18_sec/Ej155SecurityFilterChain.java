@@ -68,4 +68,45 @@ public final class Ej155SecurityFilterChain {
         System.out.println(esPublica("GET", "/public/health"));
         System.out.println(requiere401("GET", "/api/users", false));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si metodo es null o blank -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si ruta es null o blank -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: normaliza el metodo a mayúsculas para comparar de forma estable.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: define la regla GET sobre el prefijo "/public/" (incluye subrutas).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: define la regla POST exacta sobre "/auth/login".
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: define la regla POST exacta sobre "/auth/refresh".
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: combina las reglas: si alguna casa -> público (true).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: por defecto, todo lo no listado es PRIVADO (false) -> deny by default.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: ten cuidado con rutas con query string: compara solo el path.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve la decisión booleana final.
+    }
+
 }

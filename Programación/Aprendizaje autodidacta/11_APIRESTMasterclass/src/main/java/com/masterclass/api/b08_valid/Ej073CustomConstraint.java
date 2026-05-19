@@ -72,4 +72,45 @@ public final class Ej073CustomConstraint {
     public static void main(String[] args) {
         System.out.println(esValido(new ArticuloDto("mi-articulo-1")));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si value es null, considéralo válido (deja @NotNull aparte) -> true.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si está vacío -> false.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: no debe empezar por '-'.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: no debe terminar por '-'.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: solo se permiten [a-z0-9-] (usa una regex o recorre los chars).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: cualquier mayúscula o carácter raro -> false.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: devuelve true solo si pasa todas las comprobaciones.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: anota 'slug' con @Slug (tu constraint) y con @NotBlank.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: usa VALIDATOR.validate(dto) (infraestructura).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: válido = el conjunto de violaciones está vacío.
+    }
+
 }

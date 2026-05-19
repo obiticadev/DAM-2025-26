@@ -63,4 +63,45 @@ public final class Ej101RowMapperAndExtractor {
     public static void main(String[] args) {
         System.out.println("usa el test con H2 en memoria");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: devuelve una lambda (rs, rowNum) -> ...
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: lee rs.getInt("id").
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: lee rs.getString("titulo").
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: lee rs.getInt("paginas").
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: construye y devuelve un Libro con esos valores.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: usa jdbc.query("SELECT ... ORDER BY id", libroMapper()).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: devuelve la lista resultante.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: puedes usar SQL "SELECT COALESCE(SUM(paginas),0) FROM LIBRO".
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: queryForObject(..., Integer.class) para extraer el agregado.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el entero (COALESCE garantiza 0 si está vacío).
+    }
+
 }

@@ -64,6 +64,47 @@ public final class Ej148CsvImportExport {
         System.out.println(p);
         System.out.println(exportar(p));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si csv es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: divide el texto en líneas por '\n' (tolera '\r' final).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si no hay líneas o solo cabecera, devuelve lista vacía.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: descarta la primera línea (cabecera id;nombre;edad).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: ignora líneas en blanco intermedias.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: divide cada fila por ';' esperando exactamente 3 campos.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: si el número de campos != 3 -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: parsea id (long) y edad (int); NumberFormatException -> IllegalArgument.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: construye un Persona148 por fila y acumúlalo.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve la lista de personas en orden del fichero.
+    }
+
 }
 
 /**

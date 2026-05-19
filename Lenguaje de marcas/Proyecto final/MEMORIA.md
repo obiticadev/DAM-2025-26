@@ -75,7 +75,7 @@ cargado, divisa **EUR** y datos de contacto (dirección, teléfono y email).
 
 > 📷 **Captura 2** — Ajustes → Información general con nombre, CIF, logotipo y divisa EUR.
 >
-> `![Captura 2: Configuración general de la empresa](capturas/captura-02.png)`
+> ![Captura 2: Configuración general de la empresa](capturas/captura-02.png)
 
 ### Localización contable española y plan contable general
 
@@ -84,7 +84,7 @@ general** español.
 
 > 📷 **Captura 3** — Contabilidad → Configuración → Plan de cuentas (plan contable español).
 >
-> `![Captura 3: Plan contable español](capturas/captura-03.png)`
+> ![Captura 3: Plan contable español](capturas/captura-03.png)
 
 ### Al menos dos almacenes: Almacén Central y Almacén Auxiliar
 
@@ -93,7 +93,8 @@ multi-almacén en Inventario.
 
 > 📷 **Captura 4** — Lista de almacenes con Almacén Central y Almacén Auxiliar.
 >
-> `![Captura 4: Almacenes](capturas/captura-04.png)`
+> ![Captura 4: Almacenes](capturas/captura-04.png)
+> ![Captura 4.5: Almacenes](capturas/captura-04.5.png)
 
 ### Unidades de medida: Unidad, Hora, Licencia/mes
 

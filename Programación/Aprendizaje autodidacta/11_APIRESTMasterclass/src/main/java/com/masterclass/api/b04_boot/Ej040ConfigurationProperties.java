@@ -42,4 +42,45 @@ public final class Ej040ConfigurationProperties {
     public static void main(String[] args) {
         System.out.println(bind(Map.of("app.region", "eu", "app.timeout", "45")));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si props es null, lanza IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: lee la clave "app.region".
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si "app.region" falta, lanza IllegalArgumentException (obligatoria).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: lee la clave "app.timeout" como String.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: si "app.timeout" falta, usa el valor por defecto 30.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: si está presente, parséalo con Integer.parseInt.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: captura NumberFormatException y relánzala como IllegalArgumentException.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: valida que timeout sea > 0 (un timeout no positivo no tiene sentido).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: construye el record AppProps con los valores resueltos.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el AppProps.
+    }
+
 }

@@ -48,4 +48,45 @@ public final class Ej097TransactionsCommitRollback {
     public static void main(String[] args) {
         System.out.println("usa el test con H2 en memoria");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: guarda el autocommit original (conn.getAutoCommit()).
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: desactiva autocommit: conn.setAutoCommit(false) (inicia la transacción).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: abre try/catch alrededor de las operaciones.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: UPDATE resta importe al saldo de 'origen' (PreparedStatement).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: comprueba el saldo de 'origen': si quedó negativo, lanza FondosException.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: UPDATE suma importe al saldo de 'destino'.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: si todo fue bien, conn.commit().
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: en el catch, conn.rollback() y relanza la excepción.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: en finally, restaura el autocommit original.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: rollback debe dejar AMBOS saldos como estaban (atomicidad).
+    }
+
 }

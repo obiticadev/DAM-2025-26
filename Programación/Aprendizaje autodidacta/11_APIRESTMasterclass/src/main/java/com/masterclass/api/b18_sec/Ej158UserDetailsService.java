@@ -64,6 +64,47 @@ public final class Ej158UserDetailsService {
                 new CuentaBd158("ana", "$2a$10$xxx", "ROLE_ADMIN", true, false));
         System.out.println(loadUserByUsername(repo, "ana"));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si repo es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si username es null o blank -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: normaliza el username (trim + lower) para comparar.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: recorre el repo buscando coincidencia exacta normalizada.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: si no hay coincidencia -> Optional.empty() (NO excepción que filtre info).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: si la cuenta existe pero locked == true -> Optional.empty().
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: no devuelvas la contraseña hash en logs.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: documenta que Spring envolvería esto en un UserDetails.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: usa stream().filter().findFirst() o bucle equivalente.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el Optional resultante.
+    }
+
 }
 
 /**

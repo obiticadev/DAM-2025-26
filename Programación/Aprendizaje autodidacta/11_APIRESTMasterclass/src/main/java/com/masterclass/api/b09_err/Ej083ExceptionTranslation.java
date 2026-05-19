@@ -53,4 +53,45 @@ public final class Ej083ExceptionTranslation {
     public static void main(String[] args) {
         System.out.println(traducir(new SQLException("dup", "23505")).getClass().getSimpleName());
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si ex es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: obtén el SQLState con ex.getSQLState().
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si es "23505" -> devuelve DatoDuplicadoException("registro duplicado").
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: el mensaje de dominio NO debe exponer detalles internos de SQL.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: para cualquier otro SQLState -> PersistenciaException.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: en PersistenciaException, conserva 'ex' como causa (no la pierdas).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: el mensaje genérico: "error de persistencia".
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: nunca propagues la SQLException cruda hacia la capa web.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: preservar la causa permite depurar sin filtrarla al cliente.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve la excepción de dominio resultante.
+    }
+
 }

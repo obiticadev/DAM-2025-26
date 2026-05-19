@@ -38,4 +38,45 @@ public class Ej060HttpCacheEtag {
     public static void main(String[] args) {
         System.out.println(new Ej060HttpCacheEtag().get(null));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: anota la clase con @RestController y @RequestMapping("/api").
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: anota con @GetMapping("/recurso").
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: anota 'ifNoneMatch' con @RequestHeader(value="If-None-Match", required=false).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: calcula el ETag del recurso (p.ej. comillas + hashCode en hex).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: si ifNoneMatch no es null y coincide con el ETag actual...
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: ...devuelve 304 (ResponseEntity.status(NOT_MODIFIED)) con header ETag y SIN body.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: si no coincide (o es null), prepara una respuesta 200.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: añade el header "ETag" con el valor calculado.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: pon RECURSO como body.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve la ResponseEntity adecuada según el caso.
+    }
+
 }

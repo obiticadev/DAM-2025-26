@@ -44,4 +44,45 @@ public final class Ej041Profiles {
     public static void main(String[] args) {
         System.out.println(datasourceUrl("prod") + " verbose=" + verboseErrors("prod"));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si activeProfile es null o vacío, asume "dev" (perfil por defecto).
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: normaliza el perfil (trim + minúsculas).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: "dev" -> "jdbc:h2:mem:devdb".
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: "test" -> "jdbc:h2:mem:testdb".
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: "prod" -> "jdbc:postgresql://db:5432/app".
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: cualquier otro perfil -> IllegalArgumentException con el valor recibido.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: devuelve la URL resuelta.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: normaliza el perfil igual que en datasourceUrl (puedes extraer un helper).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: dev y test -> true (queremos ver el detalle al desarrollar).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: prod o cualquier otro -> false (no filtrar internals al cliente).
+    }
+
 }

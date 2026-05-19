@@ -47,4 +47,45 @@ public final class Ej004HttpMethodsSemantics {
         System.out.println("GET safe=" + isSafe("GET") + " idemp=" + isIdempotent("GET"));
         System.out.println("POST safe=" + isSafe("POST") + " idemp=" + isIdempotent("POST"));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si method es null, lanza IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: normaliza a mayúsculas y recorta espacios.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: valida que sea uno de GET/HEAD/POST/PUT/PATCH/DELETE; si no, IllegalArgumentException.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: devuelve true solo para GET y HEAD.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: cualquier otro verbo estándar -> false (modifica estado).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: reutiliza la normalización/validación (no dupliques): apóyate en isSafe
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: GET y HEAD son idempotentes (y además seguros).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: PUT es idempotente (reemplazo total).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: DELETE es idempotente (borrar lo ya borrado deja el mismo estado).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: POST y PATCH NO son idempotentes -> false.
+    }
+
 }

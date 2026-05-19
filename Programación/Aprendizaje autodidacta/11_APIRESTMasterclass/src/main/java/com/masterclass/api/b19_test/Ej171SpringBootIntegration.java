@@ -45,4 +45,45 @@ public final class Ej171SpringBootIntegration {
     public static void main(String[] args) {
         System.out.println(ejecutarFlujo(List.of("a"), List.of("ADD:b", "DEL:a")));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si inicial o comandos son null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: copia 'inicial' a una estructura mutable (no muta la entrada).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: itera cada comando en orden (simula peticiones HTTP secuenciales).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: si el comando no contiene ":" -> IllegalArgumentException (malformado).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: separa en accion y argumento por el primer ":".
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: "ADD" -> añade el argumento al estado.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: "DEL" -> elimina el argumento si existe (idempotente si no está).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: acción desconocida -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: al final ordena el estado ascendentemente (respuesta determinista).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el estado final como List.
+    }
+
 }

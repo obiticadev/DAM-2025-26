@@ -63,4 +63,45 @@ public final class Ej005HeadersToolkit {
         System.out.println(get(h, "content-type"));
         System.out.println(bearerToken(h));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si headers es null o name es null, devuelve Optional.empty().
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: recorre las entradas del mapa.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: compara cada clave con 'name' usando equalsIgnoreCase.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: al primer match, devuelve Optional.of(valor).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: si ninguna clave coincide, devuelve Optional.empty().
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: reutiliza get(...) y devuelve isPresent() (no reimplementes el bucle).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: usa get(headers, "Authorization"); si está ausente devuelve "".
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: si el valor NO empieza por "Bearer " devuelve "" (esquema no soportado).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: recorta el prefijo "Bearer " (7 caracteres) para quedarte con el token.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el token resultante sin espacios sobrantes.
+    }
+
 }

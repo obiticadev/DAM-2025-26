@@ -49,4 +49,45 @@ public class Ej084GracefulFallbacks {
             throw new RuntimeException("down");
         }, "cache"));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: valida que 'principal' no sea null.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: abre un try alrededor de principal.get().
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si tiene éxito, devuelve su resultado directamente.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: NO incrementes el contador de fallos si fue bien.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: captura cualquier RuntimeException.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: en el catch, incrementa 'fallos'.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: registra (conceptual) que se degradó (aquí basta el contador).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: devuelve 'fallback' como valor degradado (no relances).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: el fallback puede ser null si así se decidió (no fuerces no-null).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: el método nunca debe propagar la excepción original.
+    }
+
 }

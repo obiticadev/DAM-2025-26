@@ -77,3 +77,44 @@ repositorio/template y devuelve `ResponseEntity`. Mongo es solo el almacén.
 Mapeo `@Document`/`@Id`, CRUD con `MongoRepository`, consultas con
 `MongoTemplate` y `Criteria`, decisión embebido vs referencias, pipelines de
 agregación (`$match`/`$group`/`$sort`) y exponer documentos por una API REST.
+
+
+## Teoría Extendida y Ejemplos de Código
+
+### 1. Modelado: Referencias vs Embebido
+A diferencia de SQL, en Mongo no abusamos de los JOINs (aquí `$lookup`). Si el dato se consulta junto siempre, emmbébelo.
+```java
+@Document(collection = "pedidos")
+public class Pedido {
+    @Id
+    private String id;
+    
+    // Embebido (Documentos anidados directamente)
+    private Direccion direccionEnvio; 
+    
+    // Referencia (Mala idea si son millones, buena si cambian por su cuenta)
+    @DBRef 
+    private Cliente cliente;
+}
+```
+
+### 2. MongoRepository
+La misma interfaz gráfica de JPA pero contra Mongo.
+```java
+public interface PedidoMongoRepository extends MongoRepository<Pedido, String> {
+    // Spring genera la consulta Mongo: { "total": { $gt: ?0 } }
+    List<Pedido> findByTotalGreaterThan(BigDecimal importe);
+}
+```
+
+### 3. Aggregation Framework (MongoTemplate)
+Para reportes analíticos complejos (Group by, Sum, Avg).
+```java
+Aggregation agg = Aggregation.newAggregation(
+    Aggregation.match(Criteria.where("estado").is("COMPLETADO")),
+    Aggregation.group("clienteId").sum("total").as("sumaTotal"),
+    Aggregation.sort(Sort.Direction.DESC, "sumaTotal")
+);
+
+AggregationResults<ReporteDTO> resultados = mongoTemplate.aggregate(agg, "pedidos", ReporteDTO.class);
+```

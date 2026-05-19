@@ -63,4 +63,45 @@ public final class Ej160JwtValidationFilter {
     public static void main(String[] args) {
         System.out.println(extraerBearer("Bearer abc.def.ghi"));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si authorizationHeader es null o blank -> Optional.empty().
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: el prefijo esperado es exactamente "Bearer " (con espacio).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: comprueba que empieza por ese prefijo (case-sensitive estándar).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: extrae la subcadena posterior al prefijo.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: aplica trim al token resultante.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: si el token queda vacío -> Optional.empty().
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: no aceptes "Basic" ni otros esquemas aquí.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: no loguees el token.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: envuelve el token en Optional.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el Optional.
+    }
+
 }

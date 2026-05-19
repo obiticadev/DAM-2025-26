@@ -49,4 +49,45 @@ public final class Ej028JsonTreeModel {
         String j = "{\"datos\":[{\"id\":7},{\"id\":9}]}";
         System.out.println(primerIdDeDatos(j) + " / " + tamanioDatos(j));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: parsea el texto con MAPPER.readTree(json) (envuelve la checked).
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: obtén el nodo "datos" con root.get("datos").
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si ese nodo es null o no es array, devuelve -1.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: accede al primer elemento con get(0); si es null, -1.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: obtén el nodo "id" de ese elemento; si es null, -1.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: devuelve su valor con asInt().
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: parsea con readTree (reutiliza el patrón anterior).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: localiza el nodo "datos".
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: si es null o no isArray(), devuelve 0.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: si es array, devuelve su size().
+    }
+
 }

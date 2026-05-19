@@ -52,4 +52,45 @@ public final class Ej036ConditionalBeans {
     public static void main(String[] args) {
         System.out.println(segunPerfil("prod").donde());
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si perfil es null, lanza IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: normaliza el perfil (trim + minúsculas).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: "dev" debe resolver a almacenamiento local.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: "test" también a local (mismo comportamiento que dev).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: agrupa dev/test en la misma rama (no dupliques el new).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: "prod" debe resolver a AlmacenS3.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: cualquier otro perfil -> IllegalArgumentException con el valor recibido.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: devuelve una instancia nueva del almacén correspondiente.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: el contrato donde() de local es "disco-local".
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: el contrato donde() de prod es "aws-s3".
+    }
+
 }

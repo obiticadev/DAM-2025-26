@@ -62,6 +62,47 @@ public final class Ej146XmlEndpoint {
     public static void main(String[] args) {
         System.out.println(serializar(List.of(new Producto146(1, "Café & Té"))));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si productos es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: usa un StringBuilder para construir el documento.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: añade la declaración <?xml version="1.0" encoding="UTF-8"?>.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: abre el elemento raíz <productos>.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: si la lista está vacía, el raíz queda sin hijos (válido).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: itera cada Producto146 generando <producto id="...">.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: escapa caracteres XML del nombre (& < > " ') para no romper el doc.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: cierra cada <producto> con su nombre como texto.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: cierra el elemento raíz </productos>.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve la cadena completa del StringBuilder.
+    }
+
 }
 
 /**

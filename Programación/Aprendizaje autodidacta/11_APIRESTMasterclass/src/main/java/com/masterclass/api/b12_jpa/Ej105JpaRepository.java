@@ -52,6 +52,47 @@ public final class Ej105JpaRepository {
     public static void main(String[] args) {
         System.out.println("usa el test con EMF aislado");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: begin transaction.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si t.getId() == null -> em.persist(t); si no -> t = em.merge(t).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: commit.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: devuelve la entidad (la gestionada en caso de merge).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: em.find(Tarea105.class, id).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: em.createQuery("select t from Tarea105 t order by t.id", Tarea105.class)
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: .getResultList().
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: busca la entidad; si es null devuelve false.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: begin tx, em.remove(entidad), commit.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve true (se borró).
+    }
+
 }
 
 @jakarta.persistence.Entity

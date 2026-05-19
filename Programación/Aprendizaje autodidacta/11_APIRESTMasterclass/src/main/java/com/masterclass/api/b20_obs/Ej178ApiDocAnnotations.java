@@ -42,6 +42,47 @@ public final class Ej178ApiDocAnnotations {
         System.out.println(resolver(
                 new AnnotationMeta178("Crea usuario", "", "Long", true)));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si anot es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: calcula la descripcion: usa anot.summary() si no esta en blanco.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si summary esta en blanco, cae a anot.description().
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: si ambas estan en blanco, usa el literal "sin descripcion".
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: calcula el tipo de esquema base segun anot.javaType() (String->"string").
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: mapea Integer/Long/int/long a "integer"; Boolean/boolean a "boolean".
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: cualquier otro tipo no primitivo -> "object".
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: si anot.required() es true, anexa " (required)" al schema.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: construye el Map de salida con claves "description" y "schema".
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el mapa resuelto.
+    }
+
 }
 
 /** Anotacion simulada (@Operation/@Schema combinadas). */

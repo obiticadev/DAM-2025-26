@@ -19,6 +19,47 @@ public final class Ej118BidirectionalSync {
     public static void main(String[] args) {
         System.out.println("usa el test (no requiere BD)");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: valida que 'l' no sea null.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: añade 'l' a la lista 'libros' (lado inverso).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: fija el dueño: l.setAutor(this) (lado propietario de la FK).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: ambos lados deben quedar consistentes en memoria.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: si solo añades a la lista y olvidas setAutor, la FK queda null al persistir.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: elimina 'l' de la lista.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: rompe el lado dueño: l.setAutor(null).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: tras esto ningún lado debe seguir referenciando al otro.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: devuelve la lista de libros (lado inverso).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: asigna el autor (lado dueño de la FK).
+    }
+
 }
 
 @Entity

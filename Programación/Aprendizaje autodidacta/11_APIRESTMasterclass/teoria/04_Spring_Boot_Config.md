@@ -50,3 +50,34 @@ Un bean `@Profile("prod")` solo existe si ese perfil está activo.
 
 Resolver propiedades con valor por defecto, enlazar un bloque tipado, elegir
 fuente de datos por perfil, leer de "entorno" simulado y 12-factor.
+
+
+## Teoría Extendida y Ejemplos de Código
+
+### 1. Configuración fuertemente tipada (@ConfigurationProperties)
+Mejor que inyectar con `@Value("${app.token}")` 50 veces, centraliza tu config en un record o clase.
+```java
+@ConfigurationProperties(prefix = "app.seguridad")
+public record SeguridadProps(
+    String jwtSecret,
+    long expiracionHoras,
+    List<String> dominiosPermitidos
+) {}
+```
+Y en tu `application.yml`:
+```yaml
+app:
+  seguridad:
+    jwt-secret: "super-secreto-muy-largo-12345"
+    expiracion-horas: 24
+    dominios-permitidos:
+      - "localhost"
+      - "mi-app.com"
+```
+
+### 2. Jerarquía de Perfiles (12-Factor)
+Spring carga propiedades en este orden de preferencia (el último machaca al anterior):
+1. `application.yml`
+2. `application-{profile}.yml` (ej. `application-prod.yml`)
+3. Variables de entorno del Sistema Operativo (`APP_SEGURIDAD_JWT_SECRET`).
+4. Argumentos de línea de comandos (`java -jar app.jar --app.seguridad.jwt-secret=x`).

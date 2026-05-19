@@ -42,4 +42,45 @@ public final class Ej043AutoConfigurationInsight {
         System.out.println(shouldActivate(cp, "org.h2.Driver", false));
         System.out.println(shouldActivate(cp, "org.h2.Driver", true));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si classpath es null, trátalo como conjunto vacío.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si triggerClass es null/vacío, la condición no puede cumplirse -> false.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: comprueba si 'triggerClass' está en el classpath (@ConditionalOnClass).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: si NO está, la autoconfig no aplica -> false.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: aplica @ConditionalOnMissingBean: si el usuario ya tiene su bean...
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: ...la autoconfig se "echa a un lado" -> false.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: solo si la clase está Y no hay bean de usuario -> true.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: el orden de evaluación importa: primero clase, luego missing bean.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: no actives por defecto: ante duda, false (principio conservador).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el booleano final.
+    }
+
 }

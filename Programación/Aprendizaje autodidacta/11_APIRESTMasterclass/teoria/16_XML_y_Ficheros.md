@@ -73,3 +73,34 @@ Binding JAXB con marshal/unmarshal y round-trip, serialización con Jackson
 `XmlMapper`, parseo DOM vs SAX, exposición de XML desde un endpoint como
 función pura, un repositorio CRUD persistido en fichero de texto e
 importación/exportación CSV usando solo el JDK.
+
+
+## Teoría Extendida y Ejemplos de Código
+
+### 1. DOM vs SAX Parsing en Java
+- **DOM**: Carga todo en memoria creando un árbol. Fácil de usar, terrible para ficheros masivos (satura la RAM).
+- **SAX**: Lee como un río (streaming), lanza eventos secuenciales. Ultraligero, pero difícil de buscar cosas complejas.
+
+```java
+// Prevención de ataques XXE (XML External Entities) en DOM
+DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+// ¡Obligatorio por seguridad!
+factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true); 
+
+DocumentBuilder builder = factory.newDocumentBuilder();
+Document doc = builder.parse(new File("datos.xml"));
+```
+
+### 2. Jackson XML (La forma moderna)
+Igual que Jackson JSON, pero para XML. Spring Boot lo configura si añades la dependencia `jackson-dataformat-xml`.
+```java
+@JacksonXmlRootElement(localName = "Libro")
+public class LibroXml {
+    @JacksonXmlProperty(isAttribute = true) // <Libro id="1">
+    private Long id;
+    
+    @JacksonXmlProperty(localName = "Titulo")
+    private String titulo;
+}
+```
+Si tu endpoint tiene `@RestController`, un cliente enviando el Header `Accept: application/xml` recibirá XML automáticamente.

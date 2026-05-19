@@ -50,4 +50,45 @@ public class Ej034BeanLifecycle {
         b.destroy();
         System.out.println(b.fases());
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: @PostConstruct se ejecuta UNA vez, tras construir e inyectar.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: añade el literal "init" a la lista 'fases'.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: no añadas "init" más de una vez por instancia (idealmente).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: representa el uso normal del bean (entre init y destroy).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: añade el literal "uso" a 'fases'.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: 'usar' puede invocarse varias veces, pero aquí basta registrar el hito.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: @PreDestroy se ejecuta al cerrar el contexto, antes de descartar el bean.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: añade el literal "destroy" a 'fases'.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: tras destroy no debería haber más uso (invariante del ciclo de vida).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve la lista 'fases' (el orden esperado es init, uso, destroy).
+    }
+
 }

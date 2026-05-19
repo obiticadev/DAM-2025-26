@@ -35,4 +35,45 @@ public class Ej052DeleteResource {
     public static void main(String[] args) {
         System.out.println(new Ej052DeleteResource().borrar(5));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: anota la clase con @RestController.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: anota la clase con @RequestMapping("/api/items").
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: anota el método con @DeleteMapping("/{id}").
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: anota 'id' con @PathVariable.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: simula la existencia: el recurso "existe" si id > 0.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: si id <= 0, devuelve ResponseEntity.notFound().build() (404).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: si existe, ejecuta el borrado (aquí no-op simulado).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: una respuesta 204 NO lleva body (ResponseEntity<Void>).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: usa ResponseEntity.noContent().build() para el 204.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve la ResponseEntity adecuada según el caso.
+    }
+
 }

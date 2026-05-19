@@ -55,6 +55,47 @@ public final class Ej129SoftDelete {
     public static void main(String[] args) {
         System.out.println("usa el test con EMF aislado");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: begin tx, persist(c), commit, devuelve c.getId().
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: begin tx.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: find del cliente; si null -> false (rollback/commit vacío).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: setBorrado(true) (NO em.remove).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: commit.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: devuelve true.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: JPQL "select c from ClienteSD129 c where c.borrado = false order by c.id".
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: getResultList().
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: los borrados lógicamente NO deben aparecer aquí.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: la fila sigue en BD (consultable sin el filtro) — soft, no físico.
+    }
+
 }
 
 @Entity

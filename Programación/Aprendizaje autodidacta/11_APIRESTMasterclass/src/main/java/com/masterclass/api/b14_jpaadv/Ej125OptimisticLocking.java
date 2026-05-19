@@ -44,6 +44,47 @@ public final class Ej125OptimisticLocking {
     public static void main(String[] args) {
         System.out.println("usa el test con EMF aislado");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: begin tx, persist(p), commit.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: devuelve p.getId().
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: begin tx.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: find del producto (queda managed con su version actual).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: cambia el precio con el setter.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: commit -> Hibernate incrementa la columna @Version.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: si otra tx ya cambió la version, aquí saltaría OptimisticLockException
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: anota 'version' con @jakarta.persistence.Version.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: el tipo long/Integer es válido para @Version; aquí usamos long.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: asigna el precio inicial.
+    }
+
 }
 
 @Entity

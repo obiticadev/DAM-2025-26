@@ -74,4 +74,45 @@ public class Ej015GenericsRepository<T, ID> {
         repo.save("hola");
         System.out.println(repo.findById(4));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: declara/usa una estructura interna Map<ID,T> como almacén.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: obtén la clave aplicando idExtractor.apply(entity).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: inserta en el mapa (put reemplaza si la clave ya existía -> upsert).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: devuelve la entidad guardada.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: recupera del mapa el valor asociado a 'id'.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: envuélvelo con Optional.ofNullable (ausente -> Optional.empty()).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: crea una nueva lista a partir de los values() del mapa.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: devuelve una copia (no expongas la colección interna mutable).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: usa map.remove(id) y observa si devolvió algo distinto de null.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve true si había una entidad con esa clave, false si no.
+    }
+
 }

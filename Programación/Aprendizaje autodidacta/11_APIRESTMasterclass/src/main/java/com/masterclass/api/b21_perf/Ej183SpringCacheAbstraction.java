@@ -70,4 +70,45 @@ public final class Ej183SpringCacheAbstraction {
         System.out.println(getOrCompute(cache, "a", k -> k.toUpperCase(), c));
         System.out.println("calculos=" + c[0]);
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si cache es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si clave es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si calculo es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: si contador es null o contador.length != 1 -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: si la clave ya esta en cache (cache hit), NO invoques 'calculo'.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: en un hit, devuelve directamente el valor cacheado sin tocar contador.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: en un miss, invoca 'calculo.apply(clave)' UNA sola vez.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: incrementa contador[0] solo cuando hubo calculo real (miss).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: guarda el valor calculado en cache para futuras lecturas.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el valor (recien calculado en el miss).
+    }
+
 }

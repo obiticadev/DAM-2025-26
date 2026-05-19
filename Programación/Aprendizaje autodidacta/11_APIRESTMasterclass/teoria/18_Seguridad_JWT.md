@@ -84,3 +84,50 @@ Política de SecurityFilterChain, usuarios en memoria, hashing BCrypt,
 UserDetailsService desde BD, emisión y validación de JWT con jjwt,
 filtro de validación, autorización por rol, method security, rotación de
 refresh tokens y endurecimiento CSRF/CORS.
+
+
+## Teoría Extendida y Ejemplos de Código
+
+### 1. La Cadena de Filtros (SecurityFilterChain)
+El núcleo de Spring Security 6+. Adiós al antíguo `WebSecurityConfigurerAdapter`.
+```java
+@Bean
+public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    return http
+        .csrf(csrf -> csrf.disable()) // Desactivado para APIs Stateless (JWT)
+        .cors(Customizer.withDefaults())
+        .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+        .authorizeHttpRequests(auth -> auth
+            .requestMatchers("/api/auth/**").permitAll()
+            .requestMatchers(HttpMethod.GET, "/api/publico").permitAll()
+            .requestMatchers("/api/admin/**").hasRole("ADMIN")
+            .anyRequest().authenticated()
+        )
+        .addFilterBefore(jwtValidationFilter, UsernamePasswordAuthenticationFilter.class)
+        .build();
+}
+```
+
+### 2. Generación y Validación de JWT
+Un JWT consta de Header, Payload (Claims) y Firma. La firma criptográfica evita la manipulación.
+```java
+// Usando io.jsonwebtoken (jjwt)
+public String generarToken(UserDetails user) {
+    return Jwts.builder()
+        .setSubject(user.getUsername())
+        .claim("rol", "ROLE_ADMIN")
+        .setIssuedAt(new Date())
+        .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60)) // 1 hora
+        .signWith(claveSecreta, SignatureAlgorithm.HS256)
+        .compact();
+}
+```
+
+### 3. Hasheo de Contraseñas
+La BD NUNCA debe almacenar texto plano ni algoritmos débiles (MD5). Usa BCrypt.
+```java
+@Bean
+public PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder(); // Genera un salt único automáticamente por hash
+}
+```

@@ -60,4 +60,45 @@ public final class Ej070NumericAndPattern {
         System.out.println(camposInvalidos(
                 new ProductoDto("bad", java.math.BigDecimal.ZERO, -1, 200)));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: 'sku' con @NotBlank.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: 'sku' con @Pattern(regexp = "[A-Z]{3}-\\d{4}") (p.ej. ABC-1234).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: 'precio' con @NotNull.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: 'precio' con @DecimalMin(value = "0.01") (positivo).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: 'precio' con @Digits(integer = 6, fraction = 2) (formato monetario).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: 'stock' con @Min(0) (no negativo).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: 'stock' con @Max(100000) (límite de almacén).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: 'descuento' con @Min(0) y @Max(100) (porcentaje 0-100).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: método infraestructura ya implementado.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: lograr que las anotaciones produzcan exactamente los inválidos esperados.
+    }
+
 }

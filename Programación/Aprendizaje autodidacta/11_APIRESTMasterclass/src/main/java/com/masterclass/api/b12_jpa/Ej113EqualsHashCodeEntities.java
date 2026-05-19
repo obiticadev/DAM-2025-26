@@ -68,4 +68,45 @@ public final class Ej113EqualsHashCodeEntities {
         var b = new Cuenta113("ES1", 999);
         System.out.println(a.equals(b));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si o == this -> true.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si o == null -> false.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: usa getClass() != o.getClass() -> false
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: castea a Cuenta113.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: compara SOLO 'iban' con Objects.equals.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: devuelve el resultado.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: basa el hash en 'iban' (mismo campo que equals).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: usa Objects.hash(iban) o iban.hashCode() con control de null.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: dos cuentas con mismo iban -> mismo hash (contrato).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: NO uses 'saldo' en equals/hashCode (cambia y rompería el contrato).
+    }
+
 }

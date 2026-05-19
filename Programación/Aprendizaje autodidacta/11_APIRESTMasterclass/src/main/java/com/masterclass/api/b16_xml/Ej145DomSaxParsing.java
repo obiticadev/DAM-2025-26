@@ -67,4 +67,45 @@ public final class Ej145DomSaxParsing {
         System.out.println(contarConDom(xml, "libro"));
         System.out.println(textosConSax(xml, "libro"));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si xml es null/blank o etiqueta null/blank -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: obtén un DocumentBuilderFactory.newInstance().
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: endurece el parser: setFeature disallow-doctype-decl (evita XXE).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: crea un DocumentBuilder con factory.newDocumentBuilder().
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: envuelve el xml en un InputSource sobre un StringReader.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: parsea a Document con builder.parse(inputSource).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: invoca document.getElementsByTagName(etiqueta).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: la longitud de la NodeList es el conteo buscado.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: captura las excepciones (Parser/SAX/IO) como RuntimeException.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el número de nodos encontrados.
+    }
+
 }

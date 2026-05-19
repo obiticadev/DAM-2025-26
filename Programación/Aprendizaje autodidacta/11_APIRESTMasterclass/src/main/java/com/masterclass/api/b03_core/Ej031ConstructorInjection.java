@@ -52,4 +52,45 @@ public final class Ej031ConstructorInjection {
         var s = new ServicioSaludo(() -> "Hola, {}!");
         System.out.println(s.saludar("Ana"));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: NO hagas 'new' de ninguna implementación de RepoSaludos aquí.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: valida que 'repo' no sea null (fail-fast de dependencia).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: asigna la dependencia recibida al campo final 'this.repo'.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: obtén la plantilla llamando a repo.plantilla().
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: localiza el marcador "{}" dentro de la plantilla.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: reemplaza ese marcador por 'nombre'.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: si la plantilla no contiene "{}", devuélvela tal cual (caso límite).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: si 'nombre' es null, trátalo como cadena vacía (defensa).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: usa replace (no concatenación frágil) para la sustitución.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el saludo final ya construido.
+    }
+
 }

@@ -45,4 +45,45 @@ public final class Ej009RestMaturityRichardson {
         System.out.println("REST realista  -> " + level(true, true, false));
         System.out.println("HATEOAS        -> " + level(true, true, true));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: el nivel es acumulativo: cada peldaño exige cumplir el anterior.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si NO hay múltiples recursos, el diseño es RPC plano -> nivel 0.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: a partir de aquí ya hay recursos (al menos nivel 1).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: si hay recursos pero NO múltiples verbos -> nivel 1.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: comprobado que hay verbos, se alcanza al menos nivel 2.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: si hay recursos + verbos pero NO hipermedia -> nivel 2.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: la hipermedia (HATEOAS) solo cuenta si ya hay recursos y verbos.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: si se cumplen los tres requisitos -> nivel 3.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: no permitas "saltar" niveles (hipermedia sin verbos NO es nivel 3).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el entero calculado (0, 1, 2 o 3).
+    }
+
 }

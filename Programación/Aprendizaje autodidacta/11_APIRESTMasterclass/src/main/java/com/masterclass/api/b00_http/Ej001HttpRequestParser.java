@@ -81,4 +81,45 @@ public final class Ej001HttpRequestParser {
         System.out.println("Headers: " + headers(raw));
         System.out.println("Body   : " + body(raw));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si raw es null o está en blanco, devuelve "" (defensa de entrada).
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: aísla la primera línea (todo lo anterior al primer '\n').
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: divide esa línea por espacios; el token 0 es el método.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: normaliza el método a mayúsculas antes de devolverlo.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: reutiliza la lógica de obtener la primera línea (no dupliques método).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: el segundo token de la línea de petición es la ruta; devuélvelo tal cual.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: recorre las líneas desde la 2ª hasta encontrar la primera línea vacía
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: parte cada cabecera por el PRIMER ':' (el valor puede contener ':').
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: recorta espacios de clave y valor antes de guardarlos en 'result'.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: localiza la primera línea vacía y devuelve TODO lo que va después
+    }
+
 }

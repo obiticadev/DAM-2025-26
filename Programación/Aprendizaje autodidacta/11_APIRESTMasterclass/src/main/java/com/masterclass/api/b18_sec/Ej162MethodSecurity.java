@@ -67,4 +67,45 @@ public final class Ej162MethodSecurity {
         System.out.println(hasAnyRole(Set.of("ROLE_USER"), Set.of("ROLE_USER")));
         System.out.println(propietarioOAdmin("ana", "ana", Set.of()));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si rolesUsuario es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si rolesPermitidos es null o vacío -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: normaliza prefijo ROLE_ en ambos conjuntos de forma consistente.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: calcula la intersección sin mutar las entradas.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: si la intersección es no vacía -> true.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: si el usuario no tiene roles -> false.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: documenta que esto evalúa ANTES de ejecutar el método (@PreAuthorize).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: no confundas hasRole (uno) con hasAnyRole (varios).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: respeta deny by default ante ambigüedad.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el booleano.
+    }
+
 }

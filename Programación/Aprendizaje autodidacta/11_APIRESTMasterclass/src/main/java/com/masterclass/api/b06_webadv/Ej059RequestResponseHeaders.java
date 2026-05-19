@@ -35,4 +35,45 @@ public class Ej059RequestResponseHeaders {
     public static void main(String[] args) {
         System.out.println(new Ej059RequestResponseHeaders().trace("abc"));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: anota la clase con @RestController y @RequestMapping("/api").
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: anota el método con @GetMapping("/trace").
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: anota 'requestId' con @RequestHeader(value="X-Request-Id", required=false).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: si requestId es null, genera uno (p.ej. "gen-" + algo) como fallback.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: ese id será el "correlation id" que devolvemos.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: parte de ResponseEntity.ok().
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: añade header "X-Correlation-Id" con el valor resuelto.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: el body debe ser exactamente "ok".
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: usa .body("ok").
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve la ResponseEntity.
+    }
+
 }

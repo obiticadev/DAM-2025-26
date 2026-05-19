@@ -41,4 +41,45 @@ public final class Ej179ActuatorEndpoints {
     public static void main(String[] args) {
         System.out.println(estadoAgregado(Map.of("db", "UP", "disk", "UP")));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si componentes es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si el mapa esta vacio, devuelve "UNKNOWN" (no hay datos).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: recorre todos los valores del mapa.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: si algun valor es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: normaliza cada estado a mayusculas y sin espacios (trim).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: considera UP solo el literal exacto "UP" tras normalizar.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: si encuentras cualquier estado distinto de "UP" -> resultado "DOWN".
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: el agregado es estricto: un solo DOWN tumba el conjunto.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: si todos los componentes son "UP" -> resultado "UP".
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el estado agregado calculado.
+    }
+
 }

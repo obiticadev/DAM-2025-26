@@ -51,4 +51,45 @@ public class Ej029ManualIoCContainer {
         c.register(StringBuilder.class, StringBuilder::new);
         System.out.println(c.getBean(StringBuilder.class) == c.getBean(StringBuilder.class));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: necesitas una estructura interna para fábricas (Map<Class,Supplier>).
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: y otra para instancias ya creadas (caché de singletons).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: valida que 'tipo' y 'fabrica' no sean null.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: guarda la fábrica indexada por 'tipo'.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: si no hay fábrica registrada para 'tipo' -> IllegalStateException.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: si ya existe instancia cacheada, devuélvela (mismo objeto).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: si no, invoca la fábrica para crear la instancia.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: guarda la instancia en la caché de singletons.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: castea con tipo.cast(...) para devolver el tipo correcto sin warnings.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve la instancia (futuras llamadas devolverán la misma).
+    }
+
 }

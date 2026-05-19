@@ -43,4 +43,45 @@ public final class Ej035JavaConfigBeans {
     public static void main(String[] args) {
         System.out.println(obtenerClock());
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: anota esta clase con @org.springframework.context.annotation.Configuration.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: anota este método con @org.springframework.context.annotation.Bean.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: el método debe devolver Clock.systemUTC() (no null).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: crea un AnnotationConfigApplicationContext pasando AppConfig.class.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: el contexto procesará @Configuration y registrará el @Bean.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: recupera el bean con ctx.getBean(Clock.class).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: cierra el contexto cuando termines (try-with-resources).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: devuelve la instancia obtenida del contenedor.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: si el @Bean devolviera null, getBean fallaría: por eso TODO 3 importa.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: NO devuelvas Clock.systemUTC() directamente: debe venir del contexto.
+    }
+
 }

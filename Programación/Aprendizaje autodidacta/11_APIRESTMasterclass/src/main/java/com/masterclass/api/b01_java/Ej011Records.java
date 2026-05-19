@@ -53,4 +53,45 @@ public final class Ej011Records {
         ProductoDto p = new ProductoDto(1L, "Teclado", 100.0);
         System.out.println(p + " -> " + p.conIva(21) + " caro=" + p.esCaro());
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si precio < 0, lanza IllegalArgumentException (un precio no puede ser negativo).
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si nombre es null, lanza IllegalArgumentException.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si nombre está en blanco (solo espacios), lanza IllegalArgumentException.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: opcional defensivo: normaliza 'nombre' con trim antes de asignarlo.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: calcula el factor multiplicador (1 + porcentaje/100).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: calcula el nuevo precio aplicando ese factor al precio actual.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: NO mutes este record (son inmutables): crea uno nuevo.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: conserva id y nombre originales en la copia.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: devuelve la nueva instancia.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve si el precio es mayor o igual a 100.
+    }
+
 }

@@ -44,6 +44,47 @@ public final class Ej135SliceVsPage {
     public static void main(String[] args) {
         System.out.println("usa el test con EMF aislado");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: valida pagina >= 0 y tamano > 0.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: offset = pagina * tamano.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: JPQL ordenado por id.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: setFirstResult(offset).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: setMaxResults(tamano + 1)  <-- el truco: pide UNO de más.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: getResultList() -> lista (puede tener tamano+1 elementos).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: haySiguiente = (lista.size() > tamano).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: si haySiguiente, recorta la lista a 'tamano' (quita el extra).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: NO ejecutes ningún COUNT (esa es la ventaja del Slice).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve new Slice(contenido, haySiguiente).
+    }
+
 }
 
 @Entity

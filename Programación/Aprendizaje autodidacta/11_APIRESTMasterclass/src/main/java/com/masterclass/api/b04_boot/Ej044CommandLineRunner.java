@@ -52,4 +52,45 @@ public class Ej044CommandLineRunner {
         r.run("--seed=true", "--region=eu");
         System.out.println(r.log());
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: el runner debe ejecutarse UNA sola vez (idempotencia de arranque).
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si 'ejecutado' ya es true, no repitas el trabajo (return temprano).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si args es null, trátalo como array vacío.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: recorre cada argumento.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: procesa solo los que empiecen por "--" (ignora el resto).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: quita el prefijo "--" y divide por el primer '=' en clave/valor.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: si no hay '=', registra la clave con valor "".
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: añade al 'log' una entrada "clave=valor" por argumento válido.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: marca 'ejecutado = true' al terminar.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: el orden del log debe respetar el orden de los argumentos.
+    }
+
 }

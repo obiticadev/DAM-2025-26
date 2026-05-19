@@ -55,4 +55,45 @@ public final class Ej003StatusCodeResolver {
         System.out.println("404 -> " + family(404) + " error=" + isError(404) + " cliente=" + isClientFault(404));
         System.out.println("200 -> " + family(200) + " error=" + isError(200));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si status < 100 o status > 599, lanza IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: rango [100,199] -> "Informativa".
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: rango [200,299] -> "Exito".
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: rango [300,399] -> "Redireccion".
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: rango [400,499] -> "ErrorCliente".
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: rango [500,599] -> "ErrorServidor".
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: reutiliza family(status) y compara contra "ErrorCliente"/"ErrorServidor".
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: no dupliques la lógica de rangos: apóyate en family().
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: true únicamente si family(status) == "ErrorCliente".
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: un 5xx NO es culpa del cliente -> debe devolver false.
+    }
+
 }

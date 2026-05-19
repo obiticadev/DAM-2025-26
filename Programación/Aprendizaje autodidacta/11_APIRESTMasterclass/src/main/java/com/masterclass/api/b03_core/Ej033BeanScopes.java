@@ -46,4 +46,45 @@ public class Ej033BeanScopes<T> {
         var p = new Ej033BeanScopes<>(Object::new, false);
         System.out.println(p.get() == p.get());
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: necesitas un campo interno para cachear la instancia singleton.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: comprueba el flag 'singleton'.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si NO es singleton (prototype), devuelve siempre fabrica.get() (instancia nueva).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: si es singleton, comprueba si ya hay instancia cacheada.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: si la caché está vacía, créala con fabrica.get().
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: guárdala en el campo de caché.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: en llamadas siguientes, NO vuelvas a invocar la fábrica.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: devuelve siempre la MISMA instancia para singleton.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: ten en cuenta el caso límite: fabrica.get() podría devolver null.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: documenta mentalmente por qué prototype no cachea (estado independiente).
+    }
+
 }

@@ -31,6 +31,47 @@ public final class Ej117ManyToManyJoinTable {
     public static void main(String[] args) {
         System.out.println("usa el test con EMF aislado");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: begin tx, persist(a), commit (cascade persiste cursos).
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: em.clear() y recarga el alumno.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: devuelve el tamaño de su set de cursos.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: anota 'cursos' con @ManyToMany(cascade = CascadeType.ALL).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: usa @JoinTable(name = "ALUMNO_CURSO",
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: asigna el nombre.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: añade 'c' al set de cursos.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: N–N: un alumno tiene muchos cursos y un curso muchos alumnos.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: la tabla intermedia ALUMNO_CURSO guarda los pares.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: no dupliques (es un Set: añade idempotente).
+    }
+
 }
 
 @Entity

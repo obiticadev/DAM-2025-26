@@ -39,4 +39,45 @@ public final class Ej082ErrorTraceAndCorrelation {
     public static void main(String[] args) {
         System.out.println(errorBody(500, "boom", "abc-123"));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si status < 400 -> IllegalArgumentException (no es un error).
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: decide el traceId: si incomingTrace no es null/blank, reúsalo (correlación end-to-end).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si no viene, genera uno nuevo con UUID.randomUUID().toString().
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: el traceId nunca debe ser null en la respuesta.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: usa un LinkedHashMap para orden estable de claves.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: añade "status" = status.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: añade "error" = mensaje.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: añade "traceId" = el traceId resuelto.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: reusar el trace entrante permite seguir la petición entre microservicios.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el mapa.
+    }
+
 }

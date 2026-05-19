@@ -49,4 +49,45 @@ public final class Ej066AssemblerPattern {
                 List.of(new Linea(1L, "cafe", 2), new Linea(1L, "te", 1)));
         System.out.println(d);
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si pedido es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si lineas es null, trátalo como lista vacía.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: valida que TODA línea tenga pedidoId == pedido.id (coherencia).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: si alguna no coincide -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: calcula totalUnidades sumando cantidad de todas las líneas (stream).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: extrae la lista de nombres de producto (map + toList).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: copia id y cliente del pedido.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: combina datos de DOS fuentes (esa es la esencia del Assembler).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: construye el PedidoDetalleDto.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuélvelo.
+    }
+
 }

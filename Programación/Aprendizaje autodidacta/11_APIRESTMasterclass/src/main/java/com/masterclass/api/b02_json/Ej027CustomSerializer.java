@@ -64,4 +64,45 @@ public final class Ej027CustomSerializer {
     public static void main(String[] args) {
         System.out.println(toJson(new Precio(9.9)));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: extrae el double con value.valor().
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: formatéalo con 2 decimales usando Locale.US (punto, no coma).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: añade el sufijo " €" a la cadena formateada.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: escribe esa cadena con gen.writeString(...).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: NO uses writeNumber: el contrato exige un string JSON.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: crea un SimpleModule.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: registra el serializer con module.addSerializer(Precio.class, new PrecioSerializer()).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: crea un ObjectMapper y haz mapper.registerModule(module).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: serializa 'p' con writeValueAsString.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: captura JsonProcessingException y relánzala como RuntimeException.
+    }
+
 }

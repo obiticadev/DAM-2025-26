@@ -47,4 +47,45 @@ public final class Ej030ComponentScan {
         }
         System.out.println(obtenerBean());
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: anota esta clase con @org.springframework.stereotype.Component
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: devuelve exactamente "hola" (contrato esperado por el test).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: crea un AnnotationConfigApplicationContext vacío (constructor sin args).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: regístralo con ctx.register(Saludador.class).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: invoca ctx.refresh() para que el contenedor procese el bean.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: recupera el bean con ctx.getBean(Saludador.class).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: usa try-with-resources o cierra el contexto tras obtener el bean.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: devuelve la instancia gestionada (no un new manual).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: el bean debe ser funcional (saludar() devuelve "hola").
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: NO instancies Saludador con 'new': el objetivo es que lo dé el contenedor.
+    }
+
 }

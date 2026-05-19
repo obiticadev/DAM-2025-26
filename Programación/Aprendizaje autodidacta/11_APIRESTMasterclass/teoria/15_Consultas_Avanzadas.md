@@ -47,3 +47,49 @@ flowchart LR
 Paginación, ordenación multinivel, Slice vs Page, filtrado dinámico,
 Specifications, Criteria API, Query by Example, proyecciones por interfaz,
 agregaciones GROUP BY y keyset pagination.
+
+
+## Teoría Extendida y Ejemplos de Código
+
+### 1. Paginación y Ordenación
+No te bajes 100.000 registros a la RAM.
+```java
+// Controller
+@GetMapping
+public Page<UsuarioDto> listar(Pageable pageable) {
+    // /usuarios?page=0&size=20&sort=nombre,desc
+    return repository.findAll(pageable).map(mapper::toDto);
+}
+
+// Repository
+Page<Usuario> findByEstado(String estado, Pageable pageable);
+```
+
+### 2. Filtrado Dinámico (Specifications)
+¿Qué pasa si el usuario quiere filtrar por nombre, O por edad, O por ambas, o por nada? Hacer 15 métodos en el Repository es imposible.
+```java
+public static Specification<Usuario> tieneNombre(String nombre) {
+    return (root, query, criteriaBuilder) -> {
+        if (nombre == null) return criteriaBuilder.conjunction();
+        return criteriaBuilder.like(root.get("nombre"), "%" + nombre + "%");
+    };
+}
+
+// En el Service
+Specification<Usuario> spec = Specification.where(tieneNombre(filtroNombre))
+                                           .and(mayorDeEdad(filtroEdad));
+List<Usuario> resultados = repository.findAll(spec);
+```
+
+### 3. Proyecciones (Solo pedir las columnas necesarias)
+Si solo necesitas el nombre, no pidas la entidad entera.
+```java
+// Interface Projection (Magia de Spring)
+public interface UsuarioResumen {
+    Long getId();
+    String getNombre();
+}
+
+// Repository
+List<UsuarioResumen> findByEstado(String estado);
+```

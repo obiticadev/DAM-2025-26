@@ -34,4 +34,45 @@ public class Ej058FileDownload {
     public static void main(String[] args) {
         System.out.println(new Ej058FileDownload().descargar());
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: anota la clase con @RestController y @RequestMapping("/api").
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: anota el método con @GetMapping("/download").
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: define el contenido del fichero: "hola mundo".
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: conviértelo a byte[] (getBytes, UTF-8).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: parte de ResponseEntity.ok().
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: añade header "Content-Disposition" = "attachment; filename=\"datos.txt\"".
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: añade header "Content-Type" = "text/plain" (o usa contentType()).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: añade "Content-Length" con la longitud del array (buena práctica).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: pon el byte[] como body.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve la ResponseEntity.
+    }
+
 }

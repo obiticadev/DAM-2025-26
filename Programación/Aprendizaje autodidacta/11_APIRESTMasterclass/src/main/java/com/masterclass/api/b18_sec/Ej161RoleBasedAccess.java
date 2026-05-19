@@ -67,4 +67,45 @@ public final class Ej161RoleBasedAccess {
         System.out.println(permitido("GET", "/admin/users", Set.of("ROLE_ADMIN")));
         System.out.println(statusHttp(true, false));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si metodo es null o blank -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si ruta es null o blank -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si roles es null -> IllegalArgumentException (usa Set.of() para anónimo).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: regla "/admin/": requiere que roles contenga ROLE_ADMIN.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: regla "/api/": requiere ROLE_USER o ROLE_ADMIN.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: normaliza el prefijo ROLE_ para comparar de forma consistente.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: si la ruta no casa ninguna regla conocida -> false (deny by default).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: ROLE_ADMIN no implica automáticamente todo: respeta la regla por ruta.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: no muta el Set de entrada.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve la decisión booleana.
+    }
+
 }

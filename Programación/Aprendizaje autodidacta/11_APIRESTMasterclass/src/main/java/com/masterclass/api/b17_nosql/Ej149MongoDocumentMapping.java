@@ -65,6 +65,47 @@ public final class Ej149MongoDocumentMapping {
         System.out.println(aDocumento(p));
         System.out.println(desdeDocumento(aDocumento(p)));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si pedido es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: crea un LinkedHashMap para preservar el orden de claves.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: el campo anotado con @Id se serializa como "_id" (NO como "id").
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: pon pedido.id() bajo la clave "_id".
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: pon pedido.cliente() bajo la clave "cliente".
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: pon pedido.total() bajo la clave "total".
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: NO incluyas claves con valor null si el id es null (Mongo lo generaría).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: el nombre de colección sería "pedidos" (de @Document) -> documéntalo, no afecta al mapa.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: devuelve un mapa inmodificable (Map.copyOf) para evitar mutación externa.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: retorna el documento resultante.
+    }
+
 }
 
 /** Documento de pedido mapeado a la colección {@code pedidos}. */

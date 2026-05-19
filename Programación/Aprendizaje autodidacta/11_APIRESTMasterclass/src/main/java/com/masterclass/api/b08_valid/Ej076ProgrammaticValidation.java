@@ -50,4 +50,45 @@ public final class Ej076ProgrammaticValidation {
     public static void main(String[] args) {
         System.out.println(mensajesDeError(new ComentarioDto("")));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: construye un ValidatorFactory con Validation.buildDefaultValidatorFactory().
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: obtén el Validator con factory.getValidator().
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: ejecuta validator.validate(dto) para obtener las violaciones.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: si no hay violaciones, devuelve una lista vacía.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: mapea cada ConstraintViolation a getMessage().
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: ordena los mensajes alfabéticamente (salida determinista para el test).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: recoge a List.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: cierra/usa el factory de forma responsable (try-with-resources si procede).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: este enfoque sirve fuera de Spring (servicios, batch, etc.).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve la lista de mensajes.
+    }
+
 }

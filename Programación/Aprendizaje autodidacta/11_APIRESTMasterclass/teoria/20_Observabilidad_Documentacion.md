@@ -75,3 +75,41 @@ El `traceId` se propaga intacto; el `spanId` es unico por salto.
 Generar un mini documento OpenAPI, resolver anotaciones `@Operation`/`@Schema`,
 agregar el health de Actuator, calcular metricas y health propios, formatear
 logs estructurados JSON con MDC y propagar traceId/spanId entre saltos.
+
+
+## Teoría Extendida y Ejemplos de Código
+
+### 1. Swagger / OpenAPI 3 (Documentación viva)
+Añade `springdoc-openapi-starter-webmvc-ui`. En vez de hacer PDFs obsoletos, documentas en el código.
+```java
+@Operation(summary = "Crea un usuario", description = "Genera un usuario y lanza evento")
+@ApiResponses({
+    @ApiResponse(responseCode = "201", description = "Creado exitosamente"),
+    @ApiResponse(responseCode = "400", description = "Datos inválidos", content = @Content)
+})
+@PostMapping
+public ResponseEntity<Usuario> crear(...) {}
+```
+
+### 2. Actuator (Observabilidad de la app)
+Expone métricas críticas para que herramientas como Prometheus/Grafana sepan si la API está viva.
+```yaml
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, metrics, prometheus, info
+  endpoint:
+    health:
+      show-details: always # Muestra si la DB está caída o sin espacio en disco
+```
+
+### 3. Trazabilidad de Logs (MDC)
+Si entran 100 peticiones a la vez, ¿cómo sabes qué log pertenece a qué usuario? Con `MDC` en SLF4J inyectas un ID a todo el hilo de ejecución.
+En tu logger (Logback) configuras el pattern: `[%X{traceId}] %m%n`.
+```java
+// Salida del log:
+// [ab3d-19f8] Iniciando proceso de compra
+// [ab3d-19f8] Lammando a pasarela de pago...
+// [99fc-bbaa] Iniciando proceso de compra  <-- ¡Otra petición distinta a la vez!
+```

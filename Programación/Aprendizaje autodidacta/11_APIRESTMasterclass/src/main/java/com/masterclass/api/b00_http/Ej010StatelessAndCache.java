@@ -48,4 +48,45 @@ public final class Ej010StatelessAndCache {
         System.out.println("Repetido -> " + conditionalGetStatus(c, tag));
         System.out.println("Cambiado -> " + conditionalGetStatus("{\"id\":2}", tag));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si content es null, trátalo como cadena vacía (no lances NPE).
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: deriva una huella estable del contenido (p.ej. content.hashCode()).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: la huella debe ser DETERMINISTA: mismo content -> mismo valor siempre.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: conviértela a una representación compacta (p.ej. hex).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: envuélvela entre comillas dobles según el formato HTTP de ETag.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: garantiza que dos contenidos distintos den ETags distintos (en la práctica).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: calcula el ETag actual del recurso con etag(currentContent).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: si ifNoneMatch es null, el cliente no tiene copia -> 200.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: si ifNoneMatch es igual al ETag actual, el recurso no cambió -> 304.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: en cualquier otro caso (ETag distinto) -> 200 con el recurso nuevo.
+    }
+
 }

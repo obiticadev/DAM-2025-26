@@ -48,6 +48,47 @@ public final class Ej109ModifyingQueries {
     public static void main(String[] args) {
         System.out.println("usa el test con EMF aislado");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: begin transaction (los UPDATE/DELETE masivos requieren tx).
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: JPQL "update Prod109 p set p.precio = p.precio * :factor where p.categoria = :cat".
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: factor = 1 + porcentaje/100.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: createQuery(...).setParameter("factor", factor).setParameter("cat", categoria).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: executeUpdate() devuelve el nº de filas afectadas.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: commit.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: tras un update masivo el contexto puede estar desincronizado: limpia con em.clear().
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: devuelve el nº de filas.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: begin tx; JPQL "delete from Prod109 p where p.stock = 0"; executeUpdate.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: commit y devuelve el nº de filas borradas.
+    }
+
 }
 
 @jakarta.persistence.Entity

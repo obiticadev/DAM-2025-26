@@ -51,6 +51,47 @@ public final class Ej122JoinFetchAndEntityGraph {
     public static void main(String[] args) {
         System.out.println("usa el test con EMF aislado");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: crea un EntityGraph: em.createEntityGraph(Proyecto122.class).
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: añade el atributo a cargar: graph.addAttributeNodes("tareas").
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: prepara los hints: Map.of("jakarta.persistence.fetchgraph", graph)
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: usa em.find(Proyecto122.class, id, hints).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: la colección 'tareas' debe quedar inicializada por el grafo.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: devuelve el proyecto.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: el EntityGraph evita escribir JPQL para casos de carga.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: JPQL "select p from Proyecto122 p join fetch p.tareas where p.id = :id".
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: setParameter("id", id) y getSingleResult().
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: tras esto 'tareas' está inicializada aunque se haga em.clear() después.
+    }
+
 }
 
 @Entity

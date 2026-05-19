@@ -38,6 +38,47 @@ public final class Ej128Auditing {
     public static void main(String[] args) {
         System.out.println("usa el test con EMF aislado");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: begin tx, persist(d), commit -> @PrePersist fija creadoEn.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: devuelve d.getId().
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: begin tx, find, cambiar texto, commit -> @PreUpdate fija actualizadoEn.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: anota con @PrePersist.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: asigna creadoEn = Instant.now() (solo al insertar).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: anota con @PreUpdate.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: asigna actualizadoEn = Instant.now() (en cada UPDATE).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: NO toques creadoEn aquí (la fecha de creación es inmutable).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: asigna el nuevo texto.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: el cambio de texto disparará @PreUpdate al hacer commit.
+    }
+
 }
 
 @Entity

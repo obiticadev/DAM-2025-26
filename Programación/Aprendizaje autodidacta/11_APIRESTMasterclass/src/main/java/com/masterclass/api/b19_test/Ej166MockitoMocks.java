@@ -41,6 +41,47 @@ public final class Ej166MockitoMocks {
         RepositorioStub166 stub = unused -> "Ada";
         System.out.println(saludar(stub, 1));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si repo es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: invoca repo.buscarNombre(id) (esto es la "interacción" mockeada).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si el resultado es null -> trata como usuario no encontrado.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: si el resultado es blank -> trata como no encontrado también.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: para no encontrado devuelve "Hola, desconocido".
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: para encontrado devuelve "Hola, " + nombre.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: no asumas que el repo accede a BD real: es un doble de prueba.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: no captures excepciones del repo: deja que propaguen.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: la lógica de saludo es pura; el stub aísla la dependencia.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve la cadena de saludo.
+    }
+
 }
 
 /**

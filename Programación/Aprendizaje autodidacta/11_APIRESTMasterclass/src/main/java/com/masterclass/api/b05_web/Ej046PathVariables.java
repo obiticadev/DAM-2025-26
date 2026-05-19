@@ -32,4 +32,45 @@ public class Ej046PathVariables {
     public static void main(String[] args) {
         System.out.println(new Ej046PathVariables().echo("abc"));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: anota la clase con @RestController.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: anota la clase con @RequestMapping("/api").
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: anota el método con @GetMapping("/echo/{valor}").
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: anota el parámetro con @PathVariable para enlazarlo al segmento {valor}.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: el nombre del @PathVariable debe coincidir con "{valor}" de la ruta.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: si difieren, usa @PathVariable("valor").
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: no transformes el valor (eco literal).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: el cuerpo de respuesta es exactamente 'valor'.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: status 200 implícito al devolver normalmente.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve 'valor'.
+    }
+
 }

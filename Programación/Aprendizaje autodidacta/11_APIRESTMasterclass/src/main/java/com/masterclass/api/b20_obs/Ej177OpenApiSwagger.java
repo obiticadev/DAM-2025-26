@@ -47,6 +47,47 @@ public final class Ej177OpenApiSwagger {
         System.out.println(construirDocumento("Demo", "1.0",
                 List.of(new EndpointMeta177("/users", "GET", "Lista usuarios"))));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si endpoints es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si titulo es null o en blanco -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si version es null o en blanco -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: crea el nodo "info" como Map con "title"=titulo y "version"=version.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: crea un Map "paths" vacio que mantenga orden de insercion.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: por cada endpoint, obten (o crea) el Map de su 'path'.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: dentro del path, indexa por metodo HTTP en minusculas (get, post...).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: cada operacion es un Map con "summary"=descripcion del endpoint.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: ensambla el documento raiz: "openapi"="3.0.1", "info", "paths".
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el documento (no debe ser inmutable vacio).
+    }
+
 }
 
 /** Metadato de un endpoint a documentar. */

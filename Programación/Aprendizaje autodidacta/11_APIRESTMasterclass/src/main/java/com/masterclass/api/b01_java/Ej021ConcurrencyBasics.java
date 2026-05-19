@@ -57,4 +57,45 @@ public final class Ej021ConcurrencyBasics {
     public static void main(String[] args) {
         System.out.println(asincronoMayus("hola").join());
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: usa CompletableFuture.supplyAsync (ejecuta en otro hilo).
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: la lambda debe devolver valor.toUpperCase().
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: devuelve el future SIN bloquear (no llames join aquí).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: combina ambos con a.thenCombine(b, ...).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: la BiFunction debe sumar los dos enteros (Integer::sum).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: devuelve el future combinado (sigue siendo asíncrono).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: usa CompletableFuture.allOf(...) con el array de futures para esperar a todos.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: invoca .join() sobre ese allOf para bloquear hasta que terminen.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: recorre 'futures' en orden y haz join() de cada uno.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: recoge los resultados a una List y devuélvela.
+    }
+
 }

@@ -41,4 +41,45 @@ public final class Ej142KeysetPagination {
     public static void main(String[] args) {
         System.out.println(siguientePagina(List.of(1L, 2L, 3L, 4L, 5L), 2L, 2));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si idsOrdenados es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si tamano <= 0 -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: normaliza el cursor: si ultimoIdVisto es null, trátalo como Long.MIN_VALUE
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: filtra los ids estrictamente mayores que 'ultimoIdVisto'.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: la lista ya viene ordenada: NO la reordenes.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: limita el resultado a 'tamano' elementos (limit).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: recoge a List.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: keyset es estable: insertar filas nuevas no descoloca páginas previas.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: si no hay más allá del cursor, devuelve lista vacía.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve la sublista (la "siguiente página").
+    }
+
 }

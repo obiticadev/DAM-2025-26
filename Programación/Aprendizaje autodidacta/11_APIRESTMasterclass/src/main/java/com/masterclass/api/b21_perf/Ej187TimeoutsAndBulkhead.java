@@ -66,4 +66,45 @@ public final class Ej187TimeoutsAndBulkhead {
         System.out.println(adquirir(est, 2));
         System.out.println(dentroDeTimeout(0, 50, 100));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si inicioMs < 0 -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si duracionMs < 0 -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si timeoutMs <= 0 -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: calcula finMs = inicioMs + duracionMs (instante de fin previsto).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: calcula deadlineMs = inicioMs + timeoutMs (limite duro).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: la operacion cumple si finMs <= deadlineMs.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: si duracionMs == timeoutMs el limite se considera cumplido (<=).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: si finMs > deadlineMs la operacion se cancela por timeout.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: no uses sleeps reales: es una comparacion determinista de instantes.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve true (a tiempo) o false (timeout superado).
+    }
+
 }

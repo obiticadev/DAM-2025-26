@@ -46,4 +46,45 @@ public final class Ej153AggregationPipeline {
                 new Pedido149("c", "leo", 200));
         System.out.println(agregar(col, 40));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si pedidos es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: etapa $match: descarta pedidos con total < totalMinimo.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: etapa $group: agrupa por pedido.cliente() como _id del grupo.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: dentro del grupo acumula la suma de total ($sum: "$total").
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: representa cada grupo como un LinkedHashMap {cliente, sumaTotal}.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: etapa $sort: ordena los grupos por sumaTotal DESCENDENTE.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: en empate de sumaTotal, ordena por cliente ascendente (orden estable).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: la salida de cada etapa es la entrada de la siguiente (pipeline).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: si tras $match no queda nada, devuelve lista vacía.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: retorna la lista de documentos agregados.
+    }
+
 }

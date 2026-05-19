@@ -69,4 +69,45 @@ public final class Ej063RequestResponseDto {
         var e = toEntity(new RegistroRequest("a@b.com", "secreto"), 1L);
         System.out.println(toResponse(e));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si req es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: valida email no null y que contenga '@'.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: valida password no null y longitud >= 6.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: simula el hash: "hash:" + password (en real sería BCrypt).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: construye y devuelve UsuarioEntity(id, email, hash).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: si e es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: copia SOLO id y email.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: NO incluyas passwordHash bajo ningún concepto.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: el ResponseDto es el contrato público: estable y mínimo.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve new UsuarioResponse(e.id, e.email).
+    }
+
 }

@@ -58,4 +58,45 @@ public final class Ej088ServiceTransactional {
         transferir(a, b, 40);
         System.out.println(a.saldo + " / " + b.saldo);
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: valida origen y destino no null.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: valida importe > 0.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: comprueba ANTES de tocar nada si origen.saldo >= importe.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: si no hay fondos, lanza SaldoInsuficienteException SIN modificar saldos
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: resta importe a origen.saldo.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: suma importe a destino.saldo.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: ambos pasos forman UNA unidad atómica (todo o nada).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: el orden importa: valida primero, muta después (consistencia).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: no debe quedar dinero "en el aire" (suma total constante).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: método void: el efecto es la mutación atómica de ambas cuentas.
+    }
+
 }

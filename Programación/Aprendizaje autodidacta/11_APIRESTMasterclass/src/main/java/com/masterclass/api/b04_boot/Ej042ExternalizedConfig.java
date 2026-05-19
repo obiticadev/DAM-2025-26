@@ -43,4 +43,45 @@ public final class Ej042ExternalizedConfig {
         var yml = Map.of("app.region", "eu-west-1");
         System.out.println(resolve(env, yml, "app.region", "local"));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: valida que 'key' no sea null/vacía.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: traduce 'key' al formato de variable de entorno:
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: consulta primero 'env' con la clave traducida.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: si está en env, ese valor GANA (mayor precedencia) -> devuélvelo.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: si no está en env, consulta 'yml' con la clave original.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: si está en yml, devuélvelo (precedencia media).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: si no está en ninguna, devuelve 'defecto' (menor precedencia).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: trata env o yml null como mapas vacíos (defensa).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: no mezcles formatos: env usa MAYUS_, yml usa minus.con.puntos.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve siempre un String no null (defecto puede ser "").
+    }
+
 }

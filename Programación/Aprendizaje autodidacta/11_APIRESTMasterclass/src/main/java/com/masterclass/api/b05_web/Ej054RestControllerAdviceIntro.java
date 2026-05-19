@@ -53,4 +53,45 @@ public class Ej054RestControllerAdviceIntro {
     public static void main(String[] args) {
         System.out.println(new Ej054RestControllerAdviceIntro().dividir(10, 2));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: anota la clase con @RestController y @RequestMapping("/api").
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: anota con @GetMapping("/div") y 'a','b' con @RequestParam.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si b == 0, lanza DivisionInvalidaException("division por cero").
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: si b != 0, calcula a / b.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: devuelve el resultado como String.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: NO captures aquí la excepción: deja que la gestione el handler.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: anota con @ExceptionHandler(DivisionInvalidaException.class).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: usa ResponseEntity.badRequest() (400).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: el body debe ser ex.getMessage().
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve esa ResponseEntity (centraliza el error, no en el endpoint).
+    }
+
 }

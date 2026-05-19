@@ -124,3 +124,46 @@ sequenceDiagram
 Parsear y construir HTTP a mano (sin librerías), clasificar códigos y verbos,
 negociar contenido por `Accept`, modelar recursos REST y aplicar lógica de ETag.
 Todo Java puro: aquí se forja el cimiento.
+
+
+## Teoría Extendida y Ejemplos de Código
+
+### 1. La Anatomía de una Petición (Request)
+Toda petición HTTP se compone de:
+1. **Request Line**: `VERBO URI HTTP_VERSION`
+2. **Headers**: Pares clave/valor.
+3. **Body**: Opcional (común en POST/PUT/PATCH).
+
+```http
+POST /api/v1/usuarios HTTP/1.1
+Host: api.miempresa.com
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer jwt.token.aqui
+
+{
+  "nombre": "Ana",
+  "email": "ana@email.com"
+}
+```
+
+### 2. Idempotencia y Seguridad
+- **Safe (Seguros)**: Métodos que no alteran el estado del servidor (GET, HEAD, OPTIONS). Se pueden llamar mil veces sin riesgo.
+- **Idempotent (Idempotentes)**: Métodos que alteran el estado, pero llamarlos 1 vez o 100 veces deja el servidor en el **mismo estado** (PUT, DELETE).
+- **No Idempotentes**: POST (crea un nuevo recurso cada vez) o PATCH (aplicar incrementos parciales).
+
+### 3. Códigos de Estado (Status Codes)
+```java
+// Ejemplo de manejo correcto en Spring Boot
+@GetMapping("/{id}")
+public ResponseEntity<Usuario> getUsuario(@PathVariable Long id) {
+    return repository.findById(id)
+            .map(ResponseEntity::ok) // 200 OK
+            .orElse(ResponseEntity.notFound().build()); // 404 Not Found
+}
+```
+- **1xx**: Informativos (ej. WebSockets).
+- **2xx**: Éxito (200 OK, 201 Created, 204 No Content).
+- **3xx**: Redirecciones (301 Moved Permanently, 304 Not Modified para Caché).
+- **4xx**: Error del cliente (400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found).
+- **5xx**: Error del servidor (500 Internal Server Error, 503 Service Unavailable).

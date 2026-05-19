@@ -40,6 +40,47 @@ public final class Ej121NPlusOneProblem {
     public static void main(String[] args) {
         System.out.println("usa el test con EMF aislado");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: usa JPQL con JOIN FETCH: "select distinct b from Blog121 b join fetch b.posts".
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: 'distinct' evita duplicados de blog por el join.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: createQuery(jpql, Blog121.class).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: getResultList().
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: tras esto las colecciones 'posts' YA están inicializadas (no LAZY).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: el test hará em.clear() y aun así podrá leer posts (prueba del fetch).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: sin JOIN FETCH, leer posts tras clear lanzaría LazyInitializationException.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: una sola query en vez de 1 + N (la esencia del problema N+1).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: devuelve la lista.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: NO recorras blogs llamando a getPosts() en bucle (eso ES el N+1).
+    }
+
 }
 
 @Entity

@@ -65,6 +65,47 @@ public final class Ej154MongoRestEndpoint {
         System.out.println(r);
         System.out.println(obtener(repo, r.cuerpo() == null ? "x" : r.cuerpo().id()));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si repo es null -> IllegalArgumentException (error de programación).
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si body es null -> respuesta 400 (Bad Request), sin tocar el repo.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: valida que body.cliente() no sea null ni vacío -> 400 si lo es.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: valida que body.total() sea >= 0 -> 400 si es negativo.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: genera un id (p.ej. java.util.UUID.randomUUID().toString()).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: construye un Pedido149 con id generado + datos del body.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: persístelo con repo.save(...).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: REST: crear con éxito devuelve 201 Created.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: el cuerpo de la respuesta 201 es el pedido persistido.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: retorna new Respuesta154(201, pedidoGuardado) (o 400/null en errores).
+    }
+
 }
 
 /** DTO de entrada del endpoint de creación. */

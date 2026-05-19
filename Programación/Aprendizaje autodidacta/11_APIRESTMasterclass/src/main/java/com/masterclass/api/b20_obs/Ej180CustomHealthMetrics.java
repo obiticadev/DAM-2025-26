@@ -42,4 +42,45 @@ public final class Ej180CustomHealthMetrics {
     public static void main(String[] args) {
         System.out.println(salud(100, 5, 0.1));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si total < 0 -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si errores < 0 -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si errores > total -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: si umbral < 0 o umbral > 1 -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: si total == 0, la tasa de error es 0.0 (evita division por cero).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: en otro caso errorRate = errores / total (en double).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: formatea errorRate con exactamente 4 decimales (Locale.ROOT, punto).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: el status es "DOWN" si errorRate > umbral; "UP" si es <=.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: construye el Map con claves "errorRate" y "status".
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el mapa de metricas/health.
+    }
+
 }

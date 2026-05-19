@@ -54,4 +54,45 @@ public final class Ej016WildcardsVariance {
     public static void main(String[] args) {
         System.out.println(sumar(List.of(1, 2.5, 3L)));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: declara un acumulador double a 0.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: recorre la lista (es PRODUCTORA: solo lees, ? extends Number).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: para cada elemento usa doubleValue() para obtener su valor.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: acumula en el total.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: devuelve el acumulado.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: 'destino' es CONSUMIDORA (? super Integer): puedes añadir Integers.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: añade los valores 1, 2 y 3 en ese orden.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: abre stream sobre 'items' (comodín sin límites: solo Object).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: filtra con tipo.isInstance(x) (comprobación de tipo en runtime).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve count().
+    }
+
 }

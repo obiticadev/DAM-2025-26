@@ -53,4 +53,45 @@ public final class Ej025JsonAnnotations {
     public static void main(String[] args) {
         System.out.println(toJson(new Usuario("ana", "secreto")));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: anota 'nombre' con @JsonProperty("user_name") para renombrar la clave JSON.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: anota 'password' con @JsonIgnore para que NUNCA se serialice.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: abre try alrededor de la serialización.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: usa MAPPER.writeValueAsString(u).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: verifica mentalmente que la clave sea "user_name" (la da @JsonProperty).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: verifica que "password" NO aparezca (lo evita @JsonIgnore).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: devuelve la cadena.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: captura JsonProcessingException.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: relánzala como RuntimeException.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: nunca devuelvas null silenciosamente ante un fallo.
+    }
+
 }

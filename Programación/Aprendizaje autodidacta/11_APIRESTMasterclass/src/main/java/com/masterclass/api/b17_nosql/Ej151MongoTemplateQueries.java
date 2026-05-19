@@ -65,6 +65,47 @@ public final class Ej151MongoTemplateQueries {
                 new Pedido149("b", "leo", 50));
         System.out.println(find(col, criterio("ana", 100)));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: el criterio equivale a Criteria.where("total").gte(totalMinimo).
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si cliente != null se añade and("cliente").is(cliente).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si cliente == null el filtro de cliente no aplica (cualquiera).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: encapsula ambos valores en el record Criterio151.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: no valides aquí el dataset (el criterio es independiente de los datos).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: totalMinimo negativo es válido (no filtra nada por abajo).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: documenta que es el equivalente NoSQL a Criteria API de JPA.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: el criterio debe ser reutilizable en varias consultas.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: no devuelvas null.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: retorna el Criterio151 construido.
+    }
+
 }
 
 /** Criterio de búsqueda inmutable (equivalente a un {@code Query}). */

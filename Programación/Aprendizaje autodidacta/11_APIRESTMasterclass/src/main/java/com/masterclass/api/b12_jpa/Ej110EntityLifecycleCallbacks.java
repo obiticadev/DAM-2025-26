@@ -30,6 +30,47 @@ public final class Ej110EntityLifecycleCallbacks {
     public static void main(String[] args) {
         System.out.println("usa el test con EMF aislado");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: begin tx, persist(a), commit.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: NO asignes 'creadoEn' aquí: debe hacerlo el @PrePersist de la entidad.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: devuelve la entidad (creadoEn ya no será null si el callback funciona).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: anota este método con @jakarta.persistence.PrePersist.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: si creadoEn es null, asígnale Instant.now().
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: este método lo invoca el proveedor JPA, no tu código.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: tras persist(), 'creadoEn' debe quedar poblado.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: no lances excepción aquí (rompería el INSERT).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: el callback NO recibe parámetros y suele ser void.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: mantén el método accesible al proveedor (package/protected vale).
+    }
+
 }
 
 @jakarta.persistence.Entity

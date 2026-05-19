@@ -70,4 +70,45 @@ public final class Ej087DaoPattern {
     public static void main(String[] args) {
         System.out.println(escenario(new EmpleadoDaoMem()));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: valida e no null.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si ya existe e.id() lanza IllegalStateException (clave duplicada, como en SQL).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: inserta en 'tabla'.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: devuelve el empleado o null si no existe (estilo DAO clásico).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: filtra los valores cuyo departamento sea 'dep'.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: devuelve la lista (vacía si ninguno).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: elimina por id; devuelve true si existía.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: inserta Empleado(1,"Ana","IT") y Empleado(2,"Leo","RRHH").
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: consulta buscarPorDepartamento("IT").
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el tamaño de esa lista (debe ser 1).
+    }
+
 }

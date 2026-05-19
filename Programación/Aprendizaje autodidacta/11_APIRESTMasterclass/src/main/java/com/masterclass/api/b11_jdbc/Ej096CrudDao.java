@@ -69,4 +69,45 @@ public final class Ej096CrudDao {
     public static void main(String[] args) {
         System.out.println("usa el test con H2 en memoria");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: prepara "INSERT INTO CLIENTE(id,nombre) VALUES (?,?)".
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: setea parámetros y executeUpdate (try-with-resources).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: prepara "SELECT nombre FROM CLIENTE WHERE id=?".
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: ejecuta; si rs.next() devuelve el nombre.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: si no hay fila, devuelve null.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: prepara "UPDATE CLIENTE SET nombre=? WHERE id=?".
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: executeUpdate devuelve nº de filas; true si > 0.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: prepara "DELETE FROM CLIENTE WHERE id=?".
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: executeUpdate; true si afectó alguna fila.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: cada método abre y cierra su PreparedStatement (no fugas de recursos).
+    }
+
 }

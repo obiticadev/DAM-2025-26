@@ -63,4 +63,45 @@ public final class Ej017FunctionalInterfaces {
     public static void main(String[] args) {
         System.out.println(transformar(List.of(1, 2, 3), x -> x * x));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: abre stream sobre 'entrada'.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: aplica .map(f) para transformar cada elemento.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: recoge a List preservando el orden y devuélvela.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: abre stream sobre 'entrada'.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: aplica .filter(p).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: recoge a List y devuélvela.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: abre un bloque try alrededor de s.get().
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: si tiene éxito, devuelve ese valor.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: captura cualquier RuntimeException sin propagarla.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: en el catch, devuelve 'fallback'.
+    }
+
 }

@@ -62,4 +62,45 @@ public final class Ej172TestcontainersPostgres {
         System.out.println(jdbcUrl("localhost", 54321, "test"));
         System.out.println(imagenValida("postgres:16-alpine"));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si host es null o blank -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si puerto < 1 o > 65535 -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si baseDatos es null o blank -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: el esquema fijo es "jdbc:postgresql://".
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: concatena host + ":" + puerto.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: añade "/" + baseDatos.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: no añadas query params por defecto (mantén la URL mínima).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: la URL es determinista para los mismos inputs.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: no normalices el host a minúsculas (puede ser una IP exacta).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve la URL completa.
+    }
+
 }

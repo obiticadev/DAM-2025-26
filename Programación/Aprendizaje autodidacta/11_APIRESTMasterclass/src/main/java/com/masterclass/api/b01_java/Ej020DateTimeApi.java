@@ -60,4 +60,45 @@ public final class Ej020DateTimeApi {
     public static void main(String[] args) {
         System.out.println(diasEntre(LocalDate.of(2026, 1, 1), LocalDate.of(2026, 1, 11)));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: usa ChronoUnit.DAYS.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: aplica between(inicio, fin) (el orden importa: define el signo).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: devuelve el resultado (negativo si fin < inicio).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: calcula el instante de expiración = emitido.plusMinutes(minutosVida).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: compara 'ahora' con ese instante usando isAfter.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: caducado = ahora está estrictamente después de la expiración.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: devuelve ese booleano.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: LocalDate ya serializa en ISO-8601 con toString().
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: invoca fecha.toString() de forma explícita.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve esa cadena (formato yyyy-MM-dd).
+    }
+
 }

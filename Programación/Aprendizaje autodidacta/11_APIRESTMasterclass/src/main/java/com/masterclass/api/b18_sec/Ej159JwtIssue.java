@@ -66,4 +66,45 @@ public final class Ej159JwtIssue {
         SecretKey k = clave("01234567890123456789012345678901");
         System.out.println(emitir(k, "ana", "ROLE_ADMIN", System.currentTimeMillis(), 60000));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si secreto es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: pasa el secreto a bytes con UTF-8.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si tiene menos de 32 bytes -> IllegalArgumentException (HS256 exige >=256 bits).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: usa io.jsonwebtoken.security.Keys.hmacShaKeyFor(bytes).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: el secreto NUNCA debe ir en el código en producción (config/secret manager).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: documenta que la misma clave firma y verifica (simétrica).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: no loguees el secreto.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: devuelve el SecretKey.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: la clave debe ser estable entre emisión y validación.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: cuidado: rotar la clave invalida los tokens antiguos.
+    }
+
 }

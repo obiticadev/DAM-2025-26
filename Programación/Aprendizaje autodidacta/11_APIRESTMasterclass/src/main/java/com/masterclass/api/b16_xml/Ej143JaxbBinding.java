@@ -70,6 +70,47 @@ public final class Ej143JaxbBinding {
         System.out.println(xml);
         System.out.println(desdeXml(xml));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si libro es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: crea un JAXBContext con JAXBContext.newInstance(Libro143.class).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: obtén un Marshaller con context.createMarshaller().
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: activa Marshaller.JAXB_FORMATTED_OUTPUT a true para XML legible.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: prepara un StringWriter como destino del marshal.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: invoca marshaller.marshal(libro, writer).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: captura JAXBException y reenvíala como RuntimeException.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: el @XmlRootElement de Libro143 define el nombre del elemento raíz.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: @XmlAttribute mapea isbn como atributo, no como elemento hijo.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve writer.toString() (el XML resultante).
+    }
+
 }
 
 /**

@@ -55,3 +55,39 @@ flowchart LR
 
 Negociación JSON/XML, CORS, upload/download, lectura de headers, ETag/caché,
 estrategia de versionado y un interceptor que mide tiempos.
+
+
+## Teoría Extendida y Ejemplos de Código
+
+### 1. Subida de Ficheros (MultipartFile)
+```java
+@PostMapping(value = "/{id}/avatar", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+public ResponseEntity<String> subirAvatar(
+        @PathVariable Long id, 
+        @RequestParam("archivo") MultipartFile file) {
+    
+    if (file.isEmpty()) return ResponseEntity.badRequest().body("Archivo vacío");
+    
+    almacenamientoService.guardar(id, file.getBytes());
+    return ResponseEntity.ok("Subido correctamente");
+}
+```
+
+### 2. CORS (Cross-Origin Resource Sharing)
+Para permitir que un Front-End en React (puerto 3000) llame a la API (puerto 8080).
+```java
+@Configuration
+public class CorsConfig implements WebMvcConfigurer {
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/api/**")
+                .allowedOrigins("http://localhost:3000")
+                .allowedMethods("GET", "POST", "PUT", "DELETE")
+                .allowCredentials(true);
+    }
+}
+```
+
+### 3. Filtros HTTP vs Interceptores
+- **Filtros (Servlet Filter)**: Actúan antes de que Spring sepa qué Controller va a procesarlo. Útiles para logging global, CORS, o seguridad básica.
+- **Interceptores (HandlerInterceptor)**: Actúan justo antes/después del método del Controller. Tienen acceso al método java (`HandlerMethod`) que se ejecutó.

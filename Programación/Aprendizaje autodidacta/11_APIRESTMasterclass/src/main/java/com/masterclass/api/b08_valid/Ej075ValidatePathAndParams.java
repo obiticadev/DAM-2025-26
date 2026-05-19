@@ -48,4 +48,45 @@ public final class Ej075ValidatePathAndParams {
         validarId(5);
         System.out.println(java.util.Arrays.toString(validarPaginacion(0, 20)));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: un id de recurso siempre debe ser > 0.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si id <= 0, lanza IllegalArgumentException("id debe ser positivo").
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si es válido, simplemente retorna (sin valor).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: si page < 0 -> IllegalArgumentException("page >= 0").
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: si size < 1 -> IllegalArgumentException("size >= 1").
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: si size > 100 -> IllegalArgumentException("size <= 100").
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: estas son las constraints típicas de @RequestParam paginado.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: si todo es válido, construye int[]{page, size}.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: NO satures silenciosamente fuera de rango: el contrato es fallar.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el array validado.
+    }
+
 }

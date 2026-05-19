@@ -41,6 +41,47 @@ public final class Ej130InheritanceStrategies {
     public static void main(String[] args) {
         System.out.println("usa el test con EMF aislado");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: begin tx.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: persiste un PagoTarjeta130 y un PagoTransferencia130.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: commit.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: JPQL polimórfica "select count(p) from Pago130 p" (cuenta todos los subtipos).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: getSingleResult() y devuélvelo como long.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: JPQL "select p from Pago130 p where TYPE(p) = PagoTarjeta130".
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: getResultList().
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: anota Pago130 con @Entity y @Inheritance(strategy = InheritanceType.SINGLE_TABLE).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: añade @DiscriminatorColumn(name = "tipo") para distinguir subtipos.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: anota PagoTarjeta130 con @Entity y @DiscriminatorValue("TARJETA").
+    }
+
 }
 
 // TODO 8: anota Pago130 con @Entity y @Inheritance(strategy = InheritanceType.SINGLE_TABLE).

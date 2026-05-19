@@ -41,4 +41,45 @@ public final class Ej039ApplicationProperties {
         System.out.println(resolve(props, "${app.region:us}"));
         System.out.println(resolve(props, "${app.timeout:30}"));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si expression es null/vacía, devuelve "".
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: valida que empiece por "${" y termine por "}"; si no, devuelve "" (formato inválido).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: recorta los delimitadores "${" y "}" para quedarte con el interior.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: localiza el primer ':' (separa clave de valor por defecto).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: si NO hay ':', la clave es todo el interior y no hay default.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: si HAY ':', la clave es lo anterior y el default lo posterior.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: busca la clave en 'props'.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: si existe, devuelve su valor (la config externa gana).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: si no existe pero hay default, devuelve el default.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: si no existe y no hay default, devuelve "".
+    }
+
 }

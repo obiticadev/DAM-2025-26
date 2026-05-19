@@ -40,6 +40,47 @@ public final class Ej168WebMvcTest {
     public static void main(String[] args) {
         System.out.println(handle("GET", "/saludo", "Ada"));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si metodo o ruta son null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si la ruta no es "/saludo" -> Respuesta168(404, "{}").
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si el metodo no es "GET" -> Respuesta168(405, "{}").
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: si nombre es null o blank -> Respuesta168(400, cuerpo de error).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: el cuerpo de error debe ser JSON: {"error":"nombre requerido"}.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: caso OK -> status 200.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: cuerpo OK -> JSON {"saludo":"Hola, <nombre>"}.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: escapa correctamente el JSON (comillas dobles internas).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: la respuesta es determinista (mismo request -> misma response).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve la Respuesta168 construida.
+    }
+
 }
 
 /** Respuesta HTTP simulada (lo que MockMvc inspeccionaría). */

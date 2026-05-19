@@ -33,6 +33,47 @@ public final class Ej111EnumAndEmbeddable {
     public static void main(String[] args) {
         System.out.println("usa el test con EMF aislado");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: begin tx, persist(s), commit.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: em.clear() para forzar lectura desde BD (no caché de 1er nivel).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: devuelve em.find(Socio111.class, s.getId()).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: anota Direccion111 con @jakarta.persistence.Embeddable.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: anota 'estado' con @Enumerated(EnumType.STRING)
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: anota 'direccion' con @jakarta.persistence.Embedded.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: sin @Embedded el objeto Direccion111 no se persiste como columnas.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: asigna los tres campos (constructor de conveniencia).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: el enum se guardará como String por @Enumerated(STRING).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: la dirección se "aplana" en columnas de la tabla SOCIO111.
+    }
+
 }
 
 // TODO 4: anota Direccion111 con @jakarta.persistence.Embeddable.

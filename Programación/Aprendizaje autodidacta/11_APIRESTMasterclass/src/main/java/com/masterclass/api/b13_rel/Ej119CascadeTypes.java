@@ -46,6 +46,47 @@ public final class Ej119CascadeTypes {
     public static void main(String[] args) {
         System.out.println("usa el test con EMF aislado");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: begin tx, persist(f) SOLO (no persistas conceptos a mano), commit.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: gracias a cascade=ALL, los conceptos se guardan con la factura.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: em.clear(), recarga la factura, devuelve su nº de conceptos.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: begin tx, recupera la factura.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: quita el primer concepto de la lista.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: con orphanRemoval=true, al quitarlo de la colección se BORRA en BD.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: commit, em.clear(), recarga y devuelve el nº de conceptos.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: anota 'conceptos' con @OneToMany(mappedBy="factura").
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: añade cascade = CascadeType.ALL.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: añade orphanRemoval = true (quitar de la lista => DELETE).
+    }
+
 }
 
 @Entity

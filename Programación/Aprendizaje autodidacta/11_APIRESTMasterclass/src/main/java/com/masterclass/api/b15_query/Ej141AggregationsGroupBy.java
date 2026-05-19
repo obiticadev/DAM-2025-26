@@ -42,6 +42,47 @@ public final class Ej141AggregationsGroupBy {
     public static void main(String[] args) {
         System.out.println("usa el test con EMF aislado");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: JPQL "select v.categoria, count(v) from Venta141 v
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: el resultado es List<Object[]> (cada fila: [categoria, count]).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: createQuery(jpql, Object[].class).getResultList().
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: recorre cada Object[].
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: fila[0] es la categoría (String).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: fila[1] es el count (Long).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: mete cada par en 'out' (LinkedHashMap conserva el orden).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: GROUP BY agrupa filas; count() cuenta por grupo.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: si no hay ventas, devuelve mapa vacío.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el mapa.
+    }
+
 }
 
 @Entity

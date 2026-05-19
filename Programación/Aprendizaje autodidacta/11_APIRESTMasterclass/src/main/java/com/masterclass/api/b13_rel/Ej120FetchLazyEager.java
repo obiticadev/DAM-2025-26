@@ -37,6 +37,47 @@ public final class Ej120FetchLazyEager {
     public static void main(String[] args) {
         System.out.println("usa el test con EMF aislado");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: recupera la entidad con em.find.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: NO toques la colección lazy aquí (no la inicialices).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: em.detach(entidad) para dejarla fuera del contexto.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: devuelve la entidad detached.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: acceder luego a getLibros() debe lanzar LazyInitializationException
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: anota 'libros' con @OneToMany(mappedBy="biblioteca").
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: fuerza fetch = FetchType.LAZY (es el default en *ToMany, pero hazlo explícito).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: cascade = CascadeType.ALL para persistir los libros con la biblioteca.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: añade a la lista y sincroniza l.setBiblioteca(this).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve la colección (si está detached y LAZY -> excepción al iterarla).
+    }
+
 }
 
 @Entity

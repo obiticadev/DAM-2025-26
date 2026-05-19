@@ -61,4 +61,45 @@ public final class Ej089HexagonalPorts {
         var adapter = new NotificacionEnMemoria();
         System.out.println(new RegistroService(adapter).registrar("a@b.com"));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: valida destino y mensaje no null/blank.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: registra "destino|mensaje" en la lista 'enviados'.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: este adaptador es intercambiable sin tocar el dominio.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: guarda la dependencia del puerto (inyección por constructor).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: valida que email contenga '@'.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: construye el mensaje "Bienvenido " + email.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: usa el PUERTO notificacion.enviar(email, mensaje).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: el dominio no sabe si es email real o memoria (desacoplado).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: devuelve el mensaje enviado.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: si cambias el adaptador, este código NO cambia (esa es la idea).
+    }
+
 }

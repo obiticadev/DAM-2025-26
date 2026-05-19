@@ -46,6 +46,47 @@ public final class Ej134Sorting {
     public static void main(String[] args) {
         System.out.println("usa el test con EMF aislado");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si campo es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: valida que CAMPOS_PERMITIDOS.contains(campo) (anti-inyección).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si no está permitido -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: determina la dirección: "asc" o "desc" según 'ascendente'.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: construye el JPQL "select p from Prod134 p order by p." + campo + " " + dir.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: el campo es seguro porque pasó la whitelist (no concatenes nada más).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: createQuery tipado.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: getResultList().
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: NUNCA metas 'campo' en el SQL sin haberlo validado contra la lista.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve la lista ordenada.
+    }
+
 }
 
 @Entity

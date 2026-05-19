@@ -41,4 +41,45 @@ public class Ej048RequestBodyPost {
     public static void main(String[] args) {
         System.out.println(new Ej048RequestBodyPost().crear(new ItemIn("café")));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: anota la clase con @RestController.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: anota la clase con @RequestMapping("/api/items").
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: anota el método con @PostMapping.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: anota 'entrada' con @RequestBody para deserializar el JSON.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: valida que entrada.nombre() no sea null/vacío (si lo es, 400 con ResponseEntity.badRequest()).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: construye un ItemOut con id = 1L y el nombre recibido.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: usa ResponseEntity.status(HttpStatus.CREATED) (201).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: añade la cabecera Location "/api/items/1" con .location(URI.create(...)).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: incluye el ItemOut en el body con .body(...).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve esa ResponseEntity.
+    }
+
 }

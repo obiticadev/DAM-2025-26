@@ -76,3 +76,39 @@ Un mini-contenedor IoC propio, inyección por constructor, `@Qualifier`/`@Primar
 scopes, ciclo de vida, `@Configuration`/`@Bean`, `@Conditional`, eventos y un
 aspecto AOP. Los tests usan `AnnotationConfigApplicationContext` cuando hace falta
 Spring real.
+
+
+## Teoría Extendida y Ejemplos de Código
+
+### 1. Inversión de Control (IoC) y Dependency Injection (DI)
+El framework es el dueño del ciclo de vida de los objetos (Beans), no tú usando `new`.
+
+```java
+@Service // Declara el Bean
+public class FacturacionService {
+    
+    private final NotificacionService notificador; // Inmutable
+    
+    // Inyección por Constructor (Recomendada). Evita @Autowired en propiedades.
+    public FacturacionService(NotificacionService notificador) {
+        this.notificador = notificador;
+    }
+}
+```
+
+### 2. Scopes y Perfiles
+- **Singleton**: Una única instancia compartida (Por defecto).
+- **Prototype**: Una nueva instancia cada vez que se inyecta.
+
+```java
+@Configuration
+public class AppConfig {
+    
+    @Bean
+    @Scope("prototype")
+    @Profile("!test") // No se cargará en tests
+    public ClienteHttp clienteExterno() {
+        return new ClienteHttp();
+    }
+}
+```

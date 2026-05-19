@@ -40,6 +40,47 @@ public final class Ej182RequestTracing {
     public static void main(String[] args) {
         System.out.println(propagar(null, 0));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si salto < 0 -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: determina si traceIdEntrante esta ausente (null o en blanco).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si esta ausente, este nodo es el origen de la traza.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: en el origen, genera un traceId nuevo (p.ej. UUID sin guiones).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: si viene un traceId, reutilizalo intacto (trim) para correlacionar.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: el spanId es unico por salto: derivalo de traceId + ":" + salto.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: marca "raiz"=true solo si es el origen (salto 0 y sin entrante).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: nunca devuelvas traceId null ni vacio (invariante de la traza).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: construye el TraceContext182 con traceId, spanId y raiz.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el contexto de traza.
+    }
+
 }
 
 /** Contexto de traza propagado entre saltos. */

@@ -66,6 +66,47 @@ public final class Ej144JacksonXml {
         System.out.println(xml);
         System.out.println(desdeXml(xml));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si cliente es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: instancia un XmlMapper (com.fasterxml.jackson.dataformat.xml.XmlMapper).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: opcionalmente activa SerializationFeature.INDENT_OUTPUT.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: invoca mapper.writeValueAsString(cliente).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: @JacksonXmlRootElement fija el nombre del elemento raíz.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: @JacksonXmlProperty(isAttribute=true) mapea id como atributo.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: captura JsonProcessingException y reenvíala como RuntimeException.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: no añadas declaración XML manual: deja que Jackson la gestione.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: el resultado no debe ser null ni vacío para un cliente válido.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve la cadena XML.
+    }
+
 }
 
 /**

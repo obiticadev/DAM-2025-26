@@ -60,4 +60,45 @@ public final class Ej012OptionalSafeAccess {
         System.out.println(primeroLargo(List.of("an", "pedro", "li"), 3));
         System.out.println(enMayusOrDefault(null, "N/A"));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si 'nombres' es null, devuelve Optional.empty() (defensa).
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: abre un stream sobre la lista.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: filtra los elementos null (no deben provocar NPE).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: filtra los que tengan length() > minLen (mínimo ESTRICTO).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: usa findFirst() para quedarte con el primero y devuélvelo (ya es Optional).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: envuelve 'nombre' con Optional.ofNullable (sin if explícito).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: aplica map(String::toUpperCase) sobre el Optional.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: resuelve con orElse(porDefecto).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: envuelve 'valor' con Optional.ofNullable.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: resuelve con orElseThrow(() -> new IllegalStateException("ausente")).
+    }
+
 }

@@ -62,4 +62,45 @@ public final class Ej008RestResourceModeler {
         System.out.println(item("pedidos", 42));
         System.out.println(nested("pedidos", 42, "lineas"));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si resource es null, lanza IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si resource está en blanco (vacío o solo espacios), lanza IllegalArgumentException.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: recorta espacios sobrantes de 'resource'.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: devuelve "/" + resource.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: si id es null, lanza IllegalArgumentException (un elemento necesita id).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: reutiliza collection(resource) para no duplicar validación/formato.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: concatena "/" + id (usa String.valueOf para Object).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: valida 'child' igual que un recurso (null/blank -> IllegalArgumentException).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: reutiliza item(parent, parentId) para construir el prefijo del padre.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: añade "/" + child recortado y devuelve la ruta completa.
+    }
+
 }

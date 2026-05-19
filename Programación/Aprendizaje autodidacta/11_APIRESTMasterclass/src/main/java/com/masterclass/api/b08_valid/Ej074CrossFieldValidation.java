@@ -49,4 +49,45 @@ public final class Ej074CrossFieldValidation {
     public static void main(String[] args) {
         System.out.println(passwordsCoinciden(new Passwords("12345678", "12345678")));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si r es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si r.inicio() o r.fin() son null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: el rango es válido si fin NO es anterior a inicio (fin >= inicio).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: usa isBefore para comprobar la relación entre los dos campos.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: devuelve el booleano resultante.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: si p es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: si password es null -> false (no válido).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: comprueba longitud mínima 8 de password.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: comprueba que password.equals(confirmacion) (regla entre 2 campos).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve true solo si AMBAS condiciones se cumplen.
+    }
+
 }

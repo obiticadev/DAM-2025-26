@@ -37,4 +37,45 @@ public final class Ej056CorsConfiguration {
     public static void main(String[] args) {
         System.out.println(corsHeaders("https://app.com", List.of("https://app.com")));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si origin es null/blank, no es petición cross-origin -> mapa vacío.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si allowedOrigins es null/vacío, nada permitido -> mapa vacío.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si allowedOrigins contiene "*", se permite cualquier origen.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: si no, comprueba si 'origin' está exactamente en la lista.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: si NO está permitido, devuelve mapa vacío (el navegador bloqueará).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: si está permitido y se usó "*", Allow-Origin = "*".
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: si está permitido por lista, Allow-Origin = el propio 'origin' (eco).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: añade "Access-Control-Allow-Methods" = "GET,POST,PUT,DELETE".
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: añade "Access-Control-Allow-Headers" = "Content-Type,Authorization".
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el mapa con las 3 cabeceras.
+    }
+
 }

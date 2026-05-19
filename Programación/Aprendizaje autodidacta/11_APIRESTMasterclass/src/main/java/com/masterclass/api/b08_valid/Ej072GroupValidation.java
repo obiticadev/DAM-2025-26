@@ -77,4 +77,45 @@ public final class Ej072GroupValidation {
     public static void main(String[] args) {
         System.out.println(validarCreate(new RecursoDto(5L, "x")));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: 'id' con @Null(groups = OnCreate.class) — al crear NO debe venir id.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: 'id' con @NotNull(groups = OnUpdate.class) — al actualizar es obligatorio.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: 'nombre' con @NotBlank aplicando a AMBOS grupos
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: invoca VALIDATOR.validate(dto, OnCreate.class).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: mapea a nombres de propiedad y recoge a Set.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: invoca VALIDATOR.validate(dto, OnUpdate.class).
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: el método ya está hecho; lo que decide el resultado son los 'groups'.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: con id=null en Create -> válido; en Update -> inválido.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: con id!=null en Create -> inválido; en Update -> válido.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: 'nombre' vacío es inválido en ambos grupos.
+    }
+
 }

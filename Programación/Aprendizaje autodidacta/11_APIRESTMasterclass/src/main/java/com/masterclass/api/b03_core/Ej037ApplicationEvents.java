@@ -46,4 +46,45 @@ public class Ej037ApplicationEvents {
         bus.subscribe(e -> System.out.println("listener: " + e));
         bus.publish("PedidoCreado");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: valida que 'listener' no sea null.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: añádelo a la lista interna 'listeners'.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: el orden de suscripción debe preservarse (List lo garantiza).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: recorre los listeners en orden de suscripción.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: a cada listener pásale el 'evento' con accept(evento).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: todos los listeners deben recibir el MISMO evento.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: si un listener lanza, decide la política (aquí: propaga, simple).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: publicar sin listeners no debe fallar (lista vacía -> no-op).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: no modifiques la lista de listeners durante la iteración.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: tras publicar, los listeners siguen suscritos (no se consumen).
+    }
+
 }

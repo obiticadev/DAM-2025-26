@@ -51,4 +51,45 @@ public final class Ej092StrategyAndPolicy {
     public static void main(String[] args) {
         System.out.println(aplicar(100, "black-friday"));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: "none" -> identidad (precio sin cambios).
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: "black-friday" -> precio * 0.70 (30% off).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: "vip" -> precio * 0.90 (10% off).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: devuelve un Map inmodificable con esas 3 entradas.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: cada valor es un DoubleUnaryOperator (la "estrategia").
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: valida precio >= 0.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: obtén el mapa de estrategias().
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: si la estrategia no está -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: aplica la función con applyAsDouble(precio).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el resultado (añadir una estrategia nueva NO toca este método).
+    }
+
 }

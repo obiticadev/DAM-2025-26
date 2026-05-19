@@ -62,4 +62,45 @@ public final class Ej157PasswordEncoder {
         String h = hash("supersecreta1");
         System.out.println(verifica("supersecreta1", h));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si raw es null -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si raw.length() < 8 -> IllegalArgumentException (política mínima).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: crea un BCryptPasswordEncoder (strength por defecto 10 está bien).
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: invoca encode(raw) para obtener el hash con salt embebido.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: NO almacenes ni loguees la contraseña en claro.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: el mismo input produce hashes DISTINTOS (salt aleatorio): es normal.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: no truncar el hash; es de longitud fija (~60 chars).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: documenta que BCrypt es lento a propósito (resistencia a fuerza bruta).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: devuelve el hash resultante.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: el verificador (matches) recuperará el salt del propio hash.
+    }
+
 }

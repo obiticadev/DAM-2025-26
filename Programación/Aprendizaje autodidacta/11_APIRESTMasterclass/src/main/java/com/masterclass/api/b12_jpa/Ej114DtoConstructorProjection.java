@@ -45,6 +45,47 @@ public final class Ej114DtoConstructorProjection {
     public static void main(String[] args) {
         System.out.println("usa el test con EMF aislado");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: el JPQL usa el nombre COMPLETO de la clase DTO en "select new".
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: "select new com.masterclass.api.b12_jpa.Ej114DtoConstructorProjection$ResumenPedido(
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: el DTO debe tener un constructor que case con los tipos/orden seleccionados.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: crea la query con createQuery(jpql, ResumenPedido.class).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: getResultList().
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: la proyección evita el overhead de materializar entidades completas.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: el DTO NO está gestionado por el contexto de persistencia.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: respeta el orden (ORDER BY p.id).
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: si no hay pedidos, devuelve lista vacía (no null).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve la lista de ResumenPedido.
+    }
+
 }
 
 @jakarta.persistence.Entity

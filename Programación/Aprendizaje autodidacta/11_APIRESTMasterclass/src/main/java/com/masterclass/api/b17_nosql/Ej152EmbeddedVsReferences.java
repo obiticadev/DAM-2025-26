@@ -66,6 +66,47 @@ public final class Ej152EmbeddedVsReferences {
         System.out.println(documentoEmbebido("p1", List.of(new Linea152("café", 2))));
         System.out.println(resolverReferencia("c1", Map.of("c1", "Ana")));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si pedidoId es null o vacío -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si lineas es null -> IllegalArgumentException (lista vacía sí es válida).
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: crea un LinkedHashMap para el documento padre.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: pon pedidoId bajo la clave "_id".
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: convierte cada Linea152 en un Map {producto, cantidad}.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: agrupa esos sub-mapas en una List y ponla bajo la clave "lineas".
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: embebido = UNA sola lectura trae el pedido completo (sin joins).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: advierte (en comentario) que crecer sin límite hincha el documento.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: devuelve el mapa de forma inmodificable.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: retorna el documento embebido.
+    }
+
 }
 
 /** Subdocumento embebido: una línea de pedido. */

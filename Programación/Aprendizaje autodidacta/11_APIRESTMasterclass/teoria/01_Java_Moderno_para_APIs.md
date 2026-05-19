@@ -95,3 +95,45 @@ profundiza en 2º.
 Records como DTO, `Optional` encadenado, pipelines de streams, repositorio
 genérico, interfaces funcionales, `sealed`, excepciones con try-with-resources,
 `java.time`, `CompletableFuture` y contratos `equals`/`hashCode`.
+
+
+## Teoría Extendida y Ejemplos de Código
+
+### 1. Records (Java 14+)
+Inmutables por defecto, perfectos para DTOs.
+```java
+public record UsuarioDto(Long id, String nombre, String email) {
+    // Constructor compacto para validaciones
+    public UsuarioDto {
+        if (email == null || email.isBlank()) {
+            throw new IllegalArgumentException("Email no puede ser nulo");
+        }
+    }
+}
+```
+
+### 2. Optional y Streams
+Nunca devuelvas `null` si una entidad puede no existir, usa `Optional`. Para procesar colecciones usa la API Stream.
+```java
+public List<String> obtenerEmailsActivos() {
+    return repository.findAll().stream()
+            .filter(Usuario::isActivo)
+            .map(Usuario::getEmail)
+            .map(String::toLowerCase)
+            .toList(); // Java 16+
+}
+```
+
+### 3. Sealed Classes (Java 15+) y Pattern Matching
+Modelado estricto de dominios. Evita herencias incontroladas.
+```java
+public sealed interface Resultado permits Exito, Error {}
+public record Exito(String data) implements Resultado {}
+public record Error(String motivo) implements Resultado {}
+
+// Pattern matching en switch (Java 21)
+String mensaje = switch(resultado) {
+    case Exito e -> "Todo bien: " + e.data();
+    case Error e -> "Falló: " + e.motivo();
+};
+```

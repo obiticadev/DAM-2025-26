@@ -38,4 +38,45 @@ public final class Ej023JsonModel {
             System.out.println(s + " -> " + tipo(s));
         }
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si literal es null o vacío -> "desconocido".
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: si empieza por '{' -> "objeto".
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: si empieza por '[' -> "array".
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: si empieza por '"' -> "string".
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: si es exactamente "true" o "false" -> "booleano".
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: si es exactamente "null" -> "null".
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: intenta parsear como número (Double.parseDouble en try/catch).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: si el parseo tiene éxito -> "numero".
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: si lanza NumberFormatException, no es número.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: si nada de lo anterior aplica -> "desconocido".
+    }
+
 }

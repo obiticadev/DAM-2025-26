@@ -48,6 +48,47 @@ public final class Ej133Pagination {
     public static void main(String[] args) {
         System.out.println("usa el test con EMF aislado");
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: valida pagina >= 0 y tamano > 0.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: calcula el offset = pagina * tamano.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: query de datos JPQL "select i from Item133 i order by i.id".
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: aplica setFirstResult(offset).
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: aplica setMaxResults(tamano).
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: getResultList() para el contenido.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: query aparte "select count(i) from Item133 i" para el total.
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: getSingleResult() -> long total.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: construye la Pagina con contenido, total, pagina, tamano.
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuélvela (totalPaginas lo calcula el record).
+    }
+
 }
 
 @Entity

@@ -67,4 +67,45 @@ public final class Ej164CsrfAndCorsHardening {
         System.out.println(requiereCsrf("POST", false));
         System.out.println(corsPermitido("https://app.com", Set.of("https://app.com")));
     }
+
+    public static void pasoExtra01() {
+        // TODO extra aislando concepto: si metodo es null o blank -> IllegalArgumentException.
+    }
+
+    public static void pasoExtra02() {
+        // TODO extra aislando concepto: normaliza el metodo a mayúsculas.
+    }
+
+    public static void pasoExtra03() {
+        // TODO extra aislando concepto: GET, HEAD, OPTIONS y TRACE son "safe methods": nunca CSRF.
+    }
+
+    public static void pasoExtra04() {
+        // TODO extra aislando concepto: si NO se usa cookie de sesión (JWT stateless) -> nunca CSRF.
+    }
+
+    public static void pasoExtra05() {
+        // TODO extra aislando concepto: si usa cookie de sesión y el método muta -> requiere CSRF.
+    }
+
+    public static void pasoExtra06() {
+        // TODO extra aislando concepto: documenta por qué JWT en header es inmune a CSRF clásico.
+    }
+
+    public static void pasoExtra07() {
+        // TODO extra aislando concepto: no confundas CSRF (estado del navegador) con CORS (origen).
+    }
+
+    public static void pasoExtra08() {
+        // TODO extra aislando concepto: deny by default solo aplica a autorización, aquí razona por método.
+    }
+
+    public static void pasoExtra09() {
+        // TODO extra aislando concepto: cubre todos los métodos mutadores (POST/PUT/PATCH/DELETE).
+    }
+
+    public static void pasoExtra10() {
+        // TODO extra aislando concepto: devuelve el booleano.
+    }
+
 }
