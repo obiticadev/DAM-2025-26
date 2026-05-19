@@ -1,0 +1,21 @@
+id_cliente,nombre,tipo,nif,email,telefono,direccion,ciudad,codigo_postal,pais,limite_credito,condiciones_pago,comercial_asignado
+1,Colegio Público La Encina,Empresa,Q2813456H,administracion@cpencina.edu.es,916 234 567,Calle Mayor 12,Alcobendas,28100,España,5000.00,30 días,Ana García
+2,Consultora ITSolves SL,Empresa,B78234561,compras@itsolves.es,934 567 890,Av. Diagonal 420 3ºA,Barcelona,08037,España,8000.00,15 días,Carlos Ruiz
+3,Clínica Dental Sonrisa Sana,Empresa,B45671234,gestion@sonrisasana.com,963 456 789,Calle Colón 8 bajo,Valencia,46004,España,3000.00,Contado,Ana García
+4,Arquitectura & Diseño Morales,Autónomo,12345678A,pmorales@moralesarq.com,954 321 654,Plaza Nueva 5 1ºB,Sevilla,41001,España,2000.00,15 días,Carlos Ruiz
+5,Restaurante El Rincón de Mar,Empresa,B23456789,info@rincondemar.es,943 678 901,Puerto Pesquero local 3,San Sebastián,20003,España,1500.00,Contado,Ana García
+6,Gestoría Fernández e Hijos SL,Empresa,B67891234,compras@gestoriafernandez.es,985 234 567,Calle Uría 22 3ºC,Oviedo,33003,España,4000.00,30 días,Carlos Ruiz
+7,Distribuidora Alimentos Norte SA,Empresa,A34567890,informatica@alimentosnorte.com,976 543 210,Pol. Ind. Malpica nave 14,Zaragoza,50057,España,10000.00,60 días,Ana García
+8,Academia de Idiomas GlobalTalk,Empresa,B89012345,admin@globaltalk.es,913 456 789,Calle Fuencarral 88 2ºD,Madrid,28004,España,2500.00,15 días,Carlos Ruiz
+9,Farmacia Ruiz Martínez,Autónomo,23456789B,farmacia@ruizmartinez.com,952 321 456,Av. Andalucía 45,Málaga,29006,España,2000.00,Contado,Ana García
+10,Estudio Jurídico Peña & Asociados,Empresa,B12378901,administracion@penasociados.es,981 234 567,Rúa do Vilar 10 pral,Santiago de Compostela,15705,España,5000.00,30 días,Carlos Ruiz
+11,Centro Deportivo FitLife,Empresa,B56789012,gestion@fitlifecentro.es,922 678 901,Av. Marítima 67,Santa Cruz de Tenerife,38003,España,3000.00,15 días,Ana García
+12,Editorial Páginas Vivas SL,Empresa,B90123456,compras@paginasvivas.es,946 543 210,Calle Ercilla 38 4ºA,Bilbao,48011,España,6000.00,30 días,Carlos Ruiz
+13,Taller Mecánico AutoRápido,Autónomo,34567890C,taller@autorapido.es,968 456 789,Pol. Ind. Los Camachos nave 7,Murcia,30100,España,1000.00,Contado,Ana García
+14,Hotel Boutique Casa Solera,Empresa,B23467891,administracion@casasolera.com,957 234 567,Plaza de la Corredera 3,Córdoba,14002,España,4000.00,30 días,Carlos Ruiz
+15,Ingeniería Técnica Valdés SL,Empresa,B67892345,it@valdesing.es,983 345 678,Rúa Orzán 54 bajo,A Coruña,15001,España,7000.00,60 días,Ana García
+16,Supermercados Frescos SA,Empresa,A45678901,informatica@frescos.es,925 678 901,Av. de España 120,Albacete,02001,España,9000.00,60 días,Carlos Ruiz
+17,Notaría López Serrano,Autónomo,45678901D,notaria@lopezserrano.es,941 234 567,Calle Portales 12 1ºA,Logroño,26001,España,2000.00,15 días,Ana García
+18,Centro de Formación NextStep,Empresa,B34569012,compras@nextstep.es,920 345 678,Calle León y Castillo 220 3ºB,Las Palmas de Gran Canaria,35005,España,3500.00,15 días,Carlos Ruiz
+19,Constructora Vial Murillo SA,Empresa,A78901234,sistemas@vialmurillo.es,926 789 012,Av. de Castilla-La Mancha 88,Ciudad Real,13002,España,8000.00,60 días,Ana García
+20,Óptica Visión Clara,Autónomo,56789012E,optica@visionclara.es,977 456 789,Rambla Nova 62 bajo,Tarragona,43004,España,1500.00,Contado,Carlos Ruiz

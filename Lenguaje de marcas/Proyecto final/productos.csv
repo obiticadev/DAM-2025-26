@@ -1,0 +1,51 @@
+id_producto,nombre,referencia,categoria,precio_venta,precio_coste,stock,unidad_medida,proveedor,descripcion
+1,Portátil Lenovo IdeaPad 3,LEN-IP3-001,Portátiles,599.00,420.00,15,Unidad,Lenovo Iberia SL,Portátil 15.6" Intel Core i5 8GB RAM 512GB SSD
+2,Portátil HP 15s,HP-15S-002,Portátiles,549.00,385.00,10,Unidad,HP España SA,Portátil 15.6" AMD Ryzen 5 8GB RAM 256GB SSD
+3,Portátil Acer Aspire 5,ACE-AS5-003,Portátiles,479.00,330.00,8,Unidad,Acer España SL,Portátil 15.6" Intel Core i3 8GB RAM 512GB SSD
+4,Monitor Samsung 24",SAM-M24-004,Monitores,189.00,130.00,20,Unidad,Samsung Electronics,Monitor FHD IPS 24" HDMI DisplayPort
+5,Monitor LG 27" 4K,LG-M27-005,Monitores,349.00,245.00,12,Unidad,LG Electronics,Monitor 4K UHD 27" HDR10 USB-C
+6,Monitor BenQ 24" IPS,BEN-M24-006,Monitores,215.00,150.00,18,Unidad,BenQ España,Monitor IPS 24" FHD 75Hz Eye-Care
+7,Teclado Logitech MK470,LOG-TK-007,Periféricos,49.00,32.00,35,Unidad,Logitech España,Combo teclado y ratón inalámbrico slim
+8,Teclado mecánico HyperX,HYP-TM-008,Periféricos,89.00,60.00,22,Unidad,HyperX Europe,Teclado mecánico TKL switches Red retroiluminado
+9,Ratón Logitech MX Master 3,LOG-RM-009,Periféricos,99.00,68.00,30,Unidad,Logitech España,Ratón inalámbrico ergonómico 7 botones
+10,Ratón gaming Razer DeathAdder,RAZ-RG-010,Periféricos,59.00,40.00,25,Unidad,Razer Europe,Ratón gaming óptico 6400 DPI cable trenzado
+11,Disco SSD Samsung 870 EVO 1TB,SAM-SSD-011,Almacenamiento,89.00,62.00,40,Unidad,Samsung Electronics,SSD SATA 2.5" 1TB 560MB/s lectura
+12,Disco SSD WD Blue 500GB,WD-SSD-012,Almacenamiento,49.00,33.00,55,Unidad,Western Digital,SSD SATA 2.5" 500GB 560MB/s lectura
+13,Disco HDD Seagate 2TB,SEA-HDD-013,Almacenamiento,55.00,37.00,30,Unidad,Seagate Technology,HDD 3.5" 2TB 7200rpm SATA III
+14,Memoria RAM Kingston 16GB,KIN-RAM-014,Memoria,39.00,26.00,60,Unidad,Kingston Technology,DDR4 3200MHz CL22 DIMM desktop
+15,Memoria RAM Corsair 32GB Kit,COR-RAM-015,Memoria,75.00,52.00,28,Unidad,Corsair Memory,DDR4 3600MHz CL18 2x16GB Vengeance RGB
+16,Tarjeta gráfica RTX 3060,NVI-GPU-016,Componentes,329.00,240.00,9,Unidad,ASUS España,NVIDIA GeForce RTX 3060 12GB GDDR6
+17,Tarjeta gráfica RX 6600,AMD-GPU-017,Componentes,279.00,198.00,7,Unidad,Sapphire Technology,AMD Radeon RX 6600 8GB GDDR6
+18,Procesador Intel Core i5-13400,INT-CPU-018,Componentes,199.00,142.00,20,Unidad,Intel Iberia,10 núcleos 16 hilos 4.6GHz Turbo LGA1700
+19,Procesador AMD Ryzen 5 7600X,AMD-CPU-019,Componentes,229.00,162.00,15,Unidad,AMD España,6 núcleos 12 hilos 5.3GHz Turbo AM5
+20,Placa base ASUS B660M,ASU-MB-020,Componentes,129.00,90.00,12,Unidad,ASUS España,Micro-ATX DDR4 PCIe 4.0 LGA1700
+21,Router TP-Link AX3000,TP-RT-021,Redes,79.00,54.00,25,Unidad,TP-Link España,Router WiFi 6 AX3000 4 puertos Gigabit
+22,Switch TP-Link 8 puertos,TP-SW-022,Redes,29.00,19.00,40,Unidad,TP-Link España,Switch no gestionable 8 puertos Gigabit
+23,Cable de red Cat6 10m,GEN-CAB-023,Redes,8.50,5.00,100,Unidad,Genérico,Cable UTP Cat6 10 metros RJ45 gris
+24,Adaptador USB WiFi Nano,TP-USB-024,Redes,14.00,9.00,50,Unidad,TP-Link España,Adaptador USB 2.0 WiFi N 150Mbps
+25,Impresora HP LaserJet M110w,HP-IMP-025,Impresión,159.00,112.00,10,Unidad,HP España SA,Impresora láser monocromo WiFi A4
+26,Impresora Epson EcoTank ET-2850,EPS-IMP-026,Impresión,299.00,210.00,8,Unidad,Epson Ibérica,Impresora inyección color WiFi depósito recargable
+27,Tóner HP CF244A,HP-TON-027,Consumibles,29.00,18.00,45,Unidad,HP España SA,Tóner negro LaserJet Pro M15/M28 1000 páginas
+28,Cartucho Epson 502XL Negro,EPS-CAR-028,Consumibles,18.00,11.00,60,Unidad,Epson Ibérica,Cartucho negro alta capacidad EcoTank compatible
+29,Webcam Logitech C920,LOG-WEB-029,Videoconferencia,89.00,62.00,20,Unidad,Logitech España,Webcam Full HD 1080p 30fps micrófono estéreo
+30,Auriculares Jabra Evolve2 55,JAB-AUR-030,Videoconferencia,299.00,215.00,10,Unidad,Jabra España,Auriculares inalámbricos ANC certificados UC
+31,Hub USB-C 7 en 1,ANK-HUB-031,Accesorios,39.00,26.00,35,Unidad,Anker España,HDMI 4K USB-A x3 SD microSD PD 100W
+32,Soporte para monitor doble,ERT-SOP-032,Accesorios,45.00,30.00,20,Unidad,Ergotrón,Brazo articulado escritorio dos monitores hasta 27"
+33,Regleta Belkin 8 tomas,BEL-REG-033,Accesorios,35.00,23.00,30,Unidad,Belkin España,Regleta surge protector 8 tomas cable 2m
+34,Alfombrilla gaming XL,HYP-ALF-034,Accesorios,25.00,16.00,45,Unidad,HyperX Europe,Alfombrilla escritorio XL 900x420mm antideslizante
+35,Mochila para portátil 15.6",SAM-MOC-035,Accesorios,49.00,32.00,25,Unidad,Samsonite España,Mochila impermeable 15.6" USB carga bolsillos organizadores
+36,SAI APC BX700U-GR,APC-SAI-036,Energía,89.00,62.00,15,Unidad,APC by Schneider,SAI de línea interactiva 700VA/405W 4 tomas protección
+37,Fuente alimentación Corsair 650W,COR-FAL-037,Componentes,79.00,55.00,18,Unidad,Corsair Memory,ATX 80 Plus Bronze 650W modular parcial
+38,Torre PC Sobremesa i5 16GB,INT-PC-038,Ordenadores sobremesa,749.00,540.00,6,Unidad,Intel Iberia,Intel Core i5-13400 16GB DDR4 512GB SSD sin SO
+39,Mini PC Intel NUC i7,INT-NUC-039,Ordenadores sobremesa,599.00,430.00,5,Unidad,Intel Iberia,Intel Core i7 16GB 512GB SSD WiFi 6 Thunderbolt 4
+40,Tablet Samsung Galaxy Tab S9,SAM-TAB-040,Tablets,699.00,500.00,8,Unidad,Samsung Electronics,11" AMOLED 256GB WiFi S Pen incluido
+41,Funda tablet universal 10",GEN-FUN-041,Accesorios,15.00,9.00,40,Unidad,Genérico,Funda soporte giratoria 360° compatibilidad universal
+42,Cable HDMI 2.0 2m,GEN-HDMI-042,Cables,9.00,5.50,80,Unidad,Genérico,Cable HDMI 2.0 4K@60Hz 2 metros
+43,Cable USB-C a USB-C 1m,ANK-USB-043,Cables,12.00,7.50,70,Unidad,Anker España,Cable USB-C 100W carga rápida 480Mbps datos
+44,Adaptador HDMI a VGA,GEN-ADA-044,Cables,8.00,4.80,50,Unidad,Genérico,Adaptador activo HDMI macho a VGA hembra
+45,Proyector Epson EB-E01,EPS-PRO-045,Proyección,379.00,268.00,4,Unidad,Epson Ibérica,Proyector 3LCD XGA 3300 lúmenes HDMI VGA
+46,Pantalla proyección 100",GEN-PAN-046,Proyección,95.00,65.00,6,Unidad,Genérico,Pantalla trípode 100" 4:3 enrollable portátil
+47,Licencia Windows 11 Pro OEM,MIC-LIC-047,Software,139.00,100.00,20,Unidad,Microsoft Ibérica,Licencia OEM Windows 11 Professional 64-bit
+48,Licencia Microsoft 365 Business,MIC-365-048,Software,12.50,8.50,0,Licencia/mes,Microsoft Ibérica,Suscripción mensual por usuario apps Office + Teams
+49,Antivirus ESET NOD32 1 año,ESE-ANT-049,Software,29.00,19.00,0,Licencia,ESET España,Licencia 1 dispositivo 1 año descarga digital
+50,Servicio soporte remoto 1h,DIS-SRV-050,Servicios,60.00,0.00,0,Hora,DistribTech SL,Servicio de asistencia técnica remota por hora

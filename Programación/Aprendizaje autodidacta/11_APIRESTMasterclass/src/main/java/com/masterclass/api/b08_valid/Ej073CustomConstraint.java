@@ -1,0 +1,75 @@
+package com.masterclass.api.b08_valid;
+
+import jakarta.validation.Constraint;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
+import jakarta.validation.Payload;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+/**
+ * Ejercicio 073 · Constraint personalizada (@Slug).
+ *
+ * <p>Teoría: {@code teoria/08_Bean_Validation.md} (sección 8.2).
+ *
+ * <p>Un "slug" válido = solo minúsculas, dígitos y guiones, sin guiones al inicio/fin.
+ */
+public final class Ej073CustomConstraint {
+
+    @Target(ElementType.FIELD)
+    @Retention(RetentionPolicy.RUNTIME)
+    @Constraint(validatedBy = SlugValidator.class)
+    public @interface Slug {
+        String message() default "no es un slug válido";
+        Class<?>[] groups() default {};
+        Class<? extends Payload>[] payload() default {};
+    }
+
+    /** Implementación de la validación del slug. */
+    public static class SlugValidator implements ConstraintValidator<Slug, String> {
+        @Override
+        public boolean isValid(String value, ConstraintValidatorContext ctx) {
+            // TODO 1: si value es null, considéralo válido (deja @NotNull aparte) -> true.
+            // TODO 2: si está vacío -> false.
+            // TODO 3: no debe empezar por '-'.
+            // TODO 4: no debe terminar por '-'.
+            // TODO 5: solo se permiten [a-z0-9-] (usa una regex o recorre los chars).
+            // TODO 6: cualquier mayúscula o carácter raro -> false.
+            // TODO 7: devuelve true solo si pasa todas las comprobaciones.
+            return false;
+        }
+    }
+
+    public static class ArticuloDto {
+        // TODO 8: anota 'slug' con @Slug (tu constraint) y con @NotBlank.
+        public String slug;
+
+        public ArticuloDto(String slug) {
+            this.slug = slug;
+        }
+    }
+
+    private static final Validator VALIDATOR =
+            Validation.buildDefaultValidatorFactory().getValidator();
+
+    private Ej073CustomConstraint() {
+    }
+
+    /**
+     * @param dto artículo
+     * @return true si el slug es válido (sin violaciones)
+     */
+    public static boolean esValido(ArticuloDto dto) {
+        // TODO 9: usa VALIDATOR.validate(dto) (infraestructura).
+        // TODO 10: válido = el conjunto de violaciones está vacío.
+        return VALIDATOR.validate(dto).isEmpty();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(esValido(new ArticuloDto("mi-articulo-1")));
+    }
+}
