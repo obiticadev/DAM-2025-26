@@ -103,7 +103,7 @@ necesaria para productos como la Licencia Microsoft 365, que se vende por mes).
 
 > 📷 **Captura 5** — Lista de unidades de medida con Unidad, Hora y Licencia/mes.
 >
-> `![Captura 5: Unidades de medida](capturas/captura-05.png)`
+> ![Captura 5: Unidades de medida](capturas/captura-05.png)
 
 ### Módulos Ventas, Compras e Inventario activos y enlazados
 
