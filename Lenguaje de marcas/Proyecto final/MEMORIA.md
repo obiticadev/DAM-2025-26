@@ -45,13 +45,13 @@ Identifica y compara tres sistemas ERP: uno privativo (SAP Business One) y dos d
 abierto o SaaS (Odoo y Dolibarr). Tabla comparativa con los criterios pedidos y justificación de
 la elección de Odoo Online. Datos referenciados a las fuentes oficiales (anexo, sección 8).
 
-| Criterio | SAP Business One [\[1\]](https://www.sap.com/products/erp/business-one.html) | Odoo [\[2\]](https://www.odoo.com/page/pricing) [\[3\]](https://es.wikipedia.org/wiki/Odoo) | Dolibarr [\[4\]](https://www.dolibarr.org) [\[5\]](https://es.wikipedia.org/wiki/Dolibarr) |
-|---|---|---|---|
-| **Licencia y modelo de despliegue** | Software privativo. Local (on-premise) o nube vía partners (local / SaaS / híbrido). | Doble licencia: Community (LGPLv3, abierto) y Enterprise (privativa). SaaS (Odoo Online), nube (Odoo.sh) o local. | Código abierto (GPLv3). Local o SaaS ("Dolibarr Cloud"). |
-| **Módulos y funcionalidades principales** | Finanzas, ventas, compras, CRM, inventario, producción y BI. | +30/40 apps integradas: Ventas, Compras, Inventario, CRM, Contabilidad, Fabricación, RRHH, Web/eCommerce. | Gestión comercial, CRM, facturación, contabilidad sencilla, stock, proyectos, RRHH; ampliable con módulos comunitarios. |
-| **Sistema gestor de base de datos** | Microsoft SQL Server o SAP HANA. | PostgreSQL. | MySQL/MariaDB (también PostgreSQL). |
-| **Sectores y tamaño de empresa** | Pymes y filiales de grandes grupos; industria, distribución y servicios. | Desde autónomos y pymes hasta grandes empresas (muy modular). | Autónomos, microempresas y pymes pequeñas. |
-| **Coste estimado y soporte** | Licencia de pago por usuario + mantenimiento anual; soporte SAP y partners. | Community gratuito; Enterprise/Online de pago por usuario y app (plan gratuito de 1 app). Soporte oficial + partners + comunidad. | Software gratuito; coste solo en hosting/soporte opcional. Soporte por comunidad y empresas externas. |
+| Criterio                                  | SAP Business One [\[1\]](https://www.sap.com/products/erp/business-one.html)         | Odoo [\[2\]](https://www.odoo.com/page/pricing) [\[3\]](https://es.wikipedia.org/wiki/Odoo)                                       | Dolibarr [\[4\]](https://www.dolibarr.org) [\[5\]](https://es.wikipedia.org/wiki/Dolibarr)                              |
+| ----------------------------------------- | ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| **Licencia y modelo de despliegue**       | Software privativo. Local (on-premise) o nube vía partners (local / SaaS / híbrido). | Doble licencia: Community (LGPLv3, abierto) y Enterprise (privativa). SaaS (Odoo Online), nube (Odoo.sh) o local.                 | Código abierto (GPLv3). Local o SaaS ("Dolibarr Cloud").                                                                |
+| **Módulos y funcionalidades principales** | Finanzas, ventas, compras, CRM, inventario, producción y BI.                         | +30/40 apps integradas: Ventas, Compras, Inventario, CRM, Contabilidad, Fabricación, RRHH, Web/eCommerce.                         | Gestión comercial, CRM, facturación, contabilidad sencilla, stock, proyectos, RRHH; ampliable con módulos comunitarios. |
+| **Sistema gestor de base de datos**       | Microsoft SQL Server o SAP HANA.                                                     | PostgreSQL.                                                                                                                       | MySQL/MariaDB (también PostgreSQL).                                                                                     |
+| **Sectores y tamaño de empresa**          | Pymes y filiales de grandes grupos; industria, distribución y servicios.             | Desde autónomos y pymes hasta grandes empresas (muy modular).                                                                     | Autónomos, microempresas y pymes pequeñas.                                                                              |
+| **Coste estimado y soporte**              | Licencia de pago por usuario + mantenimiento anual; soporte SAP y partners.          | Community gratuito; Enterprise/Online de pago por usuario y app (plan gratuito de 1 app). Soporte oficial + partners + comunidad. | Software gratuito; coste solo en hosting/soporte opcional. Soporte por comunidad y empresas externas.                   |
 
 **Justificación de la elección de Odoo Online:** es SaaS (sin servidor propio ni instalación,
 con actualizaciones y copias de seguridad incluidas), incluye los tres módulos pedidos (Ventas,
@@ -131,15 +131,15 @@ tarifas/precios ni a datos de clientes.
 
 > 📷 **Captura 6** — Ajustes → Usuarios y empresas → Usuarios (los tres usuarios creados).
 >
-> `![Captura 6: Usuarios creados](capturas/captura-06.png)`
+> ![Captura 6: Usuarios creados](capturas/captura-06.png)
 
 > 📷 **Captura 7** — Permisos del usuario Comercial.
 >
-> `![Captura 7: Permisos Comercial](capturas/captura-07.png)`
+> ![Captura 7: Permisos Comercial](capturas/captura-07.png)
 
 > 📷 **Captura 8** — Permisos del usuario Responsable de almacén.
 >
-> `![Captura 8: Permisos Responsable de almacén](capturas/captura-08.png)`
+> ![Captura 8: Permisos Responsable de almacén](capturas/captura-08.png)
 
 ### Activa la autenticación de dos factores (2FA) para el usuario Administrador
 
@@ -148,7 +148,7 @@ Authenticator / Authy).
 
 > 📷 **Captura 9** — Activación de la 2FA para el Administrador.
 >
-> `![Captura 9: 2FA activada](capturas/captura-09.png)`
+> ![Captura 9: 2FA activada](capturas/captura-09.png)
 
 ### Verifica que cada perfil ve únicamente el menú y las opciones que le corresponden
 
@@ -157,11 +157,11 @@ de almacén solo ve Inventario.
 
 > 📷 **Captura 10** — Menú visto como Comercial (sin Inventario ni Ajustes).
 >
-> `![Captura 10: Menú vista Comercial](capturas/captura-10.png)`
+> ![Captura 10: Menú vista Comercial](capturas/captura-10.png)
 
 > 📷 **Captura 11** — Menú visto como Responsable de almacén (solo Inventario).
 >
-> `![Captura 11: Menú vista Responsable de almacén](capturas/captura-11.png)`
+> ![Captura 11: Menú vista Responsable de almacén](capturas/captura-11.png)
 
 ---
 
@@ -177,7 +177,7 @@ sin errores.
 
 > 📷 **Captura 12** — Resumen de importación de productos.csv (50 registros, sin errores).
 >
-> `![Captura 12: Importación productos](capturas/captura-12.png)`
+> ![Captura 12: Importación productos](capturas/captura-12.png)
 
 ### clientes.csv — 20 empresas y autónomos con datos fiscales y condiciones de pago
 
@@ -185,7 +185,7 @@ Importado en segundo lugar. Resultado: **20 clientes** sin errores.
 
 > 📷 **Captura 13** — Resumen de importación de clientes.csv (20 registros, sin errores).
 >
-> `![Captura 13: Importación clientes](capturas/captura-13.png)`
+> ![Captura 13: Importación clientes](capturas/captura-13.png)
 
 ### pedidos.csv — 30 pedidos de venta de sept–nov 2024 en tres estados distintos
 
@@ -194,7 +194,7 @@ tránsito y Confirmado.
 
 > 📷 **Captura 14** — Resumen de importación de pedidos.csv (30 registros, sin errores).
 >
-> `![Captura 14: Importación pedidos](capturas/captura-14.png)`
+> ![Captura 14: Importación pedidos](capturas/captura-14.png)
 
 ---
 
@@ -208,7 +208,8 @@ comprado: *Consultora ITSolves SL* (4.991,75 €), *Supermercados Frescos SA* (4
 
 > 📷 **Captura 15** — Informe de ventas por cliente en Odoo.
 >
-> `![Captura 15: Informe ventas por cliente](capturas/captura-15.png)`
+> ![Captura 15: Informe ventas por cliente](capturas/captura-15.png)
+> ![Captura 15.5: Informe ventas por cliente csv](capturas/captura-15.5.png)
 
 ### Informe 2: Stock actual — inventario de productos con cantidades disponibles por almacén
 
