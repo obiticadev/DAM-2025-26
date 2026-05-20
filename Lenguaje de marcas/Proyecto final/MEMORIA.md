@@ -1,14 +1,18 @@
 # Memoria técnica — Puesta en marcha de un ERP en la nube (Odoo Online)
 
 **Módulo:** Lenguajes de marcas y Sistemas de gestión de la información
-**Unidad:** UT8 — Tarea práctica
-**Resultado de aprendizaje:** RA7
-**Alumno/a:** _[TU NOMBRE Y APELLIDOS]_
-**Curso:** 1º DAM — 2025/26
-**Fecha de entrega:** _[FECHA]_
 
-**URL de la instancia Odoo:** `https://infodistribucion-[TUS-INICIALES].odoo.com`
-_(sustituye por la URL real de tu prueba gratuita)_
+**Unidad:** UT8 — Tarea práctica
+
+**Resultado de aprendizaje:** RA7
+
+**Alumno/a:** Oliver Bitica
+
+**Curso:** 1º DAM — 2025/26
+
+**Fecha de entrega:** 20/05/2026
+
+**URL de la instancia Odoo:** <https://infodistribucion.odoo.com/>
 
 ---
 
@@ -34,7 +38,7 @@ gratuita de 15 días), accesible desde cualquier navegador, sin instalación loc
 virtual.
 
 La empresa ficticia es **InfoDistribución S.L.** (CIF ficticio **B12345678**). La instancia se ha
-creado en `odoo.com/trial` con el nombre `infodistribucion-[TUS-INICIALES]`, seleccionando
+creado en `odoo.com/trial` con el nombre `infodistribucion`, seleccionando
 **España** y activando los módulos **Ventas, Compras e Inventario**.
 
 ---
@@ -60,9 +64,9 @@ una prueba gratuita de 15 días ideal para una pyme que empieza a modernizarse. 
 Business One es más barato y sencillo; frente a Dolibarr ofrece más módulos integrados y mejor
 interfaz.
 
-> 📷 **Captura 1** — Tabla comparativa de los tres ERP (o la web oficial de cada uno como prueba).
+> 📷 **Captura 1** — Tabla comparativa de los tres ERP extraida de las páginas web oficiales.
 >
-> `![Captura 1: Tabla comparativa de ERP](capturas/captura-01.png)`
+> ![Captura 1: Tabla comparativa de ERP](capturas/captura-01.png)
 
 ---
 
@@ -98,8 +102,7 @@ multi-almacén en Inventario.
 
 ### Unidades de medida: Unidad, Hora, Licencia/mes
 
-Comprobadas/creadas las unidades de medida **Unidad**, **Hora** y **Licencia/mes** (esta última
-necesaria para productos como la Licencia Microsoft 365, que se vende por mes).
+Comprobadas/creadas las unidades de medida **Unidad**, **Hora** y **Licencia/mes**
 
 > 📷 **Captura 5** — Lista de unidades de medida con Unidad, Hora y Licencia/mes.
 >
@@ -107,8 +110,7 @@ necesaria para productos como la Licencia Microsoft 365, que se vende por mes).
 
 ### Módulos Ventas, Compras e Inventario activos y enlazados
 
-Verificado que los tres módulos están instalados y funcionando juntos (aparecen en el menú
-principal y comparten productos y clientes).
+Verificado que los tres módulos están instalados y funcionando juntos
 
 ---
 
@@ -202,9 +204,9 @@ tránsito y Confirmado.
 
 ### Informe 1: Ventas por cliente — total facturado por cliente en el período importado
 
-Total facturado en el período ≈ **30.838,00 €** entre los 30 pedidos. Clientes que más han
-comprado: *Consultora ITSolves SL* (4.991,75 €), *Supermercados Frescos SA* (4.746,60 €) y
-*Centro de Formación NextStep* (3.638,40 €). Exportado en PDF y CSV.
+Total facturado en el período ≈ **37.314,94 €** entre los 30 pedidos. Clientes que más han
+comprado: *Consultora ITSolves SL* (6.040,02 €), *Supermercados Frescos SA* (5.743,39 €) y
+*Centro de Formación NextStep* (4.404,88 €). Exportado en PDF y CSV.
 
 > 📷 **Captura 15** — Informe de ventas por cliente en Odoo.
 >
@@ -218,7 +220,7 @@ Exportado en PDF y CSV.
 
 > 📷 **Captura 16** — Informe de stock actual por almacén.
 >
-> `![Captura 16: Informe stock actual](capturas/captura-16.png)`
+> ![Captura 16: Informe stock actual](capturas/captura-16.png)
 
 ### Informe 3: Pedidos pendientes — pedidos en estado Confirmado o En tránsito
 
@@ -227,7 +229,7 @@ Salen **7 pedidos pendientes** (del PV-2024-024 al PV-2024-030), por un importe 
 
 > 📷 **Captura 17** — Informe de pedidos pendientes (Confirmado / En tránsito).
 >
-> `![Captura 17: Informe pedidos pendientes](capturas/captura-17.png)`
+> ![Captura 17: Informe pedidos pendientes](capturas/captura-17.png)
 
 ### Hoja de cálculo con pestaña de Resumen ejecutivo
 
@@ -237,7 +239,7 @@ pedidos pendientes).
 
 > 📷 **Captura 18** — Pestaña de Resumen ejecutivo con totales y gráficas.
 >
-> `![Captura 18: Resumen ejecutivo](capturas/captura-18.png)`
+> ![Captura 18: Resumen ejecutivo](capturas/captura-18.png)
 
 **Entregables generados:** `informe1-ventas-cliente.pdf/.csv`,
 `informe2-stock-actual.pdf/.csv`, `informe3-pedidos-pendientes.pdf/.csv` y
@@ -247,25 +249,21 @@ pedidos pendientes).
 
 ## 7. Conclusiones sobre la modalidad SaaS
 
-La modalidad **SaaS** ha sido un acierto para una empresa pequeña: no hay que instalar ni
+La modalidad **SaaS** es la mejor opción para una empresa pequeña: no hay que instalar ni
 mantener nada, se accede desde cualquier navegador y el proveedor gestiona actualizaciones y
 copias de seguridad, así que se empieza a trabajar en minutos. Como contrapartida, se depende
-de internet y del proveedor, los datos están en servidores externos (hay que confiar en su
-seguridad y cumplir el RGPD) y, a la larga, el pago por usuario/mes puede encarecerse si la
-empresa crece. Para esta empresa ficticia, Odoo Online cumple de sobra y es la opción más
+de internet y del proveedor, los datos están en servidores externos y, a la larga, el pago por usuario/mes puede encarecerse si la
+empresa crece. Para esta empresa ficticia, Odoo Online es la opción más
 sencilla y económica para empezar.
 
 ---
 
 ## 8. Anexo — Fuentes consultadas
 
-> _Fechas de consulta: mayo de 2026._
+> Fechas de consulta: 18 de mayo de 2026.
 
 - `[1]` SAP — *SAP Business One*: https://www.sap.com/products/erp/business-one.html
 - `[2]` Odoo — Precios y planes: https://www.odoo.com/page/pricing
 - `[3]` Wikipedia — *Odoo*: https://es.wikipedia.org/wiki/Odoo
 - `[4]` Dolibarr — Web oficial: https://www.dolibarr.org
 - `[5]` Wikipedia — *Dolibarr*: https://es.wikipedia.org/wiki/Dolibarr
-
-> ⚠️ Antes de entregar, abrir cada enlace y comprobar que los datos de la tabla siguen siendo
-> correctos (precios y módulos cambian con el tiempo).

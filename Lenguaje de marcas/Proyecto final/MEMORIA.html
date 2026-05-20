@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Memoria UT8 — InfoDistribución S.L.</title>
+<style>
+
+@page {
+  size: A4;
+  margin: 1.8cm 1.8cm 2cm 1.8cm;
+  @bottom-right {
+    content: counter(page) " / " counter(pages);
+    font-size: 9pt;
+    color: #6b7280;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+  }
+  @bottom-left {
+    content: "InfoDistribución S.L. — Memoria UT8";
+    font-size: 8.5pt;
+    color: #9ca3af;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+  }
+}
+@page :first { @bottom-left { content: none; } @bottom-right { content: none; } }
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 10pt;
+  line-height: 1.45;
+  color: #1f2937;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  color: #1f4e78;
+  line-height: 1.25;
+  page-break-after: avoid;
+  break-after: avoid;
+}
+h1 { font-size: 22pt; border-bottom: 3px solid #1f4e78; padding-bottom: 6px; margin-top: 0; }
+h2 { font-size: 15pt; margin-top: 18px; margin-bottom: 8px; border-bottom: 1px solid #d1d5db; padding-bottom: 3px; }
+h3 { font-size: 11.5pt; margin-top: 12px; margin-bottom: 4px; color: #2c5d8a; }
+h4 { font-size: 10.5pt; color: #2c5d8a; }
+
+p { margin: 5px 0; text-align: justify; }
+strong { color: #0f172a; }
+
+/* ---- Portada ---- */
+.title-page {
+  height: calc(100vh - 4.6cm);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  page-break-after: always;
+  break-after: page;
+}
+.title-page h1 {
+  font-size: 28pt;
+  border: none;
+  padding: 0 0 12px 0;
+  margin-bottom: 24px;
+  border-left: 6px solid #1f4e78;
+  padding-left: 16px;
+  line-height: 1.2;
+}
+.title-page p { font-size: 11pt; line-height: 2; margin: 2px 0; text-align: left; }
+.title-page p strong { color: #1f4e78; min-width: 220px; display: inline-block; }
+.title-page p:last-of-type { margin-top: 30px; padding-top: 14px; border-top: 1px solid #d1d5db; }
+
+/* ---- TOC ---- */
+.toc { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px 20px; margin: 12px 0 22px 0; }
+.toc > ul { margin: 0; padding-left: 16px; list-style: none; }
+.toc ul ul { padding-left: 18px; }
+.toc li { margin: 4px 0; }
+.toc a { text-decoration: none; color: #1f4e78; font-weight: 500; }
+.toc a:hover { text-decoration: underline; }
+
+/* ---- Tablas ---- */
+table { border-collapse: collapse; width: 100%; font-size: 9pt; margin: 12px 0; page-break-inside: auto; }
+th, td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+th { background: #1f4e78; color: white; font-weight: 600; }
+tr:nth-child(even) td { background: #f9fafb; }
+
+/* ---- Listas ---- */
+ul, ol { padding-left: 22px; margin: 8px 0; }
+li { margin: 3px 0; }
+
+/* ---- Code ---- */
+code { background: #f3f4f6; padding: 1px 5px; border-radius: 3px; font-family: 'Consolas', 'SF Mono', monospace; font-size: 9.5pt; color: #b45309; }
+pre code { background: transparent; color: inherit; padding: 0; }
+pre { background: #1e293b; color: #f1f5f9; padding: 12px 14px; border-radius: 8px; font-size: 9pt; overflow: auto; page-break-inside: avoid; }
+
+/* ---- Blockquote (notas/captura) ---- */
+blockquote { border-left: 4px solid #1f4e78; background: #eff6ff; padding: 8px 14px; margin: 12px 0; color: #1e3a8a; font-style: normal; page-break-inside: avoid; }
+blockquote p { margin: 4px 0; }
+blockquote code { background: rgba(255,255,255,0.6); color: #1e3a8a; }
+
+/* ---- Marco blanco redondeado tipo Liquid Glass (sin titlebar) ---- */
+figure.mac-window {
+  max-width: 58%;
+  margin: 10px auto;
+  border-radius: 18px;
+  background: #fafafa;
+  border: 1px solid #ececec;
+  box-shadow:
+    0 10px 28px rgba(15, 23, 42, 0.10),
+    0 3px 10px rgba(15, 23, 42, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  overflow: hidden;
+  page-break-inside: avoid;
+  break-inside: avoid;
+  padding: 6px;
+}
+figure.mac-window .mac-content {
+  background: #ffffff;
+  line-height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid #f0f0f0;
+}
+figure.mac-window img { width: 100%; height: auto; display: block; }
+figure.mac-window figcaption {
+  font-size: 9pt;
+  color: #475569;
+  text-align: center;
+  padding: 8px 12px 4px 12px;
+  background: transparent;
+  font-style: italic;
+  line-height: 1.35;
+}
+
+hr { border: none; border-top: 1px solid #e2e8f0; margin: 20px 0; }
+
+a { color: #2563eb; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Mantener encabezados con su contenido siguiente, sin forzar página nueva */
+h2 { page-break-before: auto; break-before: auto; }
+h2 + p, h2 + figure, h3 + p, h3 + figure { page-break-before: avoid; }
+
+</style>
+</head>
+<body>
+<div class="title-page"><h1 id="memoria-tecnica-puesta-en-marcha-de-un-erp-en-la-nube-odoo-online">Memoria técnica — Puesta en marcha de un ERP en la nube (Odoo Online)</h1><p><strong>Módulo:</strong> Lenguajes de marcas y Sistemas de gestión de la información</p><p><strong>Unidad:</strong> UT8 — Tarea práctica</p><p><strong>Resultado de aprendizaje:</strong> RA7</p><p><strong>Alumno/a:</strong> Oliver Bitica</p><p><strong>Curso:</strong> 1º DAM — 2025/26</p><p><strong>Fecha de entrega:</strong> 20/05/2026</p><p><strong>URL de la instancia Odoo:</strong> <a href="https://infodistribucion.odoo.com/">https://infodistribucion.odoo.com/</a></p></div>
+
+
+
+
+
+
+
+
+<h2 id="indice">Índice</h2>
+<div class="toc">
+<ul>
+<li><a href="#memoria-tecnica-puesta-en-marcha-de-un-erp-en-la-nube-odoo-online">Memoria técnica — Puesta en marcha de un ERP en la nube (Odoo Online)</a><ul>
+<li><a href="#indice">Índice</a></li>
+<li><a href="#1-contexto">1. Contexto</a></li>
+<li><a href="#2-tarea-1-analisis-comparativo-de-erp">2. Tarea 1 — Análisis comparativo de ERP</a></li>
+<li><a href="#3-tarea-2-configuracion-y-administracion">3. Tarea 2 — Configuración y administración</a><ul>
+<li><a href="#nombre-legal-cif-ficticio-logotipo-divisa-eur-y-datos-de-contacto">Nombre legal, CIF ficticio, logotipo, divisa EUR y datos de contacto</a></li>
+<li><a href="#localizacion-contable-espanola-y-plan-contable-general">Localización contable española y plan contable general</a></li>
+<li><a href="#al-menos-dos-almacenes-almacen-central-y-almacen-auxiliar">Al menos dos almacenes: Almacén Central y Almacén Auxiliar</a></li>
+<li><a href="#unidades-de-medida-unidad-hora-licenciames">Unidades de medida: Unidad, Hora, Licencia/mes</a></li>
+<li><a href="#modulos-ventas-compras-e-inventario-activos-y-enlazados">Módulos Ventas, Compras e Inventario activos y enlazados</a></li>
+</ul>
+</li>
+<li><a href="#4-tarea-3-control-de-acceso-y-seguridad">4. Tarea 3 — Control de acceso y seguridad</a><ul>
+<li><a href="#administrador-acceso-total-al-sistema-puede-crear-y-eliminar-registros-en-todos-los-modulos">Administrador: acceso total al sistema, puede crear y eliminar registros en todos los módulos</a></li>
+<li><a href="#comercial-acceso-solo-a-ventas-y-crm-sin-acceso-a-configuracion-ni-contabilidad">Comercial: acceso solo a Ventas y CRM, sin acceso a configuración ni contabilidad</a></li>
+<li><a href="#responsable-de-almacen-acceso-solo-a-inventario-sin-acceso-a-tarifas-ni-datos-de-clientes">Responsable de almacén: acceso solo a Inventario, sin acceso a tarifas ni datos de clientes</a></li>
+<li><a href="#activa-la-autenticacion-de-dos-factores-2fa-para-el-usuario-administrador">Activa la autenticación de dos factores (2FA) para el usuario Administrador</a></li>
+<li><a href="#verifica-que-cada-perfil-ve-unicamente-el-menu-y-las-opciones-que-le-corresponden">Verifica que cada perfil ve únicamente el menú y las opciones que le corresponden</a></li>
+</ul>
+</li>
+<li><a href="#5-tarea-4-importacion-e-integracion-de-datos">5. Tarea 4 — Importación e integración de datos</a><ul>
+<li><a href="#productoscsv-50-referencias-de-catalogo-con-precios-stock-y-proveedor">productos.csv — 50 referencias de catálogo con precios, stock y proveedor</a></li>
+<li><a href="#clientescsv-20-empresas-y-autonomos-con-datos-fiscales-y-condiciones-de-pago">clientes.csv — 20 empresas y autónomos con datos fiscales y condiciones de pago</a></li>
+<li><a href="#pedidoscsv-30-pedidos-de-venta-de-septnov-2024-en-tres-estados-distintos">pedidos.csv — 30 pedidos de venta de sept–nov 2024 en tres estados distintos</a></li>
+</ul>
+</li>
+<li><a href="#6-tarea-5-generacion-de-informes-y-extraccion">6. Tarea 5 — Generación de informes y extracción</a><ul>
+<li><a href="#informe-1-ventas-por-cliente-total-facturado-por-cliente-en-el-periodo-importado">Informe 1: Ventas por cliente — total facturado por cliente en el período importado</a></li>
+<li><a href="#informe-2-stock-actual-inventario-de-productos-con-cantidades-disponibles-por-almacen">Informe 2: Stock actual — inventario de productos con cantidades disponibles por almacén</a></li>
+<li><a href="#informe-3-pedidos-pendientes-pedidos-en-estado-confirmado-o-en-transito">Informe 3: Pedidos pendientes — pedidos en estado Confirmado o En tránsito</a></li>
+<li><a href="#hoja-de-calculo-con-pestana-de-resumen-ejecutivo">Hoja de cálculo con pestaña de Resumen ejecutivo</a></li>
+</ul>
+</li>
+<li><a href="#7-conclusiones-sobre-la-modalidad-saas">7. Conclusiones sobre la modalidad SaaS</a></li>
+<li><a href="#8-anexo-fuentes-consultadas">8. Anexo — Fuentes consultadas</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<hr/>
+<h2 id="1-contexto">1. Contexto</h2>
+<p>Una empresa ficticia dedicada a la distribución de material informático necesita modernizar su
+gestión empresarial. Como técnico de sistemas recién incorporado, se encarga la puesta en
+marcha, configuración y explotación de un sistema ERP en la nube usando Odoo Online (prueba
+gratuita de 15 días), accesible desde cualquier navegador, sin instalación local ni máquina
+virtual.</p>
+<p>La empresa ficticia es <strong>InfoDistribución S.L.</strong> (CIF ficticio <strong>B12345678</strong>). La instancia se ha
+creado en <code>odoo.com/trial</code> con el nombre <code>infodistribucion</code>, seleccionando
+<strong>España</strong> y activando los módulos <strong>Ventas, Compras e Inventario</strong>.</p>
+<hr/>
+<h2 id="2-tarea-1-analisis-comparativo-de-erp">2. Tarea 1 — Análisis comparativo de ERP</h2>
+<p>Identifica y compara tres sistemas ERP: uno privativo (SAP Business One) y dos de código
+abierto o SaaS (Odoo y Dolibarr). Tabla comparativa con los criterios pedidos y justificación de
+la elección de Odoo Online. Datos referenciados a las fuentes oficiales (anexo, sección 8).</p>
+<table>
+<thead>
+<tr>
+<th>Criterio</th>
+<th>SAP Business One <a href="https://www.sap.com/products/erp/business-one.html">[1]</a></th>
+<th>Odoo <a href="https://www.odoo.com/page/pricing">[2]</a> <a href="https://es.wikipedia.org/wiki/Odoo">[3]</a></th>
+<th>Dolibarr <a href="https://www.dolibarr.org">[4]</a> <a href="https://es.wikipedia.org/wiki/Dolibarr">[5]</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Licencia y modelo de despliegue</strong></td>
+<td>Software privativo. Local (on-premise) o nube vía partners (local / SaaS / híbrido).</td>
+<td>Doble licencia: Community (LGPLv3, abierto) y Enterprise (privativa). SaaS (Odoo Online), nube (Odoo.sh) o local.</td>
+<td>Código abierto (GPLv3). Local o SaaS ("Dolibarr Cloud").</td>
+</tr>
+<tr>
+<td><strong>Módulos y funcionalidades principales</strong></td>
+<td>Finanzas, ventas, compras, CRM, inventario, producción y BI.</td>
+<td>+30/40 apps integradas: Ventas, Compras, Inventario, CRM, Contabilidad, Fabricación, RRHH, Web/eCommerce.</td>
+<td>Gestión comercial, CRM, facturación, contabilidad sencilla, stock, proyectos, RRHH; ampliable con módulos comunitarios.</td>
+</tr>
+<tr>
+<td><strong>Sistema gestor de base de datos</strong></td>
+<td>Microsoft SQL Server o SAP HANA.</td>
+<td>PostgreSQL.</td>
+<td>MySQL/MariaDB (también PostgreSQL).</td>
+</tr>
+<tr>
+<td><strong>Sectores y tamaño de empresa</strong></td>
+<td>Pymes y filiales de grandes grupos; industria, distribución y servicios.</td>
+<td>Desde autónomos y pymes hasta grandes empresas (muy modular).</td>
+<td>Autónomos, microempresas y pymes pequeñas.</td>
+</tr>
+<tr>
+<td><strong>Coste estimado y soporte</strong></td>
+<td>Licencia de pago por usuario + mantenimiento anual; soporte SAP y partners.</td>
+<td>Community gratuito; Enterprise/Online de pago por usuario y app (plan gratuito de 1 app). Soporte oficial + partners + comunidad.</td>
+<td>Software gratuito; coste solo en hosting/soporte opcional. Soporte por comunidad y empresas externas.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Justificación de la elección de Odoo Online:</strong> es SaaS (sin servidor propio ni instalación,
+con actualizaciones y copias de seguridad incluidas), incluye los tres módulos pedidos (Ventas,
+Compras, Inventario) ya integrados, tiene localización contable española lista para activar y
+una prueba gratuita de 15 días ideal para una pyme que empieza a modernizarse. Frente a SAP
+Business One es más barato y sencillo; frente a Dolibarr ofrece más módulos integrados y mejor
+interfaz.</p>
+<figure class="mac-window"><div class="mac-content"><img alt="Captura 1: Tabla comparativa de ERP" src="capturas/captura-01.png"/></div><figcaption>Captura 1: Tabla comparativa de ERP</figcaption></figure>
+<hr/>
+<h2 id="3-tarea-2-configuracion-y-administracion">3. Tarea 2 — Configuración y administración</h2>
+<h3 id="nombre-legal-cif-ficticio-logotipo-divisa-eur-y-datos-de-contacto">Nombre legal, CIF ficticio, logotipo, divisa EUR y datos de contacto</h3>
+<p>Empresa dada de alta como <strong>InfoDistribución S.L.</strong>, CIF ficticio <strong>B12345678</strong>, con logotipo
+cargado, divisa <strong>EUR</strong> y datos de contacto (dirección, teléfono y email).</p>
+<figure class="mac-window"><div class="mac-content"><img alt="Captura 2: Configuración general de la empresa" src="capturas/captura-02.png"/></div><figcaption>Captura 2: Configuración general de la empresa</figcaption></figure>
+<h3 id="localizacion-contable-espanola-y-plan-contable-general">Localización contable española y plan contable general</h3>
+<p>Activado el paquete de localización fiscal de <strong>España</strong>, con lo que se carga el <strong>plan contable
+general</strong> español.</p>
+<figure class="mac-window"><div class="mac-content"><img alt="Captura 3: Plan contable español" src="capturas/captura-03.png"/></div><figcaption>Captura 3: Plan contable español</figcaption></figure>
+<h3 id="al-menos-dos-almacenes-almacen-central-y-almacen-auxiliar">Al menos dos almacenes: Almacén Central y Almacén Auxiliar</h3>
+<p>Creados dos almacenes: <strong>Almacén Central</strong> y <strong>Almacén Auxiliar</strong>, activando el modo
+multi-almacén en Inventario.</p>
+<figure class="mac-window"><div class="mac-content"><img alt="Captura 4.5: Almacenes" src="capturas/captura-04.5.png"/></div><figcaption>Captura 4.5: Almacenes</figcaption></figure><figure class="mac-window"><div class="mac-content"><img alt="Captura 4: Almacenes" src="capturas/captura-04.png"/></div><figcaption>Captura 4: Almacenes</figcaption></figure>
+<h3 id="unidades-de-medida-unidad-hora-licenciames">Unidades de medida: Unidad, Hora, Licencia/mes</h3>
+<p>Comprobadas/creadas las unidades de medida <strong>Unidad</strong>, <strong>Hora</strong> y <strong>Licencia/mes</strong></p>
+<figure class="mac-window"><div class="mac-content"><img alt="Captura 5: Unidades de medida" src="capturas/captura-05.png"/></div><figcaption>Captura 5: Unidades de medida</figcaption></figure>
+<h3 id="modulos-ventas-compras-e-inventario-activos-y-enlazados">Módulos Ventas, Compras e Inventario activos y enlazados</h3>
+<p>Verificado que los tres módulos están instalados y funcionando juntos</p>
+<hr/>
+<h2 id="4-tarea-3-control-de-acceso-y-seguridad">4. Tarea 3 — Control de acceso y seguridad</h2>
+<h3 id="administrador-acceso-total-al-sistema-puede-crear-y-eliminar-registros-en-todos-los-modulos">Administrador: acceso total al sistema, puede crear y eliminar registros en todos los módulos</h3>
+<p>Creado el usuario <strong>Administrador</strong> con permisos de administración total sobre todos los
+módulos.</p>
+<h3 id="comercial-acceso-solo-a-ventas-y-crm-sin-acceso-a-configuracion-ni-contabilidad">Comercial: acceso solo a Ventas y CRM, sin acceso a configuración ni contabilidad</h3>
+<p>Creado el usuario <strong>Comercial</strong> con permiso de Usuario en <strong>Ventas y CRM</strong> y sin acceso a
+configuración ni contabilidad.</p>
+<h3 id="responsable-de-almacen-acceso-solo-a-inventario-sin-acceso-a-tarifas-ni-datos-de-clientes">Responsable de almacén: acceso solo a Inventario, sin acceso a tarifas ni datos de clientes</h3>
+<p>Creado el usuario <strong>Responsable de almacén</strong> con permiso solo en <strong>Inventario</strong>, sin acceso a
+tarifas/precios ni a datos de clientes.</p>
+<figure class="mac-window"><div class="mac-content"><img alt="Captura 8: Permisos Responsable de almacén" src="capturas/captura-08.png"/></div><figcaption>Captura 8: Permisos Responsable de almacén</figcaption></figure><figure class="mac-window"><div class="mac-content"><img alt="Captura 7: Permisos Comercial" src="capturas/captura-07.png"/></div><figcaption>Captura 7: Permisos Comercial</figcaption></figure><figure class="mac-window"><div class="mac-content"><img alt="Captura 6: Usuarios creados" src="capturas/captura-06.png"/></div><figcaption>Captura 6: Usuarios creados</figcaption></figure>
+<h3 id="activa-la-autenticacion-de-dos-factores-2fa-para-el-usuario-administrador">Activa la autenticación de dos factores (2FA) para el usuario Administrador</h3>
+<p>Activada la <strong>2FA</strong> en el usuario Administrador mediante una app de autenticación (Google
+Authenticator / Authy).</p>
+<figure class="mac-window"><div class="mac-content"><img alt="Captura 9: 2FA activada" src="capturas/captura-09.png"/></div><figcaption>Captura 9: 2FA activada</figcaption></figure>
+<h3 id="verifica-que-cada-perfil-ve-unicamente-el-menu-y-las-opciones-que-le-corresponden">Verifica que cada perfil ve únicamente el menú y las opciones que le corresponden</h3>
+<p>Comprobado iniciando sesión con cada perfil: el Comercial solo ve Ventas/CRM y el Responsable
+de almacén solo ve Inventario.</p>
+<figure class="mac-window"><div class="mac-content"><img alt="Captura 11: Menú vista Responsable de almacén" src="capturas/captura-11.png"/></div><figcaption>Captura 11: Menú vista Responsable de almacén</figcaption></figure><figure class="mac-window"><div class="mac-content"><img alt="Captura 10: Menú vista Comercial" src="capturas/captura-10.png"/></div><figcaption>Captura 10: Menú vista Comercial</figcaption></figure>
+<hr/>
+<h2 id="5-tarea-4-importacion-e-integracion-de-datos">5. Tarea 4 — Importación e integración de datos</h2>
+<p>El orden de importación es obligatorio: primero productos, luego clientes y por último pedidos,
+para respetar la integridad referencial (los pedidos enlazan con clientes y productos).</p>
+<h3 id="productoscsv-50-referencias-de-catalogo-con-precios-stock-y-proveedor">productos.csv — 50 referencias de catálogo con precios, stock y proveedor</h3>
+<p>Importado en primer lugar mediante la importación nativa de Odoo. Resultado: <strong>50 productos</strong>
+sin errores.</p>
+<figure class="mac-window"><div class="mac-content"><img alt="Captura 12: Importación productos" src="capturas/captura-12.png"/></div><figcaption>Captura 12: Importación productos</figcaption></figure>
+<h3 id="clientescsv-20-empresas-y-autonomos-con-datos-fiscales-y-condiciones-de-pago">clientes.csv — 20 empresas y autónomos con datos fiscales y condiciones de pago</h3>
+<p>Importado en segundo lugar. Resultado: <strong>20 clientes</strong> sin errores.</p>
+<figure class="mac-window"><div class="mac-content"><img alt="Captura 13: Importación clientes" src="capturas/captura-13.png"/></div><figcaption>Captura 13: Importación clientes</figcaption></figure>
+<h3 id="pedidoscsv-30-pedidos-de-venta-de-septnov-2024-en-tres-estados-distintos">pedidos.csv — 30 pedidos de venta de sept–nov 2024 en tres estados distintos</h3>
+<p>Importado en último lugar. Resultado: <strong>30 pedidos</strong> sin errores, en los estados Entregado, En
+tránsito y Confirmado.</p>
+<figure class="mac-window"><div class="mac-content"><img alt="Captura 14: Importación pedidos" src="capturas/captura-14.png"/></div><figcaption>Captura 14: Importación pedidos</figcaption></figure>
+<hr/>
+<h2 id="6-tarea-5-generacion-de-informes-y-extraccion">6. Tarea 5 — Generación de informes y extracción</h2>
+<h3 id="informe-1-ventas-por-cliente-total-facturado-por-cliente-en-el-periodo-importado">Informe 1: Ventas por cliente — total facturado por cliente en el período importado</h3>
+<p>Total facturado en el período ≈ <strong>37.314,94 €</strong> entre los 30 pedidos. Clientes que más han
+comprado: <em>Consultora ITSolves SL</em> (6.040,02 €), <em>Supermercados Frescos SA</em> (5.743,39 €) y
+<em>Centro de Formación NextStep</em> (4.404,88 €). Exportado en PDF y CSV.</p>
+<figure class="mac-window"><div class="mac-content"><img alt="Captura 15.5: Informe ventas por cliente csv" src="capturas/captura-15.5.png"/></div><figcaption>Captura 15.5: Informe ventas por cliente csv</figcaption></figure><figure class="mac-window"><div class="mac-content"><img alt="Captura 15: Informe ventas por cliente" src="capturas/captura-15.png"/></div><figcaption>Captura 15: Informe ventas por cliente</figcaption></figure>
+<h3 id="informe-2-stock-actual-inventario-de-productos-con-cantidades-disponibles-por-almacen">Informe 2: Stock actual — inventario de productos con cantidades disponibles por almacén</h3>
+<p>Inventario de los 50 productos con sus cantidades disponibles, repartido por almacén.
+Exportado en PDF y CSV.</p>
+<figure class="mac-window"><div class="mac-content"><img alt="Captura 16: Informe stock actual" src="capturas/captura-16.png"/></div><figcaption>Captura 16: Informe stock actual</figcaption></figure>
+<h3 id="informe-3-pedidos-pendientes-pedidos-en-estado-confirmado-o-en-transito">Informe 3: Pedidos pendientes — pedidos en estado Confirmado o En tránsito</h3>
+<p>Salen <strong>7 pedidos pendientes</strong> (del PV-2024-024 al PV-2024-030), por un importe de
+≈ <strong>4.741,30 €</strong>. Exportado en PDF y CSV.</p>
+<figure class="mac-window"><div class="mac-content"><img alt="Captura 17: Informe pedidos pendientes" src="capturas/captura-17.png"/></div><figcaption>Captura 17: Informe pedidos pendientes</figcaption></figure>
+<h3 id="hoja-de-calculo-con-pestana-de-resumen-ejecutivo">Hoja de cálculo con pestaña de Resumen ejecutivo</h3>
+<p>Los tres CSV exportados se incorporan a una hoja de cálculo con una pestaña de <strong>Resumen
+ejecutivo</strong>: totales y gráficas (total facturado, ranking de clientes, stock por almacén y
+pedidos pendientes).</p>
+<figure class="mac-window"><div class="mac-content"><img alt="Captura 18: Resumen ejecutivo" src="capturas/captura-18.png"/></div><figcaption>Captura 18: Resumen ejecutivo</figcaption></figure>
+<p><strong>Entregables generados:</strong> <code>informe1-ventas-cliente.pdf/.csv</code>,
+<code>informe2-stock-actual.pdf/.csv</code>, <code>informe3-pedidos-pendientes.pdf/.csv</code> y
+<code>resumen-ejecutivo.xlsx</code>.</p>
+<hr/>
+<h2 id="7-conclusiones-sobre-la-modalidad-saas">7. Conclusiones sobre la modalidad SaaS</h2>
+<p>La modalidad <strong>SaaS</strong> es la mejor opción para una empresa pequeña: no hay que instalar ni
+mantener nada, se accede desde cualquier navegador y el proveedor gestiona actualizaciones y
+copias de seguridad, así que se empieza a trabajar en minutos. Como contrapartida, se depende
+de internet y del proveedor, los datos están en servidores externos y, a la larga, el pago por usuario/mes puede encarecerse si la
+empresa crece. Para esta empresa ficticia, Odoo Online es la opción más
+sencilla y económica para empezar.</p>
+<hr/>
+<h2 id="8-anexo-fuentes-consultadas">8. Anexo — Fuentes consultadas</h2>
+<blockquote>
+<p>Fechas de consulta: 18 de mayo de 2026.</p>
+</blockquote>
+<ul>
+<li><code>[1]</code> SAP — <em>SAP Business One</em>: https://www.sap.com/products/erp/business-one.html</li>
+<li><code>[2]</code> Odoo — Precios y planes: https://www.odoo.com/page/pricing</li>
+<li><code>[3]</code> Wikipedia — <em>Odoo</em>: https://es.wikipedia.org/wiki/Odoo</li>
+<li><code>[4]</code> Dolibarr — Web oficial: https://www.dolibarr.org</li>
+<li><code>[5]</code> Wikipedia — <em>Dolibarr</em>: https://es.wikipedia.org/wiki/Dolibarr</li>
+</ul>
+</body>
+</html>
