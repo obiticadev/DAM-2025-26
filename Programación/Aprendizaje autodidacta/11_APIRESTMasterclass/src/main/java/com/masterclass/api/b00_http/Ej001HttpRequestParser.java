@@ -116,41 +116,54 @@ public final class Ej001HttpRequestParser {
 
     /**
      * RETO EXTRA 1: Validación defensiva extrema.
-     * En APIs, los clientes a veces envían peticiones nulas, vacías o con espacios de control.
+     * En APIs, los clientes a veces envían peticiones nulas, vacías o con espacios
+     * de control.
      * 
      * @param raw petición HTTP cruda
-     * @return true si la petición es nula, vacía o contiene solo caracteres de control/escape (\r, \n, \t, etc.)
+     * @return true si la petición es nula, vacía o contiene solo caracteres de
+     *         control/escape (\r, \n, \t, etc.)
      */
     public static boolean esPeticionNulaOVacia(String raw) {
         // TODO extra 1: implementa una validación que devuelva true si raw es null,
-        // está vacío, en blanco (sin caracteres imprimibles) o solo contiene espacios de control.
+        // está vacío, en blanco (sin caracteres imprimibles) o solo contiene espacios
+        // de control.
+        if (raw == null || raw.isEmpty()) {
+            return true;
+        }
         return false;
     }
 
     /**
      * RETO EXTRA 2: Tolerancia de saltos de línea (\r\n vs \n).
-     * El estándar HTTP exige usar \r\n como separador de líneas (CRLF), pero muchas APIs
+     * El estándar HTTP exige usar \r\n como separador de líneas (CRLF), pero muchas
+     * APIs
      * toleran recibir solo \n (LF).
      * 
      * @param raw petición HTTP cruda
-     * @return la primera línea completa sin caracteres \r ni \n al final; "" si no hay primera línea
+     * @return la primera línea completa sin caracteres \r ni \n al final; "" si no
+     *         hay primera línea
      */
     public static String extraerPrimeraLineaCompleta(String raw) {
-        // TODO extra 2: extrae la primera línea completa. Asegúrate de limpiar cualquier
+        // TODO extra 2: extrae la primera línea completa. Asegúrate de limpiar
+        // cualquier
         // carácter de retorno de carro (\r) que pudiera venir al final de la línea.
         return "";
     }
 
     /**
      * RETO EXTRA 3: Validación de verbos HTTP estándar.
-     * No todos los métodos recibidos son válidos en la especificación HTTP o soportados por nuestra API.
+     * No todos los métodos recibidos son válidos en la especificación HTTP o
+     * soportados por nuestra API.
      * 
      * @param raw petición HTTP cruda
-     * @return true si el verbo es uno de los estándar: GET, POST, PUT, DELETE, PATCH, OPTIONS, HEAD
+     * @return true si el verbo es uno de los estándar: GET, POST, PUT, DELETE,
+     *         PATCH, OPTIONS, HEAD
      */
     public static boolean validarMetodoSoportado(String raw) {
-        // TODO extra 3: extrae el método de la primera línea y valida si es un verbo HTTP 
-        // estándar y soportado (GET, POST, PUT, DELETE, PATCH, OPTIONS, HEAD). Ignora mayúsculas/minúsculas al validar.
+        // TODO extra 3: extrae el método de la primera línea y valida si es un verbo
+        // HTTP
+        // estándar y soportado (GET, POST, PUT, DELETE, PATCH, OPTIONS, HEAD). Ignora
+        // mayúsculas/minúsculas al validar.
         return false;
     }
 
@@ -159,11 +172,13 @@ public final class Ej001HttpRequestParser {
      * La línea de petición HTTP tiene la estructura: METODO RUTA VERSION.
      * 
      * @param raw petición HTTP cruda
-     * @return la versión del protocolo (ej. "HTTP/1.1", "HTTP/2.0"), o "" si no tiene el formato correcto
+     * @return la versión del protocolo (ej. "HTTP/1.1", "HTTP/2.0"), o "" si no
+     *         tiene el formato correcto
      */
     public static String extraerVersionHttp(String raw) {
-        // TODO extra 4: aísla la primera línea, divídela en tokens por espacios y 
-        // extrae el tercer token correspondiente a la versión. Si no existe o no tiene 3 tokens, devuelve "".
+        // TODO extra 4: aísla la primera línea, divídela en tokens por espacios y
+        // extrae el tercer token correspondiente a la versión. Si no existe o no tiene
+        // 3 tokens, devuelve "".
         return "";
     }
 
@@ -182,14 +197,18 @@ public final class Ej001HttpRequestParser {
 
     /**
      * RETO EXTRA 6: Separar Query String del Path.
-     * Al recibir "/buscar?q=java", el path real del recurso es "/buscar", y "q=java" es la query string.
+     * Al recibir "/buscar?q=java", el path real del recurso es "/buscar", y
+     * "q=java" es la query string.
      * 
      * @param raw petición HTTP cruda
-     * @return la query string completa (ej. "q=java"), o "" si la ruta no contiene parámetros (sin '?')
+     * @return la query string completa (ej. "q=java"), o "" si la ruta no contiene
+     *         parámetros (sin '?')
      */
     public static String extraerQueryString(String raw) {
-        // TODO extra 6: extrae la ruta completa de la petición. Si contiene el carácter '?',
-        // devuelve todo el fragmento que se encuentra justo después de él. Si no, devuelve "".
+        // TODO extra 6: extrae la ruta completa de la petición. Si contiene el carácter
+        // '?',
+        // devuelve todo el fragmento que se encuentra justo después de él. Si no,
+        // devuelve "".
         return "";
     }
 
@@ -197,13 +216,14 @@ public final class Ej001HttpRequestParser {
      * RETO EXTRA 7: Búsqueda de cabecera insensible a mayúsculas/minúsculas.
      * Según el estándar, los nombres de cabecera HTTP son case-insensitive.
      * 
-     * @param raw petición HTTP cruda
+     * @param raw            petición HTTP cruda
      * @param cabeceraNombre nombre de la cabecera a buscar (ej. "content-type")
      * @return el valor de la cabecera recortado de espacios, o "" si no existe
      */
     public static String extraerCabeceraSegura(String raw, String cabeceraNombre) {
-        // TODO extra 7: recorre las cabeceras e identifica aquella cuyo nombre coincida 
-        // con 'cabeceraNombre' ignorando mayúsculas/minúsculas. Devuelve su valor sin espacios.
+        // TODO extra 7: recorre las cabeceras e identifica aquella cuyo nombre coincida
+        // con 'cabeceraNombre' ignorando mayúsculas/minúsculas. Devuelve su valor sin
+        // espacios.
         return "";
     }
 
@@ -212,40 +232,53 @@ public final class Ej001HttpRequestParser {
      * Si la petición solicita explícitamente cerrar la conexión tras procesarse.
      * 
      * @param raw petición HTTP cruda
-     * @return true si la cabecera Connection está presente y su valor es "close" (case-insensitive)
+     * @return true si la cabecera Connection está presente y su valor es "close"
+     *         (case-insensitive)
      */
     public static boolean esConexionCerrada(String raw) {
-        // TODO extra 8: usa la lógica de cabeceras para buscar "Connection". Si su valor 
-        // es "close" (ignorando mayúsculas/minúsculas), devuelve true. De lo contrario, devuelve false.
+        // TODO extra 8: usa la lógica de cabeceras para buscar "Connection". Si su
+        // valor
+        // es "close" (ignorando mayúsculas/minúsculas), devuelve true. De lo contrario,
+        // devuelve false.
         return false;
     }
 
     /**
      * RETO EXTRA 9: Detección de transferencia por fragmentos (chunked).
-     * En flujos de datos grandes, las APIs usan Transfer-Encoding chunked en vez de Content-Length.
+     * En flujos de datos grandes, las APIs usan Transfer-Encoding chunked en vez de
+     * Content-Length.
      * 
      * @param raw petición HTTP cruda
-     * @return true si la cabecera Transfer-Encoding existe y contiene el valor "chunked" (case-insensitive)
+     * @return true si la cabecera Transfer-Encoding existe y contiene el valor
+     *         "chunked" (case-insensitive)
      */
     public static boolean contieneCuerpoChunky(String raw) {
-        // TODO extra 9: busca de forma segura la cabecera "Transfer-Encoding". Devuelve true
+        // TODO extra 9: busca de forma segura la cabecera "Transfer-Encoding". Devuelve
+        // true
         // si su valor contiene la palabra "chunked" (ignorando mayúsculas/minúsculas).
         return false;
     }
 
     /**
      * RETO EXTRA 10: Lectura segura de cuerpo basada en Content-Length.
-     * En servidores de producción, leer el body indefinidamente es vulnerable a ataques de denegación 
-     * de servicio. Debemos leer exactamente los bytes indicados por la cabecera Content-Length.
+     * En servidores de producción, leer el body indefinidamente es vulnerable a
+     * ataques de denegación
+     * de servicio. Debemos leer exactamente los bytes indicados por la cabecera
+     * Content-Length.
      * 
      * @param raw petición HTTP cruda
-     * @return el body recortado a la longitud exacta especificada por Content-Length, o el body completo
-     *         si no se especifica dicha cabecera. Si Content-Length es mayor que el cuerpo disponible, devuelve el cuerpo disponible.
+     * @return el body recortado a la longitud exacta especificada por
+     *         Content-Length, o el body completo
+     *         si no se especifica dicha cabecera. Si Content-Length es mayor que el
+     *         cuerpo disponible, devuelve el cuerpo disponible.
      */
     public static String obtenerCuerpoSeguroConContentLength(String raw) {
-        // TODO extra 10: localiza la cabecera "Content-Length" y parsea su valor a entero.
-        // Si existe y es válido, devuelve el cuerpo de la petición recortado a esa longitud máxima.
-        // Si no se encuentra la cabecera o su formato no es numérico, devuelve el cuerpo tal cual.
+        // TODO extra 10: localiza la cabecera "Content-Length" y parsea su valor a
+        // entero.
+        // Si existe y es válido, devuelve el cuerpo de la petición recortado a esa
+        // longitud máxima.
+        // Si no se encuentra la cabecera o su formato no es numérico, devuelve el
+        // cuerpo tal cual.
         return "";
     }
 
