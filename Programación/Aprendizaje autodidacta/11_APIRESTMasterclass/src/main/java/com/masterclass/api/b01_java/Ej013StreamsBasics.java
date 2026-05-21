@@ -1,6 +1,7 @@
 package com.masterclass.api.b01_java;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Ejercicio 013 · Streams básicos: filter/map/collect.
@@ -58,44 +59,127 @@ public final class Ej013StreamsBasics {
         System.out.println(contarPares(List.of(1, 2, 3, 4)));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: abre un stream sobre 'precios'.
+    /**
+     * Reto Extra 1: Filtrado numérico simple.
+     * Filtra los números para obtener sólo los mayores de edad (mayor o igual a 18).
+     *
+     * @param edades lista de edades
+     * @return lista de mayores de edad
+     */
+    public static List<Integer> filtrarMayoresDeEdad(List<Integer> edades) {
+        // TODO extra: Filtra edades >= 18 y recolecta a lista
+        return List.of();
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: filtra las entradas cuyo getValue() sea > umbral (estricto).
+    /**
+     * Reto Extra 2: Mapeo de cadenas de texto.
+     * Convierte palabras a mayúsculas, ignorando nulos y vacíos.
+     *
+     * @param palabras lista de palabras
+     * @return lista de palabras en mayúsculas filtradas
+     */
+    public static List<String> convertirAMayusculas(List<String> palabras) {
+        // TODO extra: Filtra nulos/vacíos, mapea a toUpperCase() y recolecta a lista
+        return List.of();
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: mapea cada entrada a su getKey().
+    /**
+     * Reto Extra 3: Reducción básica.
+     * Calcula la suma de los cuadrados de los números de la lista.
+     *
+     * @param numeros lista de números
+     * @return suma de los cuadrados
+     */
+    public static int calcularSumaCuadrados(List<Integer> numeros) {
+        // TODO extra: Eleva cada número al cuadrado y súmalos
+        return 0;
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: transforma cada clave a mayúsculas.
+    /**
+     * Reto Extra 4: Operación de conteo terminal.
+     * Cuenta cuántas cadenas en la lista son vacías (o contienen sólo espacios en blanco).
+     *
+     * @param cadenas lista de cadenas
+     * @return cantidad de cadenas vacías
+     */
+    public static long contarCadenasVacias(List<String> cadenas) {
+        // TODO extra: Cuenta las cadenas que estén vacías o en blanco
+        return 0;
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: recoge a List preservando el orden y devuélvela.
+    /**
+     * Reto Extra 5: Colector Collectors.joining.
+     * Une las palabras con coma y espacio, y las envuelve en corchetes "[palabra1, palabra2]".
+     *
+     * @param cadenas lista de palabras
+     * @return cadena con el formato especificado
+     */
+    public static String unirConComas(List<String> cadenas) {
+        // TODO extra: Une las cadenas con delimitadores, prefijo y sufijo usando Collectors.joining
+        return "";
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: usa mapToDouble(Double::doubleValue) sobre el stream.
+    /**
+     * Reto Extra 6: Deduplicación y ordenación.
+     * Retorna una lista con los elementos únicos (sin duplicados) ordenados alfabéticamente.
+     *
+     * @param lista lista de palabras
+     * @return lista sin duplicados y ordenada
+     */
+    public static List<String> obtenerElementosUnicos(List<String> lista) {
+        // TODO extra: Aplica distinct(), sorted() y recolecta a lista
+        return List.of();
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: aplica sum() (el caso lista vacía debe dar 0.0 de forma natural).
+    /**
+     * Reto Extra 7: Paginación con skip y limit.
+     * Omite los primeros 'skip' elementos y toma como máximo 'limit' elementos.
+     *
+     * @param lista lista de palabras
+     * @param skip  elementos a omitir
+     * @param limit cantidad máxima a retornar
+     * @return sublista paginada
+     */
+    public static List<String> limitarYDescartar(List<String> lista, int skip, int limit) {
+        // TODO extra: Usa skip(skip) y limit(limit) en el flujo del stream
+        return List.of();
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: abre stream sobre 'numeros'.
+    /**
+     * Reto Extra 8: Búsqueda con anyMatch.
+     * Comprueba si al menos una palabra de la lista empieza por el prefijo indicado.
+     *
+     * @param palabras lista de palabras
+     * @param prefijo  prefijo a buscar (insensible a mayúsculas/minúsculas)
+     * @return true si alguna coincide, false de lo contrario
+     */
+    public static boolean algunoEmpiezaCon(List<String> palabras, String prefijo) {
+        // TODO extra: Comprueba si al menos un elemento empieza por prefijo (case-insensitive)
+        return false;
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: filtra los que cumplan n % 2 == 0.
+    /**
+     * Reto Extra 9: Validación universal con allMatch.
+     * Comprueba si todos los números de la lista son estrictamente positivos (> 0).
+     *
+     * @param numeros lista de números
+     * @return true si todos son positivos o si la lista está vacía, false de lo contrario
+     */
+    public static boolean todosSonPositivos(List<Integer> numeros) {
+        // TODO extra: Valida si todos son > 0 usando allMatch
+        return false;
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve count().
+    /**
+     * Reto Extra 10: Reducción con max.
+     * Encuentra el número máximo de la lista.
+     *
+     * @param numeros lista de números
+     * @return Optional con el máximo, o vacío si la lista no contiene números
+     */
+    public static Optional<Integer> obtenerMaximo(List<Integer> numeros) {
+        // TODO extra: Encuentra el valor máximo de la lista usando max()
+        return Optional.empty();
     }
 
 }

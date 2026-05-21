@@ -47,46 +47,196 @@ public class Ej038AopCrossCutting {
         aop.alrededor(() -> "a");
         aop.alrededor(() -> "b");
         System.out.println(aop.invocaciones());
+    }    // --- MÉTODOS Y CLASES DE RETOS EXTRA ---
+
+    @java.lang.annotation.Target(java.lang.annotation.ElementType.METHOD)
+    @java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME)
+    public @interface Auditable {
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: valida que 'accion' no sea null.
+    public static class ServicioNegocio {
+        public String saludar(String nombre) {
+            return "Hola, " + nombre;
+        }
+
+        public int calcular(int a, int b) {
+            return a + b;
+        }
+
+        @Auditable
+        public String metodoAuditado() {
+            return "auditado";
+        }
+
+        public void metodoConError() {
+            throw new RuntimeException("Error simulado");
+        }
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: el "advice before" se ejecuta ANTES de la lógica de negocio.
+    /**
+     * Reto Extra 1: Aspecto Before que cuenta inicios de llamada.
+     */
+    public static class AspectoAntesDeLlamada {
+        private static int contadorBefore = 0;
+
+        public static int getContadorBefore() {
+            return contadorBefore;
+        }
+
+        public static void limpiar() {
+            contadorBefore = 0;
+        }
+
+        // TODO extra (Reto 1): Anota esta clase con @org.aspectj.lang.annotation.Aspect y crea un consejo @org.aspectj.lang.annotation.Before para interceptar ServicioNegocio.saludar.
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: incrementa el contador 'invocaciones' como parte del advice before.
+    /**
+     * Reto Extra 2: Aspecto AfterReturning que captura y guarda el valor devuelto.
+     */
+    public static class AspectoDespuesDeRetorno {
+        private static Object ultimoResultado;
+
+        public static Object getUltimoResultado() {
+            return ultimoResultado;
+        }
+
+        public static void limpiar() {
+            ultimoResultado = null;
+        }
+
+        // TODO extra (Reto 2): Crea un consejo @org.aspectj.lang.annotation.AfterReturning que intercepte ServicioNegocio.calcular y asigne su resultado a 'ultimoResultado'.
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: ejecuta la lógica real con accion.get() y guarda el resultado.
+    /**
+     * Reto Extra 3: Aspecto AfterThrowing que registra excepciones lanzadas.
+     */
+    public static class AspectoEnCasoDeError {
+        private static String mensajeError;
+
+        public static String getMensajeError() {
+            return mensajeError;
+        }
+
+        public static void limpiar() {
+            mensajeError = null;
+        }
+
+        // TODO extra (Reto 3): Crea un consejo @org.aspectj.lang.annotation.AfterThrowing que intercepte ServicioNegocio.metodoConError y guarde el mensaje de la excepción en 'mensajeError'.
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: NO modifiques el resultado (un around transparente lo devuelve igual).
+    /**
+     * Reto Extra 4: Aspecto Around que envuelve toda la ejecución.
+     */
+    public static class AspectoAlrededorAround {
+        private static boolean aroundEjecutado = false;
+
+        public static boolean isAroundEjecutado() {
+            return aroundEjecutado;
+        }
+
+        public static void limpiar() {
+            aroundEjecutado = false;
+        }
+
+        // TODO extra (Reto 4): Crea un consejo @org.aspectj.lang.annotation.Around que intercepte ServicioNegocio.saludar, registre su ejecución en 'aroundEjecutado' y proceda con la llamada.
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: (conceptual) aquí iría un "advice after" si lo hubiera.
+    /**
+     * Reto Extra 5: Aspecto que intercepta métodos anotados con @Auditable.
+     */
+    public static class PointcutPorAnotacionCustom {
+        private static boolean auditadoEjecutado = false;
+
+        public static boolean isAuditadoEjecutado() {
+            return auditadoEjecutado;
+        }
+
+        public static void limpiar() {
+            auditadoEjecutado = false;
+        }
+
+        // TODO extra (Reto 5): Crea un consejo @org.aspectj.lang.annotation.Before o @org.aspectj.lang.annotation.Around usando un pointcut que filtre por la presencia de @Auditable.
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: devuelve el resultado obtenido.
+    /**
+     * Reto Extra 6: Aspecto que mide la duración del método.
+     */
+    public static class AspectoConMedicionDeTiempo {
+        private static long duracionUltimoMetodoNs = -1;
+
+        public static long getDuracionUltimoMetodoNs() {
+            return duracionUltimoMetodoNs;
+        }
+
+        public static void limpiar() {
+            duracionUltimoMetodoNs = -1;
+        }
+
+        // TODO extra (Reto 6): Usa un consejo @org.aspectj.lang.annotation.Around para medir el tiempo transcurrido en nanosegundos (System.nanoTime()) y guárdalo en 'duracionUltimoMetodoNs'.
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: el contador debe reflejar el nº de veces invocado, no de éxitos.
+    /**
+     * Reto Extra 7: Aspectos combinando múltiples expresiones en el pointcut.
+     */
+    public static class PointcutCombinadoConOperadores {
+        private static boolean pointcutCombinadoEjecutado = false;
+
+        public static boolean isPointcutCombinadoEjecutado() {
+            return pointcutCombinadoEjecutado;
+        }
+
+        public static void limpiar() {
+            pointcutCombinadoEjecutado = false;
+        }
+
+        // TODO extra (Reto 7): Crea un pointcut usando operadores lógicos (&&, ||, !) para interceptar sólo métodos de ServicioNegocio anotados con @Auditable.
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: ten presente que si 'accion' lanza, el contador ya se incrementó (before).
+    /**
+     * Reto Extra 8: Acceder a los argumentos del método interceptado.
+     */
+    public static class AccederAParametrosDeMetodo {
+        private static Object[] ultimosArgumentos;
+
+        public static Object[] getUltimosArgumentos() {
+            return ultimosArgumentos;
+        }
+
+        public static void limpiar() {
+            ultimosArgumentos = null;
+        }
+
+        // TODO extra (Reto 8): Usa JoinPoint en un consejo @org.aspectj.lang.annotation.Before para extraer los argumentos de la llamada y guardarlos en 'ultimosArgumentos'.
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: mantén el método genérico (<T>) para envolver cualquier tipo de retorno.
+    /**
+     * Reto Extra 9: Modificación de argumentos en caliente.
+     */
+    public static class ModificarArgumentosDinamicos {
+        // TODO extra (Reto 9): Usa ProceedingJoinPoint en un consejo @org.aspectj.lang.annotation.Around para alterar los argumentos originales antes de llamar a proceed().
+    }
+
+    /**
+     * Reto Extra 10: Prioridad y orden entre múltiples aspectos usando @Order.
+     */
+    public static class AspectoOrdenadoConOrder {
+        private static final java.util.List<String> ordenAspectos = new java.util.ArrayList<>();
+
+        public static java.util.List<String> getOrdenAspectos() {
+            return ordenAspectos;
+        }
+
+        public static void limpiar() {
+            ordenAspectos.clear();
+        }
+
+        // TODO extra (Reto 10.1): Anota con @org.springframework.core.annotation.Order(1) y registra su ejecución.
+        public static class AspectoPrimero {
+        }
+
+        // TODO extra (Reto 10.2): Anota con @org.springframework.core.annotation.Order(2) y registra su ejecución.
+        public static class AspectoSegundo {
+        }
     }
 
 }

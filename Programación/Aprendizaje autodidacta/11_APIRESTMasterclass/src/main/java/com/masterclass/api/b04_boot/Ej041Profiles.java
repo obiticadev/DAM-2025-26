@@ -1,5 +1,9 @@
 package com.masterclass.api.b04_boot;
 
+import org.springframework.core.env.Environment;
+import org.springframework.core.env.ConfigurableEnvironment;
+import java.util.List;
+
 /**
  * Ejercicio 041 · Selección por perfil activo.
  *
@@ -45,44 +49,134 @@ public final class Ej041Profiles {
         System.out.println(datasourceUrl("prod") + " verbose=" + verboseErrors("prod"));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si activeProfile es null o vacío, asume "dev" (perfil por defecto).
+    /**
+     * RETO EXTRA 03: Configuración cargada únicamente bajo el perfil "dev".
+     */
+    // TODO extra: Añade anotaciones @org.springframework.context.annotation.Configuration y @org.springframework.context.annotation.Profile("dev")
+    public static class DevConfig {
+        public String message() { return "Dev Environment"; }
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: normaliza el perfil (trim + minúsculas).
+    /**
+     * RETO EXTRA 04: Componente que se carga cuando no estamos en producción.
+     */
+    // TODO extra: Añade anotación @org.springframework.context.annotation.Profile("!prod")
+    public static class NonProdService {
+        public String getStatus() { return "Safe for testing"; }
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: "dev" -> "jdbc:h2:mem:devdb".
+    /**
+     * RETO EXTRA 06: Componente condicionado a que los perfiles "dev" y "cloud" estén activos simultáneamente.
+     */
+    // TODO extra: Añade anotaciones @org.springframework.context.annotation.Profile con expresión lógica.
+    public static class CloudDevService {
+        public String getProvider() { return "Local Cloud Runner"; }
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: "test" -> "jdbc:h2:mem:testdb".
+    /**
+     * RETO EXTRA 08: Interfaz de servicio de base de datos para simular inyecciones selectivas.
+     */
+    public interface DbService {
+        String getUrl();
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: "prod" -> "jdbc:postgresql://db:5432/app".
+    // TODO extra: Añade @org.springframework.context.annotation.Profile("dev")
+    public static class DevDbService implements DbService {
+        @Override
+        public String getUrl() { return "jdbc:h2:mem"; }
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: cualquier otro perfil -> IllegalArgumentException con el valor recibido.
+    // TODO extra: Añade @org.springframework.context.annotation.Profile("prod")
+    public static class ProdDbService implements DbService {
+        @Override
+        public String getUrl() { return "jdbc:postgresql://db"; }
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: devuelve la URL resuelta.
+    /**
+     * RETO EXTRA 10: Configuración condicionada a expresiones complejas como "dev & !prod".
+     */
+    // TODO extra: Añade anotación @org.springframework.context.annotation.Profile con expresión "dev & !prod"
+    public static class ComplexProfileConfig {
+        public String getMode() { return "Complex Mode"; }
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: normaliza el perfil igual que en datasourceUrl (puedes extraer un helper).
+    /**
+     * RETO EXTRA 01: Comprobación programática de la activación de un perfil.
+     */
+    public static boolean pasoExtra01(Environment env, String perfil) {
+        // TODO extra: Comprueba si el perfil indicado está activo en el Environment de Spring.
+        return false;
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: dev y test -> true (queremos ver el detalle al desarrollar).
+    /**
+     * RETO EXTRA 02: Activación programática de perfiles en caliente en el entorno configurable.
+     */
+    public static void pasoExtra02(ConfigurableEnvironment env, String... perfiles) {
+        // TODO extra: Activa programáticamente los perfiles indicados en el ConfigurableEnvironment.
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: prod o cualquier otro -> false (no filtrar internals al cliente).
+    /**
+     * RETO EXTRA 03: Retorna la instancia de DevConfig.
+     */
+    public static DevConfig pasoExtra03() {
+        // TODO extra: Retorna una nueva instancia de la configuración de dev.
+        return null;
+    }
+
+    /**
+     * RETO EXTRA 04: Retorna la instancia de NonProdService.
+     */
+    public static NonProdService pasoExtra04() {
+        // TODO extra: Retorna una nueva instancia del servicio de no-producción.
+        return null;
+    }
+
+    /**
+     * RETO EXTRA 05: Obtiene una lista combinada de perfiles activos, o los perfiles por defecto si no hay activos.
+     */
+    public static List<String> pasoExtra05(Environment env) {
+        // TODO extra: Lee del Environment los perfiles activos y, si no hay ninguno, retorna los perfiles por defecto.
+        return null;
+    }
+
+    /**
+     * RETO EXTRA 06: Retorna la instancia de CloudDevService.
+     */
+    public static CloudDevService pasoExtra06() {
+        // TODO extra: Retorna una nueva instancia del servicio CloudDev.
+        return null;
+    }
+
+    /**
+     * RETO EXTRA 07: Determina si el entorno está utilizando los perfiles por defecto por no haberse configurado ningún perfil activo.
+     */
+    public static boolean pasoExtra07(Environment env) {
+        // TODO extra: Comprueba si no hay perfiles activos explícitamente y por ende se usan los por defecto.
+        return false;
+    }
+
+    /**
+     * RETO EXTRA 08: Filtra y retorna el servicio de base de datos adecuado de la lista según el tipo devuelto.
+     */
+    public static DbService pasoExtra08(List<DbService> services, Class<? extends DbService> targetClass) {
+        // TODO extra: Busca y retorna la implementación de DbService que coincida con targetClass de entre la lista.
+        return null;
+    }
+
+    /**
+     * RETO EXTRA 09: Resolutor dinámico de perfiles según la región del sistema.
+     */
+    public static String[] pasoExtra09(String systemRegion) {
+        // TODO extra: Si la región es "EU" o "US", retorna los perfiles {"prod", systemRegion.toLowerCase()}. De lo contrario, {"dev"}.
+        return null;
+    }
+
+    /**
+     * RETO EXTRA 10: Retorna la instancia de ComplexProfileConfig.
+     */
+    public static ComplexProfileConfig pasoExtra10() {
+        // TODO extra: Retorna una nueva instancia de ComplexProfileConfig.
+        return null;
     }
 
 }

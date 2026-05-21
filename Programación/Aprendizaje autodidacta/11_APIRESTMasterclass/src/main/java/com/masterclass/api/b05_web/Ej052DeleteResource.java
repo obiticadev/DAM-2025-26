@@ -36,44 +36,118 @@ public class Ej052DeleteResource {
         System.out.println(new Ej052DeleteResource().borrar(5));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: anota la clase con @RestController.
+    // --- MÉTODOS Y DTOs DE RETOS EXTRA ---
+
+    public record ItemDto(long id, String nombre, boolean activo) {}
+
+    /**
+     * Reto Extra 1: DELETE para borrado físico (retorna 204 No Content).
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.DeleteMapping("/{id}/fisico")
+    public ResponseEntity<Void> borrarFisico(@org.springframework.web.bind.annotation.PathVariable long id) {
+        // TODO extra: simula el borrado físico de la base de datos y retorna estatus 204.
+        return null;
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: anota la clase con @RequestMapping("/api/items").
+    /**
+     * Reto Extra 2: DELETE para borrado lógico (retorna 200 OK con el DTO modificado).
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.DeleteMapping("/{id}/logico")
+    public ResponseEntity<ItemDto> borrarLogico(@org.springframework.web.bind.annotation.PathVariable long id) {
+        // TODO extra: en lugar de eliminar, cambia el estado de 'activo' a false y devuelve estatus 200 con el DTO.
+        return null;
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: anota el método con @DeleteMapping("/{id}").
+    /**
+     * Reto Extra 3: DELETE con filtro por Query Parameter (borrado masivo selectivo).
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.DeleteMapping("")
+    public ResponseEntity<java.util.Map<String, Object>> borrarConFiltro(
+            @org.springframework.web.bind.annotation.RequestParam("categoria") String categoria) {
+        // TODO extra: simula el borrado de recursos de una categoría específica y devuelve 200 OK con un Map
+        // conteniendo la clave "categoria" y la clave "borrados" con valor 5 (número simulado de filas afectadas).
+        return null;
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: anota 'id' con @PathVariable.
+    /**
+     * Reto Extra 4: DELETE protegido con autorización basada en token (simulado).
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.DeleteMapping("/{id}/protegido")
+    public ResponseEntity<?> borrarConProteccionAdmin(
+            @org.springframework.web.bind.annotation.PathVariable long id,
+            @org.springframework.web.bind.annotation.RequestHeader("Authorization") String token) {
+        // TODO extra: si el token no es igual a "admin-token", devuelve estatus 403 (Forbidden) con cuerpo "No autorizado".
+        // Si es correcto, devuelve estatus 204.
+        return null;
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: simula la existencia: el recurso "existe" si id > 0.
+    /**
+     * Reto Extra 5: DELETE condicionado por relaciones de dependencia (cascade).
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.DeleteMapping("/{id}/dependencias")
+    public ResponseEntity<?> borrarConDependencias(
+            @org.springframework.web.bind.annotation.PathVariable long id,
+            @org.springframework.web.bind.annotation.RequestParam(value = "cascade", defaultValue = "false") boolean cascade) {
+        // TODO extra: si 'cascade' es false, simula que el recurso tiene dependencias y devuelve estatus 409 (Conflict)
+        // con cuerpo "No se puede borrar el recurso porque tiene dependencias. Usa cascade=true".
+        // Si 'cascade' es true, realiza el borrado recursivo simulado y devuelve estatus 204.
+        return null;
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: si id <= 0, devuelve ResponseEntity.notFound().build() (404).
+    /**
+     * Reto Extra 6: DELETE que retorna una copia de seguridad (backup) del recurso borrado.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.DeleteMapping("/{id}/backup")
+    public ResponseEntity<ItemDto> borrarRetornandoBackup(@org.springframework.web.bind.annotation.PathVariable long id) {
+        // TODO extra: simula el borrado pero retorna estatus 200 con el ItemDto del recurso antes de ser destruido.
+        return null;
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: si existe, ejecuta el borrado (aquí no-op simulado).
+    /**
+     * Reto Extra 7: DELETE sobre un recurso bloqueado contra borrado (Locked).
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.DeleteMapping("/{id}/seguro")
+    public ResponseEntity<?> borrarSeguro(@org.springframework.web.bind.annotation.PathVariable long id) {
+        // TODO extra: si el id es 99, simulamos que el recurso está bloqueado.
+        // Devuelve estatus 423 (Locked, HttpStatus.LOCKED) con cuerpo "Recurso protegido contra borrado".
+        // Para cualquier otro id, devuelve estatus 204.
+        return null;
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: una respuesta 204 NO lleva body (ResponseEntity<Void>).
+    /**
+     * Reto Extra 8: DELETE con verificación de precondición temporal (Cabecera de fecha).
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.DeleteMapping("/{id}/precondicion-fecha")
+    public ResponseEntity<?> borrarConPrecondicionFecha(
+            @org.springframework.web.bind.annotation.PathVariable long id,
+            @org.springframework.web.bind.annotation.RequestHeader(value = "X-Delete-Allowed-On", required = false) String fechaStr) {
+        // TODO extra: si la cabecera 'X-Delete-Allowed-On' no está presente o no coincide con "HOY",
+        // devuelve estatus 412 (Precondition Failed) con cuerpo "Fecha de precondicion invalida".
+        // Si coincide, devuelve estatus 204.
+        return null;
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: usa ResponseEntity.noContent().build() para el 204.
+    /**
+     * Reto Extra 9: DELETE en lote pasando lista de IDs en el cuerpo (Bulk DELETE).
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.DeleteMapping("/batch")
+    public ResponseEntity<java.util.Map<String, Object>> borrarMultiples(
+            @org.springframework.web.bind.annotation.RequestBody java.util.List<Long> ids) {
+        // TODO extra: recibe la lista de IDs a borrar y devuelve estatus 200 con un Map conteniendo
+        // la clave "borrados" y la lista de IDs procesados.
+        return null;
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve la ResponseEntity adecuada según el caso.
+    /**
+     * Reto Extra 10: Demostración de idempotencia en DELETE con estados de respuesta alternativos.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.DeleteMapping("/{id}/idempotencia")
+    public ResponseEntity<Void> borrarVerificarCabeceraNoModified(
+            @org.springframework.web.bind.annotation.PathVariable long id,
+            @org.springframework.web.bind.annotation.RequestHeader(value = "If-None-Match", required = false) String ifNoneMatch) {
+        // TODO extra: si el cliente envía If-None-Match con el valor "\"borrado\"", simulamos que ya fue borrado y retorna 404 (Not Found).
+        // Si no, simula el borrado y retorna 204 (No Content) con la cabecera ETag: "\"borrado\"".
+        return null;
     }
 
 }

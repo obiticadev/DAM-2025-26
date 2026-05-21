@@ -36,44 +36,108 @@ public class Ej059RequestResponseHeaders {
         System.out.println(new Ej059RequestResponseHeaders().trace("abc"));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: anota la clase con @RestController y @RequestMapping("/api").
+    /**
+     * Reto Extra 1: Extracción del idioma preferente (Accept-Language).
+     * Parsea la cabecera 'Accept-Language' (ej: "es-ES,es;q=0.9,en;q=0.8") y devuelve
+     * la primera etiqueta de idioma (ej: "es-ES"), que representa la de mayor prioridad.
+     */
+    public static String pasoExtra01(String acceptLanguage) {
+        // TODO extra: extrae y devuelve la primera etiqueta de idioma preferente.
+        return null;
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: anota el método con @GetMapping("/trace").
+    /**
+     * Reto Extra 2: Detección de petición AJAX.
+     * Comprueba si la petición es de tipo AJAX analizando si la cabecera 'X-Requested-With'
+     * contiene exactamente el valor "XMLHttpRequest" (ignora mayúsculas/minúsculas).
+     */
+    public static boolean pasoExtra02(String xRequestedWith) {
+        // TODO extra: comprueba si la cabecera 'X-Requested-With' corresponde a XMLHttpRequest.
+        return false;
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: anota 'requestId' con @RequestHeader(value="X-Request-Id", required=false).
+    /**
+     * Reto Extra 3: Decodificador de credenciales Basic Auth.
+     * Extrae y decodifica las credenciales en Base64 contenidas en la cabecera 'Authorization'
+     * con formato "Basic [base64(usuario:contraseña)]", devolviendo un array con [usuario, contraseña].
+     * Si el formato es inválido o no es Basic, devuelve null.
+     */
+    public static String[] pasoExtra03(String authorizationHeader) {
+        // TODO extra: decodifica las credenciales Basic Auth y devuelve un array con [usuario, contraseña].
+        return null;
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: si requestId es null, genera uno (p.ej. "gen-" + algo) como fallback.
+    /**
+     * Reto Extra 4: Extractor de Token Bearer JWT.
+     * Extrae el token JWT de la cabecera 'Authorization' con formato "Bearer <token>".
+     * Debe verificar el prefijo de forma insensible a mayúsculas y retornar el token limpio.
+     * Si no cumple el formato, devuelve null.
+     */
+    public static String pasoExtra04(String authorizationHeader) {
+        // TODO extra: extrae el token JWT de la cabecera Authorization: Bearer.
+        return null;
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: ese id será el "correlation id" que devolvemos.
+    /**
+     * Reto Extra 5: Extractor de IP real del cliente (X-Forwarded-For).
+     * Obtiene la dirección IP real del cliente a partir de la cabecera 'X-Forwarded-For'.
+     * Dado que puede contener múltiples IPs separadas por coma debido a proxies intermediarios,
+     * se debe retornar la primera IP de la lista. Si es nula o vacía, devuelve "unknown".
+     */
+    public static String pasoExtra05(String xForwardedFor) {
+        // TODO extra: extrae la IP real original de la cabecera X-Forwarded-For.
+        return null;
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: parte de ResponseEntity.ok().
+    /**
+     * Reto Extra 6: Categorización de dispositivo desde User-Agent.
+     * Analiza la cabecera 'User-Agent' para clasificar el dispositivo de origen en
+     * "Mobile", "Tablet" o "Desktop".
+     */
+    public static String pasoExtra06(String userAgent) {
+        // TODO extra: categoriza el dispositivo del usuario en Mobile, Tablet o Desktop.
+        return null;
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: añade header "X-Correlation-Id" con el valor resuelto.
+    /**
+     * Reto Extra 7: Inyección aditiva de cabeceras de seguridad.
+     * Inyecta cabeceras recomendadas de seguridad (como "X-Content-Type-Options: nosniff"
+     * y "X-Frame-Options: DENY") en un ResponseEntity.BodyBuilder.
+     */
+    public static ResponseEntity.BodyBuilder pasoExtra07(ResponseEntity.BodyBuilder builder) {
+        // TODO extra: inyecta cabeceras de seguridad adicionales en el builder.
+        return null;
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: el body debe ser exactamente "ok".
+    /**
+     * Reto Extra 8: Comprobación de soporte de compresión (Accept-Encoding).
+     * Analiza la cabecera 'Accept-Encoding' para determinar si el cliente soporta compresión GZIP
+     * comprobando si el valor "gzip" está presente (ignora mayúsculas/minúsculas).
+     */
+    public static boolean pasoExtra08(String acceptEncoding) {
+        // TODO extra: comprueba si el cliente acepta compresión gzip.
+        return false;
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: usa .body("ok").
+    /**
+     * Reto Extra 9: Parseo de cabeceras multivalor avanzadas.
+     * Procesa una cabecera personalizada multivalor separada por comas (ej: "tag1, tag2, tag3")
+     * limpiando espacios y devolviendo una lista de cadenas con cada valor independiente.
+     */
+    public static java.util.List<String> pasoExtra09(String customHeaderValue) {
+        // TODO extra: parsea la cabecera multivalor y limpia los espacios.
+        return null;
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve la ResponseEntity.
+    /**
+     * Reto Extra 10: Validación de cabecera de firma (X-Signature).
+     * Valida la firma de integridad 'X-Signature' de una petición contra la firma esperada,
+     * calculada como el hash MD5 en hexadecimal del cuerpo del mensaje 'body'.
+     * Si las firmas coinciden, devuelve true, de lo contrario false.
+     */
+    public static boolean pasoExtra10(String signature, String body) {
+        // TODO extra: calcula el MD5 del cuerpo y compáralo con la firma proporcionada.
+        return false;
     }
 
 }

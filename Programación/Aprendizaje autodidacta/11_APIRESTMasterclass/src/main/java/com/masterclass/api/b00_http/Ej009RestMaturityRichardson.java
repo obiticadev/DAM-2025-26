@@ -46,44 +46,135 @@ public final class Ej009RestMaturityRichardson {
         System.out.println("HATEOAS        -> " + level(true, true, true));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: el nivel es acumulativo: cada peldaño exige cumplir el anterior.
+    /**
+     * RETO EXTRA 1: Evaluación heurística del nivel de madurez por ejemplo de tráfico.
+     * Analiza una llamada HTTP concreta y estima su nivel de madurez según Richardson.
+     *
+     * @param url URL de la petición (ej. "/soap/service", "/usuarios/12")
+     * @param metodoHttp método HTTP utilizado (ej. "POST", "GET")
+     * @param cuerpoRespuesta respuesta JSON, XML o texto plano
+     * @return nivel estimado (0 a 3)
+     */
+    public static int evaluarNivelPorEjemplo(String url, String metodoHttp, String cuerpoRespuesta) {
+        // TODO extra 1: implementa una heurística básica:
+        // - Si la URL contiene "service", "soap" o termina en un verbo de acción y es POST -> Nivel 0.
+        // - Si la respuesta contiene "_links" o "href" -> Nivel 3.
+        // - Si el método HTTP no es solo POST/GET (ej. PUT, DELETE) -> Nivel 2.
+        // - Si usa URIs REST pero no tiene hipermedia -> Nivel 1 o 2.
+        return -1;
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si NO hay múltiples recursos, el diseño es RPC plano -> nivel 0.
+    /**
+     * RETO EXTRA 2: Detección de diseño estilo RPC (Nivel 0).
+     * RPC usa HTTP simplemente como transporte sin aprovechar la semántica de recursos.
+     *
+     * @param url URI propuesta (ej. "/crearUsuario", "/usuarios/42")
+     * @param metodoHttp método HTTP (ej. "POST", "GET")
+     * @return true si la URI delata un diseño RPC (contiene verbos o acciones en la URL, o todo es POST a un único punto)
+     */
+    public static boolean esDisenoRpc(String url, String metodoHttp) {
+        // TODO extra 2: comprueba si la URL contiene acciones típicas como "crear", "eliminar", "actualizar",
+        // o si es POST a un endpoint genérico como "/api" o "/service".
+        return false;
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: a partir de aquí ya hay recursos (al menos nivel 1).
+    /**
+     * RETO EXTRA 3: Detección de presencia de hipermedios HATEOAS (Nivel 3).
+     * HATEOAS requiere que las respuestas guíen al cliente sobre las siguientes acciones posibles.
+     *
+     * @param cuerpoJson cuerpo de respuesta JSON
+     * @return true si contiene enlaces hipermedia estándar (ej. "_links" en HAL, "links" en JSON:API)
+     */
+    public static boolean contieneHipermediaHateoas(String cuerpoJson) {
+        // TODO extra 3: busca de forma básica si la respuesta en formato JSON contiene la propiedad 
+        // "_links" o una propiedad de tipo arreglo "links" que contenga campos "href".
+        return false;
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: si hay recursos pero NO múltiples verbos -> nivel 1.
+    /**
+     * RETO EXTRA 4: Generación de enlace conforme al estándar HAL.
+     * HAL (Hypertext Application Language) es una convención simple para hipermedia en JSON.
+     *
+     * @param href enlace destino (ej. "/pedidos/42")
+     * @param rel relación del enlace (ej. "self", "next")
+     * @return el bloque JSON formateado que representa el enlace en HAL
+     */
+    public static String generarEnlaceHal(String href, String rel) {
+        // TODO extra 4: construye una cadena JSON estructurada con la relación y su "href" correspondiente.
+        return "";
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: comprobado que hay verbos, se alcanza al menos nivel 2.
+    /**
+     * RETO EXTRA 5: Clasificación semántica de código de estado HTTP (Nivel 2).
+     * El Nivel 2 requiere el uso correcto de los códigos de estado para informar el resultado de la petición.
+     *
+     * @param status código HTTP (ej. 201, 409, 404)
+     * @return la descripción semántica estándar (ej. "Created" para 201, "Conflict" para 409); o "Desconocido" si no es común
+     */
+    public static String clasificarCodigoEstadoMaturity(int status) {
+        // TODO extra 5: mapea los códigos HTTP más representativos de REST a sus descripciones textuales.
+        return "";
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: si hay recursos + verbos pero NO hipermedia -> nivel 2.
+    /**
+     * RETO EXTRA 6: Validación de Idempotencia de verbos HTTP (Nivel 2).
+     * La idempotencia asegura la confiabilidad de la red en caso de reintentos.
+     *
+     * @param metodo método HTTP
+     * @return true si es un método idempotente según la especificación HTTP (GET, PUT, DELETE, HEAD, OPTIONS)
+     */
+    public static boolean esIdempotenteParaMaturity(String metodo) {
+        // TODO extra 6: valida si el verbo cumple con la característica de idempotencia.
+        return false;
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: la hipermedia (HATEOAS) solo cuenta si ya hay recursos y verbos.
+    /**
+     * RETO EXTRA 7: Sugeridor de Semántica REST (Refactorización RPC a REST).
+     * Convierte operaciones RPC a su verbo y código de estado estándar correspondiente.
+     *
+     * @param operacionRpc nombre de la acción RPC (ej. "crearUsuario", "actualizarStock", "obtenerProductos")
+     * @return una cadena explicativa con el formato "MÉTODO -> CÓDIGO_RECOMENDADO" (ej. "POST -> 201 Created")
+     */
+    public static String sugerirVerboYCodigo(String operacionRpc) {
+        // TODO extra 7: asocia verbos de acción RPC comunes a la semántica HTTP REST ideal de Nivel 2.
+        return "";
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: si se cumplen los tres requisitos -> nivel 3.
+    /**
+     * RETO EXTRA 8: Parser de cabeceras HTTP Link de paginación (Nivel 3).
+     * En APIs REST sin JSON estructurado, se utiliza la cabecera "Link" para relaciones HATEOAS.
+     *
+     * @param headerLinkValue cabecera Link completa (ej. "<https://api.example.com/items?page=2>; rel=\"next\", <https://api.example.com/items?page=1>; rel=\"prev\"")
+     * @return un arreglo con las URLs de los enlaces encontrados para la relación "next"
+     */
+    public static String[] extraerEnlacesDeCabeceraLink(String headerLinkValue) {
+        // TODO extra 8: parsea la cabecera separando por comas, busca el atributo rel="next" y 
+        // extrae la URL que se encuentra entre los caracteres '<' y '>'.
+        return new String[0];
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: no permitas "saltar" niveles (hipermedia sin verbos NO es nivel 3).
+    /**
+     * RETO EXTRA 9: Validación de Colección Paginada HATEOAS estándar.
+     *
+     * @param cuerpoJson respuesta JSON completa
+     * @return true si es una respuesta que incluye navegación completa de paginación mediante enlaces
+     */
+    public static boolean esColeccionPaginadaSegura(String cuerpoJson) {
+        // TODO extra 9: verifica si están presentes los enlaces "first", "last", "next" o "prev" en el cuerpo.
+        return false;
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve el entero calculado (0, 1, 2 o 3).
+    /**
+     * RETO EXTRA 10: Generador de Colección HAL Paginada básica.
+     *
+     * @param resource recurso en plural
+     * @param page página actual (0-indexed)
+     * @param totalPages total de páginas disponibles
+     * @return el objeto JSON HAL básico con los enlaces "self", "next" y "prev" según corresponda
+     */
+    public static String generarRespuestaHalPaginada(String resource, int page, int totalPages) {
+        // TODO extra 10: construye la estructura JSON HAL de enlaces para paginación de manera dinámica.
+        return "";
     }
 
 }

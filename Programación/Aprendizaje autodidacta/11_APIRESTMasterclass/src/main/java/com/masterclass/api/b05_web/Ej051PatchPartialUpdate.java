@@ -41,44 +41,133 @@ public class Ej051PatchPartialUpdate {
         System.out.println(new Ej051PatchPartialUpdate().patch(1, Map.of("nombre", "nuevo")));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: anota la clase con @RestController.
+    // --- MÉTODOS Y DTOs DE RETOS EXTRA ---
+
+    public record ItemPatchDto(String nombre, Boolean activo) {}
+
+    public record ItemConTagsDto(long id, String nombre, boolean activo, java.util.List<String> tags) {}
+
+    /**
+     * Reto Extra 1: PATCH utilizando DTO parcial.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{id}/dto")
+    public org.springframework.http.ResponseEntity<ItemDto> patchConDto(
+            @org.springframework.web.bind.annotation.PathVariable long id,
+            @org.springframework.web.bind.annotation.RequestBody ItemPatchDto cambios) {
+        // TODO extra: si cambios.nombre() no es nulo, actualiza el nombre.
+        // Si cambios.activo() no es nulo, actualiza el estado.
+        // Devuelve estatus 200 con el ItemDto modificado.
+        return null;
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: anota la clase con @RequestMapping("/api/items").
+    /**
+     * Reto Extra 2: PATCH para modificar una colección anidada (tags).
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{id}/tags")
+    public org.springframework.http.ResponseEntity<ItemConTagsDto> patchColeccion(
+            @org.springframework.web.bind.annotation.PathVariable long id,
+            @org.springframework.web.bind.annotation.RequestBody java.util.Map<String, Object> cambios) {
+        // TODO extra: partiendo de tags base = ["java", "spring"].
+        // Si cambios contiene "addTag", añade el valor a la lista.
+        // Si cambios contiene "removeTag", elimina el valor de la lista.
+        // Devuelve estatus 200 con ItemConTagsDto.
+        return null;
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: anota el método con @PatchMapping("/{id}").
+    /**
+     * Reto Extra 3: PATCH implícito para incrementar un contador.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{id}/incrementar")
+    public org.springframework.http.ResponseEntity<java.util.Map<String, Object>> patchIncrementarContador(
+            @org.springframework.web.bind.annotation.PathVariable long id) {
+        // TODO extra: simula el incremento de un contador de visitas para el recurso.
+        // Devuelve estatus 200 con un Map conteniendo la clave "id" y "visitas" (incrementado a 11).
+        return null;
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: anota 'id' con @PathVariable y 'cambios' con @RequestBody.
+    /**
+     * Reto Extra 4: Simulador simple de JSON Patch (RFC 6902).
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{id}/rfc6902")
+    public org.springframework.http.ResponseEntity<ItemDto> patchConJsonPatch(
+            @org.springframework.web.bind.annotation.PathVariable long id,
+            @org.springframework.web.bind.annotation.RequestBody java.util.List<java.util.Map<String, Object>> operaciones) {
+        // TODO extra: recorre la lista de operaciones. Cada operación tiene "op" (p.ej. "replace"), "path" (p.ej. "/nombre"), y "value" (p.ej. "nuevo").
+        // Aplica las operaciones al recurso base (nombre="viejo", activo=true) y devuelve estatus 200 con el ItemDto modificado.
+        return null;
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: parte de un estado base: nombre="viejo", activo=true (simulado en memoria).
+    /**
+     * Reto Extra 5: Validación estricta del tipo de datos de entrada.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{id}/valida-tipos")
+    public org.springframework.http.ResponseEntity<?> patchValidarTipos(
+            @org.springframework.web.bind.annotation.PathVariable long id,
+            @org.springframework.web.bind.annotation.RequestBody java.util.Map<String, Object> cambios) {
+        // TODO extra: si el mapa contiene la clave "activo" y el valor no es un Boolean (o no es true/false),
+        // devuelve estatus 400 (Bad Request) con cuerpo "Tipo de dato invalido para activo".
+        return null;
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: si 'cambios' contiene la clave "nombre", actualiza solo ese campo.
+    /**
+     * Reto Extra 6: Protección contra modificación de campos de solo lectura (como ID).
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{id}/readonly")
+    public org.springframework.http.ResponseEntity<?> patchNoPermitido(
+            @org.springframework.web.bind.annotation.PathVariable long id,
+            @org.springframework.web.bind.annotation.RequestBody java.util.Map<String, Object> cambios) {
+        // TODO extra: si el mapa de cambios contiene la clave "id", devuelve estatus 400 (Bad Request)
+        // con cuerpo "No esta permitido modificar el ID".
+        return null;
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: si 'cambios' contiene "activo", actualiza solo ese campo (cast a boolean).
+    /**
+     * Reto Extra 7: PATCH con cabecera de auditoría del usuario que modifica.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{id}/auditoria")
+    public org.springframework.http.ResponseEntity<java.util.Map<String, Object>> patchAuditoria(
+            @org.springframework.web.bind.annotation.PathVariable long id,
+            @org.springframework.web.bind.annotation.RequestBody java.util.Map<String, Object> cambios,
+            @org.springframework.web.bind.annotation.RequestHeader("X-User") String user) {
+        // TODO extra: devuelve estatus 200 y un Map con las claves del recurso actualizado y la clave "modificadoPor" con el valor de la cabecera X-User.
+        return null;
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: los campos NO presentes en 'cambios' deben conservar su valor base.
+    /**
+     * Reto Extra 8: Validación cruzada de campos en actualización parcial.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{id}/estado-exclusivo")
+    public org.springframework.http.ResponseEntity<?> patchEstadoExclusivo(
+            @org.springframework.web.bind.annotation.PathVariable long id,
+            @org.springframework.web.bind.annotation.RequestBody java.util.Map<String, Object> cambios) {
+        // TODO extra: si en la misma petición se intenta cambiar "activo" a false y también se proporciona un nuevo "nombre",
+        // devuelve estatus 422 (Unprocessable Entity) con cuerpo "No se puede renombrar un recurso que se desactiva".
+        return null;
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: a diferencia de PUT, PATCH NO exige el recurso completo.
+    /**
+     * Reto Extra 9: Control de conflictos y recursos bloqueados (Conflict).
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{id}/bloqueado")
+    public org.springframework.http.ResponseEntity<?> patchLanzaConflicto(
+            @org.springframework.web.bind.annotation.PathVariable long id,
+            @org.springframework.web.bind.annotation.RequestBody java.util.Map<String, Object> cambios) {
+        // TODO extra: si el id es 99, simulamos que el recurso está bloqueado.
+        // Devuelve estatus 409 (Conflict) con cuerpo "Recurso bloqueado contra modificaciones".
+        return null;
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: construye y devuelve el ItemDto con id + estado resultante.
+    /**
+     * Reto Extra 10: PATCH condicional condicionado a la cabecera If-Match.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{id}/conditional")
+    public org.springframework.http.ResponseEntity<?> patchCondicionalEtag(
+            @org.springframework.web.bind.annotation.PathVariable long id,
+            @org.springframework.web.bind.annotation.RequestBody java.util.Map<String, Object> cambios,
+            @org.springframework.web.bind.annotation.RequestHeader(value = "If-Match", required = false) String ifMatch) {
+        // TODO extra: si la cabecera If-Match no está presente, devuelve estatus 428 (Precondition Required).
+        // Si no coincide con el valor esperado "\"v1\"", devuelve estatus 412 (Precondition Failed).
+        return null;
     }
 
 }

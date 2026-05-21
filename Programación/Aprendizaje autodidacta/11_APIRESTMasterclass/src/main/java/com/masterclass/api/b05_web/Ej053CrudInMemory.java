@@ -64,44 +64,120 @@ public class Ej053CrudInMemory {
         System.out.println(c.crear(new Tarea(null, "x")));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: anota la clase con @RestController y @RequestMapping("/api/tareas").
+    // --- MÉTODOS Y DTOs DE RETOS EXTRA ---
+
+    public record TareaCompleta(Long id, String titulo, boolean completada) {}
+
+    // BD adicional en memoria para retos extra (se sincroniza con db para IDs)
+    private final java.util.Map<Long, Boolean> completadasDb = new java.util.concurrent.ConcurrentHashMap<>();
+
+    /**
+     * Reto Extra 1: PUT para actualizar una tarea por completo.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PutMapping("/{id}")
+    public ResponseEntity<Tarea> actualizarTarea(
+            @org.springframework.web.bind.annotation.PathVariable Long id,
+            @org.springframework.web.bind.annotation.RequestBody Tarea tarea) {
+        // TODO extra: si el id no existe en `db`, devuelve 404 (Not Found).
+        // Si existe, reemplaza la tarea en `db` con una nueva Tarea usando el 'id' de la ruta y el titulo recibido.
+        // Retorna 200 OK con la tarea actualizada.
+        return null;
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: anota con @GetMapping; devuelve la colección de db.values() como List.
+    /**
+     * Reto Extra 2: PATCH para actualizar parcialmente el título de una tarea.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{id}")
+    public ResponseEntity<Tarea> parchearTarea(
+            @org.springframework.web.bind.annotation.PathVariable Long id,
+            @org.springframework.web.bind.annotation.RequestBody java.util.Map<String, Object> cambios) {
+        // TODO extra: si el id no existe en `db`, devuelve 404 (Not Found).
+        // Si existe, y el mapa contiene "titulo", actualiza sólo el título.
+        // Retorna 200 OK con la tarea resultante.
+        return null;
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: devuelve una nueva List a partir de db.values().
+    /**
+     * Reto Extra 3: GET con filtrado de tareas por título (Query Param).
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/filtrar")
+    public List<Tarea> buscarPorTitulo(
+            @org.springframework.web.bind.annotation.RequestParam("q") String q) {
+        // TODO extra: filtra todas las tareas en `db` cuyos títulos contengan la cadena `q` (case-insensitive) y devuélvelas en una lista.
+        return null;
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: anota con @GetMapping("/{id}") y 'id' con @PathVariable.
+    /**
+     * Reto Extra 4: DELETE global para vaciar la base de datos de tareas.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.DeleteMapping("")
+    public ResponseEntity<Void> limpiarTodo() {
+        // TODO extra: vacía el mapa `db` y el mapa `completadasDb` y retorna estatus 204.
+        return null;
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: busca en db; si está -> ResponseEntity.ok(tarea); si no -> notFound().
+    /**
+     * Reto Extra 5: GET para contar la cantidad total de tareas registradas.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/count")
+    public java.util.Map<String, Long> contarTareas() {
+        // TODO extra: devuelve un mapa conteniendo la clave "total" y el tamaño actual de `db`.
+        return null;
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: anota con @PostMapping y 'nueva' con @RequestBody.
+    /**
+     * Reto Extra 6: POST para creación masiva (Bulk POST).
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PostMapping("/bulk")
+    public ResponseEntity<List<Tarea>> crearVarias(
+            @org.springframework.web.bind.annotation.RequestBody List<Tarea> tareas) {
+        // TODO extra: para cada tarea de la lista, genera un ID correlativo con seq.incrementAndGet(),
+        // guárdala en `db` y agrégala a la lista de salida. Retorna 201 Created con la lista.
+        return null;
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: genera id con seq.incrementAndGet(), crea la Tarea y guárdala en db.
+    /**
+     * Reto Extra 7: POST para duplicar una tarea existente.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PostMapping("/{id}/duplicar")
+    public ResponseEntity<Tarea> duplicarTarea(@org.springframework.web.bind.annotation.PathVariable Long id) {
+        // TODO extra: si el id no existe en `db`, devuelve 404 (Not Found).
+        // Si existe, genera un nuevo id con seq.incrementAndGet(), guarda una copia de la tarea con el nuevo id
+        // y el sufijo " (copia)" al final del título. Retorna 201 Created con la tarea duplicada.
+        return null;
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: devuelve 201 (ResponseEntity.status(CREATED).body(creada)).
+    /**
+     * Reto Extra 8: PATCH para conmutar el estado de completada de una tarea (toggle).
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{id}/toggle")
+    public ResponseEntity<TareaCompleta> toggleCompletada(@org.springframework.web.bind.annotation.PathVariable Long id) {
+        // TODO extra: si el id no existe en `db`, devuelve 404.
+        // Si existe, cambia su valor booleano en `completadasDb` (si no existía, ponlo a true; si ya existía, inviértelo).
+        // Devuelve estatus 200 OK con un objeto `TareaCompleta` conteniendo la información actualizada.
+        return null;
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: anota con @DeleteMapping("/{id}") y 'id' con @PathVariable.
+    /**
+     * Reto Extra 9: GET con soporte de paginación simple.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/paginadas")
+    public List<Tarea> listarPaginado(
+            @org.springframework.web.bind.annotation.RequestParam(value = "page", defaultValue = "0") int page,
+            @org.springframework.web.bind.annotation.RequestParam(value = "size", defaultValue = "5") int size) {
+        // TODO extra: extrae una sublista de `db.values()` ordenada por ID que corresponda al índice `page` y tamaño `size`.
+        return null;
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: db.remove(id); si devolvió algo -> 204 noContent; si null -> 404 notFound.
+    /**
+     * Reto Extra 10: GET para obtener la primera tarea registrada (ID mínimo).
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/primera")
+    public ResponseEntity<Tarea> obtenerPrimera() {
+        // TODO extra: busca la tarea con el ID más bajo de la base de datos `db`.
+        // Si está vacía, devuelve estatus 204 (No Content) sin cuerpo.
+        // Si tiene elementos, devuélvela con estatus 200.
+        return null;
     }
 
 }

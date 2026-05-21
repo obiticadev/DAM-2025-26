@@ -36,44 +36,101 @@ public class Ej057FileUpload {
         System.out.println("Endpoint de subida listo");
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: anota la clase con @RestController y @RequestMapping("/api").
+    /**
+     * Reto Extra 1: Validación del formato por extensión.
+     * Comprueba si el archivo ('file') tiene una extensión permitida (ej: "png", "jpg"),
+     * ignorando mayúsculas y minúsculas.
+     */
+    public static boolean pasoExtra01(MultipartFile file, List<String> allowedExtensions) {
+        // TODO extra: valida si la extensión del archivo está dentro de las permitidas.
+        return false;
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: anota el método con @PostMapping("/upload").
+    /**
+     * Reto Extra 2: Validación estricta de tamaño máximo.
+     * Comprueba si el tamaño del archivo no supera el límite de bytes especificado ('maxSizeBytes').
+     */
+    public static boolean pasoExtra02(MultipartFile file, long maxSizeBytes) {
+        // TODO extra: valida que el archivo no supere el tamaño máximo permitido.
+        return false;
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: anota 'file' con @RequestParam("file").
+    /**
+     * Reto Extra 3: Validación del tipo MIME del archivo.
+     * Comprueba si el tipo de contenido ('getContentType') del archivo coincide con alguno
+     * de los tipos MIME permitidos (ej: "image/jpeg", "application/pdf").
+     */
+    public static boolean pasoExtra03(MultipartFile file, List<String> allowedMimeTypes) {
+        // TODO extra: valida si el tipo MIME del archivo es compatible.
+        return false;
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: si file es null o file.isEmpty(), devuelve "vacio" (caso límite).
+    /**
+     * Reto Extra 4: Saneamiento de nombre contra Directory Traversal.
+     * Limpia el nombre del archivo original para evitar que contenga rutas relativas (ej: "../../etc/passwd")
+     * devolviendo únicamente el nombre del archivo (ej: "passwd"), o "desconocido" si no se puede determinar.
+     */
+    public static String pasoExtra04(MultipartFile file) {
+        // TODO extra: sanea el nombre de archivo para prevenir vulnerabilidades de path traversal.
+        return null;
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: obtén el nombre original con file.getOriginalFilename().
+    /**
+     * Reto Extra 5: Cálculo del hash MD5 de verificación.
+     * Calcula y devuelve el hash MD5 (como cadena hexadecimal) del contenido en bytes del archivo,
+     * útil para verificar la integridad de la subida. Si el archivo es nulo, devuelve "".
+     */
+    public static String pasoExtra05(MultipartFile file) {
+        // TODO extra: calcula y devuelve el hash MD5 de los bytes del archivo.
+        return null;
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: si el nombre es null, usa "desconocido".
+    /**
+     * Reto Extra 6: Suma de tamaños de múltiples archivos.
+     * Calcula la suma total en bytes de todos los archivos de la lista recibida.
+     */
+    public static long pasoExtra06(List<MultipartFile> files) {
+        // TODO extra: suma los bytes de todos los archivos y devuelve el total.
+        return 0L;
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: obtén el tamaño con file.getSize().
+    /**
+     * Reto Extra 7: Detección elemental de imágenes.
+     * Comprueba si el archivo es una imagen basándose tanto en su Content-Type ("image/*")
+     * como en que su nombre original termine en una extensión típica de imagen (.jpg, .jpeg, .png, .gif).
+     */
+    public static boolean pasoExtra07(MultipartFile file) {
+        // TODO extra: determina si el archivo cumple las condiciones de ser una imagen.
+        return false;
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: (conceptual) aquí persistirías el contenido (no en este test).
+    /**
+     * Reto Extra 8: Extracción de cabeceras de columnas CSV.
+     * Lee de forma eficiente la primera línea del archivo subido (simulando que es un archivo de texto CSV)
+     * y devuelve una lista con las cabeceras de las columnas separadas por comas.
+     */
+    public static List<String> pasoExtra08(MultipartFile file) {
+        // TODO extra: lee la primera línea del archivo e identifica las columnas cabecera.
+        return null;
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: construye "nombre:tamaño".
+    /**
+     * Reto Extra 9: Simulación de almacenamiento físico.
+     * Resuelve y devuelve la ruta absoluta final donde se guardaría el archivo dentro de un
+     * directorio destino ('destinationDir') usando el nombre saneado del archivo.
+     */
+    public static String pasoExtra09(MultipartFile file, String destinationDir) {
+        // TODO extra: simula el guardado físico resolviendo la ruta del archivo.
+        return null;
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve esa cadena.
+    /**
+     * Reto Extra 10: Comprobación defensiva de archivos vacíos.
+     * Determina si el objeto 'file' es nulo, está vacío (isEmpty) o su tamaño en bytes es menor o igual a cero.
+     */
+    public static boolean pasoExtra10(MultipartFile file) {
+        // TODO extra: valida si el archivo subido está vacío o es nulo.
+        return false;
     }
 
 }

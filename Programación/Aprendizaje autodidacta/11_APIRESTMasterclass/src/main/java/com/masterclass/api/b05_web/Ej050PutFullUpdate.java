@@ -41,44 +41,142 @@ public class Ej050PutFullUpdate {
         System.out.println(new Ej050PutFullUpdate().reemplazar(7, new ItemBody("nuevo")));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: anota la clase con @RestController.
+    // --- MÉTODOS Y DTOs DE RETOS EXTRA ---
+
+    public record ItemConVersion(long id, String nombre, int version) {}
+
+    @org.springframework.web.bind.annotation.ResponseStatus(org.springframework.http.HttpStatus.NOT_FOUND)
+    public static class RecursoNoEncontradoException extends RuntimeException {
+        public RecursoNoEncontradoException(String mensaje) {
+            super(mensaje);
+        }
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: anota la clase con @RequestMapping("/api/items").
+    // Historial para el reto 5
+    public static final java.util.List<String> historialNombres = new java.util.ArrayList<>();
+
+    /**
+     * Reto Extra 1: PUT con control de concurrencia optimista (Optimistic Locking).
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PutMapping("/{id}/optimistic")
+    public org.springframework.http.ResponseEntity<ItemConVersion> actualizarConOptimisticLock(
+            @org.springframework.web.bind.annotation.PathVariable long id,
+            @org.springframework.web.bind.annotation.RequestBody ItemConVersion cuerpo) {
+        // TODO extra: supón que la versión actual en base de datos para este 'id' es 5.
+        // Si el cuerpo tiene una versión distinta a 5, devuelve ResponseEntity con status 412 (Precondition Failed).
+        // Si coincide, devuelve ResponseEntity con status 200 y el objeto incrementando su versión a 6.
+        return null;
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: anota el método con @PutMapping("/{id}").
+    /**
+     * Reto Extra 2: PUT con comportamiento Upsert (Crear o Actualizar).
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PutMapping("/{id}/upsert")
+    public org.springframework.http.ResponseEntity<ItemDto> actualizarOcrear(
+            @org.springframework.web.bind.annotation.PathVariable long id,
+            @org.springframework.web.bind.annotation.RequestBody ItemBody cuerpo) {
+        // TODO extra: si el id es mayor que 100, se considera que el recurso no existe,
+        // por lo que se "crea" devolviendo estatus 201 (Created) con el ItemDto.
+        // Si el id es <= 100, se considera existente y se devuelve estatus 200 (OK) con el ItemDto.
+        return null;
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: anota 'id' con @PathVariable.
+    /**
+     * Reto Extra 3: PUT condicional exigiendo cabecera If-Match.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PutMapping("/{id}/conditional")
+    public org.springframework.http.ResponseEntity<ItemDto> actualizarConCabeceraConditional(
+            @org.springframework.web.bind.annotation.PathVariable long id,
+            @org.springframework.web.bind.annotation.RequestBody ItemBody cuerpo,
+            @org.springframework.web.bind.annotation.RequestHeader(value = "If-Match", required = false) String ifMatch) {
+        // TODO extra: si ifMatch es nulo o vacío, devuelve estatus 428 (Precondition Required).
+        // Si ifMatch no coincide con "\"v1\"", devuelve estatus 412 (Precondition Failed).
+        // Si coincide, devuelve estatus 200 con el ItemDto correspondiente.
+        return null;
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: anota 'cuerpo' con @RequestBody.
+    /**
+     * Reto Extra 4: Validación de formato en campos de texto de entrada.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PutMapping("/{id}/valida-formato")
+    public org.springframework.http.ResponseEntity<ItemDto> actualizarValidandoCampos(
+            @org.springframework.web.bind.annotation.PathVariable long id,
+            @org.springframework.web.bind.annotation.RequestBody ItemBody cuerpo) {
+        // TODO extra: si el nombre en el cuerpo contiene algún carácter especial (cualquiera que no sea letra, número o espacio),
+        // devuelve estatus 400 (Bad Request). De lo contrario, devuelve estatus 200 con el ItemDto.
+        return null;
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: PUT reemplaza TODO el recurso (no parchea campos sueltos).
+    /**
+     * Reto Extra 5: Registro de historial de modificaciones.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PutMapping("/{id}/historial")
+    public org.springframework.http.ResponseEntity<ItemDto> actualizarConHistorial(
+            @org.springframework.web.bind.annotation.PathVariable long id,
+            @org.springframework.web.bind.annotation.RequestBody ItemBody cuerpo) {
+        // TODO extra: guarda en la lista estática `historialNombres` el nombre anterior (simulado como "viejo-nombre" para este id).
+        // Luego devuelve estatus 200 con el nuevo ItemDto.
+        return null;
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: valida que cuerpo.nombre() no sea null (PUT exige representación completa).
+    /**
+     * Reto Extra 6: Lanzar excepción de recurso no encontrado.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PutMapping("/{id}/lanza-404")
+    public ItemDto actualizarLanzaNoEncontrado(
+            @org.springframework.web.bind.annotation.PathVariable long id,
+            @org.springframework.web.bind.annotation.RequestBody ItemBody cuerpo) {
+        // TODO extra: si id es menor que 1, lanza RecursoNoEncontradoException con el mensaje "ID no valido".
+        // De lo contrario, devuelve el ItemDto con estatus 200.
+        return null;
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: construye un ItemDto con el id de la ruta y el nombre del cuerpo.
+    /**
+     * Reto Extra 7: PUT con respuesta vacía utilizando únicamente cabeceras.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PutMapping("/{id}/solo-cabeceras")
+    public org.springframework.http.ResponseEntity<Void> actualizarRetornandoSoloCabeceras(
+            @org.springframework.web.bind.annotation.PathVariable long id,
+            @org.springframework.web.bind.annotation.RequestBody ItemBody cuerpo) {
+        // TODO extra: realiza la actualización del recurso (simulada) y devuelve una ResponseEntity
+        // con estatus 204 (No Content) y la cabecera "X-Updated-At" con el valor actual en milisegundos (como String).
+        return null;
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: PUT es idempotente: repetir la misma petición da el mismo resultado.
+    /**
+     * Reto Extra 8: Actualización de estado condicional (Conflict).
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PutMapping("/{id}/estado-activo")
+    public org.springframework.http.ResponseEntity<?> actualizarSoloActivos(
+            @org.springframework.web.bind.annotation.PathVariable long id,
+            @org.springframework.web.bind.annotation.RequestBody ItemBody cuerpo) {
+        // TODO extra: si el id es 99, simulamos que el recurso está inactivo/deshabilitado.
+        // Devuelve una respuesta con estatus 409 (Conflict) y cuerpo "Recurso inactivo no se puede actualizar".
+        // Para cualquier otro id, devuelve estatus 200 con el ItemDto.
+        return null;
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve el ItemDto (200 implícito).
+    /**
+     * Reto Extra 9: Actualización en lote (Bulk PUT).
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PutMapping("/bulk")
+    public org.springframework.http.ResponseEntity<java.util.List<ItemDto>> actualizarBulk(
+            @org.springframework.web.bind.annotation.RequestBody java.util.List<ItemDto> cuerpo) {
+        // TODO extra: recibe una lista de ItemDto y devuelve estatus 200 con la misma lista reflejada.
+        return null;
+    }
+
+    /**
+     * Reto Extra 10: Validación cruzada de identificadores de ruta y cuerpo.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PutMapping("/{id}/verificar-id")
+    public org.springframework.http.ResponseEntity<?> actualizarValidandoIdCuerpo(
+            @org.springframework.web.bind.annotation.PathVariable long id,
+            @org.springframework.web.bind.annotation.RequestBody ItemDto cuerpo) {
+        // TODO extra: si el id de la ruta no coincide con el id del cuerpo JSON,
+        // devuelve estatus 400 (Bad Request) con cuerpo "Identificadores no coinciden".
+        // Si coinciden, devuelve estatus 200 con el ItemDto.
+        return null;
     }
 
 }

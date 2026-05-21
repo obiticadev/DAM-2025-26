@@ -69,44 +69,132 @@ public final class Ej022EqualsHashCodeContracts {
         System.out.println(Objects.equals(a, b));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si o == this, devuelve true (reflexividad, atajo).
+    /**
+     * Reto Extra 1: Simetría del contrato equals.
+     * Comprueba si se cumple la propiedad simétrica entre dos objetos: si a es igual a b, entonces b debe ser igual a a.
+     *
+     * @param a primer objeto
+     * @param b segundo objeto
+     * @return true si se cumple la simetría (ambos se consideran iguales o ambos diferentes)
+     */
+    public static boolean esSimetrico(Object a, Object b) {
+        // TODO extra: verifica si (a.equals(b) == b.equals(a)) manejando nulos de manera segura
+        return false;
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si o es null, devuelve false.
+    /**
+     * Reto Extra 2: Transitividad del contrato equals.
+     * Comprueba si se cumple la propiedad transitiva entre tres objetos: si a es igual a b, y b es igual a c, entonces a debe ser igual a c.
+     *
+     * @param a primer objeto
+     * @param b segundo objeto
+     * @param c tercer objeto
+     * @return true si se cumple la transitividad (si a es igual a b y b es igual a c, entonces a es igual a c; en otro caso, true)
+     */
+    public static boolean esTransitivo(Object a, Object b, Object c) {
+        // TODO extra: si a es igual a b y b es igual a c, comprueba si a es igual a c (manejando nulos)
+        return false;
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: si la clase de o no es Articulo, devuelve false.
+    /**
+     * Reto Extra 3: Consistencia de hashCode.
+     * Verifica que el valor devuelto por hashCode() sea completamente consistente y estable entre múltiples llamadas para un mismo objeto.
+     *
+     * @param a objeto a evaluar
+     * @return true si múltiples llamadas consecutivas a hashCode() retornan exactamente el mismo valor
+     */
+    public static boolean esConsistenteHashCode(Object a) {
+        // TODO extra: invoca hashCode() varias veces sobre 'a' (si no es nulo) y valida que el resultado no varíe
+        return false;
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: castea o a Articulo.
+    /**
+     * Reto Extra 4: Contrato de correspondencia entre equals y hashCode.
+     * Valida la regla fundamental: si dos objetos son iguales según equals(), deben producir obligatoriamente el mismo hashCode().
+     *
+     * @param a primer objeto
+     * @param b segundo objeto
+     * @return true si los objetos cumplen el contrato de correspondencia hash
+     */
+    public static boolean verificarContratoEqualsYHashCode(Object a, Object b) {
+        // TODO extra: si a es igual a b, comprueba si sus hashCodes son idénticos. Si no son iguales, el contrato se cumple igual (pueden tener o no igual hash).
+        return false;
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: compara ÚNICAMENTE el campo 'codigo' con Objects.equals.
+    /**
+     * Reto Extra 5: Seguridad frente a valores nulos en equals.
+     * Comprueba que la comparación de cualquier objeto no nulo contra null devuelva siempre false de forma segura sin lanzar NullPointerException.
+     *
+     * @param a objeto no nulo a evaluar
+     * @return true si a.equals(null) devuelve false sin lanzar excepciones
+     */
+    public static boolean esEqualsNuloSeguro(Object a) {
+        // TODO extra: intenta comparar 'a' con null usando equals y verifica que el resultado sea false capturando cualquier NullPointerException
+        return false;
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: devuelve el resultado de esa comparación.
+    /**
+     * Reto Extra 6: Representación textual estructurada.
+     * Genera una cadena formateada del objeto a partir de su nombre de clase y sus propiedades clave.
+     *
+     * @param nombreClase nombre de la clase del objeto
+     * @param id          identificador del objeto
+     * @param descripcion descripción del objeto
+     * @return cadena con el formato "NombreClase{id=..., descripcion='...'}"
+     */
+    public static String formatearToStringElegante(String nombreClase, Object id, String descripcion) {
+        // TODO extra: devuelve la cadena con el formato clásico de toString usando los parámetros provistos
+        return null;
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: el hashCode DEBE basarse en los mismos campos que equals (solo 'codigo').
+    /**
+     * Reto Extra 7: Detección teórica de colisión de hash.
+     * Evalúa si dos objetos distintos (no iguales según equals) producen fortuitamente el mismo hashCode.
+     *
+     * @param a primer objeto
+     * @param b segundo objeto
+     * @return true si existe colisión de hash (no son iguales por equals pero comparten hashCode)
+     */
+    public static boolean verificarColisionHash(Object a, Object b) {
+        // TODO extra: si a y b no son nulos y no son iguales, comprueba si su hashCode es el mismo
+        return false;
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: usa Objects.hash(codigo) (o codigo.hashCode() controlando null).
+    /**
+     * Reto Extra 8: Reflexividad del contrato equals.
+     * Valida que un objeto sea siempre igual a sí mismo (a.equals(a)).
+     *
+     * @param a objeto a evaluar
+     * @return true si el objeto se reconoce como igual a sí mismo de forma reflexiva
+     */
+    public static boolean esIdentidadConsistente(Object a) {
+        // TODO extra: comprueba que a.equals(a) devuelva true manejando nulos de manera segura
+        return false;
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: dos objetos equals() deben tener el MISMO hashCode (contrato).
+    /**
+     * Reto Extra 9: Cálculo de valor hash compuesto estable.
+     * Calcula de forma robusta un valor hash combinado para una serie de campos, controlando nulos.
+     *
+     * @param campos array de objetos / campos que componen la identidad del objeto
+     * @return valor hash unificado
+     */
+    public static int calcularHashCombinado(Object... campos) {
+        // TODO extra: utiliza la utilidad Objects.hash para calcular el código hash unificado
+        return 0;
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve ese valor.
+    /**
+     * Reto Extra 10: Comparación estricta de compatibilidad de tipos.
+     * Comprueba si un objeto actual es compatible en tipo con una clase esperada, evitando fallos de herencia clásica.
+     *
+     * @param actual        objeto a evaluar
+     * @param claseEsperada clase de referencia
+     * @return true si el objeto no es nulo y su clase coincide exactamente con la esperada (usando getClass())
+     */
+    public static boolean esInstanciaCompatible(Object actual, Class<?> claseEsperada) {
+        // TODO extra: verifica que 'actual' no sea nulo y que su getClass() coincida exactamente con claseEsperada
+        return false;
     }
 
 }

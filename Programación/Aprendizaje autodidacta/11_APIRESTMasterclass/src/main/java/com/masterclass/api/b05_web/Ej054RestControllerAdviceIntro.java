@@ -54,44 +54,114 @@ public class Ej054RestControllerAdviceIntro {
         System.out.println(new Ej054RestControllerAdviceIntro().dividir(10, 2));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: anota la clase con @RestController y @RequestMapping("/api").
+    // --- MÉTODOS Y DTOs DE RETOS EXTRA ---
+
+    public record ErrorResponseDto(long timestamp, int status, String mensaje, String ruta) {}
+
+    public static class EntidadExistenteException extends RuntimeException {
+        public EntidadExistenteException(String m) { super(m); }
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: anota con @GetMapping("/div") y 'a','b' con @RequestParam.
+    public static class AccesoDenegadoException extends RuntimeException {
+        public AccesoDenegadoException(String m) { super(m); }
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: si b == 0, lanza DivisionInvalidaException("division por cero").
+    public static class ServicioExternoException extends RuntimeException {
+        public ServicioExternoException(String m) { super(m); }
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: si b != 0, calcula a / b.
+    /**
+     * Reto Extra 1: Clase centralizada de manejo de excepciones global.
+     * TODO extra: anota esta clase interna con @org.springframework.web.bind.annotation.RestControllerAdvice.
+     * Puedes restringirla para que sólo aplique a este controlador mediante (assignableTypes = Ej054RestControllerAdviceIntro.class).
+     */
+    public static class GlobalExceptionHandler {
+
+        /**
+         * Reto Extra 2: Manejo de formato o tipos de parámetros incorrectos.
+         */
+        // TODO extra: anota con @org.springframework.web.bind.annotation.ExceptionHandler(org.springframework.web.method.annotation.MethodArgumentTypeMismatchException.class)
+        public ResponseEntity<String> manejarFormatoInvalido(org.springframework.web.method.annotation.MethodArgumentTypeMismatchException ex) {
+            // TODO extra: devuelve estatus 400 Bad Request con cuerpo "Parametro invalido: " + ex.getName().
+            return null;
+        }
+
+        /**
+         * Reto Extra 3: Manejo de parámetros obligatorios ausentes.
+         */
+        // TODO extra: anota con @org.springframework.web.bind.annotation.ExceptionHandler(org.springframework.web.bind.annotation.MissingServletRequestParameterException.class)
+        public ResponseEntity<java.util.Map<String, String>> manejarMissingParam(org.springframework.web.bind.annotation.MissingServletRequestParameterException ex) {
+            // TODO extra: devuelve estatus 400 Bad Request con un Map conteniendo la clave "error" y el valor "Parametro ausente: " + ex.getParameterName().
+            return null;
+        }
+
+        /**
+         * Reto Extra 4: Manejo de conflicto por entidad existente.
+         */
+        // TODO extra: anota con @org.springframework.web.bind.annotation.ExceptionHandler(EntidadExistenteException.class)
+        public ResponseEntity<String> manejarEntidadExistente(EntidadExistenteException ex) {
+            // TODO extra: devuelve estatus 409 Conflict con el mensaje de la excepción.
+            return null;
+        }
+
+        /**
+         * Reto Extra 5: Manejo de errores estructurado con un DTO.
+         */
+        // TODO extra: define un método para manejar cualquier RuntimeException genérica que no esté mapeada,
+        // devolviendo estatus 500 y un cuerpo estructurado ErrorResponseDto.
+        public ResponseEntity<ErrorResponseDto> manejarRuntimeExceptionGenerica(RuntimeException ex, jakarta.servlet.http.HttpServletRequest request) {
+            // TODO extra: devuelve estatus 500 con una instancia de ErrorResponseDto conteniendo el timestamp actual, 500, el mensaje y request.getRequestURI().
+            return null;
+        }
+
+        /**
+         * Reto Extra 6: Manejo de método HTTP no soportado (405).
+         */
+        // TODO extra: anota con @org.springframework.web.bind.annotation.ExceptionHandler(org.springframework.web.HttpRequestMethodNotSupportedException.class)
+        public ResponseEntity<String> manejarHttpRequestMethodNotSupported(org.springframework.web.HttpRequestMethodNotSupportedException ex) {
+            // TODO extra: devuelve estatus 405 Method Not Allowed con cuerpo "Metodo no soportado".
+            return null;
+        }
+
+        /**
+         * Reto Extra 7: Manejo de denegación de acceso (403).
+         */
+        // TODO extra: anota con @org.springframework.web.bind.annotation.ExceptionHandler(AccesoDenegadoException.class)
+        public ResponseEntity<String> manejarAccesoDenegado(AccesoDenegadoException ex) {
+            // TODO extra: devuelve estatus 403 Forbidden con el cuerpo "Acceso prohibido: " + ex.getMessage().
+            return null;
+        }
+
+        /**
+         * Reto Extra 8: Manejo de tipo de medio no soportado (Content-Type incorrecto) (415).
+         */
+        // TODO extra: anota con @org.springframework.web.bind.annotation.ExceptionHandler(org.springframework.web.HttpMediaTypeNotSupportedException.class)
+        public ResponseEntity<String> manejarHttpMediaTypeNotSupported(org.springframework.web.HttpMediaTypeNotSupportedException ex) {
+            // TODO extra: devuelve estatus 415 Unsupported Media Type con el cuerpo "Formato no soportado".
+            return null;
+        }
+
+        /**
+         * Reto Extra 9: Manejo de servicio externo caído con cabecera de reintento.
+         */
+        // TODO extra: anota con @org.springframework.web.bind.annotation.ExceptionHandler(ServicioExternoException.class)
+        public ResponseEntity<String> manejarServicioExterno(ServicioExternoException ex) {
+            // TODO extra: devuelve estatus 503 Service Unavailable, cuerpo "Servicio temporalmente no disponible"
+            // y la cabecera "Retry-After" con valor "30".
+            return null;
+        }
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: devuelve el resultado como String.
-    }
-
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: NO captures aquí la excepción: deja que la gestione el handler.
-    }
-
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: anota con @ExceptionHandler(DivisionInvalidaException.class).
-    }
-
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: usa ResponseEntity.badRequest() (400).
-    }
-
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: el body debe ser ex.getMessage().
-    }
-
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve esa ResponseEntity (centraliza el error, no en el endpoint).
+    /**
+     * Reto Extra 10: Endpoint auxiliar para simular el lanzamiento de diversas excepciones.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/simular-error")
+    public String simularError(@org.springframework.web.bind.annotation.RequestParam("tipo") String tipo) {
+        // TODO extra: si tipo es "conflicto", lanza EntidadExistenteException.
+        // Si tipo es "denegado", lanza AccesoDenegadoException.
+        // Si tipo es "externo", lanza ServicioExternoException.
+        // Si tipo es "runtime", lanza una RuntimeException cualquiera.
+        return null;
     }
 
 }

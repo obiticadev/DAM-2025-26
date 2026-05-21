@@ -22,6 +22,41 @@ public final class Ej018SealedPatternMatching {
     public record Fallo(String mensaje) implements Resultado {
     }
 
+    // --- Modelos para retos extra ---
+
+    public sealed interface Forma permits Circulo, Rectangulo, Triangulo {
+    }
+
+    public record Circulo(double radio) implements Forma {
+    }
+
+    public record Rectangulo(double ancho, double alto) implements Forma {
+    }
+
+    public record Triangulo(double base, double altura) implements Forma {
+    }
+
+    public sealed interface UsuarioRol permits Admin, Gestor, Cliente {
+    }
+
+    public record Admin(String nombre, int nivelSeguridad) implements UsuarioRol {
+    }
+
+    public record Gestor(String nombre, String departamento) implements UsuarioRol {
+    }
+
+    public record Cliente(String nombre, boolean esPremium) implements UsuarioRol {
+    }
+
+    public sealed interface RespuestaApi permits ExitoApi, ErrorApi {
+    }
+
+    public record ExitoApi(String jsonPayload, int codigo) implements RespuestaApi {
+    }
+
+    public record ErrorApi(String mensajeError, int codigo, Throwable causa) implements RespuestaApi {
+    }
+
     private Ej018SealedPatternMatching() {
     }
 
@@ -60,44 +95,132 @@ public final class Ej018SealedPatternMatching {
         System.out.println(describir(new NotFound(7)));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: usa un switch de PATRONES sobre 'r' (switch expression).
+    /**
+     * Reto Extra 1: Reflexión básica de jerarquías selladas.
+     * Verifica si la superClase es sellada (isSealed()) y si permite a la subClase como subtipo directo.
+     *
+     * @param superClase clase o interfaz sospechosa de ser sellada
+     * @param subClase   subclase a comprobar
+     * @return true si es permitida directamente
+     */
+    public static boolean esClaseSelladaPermitida(Class<?> superClase, Class<?> subClase) {
+        // TODO extra: verifica si la superClase es sellada (isSealed()) y si permite a subClase en getPermittedSubclasses()
+        return false;
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: case Ok ok -> 200.
+    /**
+     * Reto Extra 2: Coincidencia de patrones simple.
+     * Clasifica una Forma geométrica según su subtipo devolviendo "CÍRCULO", "RECTÁNGULO" o "TRIÁNGULO".
+     *
+     * @param forma forma geométrica
+     * @return tipo de forma formateado en mayúsculas
+     */
+    public static String clasificarFormaGeometrica(Forma forma) {
+        // TODO extra: usa switch de patrones (pattern matching) para clasificar la forma
+        return "";
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: case NotFound nf -> 404.
+    /**
+     * Reto Extra 3: Cálculos geométricos condicionales tipados.
+     * Calcula el área de una Forma geométrica utilizando pattern matching.
+     *
+     * @param forma forma geométrica
+     * @return área calculada
+     */
+    public static double calcularAreaConPatternMatching(Forma forma) {
+        // TODO extra: calcula el área usando la fórmula respectiva para cada subtipo de Forma
+        return 0.0;
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: case Fallo f -> 500.
+    /**
+     * Reto Extra 4: Pattern matching sobre records de usuarios.
+     * Extrae el nombre del usuario a partir de su rol específico.
+     *
+     * @param rol rol del usuario
+     * @return nombre del usuario
+     */
+    public static String obtenerNombreDeUsuarioPorRol(UsuarioRol rol) {
+        // TODO extra: extrae el nombre según sea Admin, Gestor o Cliente usando switch con patrones
+        return "";
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: al ser 'sealed' el switch es exhaustivo: NO añadas 'default'.
+    /**
+     * Reto Extra 5: Detección inteligente de privilegios con guardias.
+     * Determina si el rol de usuario tiene privilegios de administrador.
+     * Es admin si el rol es Admin y su nivel de seguridad es mayor o igual a 3.
+     *
+     * @param rol rol del usuario
+     * @return true si tiene privilegios de administrador
+     */
+    public static boolean esRolAdministrador(UsuarioRol rol) {
+        // TODO extra: retorna true únicamente si es Admin con nivelSeguridad >= 3
+        return false;
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: switch de patrones devolviendo un String por caso.
+    /**
+     * Reto Extra 6: Comprobación de exhaustividad de jerarquías.
+     * Verifica si una clase o interfaz está declarada como sellada a nivel de compilador.
+     *
+     * @param clazz tipo a verificar
+     * @return true si es sellado
+     */
+    public static boolean esJerarquiaSelladaCompleta(Class<?> clazz) {
+        // TODO extra: verifica si la clase es sellada usando reflexión nativa
+        return false;
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: para Ok, incluye el valor (p.ej. "OK: " + ok.valor()).
+    /**
+     * Reto Extra 7: Formateo semántico de respuestas de API.
+     * Convierte una RespuestaApi a un formato de cadena descriptivo.
+     *
+     * @param res respuesta de API
+     * @return representación textual descriptiva
+     */
+    public static String formatearRespuestaApi(RespuestaApi res) {
+        // TODO extra: formatea "Código [codigo]: [mensajeError]" o "Código [codigo]: [jsonPayload]"
+        return "";
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: para NotFound, incluye el id buscado.
+    /**
+     * Reto Extra 8: Extracción segura de mensajes de error.
+     * Extrae el mensaje de error de una RespuestaApi únicamente si el tipo es ErrorApi.
+     *
+     * @param res respuesta de API
+     * @return Optional con el mensaje de error si aplica, o vacío
+     */
+    public static java.util.Optional<String> obtenerDetalleError(RespuestaApi res) {
+        // TODO extra: retorna el mensaje de error de ErrorApi envuelto en un Optional
+        return java.util.Optional.empty();
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: para Fallo, incluye el mensaje de error.
+    /**
+     * Reto Extra 9: Pattern matching avanzado con condiciones adicionales (guardias).
+     * Evalúa las dimensiones de una Forma geométrica para retornar una clasificación detallada.
+     * - Circulo con radio > 10.0 -> "Círculo Grande"
+     * - Circulo con radio <= 10.0 -> "Círculo Pequeño"
+     * - Rectangulo con ancho == alto -> "Cuadrado"
+     * - Rectangulo con ancho != alto -> "Rectángulo Estándar"
+     * - Triangulo -> "Triángulo"
+     *
+     * @param forma forma geométrica
+     * @return clasificación detallada
+     */
+    public static String evaluarEstadoConGuardias(Forma forma) {
+        // TODO extra: usa guardias de patrones (&& o condicionales dentro de cases) para clasificar las dimensiones
+        return "";
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: aprovecha el binding del patrón (ok/nf/f) para acceder a los campos.
+    /**
+     * Reto Extra 10: Generación de nuevas formas con escala.
+     * Reconstruye una Forma geométrica aplicando un factor multiplicador a sus dimensiones.
+     *
+     * @param forma  forma original
+     * @param factor factor de escala
+     * @return nueva instancia de Forma escalada
+     */
+    public static Forma reconstruirFormaEscalada(Forma forma, double factor) {
+        // TODO extra: escala y retorna una copia de la forma con sus dimensiones multiplicadas por el factor
+        return null;
     }
 
 }

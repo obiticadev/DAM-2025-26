@@ -56,44 +56,124 @@ public final class Ej026NestedAndCollections {
         System.out.println(toJson(new Pedido(1L, List.of(new Linea("cafe", 2)))));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: abre try alrededor de la serialización.
+    /**
+     * Reto Extra 1: Mapeo de colecciones genéricas de mapas.
+     * Deserializa un array JSON a una lista de mapas genéricos.
+     *
+     * @param json JSON array de objetos
+     * @return lista de mapas deserializada
+     */
+    public static List<java.util.Map<String, Object>> mapearListaDeMapas(String json) {
+        // TODO extra: utiliza TypeReference<List<Map<String, Object>>> para deserializar el JSON de forma segura
+        return List.of();
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: usa MAPPER.writeValueAsString(p).
+    /**
+     * Reto Extra 2: Serialización masiva de colecciones.
+     * Convierte una lista de pedidos a un array JSON.
+     *
+     * @param pedidos lista de pedidos
+     * @return JSON conteniendo el array de pedidos
+     */
+    public static String serializarListaDePedidos(List<Pedido> pedidos) {
+        // TODO extra: serializa la lista de pedidos manejando excepciones checked
+        return "";
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: el array "lineas" debe anidarse automáticamente (Jackson recorre el record).
+    /**
+     * Reto Extra 3: Deserialización y saneamiento de colecciones.
+     * Deserializa un pedido y filtra defensivamente omitiendo cualquier línea de producto nula de la lista.
+     *
+     * @param json JSON del pedido
+     * @return objeto Pedido saneado
+     */
+    public static Pedido deserializarPedidoConNulosIgnorados(String json) {
+        // TODO extra: deserializa el Pedido y crea una copia saneada donde la lista de 'lineas' esté libre de elementos null
+        return null;
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: devuelve la cadena.
+    /**
+     * Reto Extra 4: Extracción de mapa clave-valor de cadenas.
+     * Deserializa un JSON de propiedades simples a un mapa plano de strings.
+     *
+     * @param json objeto JSON simple
+     * @return mapa de claves y valores textuales
+     */
+    public static java.util.Map<String, String> extraerMapaClaveValor(String json) {
+        // TODO extra: deserializa a Map usando TypeReference<Map<String, String>>
+        return java.util.Map.of();
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: captura JsonProcessingException y relánzala como RuntimeException.
+    /**
+     * Reto Extra 5: Mapeo de tipo complejo anidado.
+     * Deserializa un mapa asociativo complejo donde los valores son a su vez listas de DTOs.
+     *
+     * @param json JSON asociativo (ej. {"categoria1":[{"producto":"café","cantidad":3}]})
+     * @return mapa complejo deserializado
+     */
+    public static java.util.Map<String, List<Linea>> mapearTipoComplejo(String json) {
+        // TODO extra: utiliza TypeReference<Map<String, List<Linea>>> para deserializar la estructura anidada
+        return java.util.Map.of();
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: para colecciones genéricas necesitas un TypeReference (borrado de tipos).
+    /**
+     * Reto Extra 6: Serialización binaria de colecciones.
+     * Serializa una lista de líneas directamente a una matriz de bytes.
+     *
+     * @param lineas lista de líneas de pedido
+     * @return array de bytes
+     */
+    public static byte[] escribirComoArrayDeBytes(List<Linea> lineas) {
+        // TODO extra: utiliza MAPPER.writeValueAsBytes(lineas) manejando excepciones checked
+        return new byte[0];
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: crea new TypeReference<List<Linea>>(){}.
+    /**
+     * Reto Extra 7: Deserialización binaria de colecciones.
+     * Deserializa una lista de líneas de pedido a partir de una matriz de bytes.
+     *
+     * @param bytes array de bytes
+     * @return lista de líneas deserializada
+     */
+    public static List<Linea> leerColeccionDeBytes(byte[] bytes) {
+        // TODO extra: deserializa usando TypeReference<List<Linea>>
+        return List.of();
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: usa MAPPER.readValue(jsonArray, eseTypeReference).
+    /**
+     * Reto Extra 8: Recuento analítico sobre colecciones anidadas.
+     * Suma las cantidades totales de todos los productos incluidos en las líneas del pedido.
+     *
+     * @param p pedido
+     * @return suma acumulada de las cantidades de productos
+     */
+    public static int contarTotalProductos(Pedido p) {
+        // TODO extra: suma las cantidades de cada línea en el pedido utilizando streams (lineas().stream().mapToInt().sum())
+        return 0;
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: devuelve la lista resultante.
+    /**
+     * Reto Extra 9: Serialización filtrada.
+     * Genera un JSON de Pedido donde se omiten por completo las líneas con cantidades no válidas (menor o igual a cero).
+     *
+     * @param p pedido original
+     * @return JSON del pedido filtrado
+     */
+    public static String serializarSoloLineasValidas(Pedido p) {
+        // TODO extra: filtra las líneas del pedido conservando solo aquellas con cantidad > 0, crea un nuevo Pedido y serialízalo
+        return "";
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: captura JsonProcessingException y relánzala como RuntimeException.
+    /**
+     * Reto Extra 10: Deserialización de mapa dinámico heterogéneo.
+     * Deserializa un JSON de estructura desconocida a un mapa genérico de objetos.
+     *
+     * @param json cadena JSON
+     * @return mapa dinámico heterogéneo
+     */
+    public static java.util.Map<String, Object> deserializarMapGenerico(String json) {
+        // TODO extra: deserializa a Map usando TypeReference<Map<String, Object>>
+        return java.util.Map.of();
     }
 
 }

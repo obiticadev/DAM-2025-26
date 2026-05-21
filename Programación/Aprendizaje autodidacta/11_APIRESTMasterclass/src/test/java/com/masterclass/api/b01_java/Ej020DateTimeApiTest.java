@@ -24,4 +24,84 @@ class Ej020DateTimeApiTest {
     void aIso() {
         assertEquals("2026-05-18", Ej020DateTimeApi.aIso(LocalDate.of(2026, 5, 18)));
     }
+
+    @Test
+    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 1")
+    void retoExtra01_esFinDeSemana() {
+        assertTrue(Ej020DateTimeApi.esFinDeSemana(LocalDate.of(2026, 5, 23))); // Sábado
+        assertTrue(Ej020DateTimeApi.esFinDeSemana(LocalDate.of(2026, 5, 24))); // Domingo
+        assertFalse(Ej020DateTimeApi.esFinDeSemana(LocalDate.of(2026, 5, 22))); // Viernes
+    }
+
+    @Test
+    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 2")
+    void retoExtra02_calcularEdad() {
+        LocalDate nac = LocalDate.of(1995, 5, 10);
+        LocalDate ref = LocalDate.of(2026, 5, 10);
+        assertEquals(31, Ej020DateTimeApi.calcularEdad(nac, ref));
+        assertEquals(30, Ej020DateTimeApi.calcularEdad(nac, ref.minusDays(1)));
+    }
+
+    @Test
+    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 3")
+    void retoExtra03_convertirZonedDateTimeAInstant() {
+        java.time.ZonedDateTime zdt = java.time.ZonedDateTime.of(2026, 5, 21, 12, 0, 0, 0, java.time.ZoneId.of("Europe/Madrid"));
+        java.time.Instant instant = Ej020DateTimeApi.convertirZonedDateTimeAInstant(zdt);
+        assertEquals(zdt.toInstant(), instant);
+    }
+
+    @Test
+    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
+    void retoExtra04_obtenerDiferenciaEnMinutos() {
+        java.time.Instant i1 = java.time.Instant.parse("2026-05-21T10:00:00Z");
+        java.time.Instant i2 = java.time.Instant.parse("2026-05-21T10:35:00Z");
+        assertEquals(35, Ej020DateTimeApi.obtenerDiferenciaEnMinutos(i1, i2));
+    }
+
+    @Test
+    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 5")
+    void retoExtra05_esFechaAnterior() {
+        java.time.Instant i1 = java.time.Instant.parse("2026-05-21T10:00:00Z");
+        java.time.Instant i2 = java.time.Instant.parse("2026-05-21T10:05:00Z");
+        assertTrue(Ej020DateTimeApi.esFechaAnterior(i1, i2));
+        assertFalse(Ej020DateTimeApi.esFechaAnterior(i2, i1));
+    }
+
+    @Test
+    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 6")
+    void retoExtra06_formatearAFechaIsoStandard() {
+        assertEquals("2026-05-21", Ej020DateTimeApi.formatearAFechaIsoStandard(LocalDate.of(2026, 5, 21)));
+    }
+
+    @Test
+    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 7")
+    void retoExtra07_parsearFechaIso() {
+        assertTrue(Ej020DateTimeApi.parsearFechaIso("2026-05-21").isPresent());
+        assertEquals(LocalDate.of(2026, 5, 21), Ej020DateTimeApi.parsearFechaIso("2026-05-21").get());
+        assertTrue(Ej020DateTimeApi.parsearFechaIso("21/05/2026").isEmpty());
+    }
+
+    @Test
+    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
+    void retoExtra08_obtenerProximoDiaLaboral() {
+        assertEquals(LocalDate.of(2026, 5, 22), Ej020DateTimeApi.obtenerProximoDiaLaboral(LocalDate.of(2026, 5, 21))); // Jueves -> Viernes
+        assertEquals(LocalDate.of(2026, 5, 25), Ej020DateTimeApi.obtenerProximoDiaLaboral(LocalDate.of(2026, 5, 22))); // Viernes -> Lunes
+        assertEquals(LocalDate.of(2026, 5, 25), Ej020DateTimeApi.obtenerProximoDiaLaboral(LocalDate.of(2026, 5, 23))); // Sábado -> Lunes
+    }
+
+    @Test
+    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 9")
+    void retoExtra09_convertirEntreZonasHorarias() {
+        LocalDateTime ldt = LocalDateTime.of(2026, 5, 21, 12, 0); // 12:00 en Madrid
+        LocalDateTime converted = Ej020DateTimeApi.convertirEntreZonasHorarias(ldt, "Europe/Madrid", "America/New_York");
+        // Europe/Madrid (UTC+2 en Mayo) vs America/New_York (UTC-4 en Mayo) -> diferencia es -6 horas
+        assertEquals(ldt.minusHours(6), converted);
+    }
+
+    @Test
+    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
+    void retoExtra10_esBisiesto() {
+        assertTrue(Ej020DateTimeApi.esBisiesto(2024));
+        assertFalse(Ej020DateTimeApi.esBisiesto(2026));
+    }
 }

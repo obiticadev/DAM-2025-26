@@ -1,6 +1,9 @@
 package com.masterclass.api.b04_boot;
 
 import java.util.Map;
+import java.util.List;
+import org.springframework.core.env.Environment;
+import org.springframework.core.env.ConfigurableEnvironment;
 
 /**
  * Ejercicio 042 · Config externalizada y precedencia (12-factor).
@@ -44,44 +47,81 @@ public final class Ej042ExternalizedConfig {
         System.out.println(resolve(env, yml, "app.region", "local"));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: valida que 'key' no sea null/vacía.
+    /**
+     * RETO EXTRA 01: Resuelve una propiedad utilizando la API real de Environment de Spring.
+     */
+    public static String pasoExtra01(Environment env, String clave) {
+        // TODO extra: Obtén la propiedad desde el Environment de Spring.
+        return "";
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: traduce 'key' al formato de variable de entorno:
+    /**
+     * RETO EXTRA 02: Incorporación manual de un PropertySource prioritario sobre la cola del Environment.
+     */
+    public static void pasoExtra02(ConfigurableEnvironment env, String nombreSource, Map<String, Object> propiedades) {
+        // TODO extra: Registra un MapPropertySource al inicio de la lista de PropertySources de env para que tenga máxima prioridad.
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: consulta primero 'env' con la clave traducida.
+    /**
+     * RETO EXTRA 03: Incorporación de un PropertySource de baja prioridad (secundario/fallback).
+     */
+    public static void pasoExtra03(ConfigurableEnvironment env, String nombreSource, Map<String, Object> propiedades) {
+        // TODO extra: Registra un MapPropertySource al final de la lista de PropertySources de env para fallback de baja prioridad.
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: si está en env, ese valor GANA (mayor precedencia) -> devuélvelo.
+    /**
+     * RETO EXTRA 04: Traduce una clave yml (camelCase o kebab-case con puntos) al formato estándar de variable de entorno de SO.
+     * Ejemplo: "spring.datasource.connection-timeout" -> "SPRING_DATASOURCE_CONNECTION_TIMEOUT"
+     */
+    public static String pasoExtra04(String ymlKey) {
+        // TODO extra: Implementa las reglas de traducción de relajación (relaxed binding) de variables de entorno de Spring Boot.
+        return "";
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: si no está en env, consulta 'yml' con la clave original.
+    /**
+     * RETO EXTRA 05: Detecta cuál es el PropertySource exacto que provee el valor activo para una propiedad dada.
+     */
+    public static String pasoExtra05(ConfigurableEnvironment env, String clave) {
+        // TODO extra: Recorre todos los PropertySources del Environment configurable y retorna el nombre del primero que contenga la clave.
+        return null;
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: si está en yml, devuélvelo (precedencia media).
+    /**
+     * RETO EXTRA 06: Remueve un PropertySource registrado en el entorno por su nombre.
+     */
+    public static boolean pasoExtra06(ConfigurableEnvironment env, String nombreSource) {
+        // TODO extra: Elimina de forma segura el PropertySource indicado por nombre y devuelve true si se pudo eliminar.
+        return false;
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: si no está en ninguna, devuelve 'defecto' (menor precedencia).
+    /**
+     * RETO EXTRA 07: Define propiedades predeterminadas a nivel de aplicación utilizando SpringApplication.
+     */
+    public static void pasoExtra07(org.springframework.boot.SpringApplication application, Map<String, Object> defaultProperties) {
+        // TODO extra: Añade el mapa de defaultProperties como propiedades por defecto de la aplicación SpringApplication antes de arrancar.
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: trata env o yml null como mapas vacíos (defensa).
+    /**
+     * RETO EXTRA 08: Carga y añade dinámicamente un conjunto de propiedades formateadas como String "clave=valor" al entorno.
+     */
+    public static void pasoExtra08(ConfigurableEnvironment env, String propertySourceString) {
+        // TODO extra: Parsea el String (ej. "server.port=9090\napp.env=prod") y regístralo como un PropertySource.
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: no mezcles formatos: env usa MAYUS_, yml usa minus.con.puntos.
+    /**
+     * RETO EXTRA 09: Verifica si una clave está definida en las variables del sistema de la JVM o del Sistema Operativo de forma directa.
+     */
+    public static boolean pasoExtra09(String clave) {
+        // TODO extra: Comprueba si la clave existe en System.getProperty() o System.getenv().
+        return false;
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve siempre un String no null (defecto puede ser "").
+    /**
+     * RETO EXTRA 10: Retorna los nombres de todos los PropertySources del entorno respetando el orden jerárquico real de precedencia.
+     */
+    public static List<String> pasoExtra10(ConfigurableEnvironment env) {
+        // TODO extra: Obtén la lista completa de nombres de PropertySources registrados en el ConfigurableEnvironment en orden de prioridad.
+        return null;
     }
 
 }

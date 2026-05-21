@@ -55,44 +55,131 @@ public final class Ej024ObjectMapperBasics {
         System.out.println(j + " -> " + fromJson(j));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: abre un try alrededor de la serialización.
+    /**
+     * Reto Extra 1: Serialización estética (Pretty Printing).
+     * Serializa el cliente con sangrías e identación para que sea legible por humanos.
+     *
+     * @param c cliente
+     * @return JSON formateado estéticamente
+     */
+    public static String serializarBonito(Cliente c) {
+        // TODO extra: utiliza MAPPER.writerWithDefaultPrettyPrinter().writeValueAsString(c) manejando la excepción checked
+        return null;
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: usa MAPPER.writeValueAsString(c).
+    /**
+     * Reto Extra 2: Deserialización genérica tipo-segura.
+     * Deserializa una cadena JSON a cualquier tipo de clase indicado por parámetro.
+     *
+     * @param json   texto JSON
+     * @param clase  clase de destino
+     * @param <T>    tipo genérico de retorno
+     * @return instancia de la clase de destino deserializada
+     */
+    public static <T> T deserializarGenerico(String json, Class<T> clase) {
+        // TODO extra: utiliza MAPPER.readValue(json, clase) manejando la excepción checked
+        return null;
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: devuelve la cadena resultante.
+    /**
+     * Reto Extra 3: Validación estructural JSON.
+     * Valida sintácticamente un texto para verificar si es un JSON estructurado correcto mediante Jackson.
+     *
+     * @param json cadena de texto
+     * @return true si es un JSON sintácticamente correcto, false si está corrupto o es nulo
+     */
+    public static boolean esJsonValido(String json) {
+        // TODO extra: intenta realizar MAPPER.readTree(json) y retorna true; si lanza excepción, retorna false
+        return false;
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: captura JsonProcessingException.
+    /**
+     * Reto Extra 4: Tolerancia a propiedades desconocidas.
+     * Deserializa un JSON a Cliente tolerando propiedades adicionales que no estén presentes en el DTO Cliente
+     * sin lanzar excepciones.
+     *
+     * @param json JSON con campos extra (ej. {"id":1,"nombre":"Ana","email":"ana@correo.com"})
+     * @return objeto Cliente deserializado omitiendo los campos sobrantes
+     */
+    public static Cliente deserializarIgnorandoCamposDesconocidos(String json) {
+        // TODO extra: configura un ObjectMapper local para desactivar DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES y lee el Cliente
+        return null;
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: relánzala envuelta en una RuntimeException (no la silencies).
+    /**
+     * Reto Extra 5: Serialización binaria.
+     * Serializa el DTO Cliente a una matriz de bytes en codificación UTF-8.
+     *
+     * @param c cliente
+     * @return array de bytes serializado
+     */
+    public static byte[] serializarABytes(Cliente c) {
+        // TODO extra: utiliza MAPPER.writeValueAsBytes(c) manejando la excepción checked
+        return null;
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: abre un try alrededor de la deserialización.
+    /**
+     * Reto Extra 6: Deserialización binaria.
+     * Deserializa el DTO Cliente a partir de una matriz de bytes.
+     *
+     * @param bytes array de bytes con codificación UTF-8
+     * @return cliente deserializado
+     */
+    public static Cliente deserializarDesdeBytes(byte[] bytes) {
+        // TODO extra: utiliza MAPPER.readValue(bytes, Cliente.class) manejando la excepción checked
+        return null;
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: usa MAPPER.readValue(json, Cliente.class).
+    /**
+     * Reto Extra 7: Simulación de actualización parcial (Patch).
+     * Lee propiedades parciales de un JSON y las mezcla con un objeto Cliente existente,
+     * produciendo un nuevo Cliente actualizado (dado que Cliente es un Record inmutable).
+     *
+     * @param json      JSON con campos parciales (ej. {"nombre":"Ana María"})
+     * @param existente cliente actual base
+     * @return nueva instancia de Cliente con los datos fusionados
+     */
+    public static Cliente actualizarConMap(String json, Cliente existente) {
+        // TODO extra: deserializa el JSON a un Map<String, Object>, extrae id/nombre usando el mapa si existen, o el existente si no, y retorna el nuevo Cliente
+        return null;
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: devuelve el objeto poblado.
+    /**
+     * Reto Extra 8: Conversión de tipos dinámicos de Jackson.
+     * Convierte cualquier objeto origen a un tipo destino usando Jackson (simulando mapeo de DTOs).
+     *
+     * @param origen       objeto de origen (ej. un mapa o DTO compatible)
+     * @param claseDestino clase a la que queremos convertirlo
+     * @param <T>          tipo de retorno
+     * @return objeto convertido
+     */
+    public static <T> T convertirEntreTipos(Object origen, Class<T> claseDestino) {
+        // TODO extra: utiliza MAPPER.convertValue(origen, claseDestino) para realizar la conversión de tipos
+        return null;
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: captura JsonProcessingException.
+    /**
+     * Reto Extra 9: Verificación de indentación.
+     * Serializa el cliente de forma bonita y comprueba si la salida contiene saltos de línea.
+     *
+     * @param c cliente
+     * @return true si la serialización es identada (tiene saltos de línea)
+     */
+    public static boolean serializarConIdentacionYComprobar(Cliente c) {
+        // TODO extra: genera el JSON bonito y valida si contiene algún carácter '\n' o '\r'
+        return false;
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: relánzala como RuntimeException con el mensaje original.
+    /**
+     * Reto Extra 10: Persistencia temporal en disco de JSON.
+     * Escribe el cliente en un archivo temporal en disco y luego lo vuelve a leer para comprobar la integridad del proceso.
+     *
+     * @param c cliente
+     * @return el cliente recuperado desde el archivo
+     */
+    public static Cliente escribirYLeerDeArchivoTemporal(Cliente c) {
+        // TODO extra: crea un archivo temporal con File.createTempFile, escribe c usando MAPPER.writeValue, lee de vuelta y bórralo
+        return null;
     }
 
 }

@@ -35,44 +35,105 @@ public class Ej049ResponseEntity {
         System.out.println(new Ej049ResponseEntity().teapot());
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: anota la clase con @RestController.
+    // --- MÉTODOS Y RECORD DE RETOS EXTRA ---
+
+    public record ErrorResponse(int codigo, String detalle) {}
+
+    /**
+     * Reto Extra 1: Respuesta vacía con estatus HTTP 204 No Content.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/no-content")
+    public org.springframework.http.ResponseEntity<Void> respuestaVaciaConStatus() {
+        // TODO extra: devuelve una ResponseEntity vacía (ResponseEntity<Void>) con estatus 204.
+        return null;
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: anota la clase con @RequestMapping("/api").
+    /**
+     * Reto Extra 2: Respuesta con cabecera Cache-Control.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/cached")
+    public org.springframework.http.ResponseEntity<String> respuestaConCache() {
+        // TODO extra: devuelve estatus 200, cuerpo "cacheado" y cabecera "Cache-Control: max-age=3600".
+        // Utiliza org.springframework.http.CacheControl para construir la cabecera.
+        return null;
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: anota el método con @GetMapping("/teapot").
+    /**
+     * Reto Extra 3: Descarga de archivo adjunto CSV.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/descargar")
+    public org.springframework.http.ResponseEntity<String> respuestaDescarga() {
+        // TODO extra: devuelve estatus 200, cuerpo "id,nombre\n1,cafe\n",
+        // Content-Type "text/csv" y cabecera "Content-Disposition" con valor "attachment; filename=\"datos.csv\"".
+        return null;
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: parte de ResponseEntity.status(418) (I'm a teapot).
+    /**
+     * Reto Extra 4: Respuesta condicional basada en ETag (304 Not Modified).
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/recurso-etag")
+    public org.springframework.http.ResponseEntity<String> respuestaCondicional(
+            @org.springframework.web.bind.annotation.RequestHeader(value = "If-None-Match", required = false) String ifNoneMatch) {
+        // TODO extra: si ifNoneMatch es igual a "\"v1\"", devuelve estatus 304 (Not Modified) sin cuerpo.
+        // Si no coincide, devuelve estatus 200 con cuerpo "contenido fresco" y cabecera "ETag: \"v1\"".
+        return null;
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: añade la cabecera con .header("X-Powered-By", "masterclass").
+    /**
+     * Reto Extra 5: Incorporación de Cookie de respuesta en cabeceras.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/cookie")
+    public org.springframework.http.ResponseEntity<String> respuestaConCookie() {
+        // TODO extra: devuelve estatus 200, cuerpo "cookie configurada" y cabecera "Set-Cookie" con "session-id=xyz123; Path=/; HttpOnly".
+        return null;
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: el body debe ser exactamente "no coffee".
+    /**
+     * Reto Extra 6: Respuestas alternativas condicionales de error estructurado.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/error-detalle")
+    public org.springframework.http.ResponseEntity<?> respuestaErrorDetallado(
+            @org.springframework.web.bind.annotation.RequestParam(required = false) Integer code) {
+        // TODO extra: si code es 1, devuelve estatus 400 con un cuerpo ErrorResponse(101, "Parametro invalido").
+        // Si code es 2, devuelve estatus 403 con un cuerpo ErrorResponse(102, "Acceso prohibido").
+        // Si no es ninguno, devuelve estatus 200 con cuerpo "ok".
+        return null;
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: usa .body("no coffee") para fijar el cuerpo.
+    /**
+     * Reto Extra 7: Redirección HTTP (302 Found).
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/redirect")
+    public org.springframework.http.ResponseEntity<Void> respuestaRedireccion() {
+        // TODO extra: devuelve estatus 302 (Found) redirigiendo a la ruta "/api/hello" a través de la cabecera Location.
+        return null;
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: NO uses ResponseEntity.ok() (eso forzaría 200).
+    /**
+     * Reto Extra 8: Respuesta creada (201) sin URI de localización.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/creado-vacio")
+    public org.springframework.http.ResponseEntity<java.util.Map<String, String>> respuestaCreadoSinUri() {
+        // TODO extra: devuelve estatus 201 y un cuerpo vacío (Map.of()) sin cabecera Location.
+        return null;
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: el status 418 debe llegar literal al cliente.
+    /**
+     * Reto Extra 9: Respuesta con código de estado personalizado y mapa de errores.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/custom")
+    public org.springframework.http.ResponseEntity<java.util.Map<String, String>> respuestaConCustomStatusAndBody() {
+        // TODO extra: devuelve estatus 422 (UNPROCESSABLE_ENTITY) y un cuerpo conteniendo un Map con clave "error" y valor "entidad no procesable".
+        return null;
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve la ResponseEntity construida.
+    /**
+     * Reto Extra 10: Respuesta HTML explícita.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping(value = "/html", produces = org.springframework.http.MediaType.TEXT_HTML_VALUE)
+    public org.springframework.http.ResponseEntity<String> respuestaHtml() {
+        // TODO extra: devuelve estatus 200 y cuerpo "<h1>Hola</h1>".
+        return null;
     }
 
 }

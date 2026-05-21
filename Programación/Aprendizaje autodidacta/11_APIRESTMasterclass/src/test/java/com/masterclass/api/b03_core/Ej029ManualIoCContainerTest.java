@@ -19,4 +19,106 @@ class Ej029ManualIoCContainerTest {
         var c = new Ej029ManualIoCContainer();
         assertThrows(IllegalStateException.class, () -> c.getBean(String.class));
     }
+
+    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 1")
+    @Test
+    void retoExtra01_prototype() {
+        var c = new Ej029ManualIoCContainer();
+        c.registerPrototype(StringBuilder.class, StringBuilder::new);
+        var a = c.getBean(StringBuilder.class);
+        var b = c.getBean(StringBuilder.class);
+        assertNotSame(a, b, "Prototype debe generar instancias distintas");
+    }
+
+    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 2 y 3")
+    @Test
+    void retoExtra02_y_03_nameRegistrationAndResolution() {
+        var c = new Ej029ManualIoCContainer();
+        String instance = "Hola Mundo";
+        c.registerSingletonInstance("saludo", instance);
+        assertEquals(instance, c.getBeanByName("saludo"));
+        assertThrows(IllegalStateException.class, () -> c.getBeanByName("inexistente"));
+    }
+
+    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
+    @Test
+    void retoExtra04_hasBean() {
+        var c = new Ej029ManualIoCContainer();
+        assertFalse(c.hasBean(String.class));
+        c.register(String.class, () -> "test");
+        assertTrue(c.hasBean(String.class));
+    }
+
+    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 5")
+    @Test
+    void retoExtra05_clear() {
+        var c = new Ej029ManualIoCContainer();
+        c.register(String.class, () -> "test");
+        c.clear();
+        assertFalse(c.hasBean(String.class));
+    }
+
+    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 6")
+    @Test
+    void retoExtra06_getBeanCount() {
+        var c = new Ej029ManualIoCContainer();
+        assertEquals(0, c.getBeanCount());
+        c.register(String.class, () -> "test");
+        c.registerSingletonInstance("num", 42);
+        assertEquals(2, c.getBeanCount());
+    }
+
+    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 7")
+    @Test
+    void retoExtra07_registerWithDependency() {
+        var c = new Ej029ManualIoCContainer();
+        c.register(String.class, () -> "Prefijo");
+        c.registerWithDependency(StringBuilder.class, String.class, (dep) -> new StringBuilder((String) dep).append("Suffix"));
+        StringBuilder sb = c.getBean(StringBuilder.class);
+        assertEquals("PrefijoSuffix", sb.toString());
+    }
+
+    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
+    @Test
+    void retoExtra08_getBeansOfType() {
+        var c = new Ej029ManualIoCContainer();
+        c.registerSingletonInstance("s1", "texto1");
+        c.registerSingletonInstance("s2", "texto2");
+        c.registerSingletonInstance("i1", 100);
+        
+        java.util.Map<String, String> strings = c.getBeansOfType(String.class);
+        assertEquals(2, strings.size());
+        assertTrue(strings.containsValue("texto1"));
+        assertTrue(strings.containsValue("texto2"));
+    }
+
+    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 9")
+    @Test
+    void retoExtra09_alias() {
+        var c = new Ej029ManualIoCContainer();
+        c.registerSingletonInstance("original", "valorReal");
+        c.registerAlias("original", "miAlias");
+        assertEquals("valorReal", c.getBeanByName("miAlias"));
+    }
+
+    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
+    @Test
+    void retoExtra10_close() throws Exception {
+        class BeanCerrable implements AutoCloseable {
+            boolean cerrado = false;
+            @Override
+            public void close() {
+                cerrado = true;
+            }
+        }
+        var c = new Ej029ManualIoCContainer();
+        var b = new BeanCerrable();
+        c.registerSingletonInstance("cerrable", b);
+        
+        // Disparar la resolución del singleton para cachearlo
+        c.getBeanByName("cerrable");
+        
+        c.close();
+        assertTrue(b.cerrado, "El close() del contenedor debe propagarse a los singletons AutoCloseable");
+    }
 }

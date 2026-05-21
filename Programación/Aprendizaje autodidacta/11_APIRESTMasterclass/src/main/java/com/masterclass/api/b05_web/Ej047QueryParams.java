@@ -35,44 +35,108 @@ public class Ej047QueryParams {
         System.out.println(new Ej047QueryParams().sum(2, 3));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: anota la clase con @RestController.
+    // --- MÉTODOS Y ENUM DE RETOS EXTRA ---
+
+    public enum DiaSemana {
+        LUNES, MARTES, MIERCOLES, JUEVES, VIERNES, SABADO, DOMINGO
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: anota la clase con @RequestMapping("/api").
+    /**
+     * Reto Extra 1: Multiplicación con parámetros obligatorios.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/mult")
+    public String multiplicar(
+            @org.springframework.web.bind.annotation.RequestParam Integer a,
+            @org.springframework.web.bind.annotation.RequestParam Integer b) {
+        // TODO extra: devuelve el producto de a por b como String (String.valueOf(a * b)).
+        return null;
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: anota el método con @GetMapping("/sum").
+    /**
+     * Reto Extra 2: Parámetro con valor por defecto.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/saludo")
+    public String saludoPorDefecto(@org.springframework.web.bind.annotation.RequestParam(defaultValue = "es") String idioma) {
+        // TODO extra: si idioma es "es" devuelve "Hola", si es "en" devuelve "Hello", para cualquier otro "Aloha".
+        return null;
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: anota 'a' con @RequestParam (obligatorio por defecto).
+    /**
+     * Reto Extra 3: Parámetro multi-valor mapeado a lista.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/nombres")
+    public String listaQueryParams(@org.springframework.web.bind.annotation.RequestParam java.util.List<String> nombres) {
+        // TODO extra: une los nombres recibidos usando comas como delimitador (String.join(",", nombres)).
+        return null;
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: anota 'b' con @RequestParam(defaultValue = "0") (opcional).
+    /**
+     * Reto Extra 4: Mapeo de todos los query params a un Map.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/filtro")
+    public java.util.Map<String, String> mapaQueryParams(@org.springframework.web.bind.annotation.RequestParam java.util.Map<String, String> params) {
+        // TODO extra: devuelve el Map recibido con todos los parámetros de consulta.
+        return null;
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: Spring convierte los query params a int automáticamente.
+    /**
+     * Reto Extra 5: Parámetro de consulta completamente opcional mediante Optional.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/buscar")
+    public String parametroOpcional(@org.springframework.web.bind.annotation.RequestParam(required = false) java.util.Optional<String> q) {
+        // TODO extra: si q está presente, devuelve "buscando: " + q.get(); si no, devuelve "sin criterio".
+        return null;
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: si falta 'a' Spring responde 400 (no lo gestionas tú aquí).
+    /**
+     * Reto Extra 6: Conversión de booleano con valor predeterminado.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/transformar")
+    public String booleanoParam(
+            @org.springframework.web.bind.annotation.RequestParam(defaultValue = "false") Boolean invertido,
+            @org.springframework.web.bind.annotation.RequestParam String texto) {
+        // TODO extra: si invertido es true, devuelve el texto al revés (usando StringBuilder.reverse()); si no, el texto original.
+        return null;
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: calcula a + b.
+    /**
+     * Reto Extra 7: Conversión a LocalDate con anotación DateTimeFormat.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/eventos")
+    public String fechaParam(
+            @org.springframework.web.bind.annotation.RequestParam
+            @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE)
+            java.time.LocalDate limite) {
+        // TODO extra: devuelve el mes de la fecha recibida en formato String (limite.getMonth().toString()).
+        return null;
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: el cuerpo debe ser el número como String (usa String.valueOf).
+    /**
+     * Reto Extra 8: Conversión automática a Enum.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/horario")
+    public String enumParam(@org.springframework.web.bind.annotation.RequestParam DiaSemana dia) {
+        // TODO extra: si dia es SABADO o DOMINGO devuelve "fin de semana", si no "dia laborable".
+        return null;
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve esa cadena.
+    /**
+     * Reto Extra 9: Validación defensiva y lanzamiento manual de IllegalArgumentException.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/edad")
+    public String validarMayorDeEdad(@org.springframework.web.bind.annotation.RequestParam Integer edad) {
+        // TODO extra: si edad es menor de 18, lanza IllegalArgumentException con mensaje "menor de edad".
+        // Si es mayor o igual, devuelve "acceso concedido".
+        return null;
+    }
+
+    /**
+     * Reto Extra 10: Query parameter con nombre explícito diferente.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/profile")
+    public String queryConMismoNombre(@org.springframework.web.bind.annotation.RequestParam(name = "username") String user) {
+        // TODO extra: devuelve "perfil de: " seguido de user.
+        return null;
     }
 
 }

@@ -47,44 +47,138 @@ public class Ej033BeanScopes<T> {
         System.out.println(p.get() == p.get());
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: necesitas un campo interno para cachear la instancia singleton.
+    // --- MÉTODOS Y CLASES DE RETOS EXTRA ---
+
+    /**
+     * Reto Extra 1: Comprueba si dos solicitudes de obtención de un bean devuelven la misma instancia (Singleton) o distintas (Prototype).
+     */
+    public static boolean esMismaInstancia(org.springframework.context.ApplicationContext ctx, String nombreBean) {
+        // TODO extra (Reto 1): Solicita el bean dos veces por su nombre y comprueba si son idénticos por referencia (==).
+        return false;
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: comprueba el flag 'singleton'.
+    /**
+     * Reto Extra 2: Un bean Prototype que mantiene un contador incremental interno.
+     * Cada nueva instancia debe inicializar su contador en 0.
+     */
+    public static class BeanConContadorPrototype {
+        private int contador = 0;
+
+        public void incrementar() {
+            contador++;
+        }
+
+        public int getContador() {
+            // TODO extra (Reto 2): Retorna el valor del contador.
+            return 0;
+        }
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: si NO es singleton (prototype), devuelve siempre fabrica.get() (instancia nueva).
+    /**
+     * Reto Extra 3: Soluciona el problema de inyectar un bean de alcance Prototype
+     * en un Singleton utilizando ObjectFactory para obtener una nueva instancia del Prototype en cada invocación.
+     */
+    public static class SingletonConInyeccionPrototype {
+        private final org.springframework.beans.factory.ObjectFactory<BeanConContadorPrototype> prototypeFactory;
+
+        public SingletonConInyeccionPrototype(org.springframework.beans.factory.ObjectFactory<BeanConContadorPrototype> prototypeFactory) {
+            // TODO extra (Reto 3): Inyecta la factoría.
+            this.prototypeFactory = prototypeFactory;
+        }
+
+        public int obtenerValorContadorNuevo() {
+            // TODO extra (Reto 3): Obtén una nueva instancia del prototype usando factory.getObject(), increméntala y retorna su valor.
+            return 0;
+        }
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: si es singleton, comprueba si ya hay instancia cacheada.
+    /**
+     * Reto Extra 4: Registra programáticamente un Scope personalizado en el contexto de Spring.
+     */
+    public static void registrarScopeCustom(org.springframework.context.support.GenericApplicationContext ctx, String scopeName, org.springframework.beans.factory.config.Scope scope) {
+        // TODO extra (Reto 4): Añade el scope al BeanFactory del contexto.
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: si la caché está vacía, créala con fabrica.get().
+    /**
+     * Reto Extra 5: Implementación sencilla de ThreadScope que aísla beans por hilo (ThreadLocal).
+     */
+    public static class ScopeThread implements org.springframework.beans.factory.config.Scope {
+        private final ThreadLocal<java.util.Map<String, Object>> threadLocalMap = ThreadLocal.withInitial(java.util.HashMap::new);
+
+        @Override
+        public Object get(String name, org.springframework.beans.factory.ObjectFactory<?> objectFactory) {
+            // TODO extra (Reto 5): Devuelve el bean del mapa del hilo actual o créalo si no existe.
+            return null;
+        }
+
+        @Override
+        public Object remove(String name) {
+            // TODO extra (Reto 5): Elimina el bean del mapa del hilo.
+            return null;
+        }
+
+        @Override
+        public void registerDestructionCallback(String name, Runnable callback) {
+            // TODO extra (Reto 5): Registrar callback si aplica.
+        }
+
+        @Override
+        public Object resolveContextualObject(String key) {
+            return null;
+        }
+
+        @Override
+        public String getConversationId() {
+            return Thread.currentThread().getName();
+        }
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: guárdala en el campo de caché.
+    /**
+     * Reto Extra 6: Comprueba en los metadatos si un bean está configurado explícitamente con ámbito prototype.
+     */
+    public static boolean esScopePrototypeDefinido(org.springframework.context.support.GenericApplicationContext ctx, String nombreBean) {
+        // TODO extra (Reto 6): Consulta el scope en la definición del bean.
+        return false;
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: en llamadas siguientes, NO vuelvas a invocar la fábrica.
+    /**
+     * Reto Extra 7: Crea un Scope personalizado que limite a un número máximo (ej. 3) las instancias concurrentes de un bean y reutilice la última en caso de superar el cupo.
+     */
+    public static org.springframework.beans.factory.config.Scope crearScopeLimitado(int maxInstancias) {
+        // TODO extra (Reto 7): Retorna un Scope personalizado con límite físico de instancias.
+        return null;
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: devuelve siempre la MISMA instancia para singleton.
+    /**
+     * Reto Extra 8: Fuerza la destrucción de beans cacheados dentro de un determinado ámbito personalizado sin reiniciar el contexto de Spring.
+     */
+    public static void limpiarCachéScope(org.springframework.beans.factory.config.Scope scope) {
+        // TODO extra (Reto 8): Invoca las operaciones de limpieza del scope.
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: ten en cuenta el caso límite: fabrica.get() podría devolver null.
+    /**
+     * Reto Extra 9: DTO Singleton que inyecta dinámicamente un Proxy de un bean de ámbito Prototype utilizando ScopedProxyMode.
+     */
+    public static class SingletonConProxyPrototype {
+        private final BeanConContadorPrototype proxyPrototype;
+
+        public SingletonConProxyPrototype(BeanConContadorPrototype proxyPrototype) {
+            // TODO extra (Reto 9): Inyecta el proxy.
+            this.proxyPrototype = proxyPrototype;
+        }
+
+        public BeanConContadorPrototype getProxyPrototype() {
+            // TODO extra (Reto 9): Retorna el proxy inyectado.
+            return null;
+        }
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: documenta mentalmente por qué prototype no cachea (estado independiente).
+    /**
+     * Reto Extra 10: Demuestra y verifica si Spring ejecuta el método anotado con @PreDestroy en beans de ámbito Prototype.
+     */
+    public static boolean evaluarCicloVidaPrototype(org.springframework.context.support.GenericApplicationContext ctx, String nombreBeanPrototype) {
+        // TODO extra (Reto 10): Al destruir el contexto, comprueba si se llamó a los destructores de los prototypes (teóricamente, Spring no los gestiona por completo tras la entrega).
+        return false;
     }
 
 }

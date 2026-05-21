@@ -2,6 +2,11 @@ package com.masterclass.api.b01_java;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
+import java.util.function.BiFunction;
 
 /**
  * Ejercicio 021 · Concurrencia mínima con CompletableFuture.
@@ -58,44 +63,144 @@ public final class Ej021ConcurrencyBasics {
         System.out.println(asincronoMayus("hola").join());
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: usa CompletableFuture.supplyAsync (ejecuta en otro hilo).
+    /**
+     * Reto Extra 1: Creación clásica de hilos de ejecución.
+     * Crea e inicia un Thread para ejecutar de manera independiente el Runnable provisto.
+     *
+     * @param tarea tarea a ejecutar de forma asíncrona
+     * @return instancia de Thread iniciada
+     */
+    public static Thread ejecutarEnHiloSeparado(Runnable tarea) {
+        // TODO extra: crea un Thread con la tarea, inícialo con start() y devuélvelo
+        return null;
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: la lambda debe devolver valor.toUpperCase().
+    /**
+     * Reto Extra 2: Obtención de resultados bloqueantes.
+     * Bloquea el hilo actual de ejecución hasta obtener y retornar el resultado del futuro.
+     *
+     * @param futuro objeto de futuro asíncrono
+     * @param <T>    tipo del resultado esperado
+     * @return valor resuelto
+     */
+    public static <T> T obtenerResultadoAsincrono(CompletableFuture<T> futuro) {
+        // TODO extra: bloquea y obtén el resultado utilizando join()
+        return null;
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: devuelve el future SIN bloquear (no llames join aquí).
+    /**
+     * Reto Extra 3: Coordinación de futuros paralelos.
+     * Combina los resultados de dos futuros paralelos usando una función de combinación.
+     *
+     * @param futA       primer futuro
+     * @param futB       segundo futuro
+     * @param combinador función para mezclar ambos resultados
+     * @param <A>        tipo del primer futuro
+     * @param <B>        tipo del segundo futuro
+     * @param <R>        tipo del resultado combinado
+     * @return futuro con el valor resultante de la mezcla
+     */
+    public static <A, B, R> CompletableFuture<R> combinarDosResultadosAsincronos(
+            CompletableFuture<A> futA, CompletableFuture<B> futB, BiFunction<A, B, R> combinador) {
+        // TODO extra: combina futA y futB asíncronamente con thenCombine() usando el combinador
+        return null;
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: combina ambos con a.thenCombine(b, ...).
+    /**
+     * Reto Extra 4: Prevención de bloqueos con límites de tiempo (timeout).
+     * Asegura que el futuro finalice devolviendo el valor por defecto si no concluye en el tiempo máximo indicado.
+     *
+     * @param futuro           futuro bajo supervisión
+     * @param ms               tiempo límite en milisegundos
+     * @param valorPorDefecto valor de contingencia
+     * @param <T>              tipo de retorno del futuro
+     * @return futuro protegido contra tiempos de espera excesivos
+     */
+    public static <T> CompletableFuture<T> ejecutarConTimeout(CompletableFuture<T> futuro, long ms, T valorPorDefecto) {
+        // TODO extra: aplica completeOnTimeout() indicando el valor de contingencia, los milisegundos y TimeUnit.MILLISECONDS
+        return null;
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: la BiFunction debe sumar los dos enteros (Integer::sum).
+    /**
+     * Reto Extra 5: Recuperación y tolerancia a fallos asíncronos.
+     * Retorna un futuro que, ante excepciones durante la ejecución asíncrona, se recupera devolviendo el valor de contingencia.
+     *
+     * @param futuro   futuro susceptible de fallar
+     * @param fallback valor de recuperación
+     * @param <T>      tipo de retorno del futuro
+     * @return futuro tolerante a fallos
+     */
+    public static <T> CompletableFuture<T> recuperarAnteErrorAsincrono(CompletableFuture<T> futuro, T fallback) {
+        // TODO extra: encadena exceptionally() capturando cualquier error para devolver el fallback
+        return null;
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: devuelve el future combinado (sigue siendo asíncrono).
+    /**
+     * Reto Extra 6: Pools de hilos acotados con ExecutorService.
+     * Configura y arranca un pool de hilos acotado a nHilos, envía el proceso Runnable para su ejecución y lo apaga ordenadamente.
+     *
+     * @param tarea  proceso a ejecutar
+     * @param nHilos cantidad de hilos concurrentes permitidos
+     * @return ExecutorService configurado
+     */
+    public static ExecutorService ejecutarEnPoolAcotado(Runnable tarea, int nHilos) {
+        // TODO extra: instancia Executors.newFixedThreadPool(nHilos), envía la tarea con submit() y llama a shutdown()
+        return null;
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: usa CompletableFuture.allOf(...) con el array de futures para esperar a todos.
+    /**
+     * Reto Extra 7: Barrera de sincronización para múltiples futuros concurrentes.
+     * Bloquea el hilo de ejecución actual hasta que todas las tareas provistas en la lista se hayan completado.
+     *
+     * @param futuros lista de futuros
+     */
+    public static void esperarQueTerminenTodos(List<CompletableFuture<?>> futuros) {
+        // TODO extra: crea un CompletableFuture.allOf() con el array de futuros y bloquéalo con join()
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: invoca .join() sobre ese allOf para bloquear hasta que terminen.
+    /**
+     * Reto Extra 8: Carrera de futuros asíncronos.
+     * Retorna un futuro que se resolverá con el valor del primer futuro de la carrera en terminar, sin importar cuál sea.
+     *
+     * @param fut1 primer futuro competidor
+     * @param fut2 segundo futuro competidor
+     * @param <T>  tipo de los futuros
+     * @return futuro completado con el resultado del ganador
+     */
+    public static <T> CompletableFuture<T> ejecutarPrimeroQueTermine(CompletableFuture<T> fut1, CompletableFuture<T> fut2) {
+        // TODO extra: combina fut1 y fut2 usando CompletableFuture.anyOf(), y mapea el resultado a tipo T
+        return null;
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: recorre 'futures' en orden y haz join() de cada uno.
+    /**
+     * Reto Extra 9: Transformaciones no bloqueantes de resultados asíncronos.
+     * Transforma el resultado de un futuro asíncronamente mediante la función provista, sin bloquear el hilo.
+     *
+     * @param futuro    futuro original
+     * @param mapeador  función de transformación
+     * @param <T>       tipo de entrada
+     * @param <R>       tipo del resultado transformado
+     * @return futuro con el valor transformado
+     */
+    public static <T, R> CompletableFuture<R> mapearResultadoAsincrono(CompletableFuture<T> futuro, Function<T, R> mapeador) {
+        // TODO extra: encadena la transformación usando thenApply()
+        return null;
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: recoge los resultados a una List y devuélvela.
+    /**
+     * Reto Extra 10: Composición secuencial y encadenamiento asíncrono.
+     * Encadena dos futuros secuencialmente de manera no bloqueante, donde el segundo futuro depende del resultado del primero.
+     *
+     * @param futuro         primer futuro asíncrono
+     * @param mapeadorFuturo función que genera el segundo futuro a partir del resultado del primero
+     * @param <T>            tipo del primer futuro
+     * @param <R>            tipo del segundo futuro secuencial
+     * @return futuro compuesto
+     */
+    public static <T, R> CompletableFuture<R> encadenarFuturosAsincronos(
+            CompletableFuture<T> futuro, Function<T, CompletableFuture<R>> mapeadorFuturo) {
+        // TODO extra: encadena y compone secuencialmente los futuros utilizando thenCompose()
+        return null;
     }
 
 }

@@ -2,7 +2,16 @@ package com.masterclass.api.b01_java;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.time.Instant;
+import java.time.Duration;
+import java.time.Period;
+import java.time.ZoneId;
+import java.time.DayOfWeek;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAdjusters;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Ejercicio 020 · API java.time para APIs (fechas en JSON).
@@ -61,44 +70,129 @@ public final class Ej020DateTimeApi {
         System.out.println(diasEntre(LocalDate.of(2026, 1, 1), LocalDate.of(2026, 1, 11)));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: usa ChronoUnit.DAYS.
+    /**
+     * Reto Extra 1: Verificación de fin de semana.
+     * Evalúa si una fecha corresponde a un día de fin de semana (sábado o domingo).
+     *
+     * @param fecha fecha a evaluar
+     * @return true si es fin de semana
+     */
+    public static boolean esFinDeSemana(LocalDate fecha) {
+        // TODO extra: comprueba si el día de la semana es SATURDAY o SUNDAY
+        return false;
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: aplica between(inicio, fin) (el orden importa: define el signo).
+    /**
+     * Reto Extra 2: Cálculo preciso de edad.
+     * Calcula la edad exacta de una persona en años comparando su nacimiento con la fecha de referencia.
+     *
+     * @param fechaNacimiento fecha de nacimiento
+     * @param ahora           fecha de referencia actual
+     * @return edad en años
+     */
+    public static int calcularEdad(LocalDate fechaNacimiento, LocalDate ahora) {
+        // TODO extra: usa Period.between() para calcular la diferencia y extrae los años
+        return -1;
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: devuelve el resultado (negativo si fin < inicio).
+    /**
+     * Reto Extra 3: Alineación a UTC global.
+     * Convierte una fecha y hora con zona horaria (ZonedDateTime) a un instante universal (Instant).
+     *
+     * @param zdt fecha y hora zonificada
+     * @return instante equivalente en UTC
+     */
+    public static Instant convertirZonedDateTimeAInstant(ZonedDateTime zdt) {
+        // TODO extra: convierte el ZonedDateTime a un objeto Instant nativo
+        return null;
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: calcula el instante de expiración = emitido.plusMinutes(minutosVida).
+    /**
+     * Reto Extra 4: Medición de latencia de red.
+     * Calcula la diferencia en minutos entre dos marcas de tiempo universales (Instant).
+     *
+     * @param i1 instante inicial
+     * @param i2 instante final
+     * @return diferencia en minutos
+     */
+    public static long obtenerDiferenciaEnMinutos(Instant i1, Instant i2) {
+        // TODO extra: calcula la duración entre i1 e i2 y conviértela a minutos
+        return Long.MIN_VALUE;
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: compara 'ahora' con ese instante usando isAfter.
+    /**
+     * Reto Extra 5: Comparaciones cronológicas seguras.
+     * Compara dos marcas temporales para determinar si el instante actual es estrictamente anterior al límite.
+     *
+     * @param actual instante actual
+     * @param limite instante límite
+     * @return true si actual es anterior a limite
+     */
+    public static boolean esFechaAnterior(Instant actual, Instant limite) {
+        // TODO extra: verifica si el instante actual ocurre antes que el límite usando isBefore()
+        return false;
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: caducado = ahora está estrictamente después de la expiración.
+    /**
+     * Reto Extra 6: Formateo personalizado ISO estándar de fecha.
+     * Formatea un objeto LocalDate usando el formateador estándar ISO-8601 local.
+     *
+     * @param fecha fecha a formatear
+     * @return representación textual "yyyy-MM-dd"
+     */
+    public static String formatearAFechaIsoStandard(LocalDate fecha) {
+        // TODO extra: utiliza DateTimeFormatter.ISO_LOCAL_DATE para formatear la fecha
+        return "";
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: devuelve ese booleano.
+    /**
+     * Reto Extra 7: Parsing robusto y libre de excepciones.
+     * Intenta parsear una cadena ISO a LocalDate. Retorna un Optional vacío en lugar de lanzar ante formatos incorrectos.
+     *
+     * @param fechaIso cadena de fecha en formato ISO
+     * @return Optional con LocalDate, o vacío si el formato es inválido
+     */
+    public static java.util.Optional<LocalDate> parsearFechaIso(String fechaIso) {
+        // TODO extra: parsea la cadena con LocalDate.parse, capturando DateTimeParseException para retornar Optional.empty()
+        return java.util.Optional.empty();
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: LocalDate ya serializa en ISO-8601 con toString().
+    /**
+     * Reto Extra 8: Ajustes temporales personalizados (Día laboral).
+     * Calcula el próximo día laborable a partir de la fecha dada (si el día siguiente es sábado o domingo, salta a lunes).
+     *
+     * @param fecha fecha inicial
+     * @return fecha del próximo día laboral
+     */
+    public static LocalDate obtenerProximoDiaLaboral(LocalDate fecha) {
+        // TODO extra: calcula el día siguiente e incrementa hasta un día laborable si cae en fin de semana
+        return null;
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: invoca fecha.toString() de forma explícita.
+    /**
+     * Reto Extra 9: Conversión y traducción entre zonas horarias.
+     * Convierte una fecha y hora local interpretada en una zona origen a su equivalente en una zona destino.
+     *
+     * @param ldt         fecha y hora local
+     * @param zonaOrigen  ID de la zona horaria origen (ej. "Europe/Madrid")
+     * @param zonaDestino ID de la zona horaria destino (ej. "America/New_York")
+     * @return fecha y hora local equivalente en la zona destino
+     */
+    public static LocalDateTime convertirEntreZonasHorarias(LocalDateTime ldt, String zonaOrigen, String zonaDestino) {
+        // TODO extra: asocia ldt a la zona origen, conviértela preservando el instante a la zona destino, y extrae su LocalDateTime
+        return null;
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve esa cadena (formato yyyy-MM-dd).
+    /**
+     * Reto Extra 10: Determinación de año bisiesto.
+     * Comprueba si el año indicado es bisiesto.
+     *
+     * @param anio año calendario
+     * @return true si es bisiesto
+     */
+    public static boolean esBisiesto(int anio) {
+        // TODO extra: usa las capacidades de LocalDate para determinar si un año es bisiesto
+        return false;
     }
 
 }

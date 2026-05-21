@@ -42,44 +42,119 @@ public class Ej048RequestBodyPost {
         System.out.println(new Ej048RequestBodyPost().crear(new ItemIn("café")));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: anota la clase con @RestController.
+    // --- MÉTODOS Y RECORDs DE RETOS EXTRA ---
+
+    public record ItemConMetadatos(String nombre, java.util.Map<String, String> tags) {}
+    public record ItemConFecha(String nombre, java.time.LocalDate expiracion) {}
+    public record IdOut(long id) {}
+
+    /**
+     * Reto Extra 1: Creación por lotes recibiendo una lista JSON.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PostMapping("/batch")
+    public org.springframework.http.ResponseEntity<java.util.Map<String, Object>> crearConLista(
+            @org.springframework.web.bind.annotation.RequestBody java.util.List<ItemIn> entradas) {
+        // TODO extra: convierte cada ItemIn a ItemOut con IDs secuenciales 1, 2, etc.
+        // Devuelve un Map con claves "total" (tamaño) y "items" (lista de ItemOut), y estatus 201.
+        return null;
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: anota la clase con @RequestMapping("/api/items").
+    /**
+     * Reto Extra 2: Validación manual y estatus 422 Unprocessable Entity.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PostMapping("/validar")
+    public org.springframework.http.ResponseEntity<ItemOut> crearConValidacion(
+            @org.springframework.web.bind.annotation.RequestBody ItemIn entrada) {
+        // TODO extra: si el nombre es menor a 3 caracteres, devuelve ResponseEntity con status 422 (UNPROCESSABLE_ENTITY).
+        // Si es correcto, devuelve status 201 y un ItemOut con id=1.
+        return null;
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: anota el método con @PostMapping.
+    /**
+     * Reto Extra 3: Deserialización de tipos de datos complejos y anidados.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PostMapping("/metadatos")
+    public org.springframework.http.ResponseEntity<ItemConMetadatos> crearConMetadatos(
+            @org.springframework.web.bind.annotation.RequestBody ItemConMetadatos entrada) {
+        // TODO extra: devuelve estatus 201 y el mismo objeto recibido en el cuerpo.
+        return null;
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: anota 'entrada' con @RequestBody para deserializar el JSON.
+    /**
+     * Reto Extra 4: Restricción del tipo de contenido consumido (consumes).
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PostMapping(value = "/json-only", consumes = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
+    public org.springframework.http.ResponseEntity<ItemOut> crearConTipoContent(
+            @org.springframework.web.bind.annotation.RequestBody ItemIn entrada) {
+        // TODO extra: devuelve estatus 201 y un ItemOut con id=1 y el nombre de la entrada.
+        return null;
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: valida que entrada.nombre() no sea null/vacío (si lo es, 400 con ResponseEntity.badRequest()).
+    /**
+     * Reto Extra 5: Vinculación combinada de cabecera y cuerpo.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PostMapping("/audit")
+    public org.springframework.http.ResponseEntity<String> crearConCabeceraAudit(
+            @org.springframework.web.bind.annotation.RequestBody ItemIn entrada,
+            @org.springframework.web.bind.annotation.RequestHeader("X-Created-By") String creador) {
+        // TODO extra: devuelve un ResponseEntity con el texto "Item " + entrada.nombre() + " creado por " + creador, y estatus 201.
+        return null;
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: construye un ItemOut con id = 1L y el nombre recibido.
+    /**
+     * Reto Extra 6: Validación de cuerpo nulo/vacío defensivo.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PostMapping("/defensivo")
+    public org.springframework.http.ResponseEntity<String> crearSinNombre(
+            @org.springframework.web.bind.annotation.RequestBody(required = false) ItemIn entrada) {
+        // TODO extra: si entrada es null o entrada.nombre() es nulo/vacío, devuelve status 400 (Bad Request) con cuerpo "cuerpo invalido".
+        // Si no, devuelve status 200 con cuerpo "ok".
+        return null;
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: usa ResponseEntity.status(HttpStatus.CREATED) (201).
+    /**
+     * Reto Extra 7: Creación con id específico y detección de conflicto (409).
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PostMapping("/especifico")
+    public org.springframework.http.ResponseEntity<ItemOut> crearConIdEspecifico(
+            @org.springframework.web.bind.annotation.RequestBody ItemOut entrada) {
+        // TODO extra: si el ID es menor o igual a 0, devuelve 400.
+        // Si el ID es exactamente 99, simula conflicto y devuelve 409 Conflict.
+        // Si no, devuelve 201 y la misma entrada.
+        return null;
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: añade la cabecera Location "/api/items/1" con .location(URI.create(...)).
+    /**
+     * Reto Extra 8: Construcción de Location con URL absoluta del servidor.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PostMapping("/absoluto")
+    public org.springframework.http.ResponseEntity<ItemOut> crearRetornandoLocationAbsoluta(
+            @org.springframework.web.bind.annotation.RequestBody ItemIn entrada,
+            jakarta.servlet.http.HttpServletRequest request) {
+        // TODO extra: genera la Location absoluta utilizando org.springframework.web.servlet.support.ServletUriComponentsBuilder
+        // a partir del contexto del request, apuntando a "/api/items/123".
+        // Devuelve ResponseEntity con Location, status 201 y cuerpo conteniendo un ItemOut con id=123.
+        return null;
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: incluye el ItemOut en el body con .body(...).
+    /**
+     * Reto Extra 9: Respuesta simplificada devolviendo únicamente el ID.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PostMapping("/solo-id")
+    public org.springframework.http.ResponseEntity<IdOut> crearRetornandoSoloId(
+            @org.springframework.web.bind.annotation.RequestBody ItemIn entrada) {
+        // TODO extra: devuelve estatus 201 y un nuevo IdOut con id=999L.
+        return null;
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve esa ResponseEntity.
+    /**
+     * Reto Extra 10: Deserialización de LocalDate en RequestBody.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PostMapping("/fecha")
+    public org.springframework.http.ResponseEntity<ItemConFecha> crearConLocalDate(
+            @org.springframework.web.bind.annotation.RequestBody ItemConFecha entrada) {
+        // TODO extra: devuelve estatus 201 y el mismo objeto recibido.
+        return null;
     }
 
 }

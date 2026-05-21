@@ -53,44 +53,86 @@ public final class Ej036ConditionalBeans {
         System.out.println(segunPerfil("prod").donde());
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si perfil es null, lanza IllegalArgumentException.
+    // --- MÉTODOS Y CLASES DE RETOS EXTRA ---
+
+    /**
+     * Reto Extra 1: Simula la condición @ConditionalOnProperty. Registra un bean condicional si una propiedad dada está habilitada.
+     */
+    public static class registrarConPropiedadHabilitada {
+        // TODO extra (Reto 1): DTO o método de configuración que registra el bean sólo si la propiedad coincide con el valor esperado.
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: normaliza el perfil (trim + minúsculas).
+    /**
+     * Reto Extra 2: Registra un bean si una propiedad está ausente o no definida, configurando un fallback (matchIfMissing = true).
+     */
+    public static class registrarConPropiedadAusente {
+        // TODO extra (Reto 2): Registra el bean de contingencia cuando la propiedad no existe en las fuentes de configuración.
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: "dev" debe resolver a almacenamiento local.
+    /**
+     * Reto Extra 3: Implementación personalizada de la interfaz Condition de Spring para evaluar si el sistema operativo actual es Windows.
+     */
+    public static class WindowsOSCondition implements org.springframework.context.annotation.Condition {
+        @Override
+        public boolean matches(org.springframework.context.annotation.ConditionContext context, org.springframework.core.type.AnnotatedTypeMetadata metadata) {
+            // TODO extra (Reto 3): Retorna true si System.getProperty("os.name") contiene la palabra "Windows".
+            return System.getProperty("os.name").toLowerCase().contains("windows");
+        }
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: "test" también a local (mismo comportamiento que dev).
+    /**
+     * Reto Extra 4: DTO de servicio registrado condicionalmente basándose en la condición del sistema operativo creada en el Reto 3.
+     */
+    @org.springframework.context.annotation.Conditional(WindowsOSCondition.class)
+    public static class ServicioSoloWindows {
+        public String obtenerSO() { return "Windows"; }
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: agrupa dev/test en la misma rama (no dupliques el new).
+    /**
+     * Reto Extra 5: Carga condicionalmente un bean en el classpath si y sólo si existe una determinada clase externa.
+     */
+    public static class registrarSiClaseExiste {
+        // TODO extra (Reto 5): Carga condicionalmente un bean evaluando mediante Class.forName() la presencia de la clase.
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: "prod" debe resolver a AlmacenS3.
+    /**
+     * Reto Extra 6: Registra un bean condicionado a que otro bean base ya esté registrado en el ApplicationContext (@ConditionalOnBean).
+     */
+    public static class registrarSiOtroBeanExiste {
+        // TODO extra (Reto 6): Comprueba programáticamente si el bean base está definido en el cargador antes de registrar el dependiente.
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: cualquier otro perfil -> IllegalArgumentException con el valor recibido.
+    /**
+     * Reto Extra 7: Registra un bean aplicando múltiples condiciones acumulativas, donde todas deben cumplirse.
+     */
+    public static class CondicionalMultiple {
+        // TODO extra (Reto 7): Define un bean decorado con múltiples anotaciones @Conditional.
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: devuelve una instancia nueva del almacén correspondiente.
+    /**
+     * Reto Extra 8: Registra un bean usando una condición inversa (registro si y sólo si una determinada condición de entorno falla).
+     */
+    public static class CondicionNegada implements org.springframework.context.annotation.Condition {
+        @Override
+        public boolean matches(org.springframework.context.annotation.ConditionContext context, org.springframework.core.type.AnnotatedTypeMetadata metadata) {
+            // TODO extra (Reto 8): Retorna la negación de otra condición específica del sistema.
+            return false;
+        }
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: el contrato donde() de local es "disco-local".
+    /**
+     * Reto Extra 9: Condiciona el registro de un bean a la existencia física de un recurso en el classpath (ej. un fichero de propiedades).
+     */
+    public static class registrarCondicionalPorRecurso {
+        // TODO extra (Reto 9): Evalúa la existencia física del recurso indicado en las fuentes del classpath.
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: el contrato donde() de prod es "aws-s3".
+    /**
+     * Reto Extra 10: Comprueba de forma programática si un determinado bean superó las condiciones de configuración y fue finalmente registrado con éxito.
+     */
+    public static boolean evaluarConditionDeRegistro(org.springframework.context.ApplicationContext ctx, String nombreBean) {
+        // TODO extra (Reto 10): Verifica la presencia del bean en el contexto actual de Spring.
+        return false;
     }
 
 }

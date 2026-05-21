@@ -48,44 +48,85 @@ public final class Ej030ComponentScan {
         System.out.println(obtenerBean());
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: anota esta clase con @org.springframework.stereotype.Component
+    // --- MÉTODOS DE RETOS EXTRA ---
+
+    /**
+     * Reto Extra 1: Recupera un bean a partir de su nombre identificador de cadena del contexto.
+     */
+    public static Object obtenerBeanPorNombre(AnnotationConfigApplicationContext ctx, String nombre) {
+        // TODO extra (Reto 1): Devuelve el bean asociado al nombre indicado.
+        return null;
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: devuelve exactamente "hola" (contrato esperado por el test).
+    /**
+     * Reto Extra 2: Comprueba programáticamente si un bean registrado en el contexto es de alcance Singleton.
+     */
+    public static boolean esSingleton(AnnotationConfigApplicationContext ctx, String nombreBean) {
+        // TODO extra (Reto 2): Retorna true si el bean tiene alcance singleton en el contexto.
+        return false;
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: crea un AnnotationConfigApplicationContext vacío (constructor sin args).
+    /**
+     * Reto Extra 3: Crea un AnnotationConfigApplicationContext que escanea el paquete pero excluye una clase concreta.
+     */
+    public static AnnotationConfigApplicationContext crearContextoFiltradoConExclusion(Class<?> claseAExcluir) {
+        // TODO extra (Reto 3): Inicializa un contexto configurando un TypeFilter para excluir la clase indicada durante el escaneo.
+        return null;
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: regístralo con ctx.register(Saludador.class).
+    /**
+     * Reto Extra 4: Devuelve el recuento de definiciones de beans registradas en el contexto.
+     */
+    public static int contarBeansDefinidos(AnnotationConfigApplicationContext ctx) {
+        // TODO extra (Reto 4): Retorna la cantidad de definiciones de beans en el contexto.
+        return 0;
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: invoca ctx.refresh() para que el contenedor procese el bean.
+    /**
+     * Reto Extra 5: Registra en caliente una instancia singleton pre-construida en un contexto de Spring ya refrescado.
+     */
+    public static void registrarBeanEnCaliente(AnnotationConfigApplicationContext ctx, String nombre, Object instancia) {
+        // TODO extra (Reto 5): Registra la instancia manual en el BeanFactory del contexto.
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: recupera el bean con ctx.getBean(Saludador.class).
+    /**
+     * Reto Extra 6: Comprueba en los metadatos si la definición del bean está configurada con scope Prototype.
+     */
+    public static boolean esBeanPrototypeDefinido(AnnotationConfigApplicationContext ctx, String nombre) {
+        // TODO extra (Reto 6): Consulta los BeanDefinition del BeanFactory para saber si el scope es prototype.
+        return false;
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: usa try-with-resources o cierra el contexto tras obtener el bean.
+    /**
+     * Reto Extra 7: Encuentra y devuelve todos los beans que tengan presente una determinada anotación en su clase.
+     */
+    public static java.util.Map<String, Object> obtenerBeansPorAnotacion(AnnotationConfigApplicationContext ctx, Class<? extends java.lang.annotation.Annotation> anotacion) {
+        // TODO extra (Reto 7): Busca beans decorados con la anotación indicada.
+        return java.util.Map.of();
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: devuelve la instancia gestionada (no un new manual).
+    /**
+     * Reto Extra 8: Devuelve todos los nombres de beans del contexto ordenados alfabéticamente.
+     */
+    public static java.util.List<String> obtenerNombresDeBeans(AnnotationConfigApplicationContext ctx) {
+        // TODO extra (Reto 8): Retorna la lista ordenada de identificadores de beans registrados.
+        return java.util.List.of();
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: el bean debe ser funcional (saludar() devuelve "hola").
+    /**
+     * Reto Extra 9: Cierra de forma segura el contexto de Spring y comprueba si ha dejado de estar activo.
+     */
+    public static boolean cerrarYVerificarActivo(AnnotationConfigApplicationContext ctx) {
+        // TODO extra (Reto 9): Cierra el contexto y valida si isActive() retorna false.
+        return false;
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: NO instancies Saludador con 'new': el objetivo es que lo dé el contenedor.
+    /**
+     * Reto Extra 10: Comprueba si la definición del bean está configurada con inicialización perezosa (@Lazy).
+     */
+    public static boolean esDefinicionLazy(AnnotationConfigApplicationContext ctx, String nombre) {
+        // TODO extra (Reto 10): Consulta los metadatos del BeanDefinition para comprobar si es lazy.
+        return false;
     }
 
 }

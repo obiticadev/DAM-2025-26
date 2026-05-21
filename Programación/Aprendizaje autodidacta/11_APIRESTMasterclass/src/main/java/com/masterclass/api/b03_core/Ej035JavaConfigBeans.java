@@ -44,44 +44,85 @@ public final class Ej035JavaConfigBeans {
         System.out.println(obtenerClock());
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: anota esta clase con @org.springframework.context.annotation.Configuration.
+    // --- MÉTODOS Y CLASES DE RETOS EXTRA ---
+
+    /**
+     * Reto Extra 1: Arranca un contexto pasando una clase @Configuration y recupera un bean por su nombre.
+     */
+    public static Object obtenerBeanJavaConfig(Class<?> configClass, String nombreBean) {
+        // TODO extra (Reto 1): Arranca un AnnotationConfigApplicationContext, recupera el bean por nombre y cierra el contexto.
+        return null;
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: anota este método con @org.springframework.context.annotation.Bean.
+    /**
+     * Reto Extra 2: Configuración clásica que enlaza beans llamando directamente a otro método anotado con @Bean.
+     * Esto verifica el proxy CGLIB que intercepta la llamada para garantizar una única instancia singleton.
+     */
+    public static class ConfiguracionConInyeccionMetodo {
+        // TODO extra (Reto 2): Define dos métodos @Bean, uno que dependa de otro llamándolo directamente.
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: el método debe devolver Clock.systemUTC() (no null).
+    /**
+     * Reto Extra 3: Configuración limpia pasando el bean secundario como parámetro del método @Bean,
+     * permitiendo que Spring lo inyecte de manera segura.
+     */
+    public static class ConfiguracionConInyeccionParametro {
+        // TODO extra (Reto 3): Define un método @Bean que reciba otra dependencia como parámetro.
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: crea un AnnotationConfigApplicationContext pasando AppConfig.class.
+    /**
+     * Reto Extra 4: Consolida múltiples clases de configuración independientes en un único contexto mediante @Import.
+     */
+    public static org.springframework.context.ApplicationContext ImportarConfiguracionesMultiples(Class<?>... configClasses) {
+        // TODO extra (Reto 4): Crea un contexto consolidado importando todas las clases de configuración indicadas.
+        return null;
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: el contexto procesará @Configuration y registrará el @Bean.
+    /**
+     * Reto Extra 5: Carga o descarta beans de forma selectiva basándote en los perfiles de entorno activos ("dev", "prod").
+     */
+    public static class BeanCondicionalPorProfile {
+        // TODO extra (Reto 5): Anota beans con @Profile para condicionar su registro.
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: recupera el bean con ctx.getBean(Clock.class).
+    /**
+     * Reto Extra 6: Inyecta valores externalizados de un fichero de propiedades utilizando @Value y @PropertySource en campos de la clase de configuración.
+     */
+    public static class PropiedadesExternasValue {
+        // TODO extra (Reto 6): Usa @Value y @PropertySource para inicializar variables desde propiedades del entorno.
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: cierra el contexto cuando termines (try-with-resources).
+    /**
+     * Reto Extra 7: Simula el modo "Lite" de Spring (métodos @Bean declarados en una clase normal sin la anotación @Configuration).
+     * Comprueba pedagógicamente que se generan múltiples instancias (no hay proxy CGLIB).
+     */
+    public static class ConfiguracionLiteMode {
+        // TODO extra (Reto 7): Define métodos @Bean en una clase que NO posea la anotación @Configuration.
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: devuelve la instancia obtenida del contenedor.
+    /**
+     * Reto Extra 8: Registra dinámicamente un BeanDefinition manipulando el registro del contexto en caliente.
+     */
+    public static void registrarBeanDefinitionProgrammatic(org.springframework.context.support.GenericApplicationContext ctx, String nombre, Class<?> beanClass) {
+        // TODO extra (Reto 8): Crea y registra un BeanDefinition programáticamente.
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: si el @Bean devolviera null, getBean fallaría: por eso TODO 3 importa.
+    /**
+     * Reto Extra 9: Diseña un selector dinámico de configuraciones que implemente ImportSelector para cargar beans condicionalmente.
+     */
+    public static class ConfiguracionDinamicaImportSelector implements org.springframework.context.annotation.ImportSelector {
+        @Override
+        public String[] selectImports(org.springframework.core.type.AnnotationMetadata importingClassMetadata) {
+            // TODO extra (Reto 9): Devuelve un array con los nombres de las clases de configuración que se deben importar.
+            return new String[0];
+        }
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: NO devuelvas Clock.systemUTC() directamente: debe venir del contexto.
+    /**
+     * Reto Extra 10: Configura nombres alternativos (alias) de beans en la anotación @Bean y verifica su resolución.
+     */
+    public static class BeanAliasJavaConfig {
+        // TODO extra (Reto 10): Define un método @Bean especificando múltiples alias en el atributo 'name'.
     }
 
 }

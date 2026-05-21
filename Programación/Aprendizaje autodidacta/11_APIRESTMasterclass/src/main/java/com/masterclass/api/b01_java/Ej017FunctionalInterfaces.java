@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
+import java.util.function.Consumer;
 
 /**
  * Ejercicio 017 · Interfaces funcionales: Function, Predicate, Supplier.
@@ -64,44 +65,142 @@ public final class Ej017FunctionalInterfaces {
         System.out.println(transformar(List.of(1, 2, 3), x -> x * x));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: abre stream sobre 'entrada'.
+    /**
+     * Reto Extra 1: Composición lógica AND de predicados.
+     * Retorna un nuevo Predicate que representa la composición lógica AND de p1 y p2.
+     *
+     * @param p1  primer predicado
+     * @param p2  segundo predicado
+     * @param <T> tipo de los elementos evaluados
+     * @return predicado combinado (AND)
+     */
+    public static <T> Predicate<T> combinarPredicadosAND(Predicate<T> p1, Predicate<T> p2) {
+        // TODO extra: Combina p1 y p2 con la operación lógica and()
+        return x -> false;
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: aplica .map(f) para transformar cada elemento.
+    /**
+     * Reto Extra 2: Composición lógica OR de predicados.
+     * Retorna un nuevo Predicate que representa la composición lógica OR de p1 y p2.
+     *
+     * @param p1  primer predicado
+     * @param p2  segundo predicado
+     * @param <T> tipo de los elementos evaluados
+     * @return predicado combinado (OR)
+     */
+    public static <T> Predicate<T> combinarPredicadosOR(Predicate<T> p1, Predicate<T> p2) {
+        // TODO extra: Combina p1 y p2 con la operación lógica or()
+        return x -> false;
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: recoge a List preservando el orden y devuélvela.
+    /**
+     * Reto Extra 3: Negación lógica funcional.
+     * Retorna un nuevo Predicate que representa la negación de p.
+     *
+     * @param p   predicado original
+     * @param <T> tipo de los elementos evaluados
+     * @return predicado negado
+     */
+    public static <T> Predicate<T> negarPredicado(Predicate<T> p) {
+        // TODO extra: Niega el predicado p usando la operación negate()
+        return x -> false;
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: abre stream sobre 'entrada'.
+    /**
+     * Reto Extra 4: Composición secuencial de funciones (andThen).
+     * Compone dos funciones secuencialmente (f1 aplicada primero, f2 aplicada al resultado de f1).
+     *
+     * @param f1  primera función (A -> B)
+     * @param f2  segunda función (B -> C)
+     * @param <A> tipo de entrada de f1
+     * @param <B> tipo intermedio de salida de f1 / entrada de f2
+     * @param <C> tipo de salida final de f2
+     * @return función compuesta A -> C
+     */
+    public static <A, B, C> Function<A, C> componerFunciones(Function<A, B> f1, Function<B, C> f2) {
+        // TODO extra: Compone f1 y f2 usando andThen()
+        return x -> null;
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: aplica .filter(p).
+    /**
+     * Reto Extra 5: Auditoría temporal de tareas.
+     * Ejecuta una tarea Runnable y retorna el tiempo total empleado en milisegundos.
+     *
+     * @param tarea tarea a ejecutar y medir
+     * @return tiempo total transcurrido en milisegundos
+     */
+    public static long ejecutarYMedirTiempo(Runnable tarea) {
+        // TODO extra: Mide el tiempo de ejecución de la tarea Runnable en milisegundos
+        return 0;
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: recoge a List y devuélvela.
+    /**
+     * Reto Extra 6: Iteración funcional controlada con Consumer.
+     * Aplica el consumidor indicado sobre todos los elementos de la lista.
+     *
+     * @param lista      lista de elementos
+     * @param consumidor acción a realizar
+     * @param <T>        tipo de los elementos
+     */
+    public static <T> void consumirLista(List<T> lista, Consumer<T> consumidor) {
+        // TODO extra: Itera y pasa cada elemento de la lista al consumidor
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: abre un bloque try alrededor de s.get().
+    /**
+     * Reto Extra 7: Factorías funcionales diferidas con Supplier.
+     * Retorna una instancia creada a partir del Supplier provisto.
+     *
+     * @param creador proveedor de instancias
+     * @param <T>     tipo del elemento retornado
+     * @return instancia de tipo T
+     */
+    public static <T> T crearConSupplier(Supplier<T> creador) {
+        // TODO extra: Obtén e instancia el objeto llamando al Supplier
+        return null;
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: si tiene éxito, devuelve ese valor.
+    /**
+     * Reto Extra 8: Acción secuencial múltiple con Consumers.
+     * Combina dos consumidores para que se ejecuten de forma consecutiva (c1 seguido de c2).
+     *
+     * @param c1  primer consumidor
+     * @param c2  segundo consumidor
+     * @param <T> tipo de los elementos
+     * @return consumidor compuesto
+     */
+    public static <T> Consumer<T> encadenarConsumidores(Consumer<T> c1, Consumer<T> c2) {
+        // TODO extra: Une ambos consumidores secuencialmente usando andThen()
+        return x -> {};
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: captura cualquier RuntimeException sin propagarla.
+    /**
+     * Reto Extra 9: Canalizaciones personalizadas.
+     * Filtra la lista por el predicado y transforma los elementos que coincidan usando la función dada.
+     *
+     * @param lista lista de elementos
+     * @param p     filtro a aplicar
+     * @param f     función de transformación
+     * @param <T>   tipo de entrada
+     * @param <R>   tipo de salida
+     * @return lista resultante con elementos filtrados y transformados
+     */
+    public static <T, R> List<R> filtrarYTransformar(List<T> lista, Predicate<T> p, Function<T, R> f) {
+        // TODO extra: Abre stream, filtra con p, mapea con f, y recolecta a lista
+        return List.of();
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: en el catch, devuelve 'fallback'.
+    /**
+     * Reto Extra 10: Tolerancia a fallos encadenada con Suppliers.
+     * Obtiene el valor del Supplier principal. Si éste arroja una excepción, obtiene el valor del Supplier fallback.
+     *
+     * @param principal proveedor principal
+     * @param fallback  proveedor secundario de contingencia
+     * @param <T>       tipo del valor retornado
+     * @return el resultado de principal, o el resultado de fallback ante errores de principal
+     */
+    public static <T> T obtenerSeguroConSupplier(Supplier<T> principal, Supplier<T> fallback) {
+        // TODO extra: Intenta obtener el valor de principal, si falla llama a fallback
+        return null;
     }
 
 }

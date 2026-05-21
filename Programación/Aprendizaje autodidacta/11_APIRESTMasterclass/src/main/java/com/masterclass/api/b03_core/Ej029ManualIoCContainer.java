@@ -10,7 +10,7 @@ import java.util.function.Supplier;
  * <p>Recrea, en pequeño, lo que hace Spring: registrar fábricas de beans y
  * resolverlos como singletons (la misma instancia en cada {@code getBean}).
  */
-public class Ej029ManualIoCContainer {
+public class Ej029ManualIoCContainer implements AutoCloseable {
 
     /**
      * Registra una fábrica para un tipo. El bean se crea de forma perezosa
@@ -52,44 +52,83 @@ public class Ej029ManualIoCContainer {
         System.out.println(c.getBean(StringBuilder.class) == c.getBean(StringBuilder.class));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: necesitas una estructura interna para fábricas (Map<Class,Supplier>).
+    // --- MÉTODOS DE RETOS EXTRA ---
+
+    /**
+     * Reto Extra 1: Registra una fábrica de alcance PROTOTYPE.
+     * Cada vez que se invoque getBean(tipo), debe retornarse una nueva instancia ejecutando esta fábrica.
+     */
+    public <T> void registerPrototype(Class<T> tipo, Supplier<T> fabrica) {
+        // TODO extra (Reto 1): Registra una fábrica prototype.
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: y otra para instancias ya creadas (caché de singletons).
+    /**
+     * Reto Extra 2: Registra una instancia pre-construida de un bean asociada a un nombre identificativo.
+     */
+    public void registerSingletonInstance(String nombre, Object instancia) {
+        // TODO extra (Reto 2): Registra una instancia singleton ya creada indexada por su nombre.
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: valida que 'tipo' y 'fabrica' no sean null.
+    /**
+     * Reto Extra 3: Recupera un bean registrado a partir de su nombre identificativo.
+     */
+    public Object getBeanByName(String nombre) {
+        // TODO extra (Reto 3): Busca y devuelve la instancia singleton asociada a dicho nombre.
+        // Lanza IllegalStateException si no existe.
+        return null;
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: guarda la fábrica indexada por 'tipo'.
+    /**
+     * Reto Extra 4: Comprueba si existe algún registro del bean en el contenedor.
+     */
+    public boolean hasBean(Class<?> tipo) {
+        // TODO extra (Reto 4): Retorna true si el tipo tiene asociada fábrica o instancia cacheada.
+        return false;
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: si no hay fábrica registrada para 'tipo' -> IllegalStateException.
+    /**
+     * Reto Extra 5: Vacía y limpia por completo todas las estructuras de registro y cachés del contenedor.
+     */
+    public void clear() {
+        // TODO extra (Reto 5): Restablece el contenedor a su estado inicial vacío.
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: si ya existe instancia cacheada, devuélvela (mismo objeto).
+    /**
+     * Reto Extra 6: Devuelve el recuento total de tipos o nombres registrados en el contenedor.
+     */
+    public int getBeanCount() {
+        // TODO extra (Reto 6): Devuelve el número total de beans definidos/registrados.
+        return 0;
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: si no, invoca la fábrica para crear la instancia.
+    /**
+     * Reto Extra 7: Registra un bean cuya fábrica depende dinámicamente de la resolución de otro bean registrado.
+     */
+    public <T> void registerWithDependency(Class<T> tipo, Class<?> dep, java.util.function.Function<Object, T> fabrica) {
+        // TODO extra (Reto 7): Define una fábrica que se invoque pasando como argumento el bean 'dep' obtenido del contenedor.
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: guarda la instancia en la caché de singletons.
+    /**
+     * Reto Extra 8: Resuelve y devuelve todas las instancias singleton que hereden o implementen el tipo indicado.
+     */
+    public <T> java.util.Map<String, T> getBeansOfType(Class<T> tipo) {
+        // TODO extra (Reto 8): Recorre las instancias singleton cacheadas y devuelve un mapa indexado por nombre/clase con las que coincidan.
+        return java.util.Map.of();
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: castea con tipo.cast(...) para devolver el tipo correcto sin warnings.
+    /**
+     * Reto Extra 9: Registra un alias alternativo que apunte al nombre de un bean ya existente.
+     */
+    public void registerAlias(String originalName, String alias) {
+        // TODO extra (Reto 9): Permite que getBeanByName resuelva el bean original usando el alias.
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve la instancia (futuras llamadas devolverán la misma).
+    /**
+     * Reto Extra 10: Callback de destrucción ordenada para liberar recursos de los singletons.
+     */
+    @Override
+    public void close() throws Exception {
+        // TODO extra (Reto 10): Recorre todas las instancias registradas y si implementan AutoCloseable, invoca su close().
     }
 
 }

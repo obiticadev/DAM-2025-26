@@ -33,44 +33,104 @@ public class Ej046PathVariables {
         System.out.println(new Ej046PathVariables().echo("abc"));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: anota la clase con @RestController.
+    // --- MÉTODOS DE RETOS EXTRA ---
+
+    /**
+     * Reto Extra 1: PathVariable con nombre explícito diferente.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/echo-diff/{otroNombre}")
+    public String echoDiferente(@org.springframework.web.bind.annotation.PathVariable("otroNombre") String val) {
+        // TODO extra: devuelve 'val'.
+        return null;
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: anota la clase con @RequestMapping("/api").
+    /**
+     * Reto Extra 2: Múltiples variables de ruta concurrentes.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/multi/{p1}/sub/{p2}")
+    public String multiplesVariables(
+            @org.springframework.web.bind.annotation.PathVariable String p1,
+            @org.springframework.web.bind.annotation.PathVariable String p2) {
+        // TODO extra: devuelve la concatenación de p1 y p2 separados por un guión (p1 + "-" + p2).
+        return null;
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: anota el método con @GetMapping("/echo/{valor}").
+    /**
+     * Reto Extra 3: Conversión automática a tipo Integer.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/buscar/{id}")
+    public int variableInteger(@org.springframework.web.bind.annotation.PathVariable Integer id) {
+        // TODO extra: devuelve el doble del valor de id.
+        return 0;
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: anota el parámetro con @PathVariable para enlazarlo al segmento {valor}.
+    /**
+     * Reto Extra 4: Conversión automática a tipo UUID.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/uuid/{uuid}")
+    public String variableUuid(@org.springframework.web.bind.annotation.PathVariable java.util.UUID uuid) {
+        // TODO extra: devuelve la representación string del UUID.
+        return null;
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: el nombre del @PathVariable debe coincidir con "{valor}" de la ruta.
+    /**
+     * Reto Extra 5: Validación de patrón con expresión regular.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/codigo/{codigo:[A-Z]{3}-\\d{4}}")
+    public String variableRegex(@org.springframework.web.bind.annotation.PathVariable String codigo) {
+        // TODO extra: devuelve "codigo valido: " seguido del codigo.
+        return null;
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: si difieren, usa @PathVariable("valor").
+    /**
+     * Reto Extra 6: Conversión a LocalDate con formato específico.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/fecha/{fecha}")
+    public String variableFecha(
+            @org.springframework.web.bind.annotation.PathVariable
+            @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE)
+            java.time.LocalDate fecha) {
+        // TODO extra: devuelve el año obtenido de la fecha en formato String.
+        return null;
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: no transformes el valor (eco literal).
+    /**
+     * Reto Extra 7: Variable de ruta opcional.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping(value = {"/opcional", "/opcional/{extra}"})
+    public String variableOpcional(@org.springframework.web.bind.annotation.PathVariable(name = "extra", required = false) java.util.Optional<String> extra) {
+        // TODO extra: devuelve el valor contenido si está presente, o "vacio" si no lo está.
+        return null;
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: el cuerpo de respuesta es exactamente 'valor'.
+    /**
+     * Reto Extra 8: Capturar todas las variables de ruta dinámicas en un Map.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/dinamico/{c1}/{c2}")
+    public java.util.Map<String, String> mapaVariables(@org.springframework.web.bind.annotation.PathVariable java.util.Map<String, String> variables) {
+        // TODO extra: devuelve el Map recibido con todas las variables de ruta dinámicas capturadas.
+        return null;
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: status 200 implícito al devolver normalmente.
+    /**
+     * Reto Extra 9: Lista de valores separados por comas.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/batch/{ids}")
+    public int listaVariables(@org.springframework.web.bind.annotation.PathVariable java.util.List<Long> ids) {
+        // TODO extra: devuelve el tamaño de la lista de ids recibida.
+        return 0;
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve 'valor'.
+    /**
+     * Reto Extra 10: Captura de variables de matriz.
+     */
+    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/coches/{modelo}")
+    public String matrizVariables(
+            @org.springframework.web.bind.annotation.PathVariable String modelo,
+            @org.springframework.web.bind.annotation.MatrixVariable(name = "color", pathVar = "modelo") String color,
+            @org.springframework.web.bind.annotation.MatrixVariable(name = "anio", pathVar = "modelo") String anio) {
+        // TODO extra: devuelve la cadena concatenando "modelo:" + modelo + ", color:" + color + ", anio:" + anio.
+        return null;
     }
 
 }

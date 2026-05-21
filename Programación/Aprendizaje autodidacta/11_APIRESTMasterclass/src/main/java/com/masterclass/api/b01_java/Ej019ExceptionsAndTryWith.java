@@ -29,6 +29,50 @@ public final class Ej019ExceptionsAndTryWith {
         }
     }
 
+    // --- Modelos y Excepciones para retos extra ---
+
+    public static class ErrorNegocioException extends Exception {
+        public ErrorNegocioException(String mensaje) {
+            super(mensaje);
+        }
+        public ErrorNegocioException(String mensaje, Throwable causa) {
+            super(mensaje, causa);
+        }
+    }
+
+    public static class ErrorSistemaException extends RuntimeException {
+        public ErrorSistemaException(String mensaje) {
+            super(mensaje);
+        }
+        public ErrorSistemaException(String mensaje, Throwable causa) {
+            super(mensaje, causa);
+        }
+    }
+
+    public static class RecursoFragil implements AutoCloseable {
+        public boolean cerrado = false;
+        private final boolean fallaAlCerrar;
+
+        public RecursoFragil(boolean fallaAlCerrar) {
+            this.fallaAlCerrar = fallaAlCerrar;
+        }
+
+        public String operar(boolean lanzarError) throws ErrorNegocioException {
+            if (lanzarError) {
+                throw new ErrorNegocioException("Error al operar");
+            }
+            return "operacion-exitosa";
+        }
+
+        @Override
+        public void close() throws Exception {
+            this.cerrado = true;
+            if (fallaAlCerrar) {
+                throw new IllegalStateException("Fallo catastrófico al cerrar");
+            }
+        }
+    }
+
     /**
      * Busca un recurso por id; lanza si no existe.
      *
@@ -64,44 +108,130 @@ public final class Ej019ExceptionsAndTryWith {
         System.out.println(buscar(5));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: comprueba la precondición id > 0.
+    /**
+     * Reto Extra 1: Cierre manual y seguro de recursos.
+     * Cierra el recurso de manera segura. Si lanza una excepción en close(),
+     * la captura e impide que se propague (silenciosamente o registrando).
+     *
+     * @param recurso recurso liberable
+     */
+    public static void cerrarRecursoSeguro(AutoCloseable recurso) {
+        // TODO extra: intenta cerrar el recurso en un bloque try-catch que atrape cualquier Exception
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si id <= 0, construye el mensaje "no existe: " + id.
+    /**
+     * Reto Extra 2: Procesamiento clásico con try-with-resources.
+     * Usa try-with-resources para garantizar el cierre del RecursoFragil y ejecuta operar().
+     *
+     * @param recurso         recurso a ser usado y cerrado automáticamente
+     * @param lanzarAlOperar indica si operar() debe fallar
+     * @return el resultado de la operación
+     * @throws ErrorNegocioException si la operación falla
+     */
+    public static String procesarConTryWithResources(RecursoFragil recurso, boolean lanzarAlOperar) throws ErrorNegocioException {
+        // TODO extra: abre un bloque try-with-resources con el recurso, llama a operar y devuelve su valor
+        return "";
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: lanza RecursoNoEncontradoException con ese mensaje.
+    /**
+     * Reto Extra 3: Propagación de excepciones con encadenamiento (exception chaining).
+     * Lanza una nueva ErrorSistemaException que encapsule y mantenga la causa original.
+     *
+     * @param mensaje mensaje explicativo personalizado
+     * @param causa   excepción original causante
+     */
+    public static void lanzarConCausaOriginal(String mensaje, Throwable causa) {
+        // TODO extra: lanza una ErrorSistemaException pasando el mensaje y la causa original
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: si la precondición se cumple, construye "recurso-" + id.
+    /**
+     * Reto Extra 4: Modos silenciosos para procesos secundarios.
+     * Ejecuta una tarea Runnable. Si ésta lanza cualquier excepción, la captura y la ignora.
+     *
+     * @param accion tarea a ejecutar
+     */
+    public static void ejecutarAccionIgnorandoExcepcion(Runnable accion) {
+        // TODO extra: ejecuta la acción dentro de un try-catch que ignore todas las excepciones
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: devuelve esa cadena.
+    /**
+     * Reto Extra 5: Análisis de excepciones suprimidas.
+     * Ejecuta operar(true) sobre un RecursoFragil configurado para fallar al cerrar dentro de un try-with-resources.
+     * Captura la excepción de negocio lanzada, extrae la excepción suprimida (el fallo al cerrar) y retorna su mensaje.
+     * Si no hay excepción suprimida, retorna una cadena vacía.
+     *
+     * @param recurso recurso frágil que falla al cerrar
+     * @return mensaje de la excepción suprimida, o vacío si no hay ninguna
+     */
+    public static String detectarExcepcionSuprimida(RecursoFragil recurso) {
+        // TODO extra: opera el recurso en try-with-resources forzando fallo, captura ErrorNegocioException y extrae getSuppressed()
+        return "";
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: abre un try-with-resources declarando el recurso (try (var r = c)).
+    /**
+     * Reto Extra 6: Detección recursiva de excepciones de negocio.
+     * Determina si la excepción provista es, o tiene en su cadena de causas, una ErrorNegocioException.
+     *
+     * @param t excepción a inspeccionar
+     * @return true si es o contiene un error de negocio
+     */
+    public static boolean esExcepcionDeNegocio(Throwable t) {
+        // TODO extra: recorre de forma recursiva o iterativa las causas de t buscando ErrorNegocioException
+        return false;
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: dentro del try, invoca r.leer() y guarda el resultado.
+    /**
+     * Reto Extra 7: Formateador de excepciones amigable para APIs.
+     * Inspecciona la excepción y retorna el mensaje de la causa raíz formateado como "Error: [mensaje]".
+     * Si no hay mensaje en la causa raíz, usa el nombre de su clase.
+     *
+     * @param t excepción original
+     * @return mensaje formateado amigable
+     */
+    public static String obtenerMensajeDeErrorFormateado(Throwable t) {
+        // TODO extra: navega hasta el final de la cadena de causas y formatea su mensaje
+        return "";
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: el cierre debe ser automático al salir del try (no llames close() a mano).
+    /**
+     * Reto Extra 8: Algoritmo de tolerancia a fallos con reintentos.
+     * Ejecuta una acción que devuelve un String. Si falla, realiza reintentos sucesivos hasta maxReintentos.
+     * Si todos los reintentos fallan, lanza la última excepción capturada envuelta en un RuntimeException.
+     *
+     * @param accion        acción a ejecutar
+     * @param maxReintentos número máximo de intentos adicionales
+     * @return el resultado de la acción
+     */
+    public static String ejecutarConReintentos(java.util.concurrent.Callable<String> accion, int maxReintentos) {
+        // TODO extra: ejecuta la acción con un bucle de reintentos e incrementando contadores ante fallos
+        return "";
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: garantiza que se cierra incluso si hubiera excepción (lo hace try-with-resources).
+    /**
+     * Reto Extra 9: Inspección de tipo en la causa raíz.
+     * Verifica si la causa raíz de una excepción es del tipo de clase especificado.
+     *
+     * @param tipoEx tipo de excepción esperado en la raíz
+     * @param ex     excepción bajo análisis
+     * @return true si la causa raíz coincide con el tipo especificado
+     */
+    public static boolean esCausaRaiz(Class<? extends Throwable> tipoEx, Throwable ex) {
+        // TODO extra: busca el último Throwable de la cadena y comprueba si es asignable a tipoEx
+        return false;
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve el valor leído.
+    /**
+     * Reto Extra 10: Try-with-resources con múltiples recursos dependientes.
+     * Abre ambos recursos en una única instrucción try-with-resources y retorna la concatenación de sus operaciones exitosas.
+     *
+     * @param r1 primer recurso
+     * @param r2 segundo recurso
+     * @return r1.operar() + "+" + r2.operar()
+     * @throws Exception si ocurre algún error
+     */
+    public static String procesarRecursosMultiples(RecursoFragil r1, RecursoFragil r2) throws Exception {
+        // TODO extra: declara r1 y r2 en la cabecera del try-with-resources y opera sobre ellos
+        return "";
     }
 
 }

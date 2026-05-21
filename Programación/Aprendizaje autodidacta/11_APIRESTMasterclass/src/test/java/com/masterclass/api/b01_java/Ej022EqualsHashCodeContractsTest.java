@@ -28,4 +28,97 @@ class Ej022EqualsHashCodeContractsTest {
         s.add(new Articulo("A1", "y"));
         assertEquals(1, s.size());
     }
+
+    @Test
+    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 1")
+    void retoExtra01_esSimetrico() {
+        var a1 = new Articulo("A1", "Tornillo");
+        var a2 = new Articulo("A1", "Tornillo");
+        var b = new Articulo("B1", "Clavo");
+        assertTrue(Ej022EqualsHashCodeContracts.esSimetrico(a1, a2));
+        assertTrue(Ej022EqualsHashCodeContracts.esSimetrico(a1, b));
+        assertTrue(Ej022EqualsHashCodeContracts.esSimetrico(null, null));
+        assertTrue(Ej022EqualsHashCodeContracts.esSimetrico(a1, null));
+    }
+
+    @Test
+    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 2")
+    void retoExtra02_esTransitivo() {
+        var a = new Articulo("A1", "Tornillo");
+        var b = new Articulo("A1", "Tornillo (v2)");
+        var c = new Articulo("A1", "Tornillo (v3)");
+        assertTrue(Ej022EqualsHashCodeContracts.esTransitivo(a, b, c));
+        assertTrue(Ej022EqualsHashCodeContracts.esTransitivo(a, b, null));
+    }
+
+    @Test
+    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 3")
+    void retoExtra03_esConsistenteHashCode() {
+        var a = new Articulo("A1", "Tornillo");
+        assertTrue(Ej022EqualsHashCodeContracts.esConsistenteHashCode(a));
+        assertTrue(Ej022EqualsHashCodeContracts.esConsistenteHashCode("hola"));
+        assertFalse(Ej022EqualsHashCodeContracts.esConsistenteHashCode(null));
+    }
+
+    @Test
+    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
+    void retoExtra04_verificarContratoEqualsYHashCode() {
+        var a = new Articulo("A1", "Tornillo");
+        var b = new Articulo("A1", "Tornillo (v2)");
+        var c = new Articulo("B1", "Clavo");
+        assertTrue(Ej022EqualsHashCodeContracts.verificarContratoEqualsYHashCode(a, b));
+        assertTrue(Ej022EqualsHashCodeContracts.verificarContratoEqualsYHashCode(a, c)); // Si no son iguales, cumple el contrato de igual forma
+    }
+
+    @Test
+    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 5")
+    void retoExtra05_esEqualsNuloSeguro() {
+        var a = new Articulo("A1", "Tornillo");
+        assertTrue(Ej022EqualsHashCodeContracts.esEqualsNuloSeguro(a));
+        assertFalse(Ej022EqualsHashCodeContracts.esEqualsNuloSeguro(null));
+    }
+
+    @Test
+    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 6")
+    void retoExtra06_formatearToStringElegante() {
+        assertEquals("Articulo{id=123, descripcion='Tornillo de acero'}",
+                Ej022EqualsHashCodeContracts.formatearToStringElegante("Articulo", 123, "Tornillo de acero"));
+    }
+
+    @Test
+    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 7")
+    void retoExtra07_verificarColisionHash() {
+        // En Java, las cadenas "Aa" y "BB" tienen el mismo hashCode: 2112
+        String s1 = "Aa";
+        String s2 = "BB";
+        assertEquals(s1.hashCode(), s2.hashCode());
+        assertNotEquals(s1, s2);
+        assertTrue(Ej022EqualsHashCodeContracts.verificarColisionHash(s1, s2));
+        assertFalse(Ej022EqualsHashCodeContracts.verificarColisionHash("hola", "mundo"));
+    }
+
+    @Test
+    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
+    void retoExtra08_esIdentidadConsistente() {
+        var a = new Articulo("A1", "Tornillo");
+        assertTrue(Ej022EqualsHashCodeContracts.esIdentidadConsistente(a));
+        assertFalse(Ej022EqualsHashCodeContracts.esIdentidadConsistente(null));
+    }
+
+    @Test
+    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 9")
+    void retoExtra09_calcularHashCombinado() {
+        int hash1 = Ej022EqualsHashCodeContracts.calcularHashCombinado("A1", 100);
+        int hash2 = java.util.Objects.hash("A1", 100);
+        assertEquals(hash2, hash1);
+    }
+
+    @Test
+    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
+    void retoExtra10_esInstanciaCompatible() {
+        var a = new Articulo("A1", "Tornillo");
+        assertTrue(Ej022EqualsHashCodeContracts.esInstanciaCompatible(a, Articulo.class));
+        assertFalse(Ej022EqualsHashCodeContracts.esInstanciaCompatible("hola", Articulo.class));
+        assertFalse(Ej022EqualsHashCodeContracts.esInstanciaCompatible(null, Articulo.class));
+    }
 }
