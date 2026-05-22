@@ -9,6 +9,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 import com.example.ahorcado.Clases.Ahorcado;
+import com.example.ahorcado.Clases.AhorcadoASCII;
 
 public class Main {
     private static Scanner sc = new Scanner(System.in);
@@ -22,7 +23,11 @@ public class Main {
             switch (respuestaMenu) {
                 case "1" -> {
                     int estilo = option1();
-                    List<String> ahorcado = Ahorcado.listaAhorcado().get(estilo);
+                    if (estilo != -1) {
+                        String palabra = palabraElegida();
+                        Ahorcado juego = new Ahorcado(estilo, palabra);
+                        juego(juego);
+                    }
                 }
                 case "0" -> {
                     System.out.println("Saliendo del programa...");
@@ -32,7 +37,7 @@ public class Main {
                     System.out.println("Selecciona una opción válida");
                 }
             }
-        } while (respuestaMenu != "0");
+        } while (!respuestaMenu.equals("0"));
     }
 
     public static void menu() {
@@ -62,30 +67,52 @@ public class Main {
                     Selecciona una opción:\t""");
             respuesta = sc.nextLine();
             switch (respuesta) {
-                case "1" -> {
-                    return (Integer.parseInt(respuesta)) - 1;
+                case "1", "2", "3" -> {
+                    return Integer.parseInt(respuesta) - 1;
                 }
-                case "2" -> {
-                    return (Integer.parseInt(respuesta)) - 1;
-                }
-                case "3" -> {
-                    return (Integer.parseInt(respuesta)) - 1;
+                case "0" -> {
+                    return -1;
                 }
 
                 default -> {
                     System.out.println("Selecciona una opción válida");
                 }
             }
-        } while (respuesta != "0");
+        } while (!respuesta.equals("0"));
         return -1;
+    }
 
+    public static void juego(Ahorcado juego) {
+        boolean continuar = true;
+        do {
+            System.out.println(AhorcadoASCII.listaAhorcado().get(juego.getEstilo()).get(juego.getIntentos()));
+            System.out.println("\nPalabra actual: " + juego.getPalabraJuego());
+            System.out.print("\nIntroduce un carácter:\s");
+            
+            String entrada = sc.nextLine();
+            
+            if (entrada.isEmpty()) {
+                System.out.println("Por favor, introduce al menos un carácter.");
+                continue;
+            }
+            
+            char caracter = entrada.toUpperCase().charAt(0);
+            
+            juego.buscarCaracter(caracter);
+
+            if (juego.getIntentos() >= 10) {
+                System.out.println("Has alcanzado el número máximo de fallos (10). ¡Fin del juego!");
+                continuar = false;
+            }
+            
+        } while (continuar);
     }
 
     public static String palabraElegida() {
         try (BufferedReader br = new BufferedReader(new FileReader(palabras))) {
             String linea;
             List<String> listaPalabras = new ArrayList<>();
-            if ((linea = br.readLine()) != null) {
+            while ((linea = br.readLine()) != null) {
                 listaPalabras.add(linea);
             }
             Random rd = new Random();
@@ -96,22 +123,4 @@ public class Main {
         }
         return null;
     }
-
-    public static void juego(int estilo, String palabra) {
-        boolean continuar = true;
-        int intentos = 0;
-        String palabraJuego = "_ ".repeat(palabra.length());
-        do {
-            System.out.println(Ahorcado.listaAhorcado().get(estilo).get(intentos));
-            System.out.print("\nIntroduce un carácter:\s");
-            char caracter = sc.nextLine().toUpperCase().charAt(1);
-        } while (continuar);
-    }
-
-    public static void buscarCaracter(String palabra, char caracter) {
-        if (palabra.contains(String.valueOf(caracter))) {
-            // TODO por aquí me he quedado
-        }
-    }
-
 }
