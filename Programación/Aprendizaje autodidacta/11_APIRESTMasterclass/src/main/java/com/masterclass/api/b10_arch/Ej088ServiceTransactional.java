@@ -59,44 +59,90 @@ public final class Ej088ServiceTransactional {
         System.out.println(a.saldo + " / " + b.saldo);
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: valida origen y destino no null.
+    /**
+     * TODO extra 1: Valida que las cuentas de origen y destino no sean nulas.
+     */
+    public static void desafioValidarCuentas(Cuenta origen, Cuenta destino) {
+        if (origen == null || destino == null) {
+            throw new IllegalArgumentException("Las cuentas no pueden ser nulas");
+        }
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: valida importe > 0.
+    /**
+     * TODO extra 2: Valida que el importe a transferir sea positivo.
+     */
+    public static void desafioValidarImportePositivo(double importe) {
+        if (importe <= 0) {
+            throw new IllegalArgumentException("El importe debe ser mayor que cero");
+        }
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: comprueba ANTES de tocar nada si origen.saldo >= importe.
+    /**
+     * TODO extra 3: Comprueba si la cuenta tiene fondos suficientes.
+     */
+    public static boolean desafioComprobarFondosSuficientes(Cuenta origen, double importe) {
+        return origen.saldo >= importe;
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: si no hay fondos, lanza SaldoInsuficienteException SIN modificar saldos
+    /**
+     * TODO extra 4: Lanza SaldoInsuficienteException si la cuenta no tiene fondos.
+     */
+    public static void desafioLanzarSaldoInsuficiente(Cuenta origen, double importe) {
+        if (!desafioComprobarFondosSuficientes(origen, importe)) {
+            throw new SaldoInsuficienteException("Saldo insuficiente");
+        }
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: resta importe a origen.saldo.
+    /**
+     * TODO extra 5: Resta el importe del saldo de la cuenta origen.
+     */
+    public static void desafioRestarSaldo(Cuenta origen, double importe) {
+        origen.saldo -= importe;
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: suma importe a destino.saldo.
+    /**
+     * TODO extra 6: Suma el importe al saldo de la cuenta destino.
+     */
+    public static void desafioSumarSaldo(Cuenta destino, double importe) {
+        destino.saldo += importe;
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: ambos pasos forman UNA unidad atómica (todo o nada).
+    /**
+     * TODO extra 7: Verifica que la suma total de saldos permanezca constante.
+     */
+    public static double desafioSumaTotalConstante(Cuenta origen, Cuenta destino) {
+        return origen.saldo + destino.saldo;
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: el orden importa: valida primero, muta después (consistencia).
+    /**
+     * TODO extra 8: Realiza la transferencia de forma completa.
+     */
+    public static void desafioTransferenciaCompleta(Cuenta origen, Cuenta destino, double importe) {
+        desafioValidarCuentas(origen, destino);
+        desafioValidarImportePositivo(importe);
+        desafioLanzarSaldoInsuficiente(origen, importe);
+        desafioRestarSaldo(origen, importe);
+        desafioSumarSaldo(destino, importe);
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: no debe quedar dinero "en el aire" (suma total constante).
+    /**
+     * TODO extra 9: Devuelve un log representativo del estado de las cuentas.
+     */
+    public static String desafioVerificarAuditoria(Cuenta origen, Cuenta destino) {
+        return origen.id + ":" + origen.saldo + "|" + destino.id + ":" + destino.saldo;
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: método void: el efecto es la mutación atómica de ambas cuentas.
+    /**
+     * TODO extra 10: Verifica si es posible transferir con fondos hipotéticos sin alterar nada.
+     */
+    public static boolean desafioEsTransaccionValida(Cuenta origen, Cuenta destino, double importe) {
+        try {
+            desafioValidarCuentas(origen, destino);
+            desafioValidarImportePositivo(importe);
+            return desafioComprobarFondosSuficientes(origen, importe);
+        } catch (Exception e) {
+            return false;
+        }
     }
 
 }

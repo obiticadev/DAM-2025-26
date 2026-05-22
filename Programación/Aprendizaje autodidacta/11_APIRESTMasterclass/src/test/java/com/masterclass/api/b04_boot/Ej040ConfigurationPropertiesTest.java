@@ -32,7 +32,6 @@ class Ej040ConfigurationPropertiesTest {
                 () -> Ej040ConfigurationProperties.bind(Map.of("app.region", "eu", "app.timeout", "x")));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 01")
     @org.junit.jupiter.api.Test
     void testPasoExtra01() {
         var props = Map.of("server.host", "localhost", "server.port", "8080");
@@ -42,7 +41,6 @@ class Ej040ConfigurationPropertiesTest {
         assertEquals(8080, result.getPort());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 02")
     @org.junit.jupiter.api.Test
     void testPasoExtra02() {
         var propsValidas = Map.of("server.host", "localhost", "server.port", "8080");
@@ -53,7 +51,6 @@ class Ej040ConfigurationPropertiesTest {
         assertThrows(Exception.class, () -> Ej040ConfigurationProperties.pasoExtra02(propsInvalidas));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 03")
     @org.junit.jupiter.api.Test
     void testPasoExtra03() {
         var props = Map.of("app.name", "MyDemoApp", "app.server.host", "127.0.0.1", "app.server.port", "9000");
@@ -65,7 +62,6 @@ class Ej040ConfigurationPropertiesTest {
         assertEquals(9000, result.getServer().getPort());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 04")
     @org.junit.jupiter.api.Test
     void testPasoExtra04() {
         var props = Map.of(
@@ -81,7 +77,6 @@ class Ej040ConfigurationPropertiesTest {
         assertEquals("production", result.getMetadata().get("env"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 05")
     @org.junit.jupiter.api.Test
     void testPasoExtra05() {
         var props = Map.of("my-custom-prefix.host", "some-host", "my-custom-prefix.port", "8888");
@@ -91,7 +86,6 @@ class Ej040ConfigurationPropertiesTest {
         assertEquals(8888, result.getPort());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 06")
     @org.junit.jupiter.api.Test
     void testPasoExtra06() {
         var props = Map.of("external-service-url", "https://api.external.com");
@@ -100,7 +94,6 @@ class Ej040ConfigurationPropertiesTest {
         assertEquals("https://api.external.com", result.getExternalServiceUrl());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 07")
     @org.junit.jupiter.api.Test
     void testPasoExtra07() {
         var result = Ej040ConfigurationProperties.pasoExtra07(Map.of());
@@ -109,7 +102,6 @@ class Ej040ConfigurationPropertiesTest {
         assertEquals(8080, result.getPort());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 08")
     @org.junit.jupiter.api.Test
     void testPasoExtra08() {
         @org.springframework.boot.context.properties.EnableConfigurationProperties(Ej040ConfigurationProperties.ServerConfig.class)
@@ -119,7 +111,6 @@ class Ej040ConfigurationPropertiesTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 09")
     @org.junit.jupiter.api.Test
     void testPasoExtra09() {
         var props = Map.of("timeout", "5s");
@@ -128,7 +119,6 @@ class Ej040ConfigurationPropertiesTest {
         assertEquals(Duration.ofSeconds(5), result.getTimeout());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     @org.junit.jupiter.api.Test
     void testPasoExtra10() {
         var server = new Ej040ConfigurationProperties.ServerConfig("local-dns", 443);

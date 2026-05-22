@@ -2,6 +2,7 @@ package com.masterclass.api.b01_java;
 
 import org.junit.jupiter.api.Test;
 import java.util.List;
+import java.util.function.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class Ej017FunctionalInterfacesTest {
@@ -26,7 +27,6 @@ class Ej017FunctionalInterfacesTest {
         }, "fb"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 1")
     @Test
     void retoExtra01_combinarPredicadosAND() {
         Predicate<Integer> p1 = n -> n > 5;
@@ -37,7 +37,6 @@ class Ej017FunctionalInterfacesTest {
         assertFalse(andPred.test(7));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 2")
     @Test
     void retoExtra02_combinarPredicadosOR() {
         Predicate<Integer> p1 = n -> n > 5;
@@ -49,7 +48,6 @@ class Ej017FunctionalInterfacesTest {
         assertFalse(orPred.test(3));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 3")
     @Test
     void retoExtra03_negarPredicado() {
         Predicate<Integer> p = n -> n > 5;
@@ -58,7 +56,6 @@ class Ej017FunctionalInterfacesTest {
         assertTrue(negated.test(4));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
     @Test
     void retoExtra04_componerFunciones() {
         Function<Integer, Integer> f1 = n -> n * 2;
@@ -67,7 +64,6 @@ class Ej017FunctionalInterfacesTest {
         assertEquals("res: 10", comp.apply(5));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 5")
     @Test
     void retoExtra05_ejecutarYMedirTiempo() {
         long time = Ej017FunctionalInterfaces.ejecutarYMedirTiempo(() -> {
@@ -80,7 +76,6 @@ class Ej017FunctionalInterfacesTest {
         assertTrue(time >= 10, "Debería tardar al menos 10 milisegundos");
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 6")
     @Test
     void retoExtra06_consumirLista() {
         List<String> list = List.of("a", "b");
@@ -89,14 +84,12 @@ class Ej017FunctionalInterfacesTest {
         assertEquals(List.of("a", "b"), dest);
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 7")
     @Test
     void retoExtra07_crearConSupplier() {
         Supplier<String> supplier = () -> "instancia";
         assertEquals("instancia", Ej017FunctionalInterfaces.crearConSupplier(supplier));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
     @Test
     void retoExtra08_encadenarConsumidores() {
         List<String> logs = new java.util.ArrayList<>();
@@ -107,7 +100,6 @@ class Ej017FunctionalInterfacesTest {
         assertEquals(List.of("c1: hola", "c2: hola"), logs);
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 9")
     @Test
     void retoExtra09_filtrarYTransformar() {
         List<Integer> list = List.of(1, 2, 3, 4);
@@ -115,7 +107,6 @@ class Ej017FunctionalInterfacesTest {
         assertEquals(List.of("num 2", "num 4"), res);
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     @Test
     void retoExtra10_obtenerSeguroConSupplier() {
         Supplier<String> success = () -> "ok";

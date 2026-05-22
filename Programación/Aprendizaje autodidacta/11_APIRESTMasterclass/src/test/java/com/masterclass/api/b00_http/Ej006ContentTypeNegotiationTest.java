@@ -32,7 +32,6 @@ class Ej006ContentTypeNegotiationTest {
                 Ej006ContentTypeNegotiation.negotiate("text/csv", supported));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 1")
     @Test
     void retoExtra01_extraerCalidad() {
         assertEquals(0.9, Ej006ContentTypeNegotiation.extraerCalidad("text/html;q=0.9"));
@@ -40,7 +39,6 @@ class Ej006ContentTypeNegotiationTest {
         assertEquals(1.0, Ej006ContentTypeNegotiation.extraerCalidad("text/html;q=abc"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 2")
     @Test
     void retoExtra02_ordenarPorCalidad() {
         var sorted = Ej006ContentTypeNegotiation.ordenarPorCalidad("text/plain;q=0.5, application/json;q=0.9, text/html");
@@ -50,7 +48,6 @@ class Ej006ContentTypeNegotiationTest {
         assertEquals("text/plain", sorted.get(2)); // q = 0.5
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 3")
     @Test
     void retoExtra03_esMimeSoportado() {
         var list = List.of("text/html", "image/*");
@@ -59,7 +56,6 @@ class Ej006ContentTypeNegotiationTest {
         assertFalse(Ej006ContentTypeNegotiation.esMimeSoportado("text/plain", list));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
     @Test
     void retoExtra04_esXml() {
         assertTrue(Ej006ContentTypeNegotiation.esXml("application/xml"));
@@ -67,7 +63,6 @@ class Ej006ContentTypeNegotiationTest {
         assertFalse(Ej006ContentTypeNegotiation.esXml("application/json"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 5")
     @Test
     void retoExtra05_esJson() {
         assertTrue(Ej006ContentTypeNegotiation.esJson("application/json"));
@@ -75,14 +70,12 @@ class Ej006ContentTypeNegotiationTest {
         assertFalse(Ej006ContentTypeNegotiation.esJson("text/html"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 6")
     @Test
     void retoExtra06_normalizarMime() {
         assertEquals("text/html", Ej006ContentTypeNegotiation.normalizarMime("  TEXT/html;charset=utf-8 "));
         assertEquals("application/json", Ej006ContentTypeNegotiation.normalizarMime("application/json;q=1.0"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 7")
     @Test
     void retoExtra07_clienteAceptaHtml() {
         assertTrue(Ej006ContentTypeNegotiation.clienteAceptaHtml("text/html, application/xhtml+xml"));
@@ -90,14 +83,12 @@ class Ej006ContentTypeNegotiationTest {
         assertFalse(Ej006ContentTypeNegotiation.clienteAceptaHtml("application/json"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
     @Test
     void retoExtra08_negociarConCalidad() {
         var supported = List.of("application/json", "application/xml");
         assertEquals("application/xml", Ej006ContentTypeNegotiation.negociarConCalidad("application/json;q=0.5, application/xml;q=0.9", supported));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 9")
     @Test
     void retoExtra09_esTipoDeContenidoValido() {
         assertTrue(Ej006ContentTypeNegotiation.esTipoDeContenidoValido("application/json"));
@@ -105,7 +96,6 @@ class Ej006ContentTypeNegotiationTest {
         assertFalse(Ej006ContentTypeNegotiation.esTipoDeContenidoValido(""));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     @Test
     void retoExtra10_extraerSubtipo() {
         assertEquals("json", Ej006ContentTypeNegotiation.extraerSubtipo("application/json"));

@@ -44,8 +44,12 @@ public final class Ej056CorsConfiguration {
      * la cual puede contener patrones con comodín de subdominio (ej: "https://*.company.com").
      */
     public static boolean pasoExtra01(String origin, List<String> allowedOrigins) {
-        // TODO extra: implementa la verificación de orígenes con comodín de subdominio.
-        return false;
+        // TODO extra: Reto Extra 1: Soporte de comodines en subdominios para orígenes permitidos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra01");
     }
 
     /**
@@ -55,8 +59,12 @@ public final class Ej056CorsConfiguration {
      * "Access-Control-Request-Method".
      */
     public static boolean pasoExtra02(String httpMethod, Map<String, String> headers) {
-        // TODO extra: identifica si es una petición de tipo Preflight.
-        return false;
+        // TODO extra: Reto Extra 2: Identificación de peticiones Preflight.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra02");
     }
 
     /**
@@ -67,8 +75,12 @@ public final class Ej056CorsConfiguration {
      * el 'origin' específico.
      */
     public static Map<String, String> pasoExtra03(Map<String, String> currentHeaders, boolean allowCredentials, String origin) {
-        // TODO extra: inyecta soporte de credenciales de forma segura.
-        return Map.of();
+        // TODO extra: Reto Extra 3: Modificación segura de cabeceras para habilitar credenciales.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra03");
     }
 
     /**
@@ -77,8 +89,12 @@ public final class Ej056CorsConfiguration {
      * y un máximo de "1800" (30 minutos) por políticas de seguridad del servidor.
      */
     public static String pasoExtra04(String requestMaxAge) {
-        // TODO extra: calcula y acota el Max-Age de la caché de preflight.
-        return "1800";
+        // TODO extra: Reto Extra 4: Cálculo y acotamiento de la cabecera Max-Age.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra04");
     }
 
     /**
@@ -88,8 +104,12 @@ public final class Ej056CorsConfiguration {
      * insensible a mayúsculas/minúsculas.
      */
     public static boolean pasoExtra05(List<String> requestedHeaders, List<String> allowedHeaders) {
-        // TODO extra: valida si todas las cabeceras personalizadas son conformes.
-        return false;
+        // TODO extra: Reto Extra 5: Validación de cabeceras personalizadas en Preflight.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra05");
     }
 
     /**
@@ -98,8 +118,12 @@ public final class Ej056CorsConfiguration {
      * con puerto dinámico (ej: "http://localhost:3000" o "http://127.0.0.1:8080").
      */
     public static boolean pasoExtra06(String origin) {
-        // TODO extra: valida si es un origen de desarrollo local válido.
-        return false;
+        // TODO extra: Reto Extra 6: Validación de orígenes locales de desarrollo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra06");
     }
 
     /**
@@ -109,8 +133,12 @@ public final class Ej056CorsConfiguration {
      * de respuesta customizadas.
      */
     public static Map<String, String> pasoExtra07(Map<String, String> currentHeaders, List<String> exposedHeaders) {
-        // TODO extra: configura y expón cabeceras de respuesta personalizadas al frontend.
-        return Map.of();
+        // TODO extra: Reto Extra 7: Configuración de cabeceras expuestas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra07");
     }
 
     /**
@@ -119,8 +147,12 @@ public final class Ej056CorsConfiguration {
      * Si detecta saltos de línea (\r, \n) o caracteres maliciosos, devuelve null.
      */
     public static String pasoExtra08(String origin) {
-        // TODO extra: sanea y valida el string Origin contra CRLF injection.
-        return null;
+        // TODO extra: Reto Extra 8: Saneamiento y validación defensiva de la cabecera Origin.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra08");
     }
 
     /**
@@ -128,8 +160,12 @@ public final class Ej056CorsConfiguration {
      * Evalúa si un método HTTP califica como "CORS Simple Method" (GET, HEAD, POST).
      */
     public static boolean pasoExtra09(String method) {
-        // TODO extra: evalúa si el método HTTP es simple según la especificación CORS.
-        return false;
+        // TODO extra: Reto Extra 9: Comprobación de métodos CORS simples.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra09");
     }
 
     /**
@@ -138,8 +174,12 @@ public final class Ej056CorsConfiguration {
      * (ej: Accept, Accept-Language, Content-Language, o Content-Type con valores específicos).
      */
     public static boolean pasoExtra10(String headerName, String headerValue) {
-        // TODO extra: comprueba si califica como cabecera CORS simple.
-        return false;
+        // TODO extra: Reto Extra 10: Comprobación de cabeceras CORS simples.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra10");
     }
 
 }

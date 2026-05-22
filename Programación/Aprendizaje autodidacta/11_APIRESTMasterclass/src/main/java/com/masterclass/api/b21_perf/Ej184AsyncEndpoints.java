@@ -68,44 +68,124 @@ public final class Ej184AsyncEndpoints {
         System.out.println(sumarEnParalelo(List.of(1, 2, 3), x -> x * x));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si entradas es null -> IllegalArgumentException.
+        /**
+     * RETO EXTRA 01: Valida si contiene null.
+     */
+    public static boolean esEntradaNula(java.util.List<Integer> list) {
+        // TODO extra: RETO EXTRA 01: Valida si contiene null.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esEntradaNula");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si tarea es null -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 02: Crea un future asincrono.
+     */
+    public static java.util.concurrent.CompletableFuture<String> crearFuture(java.util.function.Supplier<String> sup) {
+        // TODO extra: RETO EXTRA 02: Crea un future asincrono.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearFuture");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: si alguna entrada es null -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 03: Obtiene resultado bloqueando.
+     */
+    public static String obtenerResultadoFuture(java.util.concurrent.CompletableFuture<String> fut) {
+        // TODO extra: RETO EXTRA 03: Obtiene resultado bloqueando.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerResultadoFuture");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: crea un CompletableFuture por entrada con supplyAsync(() -> tarea.apply(e)).
+    /**
+     * RETO EXTRA 04: Crea un future completado.
+     */
+    public static java.util.concurrent.CompletableFuture<String> futureCompletadoCon(String v) {
+        // TODO extra: RETO EXTRA 04: Crea un future completado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para futureCompletadoCon");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: recoge todos los futures en una lista.
+    /**
+     * RETO EXTRA 05: Combina dos futures asincronos.
+     */
+    public static java.util.concurrent.CompletableFuture<String> combinarDos(java.util.concurrent.CompletableFuture<String> f1, java.util.concurrent.CompletableFuture<String> f2) {
+        // TODO extra: RETO EXTRA 05: Combina dos futures asincronos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para combinarDos");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: usa CompletableFuture.allOf(...) para esperar a que todos terminen.
+    /**
+     * RETO EXTRA 06: Obtiene valor de inmediato o un default.
+     */
+    public static String ejecutarRapido(java.util.concurrent.CompletableFuture<String> fut) {
+        // TODO extra: RETO EXTRA 06: Obtiene valor de inmediato o un default.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para ejecutarRapido");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: tras allOf, join() ya no bloquea de forma indefinida.
+    /**
+     * RETO EXTRA 07: Espera al mas rapido.
+     */
+    public static java.util.concurrent.CompletableFuture<Object> esperarCualquiera(java.util.concurrent.CompletableFuture<String> f1, java.util.concurrent.CompletableFuture<String> f2) {
+        // TODO extra: RETO EXTRA 07: Espera al mas rapido.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esperarCualquiera");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: mapea cada future a su resultado con join() y suma con reduce/sum.
+    /**
+     * RETO EXTRA 08: Transforma asincronamente el resultado.
+     */
+    public static java.util.concurrent.CompletableFuture<Integer> mapearResultado(java.util.concurrent.CompletableFuture<Integer> fut) {
+        // TODO extra: RETO EXTRA 08: Transforma asincronamente el resultado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para mapearResultado");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: si entradas esta vacia, el resultado es 0 (identidad de la suma).
+    /**
+     * RETO EXTRA 09: Provee fallback si falla el future.
+     */
+    public static java.util.concurrent.CompletableFuture<String> excepcionControlada(java.util.concurrent.CompletableFuture<String> fut) {
+        // TODO extra: RETO EXTRA 09: Provee fallback si falla el future.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para excepcionControlada");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve la suma combinada.
+    /**
+     * RETO EXTRA 10: Crea una lista limpia de futures.
+     */
+    public static java.util.List<java.util.concurrent.CompletableFuture<String>> crearListaFutures() {
+        // TODO extra: RETO EXTRA 10: Crea una lista limpia de futures.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearListaFutures");
     }
 
 }

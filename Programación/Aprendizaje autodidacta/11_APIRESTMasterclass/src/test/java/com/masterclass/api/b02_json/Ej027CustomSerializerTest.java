@@ -19,7 +19,6 @@ class Ej027CustomSerializerTest {
         assertEquals("\"10.00 €\"", Ej027CustomSerializer.toJson(new Precio(10)));
     }
 
-    @Disabled("Activa para probar el RETO EXTRA 1")
     @Test
     void retoExtra01_LocalDateSerializer() {
         LocalDate fecha = LocalDate.of(2026, 5, 21);
@@ -27,7 +26,6 @@ class Ej027CustomSerializerTest {
         assertEquals("\"21-05-2026\"", json);
     }
 
-    @Disabled("Activa para probar el RETO EXTRA 2")
     @Test
     void retoExtra02_LocalDateDeserializer() {
         LocalDate fecha = Ej027CustomSerializer.deserializarFecha("\"21-05-2026\"");
@@ -37,7 +35,6 @@ class Ej027CustomSerializerTest {
         assertEquals(21, fecha.getDayOfMonth());
     }
 
-    @Disabled("Activa para probar el RETO EXTRA 3")
     @Test
     void retoExtra03_TarjetaMaskSerializer() {
         TarjetaCredito tc = new TarjetaCredito("1234-5678-9012-3456");
@@ -49,7 +46,6 @@ class Ej027CustomSerializerTest {
         assertEquals("\"****\"", jsonCorta);
     }
 
-    @Disabled("Activa para probar el RETO EXTRA 4")
     @Test
     void retoExtra04_RolDeserializer() {
         assertEquals(Rol.ADMIN, Ej027CustomSerializer.deserializarRol("\"admin\""));
@@ -60,14 +56,12 @@ class Ej027CustomSerializerTest {
         assertEquals(Rol.GUEST, Ej027CustomSerializer.deserializarRol("\"3\""));
     }
 
-    @Disabled("Activa para probar el RETO EXTRA 5")
     @Test
     void retoExtra05_SiNoBooleanSerializer() {
         assertEquals("\"SI\"", Ej027CustomSerializer.serializarBooleano(true));
         assertEquals("\"NO\"", Ej027CustomSerializer.serializarBooleano(false));
     }
 
-    @Disabled("Activa para probar el RETO EXTRA 6")
     @Test
     void retoExtra06_SiNoBooleanDeserializer() {
         assertTrue(Ej027CustomSerializer.deserializarBooleano("\"SI\""));
@@ -81,7 +75,6 @@ class Ej027CustomSerializerTest {
         assertFalse(Ej027CustomSerializer.deserializarBooleano("\"false\""));
     }
 
-    @Disabled("Activa para probar el RETO EXTRA 7")
     @Test
     void retoExtra07_MapToArraySerializer() {
         Map<String, String> data = Map.of("color", "azul", "tamano", "grande");
@@ -94,7 +87,6 @@ class Ej027CustomSerializerTest {
         assertTrue(json.contains("\"valor\":\"grande\""));
     }
 
-    @Disabled("Activa para probar el RETO EXTRA 8")
     @Test
     void retoExtra08_ArrayToMapDeserializer() {
         String json = "[{\"clave\":\"host\",\"valor\":\"localhost\"},{\"clave\":\"user\",\"valor\":\"root\"}]";
@@ -105,7 +97,6 @@ class Ej027CustomSerializerTest {
         assertEquals(2, map.size());
     }
 
-    @Disabled("Activa para probar el RETO EXTRA 9")
     @Test
     void retoExtra09_DineroSerializer() {
         Dinero d = new Dinero(150.75, "usd");
@@ -115,7 +106,6 @@ class Ej027CustomSerializerTest {
         assertTrue(json.contains("\"formateado\":\"150.75 USD\""));
     }
 
-    @Disabled("Activa para probar el RETO EXTRA 10")
     @Test
     void retoExtra10_crearMapperConModuloComplejo() {
         ObjectMapper mapper = Ej027CustomSerializer.crearMapperConModuloComplejo();

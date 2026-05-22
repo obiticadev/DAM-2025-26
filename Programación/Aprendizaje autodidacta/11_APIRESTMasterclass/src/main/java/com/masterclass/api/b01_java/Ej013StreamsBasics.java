@@ -67,8 +67,12 @@ public final class Ej013StreamsBasics {
      * @return lista de mayores de edad
      */
     public static List<Integer> filtrarMayoresDeEdad(List<Integer> edades) {
-        // TODO extra: Filtra edades >= 18 y recolecta a lista
-        return List.of();
+        // TODO extra: Reto Extra 1: Filtrado numérico simple.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para filtrarMayoresDeEdad");
     }
 
     /**
@@ -79,8 +83,12 @@ public final class Ej013StreamsBasics {
      * @return lista de palabras en mayúsculas filtradas
      */
     public static List<String> convertirAMayusculas(List<String> palabras) {
-        // TODO extra: Filtra nulos/vacíos, mapea a toUpperCase() y recolecta a lista
-        return List.of();
+        // TODO extra: Reto Extra 2: Mapeo de cadenas de texto.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para convertirAMayusculas");
     }
 
     /**
@@ -91,8 +99,12 @@ public final class Ej013StreamsBasics {
      * @return suma de los cuadrados
      */
     public static int calcularSumaCuadrados(List<Integer> numeros) {
-        // TODO extra: Eleva cada número al cuadrado y súmalos
-        return 0;
+        // TODO extra: Reto Extra 3: Reducción básica.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularSumaCuadrados");
     }
 
     /**
@@ -103,8 +115,12 @@ public final class Ej013StreamsBasics {
      * @return cantidad de cadenas vacías
      */
     public static long contarCadenasVacias(List<String> cadenas) {
-        // TODO extra: Cuenta las cadenas que estén vacías o en blanco
-        return 0;
+        // TODO extra: Reto Extra 4: Operación de conteo terminal.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarCadenasVacias");
     }
 
     /**
@@ -115,8 +131,12 @@ public final class Ej013StreamsBasics {
      * @return cadena con el formato especificado
      */
     public static String unirConComas(List<String> cadenas) {
-        // TODO extra: Une las cadenas con delimitadores, prefijo y sufijo usando Collectors.joining
-        return "";
+        // TODO extra: Reto Extra 5: Colector Collectors.joining.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para unirConComas");
     }
 
     /**
@@ -127,8 +147,12 @@ public final class Ej013StreamsBasics {
      * @return lista sin duplicados y ordenada
      */
     public static List<String> obtenerElementosUnicos(List<String> lista) {
-        // TODO extra: Aplica distinct(), sorted() y recolecta a lista
-        return List.of();
+        // TODO extra: Reto Extra 6: Deduplicación y ordenación.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerElementosUnicos");
     }
 
     /**
@@ -141,8 +165,12 @@ public final class Ej013StreamsBasics {
      * @return sublista paginada
      */
     public static List<String> limitarYDescartar(List<String> lista, int skip, int limit) {
-        // TODO extra: Usa skip(skip) y limit(limit) en el flujo del stream
-        return List.of();
+        // TODO extra: Reto Extra 7: Paginación con skip y limit.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para limitarYDescartar");
     }
 
     /**
@@ -154,8 +182,12 @@ public final class Ej013StreamsBasics {
      * @return true si alguna coincide, false de lo contrario
      */
     public static boolean algunoEmpiezaCon(List<String> palabras, String prefijo) {
-        // TODO extra: Comprueba si al menos un elemento empieza por prefijo (case-insensitive)
-        return false;
+        // TODO extra: Reto Extra 8: Búsqueda con anyMatch.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para algunoEmpiezaCon");
     }
 
     /**
@@ -166,8 +198,12 @@ public final class Ej013StreamsBasics {
      * @return true si todos son positivos o si la lista está vacía, false de lo contrario
      */
     public static boolean todosSonPositivos(List<Integer> numeros) {
-        // TODO extra: Valida si todos son > 0 usando allMatch
-        return false;
+        // TODO extra: Reto Extra 9: Validación universal con allMatch.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para todosSonPositivos");
     }
 
     /**
@@ -178,8 +214,12 @@ public final class Ej013StreamsBasics {
      * @return Optional con el máximo, o vacío si la lista no contiene números
      */
     public static Optional<Integer> obtenerMaximo(List<Integer> numeros) {
-        // TODO extra: Encuentra el valor máximo de la lista usando max()
-        return Optional.empty();
+        // TODO extra: Reto Extra 10: Reducción con max.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerMaximo");
     }
 
 }

@@ -36,4 +36,70 @@ class Ej105JpaRepositoryTest {
         assertEquals(1, repo.findAll().size());
         assertFalse(repo.deleteById(999L));
     }
+
+@Test
+    void testDesafioRepositoryActivo() {
+        assertTrue(Ej105JpaRepository.desafioRepositoryActivo(repo));
+        assertFalse(Ej105JpaRepository.desafioRepositoryActivo(null));
+    }
+
+    @Test
+    void testDesafioGuardarProducto() {
+        var p = Ej105JpaRepository.desafioCrearInstanciaProducto("T", 10.0);
+        var saved = Ej105JpaRepository.desafioGuardarProducto(repo, p);
+        assertNotNull(saved.getId());
+    }
+
+    @Test
+    void testDesafioBuscarPorId() {
+        var p = Ej105JpaRepository.desafioCrearInstanciaProducto("T", 10.0);
+        var saved = repo.save(p);
+        assertTrue(Ej105JpaRepository.desafioBuscarPorId(repo, saved.getId()).isPresent());
+    }
+
+    @Test
+    void testDesafioBuscarTodos() {
+        repo.deleteAll();
+        var p = Ej105JpaRepository.desafioCrearInstanciaProducto("T", 10.0);
+        repo.save(p);
+        assertEquals(1, Ej105JpaRepository.desafioBuscarTodos(repo).size());
+    }
+
+    @Test
+    void testDesafioExistePorId() {
+        var p = Ej105JpaRepository.desafioCrearInstanciaProducto("T", 10.0);
+        var saved = repo.save(p);
+        assertTrue(Ej105JpaRepository.desafioExistePorId(repo, saved.getId()));
+    }
+
+    @Test
+    void testDesafioContarProductos() {
+        repo.deleteAll();
+        assertEquals(0, Ej105JpaRepository.desafioContarProductos(repo));
+    }
+
+    @Test
+    void testDesafioEliminarPorId() {
+        var p = Ej105JpaRepository.desafioCrearInstanciaProducto("T", 10.0);
+        var saved = repo.save(p);
+        Ej105JpaRepository.desafioEliminarPorId(repo, saved.getId());
+        assertFalse(repo.existsById(saved.getId()));
+    }
+
+    @Test
+    void testDesafioValidarParaGuardar() {
+        assertThrows(IllegalArgumentException.class, () -> Ej105JpaRepository.desafioValidarParaGuardar(null));
+    }
+
+    @Test
+    void testDesafioCrearInstanciaProducto() {
+        var p = Ej105JpaRepository.desafioCrearInstanciaProducto("A", 20.0);
+        assertEquals("A", p.getNombre());
+    }
+
+    @Test
+    void testDesafioTieneElementos() {
+        assertTrue(Ej105JpaRepository.desafioTieneElementos(List.of(new Producto())));
+        assertFalse(Ej105JpaRepository.desafioTieneElementos(List.of()));
+    }
 }

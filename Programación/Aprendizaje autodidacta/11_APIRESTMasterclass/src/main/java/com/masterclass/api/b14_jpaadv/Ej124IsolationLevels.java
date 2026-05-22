@@ -45,44 +45,126 @@ public final class Ej124IsolationLevels {
         System.out.println(previene(Nivel.REPEATABLE_READ));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: READ_UNCOMMITTED -> no previene nada (set vacío).
+    /**
+     * Reto Extra 1: Verifica si el nivel previene dirty reads.
+     */
+    public static boolean previeneDirtyRead(Nivel n) {
+        // TODO extra: Reto Extra 1: Verifica si el nivel previene dirty reads.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para previeneDirtyRead");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: READ_COMMITTED -> previene DIRTY_READ.
+    /**
+     * Reto Extra 2: Verifica si el nivel previene non-repeatable reads.
+     */
+    public static boolean previeneNonRepeatableRead(Nivel n) {
+        // TODO extra: Reto Extra 2: Verifica si el nivel previene non-repeatable reads.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para previeneNonRepeatableRead");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: REPEATABLE_READ -> previene DIRTY_READ y NON_REPEATABLE_READ.
+    /**
+     * Reto Extra 3: Verifica si el nivel previene phantom reads.
+     */
+    public static boolean previenePhantomRead(Nivel n) {
+        // TODO extra: Reto Extra 3: Verifica si el nivel previene phantom reads.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para previenePhantomRead");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: SERIALIZABLE -> previene los TRES fenómenos.
+    /**
+     * Reto Extra 4: Comprueba si el nivel previene todos los fenomenos.
+     */
+    public static boolean previeneTodo(Nivel n) {
+        // TODO extra: Reto Extra 4: Comprueba si el nivel previene todos los fenomenos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para previeneTodo");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: la relación es ACUMULATIVA (cada nivel previene lo del anterior + más).
+    /**
+     * Reto Extra 5: Comprueba si a es mas estricto que b.
+     */
+    public static boolean esMasEstricto(Nivel a, Nivel b) {
+        // TODO extra: Reto Extra 5: Comprueba si a es mas estricto que b.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMasEstricto");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: usa un switch sobre 'nivel'.
+    /**
+     * Reto Extra 6: Retorna el nombre en texto.
+     */
+    public static String obtenerNombreNivel(Nivel n) {
+        // TODO extra: Reto Extra 6: Retorna el nombre en texto.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerNombreNivel");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: devuelve un Set (EnumSet/Set.of) según el caso.
+    /**
+     * Reto Extra 7: Retorna el nombre en texto del fenomeno.
+     */
+    public static String obtenerNombreFenomeno(Fenomeno f) {
+        // TODO extra: Reto Extra 7: Retorna el nombre en texto del fenomeno.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerNombreFenomeno");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: READ_UNCOMMITTED permite leer datos no confirmados (dirty).
+    /**
+     * Reto Extra 8: Comprueba si un nivel es el mas bajo disponible.
+     */
+    public static boolean esElMasBajo(Nivel n) {
+        // TODO extra: Reto Extra 8: Comprueba si un nivel es el mas bajo disponible.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esElMasBajo");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: SERIALIZABLE es el más estricto (y más lento).
+    /**
+     * Reto Extra 9: Comprueba si un nivel es el mas estricto disponible.
+     */
+    public static boolean esElMasAlto(Nivel n) {
+        // TODO extra: Reto Extra 9: Comprueba si un nivel es el mas estricto disponible.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esElMasAlto");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve el conjunto correspondiente.
+    /**
+     * Reto Extra 10: Retorna un identificador estructurado del nivel.
+     */
+    public static String obtenerIdNivel(Nivel n) {
+        // TODO extra: Reto Extra 10: Retorna un identificador estructurado del nivel.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerIdNivel");
     }
+
+
 
 }

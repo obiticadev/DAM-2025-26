@@ -75,8 +75,12 @@ public final class Ej017FunctionalInterfaces {
      * @return predicado combinado (AND)
      */
     public static <T> Predicate<T> combinarPredicadosAND(Predicate<T> p1, Predicate<T> p2) {
-        // TODO extra: Combina p1 y p2 con la operación lógica and()
-        return x -> false;
+        // TODO extra: Reto Extra 1: Composición lógica AND de predicados.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para combinarPredicadosAND");
     }
 
     /**
@@ -89,8 +93,12 @@ public final class Ej017FunctionalInterfaces {
      * @return predicado combinado (OR)
      */
     public static <T> Predicate<T> combinarPredicadosOR(Predicate<T> p1, Predicate<T> p2) {
-        // TODO extra: Combina p1 y p2 con la operación lógica or()
-        return x -> false;
+        // TODO extra: Reto Extra 2: Composición lógica OR de predicados.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para combinarPredicadosOR");
     }
 
     /**
@@ -102,8 +110,12 @@ public final class Ej017FunctionalInterfaces {
      * @return predicado negado
      */
     public static <T> Predicate<T> negarPredicado(Predicate<T> p) {
-        // TODO extra: Niega el predicado p usando la operación negate()
-        return x -> false;
+        // TODO extra: Reto Extra 3: Negación lógica funcional.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para negarPredicado");
     }
 
     /**
@@ -118,8 +130,12 @@ public final class Ej017FunctionalInterfaces {
      * @return función compuesta A -> C
      */
     public static <A, B, C> Function<A, C> componerFunciones(Function<A, B> f1, Function<B, C> f2) {
-        // TODO extra: Compone f1 y f2 usando andThen()
-        return x -> null;
+        // TODO extra: Reto Extra 4: Composición secuencial de funciones (andThen).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para componerFunciones");
     }
 
     /**
@@ -130,8 +146,12 @@ public final class Ej017FunctionalInterfaces {
      * @return tiempo total transcurrido en milisegundos
      */
     public static long ejecutarYMedirTiempo(Runnable tarea) {
-        // TODO extra: Mide el tiempo de ejecución de la tarea Runnable en milisegundos
-        return 0;
+        // TODO extra: Reto Extra 5: Auditoría temporal de tareas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para ejecutarYMedirTiempo");
     }
 
     /**
@@ -143,7 +163,12 @@ public final class Ej017FunctionalInterfaces {
      * @param <T>        tipo de los elementos
      */
     public static <T> void consumirLista(List<T> lista, Consumer<T> consumidor) {
-        // TODO extra: Itera y pasa cada elemento de la lista al consumidor
+        // TODO extra: Reto Extra 6: Iteración funcional controlada con Consumer.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para consumirLista");
     }
 
     /**
@@ -155,8 +180,12 @@ public final class Ej017FunctionalInterfaces {
      * @return instancia de tipo T
      */
     public static <T> T crearConSupplier(Supplier<T> creador) {
-        // TODO extra: Obtén e instancia el objeto llamando al Supplier
-        return null;
+        // TODO extra: Reto Extra 7: Factorías funcionales diferidas con Supplier.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearConSupplier");
     }
 
     /**
@@ -169,8 +198,12 @@ public final class Ej017FunctionalInterfaces {
      * @return consumidor compuesto
      */
     public static <T> Consumer<T> encadenarConsumidores(Consumer<T> c1, Consumer<T> c2) {
-        // TODO extra: Une ambos consumidores secuencialmente usando andThen()
-        return x -> {};
+        // TODO extra: Reto Extra 8: Acción secuencial múltiple con Consumers.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para encadenarConsumidores");
     }
 
     /**
@@ -185,8 +218,12 @@ public final class Ej017FunctionalInterfaces {
      * @return lista resultante con elementos filtrados y transformados
      */
     public static <T, R> List<R> filtrarYTransformar(List<T> lista, Predicate<T> p, Function<T, R> f) {
-        // TODO extra: Abre stream, filtra con p, mapea con f, y recolecta a lista
-        return List.of();
+        // TODO extra: Reto Extra 9: Canalizaciones personalizadas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para filtrarYTransformar");
     }
 
     /**
@@ -199,8 +236,12 @@ public final class Ej017FunctionalInterfaces {
      * @return el resultado de principal, o el resultado de fallback ante errores de principal
      */
     public static <T> T obtenerSeguroConSupplier(Supplier<T> principal, Supplier<T> fallback) {
-        // TODO extra: Intenta obtener el valor de principal, si falla llama a fallback
-        return null;
+        // TODO extra: Reto Extra 10: Tolerancia a fallos encadenada con Suppliers.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerSeguroConSupplier");
     }
 
 }

@@ -63,8 +63,12 @@ public final class Ej024ObjectMapperBasics {
      * @return JSON formateado estéticamente
      */
     public static String serializarBonito(Cliente c) {
-        // TODO extra: utiliza MAPPER.writerWithDefaultPrettyPrinter().writeValueAsString(c) manejando la excepción checked
-        return null;
+        // TODO extra: Reto Extra 1: Serialización estética (Pretty Printing).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para serializarBonito");
     }
 
     /**
@@ -77,8 +81,12 @@ public final class Ej024ObjectMapperBasics {
      * @return instancia de la clase de destino deserializada
      */
     public static <T> T deserializarGenerico(String json, Class<T> clase) {
-        // TODO extra: utiliza MAPPER.readValue(json, clase) manejando la excepción checked
-        return null;
+        // TODO extra: Reto Extra 2: Deserialización genérica tipo-segura.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para deserializarGenerico");
     }
 
     /**
@@ -89,8 +97,12 @@ public final class Ej024ObjectMapperBasics {
      * @return true si es un JSON sintácticamente correcto, false si está corrupto o es nulo
      */
     public static boolean esJsonValido(String json) {
-        // TODO extra: intenta realizar MAPPER.readTree(json) y retorna true; si lanza excepción, retorna false
-        return false;
+        // TODO extra: Reto Extra 3: Validación estructural JSON.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esJsonValido");
     }
 
     /**
@@ -102,8 +114,12 @@ public final class Ej024ObjectMapperBasics {
      * @return objeto Cliente deserializado omitiendo los campos sobrantes
      */
     public static Cliente deserializarIgnorandoCamposDesconocidos(String json) {
-        // TODO extra: configura un ObjectMapper local para desactivar DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES y lee el Cliente
-        return null;
+        // TODO extra: Reto Extra 4: Tolerancia a propiedades desconocidas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para deserializarIgnorandoCamposDesconocidos");
     }
 
     /**
@@ -114,8 +130,12 @@ public final class Ej024ObjectMapperBasics {
      * @return array de bytes serializado
      */
     public static byte[] serializarABytes(Cliente c) {
-        // TODO extra: utiliza MAPPER.writeValueAsBytes(c) manejando la excepción checked
-        return null;
+        // TODO extra: Reto Extra 5: Serialización binaria.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para serializarABytes");
     }
 
     /**
@@ -126,8 +146,12 @@ public final class Ej024ObjectMapperBasics {
      * @return cliente deserializado
      */
     public static Cliente deserializarDesdeBytes(byte[] bytes) {
-        // TODO extra: utiliza MAPPER.readValue(bytes, Cliente.class) manejando la excepción checked
-        return null;
+        // TODO extra: Reto Extra 6: Deserialización binaria.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para deserializarDesdeBytes");
     }
 
     /**
@@ -140,8 +164,12 @@ public final class Ej024ObjectMapperBasics {
      * @return nueva instancia de Cliente con los datos fusionados
      */
     public static Cliente actualizarConMap(String json, Cliente existente) {
-        // TODO extra: deserializa el JSON a un Map<String, Object>, extrae id/nombre usando el mapa si existen, o el existente si no, y retorna el nuevo Cliente
-        return null;
+        // TODO extra: Reto Extra 7: Simulación de actualización parcial (Patch).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para actualizarConMap");
     }
 
     /**
@@ -154,8 +182,12 @@ public final class Ej024ObjectMapperBasics {
      * @return objeto convertido
      */
     public static <T> T convertirEntreTipos(Object origen, Class<T> claseDestino) {
-        // TODO extra: utiliza MAPPER.convertValue(origen, claseDestino) para realizar la conversión de tipos
-        return null;
+        // TODO extra: Reto Extra 8: Conversión de tipos dinámicos de Jackson.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para convertirEntreTipos");
     }
 
     /**
@@ -166,8 +198,12 @@ public final class Ej024ObjectMapperBasics {
      * @return true si la serialización es identada (tiene saltos de línea)
      */
     public static boolean serializarConIdentacionYComprobar(Cliente c) {
-        // TODO extra: genera el JSON bonito y valida si contiene algún carácter '\n' o '\r'
-        return false;
+        // TODO extra: Reto Extra 9: Verificación de indentación.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para serializarConIdentacionYComprobar");
     }
 
     /**
@@ -178,8 +214,12 @@ public final class Ej024ObjectMapperBasics {
      * @return el cliente recuperado desde el archivo
      */
     public static Cliente escribirYLeerDeArchivoTemporal(Cliente c) {
-        // TODO extra: crea un archivo temporal con File.createTempFile, escribe c usando MAPPER.writeValue, lee de vuelta y bórralo
-        return null;
+        // TODO extra: Reto Extra 10: Persistencia temporal en disco de JSON.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para escribirYLeerDeArchivoTemporal");
     }
 
 }

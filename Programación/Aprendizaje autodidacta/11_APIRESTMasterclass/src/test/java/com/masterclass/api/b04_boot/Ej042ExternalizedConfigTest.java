@@ -26,14 +26,12 @@ class Ej042ExternalizedConfigTest {
                 Map.of(), Map.of(), "app.region", "local"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 01")
     @org.junit.jupiter.api.Test
     void testPasoExtra01() {
         var env = new org.springframework.mock.env.MockEnvironment().withProperty("custom.property", "hello");
         assertEquals("hello", Ej042ExternalizedConfig.pasoExtra01(env, "custom.property"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 02")
     @org.junit.jupiter.api.Test
     void testPasoExtra02() {
         var env = new org.springframework.mock.env.MockEnvironment();
@@ -42,7 +40,6 @@ class Ej042ExternalizedConfigTest {
         assertEquals("winner", env.getProperty("my.key"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 03")
     @org.junit.jupiter.api.Test
     void testPasoExtra03() {
         var env = new org.springframework.mock.env.MockEnvironment();
@@ -52,14 +49,12 @@ class Ej042ExternalizedConfigTest {
         assertEquals("fallback", env.getProperty("new.key"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 04")
     @org.junit.jupiter.api.Test
     void testPasoExtra04() {
         assertEquals("SPRING_DATASOURCE_CONNECTION_TIMEOUT", Ej042ExternalizedConfig.pasoExtra04("spring.datasource.connection-timeout"));
         assertEquals("APP_REGION", Ej042ExternalizedConfig.pasoExtra04("app.region"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 05")
     @org.junit.jupiter.api.Test
     void testPasoExtra05() {
         var env = new org.springframework.mock.env.MockEnvironment();
@@ -69,7 +64,6 @@ class Ej042ExternalizedConfigTest {
         assertEquals("source-b", Ej042ExternalizedConfig.pasoExtra05(env, "my.key"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 06")
     @org.junit.jupiter.api.Test
     void testPasoExtra06() {
         var env = new org.springframework.mock.env.MockEnvironment();
@@ -78,14 +72,12 @@ class Ej042ExternalizedConfigTest {
         assertFalse(env.getPropertySources().contains("to-delete"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 07")
     @org.junit.jupiter.api.Test
     void testPasoExtra07() {
         var app = new org.springframework.boot.SpringApplication(Ej042ExternalizedConfig.class);
         Ej042ExternalizedConfig.pasoExtra07(app, Map.of("default.port", 9999));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 08")
     @org.junit.jupiter.api.Test
     void testPasoExtra08() {
         var env = new org.springframework.mock.env.MockEnvironment();
@@ -94,13 +86,11 @@ class Ej042ExternalizedConfigTest {
         assertEquals("prod", env.getProperty("app.env"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 09")
     @org.junit.jupiter.api.Test
     void testPasoExtra09() {
         assertTrue(Ej042ExternalizedConfig.pasoExtra09("java.home") || Ej042ExternalizedConfig.pasoExtra09("PATH"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     @org.junit.jupiter.api.Test
     void testPasoExtra10() {
         var env = new org.springframework.mock.env.MockEnvironment();

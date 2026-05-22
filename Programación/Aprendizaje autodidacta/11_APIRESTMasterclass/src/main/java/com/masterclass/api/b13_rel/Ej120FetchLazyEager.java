@@ -38,45 +38,127 @@ public final class Ej120FetchLazyEager {
         System.out.println("usa el test con EMF aislado");
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: recupera la entidad con em.find.
+    /**
+     * Reto Extra 1: Cuenta libros de una biblioteca.
+     */
+    public static int contarLibros(Biblioteca120 b) {
+        // TODO extra: Reto Extra 1: Cuenta libros de una biblioteca.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarLibros");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: NO toques la colección lazy aquí (no la inicialices).
+    /**
+     * Reto Extra 2: Comprueba si tiene libros.
+     */
+    public static boolean tieneLibros(Biblioteca120 b) {
+        // TODO extra: Reto Extra 2: Comprueba si tiene libros.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneLibros");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: em.detach(entidad) para dejarla fuera del contexto.
+    /**
+     * Reto Extra 3: Comprueba si un libro esta en biblioteca.
+     */
+    public static boolean contieneLibro(Biblioteca120 b, LibroLazy120 l) {
+        // TODO extra: Reto Extra 3: Comprueba si un libro esta en biblioteca.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contieneLibro");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: devuelve la entidad detached.
+    /**
+     * Reto Extra 4: Comprueba si algun libro tiene un titulo.
+     */
+    public static boolean tieneTitulo(Biblioteca120 b, String titulo) {
+        // TODO extra: Reto Extra 4: Comprueba si algun libro tiene un titulo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneTitulo");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: acceder luego a getLibros() debe lanzar LazyInitializationException
+    /**
+     * Reto Extra 5: Cuenta titulos largos.
+     */
+    public static int contarLibrosTituloLargo(Biblioteca120 b, int len) {
+        // TODO extra: Reto Extra 5: Cuenta titulos largos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarLibrosTituloLargo");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: anota 'libros' con @OneToMany(mappedBy="biblioteca").
+    /**
+     * Reto Extra 6: Crea un libro lazy.
+     */
+    public static LibroLazy120 crearLibro(String titulo) {
+        // TODO extra: Reto Extra 6: Crea un libro lazy.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearLibro");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: fuerza fetch = FetchType.LAZY (es el default en *ToMany, pero hazlo explícito).
+    /**
+     * Reto Extra 7: Remueve el primer libro.
+     */
+    public static boolean removerPrimerLibro(Biblioteca120 b) {
+        // TODO extra: Reto Extra 7: Remueve el primer libro.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para removerPrimerLibro");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: cascade = CascadeType.ALL para persistir los libros con la biblioteca.
+    /**
+     * Reto Extra 8: Valida biblioteca no nula.
+     */
+    public static boolean esValida(Biblioteca120 b) {
+        // TODO extra: Reto Extra 8: Valida biblioteca no nula.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esValida");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: añade a la lista y sincroniza l.setBiblioteca(this).
+    /**
+     * Reto Extra 9: Vincula libros en lote.
+     */
+    public static void vincularLibros(Biblioteca120 b, java.util.List<LibroLazy120> lista) {
+        // TODO extra: Reto Extra 9: Vincula libros en lote.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para vincularLibros");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve la colección (si está detached y LAZY -> excepción al iterarla).
+    /**
+     * Reto Extra 10: Retorna formato de biblioteca.
+     */
+    public static String formatearBiblioteca(Biblioteca120 b) {
+        // TODO extra: Reto Extra 10: Retorna formato de biblioteca.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearBiblioteca");
     }
+
+
 
 }
 

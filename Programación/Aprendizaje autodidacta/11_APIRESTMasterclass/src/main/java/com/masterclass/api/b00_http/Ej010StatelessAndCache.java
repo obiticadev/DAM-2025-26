@@ -57,9 +57,12 @@ public final class Ej010StatelessAndCache {
      * @return ETag fuerte hexadecimal entrecomillado, o ETag vacío si la entrada es nula o vacía
      */
     public static String generarEtagFuerteSHA256(byte[] contentBytes) {
-        // TODO extra 1: calcula la firma SHA-256 de los bytes de entrada, conviértela a hexadecimal,
-        // y devuélvela entre comillas dobles. Si hay error o es nulo, devuelve "".
-        return "";
+        // TODO extra: RETO EXTRA 1: ETag fuerte utilizando criptografía SHA-256.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para generarEtagFuerteSHA256");
     }
 
     /**
@@ -70,8 +73,12 @@ public final class Ej010StatelessAndCache {
      * @return true si es un ETag débil según la especificación HTTP
      */
     public static boolean esEtagDebil(String etag) {
-        // TODO extra 2: valida si la cadena no es nula y empieza exactamente con el prefijo "W/".
-        return false;
+        // TODO extra: RETO EXTRA 2: Detección de ETags débiles (Weak ETags).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esEtagDebil");
     }
 
     /**
@@ -83,11 +90,12 @@ public final class Ej010StatelessAndCache {
      * @return true si coincide algún ETag de la lista o si es el comodín '*'
      */
     public static boolean validarIfNoneMatchConComodines(String ifNoneMatch, String currentEtag) {
-        // TODO extra 3: maneja de forma segura las tres variantes:
-        // - Si ifNoneMatch es null o vacío, devuelve false.
-        // - Si es "*", devuelve true.
-        // - Si contiene una lista separada por comas, limpia espacios y comillas, y comprueba si coincide con currentEtag normalizado.
-        return false;
+        // TODO extra: RETO EXTRA 3: Validación de If-None-Match con soporte de múltiples ETags o comodines (*).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para validarIfNoneMatchConComodines");
     }
 
     /**
@@ -98,8 +106,12 @@ public final class Ej010StatelessAndCache {
      * @return la firma limpia sin comillas ni prefijos débiles (ej. "a1b2")
      */
     public static String normalizarEtag(String etag) {
-        // TODO extra 4: limpia el prefijo "W/" si existe, y remueve las comillas dobles externas si estuvieran presentes.
-        return "";
+        // TODO extra: RETO EXTRA 4: Normalización de cabecera ETag.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para normalizarEtag");
     }
 
     /**
@@ -109,9 +121,12 @@ public final class Ej010StatelessAndCache {
      * @return el valor de max-age en segundos; -1 si no está presente o no es un entero válido
      */
     public static long calcularMaxAge(String cacheControlHeader) {
-        // TODO extra 5: busca el token "max-age=" dentro de la cabecera, extrae el valor numérico 
-        // subsiguiente y devuélvelo. Evita excepciones por parsing incorrecto.
-        return -1L;
+        // TODO extra: RETO EXTRA 5: Extracción del tiempo máximo de vida (max-age) de Cache-Control.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularMaxAge");
     }
 
     /**
@@ -122,8 +137,12 @@ public final class Ej010StatelessAndCache {
      * @return true si contiene "no-cache", "no-store" o "must-revalidate"
      */
     public static boolean debeRevalidarSiempre(String cacheControlHeader) {
-        // TODO extra 6: comprueba si existe alguna de las tres palabras clave indicadoras de revalidación obligatoria en la cabecera (insensible a mayúsculas).
-        return false;
+        // TODO extra: RETO EXTRA 6: Identificar si la respuesta exige revalidación forzada.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para debeRevalidarSiempre");
     }
 
     /**
@@ -133,8 +152,12 @@ public final class Ej010StatelessAndCache {
      * @return true si el método es GET o HEAD (según la RFC 7231)
      */
     public static boolean esMetodoSeguroYCacheable(String metodo) {
-        // TODO extra 7: valida si el verbo coincide con los métodos seguros estándar que pueden guardarse en caché.
-        return false;
+        // TODO extra: RETO EXTRA 7: Determinar si un método HTTP es seguro y almacenable en caché de forma estándar.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMetodoSeguroYCacheable");
     }
 
     /**
@@ -146,9 +169,12 @@ public final class Ej010StatelessAndCache {
      * @return el valor completo normalizado para la cabecera Cache-Control (ej. "private, no-cache, must-revalidate")
      */
     public static String construirCabeceraCacheControlCompleta(boolean esPublico, long maxAgeSegundos, boolean debeRevalidar) {
-        // TODO extra 8: hilvana las directivas correspondientes según las banderas y el tiempo máximo provistos,
-        // separándolos de manera elegante por comas y espacios.
-        return "";
+        // TODO extra: RETO EXTRA 8: Generador dinámico de la cabecera Cache-Control.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para construirCabeceraCacheControlCompleta");
     }
 
     /**
@@ -160,9 +186,12 @@ public final class Ej010StatelessAndCache {
      * @return true si la petición es sin estado (contiene cabecera Authorization y carece de cookies de sesión como JSESSIONID o PHPSESSID)
      */
     public static boolean esSesionStateless(String cookieHeader, String authorizationHeader) {
-        // TODO extra 9: comprueba que no haya cookies de sesión clásicas de servidores tradicionales 
-        // y que sí se provea una cabecera Authorization.
-        return false;
+        // TODO extra: RETO EXTRA 9: Validación de sesión REST Stateless (Sin Estado).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esSesionStateless");
     }
 
     /**
@@ -174,8 +203,12 @@ public final class Ej010StatelessAndCache {
      * @return true si es coherente emitir un 304 para ese escenario según la especificación HTTP
      */
     public static boolean esRespuestaValidaPara304(String metodoHttp, int codigoEstado) {
-        // TODO extra 10: comprueba que el método sea seguro (GET/HEAD) y que el código de estado sea exactamente 304.
-        return false;
+        // TODO extra: RETO EXTRA 10: Validación de validez de respuesta 304 (Not Modified).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRespuestaValidaPara304");
     }
 
 }

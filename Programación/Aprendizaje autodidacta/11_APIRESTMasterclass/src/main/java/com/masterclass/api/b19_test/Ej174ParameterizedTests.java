@@ -44,44 +44,124 @@ public final class Ej174ParameterizedTests {
         System.out.println(casosFallidos(casos, x -> x * x));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si casos es null -> IllegalArgumentException.
+        /**
+     * RETO EXTRA 01: Determina si el caso es valido.
+     */
+    public static boolean esCasoValido(Caso174 c) {
+        // TODO extra: RETO EXTRA 01: Determina si el caso es valido.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCasoValido");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si funcion es null -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 02: Crea un nuevo caso.
+     */
+    public static Caso174 crearCaso(int ent, int esp) {
+        // TODO extra: RETO EXTRA 02: Crea un nuevo caso.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearCaso");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: recorre los casos con su índice (como hace @ParameterizedTest).
+    /**
+     * RETO EXTRA 03: Obtiene valor de entrada.
+     */
+    public static int obtenerEntrada(Caso174 c) {
+        // TODO extra: RETO EXTRA 03: Obtiene valor de entrada.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerEntrada");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: para cada caso aplica funcion.applyAsInt(caso.entrada).
+    /**
+     * RETO EXTRA 04: Obtiene valor esperado.
+     */
+    public static int obtenerEsperado(Caso174 c) {
+        // TODO extra: RETO EXTRA 04: Obtiene valor esperado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerEsperado");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: compara el resultado con caso.esperado.
+    /**
+     * RETO EXTRA 05: Valida si difieren.
+     */
+    public static boolean sonDiferentes(Caso174 c, int real) {
+        // TODO extra: RETO EXTRA 05: Valida si difieren.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para sonDiferentes");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: si difieren, registra el índice del caso fallido.
+    /**
+     * RETO EXTRA 06: Valida si coinciden.
+     */
+    public static boolean sonIguales(Caso174 c, int real) {
+        // TODO extra: RETO EXTRA 06: Valida si coinciden.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para sonIguales");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: un caso no debe abortar los demás (cada caso es independiente).
+    /**
+     * RETO EXTRA 07: Obtiene total de casos.
+     */
+    public static int tamanioCasos(java.util.List<Caso174> casos) {
+        // TODO extra: RETO EXTRA 07: Obtiene total de casos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tamanioCasos");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: si todos pasan -> devuelve lista vacía (no null).
+    /**
+     * RETO EXTRA 08: Obtiene el primer caso.
+     */
+    public static Caso174 primerCaso(java.util.List<Caso174> casos) {
+        // TODO extra: RETO EXTRA 08: Obtiene el primer caso.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para primerCaso");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: no mutes la lista de casos de entrada.
+    /**
+     * RETO EXTRA 09: Verifica si el operador falla.
+     */
+    public static boolean esCasoFalla(Caso174 c, java.util.function.IntUnaryOperator op) {
+        // TODO extra: RETO EXTRA 09: Verifica si el operador falla.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCasoFalla");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve la lista de índices fallidos en orden ascendente.
+    /**
+     * RETO EXTRA 10: Verifica si el operador tiene exito.
+     */
+    public static boolean esCasoExito(Caso174 c, java.util.function.IntUnaryOperator op) {
+        // TODO extra: RETO EXTRA 10: Verifica si el operador tiene exito.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCasoExito");
     }
 
 }

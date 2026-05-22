@@ -59,44 +59,124 @@ public final class Ej079DomainExceptionHierarchy {
         System.out.println(aStatus(new ConflictoException("dup")));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si ex es null -> IllegalArgumentException.
+        /**
+     * RETO EXTRA 01: Verifica si es una excepcion por conflicto en el estado actual.
+     */
+    public static boolean esConflictoDatos(Throwable t) {
+        // TODO extra: RETO EXTRA 01: Verifica si es una excepcion por conflicto en el estado actual.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esConflictoDatos");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: usa instanceof / switch de patrones sobre el tipo concreto.
+    /**
+     * RETO EXTRA 02: Resuelve si el cliente acepta el JSON estructurado de error.
+     */
+    public static String obtenerTipoMimeError(String acceptHeader) {
+        // TODO extra: RETO EXTRA 02: Resuelve si el cliente acepta el JSON estructurado de error.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerTipoMimeError");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: NoEncontradoException -> 404.
+    /**
+     * RETO EXTRA 03: Determina si la excepcion compromete accesos (credenciales, permisos).
+     */
+    public static boolean esExcepcionDeSeguridad(Throwable t) {
+        // TODO extra: RETO EXTRA 03: Determina si la excepcion compromete accesos (credenciales, permisos).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionDeSeguridad");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: ConflictoException -> 409.
+    /**
+     * RETO EXTRA 04: Genera el objeto de contingencia de error de infraestructura.
+     */
+    public static String crearRespuestaErrorInterno(String msg) {
+        // TODO extra: RETO EXTRA 04: Genera el objeto de contingencia de error de infraestructura.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearRespuestaErrorInterno");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: NoAutorizadoException -> 403.
+    /**
+     * RETO EXTRA 05: Determina si detiene procesos transaccionales importantes.
+     */
+    public static boolean esFalloNegocioCritico(Throwable t) {
+        // TODO extra: RETO EXTRA 05: Determina si detiene procesos transaccionales importantes.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFalloNegocioCritico");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: cualquier otra DominioException (genérica) -> 400.
+    /**
+     * RETO EXTRA 06: Extrae las primeras palabras descriptivas del fallo.
+     */
+    public static String extraerMensajeCorto(Throwable t) {
+        // TODO extra: RETO EXTRA 06: Extrae las primeras palabras descriptivas del fallo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerMensajeCorto");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: comprueba los subtipos ANTES que la clase base (orden importa).
+    /**
+     * RETO EXTRA 07: Verifica si corresponde a un fallo de validacion del modelo.
+     */
+    public static boolean esErrorValidacionEntidad(Throwable t) {
+        // TODO extra: RETO EXTRA 07: Verifica si corresponde a un fallo de validacion del modelo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esErrorValidacionEntidad");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: no devuelvas 500 para errores de dominio (500 es fallo del servidor).
+    /**
+     * RETO EXTRA 08: Genera una firma hash unica para indexar logs.
+     */
+    public static String generarHashError(String traceId, Throwable t) {
+        // TODO extra: RETO EXTRA 08: Genera una firma hash unica para indexar logs.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para generarHashError");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: el mapeo debe ser exhaustivo para los 3 subtipos + base.
+    /**
+     * RETO EXTRA 09: Comprueba si es una excepcion de dominio propia.
+     */
+    public static boolean esErrorDeNegocioPuro(Throwable t) {
+        // TODO extra: RETO EXTRA 09: Comprueba si es una excepcion de dominio propia.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esErrorDeNegocioPuro");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve el entero del status.
+    /**
+     * RETO EXTRA 10: Filtra si es un error fatal de memoria o virtual machine.
+     */
+    public static boolean esExcepcionFatal(Throwable t) {
+        // TODO extra: RETO EXTRA 10: Filtra si es un error fatal de memoria o virtual machine.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionFatal");
     }
 
 }

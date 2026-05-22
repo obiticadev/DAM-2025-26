@@ -25,7 +25,6 @@ class Ej026NestedAndCollectionsTest {
         assertEquals("te", lineas.get(1).producto());
     }
 
-    @Disabled("Activa para probar el RETO EXTRA 1")
     @Test
     void retoExtra01_mapearListaDeMapas() {
         String json = "[{\"id\":10,\"nombre\":\"Cafe\"},{\"id\":20,\"nombre\":\"Te\"}]";
@@ -35,7 +34,6 @@ class Ej026NestedAndCollectionsTest {
         assertEquals("Te", result.get(1).get("nombre"));
     }
 
-    @Disabled("Activa para probar el RETO EXTRA 2")
     @Test
     void retoExtra02_serializarListaDePedidos() {
         List<Pedido> pedidos = List.of(
@@ -48,7 +46,6 @@ class Ej026NestedAndCollectionsTest {
         assertTrue(json.contains("\"lineas\""));
     }
 
-    @Disabled("Activa para probar el RETO EXTRA 3")
     @Test
     void retoExtra03_deserializarPedidoConNulosIgnorados() {
         String json = "{\"id\":100,\"lineas\":[{\"producto\":\"Agua\",\"cantidad\":2},null,{\"producto\":\"Zumo\",\"cantidad\":1}]}";
@@ -60,7 +57,6 @@ class Ej026NestedAndCollectionsTest {
         assertEquals("Zumo", p.lineas().get(1).producto());
     }
 
-    @Disabled("Activa para probar el RETO EXTRA 4")
     @Test
     void retoExtra04_extraerMapaClaveValor() {
         String json = "{\"servidor\":\"localhost\",\"puerto\":\"8080\",\"activo\":\"true\"}";
@@ -70,7 +66,6 @@ class Ej026NestedAndCollectionsTest {
         assertEquals("true", config.get("activo"));
     }
 
-    @Disabled("Activa para probar el RETO EXTRA 5")
     @Test
     void retoExtra05_mapearTipoComplejo() {
         String json = "{\"desayuno\":[{\"producto\":\"Tostada\",\"cantidad\":2},{\"producto\":\"Cafe\",\"cantidad\":1}],\"cena\":[{\"producto\":\"Sopa\",\"cantidad\":1}]}";
@@ -80,7 +75,6 @@ class Ej026NestedAndCollectionsTest {
         assertEquals("Sopa", menu.get("cena").get(0).producto());
     }
 
-    @Disabled("Activa para probar el RETO EXTRA 6")
     @Test
     void retoExtra06_escribirComoArrayDeBytes() {
         List<Linea> lineas = List.of(new Linea("Galletas", 4));
@@ -90,7 +84,6 @@ class Ej026NestedAndCollectionsTest {
         assertTrue(str.contains("Galletas"));
     }
 
-    @Disabled("Activa para probar el RETO EXTRA 7")
     @Test
     void retoExtra07_leerColeccionDeBytes() {
         byte[] bytes = "[{\"producto\":\"Leche\",\"cantidad\":3}]".getBytes();
@@ -100,7 +93,6 @@ class Ej026NestedAndCollectionsTest {
         assertEquals(3, lineas.get(0).cantidad());
     }
 
-    @Disabled("Activa para probar el RETO EXTRA 8")
     @Test
     void retoExtra08_contarTotalProductos() {
         Pedido p = new Pedido(5L, List.of(
@@ -112,7 +104,6 @@ class Ej026NestedAndCollectionsTest {
         assertEquals(12, total);
     }
 
-    @Disabled("Activa para probar el RETO EXTRA 9")
     @Test
     void retoExtra09_serializarSoloLineasValidas() {
         Pedido p = new Pedido(9L, List.of(
@@ -128,7 +119,6 @@ class Ej026NestedAndCollectionsTest {
         assertFalse(json.contains("Invalido2"));
     }
 
-    @Disabled("Activa para probar el RETO EXTRA 10")
     @Test
     void retoExtra10_deserializarMapGenerico() {
         String json = "{\"nombre\":\"Juan\",\"edad\":25,\"intereses\":[\"lectura\",\"deporte\"],\"activo\":true}";

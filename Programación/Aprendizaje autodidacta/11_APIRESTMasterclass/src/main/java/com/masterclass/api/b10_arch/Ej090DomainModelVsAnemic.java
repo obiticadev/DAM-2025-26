@@ -69,44 +69,82 @@ public final class Ej090DomainModelVsAnemic {
         System.out.println(c.unidades() + " pagado=" + c.pagado());
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: el carrito nace con 0 unidades y sin pagar.
+    /**
+     * TODO extra 1: Comprueba que el estado inicial de un carrito es correcto.
+     */
+    public static boolean desafioVerificarEstadoInicial(Carrito c) {
+        return c.unidades() == 0 && !c.pagado();
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si n <= 0 -> IllegalArgumentException.
+    /**
+     * TODO extra 2: Valida que las unidades a añadir sean mayores que cero.
+     */
+    public static void desafioValidarUnidadesAIngresar(int n) {
+        if (n <= 0) {
+            throw new IllegalArgumentException("Unidades deben ser mayores que cero");
+        }
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: si ya está pagado -> IllegalStateException (invariante: no mutar tras pago).
+    /**
+     * TODO extra 3: Lanza IllegalStateException si el carrito ya ha sido pagado.
+     */
+    public static void desafioVerificarNoMudarTrasPago(boolean pagado) {
+        if (pagado) {
+            throw new IllegalStateException("Carrito ya pagado");
+        }
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: incrementa 'unidades' en n.
+    /**
+     * TODO extra 4: Calcula el incremento de unidades.
+     */
+    public static int desafioIncrementarUnidades(int actual, int n) {
+        return actual + n;
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: si unidades == 0 -> IllegalStateException ("carrito vacío").
+    /**
+     * TODO extra 5: Lanza excepción si el carrito a pagar no tiene unidades.
+     */
+    public static void desafioValidarCarritoVacio(int unidades) {
+        if (unidades == 0) {
+            throw new IllegalStateException("Carrito vacío");
+        }
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: si ya estaba pagado -> IllegalStateException.
+    /**
+     * TODO extra 6: Lanza excepción si el carrito ya está pagado en la transición de pago.
+     */
+    public static void desafioVerificarDoblePago(boolean pagado) {
+        if (pagado) {
+            throw new IllegalStateException("Carrito ya pagado");
+        }
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: marca pagado = true (transición de estado controlada).
+    /**
+     * TODO extra 7: Modifica el estado del flag pagado a verdadero.
+     */
+    public static boolean desafioTransicionEstadoPago() {
+        return true;
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: devuelve el número de unidades.
+    /**
+     * TODO extra 8: Retorna el número de unidades de forma segura.
+     */
+    public static int desafioObtenerUnidadesProtegidas(Carrito c) {
+        return c.unidades();
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: devuelve el flag 'pagado'.
+    /**
+     * TODO extra 9: Retorna si el carrito está pagado.
+     */
+    public static boolean desafioVerificarSiPagado(Carrito c) {
+        return c.pagado();
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: NO expongas setters: el estado solo cambia por anadir()/pagar().
+    /**
+     * TODO extra 10: Verifica el invariante global de consistencia de un Carrito.
+     */
+    public static boolean desafioVerificarInvarianteGlobal(Carrito c) {
+        return c.unidades() >= 0;
     }
 
 }

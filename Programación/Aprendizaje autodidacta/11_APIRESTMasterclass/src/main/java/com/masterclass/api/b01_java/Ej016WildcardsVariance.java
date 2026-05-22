@@ -68,7 +68,12 @@ public final class Ej016WildcardsVariance {
      * @param <T>     tipo base de los elementos
      */
     public static <T> void copiarElementos(List<? extends T> origen, List<? super T> destino) {
-        // TODO extra: Copia los elementos de origen a destino de manera segura respetando PECS
+        // TODO extra: Reto Extra 1: Copia segura respetando PECS (Producer Extends, Consumer Super).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para copiarElementos");
     }
 
     /**
@@ -79,8 +84,12 @@ public final class Ej016WildcardsVariance {
      * @return suma de los números como double
      */
     public static double calcularSumaColeccion(Collection<? extends Number> lista) {
-        // TODO extra: Suma de todos los elementos numéricos en double
-        return 0.0;
+        // TODO extra: Reto Extra 2: Lectura de tipos numéricos (Covarianza).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularSumaColeccion");
     }
 
     /**
@@ -91,7 +100,12 @@ public final class Ej016WildcardsVariance {
      * @param limite límite inclusivo de los enteros a agregar
      */
     public static void agregarNumeros(Collection<? super Integer> lista, int limite) {
-        // TODO extra: Agrega los números del 1 al limite (inclusive) en la lista consumidora
+        // TODO extra: Reto Extra 3: Escritura contravariante segura (Contravarianza).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para agregarNumeros");
     }
 
     /**
@@ -104,8 +118,12 @@ public final class Ej016WildcardsVariance {
      * @return lista resultante con los elementos que pasaron el filtro
      */
     public static <T> List<T> filtrarListaSoloLectura(List<? extends T> lista, Predicate<? super T> filtro) {
-        // TODO extra: Filtra y recolecta los elementos compatibles con el predicado funcional
-        return List.of();
+        // TODO extra: Reto Extra 4: Integración funcional covariante.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para filtrarListaSoloLectura");
     }
 
     /**
@@ -117,8 +135,12 @@ public final class Ej016WildcardsVariance {
      * @return Optional con el valor máximo o vacío si la lista es nula o vacía
      */
     public static <T extends Comparable<? super T>> Optional<T> encontrarMaximoCovariante(List<? extends T> lista) {
-        // TODO extra: Busca el valor máximo de forma segura respetando las restricciones de varianza
-        return Optional.empty();
+        // TODO extra: Reto Extra 5: Búsqueda acotada compleja (PECS avanzado).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para encontrarMaximoCovariante");
     }
 
     /**
@@ -131,8 +153,12 @@ public final class Ej016WildcardsVariance {
      * @return lista combinada de elementos de tipo T
      */
     public static <T> List<T> combinarColeccionesCovariantes(Collection<? extends T> c1, Collection<? extends T> c2) {
-        // TODO extra: Une ambas colecciones covariantes en una nueva lista de tipo T
-        return List.of();
+        // TODO extra: Reto Extra 6: Combinación segura de colecciones compatibles.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para combinarColeccionesCovariantes");
     }
 
     /**
@@ -144,8 +170,12 @@ public final class Ej016WildcardsVariance {
      * @return true si está presente, false de lo contrario
      */
     public static boolean esElementoPresente(Collection<?> coleccion, Object elemento) {
-        // TODO extra: Busca el elemento de forma segura en la colección de comodín sin límites
-        return false;
+        // TODO extra: Reto Extra 7: Lectura pura sin tipo (Unbounded Wildcard).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esElementoPresente");
     }
 
     /**
@@ -156,8 +186,12 @@ public final class Ej016WildcardsVariance {
      * @return String formateado como "items: [elem1, elem2, ...]"
      */
     public static String imprimirColeccionComodin(Collection<?> coleccion) {
-        // TODO extra: Genera la representación textual sin requerir un tipo genérico específico
-        return "";
+        // TODO extra: Reto Extra 8: Lectura y formato universal.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para imprimirColeccionComodin");
     }
 
     /**
@@ -170,7 +204,12 @@ public final class Ej016WildcardsVariance {
      * @param <T>           tipo de los valores
      */
     public static <T> void reemplazarValores(List<? super T> lista, T valorOriginal, T valorNuevo) {
-        // TODO extra: Realiza el reemplazo sobre la lista consumidora de manera segura
+        // TODO extra: Reto Extra 9: Modificación selectiva segura.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para reemplazarValores");
     }
 
     /**
@@ -182,7 +221,12 @@ public final class Ej016WildcardsVariance {
      * @param <T>        tipo base de los elementos
      */
     public static <T> void extraerYConsumir(List<? extends T> origen, Consumer<? super T> consumidor) {
-        // TODO extra: Extrae los elementos de origen y los pasa uno a uno al consumidor
+        // TODO extra: Reto Extra 10: Consumo seguro PECS.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerYConsumir");
     }
 
 }

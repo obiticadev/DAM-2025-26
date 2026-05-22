@@ -42,45 +42,127 @@ public final class Ej130InheritanceStrategies {
         System.out.println("usa el test con EMF aislado");
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: begin tx.
+    /**
+     * Reto Extra 1: Obtiene el importe de un pago de forma segura.
+     */
+    public static double obtenerImporte(Pago130 p) {
+        // TODO extra: Reto Extra 1: Obtiene el importe de un pago de forma segura.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerImporte");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: persiste un PagoTarjeta130 y un PagoTransferencia130.
+    /**
+     * Reto Extra 2: Comprueba si un pago es con tarjeta.
+     */
+    public static boolean esPagoTarjeta(Pago130 p) {
+        // TODO extra: Reto Extra 2: Comprueba si un pago es con tarjeta.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPagoTarjeta");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: commit.
+    /**
+     * Reto Extra 3: Comprueba si un pago es por transferencia.
+     */
+    public static boolean esPagoTransferencia(Pago130 p) {
+        // TODO extra: Reto Extra 3: Comprueba si un pago es por transferencia.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPagoTransferencia");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: JPQL polimórfica "select count(p) from Pago130 p" (cuenta todos los subtipos).
+    /**
+     * Reto Extra 4: Crea un pago con tarjeta.
+     */
+    public static PagoTarjeta130 crearPagoTarjeta(double imp, String pan) {
+        // TODO extra: Reto Extra 4: Crea un pago con tarjeta.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearPagoTarjeta");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: getSingleResult() y devuélvelo como long.
+    /**
+     * Reto Extra 5: Crea un pago por transferencia.
+     */
+    public static PagoTransferencia130 crearPagoTransferencia(double imp, String iban) {
+        // TODO extra: Reto Extra 5: Crea un pago por transferencia.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearPagoTransferencia");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: JPQL "select p from Pago130 p where TYPE(p) = PagoTarjeta130".
+    /**
+     * Reto Extra 6: Comprueba si el importe del pago supera un limite.
+     */
+    public static boolean importeSupera(Pago130 p, double limite) {
+        // TODO extra: Reto Extra 6: Comprueba si el importe del pago supera un limite.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para importeSupera");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: getResultList().
+    /**
+     * Reto Extra 7: Obtiene el ID del pago.
+     */
+    public static Long obtenerId(Pago130 p) {
+        // TODO extra: Reto Extra 7: Obtiene el ID del pago.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerId");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: anota Pago130 con @Entity y @Inheritance(strategy = InheritanceType.SINGLE_TABLE).
+    /**
+     * Reto Extra 8: Obtiene el PAN de un pago con tarjeta si aplica.
+     */
+    public static String obtenerPan(Pago130 p) {
+        // TODO extra: Reto Extra 8: Obtiene el PAN de un pago con tarjeta si aplica.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerPan");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: añade @DiscriminatorColumn(name = "tipo") para distinguir subtipos.
+    /**
+     * Reto Extra 9: Obtiene el IBAN de un pago con transferencia si aplica.
+     */
+    public static String obtenerIban(Pago130 p) {
+        // TODO extra: Reto Extra 9: Obtiene el IBAN de un pago con transferencia si aplica.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerIban");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: anota PagoTarjeta130 con @Entity y @DiscriminatorValue("TARJETA").
+    /**
+     * Reto Extra 10: Retorna formato del pago.
+     */
+    public static String formatearPago(Pago130 p) {
+        // TODO extra: Reto Extra 10: Retorna formato del pago.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearPago");
     }
+
+
 
 }
 

@@ -64,44 +64,124 @@ public final class Ej160JwtValidationFilter {
         System.out.println(extraerBearer("Bearer abc.def.ghi"));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si authorizationHeader es null o blank -> Optional.empty().
+        /**
+     * RETO EXTRA 01: Verifica presencia de prefijo 'Bearer '.
+     */
+    public static boolean esHeaderBearerValido(String authHeader) {
+        // TODO extra: RETO EXTRA 01: Verifica presencia de prefijo 'Bearer '.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esHeaderBearerValido");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: el prefijo esperado es exactamente "Bearer " (con espacio).
+    /**
+     * RETO EXTRA 02: Extrae el token eliminando el prefijo Bearer.
+     */
+    public static String extraerTokenDeHeader(String authHeader) {
+        // TODO extra: RETO EXTRA 02: Extrae el token eliminando el prefijo Bearer.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerTokenDeHeader");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: comprueba que empieza por ese prefijo (case-sensitive estándar).
+    /**
+     * RETO EXTRA 03: Determina si el error es de tipo token caducado (ExpiredJwtException).
+     */
+    public static boolean esExcepcionJwtExpirado(Throwable t) {
+        // TODO extra: RETO EXTRA 03: Determina si el error es de tipo token caducado (ExpiredJwtException).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionJwtExpirado");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: extrae la subcadena posterior al prefijo.
+    /**
+     * RETO EXTRA 04: Determina si el error apunta a token corrupto (MalformedJwtException).
+     */
+    public static boolean esExcepcionJwtMalformado(Throwable t) {
+        // TODO extra: RETO EXTRA 04: Determina si el error apunta a token corrupto (MalformedJwtException).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionJwtMalformado");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: aplica trim al token resultante.
+    /**
+     * RETO EXTRA 05: Genera el String de registro en el contexto de seguridad.
+     */
+    public static String crearContextoAutenticacion(String user, String roles) {
+        // TODO extra: RETO EXTRA 05: Genera el String de registro en el contexto de seguridad.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearContextoAutenticacion");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: si el token queda vacío -> Optional.empty().
+    /**
+     * RETO EXTRA 06: Indica si la ruta se salta el filtro de validacion.
+     */
+    public static boolean esRutaOmitidaFiltro(String path) {
+        // TODO extra: RETO EXTRA 06: Indica si la ruta se salta el filtro de validacion.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRutaOmitidaFiltro");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: no aceptes "Basic" ni otros esquemas aquí.
+    /**
+     * RETO EXTRA 07: Verifica si el token fue revocado y esta en la lista negra.
+     */
+    public static boolean esTokenNegro(String token, java.util.List<String> blacklist) {
+        // TODO extra: RETO EXTRA 07: Verifica si el token fue revocado y esta en la lista negra.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esTokenNegro");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: no loguees el token.
+    /**
+     * RETO EXTRA 08: Obtiene el valor de un claim arbitrario.
+     */
+    public static String extraerJwtClaim(String payload, String claim) {
+        // TODO extra: RETO EXTRA 08: Obtiene el valor de un claim arbitrario.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerJwtClaim");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: envuelve el token en Optional.
+    /**
+     * RETO EXTRA 09: Determina si el filtro fallo por caida de infraestructura interna.
+     */
+    public static boolean esFalloServicioFiltro(Throwable t) {
+        // TODO extra: RETO EXTRA 09: Determina si el filtro fallo por caida de infraestructura interna.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFalloServicioFiltro");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve el Optional.
+    /**
+     * RETO EXTRA 10: Determina si el algoritmo de firma del token es fuerte (e.g. HS512 o RS256).
+     */
+    public static boolean esFirmaAlgoritmoSeguro(String headerJson) {
+        // TODO extra: RETO EXTRA 10: Determina si el algoritmo de firma del token es fuerte (e.g. HS512 o RS256).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFirmaAlgoritmoSeguro");
     }
 
 }

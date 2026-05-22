@@ -48,44 +48,76 @@ public final class Ej095ResultSetMapping {
         System.out.println("usa el test con H2 en memoria");
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: SQL "SELECT id,nombre,precio FROM PRODUCTO ORDER BY id".
+    /**
+     * TODO extra 1: Retorna la query SQL de selección de productos.
+     */
+    public static String desafioObtenerSqlSelect() {
+        return "SELECT id,nombre,precio FROM PRODUCTO ORDER BY id";
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: try-with-resources para PreparedStatement.
+    /**
+     * TODO extra 2: Comprueba si el ResultSet tiene más filas.
+     */
+    public static boolean desafioTieneMasFilas(java.sql.ResultSet rs) throws java.sql.SQLException {
+        return rs.next();
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: try-with-resources para el ResultSet (ps.executeQuery()).
+    /**
+     * TODO extra 3: Obtiene el ID del producto actual en el ResultSet.
+     */
+    public static int desafioObtenerId(java.sql.ResultSet rs) throws java.sql.SQLException {
+        return rs.getInt("id");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: itera con while (rs.next()).
+    /**
+     * TODO extra 4: Obtiene el nombre del producto actual en el ResultSet.
+     */
+    public static String desafioObtenerNombre(java.sql.ResultSet rs) throws java.sql.SQLException {
+        return rs.getString("nombre");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: lee rs.getInt("id").
+    /**
+     * TODO extra 5: Obtiene el precio del producto actual en el ResultSet.
+     */
+    public static double desafioObtenerPrecio(java.sql.ResultSet rs) throws java.sql.SQLException {
+        return rs.getDouble("precio");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: lee rs.getString("nombre").
+    /**
+     * TODO extra 6: Construye una instancia de Producto.
+     */
+    public static Producto desafioInstanciarProducto(int id, String nombre, double precio) {
+        return new Producto(id, nombre, precio);
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: lee rs.getDouble("precio").
+    /**
+     * TODO extra 7: Agrega un Producto a una lista mutable.
+     */
+    public static void desafioAgregarALista(java.util.List<Producto> lista, Producto p) {
+        lista.add(p);
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: construye un Producto con esos 3 valores.
+    /**
+     * TODO extra 8: Valida que la lista de salida no sea nula.
+     */
+    public static void desafioValidarListaDeSalida(java.util.List<Producto> lista) {
+        if (lista == null) {
+            throw new IllegalArgumentException("Lista nula");
+        }
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: añádelo a 'out'.
+    /**
+     * TODO extra 9: Retorna una lista inmodificable de productos mapeados.
+     */
+    public static java.util.List<Producto> desafioMapearInmodificable(java.util.List<Producto> lista) {
+        return java.util.List.copyOf(lista);
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: tras el bucle, devuelve 'out' (orden por id garantizado por el ORDER BY).
+    /**
+     * TODO extra 10: Verifica si un double obtenido del ResultSet fue nulo en base de datos.
+     */
+    public static boolean desafioFueNulo(java.sql.ResultSet rs) throws java.sql.SQLException {
+        return rs.wasNull();
     }
 
 }

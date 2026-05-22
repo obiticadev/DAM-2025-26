@@ -56,45 +56,127 @@ public final class Ej129SoftDelete {
         System.out.println("usa el test con EMF aislado");
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: begin tx, persist(c), commit, devuelve c.getId().
+    /**
+     * Reto Extra 1: Obtiene el nombre del cliente de forma segura.
+     */
+    public static String obtenerNombre(ClienteSD129 c) {
+        // TODO extra: Reto Extra 1: Obtiene el nombre del cliente de forma segura.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerNombre");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: begin tx.
+    /**
+     * Reto Extra 2: Comprueba si el cliente esta marcado como borrado.
+     */
+    public static boolean estaBorrado(ClienteSD129 c) {
+        // TODO extra: Reto Extra 2: Comprueba si el cliente esta marcado como borrado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para estaBorrado");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: find del cliente; si null -> false (rollback/commit vacío).
+    /**
+     * Reto Extra 3: Crea un nuevo cliente activo.
+     */
+    public static ClienteSD129 crearCliente(String nombre) {
+        // TODO extra: Reto Extra 3: Crea un nuevo cliente activo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearCliente");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: setBorrado(true) (NO em.remove).
+    /**
+     * Reto Extra 4: Marca un cliente como borrado (soft delete manual).
+     */
+    public static void borrarClienteManual(ClienteSD129 c) {
+        // TODO extra: Reto Extra 4: Marca un cliente como borrado (soft delete manual).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para borrarClienteManual");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: commit.
+    /**
+     * Reto Extra 5: Restaura un cliente borrado logicamente.
+     */
+    public static void restaurarCliente(ClienteSD129 c) {
+        // TODO extra: Reto Extra 5: Restaura un cliente borrado logicamente.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para restaurarCliente");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: devuelve true.
+    /**
+     * Reto Extra 6: Obtiene el ID del cliente de forma segura.
+     */
+    public static Long obtenerId(ClienteSD129 c) {
+        // TODO extra: Reto Extra 6: Obtiene el ID del cliente de forma segura.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerId");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: JPQL "select c from ClienteSD129 c where c.borrado = false order by c.id".
+    /**
+     * Reto Extra 7: Comprueba si el cliente es nuevo (ID nulo).
+     */
+    public static boolean esNuevo(ClienteSD129 c) {
+        // TODO extra: Reto Extra 7: Comprueba si el cliente es nuevo (ID nulo).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esNuevo");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: getResultList().
+    /**
+     * Reto Extra 8: Comprueba si el nombre del cliente contiene una palabra.
+     */
+    public static boolean nombreContiene(ClienteSD129 c, String palabra) {
+        // TODO extra: Reto Extra 8: Comprueba si el nombre del cliente contiene una palabra.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para nombreContiene");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: los borrados lógicamente NO deben aparecer aquí.
+    /**
+     * Reto Extra 9: Comprueba si el cliente esta activo (no borrado).
+     */
+    public static boolean estaActivo(ClienteSD129 c) {
+        // TODO extra: Reto Extra 9: Comprueba si el cliente esta activo (no borrado).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para estaActivo");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: la fila sigue en BD (consultable sin el filtro) — soft, no físico.
+    /**
+     * Reto Extra 10: Retorna formato del cliente.
+     */
+    public static String formatearCliente(ClienteSD129 c) {
+        // TODO extra: Reto Extra 10: Retorna formato del cliente.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearCliente");
     }
+
+
 
 }
 

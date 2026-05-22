@@ -50,7 +50,6 @@ class Ej032QualifierAndPrimaryTest {
         public String enviar(String msg) { return "custom:" + msg; }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 1")
     @Test
     void retoExtra01_obtenerBeanPrimary() {
         try (var ctx = new AnnotationConfigApplicationContext()) {
@@ -62,7 +61,6 @@ class Ej032QualifierAndPrimaryTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 2")
     @Test
     void retoExtra02_obtenerBeanQualifier() {
         try (var ctx = new AnnotationConfigApplicationContext()) {
@@ -74,7 +72,6 @@ class Ej032QualifierAndPrimaryTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 3")
     @Test
     void retoExtra03_obtenerTodosLosBeansComoMapa() {
         try (var ctx = new AnnotationConfigApplicationContext()) {
@@ -87,7 +84,6 @@ class Ej032QualifierAndPrimaryTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
     @Test
     void retoExtra04_servicioDesambiguador() {
         var p = new MiNotificadorPrimary();
@@ -97,7 +93,6 @@ class Ej032QualifierAndPrimaryTest {
         assertEquals(p, des.resolverNotificador());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 5")
     @Test
     void retoExtra05_servicioDualQualifier() {
         var email = new EmailNotificador();
@@ -106,7 +101,6 @@ class Ej032QualifierAndPrimaryTest {
         assertEquals("email:alerta & sms:alerta", dual.notificarAmbos("alerta"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 6")
     @Test
     void retoExtra06_resolucionConAnotacionCustom() {
         try (var ctx = new AnnotationConfigApplicationContext()) {
@@ -118,7 +112,6 @@ class Ej032QualifierAndPrimaryTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 7")
     @Test
     void retoExtra07_esBeanPrimaryProgramatico() {
         try (var ctx = new AnnotationConfigApplicationContext()) {
@@ -129,7 +122,6 @@ class Ej032QualifierAndPrimaryTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
     @Test
     void retoExtra08_contarBeansPorCalificador() {
         try (var ctx = new AnnotationConfigApplicationContext()) {
@@ -140,7 +132,6 @@ class Ej032QualifierAndPrimaryTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 9")
     @Test
     void retoExtra09_servicioFallbackQualifier() {
         try (var ctx = new AnnotationConfigApplicationContext()) {
@@ -153,7 +144,6 @@ class Ej032QualifierAndPrimaryTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     @Test
     void retoExtra10_reemplazarPrimaryEnCaliente() {
         try (var ctx = new AnnotationConfigApplicationContext()) {

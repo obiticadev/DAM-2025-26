@@ -50,74 +50,81 @@ public final class Ej108NativeQueries {
         System.out.println("usa el test con EMF aislado");
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: createNativeQuery("SELECT COUNT(*) FROM CIUDAD108").
+    /**
+     * TODO extra 1: Comprueba si un repositorio JPA de tipo EmpleadoRepository está instanciado.
+     */
+    public static boolean desafioRepositoryActivo(EmpleadoRepository repo) {
+        return repo != null;
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: getSingleResult() (devuelve Number/Long según dialecto).
+    /**
+     * TODO extra 2: Busca un empleado por departamento con query nativa SQL usando el repositorio.
+     */
+    public static java.util.List<Empleado> desafioBuscarPorDeptoNativa(EmpleadoRepository repo, String dep) {
+        return repo.buscarPorDepartamentoNativa(dep);
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: convierte a long con ((Number)res).longValue().
+    /**
+     * TODO extra 3: Comprueba si el departamento a filtrar en query nativa es nulo.
+     */
+    public static void desafioValidarFiltroDepto(String dep) {
+        if (dep == null || dep.isBlank()) {
+            throw new IllegalArgumentException("Filtro no válido");
+        }
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: SQL nativo usa el nombre real de la tabla, no la entidad.
+    /**
+     * TODO extra 4: Crea una instancia rápida de Empleado para tests.
+     */
+    public static Empleado desafioCrearInstanciaEmpleado(String nombre, String dep) {
+        var e = new Empleado();
+        e.setNombre(nombre);
+        e.setDepartamento(dep);
+        return e;
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: createNativeQuery("SELECT * FROM CIUDAD108 WHERE poblacion >= ?", Ciudad108.class).
+    /**
+     * TODO extra 5: Retorna el nombre nativo de la tabla de empleados en la base de datos (p.ej. EMPLEADO).
+     */
+    public static String desafioObtenerNombreTablaNativo() {
+        return "EMPLEADO";
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: setParameter(1, paisMin) (parámetros nativos son posicionales con ?).
+    /**
+     * TODO extra 6: Comprueba si el empleado recuperado tiene datos coherentes.
+     */
+    public static boolean desafioDatosCoherentes(Empleado e) {
+        return e != null && e.getNombre() != null && e.getDepartamento() != null;
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: getResultList() devuelve List de Ciudad108 (mapeo por la 2ª arg).
+    /**
+     * TODO extra 7: Lanza una excepción si un empleado tiene un nombre vacío.
+     */
+    public static void desafioValidarEmpleadoDePrueba(Empleado e) {
+        if (e == null || e.getNombre() == null || e.getNombre().isBlank()) {
+            throw new IllegalArgumentException("Nombre vacío");
+        }
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: nunca concatenes 'paisMin' en el SQL (inyección).
+    /**
+     * TODO extra 8: Cuenta el número total de empleados mediante el repositorio.
+     */
+    public static long desafioContarEmpleados(EmpleadoRepository repo) {
+        return repo.count();
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: el orden no está garantizado sin ORDER BY (añádelo si el test lo pide).
+    /**
+     * TODO extra 9: Retorna verdadero si una lista de empleados es no vacía y contiene empleados.
+     */
+    public static boolean desafioTieneRegistros(java.util.List<Empleado> lista) {
+        return lista != null && !lista.isEmpty();
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve la lista.
+    /**
+     * TODO extra 10: Retorna un objeto descriptivo con los nombres de todos los empleados mapeados nativamente.
+     */
+    public static java.util.List<String> desafioObtenerNombresLista(java.util.List<Empleado> empleados) {
+        return empleados.stream().map(Empleado::getNombre).toList();
     }
 
-}
-
-@jakarta.persistence.Entity
-@jakarta.persistence.Table(name = "CIUDAD108")
-class Ciudad108 {
-    @jakarta.persistence.Id
-    @jakarta.persistence.GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
-    private Long id;
-    private String nombre;
-    private int poblacion;
-
-    protected Ciudad108() {
-    }
-
-    public Ciudad108(String nombre, int poblacion) {
-        this.nombre = nombre;
-        this.poblacion = poblacion;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public int getPoblacion() {
-        return poblacion;
-    }
 }

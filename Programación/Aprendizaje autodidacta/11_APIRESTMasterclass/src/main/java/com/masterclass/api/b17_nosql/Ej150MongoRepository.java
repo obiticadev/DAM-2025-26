@@ -26,44 +26,124 @@ public final class Ej150MongoRepository {
         System.out.println(repo.findByCliente("ana"));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si pedido es null -> IllegalArgumentException.
+        /**
+     * RETO EXTRA 01: Verifica si el patron regex de busqueda es correcto.
+     */
+    public static boolean esFiltroRegexValido(String regex) {
+        // TODO extra: RETO EXTRA 01: Verifica si el patron regex de busqueda es correcto.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFiltroRegexValido");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si pedido.id() es null o vacío -> IllegalArgumentException
+    /**
+     * RETO EXTRA 02: Valida limites de filtro de edad en queries.
+     */
+    public static boolean esRangoEdadValido(int min, int max) {
+        // TODO extra: RETO EXTRA 02: Valida limites de filtro de edad en queries.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRangoEdadValido");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: usa pedido.id() como clave del mapa.
+    /**
+     * RETO EXTRA 03: Une dos condiciones BSON en una operacion $and.
+     */
+    public static String combinarFiltrosY(String f1, String f2) {
+        // TODO extra: RETO EXTRA 03: Une dos condiciones BSON en una operacion $and.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para combinarFiltrosY");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: si la clave ya existe, save SOBRESCRIBE (upsert), no duplica.
+    /**
+     * RETO EXTRA 04: Determina si la consulta no tiene restricciones (documento vacio).
+     */
+    public static boolean esFiltroVacio(String filter) {
+        // TODO extra: RETO EXTRA 04: Determina si la consulta no tiene restricciones (documento vacio).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFiltroVacio");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: inserta/actualiza la entrada en 'almacen'.
+    /**
+     * RETO EXTRA 05: Obtiene el valor del identificador dentro de un BSON string.
+     */
+    public static String extraerCampoObjectId(String bsonDoc) {
+        // TODO extra: RETO EXTRA 05: Obtiene el valor del identificador dentro de un BSON string.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerCampoObjectId");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: save devuelve la entidad persistida (la misma instancia aquí).
+    /**
+     * RETO EXTRA 06: Verifica que el salto y limite cumplan margenes seguros de memoria.
+     */
+    public static boolean esConsultaPaginadaSegura(int skip, int limit) {
+        // TODO extra: RETO EXTRA 06: Verifica que el salto y limite cumplan margenes seguros de memoria.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esConsultaPaginadaSegura");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: no devuelvas null.
+    /**
+     * RETO EXTRA 07: Determina si el fallo ocurrio por sintaxis invalida en consulta.
+     */
+    public static boolean esExcepcionDeQueryMongo(Throwable t) {
+        // TODO extra: RETO EXTRA 07: Determina si el fallo ocurrio por sintaxis invalida en consulta.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionDeQueryMongo");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: documenta que el orden de inserción se conserva (LinkedHashMap).
+    /**
+     * RETO EXTRA 08: Genera la query geo-JSON de cercania.
+     */
+    public static String crearQueryGeospatial(double lon, double lat, double maxDist) {
+        // TODO extra: RETO EXTRA 08: Genera la query geo-JSON de cercania.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearQueryGeospatial");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: no muta otros documentos.
+    /**
+     * RETO EXTRA 09: Verifica si la cadena es un operador de consulta de Mongo valido.
+     */
+    public static boolean esOperadorMongoValido(String op) {
+        // TODO extra: RETO EXTRA 09: Verifica si la cadena es un operador de consulta de Mongo valido.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esOperadorMongoValido");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: retorna el pedido guardado.
+    /**
+     * RETO EXTRA 10: Resuelve la direccion del orden (1 asc, -1 desc).
+     */
+    public static String extraerOrdenacionDeQuery(String sortJson) {
+        // TODO extra: RETO EXTRA 10: Resuelve la direccion del orden (1 asc, -1 desc).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerOrdenacionDeQuery");
     }
 
 }

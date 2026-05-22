@@ -38,45 +38,127 @@ public final class Ej126PessimisticLocking {
         System.out.println("usa el test con EMF aislado");
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: begin tx.
+    /**
+     * Reto Extra 1: Obtiene el stock de un articulo.
+     */
+    public static int obtenerStock(ArtStock126 a) {
+        // TODO extra: Reto Extra 1: Obtiene el stock de un articulo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerStock");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: usa em.find(ArtStock126.class, id, LockModeType.PESSIMISTIC_WRITE)
+    /**
+     * Reto Extra 2: Comprueba si hay stock disponible (mayor que 0).
+     */
+    public static boolean tieneStockDisponible(ArtStock126 a) {
+        // TODO extra: Reto Extra 2: Comprueba si hay stock disponible (mayor que 0).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneStockDisponible");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: si la entidad es null -> IllegalStateException.
+    /**
+     * Reto Extra 3: Comprueba si hay suficiente stock para cubrir una cantidad.
+     */
+    public static boolean stockSuficiente(ArtStock126 a, int cant) {
+        // TODO extra: Reto Extra 3: Comprueba si hay suficiente stock para cubrir una cantidad.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para stockSuficiente");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: comprueba que stock >= cantidad; si no -> IllegalStateException.
+    /**
+     * Reto Extra 4: Crea un nuevo articulo con stock inicial.
+     */
+    public static ArtStock126 crearArticulo(Long id, int stock) {
+        // TODO extra: Reto Extra 4: Crea un nuevo articulo con stock inicial.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearArticulo");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: resta 'cantidad' al stock.
+    /**
+     * Reto Extra 5: Incrementa el stock de un articulo.
+     */
+    public static void incrementarStock(ArtStock126 a, int cant) {
+        // TODO extra: Reto Extra 5: Incrementa el stock de un articulo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para incrementarStock");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: commit (libera el lock).
+    /**
+     * Reto Extra 6: Decrementa el stock si hay suficiente.
+     */
+    public static boolean decrementarStock(ArtStock126 a, int cant) {
+        // TODO extra: Reto Extra 6: Decrementa el stock si hay suficiente.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para decrementarStock");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: el lock pesimista evita que dos reservas concurrentes sobrevendan.
+    /**
+     * Reto Extra 7: Obtiene el ID del articulo.
+     */
+    public static Long obtenerId(ArtStock126 a) {
+        // TODO extra: Reto Extra 7: Obtiene el ID del articulo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerId");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: devuelve el stock resultante.
+    /**
+     * Reto Extra 8: Comprueba si el stock es cero.
+     */
+    public static boolean stockEsCero(ArtStock126 a) {
+        // TODO extra: Reto Extra 8: Comprueba si el stock es cero.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para stockEsCero");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: asigna id y stock.
+    /**
+     * Reto Extra 9: Comprueba si el stock es par.
+     */
+    public static boolean stockEsPar(ArtStock126 a) {
+        // TODO extra: Reto Extra 9: Comprueba si el stock es par.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para stockEsPar");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: asigna el nuevo stock.
+    /**
+     * Reto Extra 10: Retorna formato de texto del stock.
+     */
+    public static String formatearStock(ArtStock126 a) {
+        // TODO extra: Reto Extra 10: Retorna formato de texto del stock.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearStock");
     }
+
+
 
 }
 

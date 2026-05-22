@@ -70,24 +70,36 @@ public final class Ej032QualifierAndPrimary {
      * Reto Extra 1: Recupera del contexto de Spring el bean que tiene prioridad @Primary.
      */
     public static <T> T obtenerBeanPrimary(org.springframework.context.ApplicationContext ctx, Class<T> tipo) {
-        // TODO extra (Reto 1): Busca en el ApplicationContext el bean primario para el tipo indicado.
-        return null;
+        // TODO extra: Reto Extra 1: Recupera del contexto de Spring el bean que tiene prioridad @Primary.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerBeanPrimary");
     }
 
     /**
      * Reto Extra 2: Recupera un bean específico cualificado con @Qualifier desde el ApplicationContext.
      */
     public static <T> T obtenerBeanQualifier(org.springframework.context.ApplicationContext ctx, Class<T> tipo, String calificador) {
-        // TODO extra (Reto 2): Resuelve y devuelve el bean cualificado del tipo especificado.
-        return null;
+        // TODO extra: Reto Extra 2: Recupera un bean específico cualificado con @Qualifier desde el ApplicationContext.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerBeanQualifier");
     }
 
     /**
      * Reto Extra 3: Recupera todos los beans de un determinado tipo como un mapa indexado por nombre del bean.
      */
     public static <T> java.util.Map<String, T> obtenerTodosLosBeansComoMapa(org.springframework.context.ApplicationContext ctx, Class<T> tipo) {
-        // TODO extra (Reto 3): Retorna un mapa que contenga todos los beans declarados para dicho tipo.
-        return java.util.Map.of();
+        // TODO extra: Reto Extra 3: Recupera todos los beans de un determinado tipo como un mapa indexado por nombre del bean.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerTodosLosBeansComoMapa");
     }
 
     /**
@@ -95,60 +107,60 @@ public final class Ej032QualifierAndPrimary {
      * pero prioriza el que tenga una anotación @Primary si está disponible, o usa uno por defecto.
      */
     public static class ServicioDesambiguador {
-        private final java.util.List<Notificador> notificadores;
-
-        public ServicioDesambiguador(java.util.List<Notificador> notificadores) {
-            // TODO extra (Reto 4): Guarda la lista de notificadores.
-            this.notificadores = notificadores;
-        }
-
-        public Notificador resolverNotificador() {
-            // TODO extra (Reto 4): Retorna el Notificador anotado con @Primary (simulado o reflectivo), o el primero de la lista.
-            return null;
-        }
+        // TODO extra: Reto Extra 4: Servicio desambiguador que inyecta una colección de notificadores,
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
     /**
      * Reto Extra 5: Servicio que inyecta dos notificadores homónimos usando calificadores explícitos.
      */
     public static class ServicioDualQualifier {
-        private final Notificador emailNotificador;
-        private final Notificador smsNotificador;
-
-        public ServicioDualQualifier(Notificador emailNotificador, Notificador smsNotificador) {
-            // TODO extra (Reto 5): Guarda ambos notificadores calificados.
-            this.emailNotificador = emailNotificador;
-            this.smsNotificador = smsNotificador;
-        }
-
-        public String notificarAmbos(String msg) {
-            // TODO extra (Reto 5): Envía el mensaje con ambos notificadores y concatena las respuestas unidas por " & ".
-            return "";
-        }
+        // TODO extra: Reto Extra 5: Servicio que inyecta dos notificadores homónimos usando calificadores explícitos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
     /**
      * Reto Extra 6: Simula la resolución de beans en un contexto evaluando una anotación cualificadora personalizada.
      */
     public static Object resolucionConAnotacionCustom(org.springframework.context.ApplicationContext ctx, Class<?> tipo, Class<? extends java.lang.annotation.Annotation> customQualifier) {
-        // TODO extra (Reto 6): Busca entre las instancias del tipo indicado aquélla que posea la anotación customQualifier.
-        return null;
+        // TODO extra: Reto Extra 6: Simula la resolución de beans en un contexto evaluando una anotación cualificadora personalizada.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para resolucionConAnotacionCustom");
     }
 
     /**
      * Reto Extra 7: Consulta las definiciones del BeanFactory para saber si un determinado bean tiene activada la propiedad Primary.
      */
     public static boolean esBeanPrimaryProgramatico(org.springframework.context.support.GenericApplicationContext ctx, String nombreBean) {
-        // TODO extra (Reto 7): Accede a la definición del bean y verifica si es Primary.
-        return false;
+        // TODO extra: Reto Extra 7: Consulta las definiciones del BeanFactory para saber si un determinado bean tiene activada la propiedad Primary.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esBeanPrimaryProgramatico");
     }
 
     /**
      * Reto Extra 8: Cuenta y lista cuántos beans en el ApplicationContext poseen una cualificación explícita de un tipo.
      */
     public static int contarBeansPorCalificador(org.springframework.context.support.GenericApplicationContext ctx, Class<?> tipo, String qualifierValue) {
-        // TODO extra (Reto 8): Cuenta los beans calificados con el valor indicado para el tipo dado.
-        return 0;
+        // TODO extra: Reto Extra 8: Cuenta y lista cuántos beans en el ApplicationContext poseen una cualificación explícita de un tipo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarBeansPorCalificador");
     }
 
     /**
@@ -156,24 +168,24 @@ public final class Ej032QualifierAndPrimary {
      * si no existe en el ApplicationContext, captura la excepción y retorna un SmsNotificador por defecto.
      */
     public static class ServicioFallbackQualifier {
-        private final org.springframework.context.ApplicationContext ctx;
-
-        public ServicioFallbackQualifier(org.springframework.context.ApplicationContext ctx) {
-            // TODO extra (Reto 9): Guarda el contexto de Spring.
-            this.ctx = ctx;
-        }
-
-        public Notificador resolverConFallback(String qualifier) {
-            // TODO extra (Reto 9): Intenta obtener el Notificador con el qualifier. Si falla, retorna una instancia de SmsNotificador.
-            return null;
-        }
+        // TODO extra: Reto Extra 9: Servicio resiliente de resolución. Intenta resolver un notificador cualificado;
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
     /**
      * Reto Extra 10: Mutación programática en caliente de las definiciones de beans para marcar un bean como Primary en tiempo de ejecución.
      */
     public static void reemplazarPrimaryEnCaliente(org.springframework.context.support.GenericApplicationContext ctx, String nuevoPrimaryBean) {
-        // TODO extra (Reto 10): Configura la propiedad primary = true en la definición del bean indicado y deshabilita la de los demás homónimos.
+        // TODO extra: Reto Extra 10: Mutación programática en caliente de las definiciones de beans para marcar un bean como Primary en tiempo de ejecución.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para reemplazarPrimaryEnCaliente");
     }
 
 }

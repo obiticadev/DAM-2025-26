@@ -64,8 +64,12 @@ public final class Ej026NestedAndCollections {
      * @return lista de mapas deserializada
      */
     public static List<java.util.Map<String, Object>> mapearListaDeMapas(String json) {
-        // TODO extra: utiliza TypeReference<List<Map<String, Object>>> para deserializar el JSON de forma segura
-        return List.of();
+        // TODO extra: Reto Extra 1: Mapeo de colecciones genéricas de mapas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para mapearListaDeMapas");
     }
 
     /**
@@ -76,8 +80,12 @@ public final class Ej026NestedAndCollections {
      * @return JSON conteniendo el array de pedidos
      */
     public static String serializarListaDePedidos(List<Pedido> pedidos) {
-        // TODO extra: serializa la lista de pedidos manejando excepciones checked
-        return "";
+        // TODO extra: Reto Extra 2: Serialización masiva de colecciones.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para serializarListaDePedidos");
     }
 
     /**
@@ -88,8 +96,12 @@ public final class Ej026NestedAndCollections {
      * @return objeto Pedido saneado
      */
     public static Pedido deserializarPedidoConNulosIgnorados(String json) {
-        // TODO extra: deserializa el Pedido y crea una copia saneada donde la lista de 'lineas' esté libre de elementos null
-        return null;
+        // TODO extra: Reto Extra 3: Deserialización y saneamiento de colecciones.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para deserializarPedidoConNulosIgnorados");
     }
 
     /**
@@ -100,8 +112,12 @@ public final class Ej026NestedAndCollections {
      * @return mapa de claves y valores textuales
      */
     public static java.util.Map<String, String> extraerMapaClaveValor(String json) {
-        // TODO extra: deserializa a Map usando TypeReference<Map<String, String>>
-        return java.util.Map.of();
+        // TODO extra: Reto Extra 4: Extracción de mapa clave-valor de cadenas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerMapaClaveValor");
     }
 
     /**
@@ -112,8 +128,12 @@ public final class Ej026NestedAndCollections {
      * @return mapa complejo deserializado
      */
     public static java.util.Map<String, List<Linea>> mapearTipoComplejo(String json) {
-        // TODO extra: utiliza TypeReference<Map<String, List<Linea>>> para deserializar la estructura anidada
-        return java.util.Map.of();
+        // TODO extra: Reto Extra 5: Mapeo de tipo complejo anidado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para mapearTipoComplejo");
     }
 
     /**
@@ -124,8 +144,12 @@ public final class Ej026NestedAndCollections {
      * @return array de bytes
      */
     public static byte[] escribirComoArrayDeBytes(List<Linea> lineas) {
-        // TODO extra: utiliza MAPPER.writeValueAsBytes(lineas) manejando excepciones checked
-        return new byte[0];
+        // TODO extra: Reto Extra 6: Serialización binaria de colecciones.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para escribirComoArrayDeBytes");
     }
 
     /**
@@ -136,8 +160,12 @@ public final class Ej026NestedAndCollections {
      * @return lista de líneas deserializada
      */
     public static List<Linea> leerColeccionDeBytes(byte[] bytes) {
-        // TODO extra: deserializa usando TypeReference<List<Linea>>
-        return List.of();
+        // TODO extra: Reto Extra 7: Deserialización binaria de colecciones.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para leerColeccionDeBytes");
     }
 
     /**
@@ -148,8 +176,12 @@ public final class Ej026NestedAndCollections {
      * @return suma acumulada de las cantidades de productos
      */
     public static int contarTotalProductos(Pedido p) {
-        // TODO extra: suma las cantidades de cada línea en el pedido utilizando streams (lineas().stream().mapToInt().sum())
-        return 0;
+        // TODO extra: Reto Extra 8: Recuento analítico sobre colecciones anidadas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarTotalProductos");
     }
 
     /**
@@ -160,8 +192,12 @@ public final class Ej026NestedAndCollections {
      * @return JSON del pedido filtrado
      */
     public static String serializarSoloLineasValidas(Pedido p) {
-        // TODO extra: filtra las líneas del pedido conservando solo aquellas con cantidad > 0, crea un nuevo Pedido y serialízalo
-        return "";
+        // TODO extra: Reto Extra 9: Serialización filtrada.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para serializarSoloLineasValidas");
     }
 
     /**
@@ -172,8 +208,12 @@ public final class Ej026NestedAndCollections {
      * @return mapa dinámico heterogéneo
      */
     public static java.util.Map<String, Object> deserializarMapGenerico(String json) {
-        // TODO extra: deserializa a Map usando TypeReference<Map<String, Object>>
-        return java.util.Map.of();
+        // TODO extra: Reto Extra 10: Deserialización de mapa dinámico heterogéneo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para deserializarMapGenerico");
     }
 
 }

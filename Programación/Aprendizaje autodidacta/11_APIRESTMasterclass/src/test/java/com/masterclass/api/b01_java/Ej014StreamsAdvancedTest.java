@@ -25,7 +25,6 @@ class Ej014StreamsAdvancedTest {
         assertEquals("", Ej014StreamsAdvanced.unirConComas(List.of()));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 1")
     @Test
     void retoExtra01_agruparPorLongitud() {
         var res = Ej014StreamsAdvanced.agruparPorLongitud(List.of("a", "bb", "ccc", "dd"));
@@ -34,7 +33,6 @@ class Ej014StreamsAdvancedTest {
         assertEquals(List.of("ccc"), res.get(3));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 2")
     @Test
     void retoExtra02_particionarParesImpares() {
         var res = Ej014StreamsAdvanced.particionarParesImpares(List.of(1, 2, 3, 4));
@@ -42,7 +40,6 @@ class Ej014StreamsAdvancedTest {
         assertEquals(List.of(1, 3), res.get(false));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 3")
     @Test
     void retoExtra03_aplanarListas() {
         var res = Ej014StreamsAdvanced.aplanarListas(java.util.Arrays.asList(
@@ -53,7 +50,6 @@ class Ej014StreamsAdvancedTest {
         assertEquals(List.of("hello", "world"), res);
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
     @Test
     void retoExtra04_contarOcurrencias() {
         var res = Ej014StreamsAdvanced.contarOcurrencias(List.of("a", "b", "a", "c", "b", "a"));
@@ -62,7 +58,6 @@ class Ej014StreamsAdvancedTest {
         assertEquals(1L, res.get("c"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 5")
     @Test
     void retoExtra05_obtenerNombresConcatenadosPorGrupo() {
         var res = Ej014StreamsAdvanced.obtenerNombresConcatenadosPorGrupo(List.of("a", "bb", "ccc", "dd"));
@@ -71,7 +66,6 @@ class Ej014StreamsAdvancedTest {
         assertEquals("ccc", res.get(3));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 6")
     @Test
     void retoExtra06_encontrarProductoMasCaroPorCategoria() {
         var p1 = new Ej014StreamsAdvanced.Producto("p1", "CatA", 10.0);
@@ -83,7 +77,6 @@ class Ej014StreamsAdvancedTest {
         assertEquals(p3, res.get("CatB").orElseThrow());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 7")
     @Test
     void retoExtra07_calcularPromedioPrecio() {
         var p1 = new Ej014StreamsAdvanced.Producto("p1", "CatA", 10.0);
@@ -94,7 +87,6 @@ class Ej014StreamsAdvancedTest {
         assertEquals(0.0, Ej014StreamsAdvanced.calcularPromedioPrecio(List.of(p1, p2, p3), "CatC"), 0.0001);
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
     @Test
     void retoExtra08_crearMapaDeValoresUnicos() {
         var p1 = new Ej014StreamsAdvanced.Producto("prod", "CatA", 10.0);
@@ -107,7 +99,6 @@ class Ej014StreamsAdvancedTest {
         assertEquals(p3, res.get("other"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 9")
     @Test
     void retoExtra09_generarEstadisticasPrecio() {
         var p1 = new Ej014StreamsAdvanced.Producto("p1", "CatA", 10.0);
@@ -120,7 +111,6 @@ class Ej014StreamsAdvancedTest {
         assertEquals(10.0, stats.getMin(), 0.0001);
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     @Test
     void retoExtra10_agruparYOrdenarResultados() {
         var p1 = new Ej014StreamsAdvanced.Producto("p1", "CatB", 10.0);

@@ -62,44 +62,81 @@ public final class Ej089HexagonalPorts {
         System.out.println(new RegistroService(adapter).registrar("a@b.com"));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: valida destino y mensaje no null/blank.
+    /**
+     * TODO extra 1: Valida que el destino y mensaje no sean nulos o vacíos.
+     */
+    public static void desafioValidarDestinoYMensaje(String destino, String mensaje) {
+        if (destino == null || destino.isBlank() || mensaje == null || mensaje.isBlank()) {
+            throw new IllegalArgumentException("Destino o mensaje inválidos");
+        }
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: registra "destino|mensaje" en la lista 'enviados'.
+    /**
+     * TODO extra 2: Registra en una lista un mensaje en formato "destino|mensaje".
+     */
+    public static void desafioRegistrarEnviado(java.util.List<String> list, String destino, String mensaje) {
+        desafioValidarDestinoYMensaje(destino, mensaje);
+        list.add(destino + "|" + mensaje);
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: este adaptador es intercambiable sin tocar el dominio.
+    /**
+     * TODO extra 3: Comprueba si un puerto de notificación está activo e instanciado.
+     */
+    public static boolean desafioIntercambiarAdaptador(NotificacionPort port) {
+        return port != null;
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: guarda la dependencia del puerto (inyección por constructor).
+    /**
+     * TODO extra 4: Retorna el puerto inyectado si no es nulo.
+     */
+    public static NotificacionPort desafioAsignarPuerto(NotificacionPort port) {
+        if (port == null) throw new IllegalArgumentException("Puerto nulo");
+        return port;
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: valida que email contenga '@'.
+    /**
+     * TODO extra 5: Valida que el correo contenga '@'.
+     */
+    public static boolean desafioValidarEmail(String email) {
+        return email != null && email.contains("@");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: construye el mensaje "Bienvenido " + email.
+    /**
+     * TODO extra 6: Construye un mensaje de bienvenida.
+     */
+    public static String desafioConstruirBienvenida(String email) {
+        return "Bienvenido " + email;
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: usa el PUERTO notificacion.enviar(email, mensaje).
+    /**
+     * TODO extra 7: Envía una notificación usando el puerto.
+     */
+    public static void desafioEnviarPorPuerto(NotificacionPort port, String destino, String mensaje) {
+        port.enviar(destino, mensaje);
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: el dominio no sabe si es email real o memoria (desacoplado).
+    /**
+     * TODO extra 8: Verifica que el dominio esté desacoplado del adaptador.
+     */
+    public static String desafioVerificarAislamiento() {
+        return "desacoplado";
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: devuelve el mensaje enviado.
+    /**
+     * TODO extra 9: Retorna el mensaje enviado formateado.
+     */
+    public static String desafioObtenerMensajeRetorno(String email) {
+        return "Bienvenido " + email;
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: si cambias el adaptador, este código NO cambia (esa es la idea).
+    /**
+     * TODO extra 10: Simula todo el flujo hexagonal de registro y envío.
+     */
+    public static String desafioSimularFlujoHexagonal(NotificacionPort port, String email) {
+        if (!desafioValidarEmail(email)) throw new IllegalArgumentException("Email invalido");
+        String msg = desafioConstruirBienvenida(email);
+        desafioEnviarPorPuerto(port, email, msg);
+        return msg;
     }
 
 }

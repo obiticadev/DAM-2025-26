@@ -26,4 +26,65 @@ class Ej178ApiDocAnnotationsTest {
     void nullInvalido() {
         assertThrows(IllegalArgumentException.class, () -> Ej178ApiDocAnnotations.resolver(null));
     }
+
+    @Test
+    void testRetoExtra01_esRequerido() {
+        // Valida campo requerido.
+        assertTrue(Ej178ApiDocAnnotations.esRequerido(new AnnotationMeta178("a", "b", "c", true)));
+    }
+
+    @Test
+    void testRetoExtra02_obtenerTipoJava() {
+        // Obtiene tipo original.
+        assertEquals("String", Ej178ApiDocAnnotations.obtenerTipoJava(new AnnotationMeta178("a", "b", "String", true)));
+    }
+
+    @Test
+    void testRetoExtra03_obtenerSummary() {
+        // Obtiene summary.
+        assertEquals("a", Ej178ApiDocAnnotations.obtenerSummary(new AnnotationMeta178("a", "b", "c", true)));
+    }
+
+    @Test
+    void testRetoExtra04_obtenerDescription() {
+        // Obtiene descripcion.
+        assertEquals("b", Ej178ApiDocAnnotations.obtenerDescription(new AnnotationMeta178("a", "b", "c", true)));
+    }
+
+    @Test
+    void testRetoExtra05_tieneSummary() {
+        // Verifica summary.
+        assertTrue(Ej178ApiDocAnnotations.tieneSummary(new AnnotationMeta178("a", "b", "c", true)));
+    }
+
+    @Test
+    void testRetoExtra06_tieneDescription() {
+        // Verifica descripcion.
+        assertTrue(Ej178ApiDocAnnotations.tieneDescription(new AnnotationMeta178("a", "b", "c", true)));
+    }
+
+    @Test
+    void testRetoExtra07_crearAnotacion() {
+        // Crea anotacion simulada.
+        assertNotNull(Ej178ApiDocAnnotations.crearAnotacion("a", "b", "c", true));
+    }
+
+    @Test
+    void testRetoExtra08_esObjetoType() {
+        // Valida si es tipo Objeto.
+        assertTrue(Ej178ApiDocAnnotations.esObjetoType("User"));
+    }
+
+    @Test
+    void testRetoExtra09_esEnteroType() {
+        // Valida si es tipo Entero.
+        assertTrue(Ej178ApiDocAnnotations.esEnteroType("int"));
+    }
+
+    @Test
+    void testRetoExtra10_formatearRequerido() {
+        // Texto representativo.
+        assertEquals("required", Ej178ApiDocAnnotations.formatearRequerido(new AnnotationMeta178("a", "b", "c", true)));
+    }
+
 }

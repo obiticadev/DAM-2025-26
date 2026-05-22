@@ -39,45 +39,127 @@ public final class Ej128Auditing {
         System.out.println("usa el test con EMF aislado");
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: begin tx, persist(d), commit -> @PrePersist fija creadoEn.
+    /**
+     * Reto Extra 1: Obtiene el texto de un documento de forma segura.
+     */
+    public static String obtenerTexto(DocAud128 d) {
+        // TODO extra: Reto Extra 1: Obtiene el texto de un documento de forma segura.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerTexto");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: devuelve d.getId().
+    /**
+     * Reto Extra 2: Comprueba si tiene fecha de creacion asignada.
+     */
+    public static boolean tieneCreadoEn(DocAud128 d) {
+        // TODO extra: Reto Extra 2: Comprueba si tiene fecha de creacion asignada.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneCreadoEn");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: begin tx, find, cambiar texto, commit -> @PreUpdate fija actualizadoEn.
+    /**
+     * Reto Extra 3: Comprueba si tiene fecha de actualizacion asignada.
+     */
+    public static boolean tieneActualizadoEn(DocAud128 d) {
+        // TODO extra: Reto Extra 3: Comprueba si tiene fecha de actualizacion asignada.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneActualizadoEn");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: anota con @PrePersist.
+    /**
+     * Reto Extra 4: Crea un nuevo documento auditable.
+     */
+    public static DocAud128 crearDocumento(String texto) {
+        // TODO extra: Reto Extra 4: Crea un nuevo documento auditable.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearDocumento");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: asigna creadoEn = Instant.now() (solo al insertar).
+    /**
+     * Reto Extra 5: Comprueba si el documento ha sido editado (creadoEn != actualizadoEn).
+     */
+    public static boolean haSidoEditado(DocAud128 d) {
+        // TODO extra: Reto Extra 5: Comprueba si el documento ha sido editado (creadoEn != actualizadoEn).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para haSidoEditado");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: anota con @PreUpdate.
+    /**
+     * Reto Extra 6: Actualiza el texto de un documento de forma manual.
+     */
+    public static void actualizarTexto(DocAud128 d, String nuevoTexto) {
+        // TODO extra: Reto Extra 6: Actualiza el texto de un documento de forma manual.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para actualizarTexto");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: asigna actualizadoEn = Instant.now() (en cada UPDATE).
+    /**
+     * Reto Extra 7: Obtiene el ID del documento.
+     */
+    public static Long obtenerId(DocAud128 d) {
+        // TODO extra: Reto Extra 7: Obtiene el ID del documento.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerId");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: NO toques creadoEn aquí (la fecha de creación es inmutable).
+    /**
+     * Reto Extra 8: Comprueba si el texto contiene una palabra.
+     */
+    public static boolean contienePalabra(DocAud128 d, String palabra) {
+        // TODO extra: Reto Extra 8: Comprueba si el texto contiene una palabra.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contienePalabra");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: asigna el nuevo texto.
+    /**
+     * Reto Extra 9: Comprueba si el documento es nuevo (ID nulo).
+     */
+    public static boolean esNuevo(DocAud128 d) {
+        // TODO extra: Reto Extra 9: Comprueba si el documento es nuevo (ID nulo).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esNuevo");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: el cambio de texto disparará @PreUpdate al hacer commit.
+    /**
+     * Reto Extra 10: Retorna formato de auditoria del documento.
+     */
+    public static String formatearAuditoria(DocAud128 d) {
+        // TODO extra: Reto Extra 10: Retorna formato de auditoria del documento.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearAuditoria");
     }
+
+
 
 }
 

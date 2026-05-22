@@ -41,7 +41,6 @@ class Ej039ApplicationPropertiesTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 1")
     @Test
     void retoExtra01_resolverPropiedadSpring() {
         var env = new org.springframework.mock.env.MockEnvironment();
@@ -49,14 +48,12 @@ class Ej039ApplicationPropertiesTest {
         assertEquals("Antigravity", Ej039ApplicationProperties.resolverPropiedadSpring(env, "app.nombre"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 2")
     @Test
     void retoExtra02_resolverConDefaultSpring() {
         var env = new org.springframework.mock.env.MockEnvironment();
         assertEquals("Fallback", Ej039ApplicationProperties.resolverConDefaultSpring(env, "inexistente", "Fallback"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 3")
     @Test
     void retoExtra03_resolverComoInteger() {
         var env = new org.springframework.mock.env.MockEnvironment();
@@ -64,7 +61,6 @@ class Ej039ApplicationPropertiesTest {
         assertEquals(Integer.valueOf(60), Ej039ApplicationProperties.resolverComoInteger(env, "app.timeout"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
     @Test
     void retoExtra04_resolverComoBoolean() {
         var env = new org.springframework.mock.env.MockEnvironment();
@@ -72,7 +68,6 @@ class Ej039ApplicationPropertiesTest {
         assertEquals(Boolean.TRUE, Ej039ApplicationProperties.resolverComoBoolean(env, "app.activo"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 5")
     @Test
     void retoExtra05_resolverComoLista() {
         var env = new org.springframework.mock.env.MockEnvironment();
@@ -80,7 +75,6 @@ class Ej039ApplicationPropertiesTest {
         assertEquals(java.util.List.of("admin", "user", "guest"), Ej039ApplicationProperties.resolverComoLista(env, "app.usuarios"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 6")
     @Test
     void retoExtra06_beanConValueDefault() {
         try (var ctx = new org.springframework.context.annotation.AnnotationConfigApplicationContext(ConfigProps.class)) {
@@ -89,7 +83,6 @@ class Ej039ApplicationPropertiesTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 7")
     @Test
     void retoExtra07_beanConValueList() {
         try (var ctx = new org.springframework.context.annotation.AnnotationConfigApplicationContext(ConfigProps.class)) {
@@ -98,7 +91,6 @@ class Ej039ApplicationPropertiesTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
     @Test
     void retoExtra08_verificarPropiedadDefinida() {
         var env = new org.springframework.mock.env.MockEnvironment();
@@ -107,7 +99,6 @@ class Ej039ApplicationPropertiesTest {
         assertTrue(Ej039ApplicationProperties.verificarPropiedadDefinida(env, "app.url"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 9")
     @Test
     void retoExtra09_resolverPropiedadesHomonimasSpring() {
         var env = new org.springframework.mock.env.MockEnvironment();
@@ -116,7 +107,6 @@ class Ej039ApplicationPropertiesTest {
         assertEquals("dev", Ej039ApplicationProperties.resolverPropiedadesHomonimasSpring(env, "${app.env:${app.default-env:prod}}"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     @Test
     void retoExtra10_registrarPropertySourceManual() {
         var env = new org.springframework.mock.env.MockEnvironment();

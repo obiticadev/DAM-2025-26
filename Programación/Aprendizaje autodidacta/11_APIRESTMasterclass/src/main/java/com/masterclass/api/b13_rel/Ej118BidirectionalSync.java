@@ -20,45 +20,127 @@ public final class Ej118BidirectionalSync {
         System.out.println("usa el test (no requiere BD)");
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: valida que 'l' no sea null.
+    /**
+     * Reto Extra 1: Cuenta libros de un autor.
+     */
+    public static int contarLibros(Autor118 a) {
+        // TODO extra: Reto Extra 1: Cuenta libros de un autor.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarLibros");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: añade 'l' a la lista 'libros' (lado inverso).
+    /**
+     * Reto Extra 2: Comprueba si el autor tiene libros.
+     */
+    public static boolean tieneLibros(Autor118 a) {
+        // TODO extra: Reto Extra 2: Comprueba si el autor tiene libros.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneLibros");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: fija el dueño: l.setAutor(this) (lado propietario de la FK).
+    /**
+     * Reto Extra 3: Verifica si un libro esta sincronizado con el autor.
+     */
+    public static boolean esLibroSincronizado(Autor118 a, Libro118 l) {
+        // TODO extra: Reto Extra 3: Verifica si un libro esta sincronizado con el autor.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esLibroSincronizado");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: ambos lados deben quedar consistentes en memoria.
+    /**
+     * Reto Extra 4: Comprueba si el autor tiene un libro con determinado titulo.
+     */
+    public static boolean tieneLibroConTitulo(Autor118 a, String titulo) {
+        // TODO extra: Reto Extra 4: Comprueba si el autor tiene un libro con determinado titulo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneLibroConTitulo");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: si solo añades a la lista y olvidas setAutor, la FK queda null al persistir.
+    /**
+     * Reto Extra 5: Cuenta libros con titulo largo.
+     */
+    public static int contarLibrosTituloLargo(Autor118 a, int len) {
+        // TODO extra: Reto Extra 5: Cuenta libros con titulo largo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarLibrosTituloLargo");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: elimina 'l' de la lista.
+    /**
+     * Reto Extra 6: Crea un nuevo libro.
+     */
+    public static Libro118 crearLibro(String titulo) {
+        // TODO extra: Reto Extra 6: Crea un nuevo libro.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearLibro");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: rompe el lado dueño: l.setAutor(null).
+    /**
+     * Reto Extra 7: Desvincula de forma sincronizada un libro de su autor.
+     */
+    public static void desvincularLibro(Autor118 a, Libro118 l) {
+        // TODO extra: Reto Extra 7: Desvincula de forma sincronizada un libro de su autor.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desvincularLibro");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: tras esto ningún lado debe seguir referenciando al otro.
+    /**
+     * Reto Extra 8: Comprueba si un libro tiene autor.
+     */
+    public static boolean tieneAutor(Libro118 l) {
+        // TODO extra: Reto Extra 8: Comprueba si un libro tiene autor.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneAutor");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: devuelve la lista de libros (lado inverso).
+    /**
+     * Reto Extra 9: Sincroniza en lote multiples libros.
+     */
+    public static void vincularEnLote(Autor118 a, java.util.List<Libro118> lista) {
+        // TODO extra: Reto Extra 9: Sincroniza en lote multiples libros.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para vincularEnLote");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: asigna el autor (lado dueño de la FK).
+    /**
+     * Reto Extra 10: Retorna texto del autor.
+     */
+    public static String formatearAutor(Autor118 a) {
+        // TODO extra: Reto Extra 10: Retorna texto del autor.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearAutor");
     }
+
+
 
 }
 

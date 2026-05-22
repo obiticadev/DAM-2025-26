@@ -43,44 +43,89 @@ public final class Ej098BatchOperations {
         System.out.println("usa el test con H2 en memoria");
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si mensajes es null/vacío, devuelve 0 (nada que insertar).
+    /**
+     * TODO extra 1: Retorna el SQL de inserción en lote.
+     */
+    public static String desafioObtenerSqlInsertBatch() {
+        return "INSERT INTO REGISTRO(id, texto) VALUES (?, ?)";
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: prepara "INSERT INTO LOG(id,msg) VALUES (?,?)".
+    /**
+     * TODO extra 2: Añade parámetros individuales al lote del PreparedStatement.
+     */
+    public static void desafioAñadirAlLote(java.sql.PreparedStatement ps, int id, String texto) throws java.sql.SQLException {
+        ps.setInt(1, id);
+        ps.setString(2, texto);
+        ps.addBatch();
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: recorre la lista con índice.
+    /**
+     * TODO extra 3: Ejecuta las operaciones acumuladas en el lote.
+     */
+    public static int[] desafioEjecutarLote(java.sql.PreparedStatement ps) throws java.sql.SQLException {
+        return ps.executeBatch();
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: para cada elemento, setInt(1, indice) y setString(2, msg).
+    /**
+     * TODO extra 4: Valida que el tamaño de la lista de datos a procesar sea positivo.
+     */
+    public static boolean desafioValidarTamañoDatos(java.util.List<?> datos) {
+        return datos != null && !datos.isEmpty();
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: ps.addBatch() acumula la operación (NO ejecuta aún).
+    /**
+     * TODO extra 5: Comprueba si todos los resultados del lote indican éxito (filas > 0 o SUCCESS_NO_INFO).
+     */
+    public static boolean desafioVerificarExitoLote(int[] resultados) {
+        for (int r : resultados) {
+            if (r < 0 && r != java.sql.Statement.SUCCESS_NO_INFO) {
+                return false;
+            }
+        }
+        return true;
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: tras el bucle, ps.executeBatch() envía TODO de una vez.
+    /**
+     * TODO extra 6: Calcula el total de filas afectadas sumando los resultados individuales.
+     */
+    public static int desafioSumarFilasAfectadas(int[] resultados) {
+        int sum = 0;
+        for (int r : resultados) {
+            if (r > 0) sum += r;
+        }
+        return sum;
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: executeBatch devuelve un int[] con filas por sentencia.
+    /**
+     * TODO extra 7: Lanza una excepción si el lote contiene un fallo específico.
+     */
+    public static void desafioValidarSinFallosLote(int[] resultados) {
+        for (int r : resultados) {
+            if (r == java.sql.Statement.EXECUTE_FAILED) {
+                throw new IllegalStateException("Fallo detectado en lote");
+            }
+        }
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: suma ese array para obtener el total de filas.
+    /**
+     * TODO extra 8: Vacía la lista de sentencias del lote de forma segura.
+     */
+    public static void desafioLimpiarLote(java.sql.PreparedStatement ps) throws java.sql.SQLException {
+        ps.clearBatch();
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: usa try-with-resources para el PreparedStatement.
+    /**
+     * TODO extra 9: Comprueba si el tamaño del lote actual es divisible por un tamaño de batch (por ejemplo, 100).
+     */
+    public static boolean desafioEsLimiteLote(int indiceActual, int tamañoBatch) {
+        return indiceActual > 0 && indiceActual % tamañoBatch == 0;
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve el total insertado.
+    /**
+     * TODO extra 10: Retorna un mensaje resumido sobre la ejecución del lote.
+     */
+    public static String desafioResumirEjecucionLote(int[] resultados) {
+        return "Lote ejecutado. Filas: " + desafioSumarFilasAfectadas(resultados);
     }
 
 }

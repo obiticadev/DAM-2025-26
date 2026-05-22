@@ -46,8 +46,12 @@ public final class Ej055ContentNegotiation {
      * (no son nulos, no están en blanco y contienen exactamente una barra '/').
      */
     public static boolean pasoExtra01(List<String> produces) {
-        // TODO extra: implementa la validación de la lista produces.
-        return false;
+        // TODO extra: Reto Extra 1: Validación sintáctica de tipos producidos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra01");
     }
 
     /**
@@ -57,8 +61,12 @@ public final class Ej055ContentNegotiation {
      * Si no viene 'q', se asume 'q=1.0'. Si 'q' no es numérico, ignora ese token.
      */
     public static List<String> pasoExtra02(String accept) {
-        // TODO extra: parsea la cabecera Accept, extrae y ordena los MIME types por q-value.
-        return null;
+        // TODO extra: Reto Extra 2: Extracción limpia de MIME types de la cabecera Accept ordenados por q-value.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra02");
     }
 
     /**
@@ -67,8 +75,12 @@ public final class Ej055ContentNegotiation {
      * (ej: "text/plain" o "application/json"). Soporta comodines en el subtipo.
      */
     public static boolean pasoExtra03(String accept, String produces) {
-        // TODO extra: comprueba si la cabecera accept casa con la de produces.
-        return false;
+        // TODO extra: Reto Extra 3: Comparación exacta y por comodín parcial.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra03");
     }
 
     /**
@@ -78,8 +90,12 @@ public final class Ej055ContentNegotiation {
      * mayor calidad asignada por el cliente. Si hay empate, prefiere el orden del servidor.
      */
     public static String pasoExtra04(String accept, List<String> produces) {
-        // TODO extra: resuelve el mejor MediaType considerando los pesos de calidad (q-values).
-        return null;
+        // TODO extra: Reto Extra 4: Resolutor de negociación con soporte completo de q-values.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra04");
     }
 
     /**
@@ -89,8 +105,12 @@ public final class Ej055ContentNegotiation {
      * Si el formato es desconocido o nulo, devuelve "application/octet-stream".
      */
     public static String pasoExtra05(String formatQueryParam) {
-        // TODO extra: mapea el formato al MediaType correspondiente.
-        return null;
+        // TODO extra: Reto Extra 5: Mapeador de formatos alternativos basados en Query Param.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra05");
     }
 
     /**
@@ -99,8 +119,12 @@ public final class Ej055ContentNegotiation {
      * insensible a mayúsculas. Si no se especifica charset, devuelve "UTF-8".
      */
     public static String pasoExtra06(String accept) {
-        // TODO extra: extrae el charset del MediaType o devuelve "UTF-8" como fallback.
-        return null;
+        // TODO extra: Reto Extra 6: Extracción de parámetros de charset del MediaType.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra06");
     }
 
     /**
@@ -109,18 +133,26 @@ public final class Ej055ContentNegotiation {
      * (ej: empieza por "application/vnd." o contiene "vnd.").
      */
     public static boolean pasoExtra07(String acceptHeader) {
-        // TODO extra: comprueba si es un media type de tipo vendor-specific.
-        return false;
+        // TODO extra: Reto Extra 7: Detección de tipos de contenido vendor-specific.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra07");
     }
 
     /**
      * Reto Extra 8: Negociación estricta libre de comodines globales.
-     * Resuelve el MediaType pero rechaza la negociación si el cliente solicita un comodín global "*/*"
+     * Resuelve el MediaType pero rechaza la negociación si el cliente solicita un comodín global (estrella/estrella)
      * por motivos de seguridad o conformidad estricta de esquemas, devolviendo una cadena vacía.
      */
     public static String pasoExtra08(String accept, List<String> produces) {
-        // TODO extra: realiza la negociación pero devuelve "" si se intenta usar "*/*".
-        return null;
+        // TODO extra: Reto Extra 8: Negociación estricta libre de comodines globales.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra08");
     }
 
     /**
@@ -130,8 +162,12 @@ public final class Ej055ContentNegotiation {
      * devuelve el tipo exacto con su parámetro si es compatible.
      */
     public static String pasoExtra09(String accept, List<String> produces) {
-        // TODO extra: resuelve el tipo considerando la versión en los parámetros del MediaType.
-        return null;
+        // TODO extra: Reto Extra 9: Negociación con soporte de versión específica en el MediaType.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra09");
     }
 
     /**
@@ -140,8 +176,12 @@ public final class Ej055ContentNegotiation {
      * (tipo/subtipo con parámetros opcionales de calidad o extensiones válidas).
      */
     public static boolean pasoExtra10(String accept) {
-        // TODO extra: comprueba si la cabecera Accept es sintácticamente válida.
-        return false;
+        // TODO extra: Reto Extra 10: Validador de formato de cabecera Accept.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra10");
     }
 
 }

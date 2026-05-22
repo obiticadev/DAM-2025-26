@@ -77,166 +77,120 @@ public class Ej038AopCrossCutting {
      * Reto Extra 1: Aspecto Before que cuenta inicios de llamada.
      */
     public static class AspectoAntesDeLlamada {
-        private static int contadorBefore = 0;
-
-        public static int getContadorBefore() {
-            return contadorBefore;
-        }
-
-        public static void limpiar() {
-            contadorBefore = 0;
-        }
-
-        // TODO extra (Reto 1): Anota esta clase con @org.aspectj.lang.annotation.Aspect y crea un consejo @org.aspectj.lang.annotation.Before para interceptar ServicioNegocio.saludar.
+        // TODO extra: Reto Extra 1: Aspecto Before que cuenta inicios de llamada.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
     /**
      * Reto Extra 2: Aspecto AfterReturning que captura y guarda el valor devuelto.
      */
     public static class AspectoDespuesDeRetorno {
-        private static Object ultimoResultado;
-
-        public static Object getUltimoResultado() {
-            return ultimoResultado;
-        }
-
-        public static void limpiar() {
-            ultimoResultado = null;
-        }
-
-        // TODO extra (Reto 2): Crea un consejo @org.aspectj.lang.annotation.AfterReturning que intercepte ServicioNegocio.calcular y asigne su resultado a 'ultimoResultado'.
+        // TODO extra: Reto Extra 2: Aspecto AfterReturning que captura y guarda el valor devuelto.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
     /**
      * Reto Extra 3: Aspecto AfterThrowing que registra excepciones lanzadas.
      */
     public static class AspectoEnCasoDeError {
-        private static String mensajeError;
-
-        public static String getMensajeError() {
-            return mensajeError;
-        }
-
-        public static void limpiar() {
-            mensajeError = null;
-        }
-
-        // TODO extra (Reto 3): Crea un consejo @org.aspectj.lang.annotation.AfterThrowing que intercepte ServicioNegocio.metodoConError y guarde el mensaje de la excepción en 'mensajeError'.
+        // TODO extra: Reto Extra 3: Aspecto AfterThrowing que registra excepciones lanzadas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
     /**
      * Reto Extra 4: Aspecto Around que envuelve toda la ejecución.
      */
     public static class AspectoAlrededorAround {
-        private static boolean aroundEjecutado = false;
-
-        public static boolean isAroundEjecutado() {
-            return aroundEjecutado;
-        }
-
-        public static void limpiar() {
-            aroundEjecutado = false;
-        }
-
-        // TODO extra (Reto 4): Crea un consejo @org.aspectj.lang.annotation.Around que intercepte ServicioNegocio.saludar, registre su ejecución en 'aroundEjecutado' y proceda con la llamada.
+        // TODO extra: Reto Extra 4: Aspecto Around que envuelve toda la ejecución.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
     /**
      * Reto Extra 5: Aspecto que intercepta métodos anotados con @Auditable.
      */
     public static class PointcutPorAnotacionCustom {
-        private static boolean auditadoEjecutado = false;
-
-        public static boolean isAuditadoEjecutado() {
-            return auditadoEjecutado;
-        }
-
-        public static void limpiar() {
-            auditadoEjecutado = false;
-        }
-
-        // TODO extra (Reto 5): Crea un consejo @org.aspectj.lang.annotation.Before o @org.aspectj.lang.annotation.Around usando un pointcut que filtre por la presencia de @Auditable.
+        // TODO extra: Reto Extra 5: Aspecto que intercepta métodos anotados con @Auditable.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
     /**
      * Reto Extra 6: Aspecto que mide la duración del método.
      */
     public static class AspectoConMedicionDeTiempo {
-        private static long duracionUltimoMetodoNs = -1;
-
-        public static long getDuracionUltimoMetodoNs() {
-            return duracionUltimoMetodoNs;
-        }
-
-        public static void limpiar() {
-            duracionUltimoMetodoNs = -1;
-        }
-
-        // TODO extra (Reto 6): Usa un consejo @org.aspectj.lang.annotation.Around para medir el tiempo transcurrido en nanosegundos (System.nanoTime()) y guárdalo en 'duracionUltimoMetodoNs'.
+        // TODO extra: Reto Extra 6: Aspecto que mide la duración del método.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
     /**
      * Reto Extra 7: Aspectos combinando múltiples expresiones en el pointcut.
      */
     public static class PointcutCombinadoConOperadores {
-        private static boolean pointcutCombinadoEjecutado = false;
-
-        public static boolean isPointcutCombinadoEjecutado() {
-            return pointcutCombinadoEjecutado;
-        }
-
-        public static void limpiar() {
-            pointcutCombinadoEjecutado = false;
-        }
-
-        // TODO extra (Reto 7): Crea un pointcut usando operadores lógicos (&&, ||, !) para interceptar sólo métodos de ServicioNegocio anotados con @Auditable.
+        // TODO extra: Reto Extra 7: Aspectos combinando múltiples expresiones en el pointcut.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
     /**
      * Reto Extra 8: Acceder a los argumentos del método interceptado.
      */
     public static class AccederAParametrosDeMetodo {
-        private static Object[] ultimosArgumentos;
-
-        public static Object[] getUltimosArgumentos() {
-            return ultimosArgumentos;
-        }
-
-        public static void limpiar() {
-            ultimosArgumentos = null;
-        }
-
-        // TODO extra (Reto 8): Usa JoinPoint en un consejo @org.aspectj.lang.annotation.Before para extraer los argumentos de la llamada y guardarlos en 'ultimosArgumentos'.
+        // TODO extra: Reto Extra 8: Acceder a los argumentos del método interceptado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
     /**
      * Reto Extra 9: Modificación de argumentos en caliente.
      */
     public static class ModificarArgumentosDinamicos {
-        // TODO extra (Reto 9): Usa ProceedingJoinPoint en un consejo @org.aspectj.lang.annotation.Around para alterar los argumentos originales antes de llamar a proceed().
+        // TODO extra: Reto Extra 9: Modificación de argumentos en caliente.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
     /**
      * Reto Extra 10: Prioridad y orden entre múltiples aspectos usando @Order.
      */
     public static class AspectoOrdenadoConOrder {
-        private static final java.util.List<String> ordenAspectos = new java.util.ArrayList<>();
-
-        public static java.util.List<String> getOrdenAspectos() {
-            return ordenAspectos;
-        }
-
-        public static void limpiar() {
-            ordenAspectos.clear();
-        }
-
-        // TODO extra (Reto 10.1): Anota con @org.springframework.core.annotation.Order(1) y registra su ejecución.
-        public static class AspectoPrimero {
-        }
-
-        // TODO extra (Reto 10.2): Anota con @org.springframework.core.annotation.Order(2) y registra su ejecución.
-        public static class AspectoSegundo {
-        }
+        // TODO extra: Reto Extra 10: Prioridad y orden entre múltiples aspectos usando @Order.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
 }

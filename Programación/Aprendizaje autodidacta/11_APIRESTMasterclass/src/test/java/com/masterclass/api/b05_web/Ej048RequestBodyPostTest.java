@@ -30,7 +30,6 @@ class Ej048RequestBodyPostTest {
                 .andExpect(status().isBadRequest());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 1")
     @Test
     void retoExtra01_crearConLista() throws Exception {
         mvc.perform(post("/api/items/batch")
@@ -44,7 +43,6 @@ class Ej048RequestBodyPostTest {
                 .andExpect(jsonPath("$.items[1].nombre").value("cafe"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 2")
     @Test
     void retoExtra02_crearConValidacion() throws Exception {
         mvc.perform(post("/api/items/validar")
@@ -60,7 +58,6 @@ class Ej048RequestBodyPostTest {
                 .andExpect(jsonPath("$.nombre").value("cafe"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 3")
     @Test
     void retoExtra03_crearConMetadatos() throws Exception {
         mvc.perform(post("/api/items/metadatos")
@@ -72,7 +69,6 @@ class Ej048RequestBodyPostTest {
                 .andExpect(jsonPath("$.tags.material").value("ceramica"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
     @Test
     void retoExtra04_crearConTipoContent() throws Exception {
         mvc.perform(post("/api/items/json-only")
@@ -87,7 +83,6 @@ class Ej048RequestBodyPostTest {
                 .andExpect(jsonPath("$.nombre").value("json"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 5")
     @Test
     void retoExtra05_crearConCabeceraAudit() throws Exception {
         mvc.perform(post("/api/items/audit")
@@ -98,7 +93,6 @@ class Ej048RequestBodyPostTest {
                 .andExpect(content().string("Item mesa creado por Admin"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 6")
     @Test
     void retoExtra06_crearSinNombre() throws Exception {
         mvc.perform(post("/api/items/defensivo")
@@ -119,7 +113,6 @@ class Ej048RequestBodyPostTest {
                 .andExpect(content().string("ok"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 7")
     @Test
     void retoExtra07_crearConIdEspecifico() throws Exception {
         mvc.perform(post("/api/items/especifico")
@@ -140,7 +133,6 @@ class Ej048RequestBodyPostTest {
                 .andExpect(jsonPath("$.nombre").value("valido"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
     @Test
     void retoExtra08_crearRetornandoLocationAbsoluta() throws Exception {
         mvc.perform(post("/api/items/absoluto")
@@ -151,7 +143,6 @@ class Ej048RequestBodyPostTest {
                 .andExpect(jsonPath("$.id").value(123));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 9")
     @Test
     void retoExtra09_crearRetornandoSoloId() throws Exception {
         mvc.perform(post("/api/items/solo-id")
@@ -161,7 +152,6 @@ class Ej048RequestBodyPostTest {
                 .andExpect(jsonPath("$.id").value(999L));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     @Test
     void retoExtra10_crearConLocalDate() throws Exception {
         mvc.perform(post("/api/items/fecha")

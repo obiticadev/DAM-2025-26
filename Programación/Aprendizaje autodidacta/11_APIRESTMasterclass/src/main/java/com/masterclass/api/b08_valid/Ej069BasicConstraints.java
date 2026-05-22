@@ -67,44 +67,153 @@ public final class Ej069BasicConstraints {
         System.out.println(camposInvalidos(new RegistroDto("", "malo", 10, "abc")));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: anota 'nombre' con @jakarta.validation.constraints.NotBlank.
+    /**
+     * RETO EXTRA 1: Comprobar si un RegistroDto es completamente válido.
+     *
+     * @param dto registro
+     * @return true si no tiene ninguna violación de validación
+     */
+    public static boolean esRegistroValido(RegistroDto dto) {
+        // TODO extra: RETO EXTRA 1: Comprobar si un RegistroDto es completamente válido.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRegistroValido");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: anota además 'nombre' con @Size(min=2, max=50).
+    /**
+     * RETO EXTRA 2: Obtener los mensajes de error legibles.
+     *
+     * @param dto registro
+     * @return lista de mensajes de error de las violaciones
+     */
+    public static java.util.List<String> obtenerMensajesError(RegistroDto dto) {
+        // TODO extra: RETO EXTRA 2: Obtener los mensajes de error legibles.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerMensajesError");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: anota 'email' con @NotBlank.
+    /**
+     * RETO EXTRA 3: Crear un RegistroDto de demostración pre-validado y correcto.
+     *
+     * @return RegistroDto válido
+     */
+    public static RegistroDto crearRegistroPorDefecto() {
+        // TODO extra: RETO EXTRA 3: Crear un RegistroDto de demostración pre-validado y correcto.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearRegistroPorDefecto");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: anota 'email' con @Email.
+    /**
+     * RETO EXTRA 4: Comprobar si una dirección de email es válida usando la constraint Email.
+     *
+     * @param email correo
+     * @return true si cumple con el patrón de email estándar
+     */
+    public static boolean esEmailValido(String email) {
+        // TODO extra: RETO EXTRA 4: Comprobar si una dirección de email es válida usando la constraint Email.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esEmailValido");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: anota 'edad' con @NotNull.
+    /**
+     * RETO EXTRA 5: Comprobar si un número de teléfono tiene exactamente 9 dígitos.
+     *
+     * @param telefono teléfono
+     * @return true si cumple la condición
+     */
+    public static boolean esTelefonoValido(String telefono) {
+        // TODO extra: RETO EXTRA 5: Comprobar si un número de teléfono tiene exactamente 9 dígitos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esTelefonoValido");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: anota 'edad' con @Min(18) (mayoría de edad).
+    /**
+     * RETO EXTRA 6: Validar si la edad está en el rango permitido (18 a 120).
+     *
+     * @param edad edad a comprobar
+     * @return true si está en rango
+     */
+    public static boolean edadEnRango(Integer edad) {
+        // TODO extra: RETO EXTRA 6: Validar si la edad está en el rango permitido (18 a 120).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para edadEnRango");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: anota 'edad' con @Max(120) (límite razonable).
+    /**
+     * RETO EXTRA 7: Normalizar el nombre de un registro (quitar espacios sobrantes).
+     *
+     * @param nombre nombre original
+     * @return nombre limpio, o vacío si es nulo
+     */
+    public static String normalizarNombre(String nombre) {
+        // TODO extra: RETO EXTRA 7: Normalizar el nombre de un registro (quitar espacios sobrantes).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para normalizarNombre");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: anota 'telefono' con @Pattern(regexp = "\\d{9}") (9 dígitos).
+    /**
+     * RETO EXTRA 8: Determinar si el registro tiene errores concretamente en el campo 'email'.
+     *
+     * @param dto registro
+     * @return true si el campo 'email' es inválido
+     */
+    public static boolean tieneErroresDeEmail(RegistroDto dto) {
+        // TODO extra: RETO EXTRA 8: Determinar si el registro tiene errores concretamente en el campo 'email'.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneErroresDeEmail");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: este método ya está implementado (infraestructura de validación).
+    /**
+     * RETO EXTRA 9: Formatear todos los errores de un registro en una sola línea de texto.
+     *
+     * @param dto registro
+     * @return cadena con todos los mensajes de error separados por comas
+     */
+    public static String formatearErrores(RegistroDto dto) {
+        // TODO extra: RETO EXTRA 9: Formatear todos los errores de un registro en una sola línea de texto.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearErrores");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: tu trabajo es que las ANOTACIONES de arriba hagan que este Set
+    /**
+     * RETO EXTRA 10: Validar y corregir un RegistroDto (si el nombre es nulo/vacío, le asigna "Usuario Genérico").
+     *
+     * @param dto original
+     * @return nuevo RegistroDto corregido si procede
+     */
+    public static RegistroDto validarYCorregir(RegistroDto dto) {
+        // TODO extra: RETO EXTRA 10: Validar y corregir un RegistroDto (si el nombre es nulo/vacío, le asigna "Usuario Genérico").
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para validarYCorregir");
     }
 
 }

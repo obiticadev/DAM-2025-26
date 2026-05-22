@@ -104,8 +104,12 @@ public final class Ej018SealedPatternMatching {
      * @return true si es permitida directamente
      */
     public static boolean esClaseSelladaPermitida(Class<?> superClase, Class<?> subClase) {
-        // TODO extra: verifica si la superClase es sellada (isSealed()) y si permite a subClase en getPermittedSubclasses()
-        return false;
+        // TODO extra: Reto Extra 1: Reflexión básica de jerarquías selladas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esClaseSelladaPermitida");
     }
 
     /**
@@ -116,8 +120,12 @@ public final class Ej018SealedPatternMatching {
      * @return tipo de forma formateado en mayúsculas
      */
     public static String clasificarFormaGeometrica(Forma forma) {
-        // TODO extra: usa switch de patrones (pattern matching) para clasificar la forma
-        return "";
+        // TODO extra: Reto Extra 2: Coincidencia de patrones simple.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para clasificarFormaGeometrica");
     }
 
     /**
@@ -128,8 +136,12 @@ public final class Ej018SealedPatternMatching {
      * @return área calculada
      */
     public static double calcularAreaConPatternMatching(Forma forma) {
-        // TODO extra: calcula el área usando la fórmula respectiva para cada subtipo de Forma
-        return 0.0;
+        // TODO extra: Reto Extra 3: Cálculos geométricos condicionales tipados.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularAreaConPatternMatching");
     }
 
     /**
@@ -140,8 +152,12 @@ public final class Ej018SealedPatternMatching {
      * @return nombre del usuario
      */
     public static String obtenerNombreDeUsuarioPorRol(UsuarioRol rol) {
-        // TODO extra: extrae el nombre según sea Admin, Gestor o Cliente usando switch con patrones
-        return "";
+        // TODO extra: Reto Extra 4: Pattern matching sobre records de usuarios.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerNombreDeUsuarioPorRol");
     }
 
     /**
@@ -153,8 +169,12 @@ public final class Ej018SealedPatternMatching {
      * @return true si tiene privilegios de administrador
      */
     public static boolean esRolAdministrador(UsuarioRol rol) {
-        // TODO extra: retorna true únicamente si es Admin con nivelSeguridad >= 3
-        return false;
+        // TODO extra: Reto Extra 5: Detección inteligente de privilegios con guardias.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRolAdministrador");
     }
 
     /**
@@ -165,8 +185,12 @@ public final class Ej018SealedPatternMatching {
      * @return true si es sellado
      */
     public static boolean esJerarquiaSelladaCompleta(Class<?> clazz) {
-        // TODO extra: verifica si la clase es sellada usando reflexión nativa
-        return false;
+        // TODO extra: Reto Extra 6: Comprobación de exhaustividad de jerarquías.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esJerarquiaSelladaCompleta");
     }
 
     /**
@@ -177,8 +201,12 @@ public final class Ej018SealedPatternMatching {
      * @return representación textual descriptiva
      */
     public static String formatearRespuestaApi(RespuestaApi res) {
-        // TODO extra: formatea "Código [codigo]: [mensajeError]" o "Código [codigo]: [jsonPayload]"
-        return "";
+        // TODO extra: Reto Extra 7: Formateo semántico de respuestas de API.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearRespuestaApi");
     }
 
     /**
@@ -189,8 +217,12 @@ public final class Ej018SealedPatternMatching {
      * @return Optional con el mensaje de error si aplica, o vacío
      */
     public static java.util.Optional<String> obtenerDetalleError(RespuestaApi res) {
-        // TODO extra: retorna el mensaje de error de ErrorApi envuelto en un Optional
-        return java.util.Optional.empty();
+        // TODO extra: Reto Extra 8: Extracción segura de mensajes de error.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerDetalleError");
     }
 
     /**
@@ -206,8 +238,12 @@ public final class Ej018SealedPatternMatching {
      * @return clasificación detallada
      */
     public static String evaluarEstadoConGuardias(Forma forma) {
-        // TODO extra: usa guardias de patrones (&& o condicionales dentro de cases) para clasificar las dimensiones
-        return "";
+        // TODO extra: Reto Extra 9: Pattern matching avanzado con condiciones adicionales (guardias).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para evaluarEstadoConGuardias");
     }
 
     /**
@@ -219,8 +255,12 @@ public final class Ej018SealedPatternMatching {
      * @return nueva instancia de Forma escalada
      */
     public static Forma reconstruirFormaEscalada(Forma forma, double factor) {
-        // TODO extra: escala y retorna una copia de la forma con sus dimensiones multiplicadas por el factor
-        return null;
+        // TODO extra: Reto Extra 10: Generación de nuevas formas con escala.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para reconstruirFormaEscalada");
     }
 
 }

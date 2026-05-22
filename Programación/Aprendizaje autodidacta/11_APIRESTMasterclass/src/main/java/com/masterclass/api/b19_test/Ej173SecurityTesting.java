@@ -43,44 +43,124 @@ public final class Ej173SecurityTesting {
         System.out.println(statusEndpointProtegido(true, Set.of("ROLE_ADMIN"), "ROLE_ADMIN"));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si rolesUsuario es null -> IllegalArgumentException.
+        /**
+     * RETO EXTRA 01: Valida rol Admin.
+     */
+    public static boolean esRolAdmin(String r) {
+        // TODO extra: RETO EXTRA 01: Valida rol Admin.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRolAdmin");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si rolRequerido es null o blank -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 02: Valida rol User.
+     */
+    public static boolean esRolUser(String r) {
+        // TODO extra: RETO EXTRA 02: Valida rol User.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRolUser");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: si !tokenPresente -> 401 (no autenticado, da igual el rol).
+    /**
+     * RETO EXTRA 03: Crea un set con dos roles.
+     */
+    public static java.util.Set<String> crearSetRoles(String r1, String r2) {
+        // TODO extra: RETO EXTRA 03: Crea un set con dos roles.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearSetRoles");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: con token, comprueba si rolesUsuario contiene rolRequerido.
+    /**
+     * RETO EXTRA 04: Valida si el token esta ausente.
+     */
+    public static boolean esTokenVacio(String token) {
+        // TODO extra: RETO EXTRA 04: Valida si el token esta ausente.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esTokenVacio");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: si NO contiene el rol -> 403 (autenticado pero sin permiso).
+    /**
+     * RETO EXTRA 05: Verifica si se cumple algun rol.
+     */
+    public static boolean contieneAlgunRol(java.util.Set<String> userRoles, java.util.Set<String> reqRoles) {
+        // TODO extra: RETO EXTRA 05: Verifica si se cumple algun rol.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contieneAlgunRol");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: si SÍ contiene el rol -> 200.
+    /**
+     * RETO EXTRA 06: Comprueba si hay token.
+     */
+    public static boolean esAutenticado(boolean tokenPresente) {
+        // TODO extra: RETO EXTRA 06: Comprueba si hay token.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esAutenticado");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: 401 != 403: no los confundas (distinción de seguridad clave).
+    /**
+     * RETO EXTRA 07: Valida si el usuario es Admin.
+     */
+    public static boolean esAdmin(java.util.Set<String> roles) {
+        // TODO extra: RETO EXTRA 07: Valida si el usuario es Admin.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esAdmin");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: no muta el Set de roles de entrada.
+    /**
+     * RETO EXTRA 08: Comprueba autenticacion y rol.
+     */
+    public static boolean tienePermiso(boolean tokenPresente, java.util.Set<String> roles, String rol) {
+        // TODO extra: RETO EXTRA 08: Comprueba autenticacion y rol.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tienePermiso");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: no devuelvas 5xx para decisiones de autorización.
+    /**
+     * RETO EXTRA 09: Comprueba si es anonimo.
+     */
+    public static boolean esAnonimo(boolean tokenPresente) {
+        // TODO extra: RETO EXTRA 09: Comprueba si es anonimo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esAnonimo");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve el código HTTP entero.
+    /**
+     * RETO EXTRA 10: Codigo HTTP de exito.
+     */
+    public static int codigoAutorizado() {
+        // TODO extra: RETO EXTRA 10: Codigo HTTP de exito.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para codigoAutorizado");
     }
 
 }

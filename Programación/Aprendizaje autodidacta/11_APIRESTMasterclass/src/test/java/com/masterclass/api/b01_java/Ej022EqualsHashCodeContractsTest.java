@@ -30,7 +30,6 @@ class Ej022EqualsHashCodeContractsTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 1")
     void retoExtra01_esSimetrico() {
         var a1 = new Articulo("A1", "Tornillo");
         var a2 = new Articulo("A1", "Tornillo");
@@ -42,7 +41,6 @@ class Ej022EqualsHashCodeContractsTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 2")
     void retoExtra02_esTransitivo() {
         var a = new Articulo("A1", "Tornillo");
         var b = new Articulo("A1", "Tornillo (v2)");
@@ -52,7 +50,6 @@ class Ej022EqualsHashCodeContractsTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 3")
     void retoExtra03_esConsistenteHashCode() {
         var a = new Articulo("A1", "Tornillo");
         assertTrue(Ej022EqualsHashCodeContracts.esConsistenteHashCode(a));
@@ -61,7 +58,6 @@ class Ej022EqualsHashCodeContractsTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
     void retoExtra04_verificarContratoEqualsYHashCode() {
         var a = new Articulo("A1", "Tornillo");
         var b = new Articulo("A1", "Tornillo (v2)");
@@ -71,7 +67,6 @@ class Ej022EqualsHashCodeContractsTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 5")
     void retoExtra05_esEqualsNuloSeguro() {
         var a = new Articulo("A1", "Tornillo");
         assertTrue(Ej022EqualsHashCodeContracts.esEqualsNuloSeguro(a));
@@ -79,14 +74,12 @@ class Ej022EqualsHashCodeContractsTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 6")
     void retoExtra06_formatearToStringElegante() {
         assertEquals("Articulo{id=123, descripcion='Tornillo de acero'}",
                 Ej022EqualsHashCodeContracts.formatearToStringElegante("Articulo", 123, "Tornillo de acero"));
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 7")
     void retoExtra07_verificarColisionHash() {
         // En Java, las cadenas "Aa" y "BB" tienen el mismo hashCode: 2112
         String s1 = "Aa";
@@ -98,7 +91,6 @@ class Ej022EqualsHashCodeContractsTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
     void retoExtra08_esIdentidadConsistente() {
         var a = new Articulo("A1", "Tornillo");
         assertTrue(Ej022EqualsHashCodeContracts.esIdentidadConsistente(a));
@@ -106,7 +98,6 @@ class Ej022EqualsHashCodeContractsTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 9")
     void retoExtra09_calcularHashCombinado() {
         int hash1 = Ej022EqualsHashCodeContracts.calcularHashCombinado("A1", 100);
         int hash2 = java.util.Objects.hash("A1", 100);
@@ -114,7 +105,6 @@ class Ej022EqualsHashCodeContractsTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     void retoExtra10_esInstanciaCompatible() {
         var a = new Articulo("A1", "Tornillo");
         assertTrue(Ej022EqualsHashCodeContracts.esInstanciaCompatible(a, Articulo.class));

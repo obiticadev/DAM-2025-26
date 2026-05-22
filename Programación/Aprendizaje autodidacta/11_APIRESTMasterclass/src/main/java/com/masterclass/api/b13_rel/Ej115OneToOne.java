@@ -32,45 +32,127 @@ public final class Ej115OneToOne {
         System.out.println("usa el test con EMF aislado");
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: begin tx.
+    /**
+     * Reto Extra 1: Valida si el usuario tiene un perfil asociado.
+     */
+    public static boolean validarPerfilAsociado(Usuario115 u) {
+        // TODO extra: Reto Extra 1: Valida si el usuario tiene un perfil asociado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para validarPerfilAsociado");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: persist(u) — con cascade debe persistir también el perfil.
+    /**
+     * Reto Extra 2: Obtiene la biografia del perfil del usuario, o un valor por defecto.
+     */
+    public static String obtenerBioDelUsuario(Usuario115 u, String porDefecto) {
+        // TODO extra: Reto Extra 2: Obtiene la biografia del perfil del usuario, o un valor por defecto.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerBioDelUsuario");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: commit.
+    /**
+     * Reto Extra 3: Comprueba si la biografia tiene una longitud suficiente.
+     */
+    public static boolean esBioSuficiente(Usuario115 u, int minLongitud) {
+        // TODO extra: Reto Extra 3: Comprueba si la biografia tiene una longitud suficiente.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esBioSuficiente");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: em.clear() para leer fresco desde BD.
+    /**
+     * Reto Extra 4: Comprueba si el usuario tiene el mismo nombre que su bio.
+     */
+    public static boolean tieneMismoNombreYBio(Usuario115 u) {
+        // TODO extra: Reto Extra 4: Comprueba si el usuario tiene el mismo nombre que su bio.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneMismoNombreYBio");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: devuelve em.find(Usuario115.class, u.getId()).
+    /**
+     * Reto Extra 5: Comprueba si la biografia contiene una palabra clave.
+     */
+    public static boolean bioContienePalabra(Usuario115 u, String palabra) {
+        // TODO extra: Reto Extra 5: Comprueba si la biografia contiene una palabra clave.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para bioContienePalabra");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: anota 'perfil' con @OneToOne.
+    /**
+     * Reto Extra 6: Crea una instancia de Perfil115 con bio saneada.
+     */
+    public static Perfil115 crearPerfilSaneado(String bio) {
+        // TODO extra: Reto Extra 6: Crea una instancia de Perfil115 con bio saneada.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearPerfilSaneado");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: añade cascade = CascadeType.ALL (al guardar el usuario, guarda el perfil).
+    /**
+     * Reto Extra 7: Genera una representacion formateada del perfil.
+     */
+    public static String formatearPerfil(Usuario115 u) {
+        // TODO extra: Reto Extra 7: Genera una representacion formateada del perfil.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearPerfil");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: usa @JoinColumn(name = "perfil_id") para la FK.
+    /**
+     * Reto Extra 8: Comprueba si el ID del perfil es par.
+     */
+    public static boolean perfilTieneIdPar(Usuario115 u) {
+        // TODO extra: Reto Extra 8: Comprueba si el ID del perfil es par.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para perfilTieneIdPar");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: asigna nombre y perfil.
+    /**
+     * Reto Extra 9: Comprueba si el usuario tiene id asignado.
+     */
+    public static boolean usuarioTieneId(Usuario115 u) {
+        // TODO extra: Reto Extra 9: Comprueba si el usuario tiene id asignado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para usuarioTieneId");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: la relación es 1–1: un usuario tiene exactamente un perfil.
+    /**
+     * Reto Extra 10: Clona superficialmente el usuario.
+     */
+    public static Usuario115 clonarUsuarioSencillo(Usuario115 u) {
+        // TODO extra: Reto Extra 10: Clona superficialmente el usuario.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para clonarUsuarioSencillo");
     }
+
+
 
 }
 

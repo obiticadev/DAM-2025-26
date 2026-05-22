@@ -63,44 +63,124 @@ public final class Ej157PasswordEncoder {
         System.out.println(verifica("supersecreta1", h));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si raw es null -> IllegalArgumentException.
+        /**
+     * RETO EXTRA 01: Comprueba si un hash tiene la estructura clasica de BCrypt ($2a$...).
+     */
+    public static boolean esFirmaBcryptValida(String hash) {
+        // TODO extra: RETO EXTRA 01: Comprueba si un hash tiene la estructura clasica de BCrypt ($2a$...).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFirmaBcryptValida");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si raw.length() < 8 -> IllegalArgumentException (política mínima).
+    /**
+     * RETO EXTRA 02: Valida requisitos de contrasena fuerte (minimo 8 chars, letras, numeros, especiales).
+     */
+    public static boolean esPasswordFuerte(String s) {
+        // TODO extra: RETO EXTRA 02: Valida requisitos de contrasena fuerte (minimo 8 chars, letras, numeros, especiales).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPasswordFuerte");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: crea un BCryptPasswordEncoder (strength por defecto 10 está bien).
+    /**
+     * RETO EXTRA 03: Determina si el algoritmo de hash es aceptado.
+     */
+    public static boolean esFirmaAlgoritmoCorrecto(String prefix) {
+        // TODO extra: RETO EXTRA 03: Determina si el algoritmo de hash es aceptado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFirmaAlgoritmoCorrecto");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: invoca encode(raw) para obtener el hash con salt embebido.
+    /**
+     * RETO EXTRA 04: Simula comparacion simulando un pequeno delay para mitigar timing attacks.
+     */
+    public static boolean compararEnSegundoPlano(String raw, String encoded) {
+        // TODO extra: RETO EXTRA 04: Simula comparacion simulando un pequeno delay para mitigar timing attacks.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para compararEnSegundoPlano");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: NO almacenes ni loguees la contraseña en claro.
+    /**
+     * RETO EXTRA 05: Determina si la excepcion fue por algoritmo de hash corrupto o inexistente.
+     */
+    public static boolean esExcepcionEncoding(Throwable t) {
+        // TODO extra: RETO EXTRA 05: Determina si la excepcion fue por algoritmo de hash corrupto o inexistente.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionEncoding");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: el mismo input produce hashes DISTINTOS (salt aleatorio): es normal.
+    /**
+     * RETO EXTRA 06: Genera el prefijo Spring Security para el codificador.
+     */
+    public static String crearPrefijoEstandar(String algo) {
+        // TODO extra: RETO EXTRA 06: Genera el prefijo Spring Security para el codificador.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearPrefijoEstandar");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: no truncar el hash; es de longitud fija (~60 chars).
+    /**
+     * RETO EXTRA 07: Verifica si dos hashes corresponden al mismo valor (no deberia por el salt).
+     */
+    public static boolean esHashDuplicado(String hash1, String hash2) {
+        // TODO extra: RETO EXTRA 07: Verifica si dos hashes corresponden al mismo valor (no deberia por el salt).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esHashDuplicado");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: documenta que BCrypt es lento a propósito (resistencia a fuerza bruta).
+    /**
+     * RETO EXTRA 08: Extrae la fuerza del hash BCrypt (el costo logaritmico).
+     */
+    public static int determinarFuerzaEncoder(String hash) {
+        // TODO extra: RETO EXTRA 08: Extrae la fuerza del hash BCrypt (el costo logaritmico).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para determinarFuerzaEncoder");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: devuelve el hash resultante.
+    /**
+     * RETO EXTRA 09: Crea una cadena salt de uso unico.
+     */
+    public static String generarSaltManual() {
+        // TODO extra: RETO EXTRA 09: Crea una cadena salt de uso unico.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para generarSaltManual");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: el verificador (matches) recuperará el salt del propio hash.
+    /**
+     * RETO EXTRA 10: Determina si la contrasena es nula o vacia.
+     */
+    public static boolean esPasswordVacia(String s) {
+        // TODO extra: RETO EXTRA 10: Determina si la contrasena es nula o vacia.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPasswordVacia");
     }
 
 }

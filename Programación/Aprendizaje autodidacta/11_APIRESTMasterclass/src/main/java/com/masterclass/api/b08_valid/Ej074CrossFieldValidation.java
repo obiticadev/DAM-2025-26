@@ -50,44 +50,154 @@ public final class Ej074CrossFieldValidation {
         System.out.println(passwordsCoinciden(new Passwords("12345678", "12345678")));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si r es null -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 1: Calcular la duración en días de un rango de fechas.
+     *
+     * @param r rango de fechas
+     * @return número de días transcurridos
+     */
+    public static int calcularDuracionDias(RangoFechas r) {
+        // TODO extra: RETO EXTRA 1: Calcular la duración en días de un rango de fechas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularDuracionDias");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si r.inicio() o r.fin() son null -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 2: Comprobar si el inicio y fin corresponden al mismo día.
+     *
+     * @param r rango de fechas
+     * @return true si coinciden exactamente
+     */
+    public static boolean esMismoDia(RangoFechas r) {
+        // TODO extra: RETO EXTRA 2: Comprobar si el inicio y fin corresponden al mismo día.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMismoDia");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: el rango es válido si fin NO es anterior a inicio (fin >= inicio).
+    /**
+     * RETO EXTRA 3: Comprobar si todo el rango de fechas está dentro del año actual.
+     *
+     * @param r rango de fechas
+     * @return true si ambas fechas son del año en curso
+     */
+    public static boolean rangoEnAñoActual(RangoFechas r) {
+        // TODO extra: RETO EXTRA 3: Comprobar si todo el rango de fechas está dentro del año actual.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para rangoEnAñoActual");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: usa isBefore para comprobar la relación entre los dos campos.
+    /**
+     * RETO EXTRA 4: Determinar si una contraseña tiene longitud de 12 o más caracteres.
+     *
+     * @param password contraseña
+     * @return true si cumple con la longitud extra
+     */
+    public static boolean esPasswordLarga(String password) {
+        // TODO extra: RETO EXTRA 4: Determinar si una contraseña tiene longitud de 12 o más caracteres.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPasswordLarga");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: devuelve el booleano resultante.
+    /**
+     * RETO EXTRA 5: Comprobar si la contraseña tiene seguridad básica (letras y dígitos).
+     *
+     * @param password contraseña
+     * @return true si contiene al menos una letra y un dígito
+     */
+    public static boolean esPasswordSegura(String password) {
+        // TODO extra: RETO EXTRA 5: Comprobar si la contraseña tiene seguridad básica (letras y dígitos).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPasswordSegura");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: si p es null -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 6: Comprobar si una cadena contiene espacios en blanco.
+     *
+     * @param s cadena
+     * @return true si contiene espacios
+     */
+    public static boolean contieneEspacios(String s) {
+        // TODO extra: RETO EXTRA 6: Comprobar si una cadena contiene espacios en blanco.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contieneEspacios");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: si password es null -> false (no válido).
+    /**
+     * RETO EXTRA 7: Encriptar de forma simulada la contraseña devolviendo asteriscos.
+     *
+     * @param password contraseña original
+     * @return contraseña oculta con asteriscos
+     */
+    public static String encriptarPasswordDummy(String password) {
+        // TODO extra: RETO EXTRA 7: Encriptar de forma simulada la contraseña devolviendo asteriscos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para encriptarPasswordDummy");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: comprueba longitud mínima 8 de password.
+    /**
+     * RETO EXTRA 8: Ajustar campos nulos en un rango usando la fecha actual por defecto.
+     *
+     * @param r rango de fechas original
+     * @return nuevo rango de fechas sin campos nulos
+     */
+    public static RangoFechas ajustarFechasNull(RangoFechas r) {
+        // TODO extra: RETO EXTRA 8: Ajustar campos nulos en un rango usando la fecha actual por defecto.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para ajustarFechasNull");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: comprueba que password.equals(confirmacion) (regla entre 2 campos).
+    /**
+     * RETO EXTRA 9: Comprobar si las fechas están estrictamente invertidas (fin < inicio).
+     *
+     * @param r rango de fechas
+     * @return true si fin es anterior a inicio
+     */
+    public static boolean esRangoInvertido(RangoFechas r) {
+        // TODO extra: RETO EXTRA 9: Comprobar si las fechas están estrictamente invertidas (fin < inicio).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRangoInvertido");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve true solo si AMBAS condiciones se cumplen.
+    /**
+     * RETO EXTRA 10: Validar que el par de contraseñas coincidan y además sean seguras.
+     *
+     * @param p par de contraseñas
+     * @return true si coinciden y ambas cumplen el criterio de seguridad básica
+     */
+    public static boolean esPasswordsValidasYSeguras(Passwords p) {
+        // TODO extra: RETO EXTRA 10: Validar que el par de contraseñas coincidan y además sean seguras.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPasswordsValidasYSeguras");
     }
 
 }

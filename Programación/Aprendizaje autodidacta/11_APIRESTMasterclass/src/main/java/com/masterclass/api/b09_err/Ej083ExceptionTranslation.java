@@ -54,44 +54,124 @@ public final class Ej083ExceptionTranslation {
         System.out.println(traducir(new SQLException("dup", "23505")).getClass().getSimpleName());
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si ex es null -> IllegalArgumentException.
+        /**
+     * RETO EXTRA 01: Determina si cumple el patron de claves i18n locales.
+     */
+    public static boolean esMensajeTraducible(String msg) {
+        // TODO extra: RETO EXTRA 01: Determina si cumple el patron de claves i18n locales.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMensajeTraducible");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: obtén el SQLState con ex.getSQLState().
+    /**
+     * RETO EXTRA 02: Comprueba soporte basico (es, en, fr).
+     */
+    public static boolean esIdiomaSoportado(String lang) {
+        // TODO extra: RETO EXTRA 02: Comprueba soporte basico (es, en, fr).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esIdiomaSoportado");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: si es "23505" -> devuelve DatoDuplicadoException("registro duplicado").
+    /**
+     * RETO EXTRA 03: Mapea clave y lengua a una traduccion de fallback.
+     */
+    public static String crearMensajeLocalizado(String lang, String key) {
+        // TODO extra: RETO EXTRA 03: Mapea clave y lengua a una traduccion de fallback.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearMensajeLocalizado");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: el mensaje de dominio NO debe exponer detalles internos de SQL.
+    /**
+     * RETO EXTRA 04: Determina si la clave corresponde a fallos de formulario.
+     */
+    public static boolean esErrorValidacionMensaje(String key) {
+        // TODO extra: RETO EXTRA 04: Determina si la clave corresponde a fallos de formulario.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esErrorValidacionMensaje");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: para cualquier otro SQLState -> PersistenciaException.
+    /**
+     * RETO EXTRA 05: Sanea llaves de i18n.
+     */
+    public static String limpiarClaveLocalizacion(String rawKey) {
+        // TODO extra: RETO EXTRA 05: Sanea llaves de i18n.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para limpiarClaveLocalizacion");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: en PersistenciaException, conserva 'ex' como causa (no la pierdas).
+    /**
+     * RETO EXTRA 06: Evalua si el error ya paso por el traductor del negocio.
+     */
+    public static boolean esExcepcionTraducida(Throwable t) {
+        // TODO extra: RETO EXTRA 06: Evalua si el error ya paso por el traductor del negocio.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionTraducida");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: el mensaje genérico: "error de persistencia".
+    /**
+     * RETO EXTRA 07: Reemplaza parametros dinamicos en mensajes.
+     */
+    public static String traducirConArgs(String template, String arg) {
+        // TODO extra: RETO EXTRA 07: Reemplaza parametros dinamicos en mensajes.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para traducirConArgs");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: nunca propagues la SQLException cruda hacia la capa web.
+    /**
+     * RETO EXTRA 08: Resuelve la primera preferencia de lenguaje del header.
+     */
+    public static String extraerLocaleDeHeader(String acceptLanguage) {
+        // TODO extra: RETO EXTRA 08: Resuelve la primera preferencia de lenguaje del header.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerLocaleDeHeader");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: preservar la causa permite depurar sin filtrarla al cliente.
+    /**
+     * RETO EXTRA 09: Verifica si el propio sistema i18n fallo.
+     */
+    public static boolean esFalloTraductor(Throwable t) {
+        // TODO extra: RETO EXTRA 09: Verifica si el propio sistema i18n fallo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFalloTraductor");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve la excepción de dominio resultante.
+    /**
+     * RETO EXTRA 10: Resuelve clave o devuelve el fallback si no es traducible.
+     */
+    public static String generarDetalleTraducido(String code, String fallback) {
+        // TODO extra: RETO EXTRA 10: Resuelve clave o devuelve el fallback si no es traducible.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para generarDetalleTraducido");
     }
 
 }

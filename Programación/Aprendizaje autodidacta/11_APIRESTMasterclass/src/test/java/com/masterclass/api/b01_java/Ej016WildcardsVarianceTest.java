@@ -26,7 +26,6 @@ class Ej016WildcardsVarianceTest {
         assertEquals(2, Ej016WildcardsVariance.contarDeTipo(items, String.class));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 1")
     @Test
     void retoExtra01_copiarElementos() {
         List<Integer> origen = List.of(10, 20);
@@ -35,14 +34,12 @@ class Ej016WildcardsVarianceTest {
         assertEquals(List.of(10, 20), destino);
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 2")
     @Test
     void retoExtra02_calcularSumaColeccion() {
         assertEquals(10.5, Ej016WildcardsVariance.calcularSumaColeccion(List.of(1, 2.5, 3L, 4.0)), 0.0001);
         assertEquals(0.0, Ej016WildcardsVariance.calcularSumaColeccion(List.of()), 0.0001);
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 3")
     @Test
     void retoExtra03_agregarNumeros() {
         List<Number> destino = new ArrayList<>();
@@ -50,7 +47,6 @@ class Ej016WildcardsVarianceTest {
         assertEquals(List.of(1, 2, 3), destino);
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
     @Test
     void retoExtra04_filtrarListaSoloLectura() {
         List<Integer> list = List.of(1, 2, 3, 4);
@@ -59,7 +55,6 @@ class Ej016WildcardsVarianceTest {
         assertEquals(List.of(2, 4), res);
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 5")
     @Test
     void retoExtra05_encontrarMaximoCovariante() {
         List<String> list = List.of("apple", "pear", "banana");
@@ -67,7 +62,6 @@ class Ej016WildcardsVarianceTest {
         assertEquals(Optional.empty(), Ej016WildcardsVariance.encontrarMaximoCovariante(List.of()));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 6")
     @Test
     void retoExtra06_combinarColeccionesCovariantes() {
         List<Integer> c1 = List.of(1, 2);
@@ -76,7 +70,6 @@ class Ej016WildcardsVarianceTest {
         assertEquals(List.of(1, 2, 3.0, 4.0), combined);
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 7")
     @Test
     void retoExtra07_esElementoPresente() {
         List<String> list = List.of("a", "b");
@@ -84,7 +77,6 @@ class Ej016WildcardsVarianceTest {
         assertFalse(Ej016WildcardsVariance.esElementoPresente(list, "z"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
     @Test
     void retoExtra08_imprimirColeccionComodin() {
         List<String> list = List.of("a", "b");
@@ -92,7 +84,6 @@ class Ej016WildcardsVarianceTest {
         assertEquals("items: []", Ej016WildcardsVariance.imprimirColeccionComodin(List.of()));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 9")
     @Test
     void retoExtra09_reemplazarValores() {
         List<Number> list = new ArrayList<>(List.of(1, 2, 1, 3));
@@ -100,7 +91,6 @@ class Ej016WildcardsVarianceTest {
         assertEquals(List.of(99, 2, 99, 3), list);
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     @Test
     void retoExtra10_extraerYConsumir() {
         List<Integer> list = List.of(1, 2, 3);

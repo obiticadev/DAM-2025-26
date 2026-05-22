@@ -42,8 +42,12 @@ public class Ej057FileUpload {
      * ignorando mayúsculas y minúsculas.
      */
     public static boolean pasoExtra01(MultipartFile file, List<String> allowedExtensions) {
-        // TODO extra: valida si la extensión del archivo está dentro de las permitidas.
-        return false;
+        // TODO extra: Reto Extra 1: Validación del formato por extensión.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra01");
     }
 
     /**
@@ -51,8 +55,12 @@ public class Ej057FileUpload {
      * Comprueba si el tamaño del archivo no supera el límite de bytes especificado ('maxSizeBytes').
      */
     public static boolean pasoExtra02(MultipartFile file, long maxSizeBytes) {
-        // TODO extra: valida que el archivo no supere el tamaño máximo permitido.
-        return false;
+        // TODO extra: Reto Extra 2: Validación estricta de tamaño máximo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra02");
     }
 
     /**
@@ -61,8 +69,12 @@ public class Ej057FileUpload {
      * de los tipos MIME permitidos (ej: "image/jpeg", "application/pdf").
      */
     public static boolean pasoExtra03(MultipartFile file, List<String> allowedMimeTypes) {
-        // TODO extra: valida si el tipo MIME del archivo es compatible.
-        return false;
+        // TODO extra: Reto Extra 3: Validación del tipo MIME del archivo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra03");
     }
 
     /**
@@ -71,8 +83,12 @@ public class Ej057FileUpload {
      * devolviendo únicamente el nombre del archivo (ej: "passwd"), o "desconocido" si no se puede determinar.
      */
     public static String pasoExtra04(MultipartFile file) {
-        // TODO extra: sanea el nombre de archivo para prevenir vulnerabilidades de path traversal.
-        return null;
+        // TODO extra: Reto Extra 4: Saneamiento de nombre contra Directory Traversal.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra04");
     }
 
     /**
@@ -81,8 +97,12 @@ public class Ej057FileUpload {
      * útil para verificar la integridad de la subida. Si el archivo es nulo, devuelve "".
      */
     public static String pasoExtra05(MultipartFile file) {
-        // TODO extra: calcula y devuelve el hash MD5 de los bytes del archivo.
-        return null;
+        // TODO extra: Reto Extra 5: Cálculo del hash MD5 de verificación.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra05");
     }
 
     /**
@@ -90,8 +110,12 @@ public class Ej057FileUpload {
      * Calcula la suma total en bytes de todos los archivos de la lista recibida.
      */
     public static long pasoExtra06(List<MultipartFile> files) {
-        // TODO extra: suma los bytes de todos los archivos y devuelve el total.
-        return 0L;
+        // TODO extra: Reto Extra 6: Suma de tamaños de múltiples archivos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra06");
     }
 
     /**
@@ -100,8 +124,12 @@ public class Ej057FileUpload {
      * como en que su nombre original termine en una extensión típica de imagen (.jpg, .jpeg, .png, .gif).
      */
     public static boolean pasoExtra07(MultipartFile file) {
-        // TODO extra: determina si el archivo cumple las condiciones de ser una imagen.
-        return false;
+        // TODO extra: Reto Extra 7: Detección elemental de imágenes.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra07");
     }
 
     /**
@@ -110,8 +138,12 @@ public class Ej057FileUpload {
      * y devuelve una lista con las cabeceras de las columnas separadas por comas.
      */
     public static List<String> pasoExtra08(MultipartFile file) {
-        // TODO extra: lee la primera línea del archivo e identifica las columnas cabecera.
-        return null;
+        // TODO extra: Reto Extra 8: Extracción de cabeceras de columnas CSV.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra08");
     }
 
     /**
@@ -120,8 +152,12 @@ public class Ej057FileUpload {
      * directorio destino ('destinationDir') usando el nombre saneado del archivo.
      */
     public static String pasoExtra09(MultipartFile file, String destinationDir) {
-        // TODO extra: simula el guardado físico resolviendo la ruta del archivo.
-        return null;
+        // TODO extra: Reto Extra 9: Simulación de almacenamiento físico.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra09");
     }
 
     /**
@@ -129,8 +165,12 @@ public class Ej057FileUpload {
      * Determina si el objeto 'file' es nulo, está vacío (isEmpty) o su tamaño en bytes es menor o igual a cero.
      */
     public static boolean pasoExtra10(MultipartFile file) {
-        // TODO extra: valida si el archivo subido está vacío o es nulo.
-        return false;
+        // TODO extra: Reto Extra 10: Comprobación defensiva de archivos vacíos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra10");
     }
 
 }

@@ -36,4 +36,63 @@ class Ej114DtoConstructorProjectionTest {
         assertEquals(100.0, r.get(0).total(), 0.0001);
         assertNotNull(r.get(0).id());
     }
+
+@Test
+    void testDesafioRepositoryActivo() {
+        assertTrue(Ej114DtoConstructorProjection.desafioRepositoryActivo(repo));
+        assertFalse(Ej114DtoConstructorProjection.desafioRepositoryActivo(null));
+    }
+
+    @Test
+    void testDesafioBuscarProyecciones() {
+        repo.deleteAll();
+        var e = Ej114DtoConstructorProjection.desafioCrearEmpleadoEntidad("Ana", "IT");
+        repo.save(e);
+        assertEquals(1, Ej114DtoConstructorProjection.desafioBuscarProyecciones(repo).size());
+    }
+
+    @Test
+    void testDesafioDtoValido() {
+        assertTrue(Ej114DtoConstructorProjection.desafioDtoValido(new EmpleadoDto("A", "D")));
+    }
+
+    @Test
+    void testDesafioCrearDto() {
+        var d = Ej114DtoConstructorProjection.desafioCrearDto("A", "D");
+        assertEquals("A", d.nombre());
+    }
+
+    @Test
+    void testDesafioContieneDeptoIT() {
+        var list = List.of(new EmpleadoDto("A", "IT"));
+        assertTrue(Ej114DtoConstructorProjection.desafioContieneDeptoIT(list));
+    }
+
+    @Test
+    void testDesafioObtenerNombresDtos() {
+        var list = List.of(new EmpleadoDto("A", "D"));
+        assertEquals(List.of("A"), Ej114DtoConstructorProjection.desafioObtenerNombresDtos(list));
+    }
+
+    @Test
+    void testDesafioValidarDtoCompleto() {
+        assertThrows(IllegalArgumentException.class, () -> Ej114DtoConstructorProjection.desafioValidarDtoCompleto(new EmpleadoDto("A", null)));
+    }
+
+    @Test
+    void testDesafioCrearEmpleadoEntidad() {
+        var e = Ej114DtoConstructorProjection.desafioCrearEmpleadoEntidad("A", "D");
+        assertEquals("A", e.getNombre());
+    }
+
+    @Test
+    void testDesafioContarDtos() {
+        repo.deleteAll();
+        assertEquals(0, Ej114DtoConstructorProjection.desafioContarDtos(repo));
+    }
+
+    @Test
+    void testDesafioTieneDatos() {
+        assertTrue(Ej114DtoConstructorProjection.desafioTieneDatos(List.of(new EmpleadoDto("A", "D"))));
+    }
 }

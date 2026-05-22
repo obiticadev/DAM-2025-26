@@ -42,44 +42,126 @@ public final class Ej142KeysetPagination {
         System.out.println(siguientePagina(List.of(1L, 2L, 3L, 4L, 5L), 2L, 2));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si idsOrdenados es null -> IllegalArgumentException.
+    /**
+     * Reto Extra 1: Obtiene el ID de un item de Keyset de forma segura.
+     */
+    public static Long obtenerId(ItemKeyset142 i) {
+        // TODO extra: Reto Extra 1: Obtiene el ID de un item de Keyset de forma segura.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerId");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si tamano <= 0 -> IllegalArgumentException.
+    /**
+     * Reto Extra 2: Obtiene la fecha de creacion de forma segura.
+     */
+    public static java.time.Instant obtenerCreadoEn(ItemKeyset142 i) {
+        // TODO extra: Reto Extra 2: Obtiene la fecha de creacion de forma segura.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerCreadoEn");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: normaliza el cursor: si ultimoIdVisto es null, trátalo como Long.MIN_VALUE
+    /**
+     * Reto Extra 3: Comprueba si un item es posterior a otro por ID.
+     */
+    public static boolean esPosteriorId(ItemKeyset142 a, ItemKeyset142 b) {
+        // TODO extra: Reto Extra 3: Comprueba si un item es posterior a otro por ID.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPosteriorId");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: filtra los ids estrictamente mayores que 'ultimoIdVisto'.
+    /**
+     * Reto Extra 4: Crea un nuevo item.
+     */
+    public static ItemKeyset142 crearItem(String nombre) {
+        // TODO extra: Reto Extra 4: Crea un nuevo item.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearItem");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: la lista ya viene ordenada: NO la reordenes.
+    /**
+     * Reto Extra 5: Comprueba si el item tiene fecha de creacion.
+     */
+    public static boolean tieneCreadoEn(ItemKeyset142 i) {
+        // TODO extra: Reto Extra 5: Comprueba si el item tiene fecha de creacion.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneCreadoEn");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: limita el resultado a 'tamano' elementos (limit).
+    /**
+     * Reto Extra 6: Comprueba si el item es nuevo (ID nulo).
+     */
+    public static boolean esNuevo(ItemKeyset142 i) {
+        // TODO extra: Reto Extra 6: Comprueba si el item es nuevo (ID nulo).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esNuevo");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: recoge a List.
+    /**
+     * Reto Extra 7: Obtiene el nombre de forma segura.
+     */
+    public static String obtenerNombre(ItemKeyset142 i) {
+        // TODO extra: Reto Extra 7: Obtiene el nombre de forma segura.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerNombre");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: keyset es estable: insertar filas nuevas no descoloca páginas previas.
+    /**
+     * Reto Extra 8: Comprueba si el nombre del item contiene una palabra clave.
+     */
+    public static boolean nombreContiene(ItemKeyset142 i, String keyword) {
+        // TODO extra: Reto Extra 8: Comprueba si el nombre del item contiene una palabra clave.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para nombreContiene");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: si no hay más allá del cursor, devuelve lista vacía.
+    /**
+     * Reto Extra 9: Compara dos items por ID de forma segura.
+     */
+    public static int compararPorId(ItemKeyset142 a, ItemKeyset142 b) {
+        // TODO extra: Reto Extra 9: Compara dos items por ID de forma segura.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para compararPorId");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve la sublista (la "siguiente página").
+    /**
+     * Reto Extra 10: Retorna representacion estructurada de texto.
+     */
+    public static String formatearItem(ItemKeyset142 i) {
+        // TODO extra: Reto Extra 10: Retorna representacion estructurada de texto.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearItem");
     }
+
+
 
 }

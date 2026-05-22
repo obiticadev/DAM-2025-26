@@ -48,8 +48,12 @@ public final class Ej061VersioningStrategies {
      * y extrae el número de versión (ej: 2). Si no está definido o no coincide, devuelve -1.
      */
     public static int pasoExtra01(String acceptHeader) {
-        // TODO extra: extrae la versión del media type personalizado en la cabecera Accept.
-        return -1;
+        // TODO extra: Reto Extra 1: Extractor de versión desde cabecera Accept (Content Negotiation).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra01");
     }
 
     /**
@@ -58,8 +62,12 @@ public final class Ej061VersioningStrategies {
      * (ej: "/api/users?api-version=3.0" -> "3.0"). Si no está presente, devuelve null.
      */
     public static String pasoExtra02(String uri) {
-        // TODO extra: extrae el valor del parámetro de consulta 'api-version'.
-        return null;
+        // TODO extra: Reto Extra 2: Extractor de versión desde Query Parameter.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra02");
     }
 
     /**
@@ -68,8 +76,12 @@ public final class Ej061VersioningStrategies {
      * y no es un falso positivo (como "/api/av1/users" o "/api/v/users").
      */
     public static boolean pasoExtra03(String uri) {
-        // TODO extra: valida sintácticamente el segmento de versión de la URI.
-        return false;
+        // TODO extra: Reto Extra 3: Validador estricto de segmento de versión en ruta.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra03");
     }
 
     /**
@@ -81,8 +93,12 @@ public final class Ej061VersioningStrategies {
      * Retorna la versión resuelta, o 1 como fallback si no se detecta ninguna.
      */
     public static int pasoExtra04(String customHeader, String queryParam, String uriPath) {
-        // TODO extra: resuelve jerárquicamente la versión priorizando las fuentes.
-        return 1;
+        // TODO extra: Reto Extra 4: Resolutor jerárquico de versiones.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra04");
     }
 
     /**
@@ -91,8 +107,12 @@ public final class Ej061VersioningStrategies {
      * de enteros conteniendo [major, minor, patch]. Retorna null si no tiene formato SemVer válido.
      */
     public static int[] pasoExtra05(String semVerStr) {
-        // TODO extra: parsea la versión semántica y devuelve un array con [major, minor, patch].
-        return null;
+        // TODO extra: Reto Extra 5: Mapeador de versiones semánticas (SemVer).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra05");
     }
 
     /**
@@ -101,8 +121,12 @@ public final class Ej061VersioningStrategies {
      * (ej: "^1.0.0" que permite >= 1.0.0 y < 2.0.0).
      */
     public static boolean pasoExtra06(String requestedVersion, String semVerRange) {
-        // TODO extra: valida si la versión solicitada entra en el rango permitido.
-        return false;
+        // TODO extra: Reto Extra 6: Comprobador de rango SemVer (Rango de compatibilidad).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra06");
     }
 
     /**
@@ -111,8 +135,12 @@ public final class Ej061VersioningStrategies {
      * para advertir a los clientes de que la versión que están llamando está obsoleta y se retirará pronto.
      */
     public static org.springframework.http.ResponseEntity.BodyBuilder pasoExtra07(org.springframework.http.ResponseEntity.BodyBuilder builder, String sunsetDate) {
-        // TODO extra: inyecta las cabeceras de obsolescencia Deprecation y Sunset en el builder.
-        return null;
+        // TODO extra: Reto Extra 7: Inyección de cabeceras de API obsoleta (Deprecation / Sunset).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra07");
     }
 
     /**
@@ -121,8 +149,12 @@ public final class Ej061VersioningStrategies {
      * de versiones que el backend soporta activamente en producción.
      */
     public static boolean pasoExtra08(int version, java.util.List<Integer> supportedVersions) {
-        // TODO extra: valida si la versión es soportada activamente.
-        return false;
+        // TODO extra: Reto Extra 8: Validación contra lista de versiones soportadas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra08");
     }
 
     /**
@@ -131,8 +163,12 @@ public final class Ej061VersioningStrategies {
      * para obtener la ruta canónica interna del recurso (ej: "/api/v2/users/1" -> "/api/users/1").
      */
     public static String pasoExtra09(String uriPath) {
-        // TODO extra: limpia el segmento de versión de la URI y devuelve la ruta simplificada.
-        return null;
+        // TODO extra: Reto Extra 9: Generador de ruta limpia (Stripping de versión).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra09");
     }
 
     /**
@@ -141,8 +177,12 @@ public final class Ej061VersioningStrategies {
      * según la preferencia del cliente (ej: "/users/5" con versión 3 -> "/v3/users/5").
      */
     public static String pasoExtra10(String baseUri, int version) {
-        // TODO extra: construye el enlace versionado dinámicamente.
-        return null;
+        // TODO extra: Reto Extra 10: Generador de enlaces versionados HATEOAS.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra10");
     }
 
 }

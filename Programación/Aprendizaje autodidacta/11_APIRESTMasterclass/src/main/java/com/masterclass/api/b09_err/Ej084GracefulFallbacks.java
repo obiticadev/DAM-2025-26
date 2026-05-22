@@ -50,44 +50,124 @@ public class Ej084GracefulFallbacks {
         }, "cache"));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: valida que 'principal' no sea null.
+        /**
+     * RETO EXTRA 01: Determina si el error requiere desvio al circuito de contingencia.
+     */
+    public static boolean esErrorCritico(int status) {
+        // TODO extra: RETO EXTRA 01: Determina si el error requiere desvio al circuito de contingencia.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esErrorCritico");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: abre un try alrededor de principal.get().
+    /**
+     * RETO EXTRA 02: Genera el payload de contingencia limpia.
+     */
+    public static String crearRespuestaFallback(String backupData) {
+        // TODO extra: RETO EXTRA 02: Genera el payload de contingencia limpia.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearRespuestaFallback");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: si tiene éxito, devuelve su resultado directamente.
+    /**
+     * RETO EXTRA 03: Determina si el Circuit Breaker esta en estado OPEN.
+     */
+    public static boolean esCircuitoAbierto(String state) {
+        // TODO extra: RETO EXTRA 03: Determina si el Circuit Breaker esta en estado OPEN.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCircuitoAbierto");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: NO incrementes el contador de fallos si fue bien.
+    /**
+     * RETO EXTRA 04: Verifica que el retardo de recuperacion sea razonable.
+     */
+    public static boolean tiempoEsperaSeguro(long ms) {
+        // TODO extra: RETO EXTRA 04: Verifica que el retardo de recuperacion sea razonable.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tiempoEsperaSeguro");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: captura cualquier RuntimeException.
+    /**
+     * RETO EXTRA 05: Determina si proviene del subsistema RestClient/WebClient.
+     */
+    public static boolean esFalloServicioExterno(Throwable t) {
+        // TODO extra: RETO EXTRA 05: Determina si proviene del subsistema RestClient/WebClient.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFalloServicioExterno");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: en el catch, incrementa 'fallos'.
+    /**
+     * RETO EXTRA 06: Determina si la peticion es de lectura (GET) y segura para reintentar.
+     */
+    public static boolean esErrorHttpSoportado(String method) {
+        // TODO extra: RETO EXTRA 06: Determina si la peticion es de lectura (GET) y segura para reintentar.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esErrorHttpSoportado");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: registra (conceptual) que se degradó (aquí basta el contador).
+    /**
+     * RETO EXTRA 07: Genera la notificacion de degradacion de servicio.
+     */
+    public static String crearMensajeDegradado(String originalMsg) {
+        // TODO extra: RETO EXTRA 07: Genera la notificacion de degradacion de servicio.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearMensajeDegradado");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: devuelve 'fallback' como valor degradado (no relances).
+    /**
+     * RETO EXTRA 08: Determina si la cache de contingencia tambien cayo.
+     */
+    public static boolean esFalloPersistenciaContingencia(Throwable t) {
+        // TODO extra: RETO EXTRA 08: Determina si la cache de contingencia tambien cayo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFalloPersistenciaContingencia");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: el fallback puede ser null si así se decidió (no fuerces no-null).
+    /**
+     * RETO EXTRA 09: Calcula retraso exponencial con tope maximo.
+     */
+    public static long calcularBackoffExponencial(int intento, long baseMs) {
+        // TODO extra: RETO EXTRA 09: Calcula retraso exponencial con tope maximo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularBackoffExponencial");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: el método nunca debe propagar la excepción original.
+    /**
+     * RETO EXTRA 10: Resuelve la accion correctiva (RETRY, CACHE, ERROR).
+     */
+    public static String determinarEstrategiaFallback(int code) {
+        // TODO extra: RETO EXTRA 10: Resuelve la accion correctiva (RETRY, CACHE, ERROR).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para determinarEstrategiaFallback");
     }
 
 }

@@ -77,14 +77,12 @@ class Ej035JavaConfigBeansTest {
         public String aliasBean() { return "Alias"; }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 1")
     @Test
     void retoExtra01_obtenerBeanJavaConfig() {
         Object bean = Ej035JavaConfigBeans.obtenerBeanJavaConfig(MiConfigSimple.class, "miMensaje");
         assertEquals("Configurado", bean);
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 2")
     @Test
     void retoExtra02_configuracionConInyeccionMetodo() {
         try (var ctx = new AnnotationConfigApplicationContext(ConfigMetodo.class)) {
@@ -93,7 +91,6 @@ class Ej035JavaConfigBeansTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 3")
     @Test
     void retoExtra03_configuracionConInyeccionParametro() {
         try (var ctx = new AnnotationConfigApplicationContext(ConfigParametro.class)) {
@@ -102,17 +99,15 @@ class Ej035JavaConfigBeansTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
     @Test
     void retoExtra04_importarConfiguracionesMultiples() {
-        var ctx = Ej035JavaConfigBeans.ImportarConfiguracionesMultiples(MiConfigSimple.class, ConfigParametro.class);
+        var ctx = (org.springframework.context.ConfigurableApplicationContext) Ej035JavaConfigBeans.ImportarConfiguracionesMultiples(MiConfigSimple.class, ConfigParametro.class);
         try (ctx) {
             assertTrue(ctx.containsBean("miMensaje"));
             assertTrue(ctx.containsBean("mensajeCompleto"));
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 5")
     @Test
     void retoExtra05_beanCondicionalPorProfile() {
         try (var ctx = new AnnotationConfigApplicationContext()) {
@@ -125,7 +120,6 @@ class Ej035JavaConfigBeansTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 6")
     @Test
     void retoExtra06_propiedadesExternasValue() {
         try (var ctx = new AnnotationConfigApplicationContext(ConfigProperties.class)) {
@@ -134,7 +128,6 @@ class Ej035JavaConfigBeansTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 7")
     @Test
     void retoExtra07_configuracionLiteMode() {
         try (var ctx = new AnnotationConfigApplicationContext(ConfigLite.class)) {
@@ -143,7 +136,6 @@ class Ej035JavaConfigBeansTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
     @Test
     void retoExtra08_registrarBeanDefinitionProgrammatic() {
         try (var ctx = new AnnotationConfigApplicationContext()) {
@@ -154,7 +146,6 @@ class Ej035JavaConfigBeansTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 9")
     @Test
     void retoExtra09_configuracionDinamicaImportSelector() {
         var selector = new ConfiguracionDinamicaImportSelector();
@@ -162,7 +153,6 @@ class Ej035JavaConfigBeansTest {
         assertNotNull(imports);
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     @Test
     void retoExtra10_beanAliasJavaConfig() {
         try (var ctx = new AnnotationConfigApplicationContext(ConfigAlias.class)) {

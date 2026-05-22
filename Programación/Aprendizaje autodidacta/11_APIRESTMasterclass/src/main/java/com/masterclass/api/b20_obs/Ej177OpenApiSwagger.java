@@ -48,44 +48,124 @@ public final class Ej177OpenApiSwagger {
                 List.of(new EndpointMeta177("/users", "GET", "Lista usuarios"))));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si endpoints es null -> IllegalArgumentException.
+        /**
+     * RETO EXTRA 01: Comprueba ruta valida.
+     */
+    public static boolean esRutaValida(String p) {
+        // TODO extra: RETO EXTRA 01: Comprueba ruta valida.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRutaValida");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si titulo es null o en blanco -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 02: Comprueba metodo HTTP.
+     */
+    public static boolean esMetodoValido(String m) {
+        // TODO extra: RETO EXTRA 02: Comprueba metodo HTTP.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMetodoValido");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: si version es null o en blanco -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 03: Crea metadato.
+     */
+    public static EndpointMeta177 crearMeta(String p, String m, String d) {
+        // TODO extra: RETO EXTRA 03: Crea metadato.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearMeta");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: crea el nodo "info" como Map con "title"=titulo y "version"=version.
+    /**
+     * RETO EXTRA 04: Extrae ruta.
+     */
+    public static String extraerRuta(EndpointMeta177 meta) {
+        // TODO extra: RETO EXTRA 04: Extrae ruta.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerRuta");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: crea un Map "paths" vacio que mantenga orden de insercion.
+    /**
+     * RETO EXTRA 05: Extrae metodo.
+     */
+    public static String extraerMetodo(EndpointMeta177 meta) {
+        // TODO extra: RETO EXTRA 05: Extrae metodo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerMetodo");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: por cada endpoint, obten (o crea) el Map de su 'path'.
+    /**
+     * RETO EXTRA 06: Extrae descripcion.
+     */
+    public static String extraerDescripcion(EndpointMeta177 meta) {
+        // TODO extra: RETO EXTRA 06: Extrae descripcion.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerDescripcion");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: dentro del path, indexa por metodo HTTP en minusculas (get, post...).
+    /**
+     * RETO EXTRA 07: Comprueba version semantica.
+     */
+    public static boolean esVersionSemantica(String v) {
+        // TODO extra: RETO EXTRA 07: Comprueba version semantica.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esVersionSemantica");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: cada operacion es un Map con "summary"=descripcion del endpoint.
+    /**
+     * RETO EXTRA 08: Comprueba campos no nulos.
+     */
+    public static boolean esMetaCompleto(EndpointMeta177 meta) {
+        // TODO extra: RETO EXTRA 08: Comprueba campos no nulos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMetaCompleto");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: ensambla el documento raiz: "openapi"="3.0.1", "info", "paths".
+    /**
+     * RETO EXTRA 09: Formatea ruta.
+     */
+    public static String formatearRuta(String p) {
+        // TODO extra: RETO EXTRA 09: Formatea ruta.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearRuta");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve el documento (no debe ser inmutable vacio).
+    /**
+     * RETO EXTRA 10: Comprueba lista no vacia.
+     */
+    public static boolean esColeccionEndpoint(java.util.List<EndpointMeta177> list) {
+        // TODO extra: RETO EXTRA 10: Comprueba lista no vacia.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esColeccionEndpoint");
     }
 
 }

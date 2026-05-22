@@ -49,44 +49,78 @@ public final class Ej097TransactionsCommitRollback {
         System.out.println("usa el test con H2 en memoria");
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: guarda el autocommit original (conn.getAutoCommit()).
+    /**
+     * TODO extra 1: Desactiva el auto-commit en la conexión JDBC.
+     */
+    public static void desafioDesactivarAutoCommit(java.sql.Connection conn) throws java.sql.SQLException {
+        conn.setAutoCommit(false);
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: desactiva autocommit: conn.setAutoCommit(false) (inicia la transacción).
+    /**
+     * TODO extra 2: Activa el auto-commit en la conexión JDBC.
+     */
+    public static void desafioActivarAutoCommit(java.sql.Connection conn) throws java.sql.SQLException {
+        conn.setAutoCommit(true);
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: abre try/catch alrededor de las operaciones.
+    /**
+     * TODO extra 3: Confirma (commit) la transacción activa.
+     */
+    public static void desafioConfirmarTransaccion(java.sql.Connection conn) throws java.sql.SQLException {
+        conn.commit();
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: UPDATE resta importe al saldo de 'origen' (PreparedStatement).
+    /**
+     * TODO extra 4: Revierte (rollback) la transacción activa.
+     */
+    public static void desafioRevertirTransaccion(java.sql.Connection conn) throws java.sql.SQLException {
+        conn.rollback();
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: comprueba el saldo de 'origen': si quedó negativo, lanza FondosException.
+    /**
+     * TODO extra 5: Comprueba si el auto-commit está desactivado.
+     */
+    public static boolean desafioIsAutoCommitDesactivado(java.sql.Connection conn) throws java.sql.SQLException {
+        return !conn.getAutoCommit();
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: UPDATE suma importe al saldo de 'destino'.
+    /**
+     * TODO extra 6: Comprueba si una transacción se puede procesar con un balance válido.
+     */
+    public static boolean desafioValidarMontoTransferencia(double monto) {
+        return monto > 0;
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: si todo fue bien, conn.commit().
+    /**
+     * TODO extra 7: Simula el flujo seguro ejecutando un rollback si ocurre un error.
+     */
+    public static void desafioSimularRollbackSeguro(java.sql.Connection conn) {
+        try {
+            conn.rollback();
+        } catch (java.sql.SQLException e) {
+            // Ignorado en simulación
+        }
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: en el catch, conn.rollback() y relanza la excepción.
+    /**
+     * TODO extra 8: Configura el nivel de aislamiento de la transacción a READ COMMITTED.
+     */
+    public static void desafioAislamientoReadCommitted(java.sql.Connection conn) throws java.sql.SQLException {
+        conn.setTransactionIsolation(java.sql.Connection.TRANSACTION_READ_COMMITTED);
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: en finally, restaura el autocommit original.
+    /**
+     * TODO extra 9: Crea un punto de restauración (Savepoint) en la transacción.
+     */
+    public static java.sql.Savepoint desafioCrearSavepoint(java.sql.Connection conn, String nombre) throws java.sql.SQLException {
+        return conn.setSavepoint(nombre);
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: rollback debe dejar AMBOS saldos como estaban (atomicidad).
+    /**
+     * TODO extra 10: Revierte la transacción hasta el Savepoint indicado.
+     */
+    public static void desafioRevertirAlSavepoint(java.sql.Connection conn, java.sql.Savepoint sv) throws java.sql.SQLException {
+        conn.rollback(sv);
     }
 
 }

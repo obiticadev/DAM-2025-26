@@ -69,8 +69,12 @@ public class Ej062FilterAndInterceptor implements HandlerInterceptor {
      * escribe un error 401 Unauthorized en la respuesta y corta la cadena retornando false.
      */
     public static boolean pasoExtra01(HttpServletRequest request, HttpServletResponse response, String validKey) throws Exception {
-        // TODO extra: valida el X-API-Key y corta la ejecución enviando un status 401 si falla.
-        return false;
+        // TODO extra: Reto Extra 1: Validación de API Key en Interceptor.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra01");
     }
 
     /**
@@ -79,8 +83,12 @@ public class Ej062FilterAndInterceptor implements HandlerInterceptor {
      * Si las peticiones actuales superan el límite ('limit'), devuelve false (tasa excedida), si no true.
      */
     public static boolean pasoExtra02(String clientIp, int currentRequests, int limit) {
-        // TODO extra: simula si la petición supera el límite de peticiones permitido por IP.
-        return false;
+        // TODO extra: Reto Extra 2: Simulador de Limitador de Tasa (Rate Limiter).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra02");
     }
 
     /**
@@ -89,8 +97,12 @@ public class Ej062FilterAndInterceptor implements HandlerInterceptor {
      * a partir de la URI de la petición y un patrón dado.
      */
     public static String pasoExtra03(String uri, String pattern) {
-        // TODO extra: extrae el identificador variable de la URI según el patrón proporcionado.
-        return null;
+        // TODO extra: Reto Extra 3: Extracción manual de variables de ruta.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra03");
     }
 
     /**
@@ -99,8 +111,12 @@ public class Ej062FilterAndInterceptor implements HandlerInterceptor {
      * (HandlerMethod) y devuelve el nombre del método Java que resolverá la petición.
      */
     public static String pasoExtra04(Object handler) {
-        // TODO extra: inspecciona si el handler es HandlerMethod y devuelve el nombre del método.
-        return null;
+        // TODO extra: Reto Extra 4: Inspección del Controller Handler.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra04");
     }
 
     /**
@@ -109,8 +125,12 @@ public class Ej062FilterAndInterceptor implements HandlerInterceptor {
      * leer múltiples veces el cuerpo de la petición (InputStream) sin que se consuma definitivamente.
      */
     public static HttpServletRequest pasoExtra05(HttpServletRequest request) {
-        // TODO extra: envuelve la petición en un wrapper que permita la relectura del body.
-        return null;
+        // TODO extra: Reto Extra 5: Simulación de envoltura de petición (Request Wrapping).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra05");
     }
 
     /**
@@ -119,8 +139,12 @@ public class Ej062FilterAndInterceptor implements HandlerInterceptor {
      * especificado ('clazz'). Devuelve null si no existe o si no es de ese tipo.
      */
     public static <T> T pasoExtra06(HttpServletRequest request, String attributeName, Class<T> clazz) {
-        // TODO extra: recupera el atributo y devuélvelo casteado de forma segura al tipo de la clase.
-        return null;
+        // TODO extra: Reto Extra 6: Recuperador de Atributo con Tipado Seguro.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra06");
     }
 
     /**
@@ -129,8 +153,12 @@ public class Ej062FilterAndInterceptor implements HandlerInterceptor {
      * que añade la cabecera 'X-Forwarded-Proto' con valor 'https'.
      */
     public static boolean pasoExtra07(HttpServletRequest request) {
-        // TODO extra: comprueba si la petición es segura basándote en el protocolo o las cabeceras de proxy.
-        return false;
+        // TODO extra: Reto Extra 7: Verificador de Conexión Segura (HTTPS / Proxy).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra07");
     }
 
     /**
@@ -139,7 +167,12 @@ public class Ej062FilterAndInterceptor implements HandlerInterceptor {
      * y 'Referrer-Policy' en la respuesta del servlet.
      */
     public static void pasoExtra08(HttpServletResponse response) {
-        // TODO extra: añade cabeceras avanzadas de CSP y Referrer-Policy a la respuesta.
+        // TODO extra: Reto Extra 8: Inyección de cabeceras de seguridad avanzadas (CSP / OWASP).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra08");
     }
 
     /**
@@ -148,8 +181,12 @@ public class Ej062FilterAndInterceptor implements HandlerInterceptor {
      * Si ambos existen, el parámetro tiene prioridad. Si ninguno, devuelve null.
      */
     public static String pasoExtra09(HttpServletRequest request) {
-        // TODO extra: extrae el locale/idioma priorizando el parámetro y luego la cookie.
-        return null;
+        // TODO extra: Reto Extra 9: Extractor de Idioma/Locale desde Cookie o Parámetro.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra09");
     }
 
     /**
@@ -158,8 +195,12 @@ public class Ej062FilterAndInterceptor implements HandlerInterceptor {
      * de la petición (URI) y el mensaje del error para propósitos de auditoría/logging.
      */
     public static String pasoExtra10(HttpServletRequest request, Exception ex) {
-        // TODO extra: genera un log formateado para auditoría si existe una excepción.
-        return null;
+        // TODO extra: Reto Extra 10: Formateador de registro de excepciones (Auditoría).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra10");
     }
 
 }

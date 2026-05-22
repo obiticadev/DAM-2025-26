@@ -71,44 +71,124 @@ public final class Ej143JaxbBinding {
         System.out.println(desdeXml(xml));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si libro es null -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 01: Valida que el ISBN no sea nulo y tenga formato básico.
+     */
+    public static boolean extra01ValidarFormatoIsbn(String isbn) {
+        // TODO extra: RETO EXTRA 01: Valida que el ISBN no sea nulo y tenga formato básico.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra01ValidarFormatoIsbn");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: crea un JAXBContext con JAXBContext.newInstance(Libro143.class).
+    /**
+     * RETO EXTRA 02: Remueve espacios extra y tabulaciones para compactar el XML.
+     */
+    public static String extra02CompactarXml(String xml) {
+        // TODO extra: RETO EXTRA 02: Remueve espacios extra y tabulaciones para compactar el XML.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra02CompactarXml");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: obtén un Marshaller con context.createMarshaller().
+    /**
+     * RETO EXTRA 03: Extrae el año de un libro en XML usando JAXB.
+     */
+    public static int extra03ExtraerAnioJAXB(String xml) {
+        // TODO extra: RETO EXTRA 03: Extrae el año de un libro en XML usando JAXB.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra03ExtraerAnioJAXB");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: activa Marshaller.JAXB_FORMATTED_OUTPUT a true para XML legible.
+    /**
+     * RETO EXTRA 04: Marshall a XML sin cabecera/declaración XML.
+     */
+    public static String extra04MarshallFragmento(Libro143 libro) {
+        // TODO extra: RETO EXTRA 04: Marshall a XML sin cabecera/declaración XML.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra04MarshallFragmento");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: prepara un StringWriter como destino del marshal.
+    /**
+     * RETO EXTRA 05: Convierte un Libro143 a un mapa de datos simple.
+     */
+    public static java.util.Map<String, Object> extra05LibroAMap(Libro143 libro) {
+        // TODO extra: RETO EXTRA 05: Convierte un Libro143 a un mapa de datos simple.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra05LibroAMap");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: invoca marshaller.marshal(libro, writer).
+    /**
+     * RETO EXTRA 06: Crea un Libro143 con valores por defecto.
+     */
+    public static Libro143 extra06CrearLibroDefault() {
+        // TODO extra: RETO EXTRA 06: Crea un Libro143 con valores por defecto.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra06CrearLibroDefault");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: captura JAXBException y reenvíala como RuntimeException.
+    /**
+     * RETO EXTRA 07: Verifica si una cadena contiene un XML válido de libro JAXB.
+     */
+    public static boolean extra07EsXmlDeLibro(String xml) {
+        // TODO extra: RETO EXTRA 07: Verifica si una cadena contiene un XML válido de libro JAXB.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra07EsXmlDeLibro");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: el @XmlRootElement de Libro143 define el nombre del elemento raíz.
+    /**
+     * RETO EXTRA 08: Serializa usando una codificación específica (ej. ISO-8859-1).
+     */
+    public static String extra08SerializarIso8859(Libro143 libro) {
+        // TODO extra: RETO EXTRA 08: Serializa usando una codificación específica (ej. ISO-8859-1).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra08SerializarIso8859");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: @XmlAttribute mapea isbn como atributo, no como elemento hijo.
+    /**
+     * RETO EXTRA 09: Verifica si un libro fue publicado después de un año de corte.
+     */
+    public static boolean extra09EsPublicacionReciente(Libro143 libro, int anioCorte) {
+        // TODO extra: RETO EXTRA 09: Verifica si un libro fue publicado después de un año de corte.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra09EsPublicacionReciente");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve writer.toString() (el XML resultante).
+    /**
+     * RETO EXTRA 10: Duplica un libro realizando una serialización y deserialización completa.
+     */
+    public static Libro143 extra10ClonarLibro(Libro143 libro) {
+        // TODO extra: RETO EXTRA 10: Duplica un libro realizando una serialización y deserialización completa.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra10ClonarLibro");
     }
 
 }

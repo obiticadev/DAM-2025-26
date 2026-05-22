@@ -74,7 +74,14 @@ public class Ej053CrudInMemory {
     /**
      * Reto Extra 1: PUT para actualizar una tarea por completo.
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.PutMapping("/{id}")
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PutMapping("/{
+        // TODO extra: Reto Extra 1: PUT para actualizar una tarea por completo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PutMapping");
+    }")
     public ResponseEntity<Tarea> actualizarTarea(
             @org.springframework.web.bind.annotation.PathVariable Long id,
             @org.springframework.web.bind.annotation.RequestBody Tarea tarea) {
@@ -87,7 +94,14 @@ public class Ej053CrudInMemory {
     /**
      * Reto Extra 2: PATCH para actualizar parcialmente el título de una tarea.
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{id}")
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{
+        // TODO extra: Reto Extra 2: PATCH para actualizar parcialmente el título de una tarea.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PatchMapping");
+    }")
     public ResponseEntity<Tarea> parchearTarea(
             @org.springframework.web.bind.annotation.PathVariable Long id,
             @org.springframework.web.bind.annotation.RequestBody java.util.Map<String, Object> cambios) {
@@ -103,8 +117,12 @@ public class Ej053CrudInMemory {
     // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/filtrar")
     public List<Tarea> buscarPorTitulo(
             @org.springframework.web.bind.annotation.RequestParam("q") String q) {
-        // TODO extra: filtra todas las tareas en `db` cuyos títulos contengan la cadena `q` (case-insensitive) y devuélvelas en una lista.
-        return null;
+        // TODO extra: Reto Extra 3: GET con filtrado de tareas por título (Query Param).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para GetMapping");
     }
 
     /**
@@ -112,8 +130,12 @@ public class Ej053CrudInMemory {
      */
     // TODO extra: anota con @org.springframework.web.bind.annotation.DeleteMapping("")
     public ResponseEntity<Void> limpiarTodo() {
-        // TODO extra: vacía el mapa `db` y el mapa `completadasDb` y retorna estatus 204.
-        return null;
+        // TODO extra: Reto Extra 4: DELETE global para vaciar la base de datos de tareas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para DeleteMapping");
     }
 
     /**
@@ -121,8 +143,12 @@ public class Ej053CrudInMemory {
      */
     // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/count")
     public java.util.Map<String, Long> contarTareas() {
-        // TODO extra: devuelve un mapa conteniendo la clave "total" y el tamaño actual de `db`.
-        return null;
+        // TODO extra: Reto Extra 5: GET para contar la cantidad total de tareas registradas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para GetMapping");
     }
 
     /**
@@ -131,15 +157,25 @@ public class Ej053CrudInMemory {
     // TODO extra: anota con @org.springframework.web.bind.annotation.PostMapping("/bulk")
     public ResponseEntity<List<Tarea>> crearVarias(
             @org.springframework.web.bind.annotation.RequestBody List<Tarea> tareas) {
-        // TODO extra: para cada tarea de la lista, genera un ID correlativo con seq.incrementAndGet(),
-        // guárdala en `db` y agrégala a la lista de salida. Retorna 201 Created con la lista.
-        return null;
+        // TODO extra: Reto Extra 6: POST para creación masiva (Bulk POST).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PostMapping");
     }
 
     /**
      * Reto Extra 7: POST para duplicar una tarea existente.
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.PostMapping("/{id}/duplicar")
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PostMapping("/{
+        // TODO extra: Reto Extra 7: POST para duplicar una tarea existente.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PostMapping");
+    }/duplicar")
     public ResponseEntity<Tarea> duplicarTarea(@org.springframework.web.bind.annotation.PathVariable Long id) {
         // TODO extra: si el id no existe en `db`, devuelve 404 (Not Found).
         // Si existe, genera un nuevo id con seq.incrementAndGet(), guarda una copia de la tarea con el nuevo id
@@ -150,7 +186,14 @@ public class Ej053CrudInMemory {
     /**
      * Reto Extra 8: PATCH para conmutar el estado de completada de una tarea (toggle).
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{id}/toggle")
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{
+        // TODO extra: Reto Extra 8: PATCH para conmutar el estado de completada de una tarea (toggle).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PatchMapping");
+    }/toggle")
     public ResponseEntity<TareaCompleta> toggleCompletada(@org.springframework.web.bind.annotation.PathVariable Long id) {
         // TODO extra: si el id no existe en `db`, devuelve 404.
         // Si existe, cambia su valor booleano en `completadasDb` (si no existía, ponlo a true; si ya existía, inviértelo).
@@ -165,8 +208,12 @@ public class Ej053CrudInMemory {
     public List<Tarea> listarPaginado(
             @org.springframework.web.bind.annotation.RequestParam(value = "page", defaultValue = "0") int page,
             @org.springframework.web.bind.annotation.RequestParam(value = "size", defaultValue = "5") int size) {
-        // TODO extra: extrae una sublista de `db.values()` ordenada por ID que corresponda al índice `page` y tamaño `size`.
-        return null;
+        // TODO extra: Reto Extra 9: GET con soporte de paginación simple.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para GetMapping");
     }
 
     /**
@@ -174,10 +221,12 @@ public class Ej053CrudInMemory {
      */
     // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/primera")
     public ResponseEntity<Tarea> obtenerPrimera() {
-        // TODO extra: busca la tarea con el ID más bajo de la base de datos `db`.
-        // Si está vacía, devuelve estatus 204 (No Content) sin cuerpo.
-        // Si tiene elementos, devuélvela con estatus 200.
-        return null;
+        // TODO extra: Reto Extra 10: GET para obtener la primera tarea registrada (ID mínimo).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para GetMapping");
     }
 
 }

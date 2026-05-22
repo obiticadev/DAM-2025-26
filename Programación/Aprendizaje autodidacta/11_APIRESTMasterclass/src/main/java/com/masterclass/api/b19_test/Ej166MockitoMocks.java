@@ -42,44 +42,124 @@ public final class Ej166MockitoMocks {
         System.out.println(saludar(stub, 1));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si repo es null -> IllegalArgumentException.
+        /**
+     * RETO EXTRA 01: Obtiene longitud del nombre.
+     */
+    public static int longitudNombre(RepositorioStub166 repo, int id) {
+        // TODO extra: RETO EXTRA 01: Obtiene longitud del nombre.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para longitudNombre");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: invoca repo.buscarNombre(id) (esto es la "interacción" mockeada).
+    /**
+     * RETO EXTRA 02: Obtiene el nombre en mayusculas.
+     */
+    public static String nombreEnMayusculas(RepositorioStub166 repo, int id) {
+        // TODO extra: RETO EXTRA 02: Obtiene el nombre en mayusculas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para nombreEnMayusculas");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: si el resultado es null -> trata como usuario no encontrado.
+    /**
+     * RETO EXTRA 03: Determina si el nombre es valido.
+     */
+    public static boolean nombreValido(RepositorioStub166 repo, int id) {
+        // TODO extra: RETO EXTRA 03: Determina si el nombre es valido.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para nombreValido");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: si el resultado es blank -> trata como no encontrado también.
+    /**
+     * RETO EXTRA 04: Saluda al usuario con un sufijo.
+     */
+    public static String saludoConSufijo(RepositorioStub166 repo, int id, String suf) {
+        // TODO extra: RETO EXTRA 04: Saluda al usuario con un sufijo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para saludoConSufijo");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: para no encontrado devuelve "Hola, desconocido".
+    /**
+     * RETO EXTRA 05: Comprueba si el nombre contiene una subcadena.
+     */
+    public static boolean contieneSubcadena(RepositorioStub166 repo, int id, String sub) {
+        // TODO extra: RETO EXTRA 05: Comprueba si el nombre contiene una subcadena.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contieneSubcadena");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: para encontrado devuelve "Hola, " + nombre.
+    /**
+     * RETO EXTRA 06: Determina si el usuario es un invitado.
+     */
+    public static boolean esInvitado(RepositorioStub166 repo, int id) {
+        // TODO extra: RETO EXTRA 06: Determina si el usuario es un invitado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esInvitado");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: no asumas que el repo accede a BD real: es un doble de prueba.
+    /**
+     * RETO EXTRA 07: Devuelve el nombre invertido.
+     */
+    public static String saludoInverso(RepositorioStub166 repo, int id) {
+        // TODO extra: RETO EXTRA 07: Devuelve el nombre invertido.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para saludoInverso");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: no captures excepciones del repo: deja que propaguen.
+    /**
+     * RETO EXTRA 08: Concatena el ID y el nombre.
+     */
+    public static String concatenarIdYNombre(RepositorioStub166 repo, int id) {
+        // TODO extra: RETO EXTRA 08: Concatena el ID y el nombre.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para concatenarIdYNombre");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: la lógica de saludo es pura; el stub aísla la dependencia.
+    /**
+     * RETO EXTRA 09: Comprueba si el nombre es largo.
+     */
+    public static boolean nombreLargo(RepositorioStub166 repo, int id) {
+        // TODO extra: RETO EXTRA 09: Comprueba si el nombre es largo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para nombreLargo");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve la cadena de saludo.
+    /**
+     * RETO EXTRA 10: Busca el nombre o lanza excepcion.
+     */
+    public static String buscarOError(RepositorioStub166 repo, int id) {
+        // TODO extra: RETO EXTRA 10: Busca el nombre o lanza excepcion.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para buscarOError");
     }
 
 }

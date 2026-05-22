@@ -73,44 +73,153 @@ public final class Ej073CustomConstraint {
         System.out.println(esValido(new ArticuloDto("mi-articulo-1")));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si value es null, considéralo válido (deja @NotNull aparte) -> true.
+    /**
+     * RETO EXTRA 1: Comprobar manualmente si un slug cumple con el formato exacto de slug.
+     *
+     * @param slug cadena a evaluar
+     * @return true si es correcto
+     */
+    public static boolean esSlugSintacticamenteValido(String slug) {
+        // TODO extra: RETO EXTRA 1: Comprobar manualmente si un slug cumple con el formato exacto de slug.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esSlugSintacticamenteValido");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si está vacío -> false.
+    /**
+     * RETO EXTRA 2: Comprobar si una cadena empieza por el carácter guión '-'.
+     *
+     * @param s cadena a evaluar
+     * @return true si empieza por '-'
+     */
+    public static boolean empiezaPorGuion(String s) {
+        // TODO extra: RETO EXTRA 2: Comprobar si una cadena empieza por el carácter guión '-'.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para empiezaPorGuion");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: no debe empezar por '-'.
+    /**
+     * RETO EXTRA 3: Comprobar si una cadena termina por el carácter guión '-'.
+     *
+     * @param s cadena a evaluar
+     * @return true si termina por '-'
+     */
+    public static boolean terminaPorGuion(String s) {
+        // TODO extra: RETO EXTRA 3: Comprobar si una cadena termina por el carácter guión '-'.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para terminaPorGuion");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: no debe terminar por '-'.
+    /**
+     * RETO EXTRA 4: Comprobar si una cadena contiene únicamente minúsculas, números y guiones.
+     *
+     * @param s cadena a evaluar
+     * @return true si cumple con el conjunto permitido de caracteres
+     */
+    public static boolean contieneSoloMinusculasNumerosYGuiones(String s) {
+        // TODO extra: RETO EXTRA 4: Comprobar si una cadena contiene únicamente minúsculas, números y guiones.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contieneSoloMinusculasNumerosYGuiones");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: solo se permiten [a-z0-9-] (usa una regex o recorre los chars).
+    /**
+     * RETO EXTRA 5: Normalizar una cadena cualquiera para convertirla en un slug válido.
+     *
+     * @param s cadena de texto
+     * @return slug normalizado (minúsculas, sin espacios, con guiones)
+     */
+    public static String normalizarStringASlug(String s) {
+        // TODO extra: RETO EXTRA 5: Normalizar una cadena cualquiera para convertirla en un slug válido.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para normalizarStringASlug");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: cualquier mayúscula o carácter raro -> false.
+    /**
+     * RETO EXTRA 6: Instanciar programáticamente y probar el validador SlugValidator.
+     *
+     * @return true si se puede crear la instancia
+     */
+    public static boolean esValidatorActivo() {
+        // TODO extra: RETO EXTRA 6: Instanciar programáticamente y probar el validador SlugValidator.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esValidatorActivo");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: devuelve true solo si pasa todas las comprobaciones.
+    /**
+     * RETO EXTRA 7: Generar un slug a partir de un título de artículo aplicando reglas estándar.
+     *
+     * @param titulo título del artículo
+     * @return slug generado
+     */
+    public static String generarSlugArticulo(String titulo) {
+        // TODO extra: RETO EXTRA 7: Generar un slug a partir de un título de artículo aplicando reglas estándar.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para generarSlugArticulo");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: anota 'slug' con @Slug (tu constraint) y con @NotBlank.
+    /**
+     * RETO EXTRA 8: Comprobar si un valor null se trata como válido dentro de las especificaciones del validador de slug.
+     *
+     * @param value valor de entrada
+     * @return true si el validador considera el null como correcto
+     */
+    public static boolean esNullConsideradoValido(String value) {
+        // TODO extra: RETO EXTRA 8: Comprobar si un valor null se trata como válido dentro de las especificaciones del validador de slug.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esNullConsideradoValido");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: usa VALIDATOR.validate(dto) (infraestructura).
+    /**
+     * RETO EXTRA 9: Contar el número de guiones dentro del slug.
+     *
+     * @param s slug
+     * @return número de guiones encontrados
+     */
+    public static int contarGuiones(String s) {
+        // TODO extra: RETO EXTRA 9: Contar el número de guiones dentro del slug.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarGuiones");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: válido = el conjunto de violaciones está vacío.
+    /**
+     * RETO EXTRA 10: Comprobar si el ArticuloDto es válido invocando directamente el flujo completo de validación.
+     *
+     * @param dto artículo DTO
+     * @return true si es completamente válido
+     */
+    public static boolean esSlugPerfecto(ArticuloDto dto) {
+        // TODO extra: RETO EXTRA 10: Comprobar si el ArticuloDto es válido invocando directamente el flujo completo de validación.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esSlugPerfecto");
     }
 
 }

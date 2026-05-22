@@ -40,44 +40,124 @@ public final class Ej078ProblemDetail {
         System.out.println(build(404, "Usuario 7 no existe", "/api/users/7"));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: valida que status >= 400 (un ProblemDetail describe un error).
+        /**
+     * RETO EXTRA 01: Comprueba que el tipo de error tenga un formato URI absoluto valido.
+     */
+    public static boolean esTipoValidoUri(String uri) {
+        // TODO extra: RETO EXTRA 01: Comprueba que el tipo de error tenga un formato URI absoluto valido.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esTipoValidoUri");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si no, lanza IllegalArgumentException.
+    /**
+     * RETO EXTRA 02: Verifica que el codigo este entre 400 y 599.
+     */
+    public static boolean validarCodigoEstadoHttp(int status) {
+        // TODO extra: RETO EXTRA 02: Verifica que el codigo este entre 400 y 599.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para validarCodigoEstadoHttp");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: crea el ProblemDetail con ProblemDetail.forStatus(status).
+    /**
+     * RETO EXTRA 03: Obtiene un valor del JSON de detalle del problema.
+     */
+    public static Object extraerPropiedadAdicional(String bodyJson, String property) {
+        // TODO extra: RETO EXTRA 03: Obtiene un valor del JSON de detalle del problema.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerPropiedadAdicional");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: fija el 'detail' con setDetail(detail).
+    /**
+     * RETO EXTRA 04: Crea la URI de la instancia del error concreto.
+     */
+    public static String generarInstanciaUri(String path, Long id) {
+        // TODO extra: RETO EXTRA 04: Crea la URI de la instancia del error concreto.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para generarInstanciaUri");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: deriva el 'title' a partir de HttpStatus.valueOf(status).getReasonPhrase().
+    /**
+     * RETO EXTRA 05: Filtra stacktraces o datos de usuario del payload.
+     */
+    public static String limpiarCamposSensibles(String json) {
+        // TODO extra: RETO EXTRA 05: Filtra stacktraces o datos de usuario del payload.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para limpiarCamposSensibles");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: fija el title con setTitle(...).
+    /**
+     * RETO EXTRA 06: Valida los requisitos minimos del RFC 7807.
+     */
+    public static boolean esProblemDetailValido(String type, String title, int status) {
+        // TODO extra: RETO EXTRA 06: Valida los requisitos minimos del RFC 7807.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esProblemDetailValido");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: fija la 'instance' con setInstance(URI.create(instance)) si no es null.
+    /**
+     * RETO EXTRA 07: Devuelve la marca temporal en formato ISO 8601 UTC.
+     */
+    public static String formatearFechaIso(java.time.Instant instant) {
+        // TODO extra: RETO EXTRA 07: Devuelve la marca temporal en formato ISO 8601 UTC.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearFechaIso");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: añade una propiedad extra "timestamp" con setProperty (Instant.now()).
+    /**
+     * RETO EXTRA 08: Une el titulo principal y la causa de forma elegante.
+     */
+    public static String combinarDetalles(String main, String sub) {
+        // TODO extra: RETO EXTRA 08: Une el titulo principal y la causa de forma elegante.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para combinarDetalles");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: el 'type' por defecto es about:blank: déjalo así.
+    /**
+     * RETO EXTRA 09: Determina si el codigo corresponde a un error del cliente (4xx).
+     */
+    public static boolean esErrorCliente(int status) {
+        // TODO extra: RETO EXTRA 09: Determina si el codigo corresponde a un error del cliente (4xx).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esErrorCliente");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve el ProblemDetail.
+    /**
+     * RETO EXTRA 10: Determina si el codigo corresponde a un error del servidor (5xx).
+     */
+    public static boolean esErrorServidor(int status) {
+        // TODO extra: RETO EXTRA 10: Determina si el codigo corresponde a un error del servidor (5xx).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esErrorServidor");
     }
 
 }

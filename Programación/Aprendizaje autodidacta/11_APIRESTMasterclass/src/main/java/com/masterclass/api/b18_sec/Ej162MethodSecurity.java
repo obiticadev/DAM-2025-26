@@ -68,44 +68,124 @@ public final class Ej162MethodSecurity {
         System.out.println(propietarioOAdmin("ana", "ana", Set.of()));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si rolesUsuario es null -> IllegalArgumentException.
+        /**
+     * RETO EXTRA 01: Determina si el usuario tiene permiso sobre el recurso (es el dueño o es admin).
+     */
+    public static boolean esPropietarioOAdmin(String username, String owner, boolean isAdmin) {
+        // TODO extra: RETO EXTRA 01: Determina si el usuario tiene permiso sobre el recurso (es el dueño o es admin).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPropietarioOAdmin");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si rolesPermitidos es null o vacío -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 02: Valida sintaxis SpEL basica de Spring Security.
+     */
+    public static boolean esExpresionSpelValida(String spel) {
+        // TODO extra: RETO EXTRA 02: Valida sintaxis SpEL basica de Spring Security.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExpresionSpelValida");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: normaliza prefijo ROLE_ en ambos conjuntos de forma consistente.
+    /**
+     * RETO EXTRA 03: Determina si la excepcion es lanzada por la seguridad del metodo (PreAuthorize).
+     */
+    public static boolean esExcepcionDeMetodo(Throwable t) {
+        // TODO extra: RETO EXTRA 03: Determina si la excepcion es lanzada por la seguridad del metodo (PreAuthorize).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionDeMetodo");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: calcula la intersección sin mutar las entradas.
+    /**
+     * RETO EXTRA 04: Genera el log descriptivo de llamada segura.
+     */
+    public static String crearLogMetodoSeguro(String m, String user) {
+        // TODO extra: RETO EXTRA 04: Genera el log descriptivo de llamada segura.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearLogMetodoSeguro");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: si la intersección es no vacía -> true.
+    /**
+     * RETO EXTRA 05: Verifica si el usuario es del dominio interno de la organizacion.
+     */
+    public static boolean esUsuarioInterno(String email) {
+        // TODO extra: RETO EXTRA 05: Verifica si el usuario es del dominio interno de la organizacion.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esUsuarioInterno");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: si el usuario no tiene roles -> false.
+    /**
+     * RETO EXTRA 06: Determina si el parametro del metodo no es nulo.
+     */
+    public static boolean esArgumentoSeguro(Object arg) {
+        // TODO extra: RETO EXTRA 06: Determina si el parametro del metodo no es nulo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esArgumentoSeguro");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: documenta que esto evalúa ANTES de ejecutar el método (@PreAuthorize).
+    /**
+     * RETO EXTRA 07: Indica si el metodo esta exceptuado de validacion previa.
+     */
+    public static boolean esMetodoPublico(String methodName, java.util.List<String> publicMethods) {
+        // TODO extra: RETO EXTRA 07: Indica si el metodo esta exceptuado de validacion previa.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMetodoPublico");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: no confundas hasRole (uno) con hasAnyRole (varios).
+    /**
+     * RETO EXTRA 08: Determina si la excepcion es por mala configuracion del PreAuthorize.
+     */
+    public static boolean esFalloAnotacion(Throwable t) {
+        // TODO extra: RETO EXTRA 08: Determina si la excepcion es por mala configuracion del PreAuthorize.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFalloAnotacion");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: respeta deny by default ante ambigüedad.
+    /**
+     * RETO EXTRA 09: Comprueba si la expresion SpEL menciona un rol concreto.
+     */
+    public static boolean esRolePresente(String expression, String rol) {
+        // TODO extra: RETO EXTRA 09: Comprueba si la expresion SpEL menciona un rol concreto.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRolePresente");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve el booleano.
+    /**
+     * RETO EXTRA 10: Resuelve si es denegacion por defecto o permitAll.
+     */
+    public static String determinarEstrategiaMetodo(String metadata) {
+        // TODO extra: RETO EXTRA 10: Resuelve si es denegacion por defecto o permitAll.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para determinarEstrategiaMetodo");
     }
 
 }

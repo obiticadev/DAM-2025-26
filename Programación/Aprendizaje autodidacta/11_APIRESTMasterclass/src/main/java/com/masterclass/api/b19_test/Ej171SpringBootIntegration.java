@@ -46,44 +46,124 @@ public final class Ej171SpringBootIntegration {
         System.out.println(ejecutarFlujo(List.of("a"), List.of("ADD:b", "DEL:a")));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si inicial o comandos son null -> IllegalArgumentException.
+        /**
+     * RETO EXTRA 01: Crea comando de agregacion.
+     */
+    public static String crearComandoAdd(String arg) {
+        // TODO extra: RETO EXTRA 01: Crea comando de agregacion.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearComandoAdd");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: copia 'inicial' a una estructura mutable (no muta la entrada).
+    /**
+     * RETO EXTRA 02: Crea comando de eliminacion.
+     */
+    public static String crearComandoDel(String arg) {
+        // TODO extra: RETO EXTRA 02: Crea comando de eliminacion.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearComandoDel");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: itera cada comando en orden (simula peticiones HTTP secuenciales).
+    /**
+     * RETO EXTRA 03: Extrae la accion del comando.
+     */
+    public static String extraerAccion(String cmd) {
+        // TODO extra: RETO EXTRA 03: Extrae la accion del comando.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerAccion");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: si el comando no contiene ":" -> IllegalArgumentException (malformado).
+    /**
+     * RETO EXTRA 04: Extrae el argumento del comando.
+     */
+    public static String extraerArgumento(String cmd) {
+        // TODO extra: RETO EXTRA 04: Extrae el argumento del comando.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerArgumento");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: separa en accion y argumento por el primer ":".
+    /**
+     * RETO EXTRA 05: Comprueba si es un comando estructurado.
+     */
+    public static boolean esComandoValido(String cmd) {
+        // TODO extra: RETO EXTRA 05: Comprueba si es un comando estructurado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esComandoValido");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: "ADD" -> añade el argumento al estado.
+    /**
+     * RETO EXTRA 06: Obtiene tamaño de la lista.
+     */
+    public static int tamanioInicial(java.util.List<String> list) {
+        // TODO extra: RETO EXTRA 06: Obtiene tamaño de la lista.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tamanioInicial");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: "DEL" -> elimina el argumento si existe (idempotente si no está).
+    /**
+     * RETO EXTRA 07: Verifica si la lista contiene el valor.
+     */
+    public static boolean listaContiene(java.util.List<String> list, String val) {
+        // TODO extra: RETO EXTRA 07: Verifica si la lista contiene el valor.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para listaContiene");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: acción desconocida -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 08: Combina dos listas de comandos.
+     */
+    public static java.util.List<String> combinarComandos(java.util.List<String> a, java.util.List<String> b) {
+        // TODO extra: RETO EXTRA 08: Combina dos listas de comandos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para combinarComandos");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: al final ordena el estado ascendentemente (respuesta determinista).
+    /**
+     * RETO EXTRA 09: Filtra comandos ADD.
+     */
+    public static java.util.List<String> filtrarComandosAdd(java.util.List<String> cmds) {
+        // TODO extra: RETO EXTRA 09: Filtra comandos ADD.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para filtrarComandosAdd");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve el estado final como List.
+    /**
+     * RETO EXTRA 10: Filtra comandos DEL.
+     */
+    public static java.util.List<String> filtrarComandosDel(java.util.List<String> cmds) {
+        // TODO extra: RETO EXTRA 10: Filtra comandos DEL.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para filtrarComandosDel");
     }
 
 }

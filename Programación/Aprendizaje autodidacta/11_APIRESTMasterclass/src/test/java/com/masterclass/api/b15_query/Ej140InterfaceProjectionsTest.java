@@ -36,4 +36,64 @@ class Ej140InterfaceProjectionsTest {
         assertEquals("a@b.com", v.get(0).email());
         assertNotNull(v.get(0).id());
     }
+
+    @Test
+    void testRetoExtra01() {
+        var p = new Prod140("Laptop", "Tech", 100);
+        assertEquals("Laptop", Ej140InterfaceProjections.obtenerNombre(p));
+    }
+
+    @Test
+    void testRetoExtra02() {
+        var p = new Prod140("Laptop", "Tech", 100);
+        assertEquals("Tech", Ej140InterfaceProjections.obtenerCategoria(p));
+    }
+
+    @Test
+    void testRetoExtra03() {
+        var p = new Prod140("Laptop", "Tech", 100.0);
+        assertTrue(Ej140InterfaceProjections.esPrecioValido(p));
+    }
+
+    @Test
+    void testRetoExtra04() {
+        var p = Ej140InterfaceProjections.crearProducto("PC", "Tech", 200.0);
+        assertNotNull(p);
+    }
+
+    @Test
+    void testRetoExtra05() {
+        var p = new Prod140("Laptop", "Tech", 100);
+        assertFalse(Ej140InterfaceProjections.tieneId(p));
+    }
+
+    @Test
+    void testRetoExtra06() {
+        var p = new Prod140("Laptop", "Tech", 100);
+        assertNull(Ej140InterfaceProjections.obtenerId(p));
+    }
+
+    @Test
+    void testRetoExtra07() {
+        assertEquals("laptop", Ej140InterfaceProjections.normalizarTexto("  Laptop  "));
+    }
+
+    @Test
+    void testRetoExtra08() {
+        var p = new Prod140("Laptop", "Tech", 100);
+        assertTrue(Ej140InterfaceProjections.esNuevo(p));
+    }
+
+    @Test
+    void testRetoExtra09() {
+        var p = new Prod140("Laptop", "Tech", 100);
+        assertTrue(Ej140InterfaceProjections.categoriaContiene(p, "ch"));
+    }
+
+    @Test
+    void testRetoExtra10() {
+        var p = new Prod140("Laptop", "Tech", 100);
+        assertEquals("Prod[Nombre=Laptop, Cat=Tech]", Ej140InterfaceProjections.formatearProducto(p));
+    }
+
 }

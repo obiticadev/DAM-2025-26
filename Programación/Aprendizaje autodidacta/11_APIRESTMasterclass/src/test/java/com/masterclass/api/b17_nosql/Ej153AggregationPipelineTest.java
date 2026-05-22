@@ -33,4 +33,65 @@ class Ej153AggregationPipelineTest {
         assertThrows(IllegalArgumentException.class,
                 () -> Ej153AggregationPipeline.agregar(null, 0));
     }
+
+    @Test
+    void testRetoExtra01_esEtapaAgregacionValida() {
+        // Verifica si el string representa un operador de stage valido ($match, $group, $project).
+        assertTrue(Ej153AggregationPipeline.esEtapaAgregacionValida("$match"));
+    }
+
+    @Test
+    void testRetoExtra02_crearEtapaMatch() {
+        // Genera el JSON de un stage de filtrado $match.
+        assertEquals("{\"$match\":f}", Ej153AggregationPipeline.crearEtapaMatch("f"));
+    }
+
+    @Test
+    void testRetoExtra03_crearEtapaGroup() {
+        // Genera la definicion del stage $group.
+        assertTrue(Ej153AggregationPipeline.crearEtapaGroup("id", "$sum", "total").contains("$group"));
+    }
+
+    @Test
+    void testRetoExtra04_esPipelineVacio() {
+        // Comprueba si la coleccion de etapas esta vacia.
+        assertTrue(Ej153AggregationPipeline.esPipelineVacio(java.util.List.of()));
+    }
+
+    @Test
+    void testRetoExtra05_extraerOperadorAcumulacion() {
+        // Resuelve que funcion se aplica en la agregacion.
+        assertEquals("SUM", Ej153AggregationPipeline.extraerOperadorAcumulacion("{\"$sum\":1}"));
+    }
+
+    @Test
+    void testRetoExtra06_esStageLimitacion() {
+        // Determina si la etapa reduce la cantidad de filas de forma directa ($limit o $skip).
+        assertTrue(Ej153AggregationPipeline.esStageLimitacion("$limit"));
+    }
+
+    @Test
+    void testRetoExtra07_esPipelineSeguroTamano() {
+        // Valida que el pipeline no tenga mas de 20 etapas por legibilidad.
+        assertTrue(Ej153AggregationPipeline.esPipelineSeguroTamano(5));
+    }
+
+    @Test
+    void testRetoExtra08_esExcepcionDeAgregacion() {
+        // Determina si el error proviene de una ejecucion fallida de pipeline.
+        assertTrue(Ej153AggregationPipeline.esExcepcionDeAgregacion(new IllegalArgumentException("aggregation")));
+    }
+
+    @Test
+    void testRetoExtra09_crearEtapaProject() {
+        // Genera el JSON de la proyeccion $project.
+        assertTrue(Ej153AggregationPipeline.crearEtapaProject(java.util.List.of("a")).contains("$project"));
+    }
+
+    @Test
+    void testRetoExtra10_esAgregacionTemporal() {
+        // Indica si la query usa ordenamientos de tiempo.
+        assertTrue(Ej153AggregationPipeline.esAgregacionTemporal("date"));
+    }
+
 }

@@ -47,44 +47,124 @@ public final class Ej185RateLimiting {
         System.out.println(permitido(est, 5, 1000, 0));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si estado es null o estado.length != 2 -> IllegalArgumentException.
+        /**
+     * RETO EXTRA 01: Valida tamaño del estado.
+     */
+    public static boolean esEstadoValido(long[] est) {
+        // TODO extra: RETO EXTRA 01: Valida tamaño del estado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esEstadoValido");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si capacidad <= 0 o refillMs <= 0 -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 02: Obtiene tokens disponibles.
+     */
+    public static long obtenerTokens(long[] est) {
+        // TODO extra: RETO EXTRA 02: Obtiene tokens disponibles.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerTokens");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: si ahora < estado[1] (reloj hacia atras) -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 03: Obtiene ultimo instante de recarga.
+     */
+    public static long obtenerUltimoInstante(long[] est) {
+        // TODO extra: RETO EXTRA 03: Obtiene ultimo instante de recarga.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerUltimoInstante");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: calcula transcurrido = ahora - estado[1] (ms desde ultima recarga).
+    /**
+     * RETO EXTRA 04: Diferencia de tiempo en ms.
+     */
+    public static long calcularTranscurrido(long ult, long ah) {
+        // TODO extra: RETO EXTRA 04: Diferencia de tiempo en ms.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularTranscurrido");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: tokensARecargar = transcurrido / refillMs (division entera).
+    /**
+     * RETO EXTRA 05: Calcula tokens teóricos.
+     */
+    public static long calcularTokensARecargar(long trans, long ref) {
+        // TODO extra: RETO EXTRA 05: Calcula tokens teóricos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularTokensARecargar");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: si tokensARecargar > 0, suma esos tokens limitando a 'capacidad' (cap).
+    /**
+     * RETO EXTRA 06: Suma limitando a capacidad.
+     */
+    public static long sumarTokensLimitado(long act, long a, long cap) {
+        // TODO extra: RETO EXTRA 06: Suma limitando a capacidad.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para sumarTokensLimitado");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: avanza estado[1] solo por los ms consumidos: + tokensARecargar*refillMs.
+    /**
+     * RETO EXTRA 07: Resta un token si es posible.
+     */
+    public static long consumirToken(long act) {
+        // TODO extra: RETO EXTRA 07: Resta un token si es posible.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para consumirToken");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: si tokens disponibles >= 1, consume uno (resta 1) y la peticion se permite.
+    /**
+     * RETO EXTRA 08: Valida rango del puerto tcp.
+     */
+    public static boolean esPuertoValido(int p) {
+        // TODO extra: RETO EXTRA 08: Valida rango del puerto tcp.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPuertoValido");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: si no hay tokens, NO restes nada y rechaza la peticion.
+    /**
+     * RETO EXTRA 09: Valida consistencia del reloj.
+     */
+    public static boolean esRelojValido(long ult, long ah) {
+        // TODO extra: RETO EXTRA 09: Valida consistencia del reloj.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRelojValido");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: actualiza estado[0] y devuelve true (permitida) o false (rechazada).
+    /**
+     * RETO EXTRA 10: Crea array de estado inicializado.
+     */
+    public static long[] inicializarEstado(long tok, long inst) {
+        // TODO extra: RETO EXTRA 10: Crea array de estado inicializado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para inicializarEstado");
     }
 
 }

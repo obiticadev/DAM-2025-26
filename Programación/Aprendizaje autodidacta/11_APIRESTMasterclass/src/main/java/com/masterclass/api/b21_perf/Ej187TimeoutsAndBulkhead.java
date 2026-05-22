@@ -67,44 +67,124 @@ public final class Ej187TimeoutsAndBulkhead {
         System.out.println(dentroDeTimeout(0, 50, 100));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si inicioMs < 0 -> IllegalArgumentException.
+        /**
+     * RETO EXTRA 01: Valida inicio.
+     */
+    public static boolean esInicioValido(long in) {
+        // TODO extra: RETO EXTRA 01: Valida inicio.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esInicioValido");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si duracionMs < 0 -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 02: Valida duracion.
+     */
+    public static boolean esDuracionValida(long dur) {
+        // TODO extra: RETO EXTRA 02: Valida duracion.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esDuracionValida");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: si timeoutMs <= 0 -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 03: Valida timeout.
+     */
+    public static boolean esTimeoutValido(long to) {
+        // TODO extra: RETO EXTRA 03: Valida timeout.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esTimeoutValido");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: calcula finMs = inicioMs + duracionMs (instante de fin previsto).
+    /**
+     * RETO EXTRA 04: Calcula final de ejecucion.
+     */
+    public static long calcularFinMs(long in, long dur) {
+        // TODO extra: RETO EXTRA 04: Calcula final de ejecucion.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularFinMs");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: calcula deadlineMs = inicioMs + timeoutMs (limite duro).
+    /**
+     * RETO EXTRA 05: Calcula instante limite.
+     */
+    public static long calcularDeadlineMs(long in, long to) {
+        // TODO extra: RETO EXTRA 05: Calcula instante limite.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularDeadlineMs");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: la operacion cumple si finMs <= deadlineMs.
+    /**
+     * RETO EXTRA 06: Valida bulkhead.
+     */
+    public static boolean esEstadoValido(long[] est) {
+        // TODO extra: RETO EXTRA 06: Valida bulkhead.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esEstadoValido");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: si duracionMs == timeoutMs el limite se considera cumplido (<=).
+    /**
+     * RETO EXTRA 07: Obtiene en uso.
+     */
+    public static long obtenerPermisosEnUso(long[] est) {
+        // TODO extra: RETO EXTRA 07: Obtiene en uso.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerPermisosEnUso");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: si finMs > deadlineMs la operacion se cancela por timeout.
+    /**
+     * RETO EXTRA 08: Libera un permiso.
+     */
+    public static long[] liberarPermiso(long[] est) {
+        // TODO extra: RETO EXTRA 08: Libera un permiso.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para liberarPermiso");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: no uses sleeps reales: es una comparacion determinista de instantes.
+    /**
+     * RETO EXTRA 09: Comprueba saturacion.
+     */
+    public static boolean esSaturado(long[] est, long max) {
+        // TODO extra: RETO EXTRA 09: Comprueba saturacion.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esSaturado");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve true (a tiempo) o false (timeout superado).
+    /**
+     * RETO EXTRA 10: Crea estado inicial.
+     */
+    public static long[] inicializarEstado(long perm) {
+        // TODO extra: RETO EXTRA 10: Crea estado inicial.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para inicializarEstado");
     }
 
 }

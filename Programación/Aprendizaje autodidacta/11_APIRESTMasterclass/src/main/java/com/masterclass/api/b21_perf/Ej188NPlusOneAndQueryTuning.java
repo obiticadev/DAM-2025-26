@@ -65,44 +65,124 @@ public final class Ej188NPlusOneAndQueryTuning {
         System.out.println("opt=" + consultasOptimizadas(ids, 2));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si ids es null -> IllegalArgumentException.
+        /**
+     * RETO EXTRA 01: Valida lista.
+     */
+    public static boolean esListaValida(java.util.List<Long> ids) {
+        // TODO extra: RETO EXTRA 01: Valida lista.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esListaValida");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si algun id es null -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 02: Comprueba nulos.
+     */
+    public static boolean contieneIdNulo(java.util.List<Long> ids) {
+        // TODO extra: RETO EXTRA 02: Comprueba nulos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contieneIdNulo");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: contabiliza 1 consulta inicial: la que trae la lista de padres.
+    /**
+     * RETO EXTRA 03: Valida tamaño de lote.
+     */
+    public static boolean esLoteValido(int lote) {
+        // TODO extra: RETO EXTRA 03: Valida tamaño de lote.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esLoteValido");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: por cada id de la lista se dispara 1 consulta adicional (lazy).
+    /**
+     * RETO EXTRA 04: Cantidad total de ids.
+     */
+    public static int cantidadIds(java.util.List<Long> ids) {
+        // TODO extra: RETO EXTRA 04: Cantidad total de ids.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para cantidadIds");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: N = ids.size() (numero de padres).
+    /**
+     * RETO EXTRA 05: Calcula bloques de carga.
+     */
+    public static int calcularLotesEnteros(int n, int lote) {
+        // TODO extra: RETO EXTRA 05: Calcula bloques de carga.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularLotesEnteros");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: total = 1 + N (de ahi el nombre "N+1").
+    /**
+     * RETO EXTRA 06: Valida si el lote cubre todo.
+     */
+    public static boolean esOptimo(int n, int lote) {
+        // TODO extra: RETO EXTRA 06: Valida si el lote cubre todo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esOptimo");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: si la lista esta vacia, solo hay 1 consulta (la inicial).
+    /**
+     * RETO EXTRA 07: Calcula diferencia.
+     */
+    public static int diferenciaConsultas(int naive, int opt) {
+        // TODO extra: RETO EXTRA 07: Calcula diferencia.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para diferenciaConsultas");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: no agrupes ni cachees aqui: este metodo modela el caso MALO.
+    /**
+     * RETO EXTRA 08: Comprueba si es mejor.
+     */
+    public static boolean esMasEficiente(int naive, int opt) {
+        // TODO extra: RETO EXTRA 08: Comprueba si es mejor.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMasEficiente");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: el coste crece linealmente con el numero de padres.
+    /**
+     * RETO EXTRA 09: Obtiene id de posicion.
+     */
+    public static Long obtenerIdUnico(java.util.List<Long> ids, int idx) {
+        // TODO extra: RETO EXTRA 09: Obtiene id de posicion.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerIdUnico");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve el total de consultas del acceso naive.
+    /**
+     * RETO EXTRA 10: Crea lista limpia.
+     */
+    public static java.util.List<Long> crearListaIds() {
+        // TODO extra: RETO EXTRA 10: Crea lista limpia.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearListaIds");
     }
 
 }

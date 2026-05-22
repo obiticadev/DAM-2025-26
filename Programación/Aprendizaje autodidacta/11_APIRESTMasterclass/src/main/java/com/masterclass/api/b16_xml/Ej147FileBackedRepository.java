@@ -104,44 +104,124 @@ public final class Ej147FileBackedRepository {
         System.out.println(repo.findAll());
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si fichero es null -> IllegalArgumentException.
+        /**
+     * RETO EXTRA 01: Comprueba que el archivo este en un directorio seguro y tenga extension valida.
+     */
+    public static boolean validarRutaArchivo(String path) {
+        // TODO extra: RETO EXTRA 01: Comprueba que el archivo este en un directorio seguro y tenga extension valida.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para validarRutaArchivo");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: guarda la ruta en el campo final.
+    /**
+     * RETO EXTRA 02: Verifica que el archivo no sea de solo lectura.
+     */
+    public static boolean esArchivoEditable(String path) {
+        // TODO extra: RETO EXTRA 02: Verifica que el archivo no sea de solo lectura.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esArchivoEditable");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: si el fichero no existe, créalo vacío con Files.createFile.
+    /**
+     * RETO EXTRA 03: Genera el nombre de respaldo añadiendo sufijo temporal.
+     */
+    public static String generarBackupNombre(String originalPath) {
+        // TODO extra: RETO EXTRA 03: Genera el nombre de respaldo añadiendo sufijo temporal.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para generarBackupNombre");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: si existe el directorio padre inexistente, créalo con createDirectories.
+    /**
+     * RETO EXTRA 04: Realiza validacion basica de etiquetas XML en el String.
+     */
+    public static boolean esFormatoXmlCorrecto(String content) {
+        // TODO extra: RETO EXTRA 04: Realiza validacion basica de etiquetas XML en el String.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFormatoXmlCorrecto");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: captura IOException de la inicialización como RuntimeException.
+    /**
+     * RETO EXTRA 05: Genera un hash rapido de seguridad sobre el contenido.
+     */
+    public static String calcularCheksumManual(String data) {
+        // TODO extra: RETO EXTRA 05: Genera un hash rapido de seguridad sobre el contenido.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularCheksumManual");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: no leas todo el fichero aquí: solo asegura que exista.
+    /**
+     * RETO EXTRA 06: Comprueba limites seguros de tamano para evitar desbordes de memoria.
+     */
+    public static boolean esTamanoPermitido(long bytes) {
+        // TODO extra: RETO EXTRA 06: Comprueba limites seguros de tamano para evitar desbordes de memoria.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esTamanoPermitido");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: usa StandardCharsets.UTF_8 como codificación canónica del repo.
+    /**
+     * RETO EXTRA 07: Verifica si abre y cierra con la misma etiqueta raiz.
+     */
+    public static boolean esXmlValidoEstructura(String xml) {
+        // TODO extra: RETO EXTRA 07: Verifica si abre y cierra con la misma etiqueta raiz.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esXmlValidoEstructura");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: no asumas separador de SO: define ';' como delimitador fijo.
+    /**
+     * RETO EXTRA 08: Genera una representacion XML de linea.
+     */
+    public static String crearElementoXmlSimple(String tag, String val) {
+        // TODO extra: RETO EXTRA 08: Genera una representacion XML de linea.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearElementoXmlSimple");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: el id es Long y el texto no debe contener ';' (precondición).
+    /**
+     * RETO EXTRA 09: Obtiene el texto interior de un nodo simple.
+     */
+    public static String extraerContenidoEtiqueta(String xml, String tag) {
+        // TODO extra: RETO EXTRA 09: Obtiene el texto interior de un nodo simple.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerContenidoEtiqueta");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: deja el repositorio listo para save/findById/findAll.
+    /**
+     * RETO EXTRA 10: Determina si el error es de parseo o binding XML.
+     */
+    public static boolean esExcepcionDePersistenciaXml(Throwable t) {
+        // TODO extra: RETO EXTRA 10: Determina si el error es de parseo o binding XML.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionDePersistenciaXml");
     }
 
 }

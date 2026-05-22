@@ -67,44 +67,124 @@ public final class Ej144JacksonXml {
         System.out.println(desdeXml(xml));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si cliente es null -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 01: Valida que el nombre de cliente no esté vacío.
+     */
+    public static boolean extra01ValidarNombre(Cliente144 cliente) {
+        // TODO extra: RETO EXTRA 01: Valida que el nombre de cliente no esté vacío.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra01ValidarNombre");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: instancia un XmlMapper (com.fasterxml.jackson.dataformat.xml.XmlMapper).
+    /**
+     * RETO EXTRA 02: Transforma el nombre del cliente a mayúsculas.
+     */
+    public static String extra02NombreMayusculas(Cliente144 cliente) {
+        // TODO extra: RETO EXTRA 02: Transforma el nombre del cliente a mayúsculas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra02NombreMayusculas");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: opcionalmente activa SerializationFeature.INDENT_OUTPUT.
+    /**
+     * RETO EXTRA 03: Extrae el ID de un cliente en XML usando Jackson.
+     */
+    public static int extra03ExtraerIdJackson(String xml) {
+        // TODO extra: RETO EXTRA 03: Extrae el ID de un cliente en XML usando Jackson.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra03ExtraerIdJackson");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: invoca mapper.writeValueAsString(cliente).
+    /**
+     * RETO EXTRA 04: Serializa a XML formateado de una forma específica.
+     */
+    public static String extra04JacksonFormateado(Cliente144 cliente) {
+        // TODO extra: RETO EXTRA 04: Serializa a XML formateado de una forma específica.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra04JacksonFormateado");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: @JacksonXmlRootElement fija el nombre del elemento raíz.
+    /**
+     * RETO EXTRA 05: Convierte un Cliente144 a mapa clave-valor.
+     */
+    public static java.util.Map<String, Object> extra05ClienteAMap(Cliente144 cliente) {
+        // TODO extra: RETO EXTRA 05: Convierte un Cliente144 a mapa clave-valor.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra05ClienteAMap");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: @JacksonXmlProperty(isAttribute=true) mapea id como atributo.
+    /**
+     * RETO EXTRA 06: Crea un Cliente144 VIP por defecto.
+     */
+    public static Cliente144 extra06CrearClienteVip() {
+        // TODO extra: RETO EXTRA 06: Crea un Cliente144 VIP por defecto.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra06CrearClienteVip");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: captura JsonProcessingException y reenvíala como RuntimeException.
+    /**
+     * RETO EXTRA 07: Verifica si una cadena contiene un XML válido de cliente Jackson.
+     */
+    public static boolean extra07EsXmlDeCliente(String xml) {
+        // TODO extra: RETO EXTRA 07: Verifica si una cadena contiene un XML válido de cliente Jackson.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra07EsXmlDeCliente");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: no añadas declaración XML manual: deja que Jackson la gestione.
+    /**
+     * RETO EXTRA 08: Serializa forzando a escribir la cabecera XML.
+     */
+    public static String extra08SerializarConCabecera(Cliente144 cliente) {
+        // TODO extra: RETO EXTRA 08: Serializa forzando a escribir la cabecera XML.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra08SerializarConCabecera");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: el resultado no debe ser null ni vacío para un cliente válido.
+    /**
+     * RETO EXTRA 09: Verifica si el cliente califica para descuento especial (ser VIP y llamarse Ada).
+     */
+    public static boolean extra09TieneDescuentoEspecial(Cliente144 cliente) {
+        // TODO extra: RETO EXTRA 09: Verifica si el cliente califica para descuento especial (ser VIP y llamarse Ada).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra09TieneDescuentoEspecial");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve la cadena XML.
+    /**
+     * RETO EXTRA 10: Duplica un cliente utilizando Jackson XML.
+     */
+    public static Cliente144 extra10ClonarCliente(Cliente144 cliente) {
+        // TODO extra: RETO EXTRA 10: Duplica un cliente utilizando Jackson XML.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra10ClonarCliente");
     }
 
 }

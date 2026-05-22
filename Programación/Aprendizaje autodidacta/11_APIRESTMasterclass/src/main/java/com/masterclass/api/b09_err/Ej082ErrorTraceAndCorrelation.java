@@ -40,44 +40,124 @@ public final class Ej082ErrorTraceAndCorrelation {
         System.out.println(errorBody(500, "boom", "abc-123"));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si status < 400 -> IllegalArgumentException (no es un error).
+        /**
+     * RETO EXTRA 01: Comprueba que la correlacion tenga un formato UUID/hexadecimal estandar.
+     */
+    public static boolean esTraceIdValido(String traceId) {
+        // TODO extra: RETO EXTRA 01: Comprueba que la correlacion tenga un formato UUID/hexadecimal estandar.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esTraceIdValido");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: decide el traceId: si incomingTrace no es null/blank, reúsalo (correlación end-to-end).
+    /**
+     * RETO EXTRA 02: Genera un identificador aleatorio UUID para seguimiento.
+     */
+    public static String crearTraceIdNuevo() {
+        // TODO extra: RETO EXTRA 02: Genera un identificador aleatorio UUID para seguimiento.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearTraceIdNuevo");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: si no viene, genera uno nuevo con UUID.randomUUID().toString().
+    /**
+     * RETO EXTRA 03: Concatena identificador de flujo y log.
+     */
+    public static String formatearLogConTrace(String traceId, String log) {
+        // TODO extra: RETO EXTRA 03: Concatena identificador de flujo y log.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearLogConTrace");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: el traceId nunca debe ser null en la respuesta.
+    /**
+     * RETO EXTRA 04: Identifica si es el cabezal HTTP de seguimiento standard.
+     */
+    public static boolean esHeaderCorrelacion(String headerName) {
+        // TODO extra: RETO EXTRA 04: Identifica si es el cabezal HTTP de seguimiento standard.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esHeaderCorrelacion");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: usa un LinkedHashMap para orden estable de claves.
+    /**
+     * RETO EXTRA 05: Limpia y valida el valor de correlacion recibido.
+     */
+    public static String obtenerTraceIdDeCabezal(String headerValue) {
+        // TODO extra: RETO EXTRA 05: Limpia y valida el valor de correlacion recibido.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerTraceIdDeCabezal");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: añade "status" = status.
+    /**
+     * RETO EXTRA 06: Determina si pertenecen al mismo flujo global.
+     */
+    public static boolean esErrorRelacionado(String trace1, String trace2) {
+        // TODO extra: RETO EXTRA 06: Determina si pertenecen al mismo flujo global.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esErrorRelacionado");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: añade "error" = mensaje.
+    /**
+     * RETO EXTRA 07: Obtiene el valor del cabezal de respuesta HTTP.
+     */
+    public static String generarCabeceraRespuesta(String traceId) {
+        // TODO extra: RETO EXTRA 07: Obtiene el valor del cabezal de respuesta HTTP.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para generarCabeceraRespuesta");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: añade "traceId" = el traceId resuelto.
+    /**
+     * RETO EXTRA 08: Determina si el error apunta a problemas del colector de trazas.
+     */
+    public static boolean esExcepcionDeSeguimiento(Throwable t) {
+        // TODO extra: RETO EXTRA 08: Determina si el error apunta a problemas del colector de trazas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionDeSeguimiento");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: reusar el trace entrante permite seguir la petición entre microservicios.
+    /**
+     * RETO EXTRA 09: Resuelve una traza invalida asignando un fallback seguro.
+     */
+    public static String crearContingenciaCorrelacion(String badTrace) {
+        // TODO extra: RETO EXTRA 09: Resuelve una traza invalida asignando un fallback seguro.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearContingenciaCorrelacion");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve el mapa.
+    /**
+     * RETO EXTRA 10: Comprueba limites seguros de la traza para evitar inyecciones en logs.
+     */
+    public static boolean longitudCorrectaTraza(String traceId) {
+        // TODO extra: RETO EXTRA 10: Comprueba limites seguros de la traza para evitar inyecciones en logs.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para longitudCorrectaTraza");
     }
 
 }

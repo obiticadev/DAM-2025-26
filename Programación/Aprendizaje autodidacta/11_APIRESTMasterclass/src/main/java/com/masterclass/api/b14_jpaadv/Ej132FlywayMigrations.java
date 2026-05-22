@@ -49,44 +49,126 @@ public final class Ej132FlywayMigrations {
         System.out.println(siguienteVersion(List.of("V1__init.sql", "V3__x.sql", "V2__y.sql")));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si fichero es null/blank -> IllegalArgumentException.
+    /**
+     * Reto Extra 1: Comprueba si el nombre de migración tiene formato valido.
+     */
+    public static boolean esFormatoValido(String fichero) {
+        // TODO extra: Reto Extra 1: Comprueba si el nombre de migración tiene formato valido.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFormatoValido");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: debe empezar por 'V' (mayúscula).
+    /**
+     * Reto Extra 2: Extrae la descripcion de un fichero de migracion.
+     */
+    public static String descripcionDe(String fichero) {
+        // TODO extra: Reto Extra 2: Extrae la descripcion de un fichero de migracion.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para descripcionDe");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: debe contener el separador "__".
+    /**
+     * Reto Extra 3: Comprueba si es una migracion repetible (empieza por 'R').
+     */
+    public static boolean esMigracionRepetible(String fichero) {
+        // TODO extra: Reto Extra 3: Comprueba si es una migracion repetible (empieza por 'R').
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMigracionRepetible");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: la versión es lo que va entre 'V' y "__".
+    /**
+     * Reto Extra 4: Comprueba si es una migracion versionada.
+     */
+    public static boolean esMigracionVersionada(String fichero) {
+        // TODO extra: Reto Extra 4: Comprueba si es una migracion versionada.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMigracionVersionada");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: parsea ese fragmento a int (try/catch -> IllegalArgumentException).
+    /**
+     * Reto Extra 5: Filtra y devuelve solo las versiones de las migraciones validas.
+     */
+    public static java.util.List<Integer> obtenerVersiones(java.util.List<String> ficheros) {
+        // TODO extra: Reto Extra 5: Filtra y devuelve solo las versiones de las migraciones validas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerVersiones");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: devuelve la versión.
+    /**
+     * Reto Extra 6: Comprueba si hay versiones duplicadas en una lista de ficheros.
+     */
+    public static boolean tieneDuplicados(java.util.List<String> ficheros) {
+        // TODO extra: Reto Extra 6: Comprueba si hay versiones duplicadas en una lista de ficheros.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneDuplicados");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: si la lista es null o vacía -> devuelve 1 (primera migración).
+    /**
+     * Reto Extra 7: Retorna el prefijo del fichero de migracion.
+     */
+    public static String prefijoDe(String fichero) {
+        // TODO extra: Reto Extra 7: Retorna el prefijo del fichero de migracion.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para prefijoDe");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: mapea cada fichero a su versión con versionDe (stream).
+    /**
+     * Reto Extra 8: Comprueba si el fichero de migracion es de tipo rollback (empieza por 'U').
+     */
+    public static boolean esRollback(String fichero) {
+        // TODO extra: Reto Extra 8: Comprueba si el fichero de migracion es de tipo rollback (empieza por 'U').
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRollback");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: obtén el máximo (max()).
+    /**
+     * Reto Extra 9: Compara dos migraciones por su version.
+     */
+    public static int compararVersiones(String f1, String f2) {
+        // TODO extra: Reto Extra 9: Compara dos migraciones por su version.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para compararVersiones");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve max + 1 (la siguiente migración a aplicar).
+    /**
+     * Reto Extra 10: Retorna una representacion de texto estructurada.
+     */
+    public static String formatearMigracion(String fichero) {
+        // TODO extra: Reto Extra 10: Retorna una representacion de texto estructurada.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearMigracion");
     }
+
+
 
 }

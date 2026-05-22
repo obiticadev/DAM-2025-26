@@ -149,6 +149,66 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <compilerArgs>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
+                    <excludes>
+                        <exclude>com/masterclass/api/b00_http/**</exclude>
+                        <exclude>com/masterclass/api/b01_java/**</exclude>
+                        <exclude>com/masterclass/api/b02_json/**</exclude>
+                        <exclude>com/masterclass/api/b03_core/**</exclude>
+                        <exclude>com/masterclass/api/b04_boot/**</exclude>
+                        <exclude>com/masterclass/api/b05_web/**</exclude>
+                        <exclude>com/masterclass/api/b06_webadv/**</exclude>
+                        <exclude>com/masterclass/api/b07_dto/**</exclude>
+                        <exclude>com/masterclass/api/b08_valid/**</exclude>
+                        <exclude>com/masterclass/api/b09_err/**</exclude>
+                        <exclude>com/masterclass/api/b10_arch/**</exclude>
+                        <exclude>com/masterclass/api/b11_jdbc/**</exclude>
+                        <exclude>com/masterclass/api/b12_jpa/**</exclude>
+                        <exclude>com/masterclass/api/b13_rel/**</exclude>
+                        <exclude>com/masterclass/api/b14_jpaadv/**</exclude>
+                        <exclude>com/masterclass/api/b15_query/**</exclude>
+                        <exclude>com/masterclass/api/b19_test/**</exclude>
+                        <exclude>com/masterclass/api/b20_obs/**</exclude>
+                        <exclude>com/masterclass/api/b21_perf/**</exclude>
+                        <exclude>com/masterclass/api/b22_deploy/**</exclude>
+                        <exclude>com/masterclass/api/b23_ci/**</exclude>
+                        <exclude>com/masterclass/api/b24_boss/**</exclude>
+                        <exclude>com/masterclass/api/b25_thymeleaf/**</exclude>
+                    </excludes>
+                    <testExcludes>
+                        <testExclude>com/masterclass/api/b00_http/**</testExclude>
+                        <testExclude>com/masterclass/api/b01_java/**</testExclude>
+                        <testExclude>com/masterclass/api/b02_json/**</testExclude>
+                        <testExclude>com/masterclass/api/b03_core/**</testExclude>
+                        <testExclude>com/masterclass/api/b04_boot/**</testExclude>
+                        <testExclude>com/masterclass/api/b05_web/**</testExclude>
+                        <testExclude>com/masterclass/api/b06_webadv/**</testExclude>
+                        <testExclude>com/masterclass/api/b07_dto/**</testExclude>
+                        <testExclude>com/masterclass/api/b08_valid/**</testExclude>
+                        <testExclude>com/masterclass/api/b09_err/**</testExclude>
+                        <testExclude>com/masterclass/api/b10_arch/**</testExclude>
+                        <testExclude>com/masterclass/api/b11_jdbc/**</testExclude>
+                        <testExclude>com/masterclass/api/b12_jpa/**</testExclude>
+                        <testExclude>com/masterclass/api/b13_rel/**</testExclude>
+                        <testExclude>com/masterclass/api/b14_jpaadv/**</testExclude>
+                        <testExclude>com/masterclass/api/b15_query/**</testExclude>
+                        <testExclude>com/masterclass/api/b19_test/**</testExclude>
+                        <testExclude>com/masterclass/api/b20_obs/**</testExclude>
+                        <testExclude>com/masterclass/api/b21_perf/**</testExclude>
+                        <testExclude>com/masterclass/api/b22_deploy/**</testExclude>
+                        <testExclude>com/masterclass/api/b23_ci/**</testExclude>
+                        <testExclude>com/masterclass/api/b24_boss/**</testExclude>
+                        <testExclude>com/masterclass/api/b25_thymeleaf/**</testExclude>
+                    </testExcludes>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>

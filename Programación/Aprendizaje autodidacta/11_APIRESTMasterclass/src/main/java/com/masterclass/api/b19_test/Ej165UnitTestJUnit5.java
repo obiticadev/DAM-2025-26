@@ -40,44 +40,124 @@ public final class Ej165UnitTestJUnit5 {
         System.out.println(aplicarDescuento(100.0, 20.0));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si precioBase <= 0 -> IllegalArgumentException (un precio no negativo).
+        /**
+     * RETO EXTRA 01: Suma dos numeros reales.
+     */
+    public static double adicionar(double a, double b) {
+        // TODO extra: RETO EXTRA 01: Suma dos numeros reales.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para adicionar");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si porcentaje < 0 -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 02: Resta dos numeros reales.
+     */
+    public static double restar(double a, double b) {
+        // TODO extra: RETO EXTRA 02: Resta dos numeros reales.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para restar");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: si porcentaje > 100 -> IllegalArgumentException (no se regala dinero).
+    /**
+     * RETO EXTRA 03: Multiplica dos numeros reales.
+     */
+    public static double multiplicar(double a, double b) {
+        // TODO extra: RETO EXTRA 03: Multiplica dos numeros reales.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para multiplicar");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: calcula el factor de descuento: 1 - porcentaje/100.
+    /**
+     * RETO EXTRA 04: Divide dos numeros reales.
+     */
+    public static double dividir(double a, double b) {
+        // TODO extra: RETO EXTRA 04: Divide dos numeros reales.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para dividir");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: multiplica precioBase por el factor.
+    /**
+     * RETO EXTRA 05: Determina si un entero es par.
+     */
+    public static boolean esPar(int n) {
+        // TODO extra: RETO EXTRA 05: Determina si un entero es par.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPar");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: redondea a 2 decimales (Math.round(x*100)/100.0).
+    /**
+     * RETO EXTRA 06: Devuelve una cadena vacia.
+     */
+    public static String obtenerVacio() {
+        // TODO extra: RETO EXTRA 06: Devuelve una cadena vacia.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerVacio");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: porcentaje 0 -> devuelve el precio base intacto (caso límite).
+    /**
+     * RETO EXTRA 07: Devuelve un valor nulo.
+     */
+    public static Object retornarNulo() {
+        // TODO extra: RETO EXTRA 07: Devuelve un valor nulo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retornarNulo");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: porcentaje 100 -> devuelve 0.0 (caso límite).
+    /**
+     * RETO EXTRA 08: Concatena dos cadenas.
+     */
+    public static String concatenarTextos(String a, String b) {
+        // TODO extra: RETO EXTRA 08: Concatena dos cadenas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para concatenarTextos");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: la función debe ser determinista (mismos inputs -> mismo output).
+    /**
+     * RETO EXTRA 09: Devuelve el mayor de dos enteros.
+     */
+    public static int obtenerMayor(int a, int b) {
+        // TODO extra: RETO EXTRA 09: Devuelve el mayor de dos enteros.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerMayor");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve el resultado redondeado.
+    /**
+     * RETO EXTRA 10: Devuelve el menor de dos enteros.
+     */
+    public static int obtenerMenor(int a, int b) {
+        // TODO extra: RETO EXTRA 10: Devuelve el menor de dos enteros.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerMenor");
     }
 
 }

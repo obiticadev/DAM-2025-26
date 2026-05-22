@@ -37,4 +37,74 @@ class Ej106DerivedQueryMethodsTest {
         assertEquals(2, repo.countByCategoria("libros"));
         assertEquals(0, repo.countByCategoria("nada"));
     }
+
+@Test
+    void testDesafioRepositoryActivo() {
+        assertTrue(Ej106DerivedQueryMethods.desafioRepositoryActivo(repo));
+        assertFalse(Ej106DerivedQueryMethods.desafioRepositoryActivo(null));
+    }
+
+    @Test
+    void testDesafioBuscarPorNombre() {
+        repo.deleteAll();
+        var e = Ej106DerivedQueryMethods.desafioCrearInstanciaEmpleado("Ana", "IT");
+        repo.save(e);
+        assertEquals(1, Ej106DerivedQueryMethods.desafioBuscarPorNombre(repo, "Ana").size());
+    }
+
+    @Test
+    void testDesafioBuscarPorDepartamento() {
+        repo.deleteAll();
+        var e = Ej106DerivedQueryMethods.desafioCrearInstanciaEmpleado("Ana", "IT");
+        repo.save(e);
+        assertEquals(1, Ej106DerivedQueryMethods.desafioBuscarPorDepartamento(repo, "IT").size());
+    }
+
+    @Test
+    void testDesafioBuscarPorDeptoYNombre() {
+        repo.deleteAll();
+        var e = Ej106DerivedQueryMethods.desafioCrearInstanciaEmpleado("Ana", "IT");
+        repo.save(e);
+        assertEquals(1, Ej106DerivedQueryMethods.desafioBuscarPorDeptoYNombre(repo, "IT", "Ana").size());
+    }
+
+    @Test
+    void testDesafioExistePorNombre() {
+        repo.deleteAll();
+        var e = Ej106DerivedQueryMethods.desafioCrearInstanciaEmpleado("Ana", "IT");
+        repo.save(e);
+        assertTrue(Ej106DerivedQueryMethods.desafioExistePorNombre(repo, "Ana"));
+    }
+
+    @Test
+    void testDesafioContarEnDepartamento() {
+        repo.deleteAll();
+        var e = Ej106DerivedQueryMethods.desafioCrearInstanciaEmpleado("Ana", "IT");
+        repo.save(e);
+        assertEquals(1, Ej106DerivedQueryMethods.desafioContarEnDepartamento(repo, "IT"));
+    }
+
+    @Test
+    void testDesafioValidarDepartamentoBuscado() {
+        assertThrows(IllegalArgumentException.class, () -> Ej106DerivedQueryMethods.desafioValidarDepartamentoBuscado(null));
+        assertDoesNotThrow(() -> Ej106DerivedQueryMethods.desafioValidarDepartamentoBuscado("HR"));
+    }
+
+    @Test
+    void testDesafioCrearInstanciaEmpleado() {
+        var e = Ej106DerivedQueryMethods.desafioCrearInstanciaEmpleado("Leo", "HR");
+        assertEquals("Leo", e.getNombre());
+    }
+
+    @Test
+    void testDesafioContieneDepartamento() {
+        var list = List.of(Ej106DerivedQueryMethods.desafioCrearInstanciaEmpleado("Leo", "HR"));
+        assertTrue(Ej106DerivedQueryMethods.desafioContieneDepartamento(list, "HR"));
+    }
+
+    @Test
+    void testDesafioTieneDatos() {
+        assertTrue(Ej106DerivedQueryMethods.desafioTieneDatos(List.of(new Empleado())));
+        assertFalse(Ej106DerivedQueryMethods.desafioTieneDatos(List.of()));
+    }
 }

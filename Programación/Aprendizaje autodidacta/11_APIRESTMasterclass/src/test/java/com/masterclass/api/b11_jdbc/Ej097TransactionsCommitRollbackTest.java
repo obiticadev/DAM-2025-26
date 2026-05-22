@@ -47,4 +47,84 @@ class Ej097TransactionsCommitRollbackTest {
             assertEquals(0, saldo(2));
         });
     }
+
+@Test
+    void testDesafioDesactivarAutoCommit() throws Exception {
+        try (var c = java.sql.DriverManager.getConnection("jdbc:h2:mem:test097_1", "sa", "")) {
+            Ej097TransactionsCommitRollback.desafioDesactivarAutoCommit(c);
+            assertFalse(c.getAutoCommit());
+        }
+    }
+
+    @Test
+    void testDesafioActivarAutoCommit() throws Exception {
+        try (var c = java.sql.DriverManager.getConnection("jdbc:h2:mem:test097_2", "sa", "")) {
+            c.setAutoCommit(false);
+            Ej097TransactionsCommitRollback.desafioActivarAutoCommit(c);
+            assertTrue(c.getAutoCommit());
+        }
+    }
+
+    @Test
+    void testDesafioConfirmarTransaccion() throws Exception {
+        try (var c = java.sql.DriverManager.getConnection("jdbc:h2:mem:test097_3", "sa", "")) {
+            c.setAutoCommit(false);
+            assertDoesNotThrow(() -> Ej097TransactionsCommitRollback.desafioConfirmarTransaccion(c));
+        }
+    }
+
+    @Test
+    void testDesafioRevertirTransaccion() throws Exception {
+        try (var c = java.sql.DriverManager.getConnection("jdbc:h2:mem:test097_4", "sa", "")) {
+            c.setAutoCommit(false);
+            assertDoesNotThrow(() -> Ej097TransactionsCommitRollback.desafioRevertirTransaccion(c));
+        }
+    }
+
+    @Test
+    void testDesafioIsAutoCommitDesactivado() throws Exception {
+        try (var c = java.sql.DriverManager.getConnection("jdbc:h2:mem:test097_5", "sa", "")) {
+            c.setAutoCommit(false);
+            assertTrue(Ej097TransactionsCommitRollback.desafioIsAutoCommitDesactivado(c));
+        }
+    }
+
+    @Test
+    void testDesafioValidarMontoTransferencia() {
+        assertTrue(Ej097TransactionsCommitRollback.desafioValidarMontoTransferencia(100.0));
+        assertFalse(Ej097TransactionsCommitRollback.desafioValidarMontoTransferencia(-5.0));
+    }
+
+    @Test
+    void testDesafioSimularRollbackSeguro() throws Exception {
+        try (var c = java.sql.DriverManager.getConnection("jdbc:h2:mem:test097_6", "sa", "")) {
+            c.setAutoCommit(false);
+            assertDoesNotThrow(() -> Ej097TransactionsCommitRollback.desafioSimularRollbackSeguro(c));
+        }
+    }
+
+    @Test
+    void testDesafioAislamientoReadCommitted() throws Exception {
+        try (var c = java.sql.DriverManager.getConnection("jdbc:h2:mem:test097_7", "sa", "")) {
+            Ej097TransactionsCommitRollback.desafioAislamientoReadCommitted(c);
+            assertEquals(java.sql.Connection.TRANSACTION_READ_COMMITTED, c.getTransactionIsolation());
+        }
+    }
+
+    @Test
+    void testDesafioCrearSavepoint() throws Exception {
+        try (var c = java.sql.DriverManager.getConnection("jdbc:h2:mem:test097_8", "sa", "")) {
+            c.setAutoCommit(false);
+            assertNotNull(Ej097TransactionsCommitRollback.desafioCrearSavepoint(c, "sp1"));
+        }
+    }
+
+    @Test
+    void testDesafioRevertirAlSavepoint() throws Exception {
+        try (var c = java.sql.DriverManager.getConnection("jdbc:h2:mem:test097_9", "sa", "")) {
+            c.setAutoCommit(false);
+            var sp = c.setSavepoint("sp2");
+            assertDoesNotThrow(() -> Ej097TransactionsCommitRollback.desafioRevertirAlSavepoint(c, sp));
+        }
+    }
 }

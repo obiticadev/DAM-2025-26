@@ -60,44 +60,77 @@ public final class Ej091FactoryAndBuilder {
         System.out.println(crearAdmin("admin@x.com"));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: asigna 'e' y devuelve this (API fluida).
+    /**
+     * TODO extra 1: Asigna un email en el builder y lo devuelve.
+     */
+    public static UsuarioBuilder desafioFijarEmail(UsuarioBuilder builder, String email) {
+        return builder.email(email);
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: asigna 'r' y devuelve this.
+    /**
+     * TODO extra 2: Asigna un rol en el builder y lo devuelve.
+     */
+    public static UsuarioBuilder desafioFijarRol(UsuarioBuilder builder, String rol) {
+        return builder.rol(rol);
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: asigna 'a' y devuelve this.
+    /**
+     * TODO extra 3: Asigna el estado activo en el builder y lo devuelve.
+     */
+    public static UsuarioBuilder desafioFijarActivo(UsuarioBuilder builder, boolean activo) {
+        return builder.activo(activo);
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: valida que email no sea null/blank (invariante de construcción).
+    /**
+     * TODO extra 4: Valida que el email no sea nulo o vacío para construir.
+     */
+    public static void desafioValidarEmailConstruccion(String email) {
+        if (email == null || email.isBlank()) {
+            throw new IllegalArgumentException("Email no válido");
+        }
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: construye y devuelve el Usuario con los campos acumulados.
+    /**
+     * TODO extra 5: Construye un Usuario a partir del builder.
+     */
+    public static Usuario desafioConstruirUsuario(UsuarioBuilder builder) {
+        return builder.build();
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: si no se tocó rol/activo, deben usarse los valores por defecto.
+    /**
+     * TODO extra 6: Comprueba si un Usuario tiene los valores por defecto.
+     */
+    public static boolean desafioVerificarValoresPorDefecto(Usuario u) {
+        return "USER".equals(u.rol()) && u.activo();
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: usa el UsuarioBuilder (no construyas el record a mano).
+    /**
+     * TODO extra 7: Instancia un nuevo builder vacío.
+     */
+    public static UsuarioBuilder desafioInstanciarBuilder() {
+        return new UsuarioBuilder();
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: fija rol "ADMIN" y activo true.
+    /**
+     * TODO extra 8: Preconfigura el builder con los datos de un administrador.
+     */
+    public static UsuarioBuilder desafioFijarRecetaAdmin(UsuarioBuilder builder) {
+        return builder.rol("ADMIN").activo(true);
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: la Factory encapsula la "receta" de un tipo concreto de usuario.
+    /**
+     * TODO extra 9: Retorna una descripción textual de lo que encapsula una Factory.
+     */
+    public static String desafioConceptoFactory() {
+        return "Encapsula la creacion compleja de objetos preconfigurados";
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve el Usuario construido.
+    /**
+     * TODO extra 10: Retorna un Usuario administrador construido de forma completa.
+     */
+    public static Usuario desafioObtenerUsuarioAdminFinal(String email) {
+        desafioValidarEmailConstruccion(email);
+        return desafioConstruirUsuario(desafioFijarEmail(desafioFijarRecetaAdmin(desafioInstanciarBuilder()), email));
     }
 
 }

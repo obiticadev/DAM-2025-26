@@ -53,71 +53,79 @@ public final class Ej105JpaRepository {
         System.out.println("usa el test con EMF aislado");
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: begin transaction.
+    /**
+     * TODO extra 1: Comprueba si un repositorio JPA de tipo ProductoRepository está instanciado.
+     */
+    public static boolean desafioRepositoryActivo(ProductoRepository repo) {
+        return repo != null;
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si t.getId() == null -> em.persist(t); si no -> t = em.merge(t).
+    /**
+     * TODO extra 2: Guarda un producto en la base de datos usando el repositorio.
+     */
+    public static Producto desafioGuardarProducto(ProductoRepository repo, Producto p) {
+        return repo.save(p);
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: commit.
+    /**
+     * TODO extra 3: Busca un producto por su identificador primario.
+     */
+    public static java.util.Optional<Producto> desafioBuscarPorId(ProductoRepository repo, Long id) {
+        return repo.findById(id);
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: devuelve la entidad (la gestionada en caso de merge).
+    /**
+     * TODO extra 4: Retorna una lista con todos los productos guardados.
+     */
+    public static java.util.List<Producto> desafioBuscarTodos(ProductoRepository repo) {
+        return repo.findAll();
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: em.find(Tarea105.class, id).
+    /**
+     * TODO extra 5: Comprueba si existe un producto en base de datos dado su ID.
+     */
+    public static boolean desafioExistePorId(ProductoRepository repo, Long id) {
+        return repo.existsById(id);
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: em.createQuery("select t from Tarea105 t order by t.id", Tarea105.class)
+    /**
+     * TODO extra 6: Cuenta la cantidad total de productos persistidos.
+     */
+    public static long desafioContarProductos(ProductoRepository repo) {
+        return repo.count();
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: .getResultList().
+    /**
+     * TODO extra 7: Elimina un producto de la base de datos por su ID.
+     */
+    public static void desafioEliminarPorId(ProductoRepository repo, Long id) {
+        repo.deleteById(id);
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: busca la entidad; si es null devuelve false.
+    /**
+     * TODO extra 8: Valida que un producto no sea nulo antes de guardarlo.
+     */
+    public static void desafioValidarParaGuardar(Producto p) {
+        if (p == null || p.getNombre() == null) {
+            throw new IllegalArgumentException("Producto no válido");
+        }
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: begin tx, em.remove(entidad), commit.
+    /**
+     * TODO extra 9: Crea una instancia rápida de Producto con los valores básicos.
+     */
+    public static Producto desafioCrearInstanciaProducto(String nombre, double precio) {
+        var p = new Producto();
+        p.setNombre(nombre);
+        p.setPrecio(precio);
+        return p;
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve true (se borró).
+    /**
+     * TODO extra 10: Retorna verdadero si una lista de productos contiene al menos un elemento.
+     */
+    public static boolean desafioTieneElementos(java.util.List<Producto> productos) {
+        return productos != null && !productos.isEmpty();
     }
 
-}
-
-@jakarta.persistence.Entity
-class Tarea105 {
-    @jakarta.persistence.Id
-    @jakarta.persistence.GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
-    private Long id;
-    private String titulo;
-
-    protected Tarea105() {
-    }
-
-    public Tarea105(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String t) {
-        this.titulo = t;
-    }
 }

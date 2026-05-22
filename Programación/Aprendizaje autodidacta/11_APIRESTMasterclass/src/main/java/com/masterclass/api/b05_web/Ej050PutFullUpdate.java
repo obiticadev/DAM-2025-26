@@ -58,7 +58,14 @@ public class Ej050PutFullUpdate {
     /**
      * Reto Extra 1: PUT con control de concurrencia optimista (Optimistic Locking).
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.PutMapping("/{id}/optimistic")
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PutMapping("/{
+        // TODO extra: Reto Extra 1: PUT con control de concurrencia optimista (Optimistic Locking).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PutMapping");
+    }/optimistic")
     public org.springframework.http.ResponseEntity<ItemConVersion> actualizarConOptimisticLock(
             @org.springframework.web.bind.annotation.PathVariable long id,
             @org.springframework.web.bind.annotation.RequestBody ItemConVersion cuerpo) {
@@ -71,7 +78,14 @@ public class Ej050PutFullUpdate {
     /**
      * Reto Extra 2: PUT con comportamiento Upsert (Crear o Actualizar).
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.PutMapping("/{id}/upsert")
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PutMapping("/{
+        // TODO extra: Reto Extra 2: PUT con comportamiento Upsert (Crear o Actualizar).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PutMapping");
+    }/upsert")
     public org.springframework.http.ResponseEntity<ItemDto> actualizarOcrear(
             @org.springframework.web.bind.annotation.PathVariable long id,
             @org.springframework.web.bind.annotation.RequestBody ItemBody cuerpo) {
@@ -84,7 +98,14 @@ public class Ej050PutFullUpdate {
     /**
      * Reto Extra 3: PUT condicional exigiendo cabecera If-Match.
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.PutMapping("/{id}/conditional")
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PutMapping("/{
+        // TODO extra: Reto Extra 3: PUT condicional exigiendo cabecera If-Match.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PutMapping");
+    }/conditional")
     public org.springframework.http.ResponseEntity<ItemDto> actualizarConCabeceraConditional(
             @org.springframework.web.bind.annotation.PathVariable long id,
             @org.springframework.web.bind.annotation.RequestBody ItemBody cuerpo,
@@ -98,7 +119,14 @@ public class Ej050PutFullUpdate {
     /**
      * Reto Extra 4: Validación de formato en campos de texto de entrada.
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.PutMapping("/{id}/valida-formato")
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PutMapping("/{
+        // TODO extra: Reto Extra 4: Validación de formato en campos de texto de entrada.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PutMapping");
+    }/valida-formato")
     public org.springframework.http.ResponseEntity<ItemDto> actualizarValidandoCampos(
             @org.springframework.web.bind.annotation.PathVariable long id,
             @org.springframework.web.bind.annotation.RequestBody ItemBody cuerpo) {
@@ -110,7 +138,14 @@ public class Ej050PutFullUpdate {
     /**
      * Reto Extra 5: Registro de historial de modificaciones.
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.PutMapping("/{id}/historial")
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PutMapping("/{
+        // TODO extra: Reto Extra 5: Registro de historial de modificaciones.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PutMapping");
+    }/historial")
     public org.springframework.http.ResponseEntity<ItemDto> actualizarConHistorial(
             @org.springframework.web.bind.annotation.PathVariable long id,
             @org.springframework.web.bind.annotation.RequestBody ItemBody cuerpo) {
@@ -122,7 +157,14 @@ public class Ej050PutFullUpdate {
     /**
      * Reto Extra 6: Lanzar excepción de recurso no encontrado.
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.PutMapping("/{id}/lanza-404")
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PutMapping("/{
+        // TODO extra: Reto Extra 6: Lanzar excepción de recurso no encontrado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PutMapping");
+    }/lanza-404")
     public ItemDto actualizarLanzaNoEncontrado(
             @org.springframework.web.bind.annotation.PathVariable long id,
             @org.springframework.web.bind.annotation.RequestBody ItemBody cuerpo) {
@@ -134,7 +176,14 @@ public class Ej050PutFullUpdate {
     /**
      * Reto Extra 7: PUT con respuesta vacía utilizando únicamente cabeceras.
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.PutMapping("/{id}/solo-cabeceras")
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PutMapping("/{
+        // TODO extra: Reto Extra 7: PUT con respuesta vacía utilizando únicamente cabeceras.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PutMapping");
+    }/solo-cabeceras")
     public org.springframework.http.ResponseEntity<Void> actualizarRetornandoSoloCabeceras(
             @org.springframework.web.bind.annotation.PathVariable long id,
             @org.springframework.web.bind.annotation.RequestBody ItemBody cuerpo) {
@@ -146,7 +195,14 @@ public class Ej050PutFullUpdate {
     /**
      * Reto Extra 8: Actualización de estado condicional (Conflict).
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.PutMapping("/{id}/estado-activo")
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PutMapping("/{
+        // TODO extra: Reto Extra 8: Actualización de estado condicional (Conflict).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PutMapping");
+    }/estado-activo")
     public org.springframework.http.ResponseEntity<?> actualizarSoloActivos(
             @org.springframework.web.bind.annotation.PathVariable long id,
             @org.springframework.web.bind.annotation.RequestBody ItemBody cuerpo) {
@@ -162,14 +218,25 @@ public class Ej050PutFullUpdate {
     // TODO extra: anota con @org.springframework.web.bind.annotation.PutMapping("/bulk")
     public org.springframework.http.ResponseEntity<java.util.List<ItemDto>> actualizarBulk(
             @org.springframework.web.bind.annotation.RequestBody java.util.List<ItemDto> cuerpo) {
-        // TODO extra: recibe una lista de ItemDto y devuelve estatus 200 con la misma lista reflejada.
-        return null;
+        // TODO extra: Reto Extra 9: Actualización en lote (Bulk PUT).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PutMapping");
     }
 
     /**
      * Reto Extra 10: Validación cruzada de identificadores de ruta y cuerpo.
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.PutMapping("/{id}/verificar-id")
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PutMapping("/{
+        // TODO extra: Reto Extra 10: Validación cruzada de identificadores de ruta y cuerpo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PutMapping");
+    }/verificar-id")
     public org.springframework.http.ResponseEntity<?> actualizarValidandoIdCuerpo(
             @org.springframework.web.bind.annotation.PathVariable long id,
             @org.springframework.web.bind.annotation.RequestBody ItemDto cuerpo) {

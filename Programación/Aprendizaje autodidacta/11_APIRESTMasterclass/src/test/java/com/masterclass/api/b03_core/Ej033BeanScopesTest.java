@@ -30,7 +30,6 @@ class Ej033BeanScopesTest {
     @Scope("prototype")
     static class MiPrototypeBean {}
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 1")
     @Test
     void retoExtra01_esMismaInstancia() {
         try (var ctx = new AnnotationConfigApplicationContext()) {
@@ -42,7 +41,6 @@ class Ej033BeanScopesTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 2")
     @Test
     void retoExtra02_beanConContadorPrototype() {
         var b1 = new BeanConContadorPrototype();
@@ -52,7 +50,6 @@ class Ej033BeanScopesTest {
         assertEquals(0, b2.getContador(), "Prototype b2 no debe compartir estado con b1");
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 3")
     @Test
     void retoExtra03_singletonConInyeccionPrototype() {
         ObjectFactory<BeanConContadorPrototype> factory = () -> {
@@ -66,18 +63,16 @@ class Ej033BeanScopesTest {
         assertEquals(2, s.obtenerValorContadorNuevo());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
     @Test
     void retoExtra04_registrarScopeCustom() {
         try (var ctx = new AnnotationConfigApplicationContext()) {
             var myScope = new ScopeThread();
             Ej033BeanScopes.registrarScopeCustom(ctx, "customThread", myScope);
             
-            assertTrue(ctx.getBeanFactory().getRegisteredScopeNames().contains("customThread"));
+            assertTrue(java.util.Arrays.asList(ctx.getBeanFactory().getRegisteredScopeNames()).contains("customThread"));
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 5")
     @Test
     void retoExtra05_scopeThread() throws InterruptedException {
         var scope = new ScopeThread();
@@ -97,7 +92,6 @@ class Ej033BeanScopesTest {
         assertNotSame(o1, o3[0], "En hilos distintos, debe generar instancias diferentes");
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 6")
     @Test
     void retoExtra06_esScopePrototypeDefinido() {
         try (var ctx = new AnnotationConfigApplicationContext()) {
@@ -109,7 +103,6 @@ class Ej033BeanScopesTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 7")
     @Test
     void retoExtra07_crearScopeLimitado() {
         var scope = Ej033BeanScopes.crearScopeLimitado(2);
@@ -123,7 +116,6 @@ class Ej033BeanScopesTest {
         assertSame(o2, o3);
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
     @Test
     void retoExtra08_limpiarCacheScope() {
         var scope = new ScopeThread();
@@ -136,7 +128,6 @@ class Ej033BeanScopesTest {
         assertNotSame(o1, o2, "Tras limpiar el scope, debe devolverse una nueva instancia");
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 9")
     @Test
     void retoExtra09_singletonConProxyPrototype() {
         var mockProxy = new BeanConContadorPrototype() {
@@ -147,7 +138,6 @@ class Ej033BeanScopesTest {
         assertEquals(mockProxy, s.getProxyPrototype());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     @Test
     void retoExtra10_evaluarCicloVidaPrototype() {
         try (var ctx = new AnnotationConfigApplicationContext()) {

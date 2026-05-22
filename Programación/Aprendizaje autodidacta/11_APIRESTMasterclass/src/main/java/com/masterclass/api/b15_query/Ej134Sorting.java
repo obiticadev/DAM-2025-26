@@ -47,45 +47,131 @@ public final class Ej134Sorting {
         System.out.println("usa el test con EMF aislado");
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si campo es null -> IllegalArgumentException.
+    /**
+     * Reto Extra 1: Comprueba si un campo de ordenacion esta en la whitelist.
+     */
+    public static boolean esCampoPermitido(String campo) {
+        // TODO extra: Reto Extra 1: Comprueba si un campo de ordenacion esta en la whitelist.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCampoPermitido");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: valida que CAMPOS_PERMITIDOS.contains(campo) (anti-inyección).
+    /**
+     * Reto Extra 2: Determina la direccion de ordenacion ("asc" o "desc").
+     */
+    public static String determinarDireccion(boolean ascendente) {
+        // TODO extra: Reto Extra 2: Determina la direccion de ordenacion ("asc" o "desc").
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para determinarDireccion");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: si no está permitido -> IllegalArgumentException.
+    /**
+     * Reto Extra 3: Genera una clausula JPQL ORDER BY de forma segura.
+     */
+    public static String construirOrderJpql(String campo, boolean ascendente) {
+        // TODO extra: Reto Extra 3: Genera una clausula JPQL ORDER BY de forma segura.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para construirOrderJpql");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: determina la dirección: "asc" o "desc" según 'ascendente'.
+    /**
+     * Reto Extra 4: Valida si la whitelist esta inicializada correctamente.
+     */
+    public static boolean whitelistValida() {
+        // TODO extra: Reto Extra 4: Valida si la whitelist esta inicializada correctamente.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para whitelistValida");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: construye el JPQL "select p from Prod134 p order by p." + campo + " " + dir.
+    /**
+     * Reto Extra 5: Devuelve una copia de los campos permitidos.
+     */
+    public static java.util.Set<String> obtenerCamposPermitidos() {
+        // TODO extra: Reto Extra 5: Devuelve una copia de los campos permitidos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerCamposPermitidos");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: el campo es seguro porque pasó la whitelist (no concatenes nada más).
+    /**
+     * Reto Extra 6: Comprueba si la direccion indicada es descendente.
+     */
+    public static boolean esDireccionDescendente(String dir) {
+        // TODO extra: Reto Extra 6: Comprueba si la direccion indicada es descendente.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esDireccionDescendente");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: createQuery tipado.
+    /**
+     * Reto Extra 7: Normaliza el nombre de un campo (trim y lowercase).
+     */
+    public static String normalizarCampo(String campo) {
+        // TODO extra: Reto Extra 7: Normaliza el nombre de un campo (trim y lowercase).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para normalizarCampo");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: getResultList().
+    /**
+     * Reto Extra 8: Comprueba si el campo es de tipo ID.
+     */
+    public static boolean esCampoId(String campo) {
+        // TODO extra: Reto Extra 8: Comprueba si el campo es de tipo ID.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCampoId");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: NUNCA metas 'campo' en el SQL sin haberlo validado contra la lista.
+    /**
+     * Reto Extra 9: Comprueba si la whitelist contiene al menos 3 campos.
+     */
+    public static boolean tieneSuficientesCampos() {
+        // TODO extra: Reto Extra 9: Comprueba si la whitelist contiene al menos 3 campos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneSuficientesCampos");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve la lista ordenada.
+    /**
+     * Reto Extra 10: Retorna un string formateado con el criterio de ordenacion.
+     */
+    public static String formatearOrdenacion(String campo, boolean ascendente) {
+        // TODO extra: Reto Extra 10: Retorna un string formateado con el criterio de ordenacion.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearOrdenacion");
     }
+
+    public static java.util.Set<String> obtainCamposPermitidosHelper() {
+        return CAMPOS_PERMITIDOS;
+    }
+
+
 
 }
 

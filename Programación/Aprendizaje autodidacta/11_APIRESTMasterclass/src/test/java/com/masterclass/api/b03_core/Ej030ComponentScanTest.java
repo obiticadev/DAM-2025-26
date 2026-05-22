@@ -33,7 +33,6 @@ class Ej030ComponentScanTest {
     @CustomAnnotation
     static class BeanConAnotacion {}
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 1")
     @Test
     void retoExtra01_obtenerBeanPorNombre() {
         try (var ctx = new AnnotationConfigApplicationContext()) {
@@ -45,7 +44,6 @@ class Ej030ComponentScanTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 2")
     @Test
     void retoExtra02_esSingleton() {
         try (var ctx = new AnnotationConfigApplicationContext()) {
@@ -57,7 +55,6 @@ class Ej030ComponentScanTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 3")
     @Test
     void retoExtra03_crearContextoFiltradoConExclusion() {
         var ctx = Ej030ComponentScan.crearContextoFiltradoConExclusion(MiPrototypeBean.class);
@@ -70,7 +67,6 @@ class Ej030ComponentScanTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
     @Test
     void retoExtra04_contarBeansDefinidos() {
         try (var ctx = new AnnotationConfigApplicationContext()) {
@@ -82,7 +78,6 @@ class Ej030ComponentScanTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 5")
     @Test
     void retoExtra05_registrarBeanEnCaliente() {
         try (var ctx = new AnnotationConfigApplicationContext()) {
@@ -93,7 +88,6 @@ class Ej030ComponentScanTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 6")
     @Test
     void retoExtra06_esBeanPrototypeDefinido() {
         try (var ctx = new AnnotationConfigApplicationContext()) {
@@ -105,7 +99,6 @@ class Ej030ComponentScanTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 7")
     @Test
     void retoExtra07_obtenerBeansPorAnotacion() {
         try (var ctx = new AnnotationConfigApplicationContext()) {
@@ -117,7 +110,6 @@ class Ej030ComponentScanTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
     @Test
     void retoExtra08_obtenerNombresDeBeans() {
         try (var ctx = new AnnotationConfigApplicationContext()) {
@@ -132,7 +124,6 @@ class Ej030ComponentScanTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 9")
     @Test
     void retoExtra09_cerrarYVerificarActivo() {
         var ctx = new AnnotationConfigApplicationContext();
@@ -143,7 +134,6 @@ class Ej030ComponentScanTest {
         assertFalse(ctx.isActive());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     @Test
     void retoExtra10_esDefinicionLazy() {
         try (var ctx = new AnnotationConfigApplicationContext()) {

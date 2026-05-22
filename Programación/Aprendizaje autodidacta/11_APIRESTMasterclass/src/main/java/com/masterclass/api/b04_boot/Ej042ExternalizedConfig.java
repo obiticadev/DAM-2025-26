@@ -51,22 +51,36 @@ public final class Ej042ExternalizedConfig {
      * RETO EXTRA 01: Resuelve una propiedad utilizando la API real de Environment de Spring.
      */
     public static String pasoExtra01(Environment env, String clave) {
-        // TODO extra: Obtén la propiedad desde el Environment de Spring.
-        return "";
+        // TODO extra: RETO EXTRA 01: Resuelve una propiedad utilizando la API real de Environment de Spring.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra01");
     }
 
     /**
      * RETO EXTRA 02: Incorporación manual de un PropertySource prioritario sobre la cola del Environment.
      */
     public static void pasoExtra02(ConfigurableEnvironment env, String nombreSource, Map<String, Object> propiedades) {
-        // TODO extra: Registra un MapPropertySource al inicio de la lista de PropertySources de env para que tenga máxima prioridad.
+        // TODO extra: RETO EXTRA 02: Incorporación manual de un PropertySource prioritario sobre la cola del Environment.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra02");
     }
 
     /**
      * RETO EXTRA 03: Incorporación de un PropertySource de baja prioridad (secundario/fallback).
      */
     public static void pasoExtra03(ConfigurableEnvironment env, String nombreSource, Map<String, Object> propiedades) {
-        // TODO extra: Registra un MapPropertySource al final de la lista de PropertySources de env para fallback de baja prioridad.
+        // TODO extra: RETO EXTRA 03: Incorporación de un PropertySource de baja prioridad (secundario/fallback).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra03");
     }
 
     /**
@@ -74,54 +88,84 @@ public final class Ej042ExternalizedConfig {
      * Ejemplo: "spring.datasource.connection-timeout" -> "SPRING_DATASOURCE_CONNECTION_TIMEOUT"
      */
     public static String pasoExtra04(String ymlKey) {
-        // TODO extra: Implementa las reglas de traducción de relajación (relaxed binding) de variables de entorno de Spring Boot.
-        return "";
+        // TODO extra: RETO EXTRA 04: Traduce una clave yml (camelCase o kebab-case con puntos) al formato estándar de variable de entorno de SO.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra04");
     }
 
     /**
      * RETO EXTRA 05: Detecta cuál es el PropertySource exacto que provee el valor activo para una propiedad dada.
      */
     public static String pasoExtra05(ConfigurableEnvironment env, String clave) {
-        // TODO extra: Recorre todos los PropertySources del Environment configurable y retorna el nombre del primero que contenga la clave.
-        return null;
+        // TODO extra: RETO EXTRA 05: Detecta cuál es el PropertySource exacto que provee el valor activo para una propiedad dada.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra05");
     }
 
     /**
      * RETO EXTRA 06: Remueve un PropertySource registrado en el entorno por su nombre.
      */
     public static boolean pasoExtra06(ConfigurableEnvironment env, String nombreSource) {
-        // TODO extra: Elimina de forma segura el PropertySource indicado por nombre y devuelve true si se pudo eliminar.
-        return false;
+        // TODO extra: RETO EXTRA 06: Remueve un PropertySource registrado en el entorno por su nombre.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra06");
     }
 
     /**
      * RETO EXTRA 07: Define propiedades predeterminadas a nivel de aplicación utilizando SpringApplication.
      */
     public static void pasoExtra07(org.springframework.boot.SpringApplication application, Map<String, Object> defaultProperties) {
-        // TODO extra: Añade el mapa de defaultProperties como propiedades por defecto de la aplicación SpringApplication antes de arrancar.
+        // TODO extra: RETO EXTRA 07: Define propiedades predeterminadas a nivel de aplicación utilizando SpringApplication.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra07");
     }
 
     /**
      * RETO EXTRA 08: Carga y añade dinámicamente un conjunto de propiedades formateadas como String "clave=valor" al entorno.
      */
     public static void pasoExtra08(ConfigurableEnvironment env, String propertySourceString) {
-        // TODO extra: Parsea el String (ej. "server.port=9090\napp.env=prod") y regístralo como un PropertySource.
+        // TODO extra: RETO EXTRA 08: Carga y añade dinámicamente un conjunto de propiedades formateadas como String "clave=valor" al entorno.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra08");
     }
 
     /**
      * RETO EXTRA 09: Verifica si una clave está definida en las variables del sistema de la JVM o del Sistema Operativo de forma directa.
      */
     public static boolean pasoExtra09(String clave) {
-        // TODO extra: Comprueba si la clave existe en System.getProperty() o System.getenv().
-        return false;
+        // TODO extra: RETO EXTRA 09: Verifica si una clave está definida en las variables del sistema de la JVM o del Sistema Operativo de forma directa.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra09");
     }
 
     /**
      * RETO EXTRA 10: Retorna los nombres de todos los PropertySources del entorno respetando el orden jerárquico real de precedencia.
      */
     public static List<String> pasoExtra10(ConfigurableEnvironment env) {
-        // TODO extra: Obtén la lista completa de nombres de PropertySources registrados en el ConfigurableEnvironment en orden de prioridad.
-        return null;
+        // TODO extra: RETO EXTRA 10: Retorna los nombres de todos los PropertySources del entorno respetando el orden jerárquico real de precedencia.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra10");
     }
 
 }

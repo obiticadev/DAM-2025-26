@@ -61,79 +61,81 @@ public final class Ej107JpqlQueries {
         System.out.println("usa el test con EMF aislado");
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: JPQL que SELECCIONA un campo: "select e.nombre from Empleado107 e
+    /**
+     * TODO extra 1: Comprueba si un repositorio JPA de tipo EmpleadoRepository está instanciado.
+     */
+    public static boolean desafioRepositoryActivo(EmpleadoRepository repo) {
+        return repo != null;
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: el tipo de resultado es String.class (proyección de columna).
+    /**
+     * TODO extra 2: Busca un empleado por departamento con JPQL usando el repositorio.
+     */
+    public static java.util.List<Empleado> desafioBuscarPorDeptoJpql(EmpleadoRepository repo, String dep) {
+        return repo.buscarPorDepartamentoJpql(dep);
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: setParameter("d", dep).
+    /**
+     * TODO extra 3: Cuenta el número total de empleados de forma genérica.
+     */
+    public static long desafioContarTodos(EmpleadoRepository repo) {
+        return repo.count();
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: getResultList().
+    /**
+     * TODO extra 4: Comprueba si un departamento es nulo o vacío para búsquedas JPQL.
+     */
+    public static void desafioValidarDeptoBuscado(String dep) {
+        if (dep == null || dep.isBlank()) {
+            throw new IllegalArgumentException("Depto no válido");
+        }
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: JPQL de agregación "select avg(e.salario) from Empleado107 e where e.departamento=:d".
+    /**
+     * TODO extra 5: Crea un empleado preconfigurado para pruebas.
+     */
+    public static Empleado desafioCrearInstanciaEmpleado(String nombre, String dep) {
+        var e = new Empleado();
+        e.setNombre(nombre);
+        e.setDepartamento(dep);
+        return e;
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: getSingleResult() devuelve Double (o null si no hay filas).
+    /**
+     * TODO extra 6: Comprueba si el empleado tiene un departamento que coincide con el buscado.
+     */
+    public static boolean desafioCoincideDepartamento(Empleado e, String dep) {
+        return e != null && dep.equals(e.getDepartamento());
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: si es null, devuelve 0.0 (caso límite: departamento vacío).
+    /**
+     * TODO extra 7: Lanza una excepción si el empleado no tiene un ID asignado.
+     */
+    public static void desafioValidarIdAsignado(Empleado e) {
+        if (e == null || e.getId() == null) {
+            throw new IllegalStateException("ID no asignado");
+        }
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: si no, devuelve el valor.
+    /**
+     * TODO extra 8: Retorna una lista inmodificable de empleados a partir de una lista.
+     */
+    public static java.util.List<Empleado> desafioObtenerListaInmodificable(java.util.List<Empleado> lista) {
+        return java.util.List.copyOf(lista);
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: JPQL "... where e.nombre like :patron"; patrón = "%" + fragmento + "%".
+    /**
+     * TODO extra 9: Comprueba si al menos un empleado pertenece al departamento IT.
+     */
+    public static boolean desafioTieneEmpleadosIT(java.util.List<Empleado> empleados) {
+        return empleados.stream().anyMatch(e -> "IT".equals(e.getDepartamento()));
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: setParameter y getResultList.
+    /**
+     * TODO extra 10: Retorna verdadero si una lista de empleados es no vacía.
+     */
+    public static boolean desafioContieneElementos(java.util.List<Empleado> empleados) {
+        return empleados != null && !empleados.isEmpty();
     }
 
-}
-
-@jakarta.persistence.Entity
-class Empleado107 {
-    @jakarta.persistence.Id
-    @jakarta.persistence.GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
-    private Long id;
-    private String nombre;
-    private String departamento;
-    private double salario;
-
-    protected Empleado107() {
-    }
-
-    public Empleado107(String nombre, String departamento, double salario) {
-        this.nombre = nombre;
-        this.departamento = departamento;
-        this.salario = salario;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getDepartamento() {
-        return departamento;
-    }
-
-    public double getSalario() {
-        return salario;
-    }
 }

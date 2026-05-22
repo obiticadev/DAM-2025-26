@@ -31,81 +31,89 @@ public final class Ej110EntityLifecycleCallbacks {
         System.out.println("usa el test con EMF aislado");
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: begin tx, persist(a), commit.
-    }
-
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: NO asignes 'creadoEn' aquí: debe hacerlo el @PrePersist de la entidad.
-    }
-
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: devuelve la entidad (creadoEn ya no será null si el callback funciona).
-    }
-
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: anota este método con @jakarta.persistence.PrePersist.
-    }
-
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: si creadoEn es null, asígnale Instant.now().
-    }
-
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: este método lo invoca el proveedor JPA, no tu código.
-    }
-
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: tras persist(), 'creadoEn' debe quedar poblado.
-    }
-
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: no lances excepción aquí (rompería el INSERT).
-    }
-
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: el callback NO recibe parámetros y suele ser void.
-    }
-
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: mantén el método accesible al proveedor (package/protected vale).
-    }
-
-}
-
-@jakarta.persistence.Entity
-class Auditable110 {
-    @jakarta.persistence.Id
-    @jakarta.persistence.GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
-    private Long id;
-    private String dato;
-    private Instant creadoEn;
-
-    protected Auditable110() {
-    }
-
-    public Auditable110(String dato) {
-        this.dato = dato;
+    /**
+     * TODO extra 1: Comprueba si un método específico de una clase está anotado con @PrePersist.
+     */
+    public static boolean desafioTienePrePersist(Class<?> clase, String metodo) {
+        try {
+            var m = clase.getDeclaredMethod(metodo);
+            return m.isAnnotationPresent(jakarta.persistence.PrePersist.class);
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     /**
-     * Callback antes de INSERT.
+     * TODO extra 2: Comprueba si un método específico de una clase está anotado con @PreUpdate.
      */
-    // TODO 4: anota este método con @jakarta.persistence.PrePersist.
-    void alPersistir() {
-        // TODO 5: si creadoEn es null, asígnale Instant.now().
-        // TODO 6: este método lo invoca el proveedor JPA, no tu código.
-        // TODO 7: tras persist(), 'creadoEn' debe quedar poblado.
-        // TODO 8: no lances excepción aquí (rompería el INSERT).
-        // TODO 9: el callback NO recibe parámetros y suele ser void.
-        // TODO 10: mantén el método accesible al proveedor (package/protected vale).
+    public static boolean desafioTienePreUpdate(Class<?> clase, String metodo) {
+        try {
+            var m = clase.getDeclaredMethod(metodo);
+            return m.isAnnotationPresent(jakarta.persistence.PreUpdate.class);
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public Long getId() {
-        return id;
+    /**
+     * TODO extra 3: Comprueba si el objeto Auditado tiene la fecha de creación no nula.
+     */
+    public static boolean desafioTieneCreadoEn(Auditado a) {
+        return a != null && a.getCreadoEn() != null;
     }
 
-    public Instant getCreadoEn() {
-        return creadoEn;
+    /**
+     * TODO extra 4: Comprueba si el objeto Auditado tiene la fecha de actualización no nula.
+     */
+    public static boolean desafioTieneActualizadoEn(Auditado a) {
+        return a != null && a.getActualizadoEn() != null;
     }
+
+    /**
+     * TODO extra 5: Inicializa manualmente la fecha de creación de un Auditado a la fecha actual.
+     */
+    public static void desafioInicializarCreadoEn(Auditado a) {
+        a.setCreadoEn(java.time.LocalDateTime.now());
+    }
+
+    /**
+     * TODO extra 6: Inicializa manualmente la fecha de actualización de un Auditado a la fecha actual.
+     */
+    public static void desafioInicializarActualizadoEn(Auditado a) {
+        a.setActualizadoEn(java.time.LocalDateTime.now());
+    }
+
+    /**
+     * TODO extra 7: Lanza una excepción si un Auditado es nulo en operaciones de ciclo de vida.
+     */
+    public static void desafioValidarAuditado(Auditado a) {
+        if (a == null) {
+            throw new IllegalArgumentException("Auditado no válido");
+        }
+    }
+
+    /**
+     * TODO extra 8: Crea una instancia rápida de Auditado con un dato específico.
+     */
+    public static Auditado desafioCrearInstanciaAuditado(String dato) {
+        var a = new Auditado();
+        a.setDato(dato);
+        return a;
+    }
+
+    /**
+     * TODO extra 9: Comprueba que la fecha de actualización sea posterior o igual a la de creación.
+     */
+    public static boolean desafioFechasCoherentes(Auditado a) {
+        if (a.getCreadoEn() == null || a.getActualizadoEn() == null) return false;
+        return !a.getActualizadoEn().isBefore(a.getCreadoEn());
+    }
+
+    /**
+     * TODO extra 10: Retorna verdadero si el Auditado tiene un id asignado de forma coherente.
+     */
+    public static boolean desafioTieneIdAsignado(Auditado a) {
+        return a != null && a.getId() != null;
+    }
+
 }

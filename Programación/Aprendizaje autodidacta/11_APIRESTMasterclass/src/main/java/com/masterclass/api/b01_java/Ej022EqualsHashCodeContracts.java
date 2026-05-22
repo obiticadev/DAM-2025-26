@@ -78,8 +78,12 @@ public final class Ej022EqualsHashCodeContracts {
      * @return true si se cumple la simetría (ambos se consideran iguales o ambos diferentes)
      */
     public static boolean esSimetrico(Object a, Object b) {
-        // TODO extra: verifica si (a.equals(b) == b.equals(a)) manejando nulos de manera segura
-        return false;
+        // TODO extra: Reto Extra 1: Simetría del contrato equals.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esSimetrico");
     }
 
     /**
@@ -92,8 +96,12 @@ public final class Ej022EqualsHashCodeContracts {
      * @return true si se cumple la transitividad (si a es igual a b y b es igual a c, entonces a es igual a c; en otro caso, true)
      */
     public static boolean esTransitivo(Object a, Object b, Object c) {
-        // TODO extra: si a es igual a b y b es igual a c, comprueba si a es igual a c (manejando nulos)
-        return false;
+        // TODO extra: Reto Extra 2: Transitividad del contrato equals.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esTransitivo");
     }
 
     /**
@@ -104,8 +112,12 @@ public final class Ej022EqualsHashCodeContracts {
      * @return true si múltiples llamadas consecutivas a hashCode() retornan exactamente el mismo valor
      */
     public static boolean esConsistenteHashCode(Object a) {
-        // TODO extra: invoca hashCode() varias veces sobre 'a' (si no es nulo) y valida que el resultado no varíe
-        return false;
+        // TODO extra: Reto Extra 3: Consistencia de hashCode.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esConsistenteHashCode");
     }
 
     /**
@@ -117,8 +129,12 @@ public final class Ej022EqualsHashCodeContracts {
      * @return true si los objetos cumplen el contrato de correspondencia hash
      */
     public static boolean verificarContratoEqualsYHashCode(Object a, Object b) {
-        // TODO extra: si a es igual a b, comprueba si sus hashCodes son idénticos. Si no son iguales, el contrato se cumple igual (pueden tener o no igual hash).
-        return false;
+        // TODO extra: Reto Extra 4: Contrato de correspondencia entre equals y hashCode.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para verificarContratoEqualsYHashCode");
     }
 
     /**
@@ -129,8 +145,12 @@ public final class Ej022EqualsHashCodeContracts {
      * @return true si a.equals(null) devuelve false sin lanzar excepciones
      */
     public static boolean esEqualsNuloSeguro(Object a) {
-        // TODO extra: intenta comparar 'a' con null usando equals y verifica que el resultado sea false capturando cualquier NullPointerException
-        return false;
+        // TODO extra: Reto Extra 5: Seguridad frente a valores nulos en equals.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esEqualsNuloSeguro");
     }
 
     /**
@@ -143,8 +163,12 @@ public final class Ej022EqualsHashCodeContracts {
      * @return cadena con el formato "NombreClase{id=..., descripcion='...'}"
      */
     public static String formatearToStringElegante(String nombreClase, Object id, String descripcion) {
-        // TODO extra: devuelve la cadena con el formato clásico de toString usando los parámetros provistos
-        return null;
+        // TODO extra: Reto Extra 6: Representación textual estructurada.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearToStringElegante");
     }
 
     /**
@@ -156,8 +180,12 @@ public final class Ej022EqualsHashCodeContracts {
      * @return true si existe colisión de hash (no son iguales por equals pero comparten hashCode)
      */
     public static boolean verificarColisionHash(Object a, Object b) {
-        // TODO extra: si a y b no son nulos y no son iguales, comprueba si su hashCode es el mismo
-        return false;
+        // TODO extra: Reto Extra 7: Detección teórica de colisión de hash.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para verificarColisionHash");
     }
 
     /**
@@ -168,8 +196,12 @@ public final class Ej022EqualsHashCodeContracts {
      * @return true si el objeto se reconoce como igual a sí mismo de forma reflexiva
      */
     public static boolean esIdentidadConsistente(Object a) {
-        // TODO extra: comprueba que a.equals(a) devuelva true manejando nulos de manera segura
-        return false;
+        // TODO extra: Reto Extra 8: Reflexividad del contrato equals.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esIdentidadConsistente");
     }
 
     /**
@@ -180,8 +212,12 @@ public final class Ej022EqualsHashCodeContracts {
      * @return valor hash unificado
      */
     public static int calcularHashCombinado(Object... campos) {
-        // TODO extra: utiliza la utilidad Objects.hash para calcular el código hash unificado
-        return 0;
+        // TODO extra: Reto Extra 9: Cálculo de valor hash compuesto estable.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularHashCombinado");
     }
 
     /**
@@ -193,8 +229,12 @@ public final class Ej022EqualsHashCodeContracts {
      * @return true si el objeto no es nulo y su clase coincide exactamente con la esperada (usando getClass())
      */
     public static boolean esInstanciaCompatible(Object actual, Class<?> claseEsperada) {
-        // TODO extra: verifica que 'actual' no sea nulo y que su getClass() coincida exactamente con claseEsperada
-        return false;
+        // TODO extra: Reto Extra 10: Comparación estricta de compatibilidad de tipos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esInstanciaCompatible");
     }
 
 }

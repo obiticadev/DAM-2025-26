@@ -24,7 +24,6 @@ class Ej047QueryParamsTest {
                 .andExpect(content().string("2"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 1")
     @Test
     void retoExtra01_multiplicar() throws Exception {
         mvc.perform(get("/api/mult").param("a", "6").param("b", "7"))
@@ -32,7 +31,6 @@ class Ej047QueryParamsTest {
                 .andExpect(content().string("42"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 2")
     @Test
     void retoExtra02_saludoPorDefecto() throws Exception {
         mvc.perform(get("/api/saludo"))
@@ -48,7 +46,6 @@ class Ej047QueryParamsTest {
                 .andExpect(content().string("Aloha"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 3")
     @Test
     void retoExtra03_listaQueryParams() throws Exception {
         mvc.perform(get("/api/nombres").param("nombres", "Ana", "Luis", "Pedro"))
@@ -56,7 +53,6 @@ class Ej047QueryParamsTest {
                 .andExpect(content().string("Ana,Luis,Pedro"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
     @Test
     void retoExtra04_mapaQueryParams() throws Exception {
         mvc.perform(get("/api/filtro").param("criterio", "activo").param("orden", "desc"))
@@ -65,7 +61,6 @@ class Ej047QueryParamsTest {
                 .andExpect(jsonPath("$.orden").value("desc"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 5")
     @Test
     void retoExtra05_parametroOpcional() throws Exception {
         mvc.perform(get("/api/buscar").param("q", "muelle"))
@@ -77,7 +72,6 @@ class Ej047QueryParamsTest {
                 .andExpect(content().string("sin criterio"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 6")
     @Test
     void retoExtra06_booleanoParam() throws Exception {
         mvc.perform(get("/api/transformar").param("texto", "antigravity").param("invertido", "true"))
@@ -89,7 +83,6 @@ class Ej047QueryParamsTest {
                 .andExpect(content().string("antigravity"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 7")
     @Test
     void retoExtra07_fechaParam() throws Exception {
         mvc.perform(get("/api/eventos").param("limite", "2026-05-21"))
@@ -97,7 +90,6 @@ class Ej047QueryParamsTest {
                 .andExpect(content().string("MAY"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
     @Test
     void retoExtra08_enumParam() throws Exception {
         mvc.perform(get("/api/horario").param("dia", "LUNES"))
@@ -109,7 +101,6 @@ class Ej047QueryParamsTest {
                 .andExpect(content().string("fin de semana"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 9")
     @Test
     void retoExtra09_validarMayorDeEdad() throws Exception {
         mvc.perform(get("/api/edad").param("edad", "20"))
@@ -121,7 +112,6 @@ class Ej047QueryParamsTest {
         });
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     @Test
     void retoExtra10_queryConMismoNombre() throws Exception {
         mvc.perform(get("/api/profile").param("username", "master"))

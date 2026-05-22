@@ -35,4 +35,65 @@ class Ej100JdbcTemplateTest {
         assertEquals("comprar", t.tituloDe(1));
         assertNull(t.tituloDe(99));
     }
+
+@Test
+    void testDesafioObtenerSqlInsert() {
+        assertEquals("INSERT INTO TAREA(id, descripcion, completada) VALUES (?, ?, ?)", Ej100JdbcTemplate.desafioObtenerSqlInsert());
+    }
+
+    @Test
+    void testDesafioObtenerSqlSelectById() {
+        assertEquals("SELECT id, descripcion, completada FROM TAREA WHERE id = ?", Ej100JdbcTemplate.desafioObtenerSqlSelectById());
+    }
+
+    @Test
+    void testDesafioObtenerSqlCount() {
+        assertEquals("SELECT COUNT(*) FROM TAREA", Ej100JdbcTemplate.desafioObtenerSqlCount());
+    }
+
+    @Test
+    void testDesafioInsertarConTemplate() {
+        var ds = new org.springframework.jdbc.datasource.DriverManagerDataSource("jdbc:h2:mem:test100_1;DB_CLOSE_DELAY=-1", "sa", "");
+        var jt = new org.springframework.jdbc.core.JdbcTemplate(ds);
+        jt.execute("CREATE TABLE TAREA(id INT, descripcion VARCHAR, completada BOOLEAN)");
+        assertEquals(1, Ej100JdbcTemplate.desafioInsertarConTemplate(jt, 1, "test", false));
+    }
+
+    @Test
+    void testDesafioTemplateActivo() {
+        assertTrue(Ej100JdbcTemplate.desafioTemplateActivo(new org.springframework.jdbc.core.JdbcTemplate()));
+        assertFalse(Ej100JdbcTemplate.desafioTemplateActivo(null));
+    }
+
+    @Test
+    void testDesafioContarTareasConTemplate() {
+        var ds = new org.springframework.jdbc.datasource.DriverManagerDataSource("jdbc:h2:mem:test100_2;DB_CLOSE_DELAY=-1", "sa", "");
+        var jt = new org.springframework.jdbc.core.JdbcTemplate(ds);
+        jt.execute("CREATE TABLE TAREA(id INT, descripcion VARCHAR, completada BOOLEAN)");
+        jt.execute("INSERT INTO TAREA VALUES (1, 't', false)");
+        assertEquals(1, Ej100JdbcTemplate.desafioContarTareasConTemplate(jt));
+    }
+
+    @Test
+    void testDesafioValidarId() {
+        assertThrows(IllegalArgumentException.class, () -> Ej100JdbcTemplate.desafioValidarId(0));
+        assertDoesNotThrow(() -> Ej100JdbcTemplate.desafioValidarId(1));
+    }
+
+    @Test
+    void testDesafioTieneTareas() {
+        assertTrue(Ej100JdbcTemplate.desafioTieneTareas(5));
+        assertFalse(Ej100JdbcTemplate.desafioTieneTareas(0));
+    }
+
+    @Test
+    void testDesafioPreconfigurarParametros() {
+        assertArrayEquals(new Object[]{1, "d", true}, Ej100JdbcTemplate.desafioPreconfigurarParametros(1, "d", true));
+    }
+
+    @Test
+    void testDesafioDescripcionValida() {
+        assertTrue(Ej100JdbcTemplate.desafioDescripcionValida("a"));
+        assertFalse(Ej100JdbcTemplate.desafioDescripcionValida(" "));
+    }
 }

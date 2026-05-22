@@ -53,14 +53,12 @@ public class Ej037ApplicationEvents {
      * Reto Extra 1: Evento de aplicación personalizado.
      */
     public static class PedidoCreadoEvent extends org.springframework.context.ApplicationEvent {
-        private final String mensaje;
-        public PedidoCreadoEvent(Object source, String mensaje) {
-            super(source);
-            this.mensaje = mensaje;
-        }
-        public String getMensaje() {
-            return mensaje;
-        }
+        // TODO extra: Reto Extra 1: Evento de aplicación personalizado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
     public static void publicarEventoCustom(org.springframework.context.ApplicationContext ctx, String mensaje) {
@@ -71,32 +69,24 @@ public class Ej037ApplicationEvents {
      * Reto Extra 2: Oyente de eventos personalizado que escucha PedidoCreadoEvent.
      */
     public static class OyenteDePedidos {
-        private static final List<String> mensajes = new java.util.ArrayList<>();
-        
-        public static List<String> getMensajes() {
-            return mensajes;
-        }
-        
-        public static void limpiar() {
-            mensajes.clear();
-        }
-
-        // TODO extra (Reto 2): Anota este método para escuchar PedidoCreadoEvent y guardar el mensaje en la lista 'mensajes'.
-        public void procesarPedido(PedidoCreadoEvent event) {
-        }
+        // TODO extra: Reto Extra 2: Oyente de eventos personalizado que escucha PedidoCreadoEvent.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
     /**
      * Reto Extra 3: Oyente condicional por SpEL (monto > 100).
      */
     public static class EventoMonto {
-        private final double monto;
-        public EventoMonto(double monto) {
-            this.monto = monto;
-        }
-        public double getMonto() {
-            return monto;
-        }
+        // TODO extra: Reto Extra 3: Oyente condicional por SpEL (monto > 100).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
     public static class OyenteMontoFiltrado {
@@ -119,20 +109,24 @@ public class Ej037ApplicationEvents {
      * Reto Extra 4: Publicar eventos múltiples.
      */
     public static void publicarEventosMultiples(org.springframework.context.ApplicationContext ctx, List<Object> eventos) {
-        // TODO extra (Reto 4): Publica todos los eventos en la lista secuencialmente usando el contexto.
+        // TODO extra: Reto Extra 4: Publicar eventos múltiples.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para publicarEventosMultiples");
     }
 
     /**
      * Reto Extra 5: Eventos genéricos basados en POJOs sin heredar de ApplicationEvent.
      */
     public static class EventoGenericoPojo {
-        private final String info;
-        public EventoGenericoPojo(String info) {
-            this.info = info;
-        }
-        public String getInfo() {
-            return info;
-        }
+        // TODO extra: Reto Extra 5: Eventos genéricos basados en POJOs sin heredar de ApplicationEvent.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
     public static class OyenteGenerico {
@@ -155,120 +149,60 @@ public class Ej037ApplicationEvents {
      * Reto Extra 6: Orden de ejecución con @Order.
      */
     public static class OrdenDeListenersConOrder {
-        private static final List<String> orden = new java.util.ArrayList<>();
-        
-        public static List<String> getOrden() {
-            return orden;
-        }
-        
-        public static void limpiar() {
-            orden.clear();
-        }
-
-        // TODO extra (Reto 6.1): Anota con @org.springframework.context.event.EventListener y @org.springframework.core.annotation.Order(1).
-        public static class PrimerOyente {
-            public void alRecibir(String event) {
-                orden.add("primero");
-            }
-        }
-
-        // TODO extra (Reto 6.2): Anota con @org.springframework.context.event.EventListener y @org.springframework.core.annotation.Order(2).
-        public static class SegundoOyente {
-            public void alRecibir(String event) {
-                orden.add("segundo");
-            }
-        }
+        // TODO extra: Reto Extra 6: Orden de ejecución con @Order.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
     /**
      * Reto Extra 7: Oyentes asíncronos con @Async.
      */
     public static class ListenerAsincronoConAsync {
-        private static String hiloProcesamiento;
-
-        public static String getHiloProcesamiento() {
-            return hiloProcesamiento;
-        }
-
-        public static void limpiar() {
-            hiloProcesamiento = null;
-        }
-
-        // TODO extra (Reto 7): Anota con @org.springframework.context.event.EventListener y @org.springframework.scheduling.annotation.Async para ejecución asíncrona.
-        public void alRecibirAsync(String event) {
-        }
+        // TODO extra: Reto Extra 7: Oyentes asíncronos con @Async.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
     /**
      * Reto Extra 8: Oyentes atados a fases transaccionales.
      */
     public static class TransitionalEventListenerSim {
-        private static boolean procesado;
-
-        public static boolean isProcesado() {
-            return procesado;
-        }
-
-        public static void limpiar() {
-            procesado = false;
-        }
-
-        // TODO extra (Reto 8): Anota con @org.springframework.transaction.event.TransactionalEventListener para simular eventos transaccionales.
-        public void alRecibirTransaccional(String event) {
-        }
+        // TODO extra: Reto Extra 8: Oyentes atados a fases transaccionales.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
     /**
      * Reto Extra 9: Escuchar eventos del ciclo de vida del contexto nativo de Spring.
      */
     public static class ListenerDeEventosContexto {
-        private static int refrescos = 0;
-        private static int cierres = 0;
-
-        public static int getRefrescos() {
-            return refrescos;
-        }
-
-        public static int getCierres() {
-            return cierres;
-        }
-
-        public static void limpiar() {
-            refrescos = 0;
-            cierres = 0;
-        }
-
-        // TODO extra (Reto 9.1): Escucha ContextRefreshedEvent.
-        public void alRefrescarContexto(org.springframework.context.event.ContextRefreshedEvent event) {
-        }
-
-        // TODO extra (Reto 9.2): Escucha ContextClosedEvent.
-        public void alCerrarContexto(org.springframework.context.event.ContextClosedEvent event) {
-        }
+        // TODO extra: Reto Extra 9: Escuchar eventos del ciclo de vida del contexto nativo de Spring.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
     /**
      * Reto Extra 10: Publicación de eventos con callback síncrono para verificar confirmaciones.
      */
     public static class EventoConCallback {
-        private final String mensaje;
-        private final List<String> firmas = new java.util.ArrayList<>();
-
-        public EventoConCallback(String mensaje) {
-            this.mensaje = mensaje;
-        }
-
-        public String getMensaje() {
-            return mensaje;
-        }
-
-        public void firmar(String nombreListener) {
-            firmas.add(nombreListener);
-        }
-
-        public List<String> getFirmas() {
-            return firmas;
-        }
+        // TODO extra: Reto Extra 10: Publicación de eventos con callback síncrono para verificar confirmaciones.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
     public static class OyenteConFirma {

@@ -46,71 +46,76 @@ public final class Ej112PersistenceContext {
         System.out.println("usa el test con EMF aislado");
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: begin tx.
+    /**
+     * TODO extra 1: Comprueba si una instancia de EntityManager no es nula.
+     */
+    public static boolean desafioEntityManagerActivo(jakarta.persistence.EntityManager em) {
+        return em != null;
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: recupera la entidad con em.find (queda MANAGED en el contexto).
+    /**
+     * TODO extra 2: Comprueba si una entidad está actualmente gestionada (managed) por el contexto.
+     */
+    public static boolean desafioEsEntidadGestionada(jakarta.persistence.EntityManager em, Object entidad) {
+        return em.contains(entidad);
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: cambia su nombre con el setter (NO llames persist ni merge).
+    /**
+     * TODO extra 3: Persiste una entidad nueva utilizando el EntityManager.
+     */
+    public static void desafioPersistirEntidad(jakarta.persistence.EntityManager em, Object entidad) {
+        em.persist(entidad);
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: commit -> Hibernate detecta el cambio (dirty checking) y hace UPDATE.
+    /**
+     * TODO extra 4: Sincroniza el estado del contexto con la base de datos ejecutando flush().
+     */
+    public static void desafioSincronizarContexto(jakarta.persistence.EntityManager em) {
+        em.flush();
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: esto solo funciona con entidades MANAGED dentro de la transacción.
+    /**
+     * TODO extra 5: Desasocia (detach) una entidad del contexto de persistencia.
+     */
+    public static void desafioDesasociarEntidad(jakarta.persistence.EntityManager em, Object entidad) {
+        em.detach(entidad);
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: begin tx, find la entidad.
+    /**
+     * TODO extra 6: Asocia de nuevo (merge) una entidad desasociada al contexto.
+     */
+    public static <T> T desafioReasociarEntidad(jakarta.persistence.EntityManager em, T entidad) {
+        return em.merge(entidad);
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: em.detach(entidad) -> pasa a estado DETACHED.
+    /**
+     * TODO extra 7: Remueve una entidad gestionada de la base de datos.
+     */
+    public static void desafioRemoverEntidad(jakarta.persistence.EntityManager em, Object entidad) {
+        em.remove(entidad);
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: cambia su nombre tras el detach.
+    /**
+     * TODO extra 8: Vacía completamente el contexto de persistencia (clear).
+     */
+    public static void desafioVaciarContexto(jakarta.persistence.EntityManager em) {
+        em.clear();
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: commit -> el cambio NO se persiste (ya no está gestionada).
+    /**
+     * TODO extra 9: Crea una instancia de Usuario básica para probar transiciones de estado.
+     */
+    public static Usuario desafioCrearInstanciaUsuario(String nombre) {
+        var u = new Usuario();
+        u.setNombre(nombre);
+        return u;
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: para persistir un detached habría que em.merge(entidad) (no lo hagas aquí).
+    /**
+     * TODO extra 10: Retorna verdadero si el ID del usuario no es nulo tras persistir.
+     */
+    public static boolean desafioTieneIdAsignado(Usuario u) {
+        return u != null && u.getId() != null;
     }
 
-}
-
-@jakarta.persistence.Entity
-class Doc112 {
-    @jakarta.persistence.Id
-    @jakarta.persistence.GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
-    private Long id;
-    private String nombre;
-
-    protected Doc112() {
-    }
-
-    public Doc112(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String n) {
-        this.nombre = n;
-    }
 }

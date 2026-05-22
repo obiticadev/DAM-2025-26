@@ -29,4 +29,65 @@ class Ej179ActuatorEndpointsTest {
         conNull.put("db", null);
         assertThrows(IllegalArgumentException.class, () -> Ej179ActuatorEndpoints.estadoAgregado(conNull));
     }
+
+    @Test
+    void testRetoExtra01_esEstadoUp() {
+        // Valida si es UP.
+        assertTrue(Ej179ActuatorEndpoints.esEstadoUp("UP"));
+    }
+
+    @Test
+    void testRetoExtra02_esEstadoDown() {
+        // Valida si es DOWN.
+        assertTrue(Ej179ActuatorEndpoints.esEstadoDown("DOWN"));
+    }
+
+    @Test
+    void testRetoExtra03_cantidadComponentes() {
+        // Total componentes.
+        assertEquals(2, Ej179ActuatorEndpoints.cantidadComponentes(java.util.Map.of("db", "UP", "ping", "UP")));
+    }
+
+    @Test
+    void testRetoExtra04_contieneComponente() {
+        // Busca existencia.
+        assertTrue(Ej179ActuatorEndpoints.contieneComponente(java.util.Map.of("db", "UP"), "db"));
+    }
+
+    @Test
+    void testRetoExtra05_obtenerEstadoComponente() {
+        // Obtiene estado.
+        assertEquals("UP", Ej179ActuatorEndpoints.obtenerEstadoComponente(java.util.Map.of("db", "UP"), "db"));
+    }
+
+    @Test
+    void testRetoExtra06_inicializarAgregador() {
+        // Crea un mapa limpio.
+        assertNotNull(Ej179ActuatorEndpoints.inicializarAgregador());
+    }
+
+    @Test
+    void testRetoExtra07_agregarComponente() {
+        // Agrega componente.
+        assertEquals(1, Ej179ActuatorEndpoints.agregarComponente(new java.util.HashMap<>(), "db", "UP").size());
+    }
+
+    @Test
+    void testRetoExtra08_eliminarComponente() {
+        // Elimina componente.
+        assertEquals(0, Ej179ActuatorEndpoints.eliminarComponente(new java.util.HashMap<>(java.util.Map.of("db", "UP")), "db").size());
+    }
+
+    @Test
+    void testRetoExtra09_todosConEstado() {
+        // Verifica homogeneidad.
+        assertTrue(Ej179ActuatorEndpoints.todosConEstado(java.util.Map.of("db", "UP", "ping", "UP"), "UP"));
+    }
+
+    @Test
+    void testRetoExtra10_algunoConEstado() {
+        // Verifica si hay algun caso.
+        assertTrue(Ej179ActuatorEndpoints.algunoConEstado(java.util.Map.of("db", "DOWN", "ping", "UP"), "DOWN"));
+    }
+
 }

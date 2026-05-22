@@ -30,7 +30,6 @@ class Ej041ProfilesTest {
         assertFalse(Ej041Profiles.verboseErrors("prod"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 01")
     @org.junit.jupiter.api.Test
     void testPasoExtra01() {
         var env = new org.springframework.mock.env.MockEnvironment().withProperty("spring.profiles.active", "dev");
@@ -38,7 +37,6 @@ class Ej041ProfilesTest {
         assertFalse(Ej041Profiles.pasoExtra01(env, "prod"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 02")
     @org.junit.jupiter.api.Test
     void testPasoExtra02() {
         var env = new org.springframework.mock.env.MockEnvironment();
@@ -47,7 +45,6 @@ class Ej041ProfilesTest {
         assertTrue(env.acceptsProfiles(org.springframework.core.env.Profiles.of("cloud")));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 03")
     @org.junit.jupiter.api.Test
     void testPasoExtra03() {
         var config = Ej041Profiles.pasoExtra03();
@@ -55,7 +52,6 @@ class Ej041ProfilesTest {
         assertEquals("Dev Environment", config.message());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 04")
     @org.junit.jupiter.api.Test
     void testPasoExtra04() {
         var service = Ej041Profiles.pasoExtra04();
@@ -63,7 +59,6 @@ class Ej041ProfilesTest {
         assertEquals("Safe for testing", service.getStatus());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 05")
     @org.junit.jupiter.api.Test
     void testPasoExtra05() {
         var env = new org.springframework.mock.env.MockEnvironment().withProperty("spring.profiles.active", "dev,cloud");
@@ -78,7 +73,6 @@ class Ej041ProfilesTest {
         assertTrue(resultDefault.contains("default-profile"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 06")
     @org.junit.jupiter.api.Test
     void testPasoExtra06() {
         var service = Ej041Profiles.pasoExtra06();
@@ -86,7 +80,6 @@ class Ej041ProfilesTest {
         assertEquals("Local Cloud Runner", service.getProvider());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 07")
     @org.junit.jupiter.api.Test
     void testPasoExtra07() {
         var envActive = new org.springframework.mock.env.MockEnvironment().withProperty("spring.profiles.active", "dev");
@@ -96,7 +89,6 @@ class Ej041ProfilesTest {
         assertTrue(Ej041Profiles.pasoExtra07(envDefault));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 08")
     @org.junit.jupiter.api.Test
     void testPasoExtra08() {
         List<Ej041Profiles.DbService> services = List.of(
@@ -109,7 +101,6 @@ class Ej041ProfilesTest {
         assertEquals("jdbc:postgresql://db", active.getUrl());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 09")
     @org.junit.jupiter.api.Test
     void testPasoExtra09() {
         var prodProfiles = Ej041Profiles.pasoExtra09("EU");
@@ -119,7 +110,6 @@ class Ej041ProfilesTest {
         assertArrayEquals(new String[]{"dev"}, devProfiles);
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     @org.junit.jupiter.api.Test
     void testPasoExtra10() {
         var config = Ej041Profiles.pasoExtra10();

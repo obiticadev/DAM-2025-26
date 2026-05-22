@@ -83,88 +83,120 @@ public final class Ej028JsonTreeModel {
      * Reto Extra 1: Busca un valor textual dentro de un JSON utilizando notación de puntos.
      */
     public static String buscarPorRuta(String json, String ruta) {
-        // TODO extra: Busca la ruta dada en el JSON (ej. "usuario.direccion.ciudad").
-        // Devuelve el valor textual, o una cadena vacía si no existe.
-        return "";
+        // TODO extra: Reto Extra 1: Busca un valor textual dentro de un JSON utilizando notación de puntos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para buscarPorRuta");
     }
 
     /**
      * Reto Extra 2: Crea un JSON estructurado de forma programática.
      */
     public static String crearJsonProgramatico(String nombre, int edad, java.util.List<String> aficiones) {
-        // TODO extra: Construye un árbol JSON con ObjectNode y ArrayNode, y devuélvelo como string.
-        return "";
+        // TODO extra: Reto Extra 2: Crea un JSON estructurado de forma programática.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearJsonProgramatico");
     }
 
     /**
      * Reto Extra 3: Añade o actualiza dinámicamente un atributo en un JSON.
      */
     public static String inyectarAtributo(String jsonOriginal, String clave, Object valor) {
-        // TODO extra: Parsea el JSON original a ObjectNode, inyecta la clave con el valor adecuado
-        // según su tipo dinámico (String, Integer, Boolean, Double, Long, etc.) y serialízalo.
-        return "";
+        // TODO extra: Reto Extra 3: Añade o actualiza dinámicamente un atributo en un JSON.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para inyectarAtributo");
     }
 
     /**
      * Reto Extra 4: Elimina dinámicamente un atributo en un JSON.
      */
     public static String eliminarAtributo(String jsonOriginal, String clave) {
-        // TODO extra: Parsea el JSON original a ObjectNode, elimina la clave y serialízalo.
-        return "";
+        // TODO extra: Reto Extra 4: Elimina dinámicamente un atributo en un JSON.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para eliminarAtributo");
     }
 
     /**
      * Reto Extra 5: Determina el tipo de datos de un nodo específico por su clave.
      */
     public static String inspeccionarTipoDeNodo(String json, String clave) {
-        // TODO extra: Parsea el JSON y devuelve una cadena que represente el tipo del nodo "clave".
-        // Valores posibles: "OBJECT", "ARRAY", "TEXTUAL", "NUMBER", "BOOLEAN", "NULL", "MISSING" o "UNKNOWN".
-        return "";
+        // TODO extra: Reto Extra 5: Determina el tipo de datos de un nodo específico por su clave.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para inspeccionarTipoDeNodo");
     }
 
     /**
      * Reto Extra 6: Extrae una lista de valores asociados a un campo específico desde un array JSON.
      */
     public static java.util.List<String> extraerValoresDeArray(String json, String nombreCampo) {
-        // TODO extra: Parsea el JSON (que es un array) y extrae el valor textual de "nombreCampo" en cada elemento.
-        // Omitir nulos o ausentes. Devuelve una lista vacía si no hay elementos o falla.
-        return java.util.List.of();
+        // TODO extra: Reto Extra 6: Extrae una lista de valores asociados a un campo específico desde un array JSON.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerValoresDeArray");
     }
 
     /**
      * Reto Extra 7: Fusiona dos JSONs planos o estructurados sobreescribiendo claves.
      */
     public static String fusionarArboles(String jsonA, String jsonB) {
-        // TODO extra: Fusiona en profundidad (deep merge) jsonB sobre jsonA, de forma que jsonB
-        // sobreescriba claves en jsonA y devuelva el JSON fusionado resultante.
-        return "";
+        // TODO extra: Reto Extra 7: Fusiona dos JSONs planos o estructurados sobreescribiendo claves.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para fusionarArboles");
     }
 
     /**
      * Reto Extra 8: Busca un campo de forma recursiva a cualquier nivel de profundidad en el JSON.
      */
     public static String buscarClaveRecursiva(String json, String claveBuscada) {
-        // TODO extra: Realiza una búsqueda recursiva del primer nodo que contenga la clave "claveBuscada"
-        // a cualquier nivel de profundidad y devuelve su valor como texto.
-        return "";
+        // TODO extra: Reto Extra 8: Busca un campo de forma recursiva a cualquier nivel de profundidad en el JSON.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para buscarClaveRecursiva");
     }
 
     /**
      * Reto Extra 9: Extrae un subárbol a partir de una ruta e instáncialo directamente a un DTO.
      */
     public static <T> T convertirSubarbolADto(String json, String rutaSubarbol, Class<T> claseDestino) {
-        // TODO extra: Encuentra el nodo correspondiente a "rutaSubarbol" (ej. "responsable") y
-        // conviértelo al DTO de tipo "claseDestino" (ej. Persona.class) usando treeToValue.
-        return null;
+        // TODO extra: Reto Extra 9: Extrae un subárbol a partir de una ruta e instáncialo directamente a un DTO.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para convertirSubarbolADto");
     }
 
     /**
      * Reto Extra 10: Suma y calcula el promedio numérico de los campos dentro de un array JSON anidado.
      */
     public static double calcularPromedioDeCampo(String json, String rutaArray, String nombreCampoNumerico) {
-        // TODO extra: Encuentra el array en "rutaArray" (ej. "tienda.ventas") y calcula el promedio
-        // de los valores numéricos correspondientes al campo "nombreCampoNumerico" de sus elementos.
-        return 0.0;
+        // TODO extra: Reto Extra 10: Suma y calcula el promedio numérico de los campos dentro de un array JSON anidado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularPromedioDeCampo");
     }
 
 }

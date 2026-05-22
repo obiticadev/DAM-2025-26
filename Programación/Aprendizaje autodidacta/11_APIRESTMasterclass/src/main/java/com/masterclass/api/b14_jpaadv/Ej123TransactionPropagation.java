@@ -43,44 +43,126 @@ public final class Ej123TransactionPropagation {
         System.out.println(txEfectiva(7, Propagacion.REQUIRES_NEW, 8));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: REQUIRED -> si hay tx activa, úsala (txActiva); si no, crea (siguienteId).
+    /**
+     * Reto Extra 1: Comprueba si prop requiere una nueva transaccion siempre.
+     */
+    public static boolean requiereNueva(Propagacion prop) {
+        // TODO extra: Reto Extra 1: Comprueba si prop requiere una nueva transaccion siempre.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para requiereNueva");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: REQUIRES_NEW -> SIEMPRE crea una nueva (siguienteId), aunque haya activa.
+    /**
+     * Reto Extra 2: Comprueba si prop exige una transaccion activa obligatoriamente.
+     */
+    public static boolean exigeTransaccion(Propagacion prop) {
+        // TODO extra: Reto Extra 2: Comprueba si prop exige una transaccion activa obligatoriamente.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para exigeTransaccion");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: MANDATORY -> exige tx activa; si txActiva==0 -> IllegalStateException.
+    /**
+     * Reto Extra 3: Comprueba si prop prohibe tener transaccion activa.
+     */
+    public static boolean prohibeTransaccion(Propagacion prop) {
+        // TODO extra: Reto Extra 3: Comprueba si prop prohibe tener transaccion activa.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para prohibeTransaccion");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: MANDATORY con tx -> usa la activa.
+    /**
+     * Reto Extra 4: Comprueba si prop soporta transaccion activa si existe.
+     */
+    public static boolean soportaTransaccion(Propagacion prop) {
+        // TODO extra: Reto Extra 4: Comprueba si prop soporta transaccion activa si existe.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para soportaTransaccion");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: NEVER -> exige NO tx; si txActiva!=0 -> IllegalStateException.
+    /**
+     * Reto Extra 5: Comprueba si prop requiere una transaccion (creandola si no existe).
+     */
+    public static boolean esRequerida(Propagacion prop) {
+        // TODO extra: Reto Extra 5: Comprueba si prop requiere una transaccion (creandola si no existe).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRequerida");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: NEVER sin tx -> 0 (se ejecuta sin transacción).
+    /**
+     * Reto Extra 6: Valida el estado transaccional.
+     */
+    public static boolean validarEstado(int txActiva, Propagacion prop) {
+        // TODO extra: Reto Extra 6: Valida el estado transaccional.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para validarEstado");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: SUPPORTS -> usa la activa si existe; si no, 0 (sin tx, sin crear).
+    /**
+     * Reto Extra 7: Obtiene el nombre del tipo de propagacion.
+     */
+    public static String obtenerNombre(Propagacion prop) {
+        // TODO extra: Reto Extra 7: Obtiene el nombre del tipo de propagacion.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerNombre");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: usa un switch sobre 'prop'.
+    /**
+     * Reto Extra 8: Simula si habra rollback en caso de fallo.
+     */
+    public static boolean provocaraRollback(Propagacion prop) {
+        // TODO extra: Reto Extra 8: Simula si habra rollback en caso de fallo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para provocaraRollback");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: cubre TODOS los valores del enum (exhaustivo).
+    /**
+     * Reto Extra 9: Comprueba si es una propagacion segura.
+     */
+    public static boolean esSegura(Propagacion prop) {
+        // TODO extra: Reto Extra 9: Comprueba si es una propagacion segura.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esSegura");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve el id resultante.
+    /**
+     * Reto Extra 10: Retorna un identificador simulado.
+     */
+    public static String obtenerIdSimulado(Propagacion prop) {
+        // TODO extra: Reto Extra 10: Retorna un identificador simulado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerIdSimulado");
     }
+
+
 
 }

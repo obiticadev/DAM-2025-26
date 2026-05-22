@@ -63,73 +63,79 @@ public final class Ej106DerivedQueryMethods {
         System.out.println("usa el test con EMF aislado");
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: JPQL "select a from Articulo106 a where a.categoria = :cat order by a.id".
+    /**
+     * TODO extra 1: Comprueba si un repositorio JPA de tipo EmpleadoRepository está instanciado.
+     */
+    public static boolean desafioRepositoryActivo(EmpleadoRepository repo) {
+        return repo != null;
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: usa createQuery con la clase tipada.
+    /**
+     * TODO extra 2: Busca un empleado por su nombre exacto usando el repositorio.
+     */
+    public static java.util.List<Empleado> desafioBuscarPorNombre(EmpleadoRepository repo, String nombre) {
+        return repo.findByNombre(nombre);
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: setParameter("cat", categoria) (NUNCA concatenes).
+    /**
+     * TODO extra 3: Busca empleados de un departamento específico.
+     */
+    public static java.util.List<Empleado> desafioBuscarPorDepartamento(EmpleadoRepository repo, String dep) {
+        return repo.findByDepartamento(dep);
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: getResultList().
+    /**
+     * TODO extra 4: Busca empleados por departamento y nombre.
+     */
+    public static java.util.List<Empleado> desafioBuscarPorDeptoYNombre(EmpleadoRepository repo, String dep, String nom) {
+        return repo.findByDepartamentoAndNombre(dep, nom);
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: JPQL con "where a.precio > :min".
+    /**
+     * TODO extra 5: Comprueba si existe algún empleado con un nombre específico.
+     */
+    public static boolean desafioExistePorNombre(EmpleadoRepository repo, String nombre) {
+        return !repo.findByNombre(nombre).isEmpty();
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: setParameter("min", min).
+    /**
+     * TODO extra 6: Cuenta la cantidad total de empleados en un departamento específico.
+     */
+    public static long desafioContarEnDepartamento(EmpleadoRepository repo, String dep) {
+        return repo.countByDepartamento(dep);
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: getResultList().
+    /**
+     * TODO extra 7: Lanza una excepción si el nombre de departamento buscado es nulo.
+     */
+    public static void desafioValidarDepartamentoBuscado(String dep) {
+        if (dep == null || dep.isBlank()) {
+            throw new IllegalArgumentException("Departamento no válido");
+        }
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: JPQL "select count(a) from Articulo106 a where a.categoria = :cat".
+    /**
+     * TODO extra 8: Crea un Empleado con los datos de prueba.
+     */
+    public static Empleado desafioCrearInstanciaEmpleado(String nombre, String dep) {
+        var e = new Empleado();
+        e.setNombre(nombre);
+        e.setDepartamento(dep);
+        return e;
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: getSingleResult() devuelve Long.
+    /**
+     * TODO extra 9: Comprueba si los empleados recuperados contienen al menos un elemento del departamento especificado.
+     */
+    public static boolean desafioContieneDepartamento(java.util.List<Empleado> empleados, String dep) {
+        return empleados.stream().anyMatch(e -> dep.equals(e.getDepartamento()));
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve ese long.
+    /**
+     * TODO extra 10: Retorna verdadero si una lista de empleados es no nula y contiene elementos.
+     */
+    public static boolean desafioTieneDatos(java.util.List<Empleado> empleados) {
+        return empleados != null && !empleados.isEmpty();
     }
 
-}
-
-@jakarta.persistence.Entity
-class Articulo106 {
-    @jakarta.persistence.Id
-    @jakarta.persistence.GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
-    private Long id;
-    private String categoria;
-    private double precio;
-
-    protected Articulo106() {
-    }
-
-    public Articulo106(String categoria, double precio) {
-        this.categoria = categoria;
-        this.precio = precio;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public double getPrecio() {
-        return precio;
-    }
 }

@@ -53,8 +53,12 @@ public class Ej033BeanScopes<T> {
      * Reto Extra 1: Comprueba si dos solicitudes de obtención de un bean devuelven la misma instancia (Singleton) o distintas (Prototype).
      */
     public static boolean esMismaInstancia(org.springframework.context.ApplicationContext ctx, String nombreBean) {
-        // TODO extra (Reto 1): Solicita el bean dos veces por su nombre y comprueba si son idénticos por referencia (==).
-        return false;
+        // TODO extra: Reto Extra 1: Comprueba si dos solicitudes de obtención de un bean devuelven la misma instancia (Singleton) o distintas (Prototype).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMismaInstancia");
     }
 
     /**
@@ -62,16 +66,12 @@ public class Ej033BeanScopes<T> {
      * Cada nueva instancia debe inicializar su contador en 0.
      */
     public static class BeanConContadorPrototype {
-        private int contador = 0;
-
-        public void incrementar() {
-            contador++;
-        }
-
-        public int getContador() {
-            // TODO extra (Reto 2): Retorna el valor del contador.
-            return 0;
-        }
+        // TODO extra: Reto Extra 2: Un bean Prototype que mantiene un contador incremental interno.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
     /**
@@ -79,106 +79,96 @@ public class Ej033BeanScopes<T> {
      * en un Singleton utilizando ObjectFactory para obtener una nueva instancia del Prototype en cada invocación.
      */
     public static class SingletonConInyeccionPrototype {
-        private final org.springframework.beans.factory.ObjectFactory<BeanConContadorPrototype> prototypeFactory;
-
-        public SingletonConInyeccionPrototype(org.springframework.beans.factory.ObjectFactory<BeanConContadorPrototype> prototypeFactory) {
-            // TODO extra (Reto 3): Inyecta la factoría.
-            this.prototypeFactory = prototypeFactory;
-        }
-
-        public int obtenerValorContadorNuevo() {
-            // TODO extra (Reto 3): Obtén una nueva instancia del prototype usando factory.getObject(), increméntala y retorna su valor.
-            return 0;
-        }
+        // TODO extra: Reto Extra 3: Soluciona el problema de inyectar un bean de alcance Prototype
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
     /**
      * Reto Extra 4: Registra programáticamente un Scope personalizado en el contexto de Spring.
      */
     public static void registrarScopeCustom(org.springframework.context.support.GenericApplicationContext ctx, String scopeName, org.springframework.beans.factory.config.Scope scope) {
-        // TODO extra (Reto 4): Añade el scope al BeanFactory del contexto.
+        // TODO extra: Reto Extra 4: Registra programáticamente un Scope personalizado en el contexto de Spring.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para registrarScopeCustom");
     }
 
     /**
      * Reto Extra 5: Implementación sencilla de ThreadScope que aísla beans por hilo (ThreadLocal).
      */
     public static class ScopeThread implements org.springframework.beans.factory.config.Scope {
-        private final ThreadLocal<java.util.Map<String, Object>> threadLocalMap = ThreadLocal.withInitial(java.util.HashMap::new);
-
-        @Override
-        public Object get(String name, org.springframework.beans.factory.ObjectFactory<?> objectFactory) {
-            // TODO extra (Reto 5): Devuelve el bean del mapa del hilo actual o créalo si no existe.
-            return null;
-        }
-
-        @Override
-        public Object remove(String name) {
-            // TODO extra (Reto 5): Elimina el bean del mapa del hilo.
-            return null;
-        }
-
-        @Override
-        public void registerDestructionCallback(String name, Runnable callback) {
-            // TODO extra (Reto 5): Registrar callback si aplica.
-        }
-
-        @Override
-        public Object resolveContextualObject(String key) {
-            return null;
-        }
-
-        @Override
-        public String getConversationId() {
-            return Thread.currentThread().getName();
-        }
+        // TODO extra: Reto Extra 5: Implementación sencilla de ThreadScope que aísla beans por hilo (ThreadLocal).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
     /**
      * Reto Extra 6: Comprueba en los metadatos si un bean está configurado explícitamente con ámbito prototype.
      */
     public static boolean esScopePrototypeDefinido(org.springframework.context.support.GenericApplicationContext ctx, String nombreBean) {
-        // TODO extra (Reto 6): Consulta el scope en la definición del bean.
-        return false;
+        // TODO extra: Reto Extra 6: Comprueba en los metadatos si un bean está configurado explícitamente con ámbito prototype.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esScopePrototypeDefinido");
     }
 
     /**
      * Reto Extra 7: Crea un Scope personalizado que limite a un número máximo (ej. 3) las instancias concurrentes de un bean y reutilice la última en caso de superar el cupo.
      */
     public static org.springframework.beans.factory.config.Scope crearScopeLimitado(int maxInstancias) {
-        // TODO extra (Reto 7): Retorna un Scope personalizado con límite físico de instancias.
-        return null;
+        // TODO extra: Reto Extra 7: Crea un Scope personalizado que limite a un número máximo (ej. 3) las instancias concurrentes de un bean y reutilice la última en caso de superar el cupo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearScopeLimitado");
     }
 
     /**
      * Reto Extra 8: Fuerza la destrucción de beans cacheados dentro de un determinado ámbito personalizado sin reiniciar el contexto de Spring.
      */
     public static void limpiarCachéScope(org.springframework.beans.factory.config.Scope scope) {
-        // TODO extra (Reto 8): Invoca las operaciones de limpieza del scope.
+        // TODO extra: Reto Extra 8: Fuerza la destrucción de beans cacheados dentro de un determinado ámbito personalizado sin reiniciar el contexto de Spring.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para limpiarCachéScope");
     }
 
     /**
      * Reto Extra 9: DTO Singleton que inyecta dinámicamente un Proxy de un bean de ámbito Prototype utilizando ScopedProxyMode.
      */
     public static class SingletonConProxyPrototype {
-        private final BeanConContadorPrototype proxyPrototype;
-
-        public SingletonConProxyPrototype(BeanConContadorPrototype proxyPrototype) {
-            // TODO extra (Reto 9): Inyecta el proxy.
-            this.proxyPrototype = proxyPrototype;
-        }
-
-        public BeanConContadorPrototype getProxyPrototype() {
-            // TODO extra (Reto 9): Retorna el proxy inyectado.
-            return null;
-        }
+        // TODO extra: Reto Extra 9: DTO Singleton que inyecta dinámicamente un Proxy de un bean de ámbito Prototype utilizando ScopedProxyMode.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
     /**
      * Reto Extra 10: Demuestra y verifica si Spring ejecuta el método anotado con @PreDestroy en beans de ámbito Prototype.
      */
     public static boolean evaluarCicloVidaPrototype(org.springframework.context.support.GenericApplicationContext ctx, String nombreBeanPrototype) {
-        // TODO extra (Reto 10): Al destruir el contexto, comprueba si se llamó a los destructores de los prototypes (teóricamente, Spring no los gestiona por completo tras la entrega).
-        return false;
+        // TODO extra: Reto Extra 10: Demuestra y verifica si Spring ejecuta el método anotado con @PreDestroy en beans de ámbito Prototype.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para evaluarCicloVidaPrototype");
     }
 
 }

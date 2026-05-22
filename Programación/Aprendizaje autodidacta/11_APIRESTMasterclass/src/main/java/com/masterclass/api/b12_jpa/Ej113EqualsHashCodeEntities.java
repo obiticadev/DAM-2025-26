@@ -69,44 +69,85 @@ public final class Ej113EqualsHashCodeEntities {
         System.out.println(a.equals(b));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si o == this -> true.
+    /**
+     * TODO extra 1: Comprueba que una instancia de Cliente sea igual a sí misma (reflexividad).
+     */
+    public static boolean desafioReflexivo(Cliente c) {
+        return c != null && c.equals(c);
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si o == null -> false.
+    /**
+     * TODO extra 2: Comprueba la simetría de equals entre dos instancias de Cliente.
+     */
+    public static boolean desafioSimetrico(Cliente c1, Cliente c2) {
+        if (c1 == null || c2 == null) return false;
+        return c1.equals(c2) == c2.equals(c1);
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: usa getClass() != o.getClass() -> false
+    /**
+     * TODO extra 3: Comprueba que equals devuelva falso al comparar un Cliente con nulo.
+     */
+    public static boolean desafioNuloFalso(Cliente c) {
+        return c != null && !c.equals(null);
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: castea a Cuenta113.
+    /**
+     * TODO extra 4: Comprueba que equals devuelva falso al comparar un Cliente con otro tipo de objeto.
+     */
+    public static boolean desafioClaseDiferenteFalso(Cliente c) {
+        return c != null && !c.equals(new Object());
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: compara SOLO 'iban' con Objects.equals.
+    /**
+     * TODO extra 5: Comprueba si dos clientes con el mismo código de negocio (business key: uuid) son iguales.
+     */
+    public static boolean desafioMismoUuidIguales(Cliente c1, Cliente c2) {
+        return c1 != null && c1.equals(c2);
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: devuelve el resultado.
+    /**
+     * TODO extra 6: Comprueba si dos clientes con diferente código de negocio (business key: uuid) no son iguales.
+     */
+    public static boolean desafioDiferenteUuidNoIguales(Cliente c1, Cliente c2) {
+        return c1 != null && !c1.equals(c2);
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: basa el hash en 'iban' (mismo campo que equals).
+    /**
+     * TODO extra 7: Comprueba que el hashCode de dos clientes iguales sea el mismo de forma coherente.
+     */
+    public static boolean desafioHashCodeCoherente(Cliente c1, Cliente c2) {
+        if (c1 == null || c2 == null) return false;
+        if (c1.equals(c2)) {
+            return c1.hashCode() == c2.hashCode();
+        }
+        return true;
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: usa Objects.hash(iban) o iban.hashCode() con control de null.
+    /**
+     * TODO extra 8: Crea un Cliente con el uuid especificado.
+     */
+    public static Cliente desafioCrearClienteConUuid(String uuid, String nombre) {
+        var c = new Cliente();
+        c.setUuid(uuid);
+        c.setNombre(nombre);
+        return c;
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: dos cuentas con mismo iban -> mismo hash (contrato).
+    /**
+     * TODO extra 9: Comprueba que el equals siga funcionando correctamente cuando las entidades cambian su ID de base de datos (invariancia de business key).
+     */
+    public static boolean desafioInvarianteIdDb(Cliente c1, Cliente c2, Long nuevoId) {
+        boolean antes = c1.equals(c2);
+        c1.setId(nuevoId);
+        boolean despues = c1.equals(c2);
+        return antes == despues;
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: NO uses 'saldo' en equals/hashCode (cambia y rompería el contrato).
+    /**
+     * TODO extra 10: Retorna verdadero si el UUID de un cliente no es nulo ni vacío.
+     */
+    public static boolean desafioTieneUuidValido(Cliente c) {
+        return c != null && c.getUuid() != null && !c.getUuid().isBlank();
     }
 
 }

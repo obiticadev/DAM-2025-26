@@ -54,9 +54,12 @@ public class Ej048RequestBodyPost {
     // TODO extra: anota con @org.springframework.web.bind.annotation.PostMapping("/batch")
     public org.springframework.http.ResponseEntity<java.util.Map<String, Object>> crearConLista(
             @org.springframework.web.bind.annotation.RequestBody java.util.List<ItemIn> entradas) {
-        // TODO extra: convierte cada ItemIn a ItemOut con IDs secuenciales 1, 2, etc.
-        // Devuelve un Map con claves "total" (tamaño) y "items" (lista de ItemOut), y estatus 201.
-        return null;
+        // TODO extra: Reto Extra 1: Creación por lotes recibiendo una lista JSON.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PostMapping");
     }
 
     /**
@@ -65,9 +68,12 @@ public class Ej048RequestBodyPost {
     // TODO extra: anota con @org.springframework.web.bind.annotation.PostMapping("/validar")
     public org.springframework.http.ResponseEntity<ItemOut> crearConValidacion(
             @org.springframework.web.bind.annotation.RequestBody ItemIn entrada) {
-        // TODO extra: si el nombre es menor a 3 caracteres, devuelve ResponseEntity con status 422 (UNPROCESSABLE_ENTITY).
-        // Si es correcto, devuelve status 201 y un ItemOut con id=1.
-        return null;
+        // TODO extra: Reto Extra 2: Validación manual y estatus 422 Unprocessable Entity.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PostMapping");
     }
 
     /**
@@ -76,8 +82,12 @@ public class Ej048RequestBodyPost {
     // TODO extra: anota con @org.springframework.web.bind.annotation.PostMapping("/metadatos")
     public org.springframework.http.ResponseEntity<ItemConMetadatos> crearConMetadatos(
             @org.springframework.web.bind.annotation.RequestBody ItemConMetadatos entrada) {
-        // TODO extra: devuelve estatus 201 y el mismo objeto recibido en el cuerpo.
-        return null;
+        // TODO extra: Reto Extra 3: Deserialización de tipos de datos complejos y anidados.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PostMapping");
     }
 
     /**
@@ -86,8 +96,12 @@ public class Ej048RequestBodyPost {
     // TODO extra: anota con @org.springframework.web.bind.annotation.PostMapping(value = "/json-only", consumes = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
     public org.springframework.http.ResponseEntity<ItemOut> crearConTipoContent(
             @org.springframework.web.bind.annotation.RequestBody ItemIn entrada) {
-        // TODO extra: devuelve estatus 201 y un ItemOut con id=1 y el nombre de la entrada.
-        return null;
+        // TODO extra: Reto Extra 4: Restricción del tipo de contenido consumido (consumes).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PostMapping");
     }
 
     /**
@@ -97,8 +111,12 @@ public class Ej048RequestBodyPost {
     public org.springframework.http.ResponseEntity<String> crearConCabeceraAudit(
             @org.springframework.web.bind.annotation.RequestBody ItemIn entrada,
             @org.springframework.web.bind.annotation.RequestHeader("X-Created-By") String creador) {
-        // TODO extra: devuelve un ResponseEntity con el texto "Item " + entrada.nombre() + " creado por " + creador, y estatus 201.
-        return null;
+        // TODO extra: Reto Extra 5: Vinculación combinada de cabecera y cuerpo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PostMapping");
     }
 
     /**
@@ -107,9 +125,12 @@ public class Ej048RequestBodyPost {
     // TODO extra: anota con @org.springframework.web.bind.annotation.PostMapping("/defensivo")
     public org.springframework.http.ResponseEntity<String> crearSinNombre(
             @org.springframework.web.bind.annotation.RequestBody(required = false) ItemIn entrada) {
-        // TODO extra: si entrada es null o entrada.nombre() es nulo/vacío, devuelve status 400 (Bad Request) con cuerpo "cuerpo invalido".
-        // Si no, devuelve status 200 con cuerpo "ok".
-        return null;
+        // TODO extra: Reto Extra 6: Validación de cuerpo nulo/vacío defensivo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PostMapping");
     }
 
     /**
@@ -118,10 +139,12 @@ public class Ej048RequestBodyPost {
     // TODO extra: anota con @org.springframework.web.bind.annotation.PostMapping("/especifico")
     public org.springframework.http.ResponseEntity<ItemOut> crearConIdEspecifico(
             @org.springframework.web.bind.annotation.RequestBody ItemOut entrada) {
-        // TODO extra: si el ID es menor o igual a 0, devuelve 400.
-        // Si el ID es exactamente 99, simula conflicto y devuelve 409 Conflict.
-        // Si no, devuelve 201 y la misma entrada.
-        return null;
+        // TODO extra: Reto Extra 7: Creación con id específico y detección de conflicto (409).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PostMapping");
     }
 
     /**
@@ -131,10 +154,12 @@ public class Ej048RequestBodyPost {
     public org.springframework.http.ResponseEntity<ItemOut> crearRetornandoLocationAbsoluta(
             @org.springframework.web.bind.annotation.RequestBody ItemIn entrada,
             jakarta.servlet.http.HttpServletRequest request) {
-        // TODO extra: genera la Location absoluta utilizando org.springframework.web.servlet.support.ServletUriComponentsBuilder
-        // a partir del contexto del request, apuntando a "/api/items/123".
-        // Devuelve ResponseEntity con Location, status 201 y cuerpo conteniendo un ItemOut con id=123.
-        return null;
+        // TODO extra: Reto Extra 8: Construcción de Location con URL absoluta del servidor.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PostMapping");
     }
 
     /**
@@ -143,8 +168,12 @@ public class Ej048RequestBodyPost {
     // TODO extra: anota con @org.springframework.web.bind.annotation.PostMapping("/solo-id")
     public org.springframework.http.ResponseEntity<IdOut> crearRetornandoSoloId(
             @org.springframework.web.bind.annotation.RequestBody ItemIn entrada) {
-        // TODO extra: devuelve estatus 201 y un nuevo IdOut con id=999L.
-        return null;
+        // TODO extra: Reto Extra 9: Respuesta simplificada devolviendo únicamente el ID.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PostMapping");
     }
 
     /**
@@ -153,8 +182,12 @@ public class Ej048RequestBodyPost {
     // TODO extra: anota con @org.springframework.web.bind.annotation.PostMapping("/fecha")
     public org.springframework.http.ResponseEntity<ItemConFecha> crearConLocalDate(
             @org.springframework.web.bind.annotation.RequestBody ItemConFecha entrada) {
-        // TODO extra: devuelve estatus 201 y el mismo objeto recibido.
-        return null;
+        // TODO extra: Reto Extra 10: Deserialización de LocalDate en RequestBody.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PostMapping");
     }
 
 }

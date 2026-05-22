@@ -71,44 +71,126 @@ public class Ej127SecondLevelCache<K, V> {
         System.out.println(c.hitRatio());
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si 'cache' contiene 'key' -> es un HIT.
+    /**
+     * Reto Extra 1: Obtiene el numero de hits de forma segura.
+     */
+    public int obtenerHits() {
+        // TODO extra: Reto Extra 1: Obtiene el numero de hits de forma segura.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerHits");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: incrementa 'hits' y devuelve el valor cacheado.
+    /**
+     * Reto Extra 2: Obtiene el numero de misses de forma segura.
+     */
+    public int obtenerMisses() {
+        // TODO extra: Reto Extra 2: Obtiene el numero de misses de forma segura.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerMisses");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: si NO está -> es un MISS.
+    /**
+     * Reto Extra 3: Limpia completamente la cache.
+     */
+    public void limpiarCache() {
+        // TODO extra: Reto Extra 3: Limpia completamente la cache.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para limpiarCache");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: incrementa 'misses'.
+    /**
+     * Reto Extra 4: Comprueba si la cache esta vacia.
+     */
+    public boolean cacheEstaVacia() {
+        // TODO extra: Reto Extra 4: Comprueba si la cache esta vacia.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para cacheEstaVacia");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: carga con loaderBD.apply(key).
+    /**
+     * Reto Extra 5: Comprueba el tamano actual de la cache.
+     */
+    public int tamanoCache() {
+        // TODO extra: Reto Extra 5: Comprueba el tamano actual de la cache.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tamanoCache");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: guarda el valor en 'cache' para futuras lecturas.
+    /**
+     * Reto Extra 6: Comprueba si una clave existe en la cache fisica.
+     */
+    public boolean contieneClave(K key) {
+        // TODO extra: Reto Extra 6: Comprueba si una clave existe en la cache fisica.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contieneClave");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: devuelve el valor cargado.
+    /**
+     * Reto Extra 7: Precalienta la cache con un mapa de entradas.
+     */
+    public void precalentar(Map<K, V> entradas) {
+        // TODO extra: Reto Extra 7: Precalienta la cache con un mapa de entradas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para precalentar");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: elimina 'key' de la caché.
+    /**
+     * Reto Extra 8: Obtiene un valor sin contar como hit ni miss.
+     */
+    public V obtenerSilencioso(K key) {
+        // TODO extra: Reto Extra 8: Obtiene un valor sin contar como hit ni miss.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerSilencioso");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: no toques los contadores aquí (invalidar no es hit ni miss).
+    /**
+     * Reto Extra 9: Invalida multiples claves a la vez.
+     */
+    public void invalidarLote(Iterable<K> keys) {
+        // TODO extra: Reto Extra 9: Invalida multiples claves a la vez.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para invalidarLote");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: total = hits + misses; si total==0 -> 0.0; si no, hits/total.
+    /**
+     * Reto Extra 10: Retorna ratio de hits como porcentaje [0, 100].
+     */
+    public double hitRatioPorcentaje() {
+        // TODO extra: Reto Extra 10: Retorna ratio de hits como porcentaje [0, 100].
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para hitRatioPorcentaje");
     }
+
+
 
 }

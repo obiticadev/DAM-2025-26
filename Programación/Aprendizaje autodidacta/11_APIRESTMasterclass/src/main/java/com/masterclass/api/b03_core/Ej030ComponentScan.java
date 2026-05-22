@@ -54,79 +54,120 @@ public final class Ej030ComponentScan {
      * Reto Extra 1: Recupera un bean a partir de su nombre identificador de cadena del contexto.
      */
     public static Object obtenerBeanPorNombre(AnnotationConfigApplicationContext ctx, String nombre) {
-        // TODO extra (Reto 1): Devuelve el bean asociado al nombre indicado.
-        return null;
+        // TODO extra: Reto Extra 1: Recupera un bean a partir de su nombre identificador de cadena del contexto.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerBeanPorNombre");
     }
 
     /**
      * Reto Extra 2: Comprueba programáticamente si un bean registrado en el contexto es de alcance Singleton.
      */
     public static boolean esSingleton(AnnotationConfigApplicationContext ctx, String nombreBean) {
-        // TODO extra (Reto 2): Retorna true si el bean tiene alcance singleton en el contexto.
-        return false;
+        // TODO extra: Reto Extra 2: Comprueba programáticamente si un bean registrado en el contexto es de alcance Singleton.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esSingleton");
     }
 
     /**
      * Reto Extra 3: Crea un AnnotationConfigApplicationContext que escanea el paquete pero excluye una clase concreta.
      */
     public static AnnotationConfigApplicationContext crearContextoFiltradoConExclusion(Class<?> claseAExcluir) {
-        // TODO extra (Reto 3): Inicializa un contexto configurando un TypeFilter para excluir la clase indicada durante el escaneo.
-        return null;
+        // TODO extra: Reto Extra 3: Crea un AnnotationConfigApplicationContext que escanea el paquete pero excluye una clase concreta.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearContextoFiltradoConExclusion");
     }
 
     /**
      * Reto Extra 4: Devuelve el recuento de definiciones de beans registradas en el contexto.
      */
     public static int contarBeansDefinidos(AnnotationConfigApplicationContext ctx) {
-        // TODO extra (Reto 4): Retorna la cantidad de definiciones de beans en el contexto.
-        return 0;
+        // TODO extra: Reto Extra 4: Devuelve el recuento de definiciones de beans registradas en el contexto.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarBeansDefinidos");
     }
 
     /**
      * Reto Extra 5: Registra en caliente una instancia singleton pre-construida en un contexto de Spring ya refrescado.
      */
     public static void registrarBeanEnCaliente(AnnotationConfigApplicationContext ctx, String nombre, Object instancia) {
-        // TODO extra (Reto 5): Registra la instancia manual en el BeanFactory del contexto.
+        // TODO extra: Reto Extra 5: Registra en caliente una instancia singleton pre-construida en un contexto de Spring ya refrescado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para registrarBeanEnCaliente");
     }
 
     /**
      * Reto Extra 6: Comprueba en los metadatos si la definición del bean está configurada con scope Prototype.
      */
     public static boolean esBeanPrototypeDefinido(AnnotationConfigApplicationContext ctx, String nombre) {
-        // TODO extra (Reto 6): Consulta los BeanDefinition del BeanFactory para saber si el scope es prototype.
-        return false;
+        // TODO extra: Reto Extra 6: Comprueba en los metadatos si la definición del bean está configurada con scope Prototype.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esBeanPrototypeDefinido");
     }
 
     /**
      * Reto Extra 7: Encuentra y devuelve todos los beans que tengan presente una determinada anotación en su clase.
      */
     public static java.util.Map<String, Object> obtenerBeansPorAnotacion(AnnotationConfigApplicationContext ctx, Class<? extends java.lang.annotation.Annotation> anotacion) {
-        // TODO extra (Reto 7): Busca beans decorados con la anotación indicada.
-        return java.util.Map.of();
+        // TODO extra: Reto Extra 7: Encuentra y devuelve todos los beans que tengan presente una determinada anotación en su clase.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerBeansPorAnotacion");
     }
 
     /**
      * Reto Extra 8: Devuelve todos los nombres de beans del contexto ordenados alfabéticamente.
      */
     public static java.util.List<String> obtenerNombresDeBeans(AnnotationConfigApplicationContext ctx) {
-        // TODO extra (Reto 8): Retorna la lista ordenada de identificadores de beans registrados.
-        return java.util.List.of();
+        // TODO extra: Reto Extra 8: Devuelve todos los nombres de beans del contexto ordenados alfabéticamente.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerNombresDeBeans");
     }
 
     /**
      * Reto Extra 9: Cierra de forma segura el contexto de Spring y comprueba si ha dejado de estar activo.
      */
     public static boolean cerrarYVerificarActivo(AnnotationConfigApplicationContext ctx) {
-        // TODO extra (Reto 9): Cierra el contexto y valida si isActive() retorna false.
-        return false;
+        // TODO extra: Reto Extra 9: Cierra de forma segura el contexto de Spring y comprueba si ha dejado de estar activo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para cerrarYVerificarActivo");
     }
 
     /**
      * Reto Extra 10: Comprueba si la definición del bean está configurada con inicialización perezosa (@Lazy).
      */
     public static boolean esDefinicionLazy(AnnotationConfigApplicationContext ctx, String nombre) {
-        // TODO extra (Reto 10): Consulta los metadatos del BeanDefinition para comprobar si es lazy.
-        return false;
+        // TODO extra: Reto Extra 10: Comprueba si la definición del bean está configurada con inicialización perezosa (@Lazy).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esDefinicionLazy");
     }
 
 }

@@ -45,44 +45,124 @@ public final class Ej170DataJpaTest {
         System.out.println(findByEdadMayorQue(repo, 20));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si repo es null -> IllegalArgumentException.
+        /**
+     * RETO EXTRA 01: Cuenta total de entidades en el repo.
+     */
+    public static int contarEntidades(RepoMem170 repo) {
+        // TODO extra: RETO EXTRA 01: Cuenta total de entidades en el repo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarEntidades");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: obtén todas las entidades con repo.findAll().
+    /**
+     * RETO EXTRA 02: Obtiene edad de una persona.
+     */
+    public static int obtenerEdadDe(RepoMem170 repo, String nombre) {
+        // TODO extra: RETO EXTRA 02: Obtiene edad de una persona.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerEdadDe");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: filtra las entradas cuya edad sea estrictamente > edad.
+    /**
+     * RETO EXTRA 03: Comprueba si la lista esta vacia.
+     */
+    public static boolean esListaVacia(java.util.List<String> list) {
+        // TODO extra: RETO EXTRA 03: Comprueba si la lista esta vacia.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esListaVacia");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: queda con la clave (nombre) de cada entrada que pasa el filtro.
+    /**
+     * RETO EXTRA 04: Verifica existencia del nombre.
+     */
+    public static boolean contieneNombre(RepoMem170 repo, String nombre) {
+        // TODO extra: RETO EXTRA 04: Verifica existencia del nombre.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contieneNombre");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: ordena los nombres ascendentemente (consulta JPA con OrderBy).
+    /**
+     * RETO EXTRA 05: Obtiene todas las edades.
+     */
+    public static java.util.List<Integer> obtenerEdades(RepoMem170 repo) {
+        // TODO extra: RETO EXTRA 05: Obtiene todas las edades.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerEdades");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: recoge a List.
+    /**
+     * RETO EXTRA 06: Calcula la edad maxima registrada.
+     */
+    public static int edadMaxima(RepoMem170 repo) {
+        // TODO extra: RETO EXTRA 06: Calcula la edad maxima registrada.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para edadMaxima");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: no mutes el mapa interno del repositorio (aislamiento del test).
+    /**
+     * RETO EXTRA 07: Calcula la edad minima registrada.
+     */
+    public static int edadMinima(RepoMem170 repo) {
+        // TODO extra: RETO EXTRA 07: Calcula la edad minima registrada.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para edadMinima");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: si nadie supera el umbral -> devuelve lista vacía, no null.
+    /**
+     * RETO EXTRA 08: Verifica si el repo esta vacio.
+     */
+    public static boolean estaVacio(RepoMem170 repo) {
+        // TODO extra: RETO EXTRA 08: Verifica si el repo esta vacio.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para estaVacio");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: este filtro modela la query derivada que JPA generaría.
+    /**
+     * RETO EXTRA 09: Calcula la edad promedio de las personas.
+     */
+    public static double edadPromedio(RepoMem170 repo) {
+        // TODO extra: RETO EXTRA 09: Calcula la edad promedio de las personas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para edadPromedio");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve la lista resultante.
+    /**
+     * RETO EXTRA 10: Nombres que superan la edad dada.
+     */
+    public static java.util.List<String> nombresMayoresQue(RepoMem170 repo, int edad) {
+        // TODO extra: RETO EXTRA 10: Nombres que superan la edad dada.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para nombresMayoresQue");
     }
 
 }

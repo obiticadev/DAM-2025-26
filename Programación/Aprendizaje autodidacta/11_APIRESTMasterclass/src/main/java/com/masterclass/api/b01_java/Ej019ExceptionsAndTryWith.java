@@ -116,7 +116,12 @@ public final class Ej019ExceptionsAndTryWith {
      * @param recurso recurso liberable
      */
     public static void cerrarRecursoSeguro(AutoCloseable recurso) {
-        // TODO extra: intenta cerrar el recurso en un bloque try-catch que atrape cualquier Exception
+        // TODO extra: Reto Extra 1: Cierre manual y seguro de recursos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para cerrarRecursoSeguro");
     }
 
     /**
@@ -129,8 +134,12 @@ public final class Ej019ExceptionsAndTryWith {
      * @throws ErrorNegocioException si la operación falla
      */
     public static String procesarConTryWithResources(RecursoFragil recurso, boolean lanzarAlOperar) throws ErrorNegocioException {
-        // TODO extra: abre un bloque try-with-resources con el recurso, llama a operar y devuelve su valor
-        return "";
+        // TODO extra: Reto Extra 2: Procesamiento clásico con try-with-resources.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para procesarConTryWithResources");
     }
 
     /**
@@ -141,7 +150,12 @@ public final class Ej019ExceptionsAndTryWith {
      * @param causa   excepción original causante
      */
     public static void lanzarConCausaOriginal(String mensaje, Throwable causa) {
-        // TODO extra: lanza una ErrorSistemaException pasando el mensaje y la causa original
+        // TODO extra: Reto Extra 3: Propagación de excepciones con encadenamiento (exception chaining).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para lanzarConCausaOriginal");
     }
 
     /**
@@ -151,7 +165,12 @@ public final class Ej019ExceptionsAndTryWith {
      * @param accion tarea a ejecutar
      */
     public static void ejecutarAccionIgnorandoExcepcion(Runnable accion) {
-        // TODO extra: ejecuta la acción dentro de un try-catch que ignore todas las excepciones
+        // TODO extra: Reto Extra 4: Modos silenciosos para procesos secundarios.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para ejecutarAccionIgnorandoExcepcion");
     }
 
     /**
@@ -164,8 +183,12 @@ public final class Ej019ExceptionsAndTryWith {
      * @return mensaje de la excepción suprimida, o vacío si no hay ninguna
      */
     public static String detectarExcepcionSuprimida(RecursoFragil recurso) {
-        // TODO extra: opera el recurso en try-with-resources forzando fallo, captura ErrorNegocioException y extrae getSuppressed()
-        return "";
+        // TODO extra: Reto Extra 5: Análisis de excepciones suprimidas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para detectarExcepcionSuprimida");
     }
 
     /**
@@ -176,8 +199,12 @@ public final class Ej019ExceptionsAndTryWith {
      * @return true si es o contiene un error de negocio
      */
     public static boolean esExcepcionDeNegocio(Throwable t) {
-        // TODO extra: recorre de forma recursiva o iterativa las causas de t buscando ErrorNegocioException
-        return false;
+        // TODO extra: Reto Extra 6: Detección recursiva de excepciones de negocio.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionDeNegocio");
     }
 
     /**
@@ -189,8 +216,12 @@ public final class Ej019ExceptionsAndTryWith {
      * @return mensaje formateado amigable
      */
     public static String obtenerMensajeDeErrorFormateado(Throwable t) {
-        // TODO extra: navega hasta el final de la cadena de causas y formatea su mensaje
-        return "";
+        // TODO extra: Reto Extra 7: Formateador de excepciones amigable para APIs.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerMensajeDeErrorFormateado");
     }
 
     /**
@@ -203,8 +234,12 @@ public final class Ej019ExceptionsAndTryWith {
      * @return el resultado de la acción
      */
     public static String ejecutarConReintentos(java.util.concurrent.Callable<String> accion, int maxReintentos) {
-        // TODO extra: ejecuta la acción con un bucle de reintentos e incrementando contadores ante fallos
-        return "";
+        // TODO extra: Reto Extra 8: Algoritmo de tolerancia a fallos con reintentos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para ejecutarConReintentos");
     }
 
     /**
@@ -216,8 +251,12 @@ public final class Ej019ExceptionsAndTryWith {
      * @return true si la causa raíz coincide con el tipo especificado
      */
     public static boolean esCausaRaiz(Class<? extends Throwable> tipoEx, Throwable ex) {
-        // TODO extra: busca el último Throwable de la cadena y comprueba si es asignable a tipoEx
-        return false;
+        // TODO extra: Reto Extra 9: Inspección de tipo en la causa raíz.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCausaRaiz");
     }
 
     /**
@@ -230,8 +269,12 @@ public final class Ej019ExceptionsAndTryWith {
      * @throws Exception si ocurre algún error
      */
     public static String procesarRecursosMultiples(RecursoFragil r1, RecursoFragil r2) throws Exception {
-        // TODO extra: declara r1 y r2 en la cabecera del try-with-resources y opera sobre ellos
-        return "";
+        // TODO extra: Reto Extra 10: Try-with-resources con múltiples recursos dependientes.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para procesarRecursosMultiples");
     }
 
 }

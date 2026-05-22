@@ -21,14 +21,12 @@ class Ej052DeleteResourceTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 1")
     void borrarFisico() throws Exception {
         mvc.perform(delete("/api/items/5/fisico"))
                 .andExpect(status().isNoContent());
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 2")
     void borrarLogico() throws Exception {
         mvc.perform(delete("/api/items/5/logico"))
                 .andExpect(status().isOk())
@@ -36,7 +34,6 @@ class Ej052DeleteResourceTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 3")
     void borrarConFiltro() throws Exception {
         mvc.perform(delete("/api/items")
                         .param("categoria", "libros"))
@@ -46,7 +43,6 @@ class Ej052DeleteResourceTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
     void borrarConProteccionAdmin_noAutorizado() throws Exception {
         mvc.perform(delete("/api/items/5/protegido")
                         .header("Authorization", "wrong-token"))
@@ -54,7 +50,6 @@ class Ej052DeleteResourceTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
     void borrarConProteccionAdmin_autorizado() throws Exception {
         mvc.perform(delete("/api/items/5/protegido")
                         .header("Authorization", "admin-token"))
@@ -62,7 +57,6 @@ class Ej052DeleteResourceTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 5")
     void borrarConDependencias_conflict() throws Exception {
         mvc.perform(delete("/api/items/5/dependencias")
                         .param("cascade", "false"))
@@ -70,7 +64,6 @@ class Ej052DeleteResourceTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 5")
     void borrarConDependencias_cascade() throws Exception {
         mvc.perform(delete("/api/items/5/dependencias")
                         .param("cascade", "true"))
@@ -78,7 +71,6 @@ class Ej052DeleteResourceTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 6")
     void borrarRetornandoBackup() throws Exception {
         mvc.perform(delete("/api/items/5/backup"))
                 .andExpect(status().isOk())
@@ -86,21 +78,18 @@ class Ej052DeleteResourceTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 7")
     void borrarSeguro_locked() throws Exception {
         mvc.perform(delete("/api/items/99/seguro"))
                 .andExpect(status().is(423));
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 7")
     void borrarSeguro_exito() throws Exception {
         mvc.perform(delete("/api/items/5/seguro"))
                 .andExpect(status().isNoContent());
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
     void borrarConPrecondicionFecha_fallo() throws Exception {
         mvc.perform(delete("/api/items/5/precondicion-fecha")
                         .header("X-Delete-Allowed-On", "AYER"))
@@ -108,7 +97,6 @@ class Ej052DeleteResourceTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
     void borrarConPrecondicionFecha_exito() throws Exception {
         mvc.perform(delete("/api/items/5/precondicion-fecha")
                         .header("X-Delete-Allowed-On", "HOY"))
@@ -116,7 +104,6 @@ class Ej052DeleteResourceTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 9")
     void borrarMultiples() throws Exception {
         mvc.perform(delete("/api/items/batch")
                         .contentType(org.springframework.http.MediaType.APPLICATION_JSON)
@@ -126,7 +113,6 @@ class Ej052DeleteResourceTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     void borrarVerificarCabeceraNoModified_primero() throws Exception {
         mvc.perform(delete("/api/items/5/idempotencia"))
                 .andExpect(status().isNoContent())
@@ -134,7 +120,6 @@ class Ej052DeleteResourceTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     void borrarVerificarCabeceraNoModified_segundo() throws Exception {
         mvc.perform(delete("/api/items/5/idempotencia")
                         .header("If-None-Match", "\"borrado\""))

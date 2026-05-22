@@ -42,44 +42,124 @@ public final class Ej179ActuatorEndpoints {
         System.out.println(estadoAgregado(Map.of("db", "UP", "disk", "UP")));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si componentes es null -> IllegalArgumentException.
+        /**
+     * RETO EXTRA 01: Valida si es UP.
+     */
+    public static boolean esEstadoUp(String estado) {
+        // TODO extra: RETO EXTRA 01: Valida si es UP.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esEstadoUp");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si el mapa esta vacio, devuelve "UNKNOWN" (no hay datos).
+    /**
+     * RETO EXTRA 02: Valida si es DOWN.
+     */
+    public static boolean esEstadoDown(String estado) {
+        // TODO extra: RETO EXTRA 02: Valida si es DOWN.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esEstadoDown");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: recorre todos los valores del mapa.
+    /**
+     * RETO EXTRA 03: Total componentes.
+     */
+    public static int cantidadComponentes(java.util.Map<String, String> comps) {
+        // TODO extra: RETO EXTRA 03: Total componentes.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para cantidadComponentes");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: si algun valor es null -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 04: Busca existencia.
+     */
+    public static boolean contieneComponente(java.util.Map<String, String> comps, String c) {
+        // TODO extra: RETO EXTRA 04: Busca existencia.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contieneComponente");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: normaliza cada estado a mayusculas y sin espacios (trim).
+    /**
+     * RETO EXTRA 05: Obtiene estado.
+     */
+    public static String obtenerEstadoComponente(java.util.Map<String, String> comps, String c) {
+        // TODO extra: RETO EXTRA 05: Obtiene estado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerEstadoComponente");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: considera UP solo el literal exacto "UP" tras normalizar.
+    /**
+     * RETO EXTRA 06: Crea un mapa limpio.
+     */
+    public static java.util.Map<String, String> inicializarAgregador() {
+        // TODO extra: RETO EXTRA 06: Crea un mapa limpio.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para inicializarAgregador");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: si encuentras cualquier estado distinto de "UP" -> resultado "DOWN".
+    /**
+     * RETO EXTRA 07: Agrega componente.
+     */
+    public static java.util.Map<String, String> agregarComponente(java.util.Map<String, String> comps, String c, String e) {
+        // TODO extra: RETO EXTRA 07: Agrega componente.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para agregarComponente");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: el agregado es estricto: un solo DOWN tumba el conjunto.
+    /**
+     * RETO EXTRA 08: Elimina componente.
+     */
+    public static java.util.Map<String, String> eliminarComponente(java.util.Map<String, String> comps, String c) {
+        // TODO extra: RETO EXTRA 08: Elimina componente.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para eliminarComponente");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: si todos los componentes son "UP" -> resultado "UP".
+    /**
+     * RETO EXTRA 09: Verifica homogeneidad.
+     */
+    public static boolean todosConEstado(java.util.Map<String, String> comps, String e) {
+        // TODO extra: RETO EXTRA 09: Verifica homogeneidad.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para todosConEstado");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve el estado agregado calculado.
+    /**
+     * RETO EXTRA 10: Verifica si hay algun caso.
+     */
+    public static boolean algunoConEstado(java.util.Map<String, String> comps, String e) {
+        // TODO extra: RETO EXTRA 10: Verifica si hay algun caso.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para algunoConEstado");
     }
 
 }

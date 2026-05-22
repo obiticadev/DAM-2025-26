@@ -87,8 +87,12 @@ public class Ej015GenericsRepository<T, ID> {
      * @return Optional con el primer elemento
      */
     public static <E> Optional<E> obtenerPrimero(E[] elementos) {
-        // TODO extra: Retorna el primer elemento envuelto en un Optional, defendiendo contra nulos
-        return Optional.empty();
+        // TODO extra: Reto Extra 1: Operaciones genéricas con arrays.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerPrimero");
     }
 
     /**
@@ -102,7 +106,12 @@ public class Ej015GenericsRepository<T, ID> {
      * @throws IllegalArgumentException si los índices están fuera de rango o el array es nulo
      */
     public static <E> void intercambiarPosiciones(E[] array, int i, int j) {
-        // TODO extra: Intercambia los elementos en las posiciones i y j de manera segura
+        // TODO extra: Reto Extra 2: Algoritmos sobre vectores genéricos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para intercambiarPosiciones");
     }
 
     /**
@@ -116,8 +125,12 @@ public class Ej015GenericsRepository<T, ID> {
      * @return Optional con el valor o vacío
      */
     public static <K, V> Optional<V> buscarPorIdEnMapa(Map<K, V> mapa, K id) {
-        // TODO extra: Busca por id en el mapa de forma segura
-        return Optional.empty();
+        // TODO extra: Reto Extra 3: Búsqueda genérica en Mapas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para buscarPorIdEnMapa");
     }
 
     /**
@@ -130,8 +143,12 @@ public class Ej015GenericsRepository<T, ID> {
      * @return lista con los elementos filtrados
      */
     public static <E> List<E> filtrarElementosGenericos(List<E> lista, Predicate<E> filtro) {
-        // TODO extra: Filtra los elementos de la lista usando stream y el predicado dado
-        return List.of();
+        // TODO extra: Reto Extra 4: Filtrado genérico funcional.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para filtrarElementosGenericos");
     }
 
     /**
@@ -145,8 +162,12 @@ public class Ej015GenericsRepository<T, ID> {
      * @return mapa resultante
      */
     public static <K, V> Map<K, V> convertirListaAMapa(List<V> lista, Function<V, K> keyExtractor) {
-        // TODO extra: Transforma la lista a un mapa usando stream y keyExtractor
-        return Map.of();
+        // TODO extra: Reto Extra 5: Transformador genérico de colecciones.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para convertirListaAMapa");
     }
 
     /**
@@ -159,14 +180,25 @@ public class Ej015GenericsRepository<T, ID> {
      * @return true si es mayor, false de lo contrario
      */
     public static <E extends Comparable<E>> boolean esMayorQue(E actual, E limite) {
-        // TODO extra: Usa compareTo para comparar de forma segura (defensa contra nulos)
-        return false;
+        // TODO extra: Reto Extra 6: Genéricos acotados por comparación.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMayorQue");
     }
 
     /**
      * Reto Extra 7: Modelado de pares genéricos inmutables.
      */
-    public record Tupla<K, V>(K clave, V valor) {}
+    public record Tupla<K, V>(K clave, V valor) {
+        // TODO extra: Reto Extra 7: Modelado de pares genéricos inmutables.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
+    }
 
     /**
      * Reto Extra 7 (método): Crea una tupla clave-valor inmutable.
@@ -178,8 +210,12 @@ public class Ej015GenericsRepository<T, ID> {
      * @return nueva Tupla instanciada
      */
     public static <K, V> Tupla<K, V> crearTupla(K clave, V valor) {
-        // TODO extra: Instancia y retorna una Tupla con los valores provistos
-        return null;
+        // TODO extra: Reto Extra 7 (método): Crea una tupla clave-valor inmutable.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearTupla");
     }
 
     /**
@@ -192,8 +228,12 @@ public class Ej015GenericsRepository<T, ID> {
      * @return el elemento o su valor por defecto
      */
     public static <E> E obtenerValorConDefecto(E valor, E valorPorDefecto) {
-        // TODO extra: Retorna valor si no es nulo, de lo contrario valorPorDefecto
-        return null;
+        // TODO extra: Reto Extra 8: Manejo seguro de nulos genéricos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerValorConDefecto");
     }
 
     /**
@@ -206,8 +246,12 @@ public class Ej015GenericsRepository<T, ID> {
      * @return cantidad de ocurrencias
      */
     public static <E> long contarOcurrenciasGenerico(E[] array, E elemento) {
-        // TODO extra: Recorre el array y cuenta cuántos elementos coinciden de forma segura
-        return 0;
+        // TODO extra: Reto Extra 9: Conteo universal sobre arrays.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarOcurrenciasGenerico");
     }
 
     /**
@@ -219,8 +263,12 @@ public class Ej015GenericsRepository<T, ID> {
      * @return nueva lista revertida
      */
     public static <E> List<E> revertirListaGenerica(List<E> lista) {
-        // TODO extra: Revierte la lista de forma no destructiva y retórnala
-        return List.of();
+        // TODO extra: Reto Extra 10: Reversión de colecciones genéricas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para revertirListaGenerica");
     }
 
 }

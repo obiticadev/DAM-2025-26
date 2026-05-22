@@ -204,56 +204,84 @@ public final class Ej027CustomSerializer {
      * Reto Extra 1: Serializa una fecha en formato dd-MM-yyyy.
      */
     public static String serializarFecha(java.time.LocalDate fecha) {
-        // TODO extra: Crea el ObjectMapper, registra el LocalDateSerializer en un SimpleModule y devuelve el JSON.
-        return null;
+        // TODO extra: Reto Extra 1: Serializa una fecha en formato dd-MM-yyyy.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para serializarFecha");
     }
 
     /**
      * Reto Extra 2: Deserializa una fecha desde formato dd-MM-yyyy.
      */
     public static java.time.LocalDate deserializarFecha(String json) {
-        // TODO extra: Crea el ObjectMapper, registra el LocalDateDeserializer en un SimpleModule y devuelve el LocalDate.
-        return null;
+        // TODO extra: Reto Extra 2: Deserializa una fecha desde formato dd-MM-yyyy.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para deserializarFecha");
     }
 
     /**
      * Reto Extra 3: Serializa una tarjeta enmascarando su número.
      */
     public static String serializarTarjeta(TarjetaCredito tarjeta) {
-        // TODO extra: Crea el ObjectMapper, registra el TarjetaMaskSerializer en un SimpleModule y devuelve el JSON.
-        return null;
+        // TODO extra: Reto Extra 3: Serializa una tarjeta enmascarando su número.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para serializarTarjeta");
     }
 
     /**
      * Reto Extra 4: Deserializa un rol tolerando variantes case-insensitive y numéricas.
      */
     public static Rol deserializarRol(String json) {
-        // TODO extra: Crea el ObjectMapper, registra el RolDeserializer en un SimpleModule y devuelve el Rol.
-        return null;
+        // TODO extra: Reto Extra 4: Deserializa un rol tolerando variantes case-insensitive y numéricas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para deserializarRol");
     }
 
     /**
      * Reto Extra 5: Serializa un Boolean como string "SI" / "NO".
      */
     public static String serializarBooleano(Boolean b) {
-        // TODO extra: Crea el ObjectMapper, registra el SiNoBooleanSerializer en un SimpleModule y devuelve el JSON.
-        return null;
+        // TODO extra: Reto Extra 5: Serializa un Boolean como string "SI" / "NO".
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para serializarBooleano");
     }
 
     /**
      * Reto Extra 6: Deserializa un Boolean desde variantes de "SI" / "NO".
      */
     public static Boolean deserializarBooleano(String json) {
-        // TODO extra: Crea el ObjectMapper, registra el SiNoBooleanDeserializer en un SimpleModule y devuelve el Boolean.
-        return null;
+        // TODO extra: Reto Extra 6: Deserializa un Boolean desde variantes de "SI" / "NO".
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para deserializarBooleano");
     }
 
     /**
      * Reto Extra 7: Serializa un mapa como una lista de objetos clave-valor.
      */
     public static String serializarMapaComoArray(java.util.Map<String, String> map) {
-        // TODO extra: Crea el ObjectMapper, registra el MapToArraySerializer en un SimpleModule y devuelve el JSON.
-        return null;
+        // TODO extra: Reto Extra 7: Serializa un mapa como una lista de objetos clave-valor.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para serializarMapaComoArray");
     }
 
     /**
@@ -261,24 +289,35 @@ public final class Ej027CustomSerializer {
      */
     @SuppressWarnings("unchecked")
     public static java.util.Map<String, String> deserializarArrayComoMapa(String json) {
-        // TODO extra: Crea el ObjectMapper, registra el ArrayToMapDeserializer en un SimpleModule y devuelve el Map.
-        return null;
+        // TODO extra: Reto Extra 8: Deserializa un mapa representado como lista de objetos clave-valor.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para SuppressWarnings");
     }
 
     /**
      * Reto Extra 9: Serializa dinero formateando su monto e indicando la divisa.
      */
     public static String serializarDinero(Dinero d) {
-        // TODO extra: Crea el ObjectMapper, registra el DineroSerializer en un SimpleModule y devuelve el JSON.
-        return null;
+        // TODO extra: Reto Extra 9: Serializa dinero formateando su monto e indicando la divisa.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para serializarDinero");
     }
 
     /**
      * Reto Extra 10: Configuración dinámica de ObjectMapper con registro selectivo de múltiples serializadores y deserializadores.
      */
     public static ObjectMapper crearMapperConModuloComplejo() {
-        // TODO extra: Registra LocalDateSerializer/Deserializer, TarjetaMaskSerializer, RolDeserializer,
-        // SiNoBooleanSerializer/Deserializer y DineroSerializer en un solo módulo y regístralo en el ObjectMapper.
-        return null;
+        // TODO extra: Reto Extra 10: Configuración dinámica de ObjectMapper con registro selectivo de múltiples serializadores y deserializadores.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearMapperConModuloComplejo");
     }
 }

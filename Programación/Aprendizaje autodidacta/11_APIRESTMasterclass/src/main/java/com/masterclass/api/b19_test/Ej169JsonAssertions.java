@@ -65,44 +65,124 @@ public final class Ej169JsonAssertions {
         System.out.println(jsonIguales("{\"a\":1,\"b\":2}", "{\"b\":2,\"a\":1}"));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si jsonEsperado o jsonReal son null -> IllegalArgumentException.
+        /**
+     * RETO EXTRA 01: Crea un nodo JSON simple.
+     */
+    public static com.fasterxml.jackson.databind.JsonNode crearJsonNodo(String key, String value) {
+        // TODO extra: RETO EXTRA 01: Crea un nodo JSON simple.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearJsonNodo");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: crea un ObjectMapper (Jackson ya está en el pom).
+    /**
+     * RETO EXTRA 02: Comprueba si contiene el campo.
+     */
+    public static boolean contieneCampo(String json, String c) {
+        // TODO extra: RETO EXTRA 02: Comprueba si contiene el campo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contieneCampo");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: parsea ambas cadenas a JsonNode (readTree).
+    /**
+     * RETO EXTRA 03: Extrae valor entero del campo.
+     */
+    public static int obtenerCampoEntero(String json, String c) {
+        // TODO extra: RETO EXTRA 03: Extrae valor entero del campo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerCampoEntero");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: si el parseo falla (JsonProcessingException) -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 04: Determina si el JSON es un array.
+     */
+    public static boolean esArrayJson(String json) {
+        // TODO extra: RETO EXTRA 04: Determina si el JSON es un array.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esArrayJson");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: usa JsonNode.equals: compara estructura y valores, no texto.
+    /**
+     * RETO EXTRA 05: Obtiene el tamaño del array JSON.
+     */
+    public static int tamanioArrayJson(String json) {
+        // TODO extra: RETO EXTRA 05: Obtiene el tamaño del array JSON.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tamanioArrayJson");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: el orden de claves de un objeto NO debe afectar el resultado.
+    /**
+     * RETO EXTRA 06: Determina si el JSON es un objeto.
+     */
+    public static boolean esObjetoJson(String json) {
+        // TODO extra: RETO EXTRA 06: Determina si el JSON es un objeto.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esObjetoJson");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: el orden de elementos de un array SÍ importa (semántica de lista).
+    /**
+     * RETO EXTRA 07: Extrae valor booleano del campo.
+     */
+    public static boolean obtenerCampoBooleano(String json, String c) {
+        // TODO extra: RETO EXTRA 07: Extrae valor booleano del campo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerCampoBooleano");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: tipos distintos (número vs string) -> no iguales.
+    /**
+     * RETO EXTRA 08: Formatea el JSON de forma compacta.
+     */
+    public static String formatoJsonLimpio(String json) {
+        // TODO extra: RETO EXTRA 08: Formatea el JSON de forma compacta.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatoJsonLimpio");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: no compares por String.equals de las cadenas crudas.
+    /**
+     * RETO EXTRA 09: Obtiene nombres de todos los campos.
+     */
+    public static java.util.List<String> obtenerNombresCampos(String json) {
+        // TODO extra: RETO EXTRA 09: Obtiene nombres de todos los campos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerNombresCampos");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve el booleano de equivalencia.
+    /**
+     * RETO EXTRA 10: Valida si el JSON es sintacticamente correcto.
+     */
+    public static boolean esJsonValido(String json) {
+        // TODO extra: RETO EXTRA 10: Valida si el JSON es sintacticamente correcto.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esJsonValido");
     }
 
 }

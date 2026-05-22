@@ -63,44 +63,124 @@ public final class Ej146XmlEndpoint {
         System.out.println(serializar(List.of(new Producto146(1, "Café & Té"))));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si productos es null -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 01: Valida que la lista de productos no sea nula.
+     */
+    public static boolean extra01ValidarLista(List<Producto146> productos) {
+        // TODO extra: RETO EXTRA 01: Valida que la lista de productos no sea nula.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra01ValidarLista");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: usa un StringBuilder para construir el documento.
+    /**
+     * RETO EXTRA 02: Crea un StringBuilder pre-dimensionado para optimizar rendimiento.
+     */
+    public static StringBuilder extra02CrearStringBuilder(int capacidad) {
+        // TODO extra: RETO EXTRA 02: Crea un StringBuilder pre-dimensionado para optimizar rendimiento.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra02CrearStringBuilder");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: añade la declaración <?xml version="1.0" encoding="UTF-8"?>.
+    /**
+     * RETO EXTRA 03: Genera una declaración XML con una codificación personalizada.
+     */
+    public static String extra03DeclaracionPersonalizada(String encoding) {
+        // TODO extra: RETO EXTRA 03: Genera una declaración XML con una codificación personalizada.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra03DeclaracionPersonalizada");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: abre el elemento raíz <productos>.
+    /**
+     * RETO EXTRA 04: Genera la etiqueta de apertura de un elemento con atributos.
+     */
+    public static String extra04AperturaConAtributos(String tag, java.util.Map<String, String> atributos) {
+        // TODO extra: RETO EXTRA 04: Genera la etiqueta de apertura de un elemento con atributos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra04AperturaConAtributos");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: si la lista está vacía, el raíz queda sin hijos (válido).
+    /**
+     * RETO EXTRA 05: Genera una etiqueta vacía autocerrada.
+     */
+    public static String extra05TagAutoCerrado(String tag) {
+        // TODO extra: RETO EXTRA 05: Genera una etiqueta vacía autocerrada.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra05TagAutoCerrado");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: itera cada Producto146 generando <producto id="...">.
+    /**
+     * RETO EXTRA 06: Formatea un único producto a su representación XML simple.
+     */
+    public static String extra06FormatearProducto(Producto146 producto) {
+        // TODO extra: RETO EXTRA 06: Formatea un único producto a su representación XML simple.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra06FormatearProducto");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: escapa caracteres XML del nombre (& < > " ') para no romper el doc.
+    /**
+     * RETO EXTRA 07: Escapa exclusivamente los ampersands de una cadena.
+     */
+    public static String extra07EscaparSoloAmpersand(String texto) {
+        // TODO extra: RETO EXTRA 07: Escapa exclusivamente los ampersands de una cadena.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra07EscaparSoloAmpersand");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: cierra cada <producto> con su nombre como texto.
+    /**
+     * RETO EXTRA 08: Retorna la etiqueta de cierre correspondiente.
+     */
+    public static String extra08EtiquetaCierre(String tag) {
+        // TODO extra: RETO EXTRA 08: Retorna la etiqueta de cierre correspondiente.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra08EtiquetaCierre");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: cierra el elemento raíz </productos>.
+    /**
+     * RETO EXTRA 09: Cuenta la cantidad de caracteres que componen el XML resultante de la lista.
+     */
+    public static int extra09LongitudResultado(List<Producto146> productos) {
+        // TODO extra: RETO EXTRA 09: Cuenta la cantidad de caracteres que componen el XML resultante de la lista.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra09LongitudResultado");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve la cadena completa del StringBuilder.
+    /**
+     * RETO EXTRA 10: Concatenación directa de dos productos en un único fragmento XML.
+     */
+    public static String extra10ConcatenarDosProductos(Producto146 p1, Producto146 p2) {
+        // TODO extra: RETO EXTRA 10: Concatenación directa de dos productos en un único fragmento XML.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra10ConcatenarDosProductos");
     }
 
 }

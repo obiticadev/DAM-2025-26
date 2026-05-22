@@ -67,44 +67,124 @@ public final class Ej152EmbeddedVsReferences {
         System.out.println(resolverReferencia("c1", Map.of("c1", "Ana")));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si pedidoId es null o vacío -> IllegalArgumentException.
+        /**
+     * RETO EXTRA 01: Determina si la relacion se modela con documentos embebidos.
+     */
+    public static boolean esRelacionEmbebida(String typeConfig) {
+        // TODO extra: RETO EXTRA 01: Determina si la relacion se modela con documentos embebidos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRelacionEmbebida");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si lineas es null -> IllegalArgumentException (lista vacía sí es válida).
+    /**
+     * RETO EXTRA 02: Determina si la relacion se modela mediante DBRef o ID de referencia.
+     */
+    public static boolean esRelacionReferenciada(String typeConfig) {
+        // TODO extra: RETO EXTRA 02: Determina si la relacion se modela mediante DBRef o ID de referencia.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRelacionReferenciada");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: crea un LinkedHashMap para el documento padre.
+    /**
+     * RETO EXTRA 03: Genera la estructura de un DBRef standard.
+     */
+    public static String crearReferenciaDbRef(String collection, String id) {
+        // TODO extra: RETO EXTRA 03: Genera la estructura de un DBRef standard.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearReferenciaDbRef");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: pon pedidoId bajo la clave "_id".
+    /**
+     * RETO EXTRA 04: Comprueba la estructura de un DBRef.
+     */
+    public static boolean esReferenciaValida(String dbRefStr) {
+        // TODO extra: RETO EXTRA 04: Comprueba la estructura de un DBRef.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esReferenciaValida");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: convierte cada Linea152 en un Map {producto, cantidad}.
+    /**
+     * RETO EXTRA 05: Advierte si el documento excede el limite teorico seguro (e.g. 16MB) de MongoDB BSON.
+     */
+    public static boolean esDocumentoGrande(long bytes) {
+        // TODO extra: RETO EXTRA 05: Advierte si el documento excede el limite teorico seguro (e.g. 16MB) de MongoDB BSON.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esDocumentoGrande");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: agrupa esos sub-mapas en una List y ponla bajo la clave "lineas".
+    /**
+     * RETO EXTRA 06: Verifica si la lista de referencias tiene ids repetidos.
+     */
+    public static boolean contieneIdsDuplicados(java.util.List<String> ids) {
+        // TODO extra: RETO EXTRA 06: Verifica si la lista de referencias tiene ids repetidos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contieneIdsDuplicados");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: embebido = UNA sola lectura trae el pedido completo (sin joins).
+    /**
+     * RETO EXTRA 07: Valida que la profundidad del arbol embebido no sature lecturas (maximo 5 niveles).
+     */
+    public static boolean esEmbeddedSeguroNivel(int profundidad) {
+        // TODO extra: RETO EXTRA 07: Valida que la profundidad del arbol embebido no sature lecturas (maximo 5 niveles).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esEmbeddedSeguroNivel");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: advierte (en comentario) que crecer sin límite hincha el documento.
+    /**
+     * RETO EXTRA 08: Obtiene la coleccion destino de una referencia DBRef.
+     */
+    public static String extraerNombreDeColeccionReferenciada(String dbRef) {
+        // TODO extra: RETO EXTRA 08: Obtiene la coleccion destino de una referencia DBRef.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerNombreDeColeccionReferenciada");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: devuelve el mapa de forma inmodificable.
+    /**
+     * RETO EXTRA 09: Determina si el error apunta a una referencia no resuelta.
+     */
+    public static boolean esExcepcionReferenciaRota(Throwable t) {
+        // TODO extra: RETO EXTRA 09: Determina si el error apunta a una referencia no resuelta.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionReferenciaRota");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: retorna el documento embebido.
+    /**
+     * RETO EXTRA 10: Genera el formato simple de clave ajena referenciada.
+     */
+    public static String crearJsonReferencia(String id) {
+        // TODO extra: RETO EXTRA 10: Genera el formato simple de clave ajena referenciada.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearJsonReferencia");
     }
 
 }

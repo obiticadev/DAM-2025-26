@@ -54,44 +54,88 @@ public final class Ej094StatementVsPrepared {
         System.out.println("usa el test con H2 en memoria");
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: define el SQL con marcadores: "INSERT INTO USUARIO(id,nombre) VALUES (?,?)".
+    /**
+     * TODO extra 1: Retorna el SQL de inserción parametrizado.
+     */
+    public static String desafioObtenerSqlInsert() {
+        return "INSERT INTO USUARIO(id,nombre) VALUES (?,?)";
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: NUNCA construyas el SQL concatenando 'nombre' (eso es inyectable).
+    /**
+     * TODO extra 2: Evita la inyección SQL simulando el formateo y escapado de un string.
+     */
+    public static String desafioEvitarConcatenacionSql(String nombre) {
+        if (nombre == null) return "NULL";
+        return "'" + nombre.replace("'", "''") + "'";
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: usa try-with-resources con conn.prepareStatement(sql).
+    /**
+     * TODO extra 3: Prepara un PreparedStatement a partir de la conexión.
+     */
+    public static java.sql.PreparedStatement desafioCrearPreparedStatement(java.sql.Connection conn, String sql) throws java.sql.SQLException {
+        return conn.prepareStatement(sql);
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: ps.setInt(1, id).
+    /**
+     * TODO extra 4: Fija el ID en el primer parámetro del PreparedStatement.
+     */
+    public static void desafioEstablecerIdParam(java.sql.PreparedStatement ps, int id) throws java.sql.SQLException {
+        ps.setInt(1, id);
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: ps.setString(2, nombre) — el driver escapa el valor.
+    /**
+     * TODO extra 5: Fija el nombre en el segundo parámetro del PreparedStatement.
+     */
+    public static void desafioEstablecerNombreParam(java.sql.PreparedStatement ps, String nombre) throws java.sql.SQLException {
+        ps.setString(2, nombre);
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: ejecuta con ps.executeUpdate().
+    /**
+     * TODO extra 6: Ejecuta la actualización (INSERT) y devuelve el número de filas afectadas.
+     */
+    public static int desafioEjecutarUpdate(java.sql.PreparedStatement ps) throws java.sql.SQLException {
+        return ps.executeUpdate();
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: el PreparedStatement se cierra solo (try-with-resources).
+    /**
+     * TODO extra 7: Verifica si un Statement está cerrado de forma segura.
+     */
+    public static boolean desafioVerificarCierreStatement(java.sql.PreparedStatement ps) {
+        try {
+            return ps == null || ps.isClosed();
+        } catch (java.sql.SQLException e) {
+            return true;
+        }
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: prepara "SELECT COUNT(*) FROM USUARIO WHERE nombre = ?".
+    /**
+     * TODO extra 8: Retorna el SQL de conteo parametrizado.
+     */
+    public static String desafioObtenerSqlSelectCount() {
+        return "SELECT COUNT(*) FROM USUARIO WHERE nombre = ?";
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: setString(1, nombre), executeQuery, rs.next(), rs.getInt(1).
+    /**
+     * TODO extra 9: Mapea la primera columna de un ResultSet a un entero.
+     */
+    public static int desafioMapearCountResultSet(java.sql.ResultSet rs) throws java.sql.SQLException {
+        if (rs.next()) {
+            return rs.getInt(1);
+        }
+        return 0;
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve el conteo (0 si no hay filas — habrá una fila con el count).
+    /**
+     * TODO extra 10: Retorna el conteo total realizando toda la consulta parametrizada localmente.
+     */
+    public static int desafioContarSeguroLocal(java.sql.Connection conn, String nombre) throws java.sql.SQLException {
+        String sql = desafioObtenerSqlSelectCount();
+        try (var ps = conn.prepareStatement(sql)) {
+            ps.setString(1, nombre);
+            try (var rs = ps.executeQuery()) {
+                return desafioMapearCountResultSet(rs);
+            }
+        }
     }
 
 }

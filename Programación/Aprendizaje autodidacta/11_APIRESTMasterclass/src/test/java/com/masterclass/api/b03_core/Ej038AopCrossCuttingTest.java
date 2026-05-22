@@ -77,7 +77,6 @@ class Ej038AopCrossCuttingTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 1")
     @Test
     void retoExtra01_aspectoAntesDeLlamada() {
         try (var ctx = new org.springframework.context.annotation.AnnotationConfigApplicationContext(ConfigAop.class)) {
@@ -88,7 +87,6 @@ class Ej038AopCrossCuttingTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 2")
     @Test
     void retoExtra02_aspectoDespuesDeRetorno() {
         try (var ctx = new org.springframework.context.annotation.AnnotationConfigApplicationContext(ConfigAop.class)) {
@@ -100,7 +98,6 @@ class Ej038AopCrossCuttingTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 3")
     @Test
     void retoExtra03_aspectoEnCasoDeError() {
         try (var ctx = new org.springframework.context.annotation.AnnotationConfigApplicationContext(ConfigAop.class)) {
@@ -111,7 +108,6 @@ class Ej038AopCrossCuttingTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
     @Test
     void retoExtra04_aspectoAlrededorAround() {
         try (var ctx = new org.springframework.context.annotation.AnnotationConfigApplicationContext(ConfigAop.class)) {
@@ -122,7 +118,6 @@ class Ej038AopCrossCuttingTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 5")
     @Test
     void retoExtra05_pointcutPorAnotacionCustom() {
         try (var ctx = new org.springframework.context.annotation.AnnotationConfigApplicationContext(ConfigAop.class)) {
@@ -133,7 +128,6 @@ class Ej038AopCrossCuttingTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 6")
     @Test
     void retoExtra06_aspectoConMedicionDeTiempo() {
         try (var ctx = new org.springframework.context.annotation.AnnotationConfigApplicationContext(ConfigAop.class)) {
@@ -144,7 +138,6 @@ class Ej038AopCrossCuttingTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 7")
     @Test
     void retoExtra07_pointcutCombinadoConOperadores() {
         try (var ctx = new org.springframework.context.annotation.AnnotationConfigApplicationContext(ConfigAop.class)) {
@@ -155,7 +148,6 @@ class Ej038AopCrossCuttingTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
     @Test
     void retoExtra08_accederAParametrosDeMetodo() {
         try (var ctx = new org.springframework.context.annotation.AnnotationConfigApplicationContext(ConfigAop.class)) {
@@ -166,7 +158,6 @@ class Ej038AopCrossCuttingTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 9")
     @Test
     void retoExtra09_modificarArgumentosDinamicos() {
         try (var ctx = new org.springframework.context.annotation.AnnotationConfigApplicationContext(ConfigAop.class)) {
@@ -176,7 +167,6 @@ class Ej038AopCrossCuttingTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     @Test
     void retoExtra10_aspectoOrdenadoConOrder() {
         try (var ctx = new org.springframework.context.annotation.AnnotationConfigApplicationContext(ConfigAop.class)) {

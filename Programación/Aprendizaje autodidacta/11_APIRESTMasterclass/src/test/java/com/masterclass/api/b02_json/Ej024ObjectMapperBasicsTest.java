@@ -27,7 +27,6 @@ class Ej024ObjectMapperBasicsTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 1")
     void retoExtra01_serializarBonito() {
         var c = new Cliente(1L, "Ana");
         String j = Ej024ObjectMapperBasics.serializarBonito(c);
@@ -35,7 +34,6 @@ class Ej024ObjectMapperBasicsTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 2")
     void retoExtra02_deserializarGenerico() {
         String json = "{\"id\":7,\"nombre\":\"Luis\"}";
         Cliente c = Ej024ObjectMapperBasics.deserializarGenerico(json, Cliente.class);
@@ -44,14 +42,12 @@ class Ej024ObjectMapperBasicsTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 3")
     void retoExtra03_esJsonValido() {
         assertTrue(Ej024ObjectMapperBasics.esJsonValido("{\"a\":1}"));
         assertFalse(Ej024ObjectMapperBasics.esJsonValido("{mal-formado}"));
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
     void retoExtra04_deserializarIgnorandoCamposDesconocidos() {
         String json = "{\"id\":1,\"nombre\":\"Ana\",\"email\":\"ana@correo.com\"}";
         Cliente c = Ej024ObjectMapperBasics.deserializarIgnorandoCamposDesconocidos(json);
@@ -61,7 +57,6 @@ class Ej024ObjectMapperBasicsTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 5")
     void retoExtra05_serializarABytes() {
         var c = new Cliente(1L, "Ana");
         byte[] bytes = Ej024ObjectMapperBasics.serializarABytes(c);
@@ -70,7 +65,6 @@ class Ej024ObjectMapperBasicsTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 6")
     void retoExtra06_deserializarDesdeBytes() {
         var c = new Cliente(1L, "Ana");
         byte[] bytes = Ej024ObjectMapperBasics.serializarABytes(c);
@@ -79,7 +73,6 @@ class Ej024ObjectMapperBasicsTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 7")
     void retoExtra07_actualizarConMap() {
         var base = new Cliente(1L, "Ana");
         String patch = "{\"nombre\":\"Ana María\"}";
@@ -89,7 +82,6 @@ class Ej024ObjectMapperBasicsTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
     void retoExtra08_convertirEntreTipos() {
         java.util.Map<String, Object> map = java.util.Map.of("id", 123, "nombre", "Luis");
         Cliente c = Ej024ObjectMapperBasics.convertirEntreTipos(map, Cliente.class);
@@ -98,14 +90,12 @@ class Ej024ObjectMapperBasicsTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 9")
     void retoExtra09_serializarConIdentacionYComprobar() {
         var c = new Cliente(1L, "Ana");
         assertTrue(Ej024ObjectMapperBasics.serializarConIdentacionYComprobar(c));
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     void retoExtra10_escribirYLeerDeArchivoTemporal() {
         var c = new Cliente(99L, "Carlos");
         Cliente result = Ej024ObjectMapperBasics.escribirYLeerDeArchivoTemporal(c);

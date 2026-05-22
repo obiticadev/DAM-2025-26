@@ -65,44 +65,124 @@ public final class Ej148CsvImportExport {
         System.out.println(exportar(p));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si csv es null -> IllegalArgumentException.
+        /**
+     * RETO EXTRA 01: Determina si una linea de texto tiene formato CSV correcto.
+     */
+    public static boolean esCsvValidoFila(String row) {
+        // TODO extra: RETO EXTRA 01: Determina si una linea de texto tiene formato CSV correcto.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCsvValidoFila");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: divide el texto en líneas por '\n' (tolera '\r' final).
+    /**
+     * RETO EXTRA 02: Separa campos por comas respetando comillas simples.
+     */
+    public static java.util.List<String> extraerCamposCsv(String row) {
+        // TODO extra: RETO EXTRA 02: Separa campos por comas respetando comillas simples.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerCamposCsv");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: si no hay líneas o solo cabecera, devuelve lista vacía.
+    /**
+     * RETO EXTRA 03: Comprueba si la fila representa las columnas.
+     */
+    public static boolean esFilaCabecera(String row, String idCampo) {
+        // TODO extra: RETO EXTRA 03: Comprueba si la fila representa las columnas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFilaCabecera");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: descarta la primera línea (cabecera id;nombre;edad).
+    /**
+     * RETO EXTRA 04: Genera la linea CSV uniendo los elementos.
+     */
+    public static String combinarFilaCsv(java.util.List<String> campos) {
+        // TODO extra: RETO EXTRA 04: Genera la linea CSV uniendo los elementos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para combinarFilaCsv");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: ignora líneas en blanco intermedias.
+    /**
+     * RETO EXTRA 05: Determina si un valor del campo CSV es convertible a double.
+     */
+    public static boolean esDatoNumerico(String s) {
+        // TODO extra: RETO EXTRA 05: Determina si un valor del campo CSV es convertible a double.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esDatoNumerico");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: divide cada fila por ';' esperando exactamente 3 campos.
+    /**
+     * RETO EXTRA 06: Verifica formato ISO de fecha en campo de importacion.
+     */
+    public static boolean esFechaCsvValida(String s) {
+        // TODO extra: RETO EXTRA 06: Verifica formato ISO de fecha en campo de importacion.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFechaCsvValida");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: si el número de campos != 3 -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 07: Sanea cadenas añadiendo dobles comillas si contienen comas.
+     */
+    public static String escaparComasCsv(String s) {
+        // TODO extra: RETO EXTRA 07: Sanea cadenas añadiendo dobles comillas si contienen comas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para escaparComasCsv");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: parsea id (long) y edad (int); NumberFormatException -> IllegalArgument.
+    /**
+     * RETO EXTRA 08: Limpia las dobles comillas envolventes del valor.
+     */
+    public static String eliminarComillasCsv(String s) {
+        // TODO extra: RETO EXTRA 08: Limpia las dobles comillas envolventes del valor.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para eliminarComillasCsv");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: construye un Persona148 por fila y acumúlalo.
+    /**
+     * RETO EXTRA 09: Evalua si el error proviene del procesador de ficheros.
+     */
+    public static boolean esExcepcionDeImportacion(Throwable t) {
+        // TODO extra: RETO EXTRA 09: Evalua si el error proviene del procesador de ficheros.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionDeImportacion");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve la lista de personas en orden del fichero.
+    /**
+     * RETO EXTRA 10: Crea la linea descriptiva de error de importacion.
+     */
+    public static String formatearLogCsv(int fila, String err) {
+        // TODO extra: RETO EXTRA 10: Crea la linea descriptiva de error de importacion.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearLogCsv");
     }
 
 }

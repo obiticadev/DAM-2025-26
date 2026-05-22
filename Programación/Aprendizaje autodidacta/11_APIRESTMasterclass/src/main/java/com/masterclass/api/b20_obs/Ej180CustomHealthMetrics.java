@@ -43,44 +43,124 @@ public final class Ej180CustomHealthMetrics {
         System.out.println(salud(100, 5, 0.1));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si total < 0 -> IllegalArgumentException.
+        /**
+     * RETO EXTRA 01: Valida total >= 0.
+     */
+    public static boolean esTotalValido(long t) {
+        // TODO extra: RETO EXTRA 01: Valida total >= 0.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esTotalValido");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si errores < 0 -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 02: Valida errores.
+     */
+    public static boolean esErroresValido(long e, long t) {
+        // TODO extra: RETO EXTRA 02: Valida errores.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esErroresValido");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: si errores > total -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 03: Valida umbral.
+     */
+    public static boolean esUmbralValido(double u) {
+        // TODO extra: RETO EXTRA 03: Valida umbral.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esUmbralValido");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: si umbral < 0 o umbral > 1 -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 04: Calcula tasa real.
+     */
+    public static double calcularTasaError(long t, long e) {
+        // TODO extra: RETO EXTRA 04: Calcula tasa real.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularTasaError");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: si total == 0, la tasa de error es 0.0 (evita division por cero).
+    /**
+     * RETO EXTRA 05: Formatea con 4 decimales.
+     */
+    public static String formatearTasa(double tasa) {
+        // TODO extra: RETO EXTRA 05: Formatea con 4 decimales.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearTasa");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: en otro caso errorRate = errores / total (en double).
+    /**
+     * RETO EXTRA 06: Calcula status.
+     */
+    public static String determinarStatus(double tasa, double umbral) {
+        // TODO extra: RETO EXTRA 06: Calcula status.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para determinarStatus");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: formatea errorRate con exactamente 4 decimales (Locale.ROOT, punto).
+    /**
+     * RETO EXTRA 07: Valida si es UP.
+     */
+    public static boolean esStatusUp(String status) {
+        // TODO extra: RETO EXTRA 07: Valida si es UP.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esStatusUp");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: el status es "DOWN" si errorRate > umbral; "UP" si es <=.
+    /**
+     * RETO EXTRA 08: Valida si es DOWN.
+     */
+    public static boolean esStatusDown(String status) {
+        // TODO extra: RETO EXTRA 08: Valida si es DOWN.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esStatusDown");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: construye el Map con claves "errorRate" y "status".
+    /**
+     * RETO EXTRA 09: Extrae tasa del mapa.
+     */
+    public static String obtenerTasaDelMapa(java.util.Map<String, String> m) {
+        // TODO extra: RETO EXTRA 09: Extrae tasa del mapa.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerTasaDelMapa");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve el mapa de metricas/health.
+    /**
+     * RETO EXTRA 10: Extrae status del mapa.
+     */
+    public static String obtenerStatusDelMapa(java.util.Map<String, String> m) {
+        // TODO extra: RETO EXTRA 10: Extrae status del mapa.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerStatusDelMapa");
     }
 
 }

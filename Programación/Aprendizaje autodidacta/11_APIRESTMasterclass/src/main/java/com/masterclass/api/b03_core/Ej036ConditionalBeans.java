@@ -59,25 +59,36 @@ public final class Ej036ConditionalBeans {
      * Reto Extra 1: Simula la condición @ConditionalOnProperty. Registra un bean condicional si una propiedad dada está habilitada.
      */
     public static class registrarConPropiedadHabilitada {
-        // TODO extra (Reto 1): DTO o método de configuración que registra el bean sólo si la propiedad coincide con el valor esperado.
+        // TODO extra: Reto Extra 1: Simula la condición @ConditionalOnProperty. Registra un bean condicional si una propiedad dada está habilitada.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
     /**
      * Reto Extra 2: Registra un bean si una propiedad está ausente o no definida, configurando un fallback (matchIfMissing = true).
      */
     public static class registrarConPropiedadAusente {
-        // TODO extra (Reto 2): Registra el bean de contingencia cuando la propiedad no existe en las fuentes de configuración.
+        // TODO extra: Reto Extra 2: Registra un bean si una propiedad está ausente o no definida, configurando un fallback (matchIfMissing = true).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
     /**
      * Reto Extra 3: Implementación personalizada de la interfaz Condition de Spring para evaluar si el sistema operativo actual es Windows.
      */
     public static class WindowsOSCondition implements org.springframework.context.annotation.Condition {
-        @Override
-        public boolean matches(org.springframework.context.annotation.ConditionContext context, org.springframework.core.type.AnnotatedTypeMetadata metadata) {
-            // TODO extra (Reto 3): Retorna true si System.getProperty("os.name") contiene la palabra "Windows".
-            return System.getProperty("os.name").toLowerCase().contains("windows");
-        }
+        // TODO extra: Reto Extra 3: Implementación personalizada de la interfaz Condition de Spring para evaluar si el sistema operativo actual es Windows.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
     /**
@@ -85,54 +96,84 @@ public final class Ej036ConditionalBeans {
      */
     @org.springframework.context.annotation.Conditional(WindowsOSCondition.class)
     public static class ServicioSoloWindows {
-        public String obtenerSO() { return "Windows"; }
+        // TODO extra: Reto Extra 4: DTO de servicio registrado condicionalmente basándose en la condición del sistema operativo creada en el Reto 3.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para Conditional");
     }
 
     /**
      * Reto Extra 5: Carga condicionalmente un bean en el classpath si y sólo si existe una determinada clase externa.
      */
     public static class registrarSiClaseExiste {
-        // TODO extra (Reto 5): Carga condicionalmente un bean evaluando mediante Class.forName() la presencia de la clase.
+        // TODO extra: Reto Extra 5: Carga condicionalmente un bean en el classpath si y sólo si existe una determinada clase externa.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
     /**
      * Reto Extra 6: Registra un bean condicionado a que otro bean base ya esté registrado en el ApplicationContext (@ConditionalOnBean).
      */
     public static class registrarSiOtroBeanExiste {
-        // TODO extra (Reto 6): Comprueba programáticamente si el bean base está definido en el cargador antes de registrar el dependiente.
+        // TODO extra: Reto Extra 6: Registra un bean condicionado a que otro bean base ya esté registrado en el ApplicationContext (@ConditionalOnBean).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
     /**
      * Reto Extra 7: Registra un bean aplicando múltiples condiciones acumulativas, donde todas deben cumplirse.
      */
     public static class CondicionalMultiple {
-        // TODO extra (Reto 7): Define un bean decorado con múltiples anotaciones @Conditional.
+        // TODO extra: Reto Extra 7: Registra un bean aplicando múltiples condiciones acumulativas, donde todas deben cumplirse.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
     /**
      * Reto Extra 8: Registra un bean usando una condición inversa (registro si y sólo si una determinada condición de entorno falla).
      */
     public static class CondicionNegada implements org.springframework.context.annotation.Condition {
-        @Override
-        public boolean matches(org.springframework.context.annotation.ConditionContext context, org.springframework.core.type.AnnotatedTypeMetadata metadata) {
-            // TODO extra (Reto 8): Retorna la negación de otra condición específica del sistema.
-            return false;
-        }
+        // TODO extra: Reto Extra 8: Registra un bean usando una condición inversa (registro si y sólo si una determinada condición de entorno falla).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
     /**
      * Reto Extra 9: Condiciona el registro de un bean a la existencia física de un recurso en el classpath (ej. un fichero de propiedades).
      */
     public static class registrarCondicionalPorRecurso {
-        // TODO extra (Reto 9): Evalúa la existencia física del recurso indicado en las fuentes del classpath.
+        // TODO extra: Reto Extra 9: Condiciona el registro de un bean a la existencia física de un recurso en el classpath (ej. un fichero de propiedades).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
     /**
      * Reto Extra 10: Comprueba de forma programática si un determinado bean superó las condiciones de configuración y fue finalmente registrado con éxito.
      */
     public static boolean evaluarConditionDeRegistro(org.springframework.context.ApplicationContext ctx, String nombreBean) {
-        // TODO extra (Reto 10): Verifica la presencia del bean en el contexto actual de Spring.
-        return false;
+        // TODO extra: Reto Extra 10: Comprueba de forma programática si un determinado bean superó las condiciones de configuración y fue finalmente registrado con éxito.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para evaluarConditionDeRegistro");
     }
 
 }

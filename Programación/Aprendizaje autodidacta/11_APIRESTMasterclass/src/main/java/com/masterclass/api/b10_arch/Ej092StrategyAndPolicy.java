@@ -52,44 +52,88 @@ public final class Ej092StrategyAndPolicy {
         System.out.println(aplicar(100, "black-friday"));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: "none" -> identidad (precio sin cambios).
+    /**
+     * TODO extra 1: Retorna la estrategia None (operación identidad).
+     */
+    public static java.util.function.DoubleUnaryOperator desafioEstrategiaNone() {
+        return p -> p;
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: "black-friday" -> precio * 0.70 (30% off).
+    /**
+     * TODO extra 2: Retorna la estrategia Black Friday (descuento del 30%).
+     */
+    public static java.util.function.DoubleUnaryOperator desafioEstrategiaBlackFriday() {
+        return p -> p * 0.70;
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: "vip" -> precio * 0.90 (10% off).
+    /**
+     * TODO extra 3: Retorna la estrategia VIP (descuento del 10%).
+     */
+    public static java.util.function.DoubleUnaryOperator desafioEstrategiaVip() {
+        return p -> p * 0.90;
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: devuelve un Map inmodificable con esas 3 entradas.
+    /**
+     * TODO extra 4: Crea el mapa de estrategias.
+     */
+    public static java.util.Map<String, java.util.function.DoubleUnaryOperator> desafioCrearMapaEstrategias(
+            java.util.function.DoubleUnaryOperator none,
+            java.util.function.DoubleUnaryOperator bf,
+            java.util.function.DoubleUnaryOperator vip) {
+        return java.util.Map.of("none", none, "black-friday", bf, "vip", vip);
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: cada valor es un DoubleUnaryOperator (la "estrategia").
+    /**
+     * TODO extra 5: Verifica el resultado de aplicar un operador a un precio.
+     */
+    public static boolean desafioVerificarOperador(java.util.function.DoubleUnaryOperator op, double precio, double esperado) {
+        return Math.abs(op.applyAsDouble(precio) - esperado) < 0.0001;
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: valida precio >= 0.
+    /**
+     * TODO extra 6: Valida que el precio no sea negativo.
+     */
+    public static void desafioValidarPrecioEstrategia(double precio) {
+        if (precio < 0) {
+            throw new IllegalArgumentException("Precio no puede ser negativo");
+        }
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: obtén el mapa de estrategias().
+    /**
+     * TODO extra 7: Obtiene una estrategia del mapa por su nombre.
+     */
+    public static java.util.function.DoubleUnaryOperator desafioObtenerEstrategiaEspecífica(
+            java.util.Map<String, java.util.function.DoubleUnaryOperator> mapa, String nombre) {
+        return mapa.get(nombre);
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: si la estrategia no está -> IllegalArgumentException.
+    /**
+     * TODO extra 8: Lanza una excepción si la estrategia no existe en el mapa.
+     */
+    public static void desafioLanzarEstrategiaInexistente(
+            java.util.Map<String, java.util.function.DoubleUnaryOperator> mapa, String nombre) {
+        if (!mapa.containsKey(nombre)) {
+            throw new IllegalArgumentException("Estrategia inexistente");
+        }
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: aplica la función con applyAsDouble(precio).
+    /**
+     * TODO extra 9: Ejecuta una estrategia aplicando su función sobre un precio.
+     */
+    public static double desafioEjecutarEstrategia(java.util.function.DoubleUnaryOperator op, double precio) {
+        return op.applyAsDouble(precio);
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve el resultado (añadir una estrategia nueva NO toca este método).
+    /**
+     * TODO extra 10: Comprueba que el mapa devuelto por estrategias() es inmodificable.
+     */
+    public static void desafioEstrategiasInmodificables(java.util.Map<String, java.util.function.DoubleUnaryOperator> mapa) {
+        try {
+            mapa.put("hacked", p -> 0);
+            throw new AssertionError("El mapa debería ser inmodificable");
+        } catch (UnsupportedOperationException e) {
+            // Correcto
+        }
     }
 
 }

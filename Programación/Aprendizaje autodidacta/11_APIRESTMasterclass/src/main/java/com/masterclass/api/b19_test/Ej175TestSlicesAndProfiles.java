@@ -48,44 +48,124 @@ public final class Ej175TestSlicesAndProfiles {
         System.out.println(resolver(p, "test", "url"));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si props es null -> IllegalArgumentException.
+        /**
+     * RETO EXTRA 01: Verifica clave.
+     */
+    public static boolean contienePropiedad(java.util.Map<String, String> props, String k) {
+        // TODO extra: RETO EXTRA 01: Verifica clave.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contienePropiedad");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si perfil es null o blank -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 02: Obtiene valor.
+     */
+    public static String obtenerPropiedad(java.util.Map<String, String> props, String k) {
+        // TODO extra: RETO EXTRA 02: Obtiene valor.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerPropiedad");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: si clave es null o blank -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 03: Valida si es perfil test.
+     */
+    public static boolean esPerfilTest(String perfil) {
+        // TODO extra: RETO EXTRA 03: Valida si es perfil test.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPerfilTest");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: construye la clave del perfil: perfil + "." + clave.
+    /**
+     * RETO EXTRA 04: Formatea clave de perfil.
+     */
+    public static String obtenerClavePerfil(String perfil, String clave) {
+        // TODO extra: RETO EXTRA 04: Formatea clave de perfil.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerClavePerfil");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: si props contiene la clave del perfil -> ese valor gana.
+    /**
+     * RETO EXTRA 05: Obtiene total de propiedades.
+     */
+    public static int obtenerTamanioProps(java.util.Map<String, String> props) {
+        // TODO extra: RETO EXTRA 05: Obtiene total de propiedades.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerTamanioProps");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: si no, intenta la clave base 'clave' (fallback).
+    /**
+     * RETO EXTRA 06: Valida si esta vacio.
+     */
+    public static boolean esMapaVacio(java.util.Map<String, String> props) {
+        // TODO extra: RETO EXTRA 06: Valida si esta vacio.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMapaVacio");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: si tampoco existe la base -> devuelve null (sin valor).
+    /**
+     * RETO EXTRA 07: Resuelve con fallback por defecto.
+     */
+    public static String resolverConDefault(java.util.Map<String, String> props, String perf, String k, String def) {
+        // TODO extra: RETO EXTRA 07: Resuelve con fallback por defecto.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para resolverConDefault");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: no mutes el mapa de propiedades de entrada.
+    /**
+     * RETO EXTRA 08: Verifica valor efectivo.
+     */
+    public static boolean esPropiedadActiva(java.util.Map<String, String> props, String perf, String k, String val) {
+        // TODO extra: RETO EXTRA 08: Verifica valor efectivo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPropiedadActiva");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: la precedencia perfil>base modela la fusión de Spring.
+    /**
+     * RETO EXTRA 09: Crea una copia mutable.
+     */
+    public static java.util.Map<String, String> limpiarPropiedades(java.util.Map<String, String> props) {
+        // TODO extra: RETO EXTRA 09: Crea una copia mutable.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para limpiarPropiedades");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve el valor efectivo resuelto.
+    /**
+     * RETO EXTRA 10: Combina propiedades.
+     */
+    public static java.util.Map<String, String> fusionarPropiedades(java.util.Map<String, String> p1, java.util.Map<String, String> p2) {
+        // TODO extra: RETO EXTRA 10: Combina propiedades.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para fusionarPropiedades");
     }
 
 }

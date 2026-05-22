@@ -113,8 +113,12 @@ public final class Ej025JsonAnnotations {
      * @return JSON sin propiedades nulas
      */
     public static String serializarExcluyendoNulos(Object obj) {
-        // TODO extra: configura un ObjectMapper local con setSerializationInclusion(JsonInclude.Include.NON_NULL) y serializa
-        return null;
+        // TODO extra: Reto Extra 1: Exclusión de valores nulos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para serializarExcluyendoNulos");
     }
 
     /**
@@ -125,8 +129,12 @@ public final class Ej025JsonAnnotations {
      * @return JSON sin propiedades vacías
      */
     public static String serializarConInclusionNoVacio(Object obj) {
-        // TODO extra: configura un ObjectMapper local con setSerializationInclusion(JsonInclude.Include.NON_EMPTY) y serializa
-        return null;
+        // TODO extra: Reto Extra 2: Exclusión de valores vacíos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para serializarConInclusionNoVacio");
     }
 
     /**
@@ -137,8 +145,12 @@ public final class Ej025JsonAnnotations {
      * @return JSON con claves ordenadas alfabéticamente
      */
     public static String serializarConOrdenEspecifico(Object obj) {
-        // TODO extra: configura un ObjectMapper local con MapperFeature.SORT_PROPERTIES_ALPHABETICALLY habilitado y serializa
-        return null;
+        // TODO extra: Reto Extra 3: Orden de propiedades.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para serializarConOrdenEspecifico");
     }
 
     /**
@@ -149,8 +161,12 @@ public final class Ej025JsonAnnotations {
      * @return JSON con representación de fecha estructurada
      */
     public static String serializarConFormatoFecha(Object obj) {
-        // TODO extra: crea un ObjectMapper local, regístrale el JavaTimeModule (de com.fasterxml.jackson.datatype.jsr310) y serializa
-        return null;
+        // TODO extra: Reto Extra 4: Formateador de fechas personalizado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para serializarConFormatoFecha");
     }
 
     /**
@@ -163,8 +179,12 @@ public final class Ej025JsonAnnotations {
      * @return objeto deserializado
      */
     public static <T> T deserializarConAlias(String json, Class<T> clase) {
-        // TODO extra: deserializa el JSON normalmente, delegando a la compatibilidad que provee la anotación @JsonAlias de Jackson
-        return null;
+        // TODO extra: Reto Extra 5: Compatibilidad con nombres alternativos (Alias).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para deserializarConAlias");
     }
 
     /**
@@ -177,8 +197,12 @@ public final class Ej025JsonAnnotations {
      * @return objeto deserializado con su campo anidado debidamente poblado
      */
     public static <T> T deserializarConCamposUnwrapped(String json, Class<T> clase) {
-        // TODO extra: deserializa el JSON delegando en la capacidad de Jackson para procesar @JsonUnwrapped
-        return null;
+        // TODO extra: Reto Extra 6: Aplanamiento de campos aninados (Unwrapped).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para deserializarConCamposUnwrapped");
     }
 
     /**
@@ -189,8 +213,12 @@ public final class Ej025JsonAnnotations {
      * @return representación en JSON del valor primitivo
      */
     public static String serializarValorUnico(Object obj) {
-        // TODO extra: serializa el objeto aplicando la resolución de @JsonValue de Jackson
-        return null;
+        // TODO extra: Reto Extra 7: Serialización de valor único.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para serializarValorUnico");
     }
 
     /**
@@ -202,8 +230,12 @@ public final class Ej025JsonAnnotations {
      * @return true si el campo posee la anotación @JsonIgnore
      */
     public static boolean esCampoIgnorado(Class<?> clase, String campo) {
-        // TODO extra: accede al campo por reflexión y comprueba si tiene presente la anotación com.fasterxml.jackson.annotation.JsonIgnore
-        return false;
+        // TODO extra: Reto Extra 8: Inspección reflectiva de exclusión de Jackson.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCampoIgnorado");
     }
 
     /**
@@ -217,8 +249,12 @@ public final class Ej025JsonAnnotations {
      * @return objeto deserializado
      */
     public static <T> T deserializarConPropiedadesDinamicas(String json, Class<T> clase) {
-        // TODO extra: deserializa el JSON delegando en el recolector dinámico @JsonAnySetter de la clase destino
-        return null;
+        // TODO extra: Reto Extra 9: Deserialización de propiedades dinámicas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para deserializarConPropiedadesDinamicas");
     }
 
     /**
@@ -229,8 +265,12 @@ public final class Ej025JsonAnnotations {
      * @return JSON serializado con las propiedades del mapa expuestas en el nivel raíz
      */
     public static String serializarConPropiedadesDinamicas(Object obj) {
-        // TODO extra: serializa el objeto delegando en la capacidad de Jackson de expandir el mapa con @JsonAnyGetter
-        return null;
+        // TODO extra: Reto Extra 10: Serialización de propiedades dinámicas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para serializarConPropiedadesDinamicas");
     }
 
 }

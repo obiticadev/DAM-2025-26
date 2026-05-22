@@ -57,9 +57,12 @@ public final class Ej004HttpMethodsSemantics {
      * @return true si es seguro según la especificación HTTP (GET, HEAD, OPTIONS, TRACE)
      */
     public static boolean esMetodoSeguroWeb(String method) {
-        // TODO extra 1: valida e implementa la comprobación de seguridad para GET, HEAD, OPTIONS y TRACE.
-        // Lanza IllegalArgumentException si el método es nulo o está vacío.
-        return false;
+        // TODO extra: RETO EXTRA 1: Métodos seguros ampliados (estándar RFC).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMetodoSeguroWeb");
     }
 
     /**
@@ -70,9 +73,12 @@ public final class Ej004HttpMethodsSemantics {
      * @return true si es un método idempotente estándar
      */
     public static boolean esMetodoIdempotenteWeb(String method) {
-        // TODO extra 2: valida e implementa la comprobación de idempotencia extendida.
-        // Métodos idempotentes: GET, HEAD, PUT, DELETE, OPTIONS, TRACE.
-        return false;
+        // TODO extra: RETO EXTRA 2: Métodos idempotentes ampliados (estándar RFC).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMetodoIdempotenteWeb");
     }
 
     /**
@@ -83,9 +89,12 @@ public final class Ej004HttpMethodsSemantics {
      * @return true si el verbo admite cuerpo por diseño (POST, PUT, PATCH)
      */
     public static boolean admiteCuerpoDePeticion(String method) {
-        // TODO extra 3: retorna true si el método es POST, PUT o PATCH.
-        // Retorna false para GET, DELETE, HEAD, OPTIONS, TRACE.
-        return false;
+        // TODO extra: RETO EXTRA 3: ¿El método admite cuerpo (Payload)?
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para admiteCuerpoDePeticion");
     }
 
     /**
@@ -96,8 +105,12 @@ public final class Ej004HttpMethodsSemantics {
      * @return true si el método es cacheable por defecto (GET y HEAD)
      */
     public static boolean esCacheablePorDefecto(String method) {
-        // TODO extra 4: implementa si el método es cacheable de forma nativa por el protocolo.
-        return false;
+        // TODO extra: RETO EXTRA 4: Cacheabilidad estándar.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCacheablePorDefecto");
     }
 
     /**
@@ -109,9 +122,12 @@ public final class Ej004HttpMethodsSemantics {
      * @return true si el método HTTP está permitido para esa configuración
      */
     public static boolean validarCambioEstadoPermitido(String method, boolean esRutaSoloLectura) {
-        // TODO extra 5: si esRutaSoloLectura es true, solo se permiten métodos seguros.
-        // Si es false, se permiten todos. Retorna false si no es permitido.
-        return false;
+        // TODO extra: RETO EXTRA 5: Validación de seguridad de hilos en API Gateway.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para validarCambioEstadoPermitido");
     }
 
     /**
@@ -123,9 +139,12 @@ public final class Ej004HttpMethodsSemantics {
      * @throws IllegalArgumentException si es nulo, vacío, o tiene caracteres no alfabéticos
      */
     public static String normalizarMetodoExtremo(String method) {
-        // TODO extra 6: limpia espacios al principio y final. Verifica que no sea nulo ni vacío,
-        // y que solo contenga letras (A-Z, a-z). Retorna la cadena convertida a mayúsculas.
-        return "";
+        // TODO extra: RETO EXTRA 6: Normalización y saneamiento extremo de verbos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para normalizarMetodoExtremo");
     }
 
     /**
@@ -136,8 +155,12 @@ public final class Ej004HttpMethodsSemantics {
      * @return true si es un método clásico de WebDAV (PROPFIND, MKCOL, LOCK, UNLOCK)
      */
     public static boolean esMetodoWebDav(String method) {
-        // TODO extra 7: valida si el método pertenece a la extensión WebDAV.
-        return false;
+        // TODO extra: RETO EXTRA 7: Identificar extensiones WebDAV.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMetodoWebDav");
     }
 
     /**
@@ -147,8 +170,12 @@ public final class Ej004HttpMethodsSemantics {
      * @return el código HTTP clásico de éxito (POST -> 201, DELETE -> 204, GET/PUT/PATCH -> 200)
      */
     public static int determinarCodigoExitoPorDefecto(String method) {
-        // TODO extra 8: retorna 201 para POST, 204 para DELETE, y 200 para GET, PUT y PATCH.
-        return 200;
+        // TODO extra: RETO EXTRA 8: Determinar código de respuesta de éxito recomendado por el protocolo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para determinarCodigoExitoPorDefecto");
     }
 
     /**
@@ -160,9 +187,12 @@ public final class Ej004HttpMethodsSemantics {
      * @return true si la red puede reintentar la operación automáticamente de forma segura
      */
     public static boolean permiteReintentoAutomatico(String method) {
-        // TODO extra 9: solo se pueden reintentar automáticamente los métodos que sean
-        // IDEMPOTENTES (GET, HEAD, PUT, DELETE, OPTIONS). POST y PATCH no lo permiten.
-        return false;
+        // TODO extra: RETO EXTRA 9: Tolerancia a fallos y reintentos automáticos de Red.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para permiteReintentoAutomatico");
     }
 
     /**
@@ -173,9 +203,12 @@ public final class Ej004HttpMethodsSemantics {
      *         y false si opera sobre la colección (ej. POST o GET sobre /productos)
      */
     public static boolean requiereUriEspecificaRecurso(String method) {
-        // TODO extra 10: retorna true si el método es PUT, PATCH o DELETE, ya que requieren identificar
-        // el recurso exacto a modificar o eliminar. Retorna false para GET y POST.
-        return false;
+        // TODO extra: RETO EXTRA 10: Semántica de Colección vs Recurso Individual.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para requiereUriEspecificaRecurso");
     }
 
 }

@@ -70,44 +70,124 @@ public final class Ej163RefreshTokens {
         System.out.println("refresh token rotation playground");
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si almacen es null -> IllegalArgumentException.
+        /**
+     * RETO EXTRA 01: Comprueba longitud y aleatoriedad segura (e.g. UUID completo sin guiones).
+     */
+    public static boolean esRefreshTokenValido(String token) {
+        // TODO extra: RETO EXTRA 01: Comprueba longitud y aleatoriedad segura (e.g. UUID completo sin guiones).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRefreshTokenValido");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si refreshToken es null o blank -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 02: Genera un token de refresco aleatorio fuerte.
+     */
+    public static String crearRefreshTokenNuevo() {
+        // TODO extra: RETO EXTRA 02: Genera un token de refresco aleatorio fuerte.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearRefreshTokenNuevo");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: busca la info en el almacén por el token.
+    /**
+     * RETO EXTRA 03: Determina si el token de refresco ya vencio.
+     */
+    public static boolean esTokenExpirado(java.time.Instant exp) {
+        // TODO extra: RETO EXTRA 03: Determina si el token de refresco ya vencio.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esTokenExpirado");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: si no existe -> Optional.empty() (token desconocido o ya rotado).
+    /**
+     * RETO EXTRA 04: Determina si la excepcion apunta a token de refresco inexistente o caducado.
+     */
+    public static boolean esExcepcionDeRefresco(Throwable t) {
+        // TODO extra: RETO EXTRA 04: Determina si la excepcion apunta a token de refresco inexistente o caducado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionDeRefresco");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: si info.revoked == true -> Optional.empty().
+    /**
+     * RETO EXTRA 05: Genera el JSON standard de retorno con ambos tokens.
+     */
+    public static String generarRespuestaToken(String access, String refresh) {
+        // TODO extra: RETO EXTRA 05: Genera el JSON standard de retorno con ambos tokens.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para generarRespuestaToken");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: si info.expiraMillis <= ahoraMillis -> Optional.empty() (caducado).
+    /**
+     * RETO EXTRA 06: Determina si no se supero el limite de intentos fallidos de refresco.
+     */
+    public static boolean esIntentoRefrescoPermitido(int fallidos, int max) {
+        // TODO extra: RETO EXTRA 06: Determina si no se supero el limite de intentos fallidos de refresco.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esIntentoRefrescoPermitido");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: NO loguees el token completo.
+    /**
+     * RETO EXTRA 07: Valida que la peticion de refresco provenga de la misma IP original para evitar secuestros.
+     */
+    public static boolean esIpRefrescoSegura(String originalIp, String currentIp) {
+        // TODO extra: RETO EXTRA 07: Valida que la peticion de refresco provenga de la misma IP original para evitar secuestros.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esIpRefrescoSegura");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: documenta que detectar reuso de un token rotado = posible robo.
+    /**
+     * RETO EXTRA 08: Obtiene los segundos de vida del refresh token.
+     */
+    public static long extraerTiempoExpiracion(String tokenJson) {
+        // TODO extra: RETO EXTRA 08: Obtiene los segundos de vida del refresh token.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerTiempoExpiracion");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: envuelve la info válida en Optional.
+    /**
+     * RETO EXTRA 09: Determina si el error ocurrio al consultar el almacen de tokens en persistencia.
+     */
+    public static boolean esFalloBaseDatosRefresco(Throwable t) {
+        // TODO extra: RETO EXTRA 09: Determina si el error ocurrio al consultar el almacen de tokens en persistencia.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFalloBaseDatosRefresco");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve el Optional.
+    /**
+     * RETO EXTRA 10: Resuelve la accion correctiva (ROTO o REUSE).
+     */
+    public static String determinarEstrategiaRefresco(int expDays) {
+        // TODO extra: RETO EXTRA 10: Resuelve la accion correctiva (ROTO o REUSE).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para determinarEstrategiaRefresco");
     }
 
 }

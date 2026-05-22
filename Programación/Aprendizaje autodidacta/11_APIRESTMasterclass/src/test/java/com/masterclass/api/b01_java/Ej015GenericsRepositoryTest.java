@@ -29,7 +29,6 @@ class Ej015GenericsRepositoryTest {
         assertEquals(1, repo.findAll().size());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 1")
     @Test
     void retoExtra01_obtenerPrimero() {
         assertEquals(Optional.of("a"), Ej015GenericsRepository.obtenerPrimero(new String[]{"a", "b"}));
@@ -37,7 +36,6 @@ class Ej015GenericsRepositoryTest {
         assertEquals(Optional.empty(), Ej015GenericsRepository.obtenerPrimero(null));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 2")
     @Test
     void retoExtra02_intercambiarPosiciones() {
         Integer[] array = {10, 20, 30};
@@ -48,7 +46,6 @@ class Ej015GenericsRepositoryTest {
         assertThrows(IllegalArgumentException.class, () -> Ej015GenericsRepository.intercambiarPosiciones(null, 0, 1));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 3")
     @Test
     void retoExtra03_buscarPorIdEnMapa() {
         java.util.Map<String, Integer> map = java.util.Map.of("uno", 1, "dos", 2);
@@ -56,14 +53,12 @@ class Ej015GenericsRepositoryTest {
         assertEquals(Optional.empty(), Ej015GenericsRepository.buscarPorIdEnMapa(map, "tres"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
     @Test
     void retoExtra04_filtrarElementosGenericos() {
         var res = Ej015GenericsRepository.filtrarElementosGenericos(List.of(1, 2, 3, 4), n -> n % 2 == 0);
         assertEquals(List.of(2, 4), res);
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 5")
     @Test
     void retoExtra05_convertirListaAMapa() {
         var res = Ej015GenericsRepository.convertirListaAMapa(List.of("apple", "pear"), String::length);
@@ -71,7 +66,6 @@ class Ej015GenericsRepositoryTest {
         assertEquals("pear", res.get(4));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 6")
     @Test
     void retoExtra06_esMayorQue() {
         assertTrue(Ej015GenericsRepository.esMayorQue(10, 5));
@@ -79,7 +73,6 @@ class Ej015GenericsRepositoryTest {
         assertFalse(Ej015GenericsRepository.esMayorQue("apple", "banana"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 7")
     @Test
     void retoExtra07_crearTupla() {
         var t = Ej015GenericsRepository.crearTupla("id", 42);
@@ -87,14 +80,12 @@ class Ej015GenericsRepositoryTest {
         assertEquals(42, t.valor());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
     @Test
     void retoExtra08_obtenerValorConDefecto() {
         assertEquals("original", Ej015GenericsRepository.obtenerValorConDefecto("original", "default"));
         assertEquals("default", Ej015GenericsRepository.obtenerValorConDefecto(null, "default"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 9")
     @Test
     void retoExtra09_contarOcurrenciasGenerico() {
         String[] array = {"a", "b", "a", "c"};
@@ -103,7 +94,6 @@ class Ej015GenericsRepositoryTest {
         assertEquals(0L, Ej015GenericsRepository.contarOcurrenciasGenerico(null, "a"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     @Test
     void retoExtra10_revertirListaGenerica() {
         var orig = List.of(1, 2, 3);

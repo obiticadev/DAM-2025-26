@@ -50,7 +50,14 @@ public class Ej051PatchPartialUpdate {
     /**
      * Reto Extra 1: PATCH utilizando DTO parcial.
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{id}/dto")
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{
+        // TODO extra: Reto Extra 1: PATCH utilizando DTO parcial.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PatchMapping");
+    }/dto")
     public org.springframework.http.ResponseEntity<ItemDto> patchConDto(
             @org.springframework.web.bind.annotation.PathVariable long id,
             @org.springframework.web.bind.annotation.RequestBody ItemPatchDto cambios) {
@@ -63,7 +70,14 @@ public class Ej051PatchPartialUpdate {
     /**
      * Reto Extra 2: PATCH para modificar una colección anidada (tags).
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{id}/tags")
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{
+        // TODO extra: Reto Extra 2: PATCH para modificar una colección anidada (tags).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PatchMapping");
+    }/tags")
     public org.springframework.http.ResponseEntity<ItemConTagsDto> patchColeccion(
             @org.springframework.web.bind.annotation.PathVariable long id,
             @org.springframework.web.bind.annotation.RequestBody java.util.Map<String, Object> cambios) {
@@ -77,7 +91,14 @@ public class Ej051PatchPartialUpdate {
     /**
      * Reto Extra 3: PATCH implícito para incrementar un contador.
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{id}/incrementar")
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{
+        // TODO extra: Reto Extra 3: PATCH implícito para incrementar un contador.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PatchMapping");
+    }/incrementar")
     public org.springframework.http.ResponseEntity<java.util.Map<String, Object>> patchIncrementarContador(
             @org.springframework.web.bind.annotation.PathVariable long id) {
         // TODO extra: simula el incremento de un contador de visitas para el recurso.
@@ -88,7 +109,14 @@ public class Ej051PatchPartialUpdate {
     /**
      * Reto Extra 4: Simulador simple de JSON Patch (RFC 6902).
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{id}/rfc6902")
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{
+        // TODO extra: Reto Extra 4: Simulador simple de JSON Patch (RFC 6902).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PatchMapping");
+    }/rfc6902")
     public org.springframework.http.ResponseEntity<ItemDto> patchConJsonPatch(
             @org.springframework.web.bind.annotation.PathVariable long id,
             @org.springframework.web.bind.annotation.RequestBody java.util.List<java.util.Map<String, Object>> operaciones) {
@@ -100,7 +128,14 @@ public class Ej051PatchPartialUpdate {
     /**
      * Reto Extra 5: Validación estricta del tipo de datos de entrada.
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{id}/valida-tipos")
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{
+        // TODO extra: Reto Extra 5: Validación estricta del tipo de datos de entrada.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PatchMapping");
+    }/valida-tipos")
     public org.springframework.http.ResponseEntity<?> patchValidarTipos(
             @org.springframework.web.bind.annotation.PathVariable long id,
             @org.springframework.web.bind.annotation.RequestBody java.util.Map<String, Object> cambios) {
@@ -112,7 +147,14 @@ public class Ej051PatchPartialUpdate {
     /**
      * Reto Extra 6: Protección contra modificación de campos de solo lectura (como ID).
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{id}/readonly")
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{
+        // TODO extra: Reto Extra 6: Protección contra modificación de campos de solo lectura (como ID).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PatchMapping");
+    }/readonly")
     public org.springframework.http.ResponseEntity<?> patchNoPermitido(
             @org.springframework.web.bind.annotation.PathVariable long id,
             @org.springframework.web.bind.annotation.RequestBody java.util.Map<String, Object> cambios) {
@@ -124,7 +166,14 @@ public class Ej051PatchPartialUpdate {
     /**
      * Reto Extra 7: PATCH con cabecera de auditoría del usuario que modifica.
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{id}/auditoria")
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{
+        // TODO extra: Reto Extra 7: PATCH con cabecera de auditoría del usuario que modifica.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PatchMapping");
+    }/auditoria")
     public org.springframework.http.ResponseEntity<java.util.Map<String, Object>> patchAuditoria(
             @org.springframework.web.bind.annotation.PathVariable long id,
             @org.springframework.web.bind.annotation.RequestBody java.util.Map<String, Object> cambios,
@@ -136,7 +185,14 @@ public class Ej051PatchPartialUpdate {
     /**
      * Reto Extra 8: Validación cruzada de campos en actualización parcial.
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{id}/estado-exclusivo")
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{
+        // TODO extra: Reto Extra 8: Validación cruzada de campos en actualización parcial.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PatchMapping");
+    }/estado-exclusivo")
     public org.springframework.http.ResponseEntity<?> patchEstadoExclusivo(
             @org.springframework.web.bind.annotation.PathVariable long id,
             @org.springframework.web.bind.annotation.RequestBody java.util.Map<String, Object> cambios) {
@@ -148,7 +204,14 @@ public class Ej051PatchPartialUpdate {
     /**
      * Reto Extra 9: Control de conflictos y recursos bloqueados (Conflict).
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{id}/bloqueado")
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{
+        // TODO extra: Reto Extra 9: Control de conflictos y recursos bloqueados (Conflict).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PatchMapping");
+    }/bloqueado")
     public org.springframework.http.ResponseEntity<?> patchLanzaConflicto(
             @org.springframework.web.bind.annotation.PathVariable long id,
             @org.springframework.web.bind.annotation.RequestBody java.util.Map<String, Object> cambios) {
@@ -160,7 +223,14 @@ public class Ej051PatchPartialUpdate {
     /**
      * Reto Extra 10: PATCH condicional condicionado a la cabecera If-Match.
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{id}/conditional")
+    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{
+        // TODO extra: Reto Extra 10: PATCH condicional condicionado a la cabecera If-Match.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PatchMapping");
+    }/conditional")
     public org.springframework.http.ResponseEntity<?> patchCondicionalEtag(
             @org.springframework.web.bind.annotation.PathVariable long id,
             @org.springframework.web.bind.annotation.RequestBody java.util.Map<String, Object> cambios,

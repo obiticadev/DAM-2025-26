@@ -66,44 +66,124 @@ public final class Ej154MongoRestEndpoint {
         System.out.println(obtener(repo, r.cuerpo() == null ? "x" : r.cuerpo().id()));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si repo es null -> IllegalArgumentException (error de programación).
+        /**
+     * RETO EXTRA 01: Valida rutas validas bajo el api rest de mongo.
+     */
+    public static boolean esPeticionMongoValida(String method, String path) {
+        // TODO extra: RETO EXTRA 01: Valida rutas validas bajo el api rest de mongo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPeticionMongoValida");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si body es null -> respuesta 400 (Bad Request), sin tocar el repo.
+    /**
+     * RETO EXTRA 02: Verifica si el contentType de entrada corresponde a JSON o BSON.
+     */
+    public static boolean esCabeceraJson(String contentType) {
+        // TODO extra: RETO EXTRA 02: Verifica si el contentType de entrada corresponde a JSON o BSON.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCabeceraJson");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: valida que body.cliente() no sea null ni vacío -> 400 si lo es.
+    /**
+     * RETO EXTRA 03: Genera el JSON standard de retorno de endpoints.
+     */
+    public static String crearRespuestaRestMongo(String id, String data) {
+        // TODO extra: RETO EXTRA 03: Genera el JSON standard de retorno de endpoints.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearRespuestaRestMongo");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: valida que body.total() sea >= 0 -> 400 si es negativo.
+    /**
+     * RETO EXTRA 04: Identifica metodos HTTP que pueden mutar o eliminar colecciones enteras (DELETE).
+     */
+    public static boolean esAccionCritica(String method) {
+        // TODO extra: RETO EXTRA 04: Identifica metodos HTTP que pueden mutar o eliminar colecciones enteras (DELETE).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esAccionCritica");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: genera un id (p.ej. java.util.UUID.randomUUID().toString()).
+    /**
+     * RETO EXTRA 05: Filtra endpoints reservados para administración y gestion de indices.
+     */
+    public static boolean esRutaExclusivaAdmin(String path) {
+        // TODO extra: RETO EXTRA 05: Filtra endpoints reservados para administración y gestion de indices.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRutaExclusivaAdmin");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: construye un Pedido149 con id generado + datos del body.
+    /**
+     * RETO EXTRA 06: Determina si la excepcion proviene de fallos de serializacion de red.
+     */
+    public static boolean esExcepcionApiRest(Throwable t) {
+        // TODO extra: RETO EXTRA 06: Determina si la excepcion proviene de fallos de serializacion de red.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionApiRest");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: persístelo con repo.save(...).
+    /**
+     * RETO EXTRA 07: Crea la explicacion de error del endpoint rest.
+     */
+    public static String generarMensajeFalloMongo(String operation, String err) {
+        // TODO extra: RETO EXTRA 07: Crea la explicacion de error del endpoint rest.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para generarMensajeFalloMongo");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: REST: crear con éxito devuelve 201 Created.
+    /**
+     * RETO EXTRA 08: Verifica que el offset no sea negativo.
+     */
+    public static boolean esLimiteOffsetValido(int offset) {
+        // TODO extra: RETO EXTRA 08: Verifica que el offset no sea negativo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esLimiteOffsetValido");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: el cuerpo de la respuesta 201 es el pedido persistido.
+    /**
+     * RETO EXTRA 09: Comprueba que venga algun cabezal basico de autorizacion.
+     */
+    public static boolean contieneTokenSeguridad(String authorizationHeader) {
+        // TODO extra: RETO EXTRA 09: Comprueba que venga algun cabezal basico de autorizacion.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contieneTokenSeguridad");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: retorna new Respuesta154(201, pedidoGuardado) (o 400/null en errores).
+    /**
+     * RETO EXTRA 10: Determina si la consulta a Mongo se resolvio en tiempo optimo (menos de 500ms).
+     */
+    public static boolean tiempoRespuestaOptimo(long ms) {
+        // TODO extra: RETO EXTRA 10: Determina si la consulta a Mongo se resolvio en tiempo optimo (menos de 500ms).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tiempoRespuestaOptimo");
     }
 
 }

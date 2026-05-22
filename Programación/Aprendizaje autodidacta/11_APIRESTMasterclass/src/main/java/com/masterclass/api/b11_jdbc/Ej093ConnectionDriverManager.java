@@ -41,44 +41,92 @@ public final class Ej093ConnectionDriverManager {
         System.out.println(conectaYValida("jdbc:h2:mem:demo", "sa", ""));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: usa try-with-resources con DriverManager.getConnection(url,user,pass).
+    /**
+     * TODO extra 1: Valida que la URL del driver comience con jdbc:.
+     */
+    public static boolean desafioValidarUrl(String url) {
+        return url != null && url.startsWith("jdbc:");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: dentro del try, obtén la Connection.
+    /**
+     * TODO extra 2: Obtiene las credenciales por defecto (sa, "").
+     */
+    public static String[] desafioObtenerCredencialesPorDefecto() {
+        return new String[] {"sa", ""};
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: comprueba conn.isValid(2) (timeout 2s).
+    /**
+     * TODO extra 3: Valida una conexión H2 local.
+     */
+    public static boolean desafioValidarConexionH2(String url, String user, String pass) {
+        if (!desafioValidarUrl(url)) return false;
+        try (var c = java.sql.DriverManager.getConnection(url, user, pass)) {
+            return c.isValid(1);
+        } catch (java.sql.SQLException e) {
+            return false;
+        }
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: devuelve ese booleano.
+    /**
+     * TODO extra 4: Verifica si una conexión ya ha sido cerrada.
+     */
+    public static boolean desafioVerificarEstadoCerrada(java.sql.Connection c) throws java.sql.SQLException {
+        return c == null || c.isClosed();
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: el try-with-resources cierra la conexión automáticamente.
+    /**
+     * TODO extra 5: Lanza una excepción SQL genérica.
+     */
+    public static void desafioLanzarErrorSql() throws java.sql.SQLException {
+        throw new java.sql.SQLException("Error simulado");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: NO cierres la conexión a mano (lo hace el recurso).
+    /**
+     * TODO extra 6: Comprueba si el timeout de conexión es positivo.
+     */
+    public static boolean desafioComprobarTimeoutValido(int timeout) {
+        return timeout > 0;
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: deja que SQLException se propague (la declara el método).
+    /**
+     * TODO extra 7: Retorna el mensaje descriptivo de un SQLException.
+     */
+    public static String desafioPropagarExcepcionConMensaje(java.sql.SQLException e) {
+        return e.getMessage();
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: no captures y silencies la excepción.
+    /**
+     * TODO extra 8: Simula el cierre de recursos AutoCloseable.
+     */
+    public static boolean desafioSimularCierreAutomatico(AutoCloseable res) {
+        try {
+            res.close();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: una conexión cerrada NO es válida (por eso validamos dentro del try).
+    /**
+     * TODO extra 9: Comprueba de forma segura si la conexión es válida con timeout.
+     */
+    public static boolean desafioEsConexionValidaConTimeout(java.sql.Connection c, int timeout) {
+        try {
+            return c != null && c.isValid(timeout);
+        } catch (java.sql.SQLException e) {
+            return false;
+        }
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve false solo si isValid devolvió false.
+    /**
+     * TODO extra 10: Retorna verdadero solo si la conexión está abierta y no nula.
+     */
+    public static boolean desafioEsConexionAbierta(java.sql.Connection c) {
+        try {
+            return c != null && !c.isClosed();
+        } catch (java.sql.SQLException e) {
+            return false;
+        }
     }
 
 }

@@ -22,7 +22,6 @@ class Ej050PutFullUpdateTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 1")
     void actualizarConOptimisticLock_exito() throws Exception {
         mvc.perform(put("/api/items/7/optimistic")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -32,7 +31,6 @@ class Ej050PutFullUpdateTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 1")
     void actualizarConOptimisticLock_fallo() throws Exception {
         mvc.perform(put("/api/items/7/optimistic")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -41,7 +39,6 @@ class Ej050PutFullUpdateTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 2")
     void actualizarOcrear_crear() throws Exception {
         mvc.perform(put("/api/items/150/upsert")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -52,7 +49,6 @@ class Ej050PutFullUpdateTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 2")
     void actualizarOcrear_actualizar() throws Exception {
         mvc.perform(put("/api/items/50/upsert")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -62,7 +58,6 @@ class Ej050PutFullUpdateTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 3")
     void actualizarConCabeceraConditional_faltaHeader() throws Exception {
         mvc.perform(put("/api/items/7/conditional")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -71,7 +66,6 @@ class Ej050PutFullUpdateTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 3")
     void actualizarConCabeceraConditional_versionDiferente() throws Exception {
         mvc.perform(put("/api/items/7/conditional")
                         .header("If-Match", "\"v2\"")
@@ -81,7 +75,6 @@ class Ej050PutFullUpdateTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 3")
     void actualizarConCabeceraConditional_exito() throws Exception {
         mvc.perform(put("/api/items/7/conditional")
                         .header("If-Match", "\"v1\"")
@@ -92,7 +85,6 @@ class Ej050PutFullUpdateTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
     void actualizarValidandoCampos_valido() throws Exception {
         mvc.perform(put("/api/items/7/valida-formato")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -101,7 +93,6 @@ class Ej050PutFullUpdateTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
     void actualizarValidandoCampos_invalido() throws Exception {
         mvc.perform(put("/api/items/7/valida-formato")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -110,7 +101,6 @@ class Ej050PutFullUpdateTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 5")
     void actualizarConHistorial() throws Exception {
         mvc.perform(put("/api/items/7/historial")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -119,7 +109,6 @@ class Ej050PutFullUpdateTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 6")
     void actualizarLanzaNoEncontrado_lanza() throws Exception {
         mvc.perform(put("/api/items/0/lanza-404")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -128,7 +117,6 @@ class Ej050PutFullUpdateTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 7")
     void actualizarRetornandoSoloCabeceras() throws Exception {
         mvc.perform(put("/api/items/7/solo-cabeceras")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -138,7 +126,6 @@ class Ej050PutFullUpdateTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
     void actualizarSoloActivos_activo() throws Exception {
         mvc.perform(put("/api/items/7/estado-activo")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -147,7 +134,6 @@ class Ej050PutFullUpdateTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
     void actualizarSoloActivos_inactivo() throws Exception {
         mvc.perform(put("/api/items/99/estado-activo")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -156,7 +142,6 @@ class Ej050PutFullUpdateTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 9")
     void actualizarBulk() throws Exception {
         mvc.perform(put("/api/items/bulk")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -167,7 +152,6 @@ class Ej050PutFullUpdateTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     void actualizarValidandoIdCuerpo_invalido() throws Exception {
         mvc.perform(put("/api/items/7/verificar-id")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -176,7 +160,6 @@ class Ej050PutFullUpdateTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     void actualizarValidandoIdCuerpo_valido() throws Exception {
         mvc.perform(put("/api/items/7/verificar-id")
                         .contentType(MediaType.APPLICATION_JSON)

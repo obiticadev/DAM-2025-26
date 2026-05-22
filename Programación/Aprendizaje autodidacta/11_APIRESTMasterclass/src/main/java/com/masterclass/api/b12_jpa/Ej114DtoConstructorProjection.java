@@ -46,67 +46,79 @@ public final class Ej114DtoConstructorProjection {
         System.out.println("usa el test con EMF aislado");
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: el JPQL usa el nombre COMPLETO de la clase DTO en "select new".
+    /**
+     * TODO extra 1: Comprueba si un repositorio JPA de tipo EmpleadoRepository está instanciado.
+     */
+    public static boolean desafioRepositoryActivo(EmpleadoRepository repo) {
+        return repo != null;
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: "select new com.masterclass.api.b12_jpa.Ej114DtoConstructorProjection$ResumenPedido(
+    /**
+     * TODO extra 2: Busca las proyecciones de DTO de los empleados mediante el repositorio.
+     */
+    public static java.util.List<EmpleadoDto> desafioBuscarProyecciones(EmpleadoRepository repo) {
+        return repo.buscarTodosProyeccion();
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: el DTO debe tener un constructor que case con los tipos/orden seleccionados.
+    /**
+     * TODO extra 3: Comprueba si un EmpleadoDto no es nulo y tiene un nombre correcto.
+     */
+    public static boolean desafioDtoValido(EmpleadoDto dto) {
+        return dto != null && dto.nombre() != null && !dto.nombre().isBlank();
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: crea la query con createQuery(jpql, ResumenPedido.class).
+    /**
+     * TODO extra 4: Crea una instancia rápida del DTO EmpleadoDto.
+     */
+    public static EmpleadoDto desafioCrearDto(String nombre, String dep) {
+        return new EmpleadoDto(nombre, dep);
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: getResultList().
+    /**
+     * TODO extra 5: Comprueba si una lista de DTOs contiene al menos un elemento con el departamento IT.
+     */
+    public static boolean desafioContieneDeptoIT(java.util.List<EmpleadoDto> dtos) {
+        return dtos.stream().anyMatch(d -> "IT".equals(d.departamento()));
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: la proyección evita el overhead de materializar entidades completas.
+    /**
+     * TODO extra 6: Retorna una lista con los nombres contenidos en la lista de DTOs.
+     */
+    public static java.util.List<String> desafioObtenerNombresDtos(java.util.List<EmpleadoDto> dtos) {
+        return dtos.stream().map(EmpleadoDto::nombre).toList();
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: el DTO NO está gestionado por el contexto de persistencia.
+    /**
+     * TODO extra 7: Lanza una excepción si el DTO no tiene departamento asignado.
+     */
+    public static void desafioValidarDtoCompleto(EmpleadoDto dto) {
+        if (dto == null || dto.departamento() == null) {
+            throw new IllegalArgumentException("DTO incompleto");
+        }
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: respeta el orden (ORDER BY p.id).
+    /**
+     * TODO extra 8: Crea un Empleado completo para persistir de prueba.
+     */
+    public static Empleado desafioCrearEmpleadoEntidad(String nombre, String dep) {
+        var e = new Empleado();
+        e.setNombre(nombre);
+        e.setDepartamento(dep);
+        return e;
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: si no hay pedidos, devuelve lista vacía (no null).
+    /**
+     * TODO extra 9: Cuenta cuántos DTOs de empleados existen en el repositorio.
+     */
+    public static int desafioContarDtos(EmpleadoRepository repo) {
+        return repo.buscarTodosProyeccion().size();
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve la lista de ResumenPedido.
+    /**
+     * TODO extra 10: Retorna verdadero si una lista de DTOs es no vacía.
+     */
+    public static boolean desafioTieneDatos(java.util.List<EmpleadoDto> dtos) {
+        return dtos != null && !dtos.isEmpty();
     }
 
-}
-
-@jakarta.persistence.Entity
-class Pedido114 {
-    @jakarta.persistence.Id
-    @jakarta.persistence.GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
-    private Long id;
-    private double total;
-
-    protected Pedido114() {
-    }
-
-    public Pedido114(double total) {
-        this.total = total;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public double getTotal() {
-        return total;
-    }
 }

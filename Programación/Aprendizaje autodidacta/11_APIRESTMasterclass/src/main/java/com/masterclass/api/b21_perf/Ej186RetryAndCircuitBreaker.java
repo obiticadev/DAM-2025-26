@@ -70,44 +70,124 @@ public final class Ej186RetryAndCircuitBreaker {
         System.out.println(transicion("CLOSED", false, 5, 3));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si accion es null -> IllegalArgumentException.
+        /**
+     * RETO EXTRA 01: Valida estados validos del breaker.
+     */
+    public static boolean esEstadoValido(String estado) {
+        // TODO extra: RETO EXTRA 01: Valida estados validos del breaker.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esEstadoValido");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si maxIntentos < 1 -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 02: Valida umbral positivo.
+     */
+    public static boolean esUmbralValido(int u) {
+        // TODO extra: RETO EXTRA 02: Valida umbral positivo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esUmbralValido");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: si contador es null o contador.length != 1 -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 03: Valida maximo de intentos.
+     */
+    public static boolean esMaxIntentosValido(int max) {
+        // TODO extra: RETO EXTRA 03: Valida maximo de intentos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMaxIntentosValido");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: bucle desde intento 1 hasta maxIntentos.
+    /**
+     * RETO EXTRA 04: Crea un contador limpio.
+     */
+    public static int[] inicializarContador() {
+        // TODO extra: RETO EXTRA 04: Crea un contador limpio.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para inicializarContador");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: en cada vuelta incrementa contador[0] (intento realmente ejecutado).
+    /**
+     * RETO EXTRA 05: Valida tamaño de contador.
+     */
+    public static boolean esContadorValido(int[] c) {
+        // TODO extra: RETO EXTRA 05: Valida tamaño de contador.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esContadorValido");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: intenta accion.get(); si no lanza, devuelve su resultado de inmediato.
+    /**
+     * RETO EXTRA 06: Incrementa el contador in-place.
+     */
+    public static int[] incrementarContador(int[] c) {
+        // TODO extra: RETO EXTRA 06: Incrementa el contador in-place.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para incrementarContador");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: si lanza, captura la excepcion y guardala como "ultimoFallo".
+    /**
+     * RETO EXTRA 07: Ejecuta retornando fallback ante error.
+     */
+    public static String ejecutarAccionSegura(java.util.function.Supplier<String> a) {
+        // TODO extra: RETO EXTRA 07: Ejecuta retornando fallback ante error.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para ejecutarAccionSegura");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: si aun quedan intentos, continua el bucle (aqui iria el backoff).
+    /**
+     * RETO EXTRA 08: Comprueba CLOSED.
+     */
+    public static boolean esEstadoCerrado(String estado) {
+        // TODO extra: RETO EXTRA 08: Comprueba CLOSED.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esEstadoCerrado");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: si era el ultimo intento, sal del bucle sin reintentar mas.
+    /**
+     * RETO EXTRA 09: Comprueba OPEN.
+     */
+    public static boolean esEstadoAbierto(String estado) {
+        // TODO extra: RETO EXTRA 09: Comprueba OPEN.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esEstadoAbierto");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: agotados los intentos, relanza el ultimo fallo como RuntimeException.
+    /**
+     * RETO EXTRA 10: Comprueba HALF_OPEN.
+     */
+    public static boolean esEstadoSemiAbierto(String estado) {
+        // TODO extra: RETO EXTRA 10: Comprueba HALF_OPEN.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esEstadoSemiAbierto");
     }
 
 }

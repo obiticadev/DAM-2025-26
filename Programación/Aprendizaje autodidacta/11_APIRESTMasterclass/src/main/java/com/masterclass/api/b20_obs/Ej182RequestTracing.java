@@ -41,44 +41,124 @@ public final class Ej182RequestTracing {
         System.out.println(propagar(null, 0));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si salto < 0 -> IllegalArgumentException.
+        /**
+     * RETO EXTRA 01: Valida salto >= 0.
+     */
+    public static boolean esSaltoValido(int s) {
+        // TODO extra: RETO EXTRA 01: Valida salto >= 0.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esSaltoValido");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: determina si traceIdEntrante esta ausente (null o en blanco).
+    /**
+     * RETO EXTRA 02: Valida traceId no nulo/blanco.
+     */
+    public static boolean esTraceIdValido(String id) {
+        // TODO extra: RETO EXTRA 02: Valida traceId no nulo/blanco.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esTraceIdValido");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: si esta ausente, este nodo es el origen de la traza.
+    /**
+     * RETO EXTRA 03: Crea contexto.
+     */
+    public static TraceContext182 crearTraceContext(String t, String s, boolean r) {
+        // TODO extra: RETO EXTRA 03: Crea contexto.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearTraceContext");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: en el origen, genera un traceId nuevo (p.ej. UUID sin guiones).
+    /**
+     * RETO EXTRA 04: Obtiene traceId.
+     */
+    public static String obtenerTraceId(TraceContext182 ctx) {
+        // TODO extra: RETO EXTRA 04: Obtiene traceId.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerTraceId");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: si viene un traceId, reutilizalo intacto (trim) para correlacionar.
+    /**
+     * RETO EXTRA 05: Obtiene spanId.
+     */
+    public static String obtenerSpanId(TraceContext182 ctx) {
+        // TODO extra: RETO EXTRA 05: Obtiene spanId.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerSpanId");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: el spanId es unico por salto: derivalo de traceId + ":" + salto.
+    /**
+     * RETO EXTRA 06: Verifica si es raiz.
+     */
+    public static boolean esRaiz(TraceContext182 ctx) {
+        // TODO extra: RETO EXTRA 06: Verifica si es raiz.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRaiz");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: marca "raiz"=true solo si es el origen (salto 0 y sin entrante).
+    /**
+     * RETO EXTRA 07: Genera un traceId UUID sin guiones.
+     */
+    public static String generarTraceIdAleatorio() {
+        // TODO extra: RETO EXTRA 07: Genera un traceId UUID sin guiones.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para generarTraceIdAleatorio");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: nunca devuelvas traceId null ni vacio (invariante de la traza).
+    /**
+     * RETO EXTRA 08: Obtiene una derivacion del spanId.
+     */
+    public static String obtenerDobleSalto(TraceContext182 ctx, int s) {
+        // TODO extra: RETO EXTRA 08: Obtiene una derivacion del spanId.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerDobleSalto");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: construye el TraceContext182 con traceId, spanId y raiz.
+    /**
+     * RETO EXTRA 09: Verifica si los contextos comparten traceId.
+     */
+    public static boolean esMismoTraceId(TraceContext182 c1, TraceContext182 c2) {
+        // TODO extra: RETO EXTRA 09: Verifica si los contextos comparten traceId.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMismoTraceId");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve el contexto de traza.
+    /**
+     * RETO EXTRA 10: Formatea el flujo.
+     */
+    public static String formatearTrazado(TraceContext182 ctx) {
+        // TODO extra: RETO EXTRA 10: Formatea el flujo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearTrazado");
     }
 
 }

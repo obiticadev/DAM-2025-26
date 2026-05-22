@@ -29,14 +29,12 @@ class Ej012OptionalSafeAccessTest {
         assertThrows(IllegalStateException.class, () -> Ej012OptionalSafeAccess.requerido(null));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 1")
     @Test
     void retoExtra01_obtenerLargoSiPresente() {
         assertEquals(Optional.of(5), Ej012OptionalSafeAccess.obtenerLargoSiPresente(Optional.of("hello")));
         assertEquals(Optional.empty(), Ej012OptionalSafeAccess.obtenerLargoSiPresente(Optional.empty()));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 2")
     @Test
     void retoExtra02_obtenerPrimeroValido() {
         var list = java.util.List.of(
@@ -48,7 +46,6 @@ class Ej012OptionalSafeAccessTest {
         assertEquals(Optional.empty(), Ej012OptionalSafeAccess.obtenerPrimeroValido(java.util.List.of(Optional.empty(), Optional.empty())));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 3")
     @Test
     void retoExtra03_filtrarPorLongitud() {
         assertEquals(Optional.of("Java"), Ej012OptionalSafeAccess.filtrarPorLongitud(Optional.of("Java"), 3));
@@ -56,7 +53,6 @@ class Ej012OptionalSafeAccessTest {
         assertEquals(Optional.empty(), Ej012OptionalSafeAccess.filtrarPorLongitud(Optional.empty(), 3));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
     @Test
     void retoExtra04_obtenerConLazyFallback() {
         java.util.concurrent.atomic.AtomicInteger callCount = new java.util.concurrent.atomic.AtomicInteger(0);
@@ -72,7 +68,6 @@ class Ej012OptionalSafeAccessTest {
         assertEquals(1, callCount.get(), "El supplier debió ser invocado");
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 5")
     @Test
     void retoExtra05_lanzarExcepcionPersonalizada() {
         assertEquals("ok", Ej012OptionalSafeAccess.lanzarExcepcionPersonalizada(Optional.of("ok")));
@@ -80,7 +75,6 @@ class Ej012OptionalSafeAccessTest {
         assertEquals("Valor requerido ausente", ex.getMessage());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 6")
     @Test
     void retoExtra06_convertirAStreamYFiltrar() {
         assertEquals(java.util.List.of("HELLO"), Ej012OptionalSafeAccess.convertirAStreamYFiltrar(Optional.of("hello")));
@@ -88,7 +82,6 @@ class Ej012OptionalSafeAccessTest {
         assertEquals(java.util.List.of(), Ej012OptionalSafeAccess.convertirAStreamYFiltrar(Optional.empty()));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 7")
     @Test
     void retoExtra07_ejecutarAccionCondicional() {
         java.util.concurrent.atomic.AtomicBoolean presentCalled = new java.util.concurrent.atomic.AtomicBoolean(false);
@@ -114,7 +107,6 @@ class Ej012OptionalSafeAccessTest {
         assertTrue(emptyCalled.get());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
     @Test
     void retoExtra08_mapearConFlatMap() {
         assertEquals(Optional.of("inside"), Ej012OptionalSafeAccess.mapearConFlatMap(Optional.of(Optional.of("inside"))));
@@ -122,7 +114,6 @@ class Ej012OptionalSafeAccessTest {
         assertEquals(Optional.empty(), Ej012OptionalSafeAccess.mapearConFlatMap(Optional.empty()));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 9")
     @Test
     void retoExtra09_reemplazarPorVacioSiInvalido() {
         assertEquals(Optional.of("HELLO"), Ej012OptionalSafeAccess.reemplazarPorVacioSiInvalido(Optional.of("  hello  ")));
@@ -130,7 +121,6 @@ class Ej012OptionalSafeAccessTest {
         assertEquals(Optional.empty(), Ej012OptionalSafeAccess.reemplazarPorVacioSiInvalido(Optional.empty()));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     @Test
     void retoExtra10_obtenerPrimeroDeVarios() {
         assertEquals(Optional.of("first"), Ej012OptionalSafeAccess.obtenerPrimeroDeVarios(Optional.of("first"), Optional.of("second")));

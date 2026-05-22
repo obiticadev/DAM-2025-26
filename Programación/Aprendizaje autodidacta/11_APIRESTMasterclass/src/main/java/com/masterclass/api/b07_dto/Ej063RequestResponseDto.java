@@ -76,8 +76,12 @@ public final class Ej063RequestResponseDto {
      * contener al menos una mayúscula, una minúscula y un dígito.
      */
     public static boolean pasoExtra01(String password) {
-        // TODO extra: valida si la contraseña cumple con los criterios de seguridad mínimos.
-        return false;
+        // TODO extra: Reto Extra 1: Validación de robustez de contraseña.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra01");
     }
 
     /**
@@ -87,8 +91,12 @@ public final class Ej063RequestResponseDto {
      * Si el rol es "ADMIN", se devuelve el email completo.
      */
     public static UsuarioResponse pasoExtra02(UsuarioEntity entity, String userRole) {
-        // TODO extra: mapea el response enmascarando el email según el rol del usuario.
-        return null;
+        // TODO extra: Reto Extra 2: Enmascaramiento dinámico de emails sensible según el rol.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra02");
     }
 
     /**
@@ -97,8 +105,12 @@ public final class Ej063RequestResponseDto {
      * Si la cadena no contiene '@', devuelve null.
      */
     public static String pasoExtra03(String email) {
-        // TODO extra: extrae y devuelve la parte local del correo electrónico.
-        return null;
+        // TODO extra: Reto Extra 3: Extractor de nombre de usuario local.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra03");
     }
 
     /**
@@ -107,8 +119,12 @@ public final class Ej063RequestResponseDto {
      * Si la sal o la contraseña son nulas o vacías, lanza IllegalArgumentException.
      */
     public static String pasoExtra04(String password, String salt) {
-        // TODO extra: genera y devuelve un hash simulado utilizando la sal proporcionada.
-        return null;
+        // TODO extra: Reto Extra 4: Simulador de hash de contraseña con sal (Salted Hashing).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra04");
     }
 
     /**
@@ -117,8 +133,12 @@ public final class Ej063RequestResponseDto {
      * La comparación debe ser insensible a mayúsculas/minúsculas.
      */
     public static boolean pasoExtra05(String email, java.util.List<String> allowedDomains) {
-        // TODO extra: valida si el email pertenece a uno de los dominios permitidos.
-        return false;
+        // TODO extra: Reto Extra 5: Validación defensiva de dominios de email autorizados.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra05");
     }
 
     /**
@@ -127,8 +147,12 @@ public final class Ej063RequestResponseDto {
      * Si la entidad es nula, devuelve una cadena vacía.
      */
     public static String pasoExtra06(UsuarioEntity entity) {
-        // TODO extra: construye y devuelve el formato de representación del perfil público.
-        return null;
+        // TODO extra: Reto Extra 6: Representación de perfil público ligero.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra06");
     }
 
     /**
@@ -137,8 +161,12 @@ public final class Ej063RequestResponseDto {
      * y convirtiendo el email a minúsculas para normalizar su almacenamiento.
      */
     public static RegistroRequest pasoExtra07(RegistroRequest req) {
-        // TODO extra: sanea el DTO de registro limpiando y normalizando los datos.
-        return null;
+        // TODO extra: Reto Extra 7: Sanitización de datos de RegistroRequest.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra07");
     }
 
     /**
@@ -147,8 +175,12 @@ public final class Ej063RequestResponseDto {
      * simulando el hash de la contraseña clara (anteponiendo "hash:") y comparándolo con el storedHash.
      */
     public static boolean pasoExtra08(String plainPassword, String storedHash) {
-        // TODO extra: compara la contraseña en texto claro con el hash simulando el cifrado.
-        return false;
+        // TODO extra: Reto Extra 8: Comparador lógico de contraseñas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra08");
     }
 
     /**
@@ -157,8 +189,12 @@ public final class Ej063RequestResponseDto {
      * marca temporal de expiración inyectando el valor del tiempo de expiración (expiryMinutes) en el hash (ej: "hash:temp:expiry_X").
      */
     public static UsuarioEntity pasoExtra09(RegistroRequest req, long expiryMinutes) {
-        // TODO extra: construye una entidad de usuario temporal con los parámetros de expiración.
-        return null;
+        // TODO extra: Reto Extra 9: Entidad temporal de registro con expiración.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra09");
     }
 
     /**
@@ -167,8 +203,12 @@ public final class Ej063RequestResponseDto {
      * Si el DTO es nulo, devuelve null.
      */
     public static String pasoExtra10(UsuarioResponse response) {
-        // TODO extra: genera la representación en formato JSON estructurado a partir del response.
-        return null;
+        // TODO extra: Reto Extra 10: Generador estructurado JSON para UsuarioResponse.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra10");
     }
 
 }

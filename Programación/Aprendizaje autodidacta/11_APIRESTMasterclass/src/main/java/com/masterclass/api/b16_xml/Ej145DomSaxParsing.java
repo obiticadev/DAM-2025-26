@@ -68,44 +68,124 @@ public final class Ej145DomSaxParsing {
         System.out.println(textosConSax(xml, "libro"));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si xml es null/blank o etiqueta null/blank -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 01: Comprueba si un XML básico está bien formado a nivel de corchetes.
+     */
+    public static boolean extra01EsXmlBienFormado(String xml) {
+        // TODO extra: RETO EXTRA 01: Comprueba si un XML básico está bien formado a nivel de corchetes.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra01EsXmlBienFormado");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: obtén un DocumentBuilderFactory.newInstance().
+    /**
+     * RETO EXTRA 02: Convierte los nombres de etiqueta de un XML simple a mayúsculas usando regex.
+     */
+    public static String extra02ConvertirEtiquetasAMayusculas(String xml) {
+        // TODO extra: RETO EXTRA 02: Convierte los nombres de etiqueta de un XML simple a mayúsculas usando regex.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra02ConvertirEtiquetasAMayusculas");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: endurece el parser: setFeature disallow-doctype-decl (evita XXE).
+    /**
+     * RETO EXTRA 03: Obtiene el valor de un atributo específico en el primer nodo encontrado usando DOM.
+     */
+    public static String extra03ObtenerAtributoPorDom(String xml, String etiqueta, String atributo) {
+        // TODO extra: RETO EXTRA 03: Obtiene el valor de un atributo específico en el primer nodo encontrado usando DOM.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra03ObtenerAtributoPorDom");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: crea un DocumentBuilder con factory.newDocumentBuilder().
+    /**
+     * RETO EXTRA 04: Obtiene el primer texto del elemento coincidente usando DOM.
+     */
+    public static String extra04ObtenerPrimerTextoPorDom(String xml, String etiqueta) {
+        // TODO extra: RETO EXTRA 04: Obtiene el primer texto del elemento coincidente usando DOM.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra04ObtenerPrimerTextoPorDom");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: envuelve el xml en un InputSource sobre un StringReader.
+    /**
+     * RETO EXTRA 05: Contar ocurrencias de múltiples etiquetas.
+     */
+    public static int extra05ContarMultiplesEtiquetas(String xml, List<String> etiquetas) {
+        // TODO extra: RETO EXTRA 05: Contar ocurrencias de múltiples etiquetas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra05ContarMultiplesEtiquetas");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: parsea a Document con builder.parse(inputSource).
+    /**
+     * RETO EXTRA 06: Comprueba si un XML simple contiene la declaración de DOCTYPE (potencial XXE).
+     */
+    public static boolean extra06ContieneDoctype(String xml) {
+        // TODO extra: RETO EXTRA 06: Comprueba si un XML simple contiene la declaración de DOCTYPE (potencial XXE).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra06ContieneDoctype");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: invoca document.getElementsByTagName(etiqueta).
+    /**
+     * RETO EXTRA 07: Comprueba si el tag hijo tiene como padre directo a un tag específico usando DOM.
+     */
+    public static boolean extra07EsPadreDirecto(String xml, String tagPadre, String tagHijo) {
+        // TODO extra: RETO EXTRA 07: Comprueba si el tag hijo tiene como padre directo a un tag específico usando DOM.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra07EsPadreDirecto");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: la longitud de la NodeList es el conteo buscado.
+    /**
+     * RETO EXTRA 08: Obtiene todo el contenido textual plano del documento XML usando DOM.
+     */
+    public static String extra08ExtraerTodoTextoDom(String xml) {
+        // TODO extra: RETO EXTRA 08: Obtiene todo el contenido textual plano del documento XML usando DOM.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra08ExtraerTodoTextoDom");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: captura las excepciones (Parser/SAX/IO) como RuntimeException.
+    /**
+     * RETO EXTRA 09: Verifica si la etiqueta raíz del XML coincide con la esperada.
+     */
+    public static boolean extra09ValidarEtiquetaRaiz(String xml, String raizEsperada) {
+        // TODO extra: RETO EXTRA 09: Verifica si la etiqueta raíz del XML coincide con la esperada.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra09ValidarEtiquetaRaiz");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve el número de nodos encontrados.
+    /**
+     * RETO EXTRA 10: Retorna el número total de nodos de tipo ELEMENT_NODE en el documento.
+     */
+    public static int extra10ContarNodosElemento(String xml) {
+        // TODO extra: RETO EXTRA 10: Retorna el número total de nodos de tipo ELEMENT_NODE en el documento.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extra10ContarNodosElemento");
     }
 
 }

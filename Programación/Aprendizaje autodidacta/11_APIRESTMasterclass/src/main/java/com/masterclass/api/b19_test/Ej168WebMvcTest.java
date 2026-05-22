@@ -41,44 +41,124 @@ public final class Ej168WebMvcTest {
         System.out.println(handle("GET", "/saludo", "Ada"));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si metodo o ruta son null -> IllegalArgumentException.
+        /**
+     * RETO EXTRA 01: Crea una respuesta exitosa.
+     */
+    public static Respuesta168 crearRespuestaOK(String c) {
+        // TODO extra: RETO EXTRA 01: Crea una respuesta exitosa.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearRespuestaOK");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si la ruta no es "/saludo" -> Respuesta168(404, "{}").
+    /**
+     * RETO EXTRA 02: Crea una respuesta de error.
+     */
+    public static Respuesta168 crearRespuestaError(int code, String err) {
+        // TODO extra: RETO EXTRA 02: Crea una respuesta de error.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearRespuestaError");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: si el metodo no es "GET" -> Respuesta168(405, "{}").
+    /**
+     * RETO EXTRA 03: Comprueba si la respuesta es de exito.
+     */
+    public static boolean esRespuestaExitosa(Respuesta168 r) {
+        // TODO extra: RETO EXTRA 03: Comprueba si la respuesta es de exito.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRespuestaExitosa");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: si nombre es null o blank -> Respuesta168(400, cuerpo de error).
+    /**
+     * RETO EXTRA 04: Extrae el cuerpo de la respuesta.
+     */
+    public static String obtenerCuerpo(Respuesta168 r) {
+        // TODO extra: RETO EXTRA 04: Extrae el cuerpo de la respuesta.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerCuerpo");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: el cuerpo de error debe ser JSON: {"error":"nombre requerido"}.
+    /**
+     * RETO EXTRA 05: Comprueba si es un error de servidor.
+     */
+    public static boolean esErrorServidor(Respuesta168 r) {
+        // TODO extra: RETO EXTRA 05: Comprueba si es un error de servidor.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esErrorServidor");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: caso OK -> status 200.
+    /**
+     * RETO EXTRA 06: Valida si es la ruta del saludo.
+     */
+    public static boolean esRutaValida(String ruta) {
+        // TODO extra: RETO EXTRA 06: Valida si es la ruta del saludo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRutaValida");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: cuerpo OK -> JSON {"saludo":"Hola, <nombre>"}.
+    /**
+     * RETO EXTRA 07: Valida si el metodo es soportado.
+     */
+    public static boolean esMetodoSoportado(String metodo) {
+        // TODO extra: RETO EXTRA 07: Valida si el metodo es soportado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMetodoSoportado");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: escapa correctamente el JSON (comillas dobles internas).
+    /**
+     * RETO EXTRA 08: Extrae el codigo de estado.
+     */
+    public static int obtenerStatus(Respuesta168 r) {
+        // TODO extra: RETO EXTRA 08: Extrae el codigo de estado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerStatus");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: la respuesta es determinista (mismo request -> misma response).
+    /**
+     * RETO EXTRA 09: Genera el JSON del saludo.
+     */
+    public static String generarJsonSaludo(String nombre) {
+        // TODO extra: RETO EXTRA 09: Genera el JSON del saludo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para generarJsonSaludo");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve la Respuesta168 construida.
+    /**
+     * RETO EXTRA 10: Comprueba si es un error del cliente.
+     */
+    public static boolean esErrorCliente(Respuesta168 r) {
+        // TODO extra: RETO EXTRA 10: Comprueba si es un error del cliente.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esErrorCliente");
     }
 
 }

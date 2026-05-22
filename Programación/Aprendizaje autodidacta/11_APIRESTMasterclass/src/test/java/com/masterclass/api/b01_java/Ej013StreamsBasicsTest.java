@@ -28,61 +28,52 @@ class Ej013StreamsBasicsTest {
         assertEquals(2, Ej013StreamsBasics.contarPares(List.of(1, 2, 3, 4)));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 1")
     @Test
     void retoExtra01_filtrarMayoresDeEdad() {
         assertEquals(List.of(18, 21), Ej013StreamsBasics.filtrarMayoresDeEdad(List.of(15, 18, 12, 21)));
         assertEquals(List.of(), Ej013StreamsBasics.filtrarMayoresDeEdad(List.of(10, 5)));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 2")
     @Test
     void retoExtra02_convertirAMayusculas() {
         assertEquals(List.of("HELLO", "WORLD"), Ej013StreamsBasics.convertirAMayusculas(java.util.Arrays.asList("hello", null, "", "world")));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 3")
     @Test
     void retoExtra03_calcularSumaCuadrados() {
         assertEquals(14, Ej013StreamsBasics.calcularSumaCuadrados(List.of(1, 2, 3)));
         assertEquals(0, Ej013StreamsBasics.calcularSumaCuadrados(List.of()));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
     @Test
     void retoExtra04_contarCadenasVacias() {
         assertEquals(2, Ej013StreamsBasics.contarCadenasVacias(List.of("", "   ", "hello", "world")));
         assertEquals(0, Ej013StreamsBasics.contarCadenasVacias(List.of("hello")));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 5")
     @Test
     void retoExtra05_unirConComas() {
         assertEquals("[one, two, three]", Ej013StreamsBasics.unirConComas(List.of("one", "two", "three")));
         assertEquals("[]", Ej013StreamsBasics.unirConComas(List.of()));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 6")
     @Test
     void retoExtra06_obtenerElementosUnicos() {
         assertEquals(List.of("apple", "banana", "pear"), Ej013StreamsBasics.obtenerElementosUnicos(List.of("banana", "apple", "banana", "pear")));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 7")
     @Test
     void retoExtra07_limitarYDescartar() {
         assertEquals(List.of("c", "d"), Ej013StreamsBasics.limitarYDescartar(List.of("a", "b", "c", "d", "e"), 2, 2));
         assertEquals(List.of("a", "b"), Ej013StreamsBasics.limitarYDescartar(List.of("a", "b"), 0, 5));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
     @Test
     void retoExtra08_algunoEmpiezaCon() {
         assertTrue(Ej013StreamsBasics.algunoEmpiezaCon(List.of("Spring", "Java", "Kotlin"), "sp"));
         assertFalse(Ej013StreamsBasics.algunoEmpiezaCon(List.of("Spring", "Java", "Kotlin"), "py"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 9")
     @Test
     void retoExtra09_todosSonPositivos() {
         assertTrue(Ej013StreamsBasics.todosSonPositivos(List.of(1, 2, 3)));
@@ -90,7 +81,6 @@ class Ej013StreamsBasicsTest {
         assertTrue(Ej013StreamsBasics.todosSonPositivos(List.of()));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     @Test
     void retoExtra10_obtenerMaximo() {
         assertEquals(java.util.Optional.of(15), Ej013StreamsBasics.obtenerMaximo(List.of(5, 15, 3, 9)));

@@ -20,7 +20,6 @@ class Ej029ManualIoCContainerTest {
         assertThrows(IllegalStateException.class, () -> c.getBean(String.class));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 1")
     @Test
     void retoExtra01_prototype() {
         var c = new Ej029ManualIoCContainer();
@@ -30,7 +29,6 @@ class Ej029ManualIoCContainerTest {
         assertNotSame(a, b, "Prototype debe generar instancias distintas");
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 2 y 3")
     @Test
     void retoExtra02_y_03_nameRegistrationAndResolution() {
         var c = new Ej029ManualIoCContainer();
@@ -40,7 +38,6 @@ class Ej029ManualIoCContainerTest {
         assertThrows(IllegalStateException.class, () -> c.getBeanByName("inexistente"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
     @Test
     void retoExtra04_hasBean() {
         var c = new Ej029ManualIoCContainer();
@@ -49,7 +46,6 @@ class Ej029ManualIoCContainerTest {
         assertTrue(c.hasBean(String.class));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 5")
     @Test
     void retoExtra05_clear() {
         var c = new Ej029ManualIoCContainer();
@@ -58,7 +54,6 @@ class Ej029ManualIoCContainerTest {
         assertFalse(c.hasBean(String.class));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 6")
     @Test
     void retoExtra06_getBeanCount() {
         var c = new Ej029ManualIoCContainer();
@@ -68,7 +63,6 @@ class Ej029ManualIoCContainerTest {
         assertEquals(2, c.getBeanCount());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 7")
     @Test
     void retoExtra07_registerWithDependency() {
         var c = new Ej029ManualIoCContainer();
@@ -78,7 +72,6 @@ class Ej029ManualIoCContainerTest {
         assertEquals("PrefijoSuffix", sb.toString());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
     @Test
     void retoExtra08_getBeansOfType() {
         var c = new Ej029ManualIoCContainer();
@@ -92,7 +85,6 @@ class Ej029ManualIoCContainerTest {
         assertTrue(strings.containsValue("texto2"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 9")
     @Test
     void retoExtra09_alias() {
         var c = new Ej029ManualIoCContainer();
@@ -101,7 +93,6 @@ class Ej029ManualIoCContainerTest {
         assertEquals("valorReal", c.getBeanByName("miAlias"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     @Test
     void retoExtra10_close() throws Exception {
         class BeanCerrable implements AutoCloseable {

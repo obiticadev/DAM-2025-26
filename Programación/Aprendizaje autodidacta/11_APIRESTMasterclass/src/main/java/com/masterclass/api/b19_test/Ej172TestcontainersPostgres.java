@@ -63,44 +63,124 @@ public final class Ej172TestcontainersPostgres {
         System.out.println(imagenValida("postgres:16-alpine"));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si host es null o blank -> IllegalArgumentException.
+        /**
+     * RETO EXTRA 01: Extrae el host de la URL JDBC.
+     */
+    public static String obtenerHostJdbc(String url) {
+        // TODO extra: RETO EXTRA 01: Extrae el host de la URL JDBC.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerHostJdbc");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si puerto < 1 o > 65535 -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 02: Extrae el puerto de la URL JDBC.
+     */
+    public static int obtenerPuertoJdbc(String url) {
+        // TODO extra: RETO EXTRA 02: Extrae el puerto de la URL JDBC.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerPuertoJdbc");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: si baseDatos es null o blank -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 03: Extrae la BD de la URL JDBC.
+     */
+    public static String obtenerBaseDatosJdbc(String url) {
+        // TODO extra: RETO EXTRA 03: Extrae la BD de la URL JDBC.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerBaseDatosJdbc");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: el esquema fijo es "jdbc:postgresql://".
+    /**
+     * RETO EXTRA 04: Comprueba si es host local.
+     */
+    public static boolean esHostLocal(String host) {
+        // TODO extra: RETO EXTRA 04: Comprueba si es host local.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esHostLocal");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: concatena host + ":" + puerto.
+    /**
+     * RETO EXTRA 05: Valida el rango del puerto.
+     */
+    public static boolean esPuertoValido(int port) {
+        // TODO extra: RETO EXTRA 05: Valida el rango del puerto.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPuertoValido");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: añade "/" + baseDatos.
+    /**
+     * RETO EXTRA 06: Extrae el tag de una imagen.
+     */
+    public static String extraerTagImagen(String img) {
+        // TODO extra: RETO EXTRA 06: Extrae el tag de una imagen.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerTagImagen");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: no añadas query params por defecto (mantén la URL mínima).
+    /**
+     * RETO EXTRA 07: Valida si es imagen Postgres.
+     */
+    public static boolean esImagenPostgres(String img) {
+        // TODO extra: RETO EXTRA 07: Valida si es imagen Postgres.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esImagenPostgres");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: la URL es determinista para los mismos inputs.
+    /**
+     * RETO EXTRA 08: Comprueba si es variante Alpine.
+     */
+    public static boolean esImagenAlpine(String img) {
+        // TODO extra: RETO EXTRA 08: Comprueba si es variante Alpine.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esImagenAlpine");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: no normalices el host a minúsculas (puede ser una IP exacta).
+    /**
+     * RETO EXTRA 09: Construye URL minima sin BD.
+     */
+    public static String construirUrlMinima(String host, int port) {
+        // TODO extra: RETO EXTRA 09: Construye URL minima sin BD.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para construirUrlMinima");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve la URL completa.
+    /**
+     * RETO EXTRA 10: Formatea comando de ejecucion docker.
+     */
+    public static String formatearDockerCommand(String img) {
+        // TODO extra: RETO EXTRA 10: Formatea comando de ejecucion docker.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearDockerCommand");
     }
 
 }

@@ -66,44 +66,136 @@ public final class Ej151MongoTemplateQueries {
         System.out.println(find(col, criterio("ana", 100)));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: el criterio equivale a Criteria.where("total").gte(totalMinimo).
+        /**
+     * RETO EXTRA 01: Determina si la query contiene algun operador de modificacion ($set, $push).
+     */
+    public static boolean esComandoActualizacionValido(String updateDoc) {
+        // TODO extra: RETO EXTRA 01: Determina si la query contiene algun operador de modificacion ($set, $push).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esComandoActualizacionValido");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si cliente != null se añade and("cliente").is(cliente).
+    /**
+     * RETO EXTRA 02: Determina si es una busqueda directa por identificador primario.
+     */
+    public static boolean esFiltroDocumentId(String query) {
+        // TODO extra: RETO EXTRA 02: Determina si es una busqueda directa por identificador primario.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFiltroDocumentId");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: si cliente == null el filtro de cliente no aplica (cualquiera).
+    /**
+     * RETO EXTRA 03: Une dos asignaciones BSON en un unico bloque de actualizacion.
+     */
+    public static String combinarActualizaciones(String u1, String u2) {
+        // TODO extra: RETO EXTRA 03: Une dos asignaciones BSON en un unico bloque de actualizacion.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para combinarActualizaciones");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: encapsula ambos valores en el record Criterio151.
+    /**
+     * RETO EXTRA 04: Determina si la excepcion corresponde a un error de escritura (DuplicateKey, etc).
+     */
+    public static boolean esExcepcionEscrituraMongo(Throwable t) {
+        // TODO extra: RETO EXTRA 04: Determina si la excepcion corresponde a un error de escritura (DuplicateKey, etc).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionEscrituraMongo");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: no valides aquí el dataset (el criterio es independiente de los datos).
+    /**
+     * RETO EXTRA 05: Genera un comando de guardado incremental unificado.
+     */
+    public static String crearUpsertComando(String filter, String update) {
+        // TODO extra: RETO EXTRA 05: Genera un comando de guardado incremental unificado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearUpsertComando");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: totalMinimo negativo es válido (no filtra nada por abajo).
+    /**
+     * RETO EXTRA 06: Valida que los paquetes de insercion no saturen la red.
+     */
+    public static boolean esLimiteSeguroEscritura(int bulkSize) {
+        // TODO extra: RETO EXTRA 06: Valida que los paquetes de insercion no saturen la red.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esLimiteSeguroEscritura");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: documenta que es el equivalente NoSQL a Criteria API de JPA.
+    /**
+     * RETO EXTRA 07: Extrae la cantidad de registros alterados de un log resumido.
+     */
+    public static int extraerTotalAfectados(String resultSummary) {
+        // TODO extra: RETO EXTRA 07: Extrae la cantidad de registros alterados de un log resumido.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerTotalAfectados");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: el criterio debe ser reutilizable en varias consultas.
+    /**
+     * RETO EXTRA 08: Indica si la edicion afectara a multiples registros.
+     */
+    public static boolean esOperacionMultiDocumento(String updateCommand) {
+        // TODO extra: RETO EXTRA 08: Indica si la edicion afectara a multiples registros.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esOperacionMultiDocumento");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: no devuelvas null.
+    /**
+     * RETO EXTRA 09: Indica si la edicion afectara a multiples registros.
+     */
+    public static boolean esMulti(String config) {
+        // TODO extra: RETO EXTRA 09: Indica si la edicion afectara a multiples registros.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMulti");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: retorna el Criterio151 construido.
+    /**
+     * RETO EXTRA 10: Determina si hay una transaccion abierta en la sesion.
+     */
+    public static boolean esTransaccionActiva(String sessionState) {
+        // TODO extra: RETO EXTRA 10: Determina si hay una transaccion abierta en la sesion.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esTransaccionActiva");
+    }
+
+    /**
+     * RETO EXTRA 11: Indica si el id fue dejado a cargo del driver de Mongo.
+     */
+    public static boolean esIdAutogenerado(String idField) {
+        // TODO extra: RETO EXTRA 11: Indica si el id fue dejado a cargo del driver de Mongo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esIdAutogenerado");
     }
 
 }

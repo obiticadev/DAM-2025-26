@@ -49,75 +49,89 @@ public final class Ej109ModifyingQueries {
         System.out.println("usa el test con EMF aislado");
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: begin transaction (los UPDATE/DELETE masivos requieren tx).
+    /**
+     * TODO extra 1: Comprueba si un repositorio JPA de tipo EmpleadoRepository está instanciado.
+     */
+    public static boolean desafioRepositoryActivo(EmpleadoRepository repo) {
+        return repo != null;
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: JPQL "update Prod109 p set p.precio = p.precio * :factor where p.categoria = :cat".
+    /**
+     * TODO extra 2: Actualiza el departamento de un empleado mediante el repositorio.
+     */
+    public static int desafioActualizarDepartamento(EmpleadoRepository repo, String depNuevo, String depViejo) {
+        return repo.actualizarDepartamento(depNuevo, depViejo);
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: factor = 1 + porcentaje/100.
+    /**
+     * TODO extra 3: Comprueba si la anotación @Modifying existe en un método por reflexión (simulado).
+     */
+    public static boolean desafioMetodoTieneModifying(Class<?> interfaz, String nombreMetodo, Class<?>... params) {
+        try {
+            var m = interfaz.getMethod(nombreMetodo, params);
+            return m.isAnnotationPresent(org.springframework.data.jpa.repository.Modifying.class);
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: createQuery(...).setParameter("factor", factor).setParameter("cat", categoria).
+    /**
+     * TODO extra 4: Comprueba si la anotación @Query existe en un método por reflexión (simulado).
+     */
+    public static boolean desafioMetodoTieneQuery(Class<?> interfaz, String nombreMetodo, Class<?>... params) {
+        try {
+            var m = interfaz.getMethod(nombreMetodo, params);
+            return m.isAnnotationPresent(org.springframework.data.jpa.repository.Query.class);
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: executeUpdate() devuelve el nº de filas afectadas.
+    /**
+     * TODO extra 5: Comprueba si el número de filas afectadas por la modificación es positivo.
+     */
+    public static boolean desafioVerificarModificacionExitosa(int filasAfectadas) {
+        return filasAfectadas > 0;
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: commit.
+    /**
+     * TODO extra 6: Lanza una excepción si el nuevo departamento a establecer es nulo.
+     */
+    public static void desafioValidarNuevoDepartamento(String dep) {
+        if (dep == null || dep.isBlank()) {
+            throw new IllegalArgumentException("Nuevo departamento no válido");
+        }
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: tras un update masivo el contexto puede estar desincronizado: limpia con em.clear().
+    /**
+     * TODO extra 7: Crea un Empleado rápido para pruebas.
+     */
+    public static Empleado desafioCrearInstanciaEmpleado(String nombre, String dep) {
+        var e = new Empleado();
+        e.setNombre(nombre);
+        e.setDepartamento(dep);
+        return e;
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: devuelve el nº de filas.
+    /**
+     * TODO extra 8: Cuenta los empleados totales mediante el repositorio.
+     */
+    public static long desafioContarEmpleados(EmpleadoRepository repo) {
+        return repo.count();
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: begin tx; JPQL "delete from Prod109 p where p.stock = 0"; executeUpdate.
+    /**
+     * TODO extra 9: Comprueba si todos los empleados de la lista tienen el nuevo departamento.
+     */
+    public static boolean desafioVerificarTodosEnDepartamento(java.util.List<Empleado> empleados, String dep) {
+        return empleados.stream().allMatch(e -> dep.equals(e.getDepartamento()));
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: commit y devuelve el nº de filas borradas.
+    /**
+     * TODO extra 10: Retorna verdadero si una lista de empleados es no nula.
+     */
+    public static boolean desafioTieneDatos(java.util.List<Empleado> empleados) {
+        return empleados != null;
     }
 
-}
-
-@jakarta.persistence.Entity
-class Prod109 {
-    @jakarta.persistence.Id
-    @jakarta.persistence.GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
-    private Long id;
-    private String categoria;
-    private double precio;
-    private int stock;
-
-    protected Prod109() {
-    }
-
-    public Prod109(String categoria, double precio, int stock) {
-        this.categoria = categoria;
-        this.precio = precio;
-        this.stock = stock;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public double getPrecio() {
-        return precio;
-    }
-
-    public int getStock() {
-        return stock;
-    }
 }

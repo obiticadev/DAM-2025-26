@@ -43,44 +43,124 @@ public class Ej081NotFoundAndConflict {
         System.out.println(new Ej081NotFoundAndConflict().crear("ana"));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: anota la clase con @RestController y @RequestMapping("/api/users").
+        /**
+     * RETO EXTRA 01: Verifica correspondencia de rutas de recursos secundarios.
+     */
+    public static boolean esRecursoAsociado(String path, Long parentId) {
+        // TODO extra: RETO EXTRA 01: Verifica correspondencia de rutas de recursos secundarios.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRecursoAsociado");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: anota con @PostMapping("/{nombre}") y 'nombre' con @PathVariable.
+    /**
+     * RETO EXTRA 02: Determina si el error apunta a choque de claves primarias.
+     */
+    public static boolean esMensajeConflictoIdentificadores(String msg) {
+        // TODO extra: RETO EXTRA 02: Determina si el error apunta a choque de claves primarias.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMensajeConflictoIdentificadores");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: intenta añadir 'nombre' al set 'usuarios'.
+    /**
+     * RETO EXTRA 03: Genera una representacion clave-valor canonica.
+     */
+    public static String crearClaveDeRecurso(String tipo, Long id) {
+        // TODO extra: RETO EXTRA 03: Genera una representacion clave-valor canonica.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearClaveDeRecurso");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: si add() devuelve false (ya existía) -> 409 Conflict con body "duplicado".
+    /**
+     * RETO EXTRA 04: Valida que el path comience con prefijo /api.
+     */
+    public static boolean esRutaControllerValida(String path) {
+        // TODO extra: RETO EXTRA 04: Valida que el path comience con prefijo /api.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRutaControllerValida");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: si se añadió -> 201 Created con body "creado".
+    /**
+     * RETO EXTRA 05: Determina el nombre del recurso a partir de la URL.
+     */
+    public static String extraerRecursoDeRuta(String path) {
+        // TODO extra: RETO EXTRA 05: Determina el nombre del recurso a partir de la URL.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerRecursoDeRuta");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: usa ResponseEntity.status(HttpStatus.CONFLICT) / CREATED según el caso.
+    /**
+     * RETO EXTRA 06: Indica si la excepcion proviene del stack de hibernate direct.
+     */
+    public static boolean esExcepcionDePersistenciaDirecta(Throwable t) {
+        // TODO extra: RETO EXTRA 06: Indica si la excepcion proviene del stack de hibernate direct.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionDePersistenciaDirecta");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: anota con @GetMapping("/{nombre}") y 'nombre' con @PathVariable.
+    /**
+     * RETO EXTRA 07: Genera un payload compacto de colision.
+     */
+    public static String crearJsonConflicto(String msg, String id) {
+        // TODO extra: RETO EXTRA 07: Genera un payload compacto de colision.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearJsonConflicto");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: si 'usuarios' contiene el nombre -> 200 ok con el nombre.
+    /**
+     * RETO EXTRA 08: Determina si se detecta colision por concurrencia optimista.
+     */
+    public static boolean esErrorDeVersionJpa(Throwable t) {
+        // TODO extra: RETO EXTRA 08: Determina si se detecta colision por concurrencia optimista.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esErrorDeVersionJpa");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: si no -> 404 Not Found (ResponseEntity.notFound().build()).
+    /**
+     * RETO EXTRA 09: Evalua si la operacion no es valida en el estado actual.
+     */
+    public static boolean esConflictoLogico(String estadoActual, String operacion) {
+        // TODO extra: RETO EXTRA 09: Evalua si la operacion no es valida en el estado actual.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esConflictoLogico");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: 404 = no existe; 409 = existe pero choca. No los confundas.
+    /**
+     * RETO EXTRA 10: Crea la explicacion estandar de no hallado.
+     */
+    public static String construirMensajeNotFound(String recurso, String clave) {
+        // TODO extra: RETO EXTRA 10: Crea la explicacion estandar de no hallado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para construirMensajeNotFound");
     }
 
 }

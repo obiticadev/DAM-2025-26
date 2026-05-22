@@ -37,4 +37,66 @@ class Ej107JpqlQueriesTest {
         assertEquals(0.0, q.salarioMedio("NADA"), 0.0001);
         assertEquals(2, q.buscarPorNombreLike("a").size());
     }
+
+@Test
+    void testDesafioRepositoryActivo() {
+        assertTrue(Ej107JpqlQueries.desafioRepositoryActivo(repo));
+        assertFalse(Ej107JpqlQueries.desafioRepositoryActivo(null));
+    }
+
+    @Test
+    void testDesafioBuscarPorDeptoJpql() {
+        repo.deleteAll();
+        var e = Ej107JpqlQueries.desafioCrearInstanciaEmpleado("Ana", "IT");
+        repo.save(e);
+        assertEquals(1, Ej107JpqlQueries.desafioBuscarPorDeptoJpql(repo, "IT").size());
+    }
+
+    @Test
+    void testDesafioContarTodos() {
+        repo.deleteAll();
+        assertEquals(0, Ej107JpqlQueries.desafioContarTodos(repo));
+    }
+
+    @Test
+    void testDesafioValidarDeptoBuscado() {
+        assertThrows(IllegalArgumentException.class, () -> Ej107JpqlQueries.desafioValidarDeptoBuscado(" "));
+    }
+
+    @Test
+    void testDesafioCrearInstanciaEmpleado() {
+        var e = Ej107JpqlQueries.desafioCrearInstanciaEmpleado("A", "D");
+        assertEquals("A", e.getNombre());
+    }
+
+    @Test
+    void testDesafioCoincideDepartamento() {
+        var e = Ej107JpqlQueries.desafioCrearInstanciaEmpleado("A", "D");
+        assertTrue(Ej107JpqlQueries.desafioCoincideDepartamento(e, "D"));
+    }
+
+    @Test
+    void testDesafioValidarIdAsignado() {
+        var e = new Empleado();
+        assertThrows(IllegalStateException.class, () -> Ej107JpqlQueries.desafioValidarIdAsignado(e));
+    }
+
+    @Test
+    void testDesafioObtenerListaInmodificable() {
+        var list = new java.util.ArrayList<Empleado>();
+        list.add(new Empleado());
+        var imm = Ej107JpqlQueries.desafioObtenerListaInmodificable(list);
+        assertThrows(UnsupportedOperationException.class, () -> imm.add(new Empleado()));
+    }
+
+    @Test
+    void testDesafioTieneEmpleadosIT() {
+        var list = List.of(Ej107JpqlQueries.desafioCrearInstanciaEmpleado("A", "IT"));
+        assertTrue(Ej107JpqlQueries.desafioTieneEmpleadosIT(list));
+    }
+
+    @Test
+    void testDesafioContieneElementos() {
+        assertTrue(Ej107JpqlQueries.desafioContieneElementos(List.of(new Empleado())));
+    }
 }

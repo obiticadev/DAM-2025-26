@@ -59,68 +59,108 @@ public class Ej029ManualIoCContainer implements AutoCloseable {
      * Cada vez que se invoque getBean(tipo), debe retornarse una nueva instancia ejecutando esta fábrica.
      */
     public <T> void registerPrototype(Class<T> tipo, Supplier<T> fabrica) {
-        // TODO extra (Reto 1): Registra una fábrica prototype.
+        // TODO extra: Reto Extra 1: Registra una fábrica de alcance PROTOTYPE.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para registerPrototype");
     }
 
     /**
      * Reto Extra 2: Registra una instancia pre-construida de un bean asociada a un nombre identificativo.
      */
     public void registerSingletonInstance(String nombre, Object instancia) {
-        // TODO extra (Reto 2): Registra una instancia singleton ya creada indexada por su nombre.
+        // TODO extra: Reto Extra 2: Registra una instancia pre-construida de un bean asociada a un nombre identificativo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para registerSingletonInstance");
     }
 
     /**
      * Reto Extra 3: Recupera un bean registrado a partir de su nombre identificativo.
      */
     public Object getBeanByName(String nombre) {
-        // TODO extra (Reto 3): Busca y devuelve la instancia singleton asociada a dicho nombre.
-        // Lanza IllegalStateException si no existe.
-        return null;
+        // TODO extra: Reto Extra 3: Recupera un bean registrado a partir de su nombre identificativo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para getBeanByName");
     }
 
     /**
      * Reto Extra 4: Comprueba si existe algún registro del bean en el contenedor.
      */
     public boolean hasBean(Class<?> tipo) {
-        // TODO extra (Reto 4): Retorna true si el tipo tiene asociada fábrica o instancia cacheada.
-        return false;
+        // TODO extra: Reto Extra 4: Comprueba si existe algún registro del bean en el contenedor.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para hasBean");
     }
 
     /**
      * Reto Extra 5: Vacía y limpia por completo todas las estructuras de registro y cachés del contenedor.
      */
     public void clear() {
-        // TODO extra (Reto 5): Restablece el contenedor a su estado inicial vacío.
+        // TODO extra: Reto Extra 5: Vacía y limpia por completo todas las estructuras de registro y cachés del contenedor.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para clear");
     }
 
     /**
      * Reto Extra 6: Devuelve el recuento total de tipos o nombres registrados en el contenedor.
      */
     public int getBeanCount() {
-        // TODO extra (Reto 6): Devuelve el número total de beans definidos/registrados.
-        return 0;
+        // TODO extra: Reto Extra 6: Devuelve el recuento total de tipos o nombres registrados en el contenedor.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para getBeanCount");
     }
 
     /**
      * Reto Extra 7: Registra un bean cuya fábrica depende dinámicamente de la resolución de otro bean registrado.
      */
     public <T> void registerWithDependency(Class<T> tipo, Class<?> dep, java.util.function.Function<Object, T> fabrica) {
-        // TODO extra (Reto 7): Define una fábrica que se invoque pasando como argumento el bean 'dep' obtenido del contenedor.
+        // TODO extra: Reto Extra 7: Registra un bean cuya fábrica depende dinámicamente de la resolución de otro bean registrado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para registerWithDependency");
     }
 
     /**
      * Reto Extra 8: Resuelve y devuelve todas las instancias singleton que hereden o implementen el tipo indicado.
      */
     public <T> java.util.Map<String, T> getBeansOfType(Class<T> tipo) {
-        // TODO extra (Reto 8): Recorre las instancias singleton cacheadas y devuelve un mapa indexado por nombre/clase con las que coincidan.
-        return java.util.Map.of();
+        // TODO extra: Reto Extra 8: Resuelve y devuelve todas las instancias singleton que hereden o implementen el tipo indicado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para getBeansOfType");
     }
 
     /**
      * Reto Extra 9: Registra un alias alternativo que apunte al nombre de un bean ya existente.
      */
     public void registerAlias(String originalName, String alias) {
-        // TODO extra (Reto 9): Permite que getBeanByName resuelva el bean original usando el alias.
+        // TODO extra: Reto Extra 9: Registra un alias alternativo que apunte al nombre de un bean ya existente.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para registerAlias");
     }
 
     /**
@@ -128,7 +168,12 @@ public class Ej029ManualIoCContainer implements AutoCloseable {
      */
     @Override
     public void close() throws Exception {
-        // TODO extra (Reto 10): Recorre todas las instancias registradas y si implementan AutoCloseable, invoca su close().
+        // TODO extra: Reto Extra 10: Callback de destrucción ordenada para liberar recursos de los singletons.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para close");
     }
 
 }

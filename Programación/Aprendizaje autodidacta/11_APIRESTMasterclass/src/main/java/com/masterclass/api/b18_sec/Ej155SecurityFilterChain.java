@@ -69,44 +69,124 @@ public final class Ej155SecurityFilterChain {
         System.out.println(requiere401("GET", "/api/users", false));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si metodo es null o blank -> IllegalArgumentException.
+        /**
+     * RETO EXTRA 01: Comprueba si la ruta debe estar abierta de forma predeterminada (ej. login, swagger).
+     */
+    public static boolean esRutaPublica(String path) {
+        // TODO extra: RETO EXTRA 01: Comprueba si la ruta debe estar abierta de forma predeterminada (ej. login, swagger).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRutaPublica");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si ruta es null o blank -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 02: Verifica la presencia de encabezados de origen cruzado en peticiones.
+     */
+    public static boolean esFiltroCorsActivo(String header) {
+        // TODO extra: RETO EXTRA 02: Verifica la presencia de encabezados de origen cruzado en peticiones.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFiltroCorsActivo");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: normaliza el metodo a mayúsculas para comparar de forma estable.
+    /**
+     * RETO EXTRA 03: Determina si es un encabezado standard de proteccion (HSTS, XSS).
+     */
+    public static boolean esCabeceraSegura(String name, String value) {
+        // TODO extra: RETO EXTRA 03: Determina si es un encabezado standard de proteccion (HSTS, XSS).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCabeceraSegura");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: define la regla GET sobre el prefijo "/public/" (incluye subrutas).
+    /**
+     * RETO EXTRA 04: Verifica que solo se acepte HTTPS.
+     */
+    public static boolean esProtocoloSeguro(String scheme) {
+        // TODO extra: RETO EXTRA 04: Verifica que solo se acepte HTTPS.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esProtocoloSeguro");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: define la regla POST exacta sobre "/auth/login".
+    /**
+     * RETO EXTRA 05: Determina si el usuario no esta autenticado.
+     */
+    public static boolean esUsuarioAnonimo(String principal) {
+        // TODO extra: RETO EXTRA 05: Determina si el usuario no esta autenticado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esUsuarioAnonimo");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: define la regla POST exacta sobre "/auth/refresh".
+    /**
+     * RETO EXTRA 06: Normaliza el rol removiendo el prefijo ROLE_.
+     */
+    public static String extraerRolDeAutoridad(String authority) {
+        // TODO extra: RETO EXTRA 06: Normaliza el rol removiendo el prefijo ROLE_.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerRolDeAutoridad");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: combina las reglas: si alguna casa -> público (true).
+    /**
+     * RETO EXTRA 07: Determina si la excepcion proviene del stack de autenticacion de Spring Security.
+     */
+    public static boolean esExcepcionDeSeguridadFiltro(Throwable t) {
+        // TODO extra: RETO EXTRA 07: Determina si la excepcion proviene del stack de autenticacion de Spring Security.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionDeSeguridadFiltro");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: por defecto, todo lo no listado es PRIVADO (false) -> deny by default.
+    /**
+     * RETO EXTRA 08: Identifica si la ruta requiere credenciales de administracion.
+     */
+    public static boolean esRutaExclusivaAdmin(String path) {
+        // TODO extra: RETO EXTRA 08: Identifica si la ruta requiere credenciales de administracion.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRutaExclusivaAdmin");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: ten cuidado con rutas con query string: compara solo el path.
+    /**
+     * RETO EXTRA 09: Genera el JSON de error de acceso prohibido.
+     */
+    public static String generarMensajeAccesoDenegado(String path) {
+        // TODO extra: RETO EXTRA 09: Genera el JSON de error de acceso prohibido.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para generarMensajeAccesoDenegado");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve la decisión booleana final.
+    /**
+     * RETO EXTRA 10: Comprueba si un filtro de seguridad concreto esta activo.
+     */
+    public static boolean esFiltroHabilitado(String filterName, String activeFilters) {
+        // TODO extra: RETO EXTRA 10: Comprueba si un filtro de seguridad concreto esta activo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFiltroHabilitado");
     }
 
 }

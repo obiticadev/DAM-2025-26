@@ -79,44 +79,83 @@ public final class Ej086RepositoryPattern {
         System.out.println(escenario(new LibroRepositoryMem()));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: valida entity y entity.id() no null.
+    /**
+     * TODO extra 1: Valida que el libro y su id no sean nulos.
+     */
+    public static void desafioValidarLibro(Libro libro) {
+        if (libro == null || libro.id() == null) {
+            throw new IllegalArgumentException("Libro o ID no pueden ser nulos");
+        }
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: guarda en 'db' usando el id como clave (upsert).
+    /**
+     * TODO extra 2: Guarda el libro en el mapa de memoria.
+     */
+    public static Libro desafioGuardarEnMemoria(java.util.Map<Long, Libro> db, Libro libro) {
+        desafioValidarLibro(libro);
+        db.put(libro.id(), libro);
+        return libro;
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: devuelve la entidad guardada.
+    /**
+     * TODO extra 3: Busca un libro por ID en el mapa de memoria.
+     */
+    public static java.util.Optional<Libro> desafioBuscarPorId(java.util.Map<Long, Libro> db, Long id) {
+        return java.util.Optional.ofNullable(db.get(id));
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: devuelve Optional.ofNullable del valor en 'db'.
+    /**
+     * TODO extra 4: Copia de forma segura los valores de una colección de libros.
+     */
+    public static java.util.List<Libro> desafioCopiarLista(java.util.Collection<Libro> libros) {
+        return new java.util.ArrayList<>(libros);
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: devuelve una copia (nueva List) de db.values().
+    /**
+     * TODO extra 5: Elimina un libro del mapa por ID.
+     */
+    public static boolean desafioEliminarDeMemoria(java.util.Map<Long, Libro> db, Long id) {
+        return db.remove(id) != null;
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: db.remove(id); devuelve si había algo.
+    /**
+     * TODO extra 6: Obtiene el tamaño del mapa de base de datos en memoria.
+     */
+    public static long desafioObtenerTamaño(java.util.Map<Long, Libro> db) {
+        return db.size();
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: devuelve db.size() como long.
+    /**
+     * TODO extra 7: Ejecuta el escenario guardando dos libros y borrando el primero.
+     */
+    public static long desafioEjecutarEscenario(Repository<Libro, Long> repo, Libro l1, Libro l2) {
+        repo.save(l1);
+        repo.save(l2);
+        repo.deleteById(l1.id());
+        return repo.count();
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: count debe reflejar el estado tras saves/deletes.
+    /**
+     * TODO extra 8: Verifica si existe un libro por ID en el repositorio.
+     */
+    public static boolean desafioExisteLibro(Repository<Libro, Long> repo, Long id) {
+        return repo.findById(id).isPresent();
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: guarda dos libros (id 1 y 2), borra el 1.
+    /**
+     * TODO extra 9: Guarda varios libros en lote en el repositorio.
+     */
+    public static void desafioGuardarVarios(Repository<Libro, Long> repo, java.util.List<Libro> libros) {
+        for (Libro l : libros) {
+            repo.save(l);
+        }
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve repo.count() (debe ser 1). El cliente no sabe la impl.
+    /**
+     * TODO extra 10: Obtiene una lista de títulos de todos los libros.
+     */
+    public static java.util.List<String> desafioObtenerTitulos(Repository<Libro, Long> repo) {
+        return repo.findAll().stream().map(Libro::titulo).toList();
     }
 
 }

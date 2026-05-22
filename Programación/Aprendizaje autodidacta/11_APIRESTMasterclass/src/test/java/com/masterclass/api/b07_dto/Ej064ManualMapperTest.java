@@ -27,7 +27,6 @@ class Ej064ManualMapperTest {
         assertThrows(IllegalArgumentException.class, () -> Ej064ManualMapper.toDto(null));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 1")
     @Test
     void extra1_toDtoConDescuento() {
         var entity = new ProductoEntity(1L, "Laptop", 1000.0);
@@ -41,7 +40,6 @@ class Ej064ManualMapperTest {
         assertThrows(IllegalArgumentException.class, () -> Ej064ManualMapper.pasoExtra01(entity, 105.0));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 2")
     @Test
     void extra2_toDtoListRobusto() {
         var input = java.util.Arrays.asList(
@@ -58,7 +56,6 @@ class Ej064ManualMapperTest {
         assertTrue(Ej064ManualMapper.pasoExtra02(null).isEmpty());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 3")
     @Test
     void extra3_toEntityInverso() {
         var dto = new Ej064ManualMapper.ProductoDto(1L, "Laptop", 1210.0);
@@ -70,7 +67,6 @@ class Ej064ManualMapperTest {
         assertThrows(IllegalArgumentException.class, () -> Ej064ManualMapper.pasoExtra03(null));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
     @Test
     void extra4_agruparPorCategoria() {
         var input = List.of(
@@ -88,7 +84,6 @@ class Ej064ManualMapperTest {
         assertThrows(IllegalArgumentException.class, () -> Ej064ManualMapper.pasoExtra04(null));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 5")
     @Test
     void extra5_redondeoPreciso() {
         assertEquals(10.33, Ej064ManualMapper.pasoExtra05(10.33333), 0.0001);
@@ -98,7 +93,6 @@ class Ej064ManualMapperTest {
         assertThrows(IllegalArgumentException.class, () -> Ej064ManualMapper.pasoExtra05(-1.0));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 6")
     @Test
     void extra6_toDtoListPaginada() {
         var input = List.of(
@@ -123,7 +117,6 @@ class Ej064ManualMapperTest {
         assertThrows(IllegalArgumentException.class, () -> Ej064ManualMapper.pasoExtra06(input, 0, 0));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 7")
     @Test
     void extra7_viabilidadComercial() {
         var eValido = new ProductoEntity(1L, "A", 10.0);
@@ -137,7 +130,6 @@ class Ej064ManualMapperTest {
         assertThrows(IllegalArgumentException.class, () -> Ej064ManualMapper.pasoExtra07(eValido, -1));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
     @Test
     void extra8_buscarMasBarato() {
         var input = List.of(
@@ -154,7 +146,6 @@ class Ej064ManualMapperTest {
         assertThrows(IllegalArgumentException.class, () -> Ej064ManualMapper.pasoExtra08(null));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 9")
     @Test
     void extra9_toDtoDivisa() {
         var input = List.of(new ProductoEntity(1L, "A", 100.0)); // 121.0 con IVA
@@ -167,7 +158,6 @@ class Ej064ManualMapperTest {
         assertThrows(IllegalArgumentException.class, () -> Ej064ManualMapper.pasoExtra09(input, -1.0));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     @Test
     void extra10_pasoExtra10() {
         assertEquals("EUR", Ej064ManualMapper.pasoExtra10("es-ES"));

@@ -46,4 +46,59 @@ class Ej134SortingTest {
     void campoNoPermitido() {
         assertThrows(IllegalArgumentException.class, () -> s.ordenar("password; DROP", true));
     }
+
+    @Test
+    void testRetoExtra01() {
+        assertTrue(Ej134Sorting.esCampoPermitido("nombre"));
+        assertFalse(Ej134Sorting.esCampoPermitido("password"));
+    }
+
+    @Test
+    void testRetoExtra02() {
+        assertEquals("asc", Ej134Sorting.determinarDireccion(true));
+        assertEquals("desc", Ej134Sorting.determinarDireccion(false));
+    }
+
+    @Test
+    void testRetoExtra03() {
+        assertEquals("order by p.nombre asc", Ej134Sorting.construirOrderJpql("nombre", true));
+    }
+
+    @Test
+    void testRetoExtra04() {
+        assertTrue(Ej134Sorting.whitelistValida());
+    }
+
+    @Test
+    void testRetoExtra05() {
+        var set = Ej134Sorting.obtainCamposPermitidosHelper();
+        assertNotNull(set);
+    }
+
+    @Test
+    void testRetoExtra06() {
+        assertTrue(Ej134Sorting.esDireccionDescendente("desc"));
+        assertFalse(Ej134Sorting.esDireccionDescendente("asc"));
+    }
+
+    @Test
+    void testRetoExtra07() {
+        assertEquals("nombre", Ej134Sorting.normalizarCampo("  Nombre  "));
+    }
+
+    @Test
+    void testRetoExtra08() {
+        assertTrue(Ej134Sorting.esCampoId("id"));
+    }
+
+    @Test
+    void testRetoExtra09() {
+        assertTrue(Ej134Sorting.tieneSuficientesCampos());
+    }
+
+    @Test
+    void testRetoExtra10() {
+        assertEquals("nombre:ASC", Ej134Sorting.formatearOrdenacion("nombre", true));
+    }
+
 }

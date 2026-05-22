@@ -45,44 +45,124 @@ public final class Ej181StructuredLoggingMdc {
         System.out.println(formatear("INFO", "ok", Map.of("traceId", "abc")));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si nivel es null o en blanco -> IllegalArgumentException.
+        /**
+     * RETO EXTRA 01: Valida si el nivel no es blanco.
+     */
+    public static boolean esNivelValido(String nivel) {
+        // TODO extra: RETO EXTRA 01: Valida si el nivel no es blanco.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esNivelValido");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si mensaje es null -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 02: Valida mensaje no nulo.
+     */
+    public static boolean esMensajeValido(String mensaje) {
+        // TODO extra: RETO EXTRA 02: Valida mensaje no nulo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMensajeValido");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: si mdc es null -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 03: Valida mdc no nulo.
+     */
+    public static boolean esMdcValido(java.util.Map<String, String> mdc) {
+        // TODO extra: RETO EXTRA 03: Valida mdc no nulo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMdcValido");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: crea un LinkedHashMap para preservar orden de las claves.
+    /**
+     * RETO EXTRA 04: Limpia y capitaliza nivel.
+     */
+    public static String normalizarNivel(String nivel) {
+        // TODO extra: RETO EXTRA 04: Limpia y capitaliza nivel.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para normalizarNivel");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: pon "level" con el nivel normalizado a mayusculas (trim).
+    /**
+     * RETO EXTRA 05: Crea un LinkedHashMap para preservar orden.
+     */
+    public static java.util.Map<String, String> crearMdcMap() {
+        // TODO extra: RETO EXTRA 05: Crea un LinkedHashMap para preservar orden.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearMdcMap");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: pon "message" con el mensaje tal cual.
+    /**
+     * RETO EXTRA 06: Inserta clave-valor en mdc.
+     */
+    public static java.util.Map<String, String> insertarMdc(java.util.Map<String, String> mdc, String k, String v) {
+        // TODO extra: RETO EXTRA 06: Inserta clave-valor en mdc.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para insertarMdc");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: copia todos los pares del mdc al mapa (no sobrescribas level/message).
+    /**
+     * RETO EXTRA 07: Limpia todas las claves del mdc.
+     */
+    public static java.util.Map<String, String> limpiarMdc(java.util.Map<String, String> mdc) {
+        // TODO extra: RETO EXTRA 07: Limpia todas las claves del mdc.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para limpiarMdc");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: crea un com.fasterxml.jackson.databind.ObjectMapper.
+    /**
+     * RETO EXTRA 08: Verifica si contiene traceId.
+     */
+    public static boolean contieneTrazaMdc(java.util.Map<String, String> mdc) {
+        // TODO extra: RETO EXTRA 08: Verifica si contiene traceId.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contieneTrazaMdc");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: serializa el mapa a JSON (writeValueAsString); envuelve la
+    /**
+     * RETO EXTRA 09: Serializa un log vacio.
+     */
+    public static String serializarVacio() {
+        // TODO extra: RETO EXTRA 09: Serializa un log vacio.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para serializarVacio");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve la cadena JSON resultante.
+    /**
+     * RETO EXTRA 10: Obtiene un campo textual del JSON.
+     */
+    public static String obtenerDeJson(String json, String k) {
+        // TODO extra: RETO EXTRA 10: Obtiene un campo textual del JSON.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerDeJson");
     }
 
 }

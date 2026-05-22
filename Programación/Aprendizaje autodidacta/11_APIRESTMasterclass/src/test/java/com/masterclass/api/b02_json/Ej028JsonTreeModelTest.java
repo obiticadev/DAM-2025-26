@@ -25,7 +25,6 @@ class Ej028JsonTreeModelTest {
         assertEquals(0, Ej028JsonTreeModel.tamanioDatos("{\"x\":1}"));
     }
 
-    @Disabled("Activa para probar el RETO EXTRA 1")
     @Test
     void retoExtra01_buscarPorRuta() {
         String json = "{\"usuario\":{\"direccion\":{\"ciudad\":\"Madrid\",\"cp\":28001}}}";
@@ -34,7 +33,6 @@ class Ej028JsonTreeModelTest {
         assertEquals("", Ej028JsonTreeModel.buscarPorRuta(json, "usuario.direccion.pais"));
     }
 
-    @Disabled("Activa para probar el RETO EXTRA 2")
     @Test
     void retoExtra02_crearJsonProgramatico() {
         String json = Ej028JsonTreeModel.crearJsonProgramatico("Ana", 30, List.of("cine", "viajes"));
@@ -43,7 +41,6 @@ class Ej028JsonTreeModelTest {
         assertTrue(json.contains("\"aficiones\":[\"cine\",\"viajes\"]"));
     }
 
-    @Disabled("Activa para probar el RETO EXTRA 3")
     @Test
     void retoExtra03_inyectarAtributo() {
         String original = "{\"nombre\":\"Pedro\"}";
@@ -55,7 +52,6 @@ class Ej028JsonTreeModelTest {
         assertTrue(modificado2.contains("\"puntos\":99"));
     }
 
-    @Disabled("Activa para probar el RETO EXTRA 4")
     @Test
     void retoExtra04_eliminarAtributo() {
         String original = "{\"nombre\":\"Pedro\",\"edad\":20,\"activo\":true}";
@@ -65,7 +61,6 @@ class Ej028JsonTreeModelTest {
         assertFalse(modificado.contains("\"edad\""));
     }
 
-    @Disabled("Activa para probar el RETO EXTRA 5")
     @Test
     void retoExtra05_inspeccionarTipoDeNodo() {
         String json = "{\"nombre\":\"Luis\",\"edad\":40,\"aficiones\":[\"deporte\"],\"direccion\":{},\"activo\":false,\"vacio\":null}";
@@ -78,7 +73,6 @@ class Ej028JsonTreeModelTest {
         assertEquals("MISSING", Ej028JsonTreeModel.inspeccionarTipoDeNodo(json, "inexistente"));
     }
 
-    @Disabled("Activa para probar el RETO EXTRA 6")
     @Test
     void retoExtra06_extraerValoresDeArray() {
         String json = "[{\"id\":1,\"nombre\":\"Ramon\"},{\"id\":2,\"nombre\":\"Maria\"},{\"id\":3}]";
@@ -88,7 +82,6 @@ class Ej028JsonTreeModelTest {
         assertTrue(nombres.contains("Maria"));
     }
 
-    @Disabled("Activa para probar el RETO EXTRA 7")
     @Test
     void retoExtra07_fusionarArboles() {
         String jsonA = "{\"config\":{\"puerto\":80},\"version\":\"1.0\"}";
@@ -101,7 +94,6 @@ class Ej028JsonTreeModelTest {
         assertTrue(fusionado.contains("\"activo\":true"));
     }
 
-    @Disabled("Activa para probar el RETO EXTRA 8")
     @Test
     void retoExtra08_buscarClaveRecursiva() {
         String json = "{\"a\":{\"b\":{\"c\":{\"d\":{\"claveBuscada\":\"encontrado\"}}}}}";
@@ -113,7 +105,6 @@ class Ej028JsonTreeModelTest {
         assertEquals("12345", secreto);
     }
 
-    @Disabled("Activa para probar el RETO EXTRA 9")
     @Test
     void retoExtra09_convertirSubarbolADto() {
         String json = "{\"empresa\":\"ACME\",\"responsable\":{\"nombre\":\"Carlos\",\"edad\":45}}";
@@ -123,7 +114,6 @@ class Ej028JsonTreeModelTest {
         assertEquals(45, p.edad());
     }
 
-    @Disabled("Activa para probar el RETO EXTRA 10")
     @Test
     void retoExtra10_calcularPromedioDeCampo() {
         String json = "{\"tienda\":{\"ventas\":[{\"id\":1,\"monto\":10.0},{\"id\":2,\"monto\":20.0},{\"id\":3,\"monto\":30.0}]}}";

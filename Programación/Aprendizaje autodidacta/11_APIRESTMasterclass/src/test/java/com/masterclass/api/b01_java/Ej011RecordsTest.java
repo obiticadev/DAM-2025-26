@@ -34,7 +34,6 @@ class Ej011RecordsTest {
         assertEquals(100.0, p.precio(), "el original no debe mutar");
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 1")
     @Test
     void retoExtra01_esValido() {
         assertTrue(Ej011Records.esValido(new ProductoDto(1L, "Teclado", 100.0)));
@@ -42,7 +41,6 @@ class Ej011RecordsTest {
         assertFalse(Ej011Records.esValido(new ProductoDto(-1L, "Teclado", 100.0)));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 2")
     @Test
     void retoExtra02_conDescuento() {
         var p = new ProductoDto(1L, "Teclado", 100.0);
@@ -51,7 +49,6 @@ class Ej011RecordsTest {
         assertEquals(1L, res.id());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 3")
     @Test
     void retoExtra03_aJsonSimple() {
         var p = new ProductoDto(1L, "Teclado", 100.0);
@@ -61,7 +58,6 @@ class Ej011RecordsTest {
         assertTrue(json.contains("\"precio\":100.0"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
     @Test
     void retoExtra04_crearServicioDto() {
         var s = Ej011Records.crearServicioDto("Consultoría", 75.0);
@@ -70,7 +66,6 @@ class Ej011RecordsTest {
         assertEquals(75.0, s.precio());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 5")
     @Test
     void retoExtra05_esEquivalente() {
         var p1 = new ProductoDto(1L, "Teclado", 100.0);
@@ -78,7 +73,6 @@ class Ej011RecordsTest {
         assertTrue(Ej011Records.esEquivalente(p1, p2));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 6")
     @Test
     void retoExtra06_normalizarId() {
         var pInvalido = new ProductoDto(-5L, "Teclado", 100.0);
@@ -86,14 +80,12 @@ class Ej011RecordsTest {
         assertEquals(999L, pNormalizado.id());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 7")
     @Test
     void retoExtra07_esPrecioRedondeado() {
         assertTrue(Ej011Records.esPrecioRedondeado(new ProductoDto(1L, "x", 10.25)));
         assertFalse(Ej011Records.esPrecioRedondeado(new ProductoDto(1L, "x", 10.3333)));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
     @Test
     void retoExtra08_crearDesdeValores() {
         var p = Ej011Records.crearDesdeValores("42,Teclado Mecanico,89.99");
@@ -102,14 +94,12 @@ class Ej011RecordsTest {
         assertEquals(89.99, p.precio());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 9")
     @Test
     void retoExtra09_formatoEtiqueta() {
         var p = new ProductoDto(1L, "Teclado", 100.0);
         assertEquals("Teclado - $100.0", Ej011Records.formatoEtiqueta(p));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     @Test
     void retoExtra10_reconstruirConEnvio() {
         var p = new ProductoDto(1L, "Teclado", 100.0);

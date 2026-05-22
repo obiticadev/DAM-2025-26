@@ -71,44 +71,83 @@ public final class Ej087DaoPattern {
         System.out.println(escenario(new EmpleadoDaoMem()));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: valida e no null.
+    /**
+     * TODO extra 1: Valida que el empleado no sea nulo.
+     */
+    public static void desafioValidarEmpleado(Empleado e) {
+        if (e == null) {
+            throw new IllegalArgumentException("Empleado no puede ser nulo");
+        }
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si ya existe e.id() lanza IllegalStateException (clave duplicada, como en SQL).
+    /**
+     * TODO extra 2: Comprueba duplicados de clave en el mapa de memoria.
+     */
+    public static void desafioComprobarDuplicado(java.util.Map<Integer, Empleado> tabla, int id) {
+        if (tabla.containsKey(id)) {
+            throw new IllegalStateException("Clave duplicada: " + id);
+        }
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: inserta en 'tabla'.
+    /**
+     * TODO extra 3: Inserta en el mapa simulado de base de datos.
+     */
+    public static void desafioInsertarEnTabla(java.util.Map<Integer, Empleado> tabla, Empleado e) {
+        desafioValidarEmpleado(e);
+        desafioComprobarDuplicado(tabla, e.id());
+        tabla.put(e.id(), e);
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: devuelve el empleado o null si no existe (estilo DAO clásico).
+    /**
+     * TODO extra 4: Busca un empleado por ID devolviendo null si no existe.
+     */
+    public static Empleado desafioBuscarPorId(java.util.Map<Integer, Empleado> tabla, int id) {
+        return tabla.get(id);
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: filtra los valores cuyo departamento sea 'dep'.
+    /**
+     * TODO extra 5: Filtra los empleados de un departamento específico.
+     */
+    public static java.util.List<Empleado> desafioFiltrarPorDepartamento(java.util.Map<Integer, Empleado> tabla, String dep) {
+        if (dep == null) return java.util.List.of();
+        return tabla.values().stream().filter(e -> dep.equals(e.departamento())).toList();
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: devuelve la lista (vacía si ninguno).
+    /**
+     * TODO extra 6: Crea una lista de empleados inmodificable y segura.
+     */
+    public static java.util.List<Empleado> desafioCrearListaSegura(java.util.List<Empleado> empleados) {
+        return java.util.List.copyOf(empleados);
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: elimina por id; devuelve true si existía.
+    /**
+     * TODO extra 7: Elimina un empleado del mapa devolviendo si existía.
+     */
+    public static boolean desafioEliminarPorId(java.util.Map<Integer, Empleado> tabla, int id) {
+        return tabla.remove(id) != null;
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: inserta Empleado(1,"Ana","IT") y Empleado(2,"Leo","RRHH").
+    /**
+     * TODO extra 8: Inserta varios empleados usando el DAO.
+     */
+    public static void desafioInsertarVarios(EmpleadoDao dao, java.util.List<Empleado> empleados) {
+        for (Empleado e : empleados) {
+            dao.insertar(e);
+        }
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: consulta buscarPorDepartamento("IT").
+    /**
+     * TODO extra 9: Busca todos los empleados del departamento IT usando el DAO.
+     */
+    public static java.util.List<Empleado> desafioBuscarIT(EmpleadoDao dao) {
+        return dao.buscarPorDepartamento("IT");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve el tamaño de esa lista (debe ser 1).
+    /**
+     * TODO extra 10: Devuelve el tamaño de la lista de empleados o cero si es nula.
+     */
+    public static int desafioObtenerTamañoSeguro(java.util.List<Empleado> empleados) {
+        return empleados == null ? 0 : empleados.size();
     }
 
 }

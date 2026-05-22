@@ -30,7 +30,6 @@ class Ej044CommandLineRunnerTest {
         assertEquals(List.of("flag="), r.log());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 01")
     @org.junit.jupiter.api.Test
     void testPasoExtra01() throws Exception {
         var runner = Ej044CommandLineRunner.pasoExtra01();
@@ -39,7 +38,6 @@ class Ej044CommandLineRunnerTest {
         assertTrue(runner instanceof org.springframework.boot.CommandLineRunner);
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 02")
     @org.junit.jupiter.api.Test
     void testPasoExtra02() throws Exception {
         var runner = Ej044CommandLineRunner.pasoExtra02();
@@ -47,7 +45,6 @@ class Ej044CommandLineRunnerTest {
         assertTrue(runner instanceof org.springframework.boot.ApplicationRunner);
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 03")
     @org.junit.jupiter.api.Test
     void testPasoExtra03() {
         var runner = new Ej044CommandLineRunner.HighPriorityRunner();
@@ -55,7 +52,6 @@ class Ej044CommandLineRunnerTest {
         assertEquals(1, order);
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 04")
     @org.junit.jupiter.api.Test
     void testPasoExtra04() {
         var runner = new Ej044CommandLineRunner.LowPriorityRunner();
@@ -63,7 +59,6 @@ class Ej044CommandLineRunnerTest {
         assertEquals(2, order);
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 05")
     @org.junit.jupiter.api.Test
     void testPasoExtra05() {
         var runner = Ej044CommandLineRunner.pasoExtra05();
@@ -71,7 +66,6 @@ class Ej044CommandLineRunnerTest {
         assertFalse(runner.isSeedEnabled());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 06")
     @org.junit.jupiter.api.Test
     void testPasoExtra06() {
         var args = new org.springframework.boot.DefaultApplicationArguments("--optionA=val1", "nonOptionA");
@@ -80,7 +74,6 @@ class Ej044CommandLineRunnerTest {
         assertTrue(nonOptions.contains("nonOptionA"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 07")
     @org.junit.jupiter.api.Test
     void testPasoExtra07() {
         var args = new org.springframework.boot.DefaultApplicationArguments("--optionA=val1", "--optionB");
@@ -90,7 +83,6 @@ class Ej044CommandLineRunnerTest {
         assertTrue(optionNames.contains("optionB"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 08")
     @org.junit.jupiter.api.Test
     void testPasoExtra08() {
         var args = new org.springframework.boot.DefaultApplicationArguments("--optionA=val1", "--optionA=val2");
@@ -100,7 +92,6 @@ class Ej044CommandLineRunnerTest {
         assertTrue(values.contains("val2"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 09")
     @org.junit.jupiter.api.Test
     void testPasoExtra09() {
         var generator = Ej044CommandLineRunner.pasoExtra09(42);
@@ -108,7 +99,6 @@ class Ej044CommandLineRunnerTest {
         assertTrue(generator instanceof org.springframework.boot.ExitCodeGenerator);
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     @org.junit.jupiter.api.Test
     void testPasoExtra10() {
         org.springframework.boot.CommandLineRunner failingRunner = args -> {

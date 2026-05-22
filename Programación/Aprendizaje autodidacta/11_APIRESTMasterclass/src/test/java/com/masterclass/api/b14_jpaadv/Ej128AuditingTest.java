@@ -36,4 +36,67 @@ class Ej128AuditingTest {
         assertNotNull(recargado.getCreadoEn());
         assertNotNull(recargado.getActualizadoEn(), "@PreUpdate debe poblar actualizadoEn");
     }
+
+    @Test
+    void testRetoExtra01() {
+        var d = new DocAud128("hola");
+        assertEquals("hola", Ej128Auditing.obtenerTexto(d));
+    }
+
+    @Test
+    void testRetoExtra02() {
+        var d = new DocAud128("hola");
+        assertFalse(Ej128Auditing.tieneCreadoEn(d));
+    }
+
+    @Test
+    void testRetoExtra03() {
+        var d = new DocAud128("hola");
+        assertFalse(Ej128Auditing.tieneActualizadoEn(d));
+    }
+
+    @Test
+    void testRetoExtra04() {
+        var d = Ej128Auditing.crearDocumento("nuevo");
+        assertNotNull(d);
+    }
+
+    @Test
+    void testRetoExtra05() {
+        var d = new DocAud128("hola");
+        assertFalse(Ej128Auditing.haSidoEditado(d));
+    }
+
+    @Test
+    void testRetoExtra06() {
+        var d = new DocAud128("hola");
+        Ej128Auditing.actualizarTexto(d, "mundo");
+        assertEquals("mundo", d.getTexto());
+    }
+
+    @Test
+    void testRetoExtra07() {
+        var d = new DocAud128("hola");
+        assertNull(Ej128Auditing.obtenerId(d));
+    }
+
+    @Test
+    void testRetoExtra08() {
+        var d = new DocAud128("hola mundo");
+        assertTrue(Ej128Auditing.contienePalabra(d, "mundo"));
+        assertFalse(Ej128Auditing.contienePalabra(d, "casa"));
+    }
+
+    @Test
+    void testRetoExtra09() {
+        var d = new DocAud128("hola");
+        assertTrue(Ej128Auditing.esNuevo(d));
+    }
+
+    @Test
+    void testRetoExtra10() {
+        var d = new DocAud128("hola");
+        assertEquals("Doc[Id=null, Creado=null]", Ej128Auditing.formatearAuditoria(d));
+    }
+
 }

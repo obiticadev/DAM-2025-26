@@ -68,44 +68,112 @@ public final class Ej085LayeredArchitecture {
         System.out.println("capas listas");
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: valida importe > 0; si no, IllegalArgumentException.
+    /**
+     * TODO extra 1: Valida que el importe sea estrictamente mayor que cero.
+     *
+     * @param importe cantidad a validar
+     */
+    public static void desafioValidarImporte(double importe) {
+        if (importe <= 0) {
+            throw new IllegalArgumentException("Importe debe ser mayor que cero");
+        }
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: recupera la cuenta vía repo.findById(id).
+    /**
+     * TODO extra 2: Recupera la cuenta mediante el repositorio.
+     *
+     * @param repo el repositorio de cuentas
+     * @param id el identificador de la cuenta
+     * @return un Optional con la cuenta
+     */
+    public static java.util.Optional<Cuenta> desafioBuscarCuenta(CuentaRepository repo, Long id) {
+        return repo.findById(id);
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: si no existe, lanza NoSuchElementException.
+    /**
+     * TODO extra 3: Lanza NoSuchElementException si el Optional está vacío.
+     *
+     * @param optionalCuenta el optional a desempaquetar
+     * @return la cuenta contenida
+     */
+    public static Cuenta desafioObtenerCuentaOrThrow(java.util.Optional<Cuenta> optionalCuenta) {
+        return optionalCuenta.orElseThrow(() -> new java.util.NoSuchElementException("Cuenta no encontrada"));
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: calcula el nuevo saldo (saldo + importe).
+    /**
+     * TODO extra 4: Calcula el nuevo saldo sumando el importe.
+     *
+     * @param saldoActual saldo actual
+     * @param importe cantidad a sumar
+     * @return el nuevo saldo
+     */
+    public static double desafioCalcularNuevoSaldo(double saldoActual, double importe) {
+        return saldoActual + importe;
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: crea una Cuenta NUEVA (record inmutable) con ese saldo.
+    /**
+     * TODO extra 5: Crea una nueva instancia de Cuenta con el mismo ID y el nuevo saldo.
+     *
+     * @param id id de la cuenta
+     * @param nuevoSaldo nuevo saldo
+     * @return la nueva cuenta
+     */
+    public static Cuenta desafioCrearNuevaCuenta(Long id, double nuevoSaldo) {
+        return new Cuenta(id, nuevoSaldo);
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: persiste con repo.save(...) y devuelve lo guardado.
+    /**
+     * TODO extra 6: Persiste la cuenta en el repositorio y la devuelve.
+     *
+     * @param repo el repositorio
+     * @param cuenta la cuenta a guardar
+     * @return la cuenta guardada
+     */
+    public static Cuenta desafioGuardarCuenta(CuentaRepository repo, Cuenta cuenta) {
+        return repo.save(cuenta);
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: el Service NO conoce HTTP ni status codes (separación de capas).
+    /**
+     * TODO extra 7: Verifica que una excepción no sea de infraestructura HTTP.
+     *
+     * @param e la excepcion
+     * @return true si es excepcion de dominio
+     */
+    public static boolean desafioVerificarAislamientoHttp(Throwable e) {
+        return !e.getClass().getName().contains("Http") && !e.getClass().getName().contains("ResponseStatus");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: obtén todas las cuentas con repo.findAll().
+    /**
+     * TODO extra 8: Recupera todas las cuentas del repositorio.
+     *
+     * @param repo el repositorio
+     * @return la lista de cuentas
+     */
+    public static java.util.List<Cuenta> desafioObtenerTodasLasCuentas(CuentaRepository repo) {
+        return repo.findAll();
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: suma sus saldos con un stream (mapToDouble + sum).
+    /**
+     * TODO extra 9: Suma los saldos de una lista de cuentas usando Streams.
+     *
+     * @param cuentas lista de cuentas
+     * @return la suma de todos los saldos
+     */
+    public static double desafioSumarSaldosConStream(java.util.List<Cuenta> cuentas) {
+        return cuentas.stream().mapToDouble(Cuenta::saldo).sum();
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve el total (0.0 si no hay cuentas).
+    /**
+     * TODO extra 10: Calcula el saldo total y devuelve 0.0 si la lista es nula o vacía.
+     *
+     * @param cuentas lista de cuentas
+     * @return el saldo total
+     */
+    public static double desafioCalcularSaldoTotalSeguro(java.util.List<Cuenta> cuentas) {
+        if (cuentas == null || cuentas.isEmpty()) {
+            return 0.0;
+        }
+        return desafioSumarSaldosConStream(cuentas);
     }
 
 }

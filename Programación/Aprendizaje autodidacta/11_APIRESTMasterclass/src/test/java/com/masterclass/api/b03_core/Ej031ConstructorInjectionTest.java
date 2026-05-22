@@ -41,7 +41,6 @@ class Ej031ConstructorInjectionTest {
         public ClaseMutable(String campo) { this.campo = campo; }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 1")
     @Test
     void retoExtra01_multiplesRepos() {
         RepoSaludos r1 = () -> "Hola";
@@ -50,7 +49,6 @@ class Ej031ConstructorInjectionTest {
         assertEquals("Hola, Mundo", servicio.saludarTodos());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 2")
     @Test
     void retoExtra02_dependenciaOpcional() {
         var sConRepo = new ServicioConDependenciaOpcional(Optional.of(() -> "Hola"));
@@ -60,7 +58,6 @@ class Ej031ConstructorInjectionTest {
         assertEquals("Default", sSinRepo.obtenerPlantilla());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 3")
     @Test
     void retoExtra03_configuracionLimite() {
         var s = new ServicioConConfiguracion(() -> "Saludo: {}", 10);
@@ -71,14 +68,12 @@ class Ej031ConstructorInjectionTest {
         assertTrue(res.length() <= 13); // longitud límite + 3 de los puntos suspensivos
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
     @Test
     void retoExtra04_detectarInyeccionCircular() {
         assertTrue(Ej031ConstructorInjection.detectarInyeccionCircular(CircularA.class, CircularB.class));
         assertFalse(Ej031ConstructorInjection.detectarInyeccionCircular(CircularA.class, NoCircular.class));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 5")
     @Test
     void retoExtra05_composicion() {
         var s1 = new ServicioSaludo(() -> "Buenos días, {}");
@@ -87,7 +82,6 @@ class Ej031ConstructorInjectionTest {
         assertEquals("Buenos días, Carlos. ¡Que tengas un buen día, Carlos!", comp.saludarCompuesto("Carlos"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 6")
     @Test
     void retoExtra06_lazyProxy() {
         int[] counter = {0};
@@ -100,7 +94,6 @@ class Ej031ConstructorInjectionTest {
         assertEquals(1, counter[0], "Debe evaluarse tras la llamada");
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 7")
     @Test
     void retoExtra07_decorador() {
         RepoSaludos orig = () -> "Hola {}";
@@ -108,7 +101,6 @@ class Ej031ConstructorInjectionTest {
         assertEquals("[Hola {}]", decorador.plantilla());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
     @Test
     void retoExtra08_factory() {
         Map<String, RepoSaludos> factory = Map.of(
@@ -120,14 +112,12 @@ class Ej031ConstructorInjectionTest {
         assertEquals("¡Qué pasa, Pepe!", s.saludarCon("casual", "Pepe"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 9")
     @Test
     void retoExtra09_verificarInyeccionSegura() {
         assertTrue(Ej031ConstructorInjection.verificarInyeccionSegura(ClaseInmutable.class));
         assertFalse(Ej031ConstructorInjection.verificarInyeccionSegura(ClaseMutable.class));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     @Test
     void retoExtra10_filtroRepos() {
         RepoSaludos r1 = () -> "ES_Hola";

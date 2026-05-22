@@ -53,44 +53,87 @@ public final class Ej099ConnectionPooling {
         System.out.println("usa el test con H2 en memoria");
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: valida maxPool > 0.
+    /**
+     * TODO extra 1: Comprueba si un DataSource está configurado de forma no nula.
+     */
+    public static boolean desafioDataSourceNoNulo(javax.sql.DataSource ds) {
+        return ds != null;
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: crea un HikariConfig.
+    /**
+     * TODO extra 2: Obtiene una conexión del pool y valida que esté abierta.
+     */
+    public static boolean desafioValidarConexionPool(javax.sql.DataSource ds) {
+        try (var c = ds.getConnection()) {
+            return c != null && !c.isClosed();
+        } catch (java.sql.SQLException e) {
+            return false;
+        }
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: config.setJdbcUrl(url).
+    /**
+     * TODO extra 3: Retorna el tamaño mínimo de conexiones inactivas configurado en el pool (valor representativo).
+     */
+    public static int desafioMinIdleRecomendado() {
+        return 5;
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: config.setMaximumPoolSize(maxPool).
+    /**
+     * TODO extra 4: Retorna el tamaño máximo de conexiones configurado en el pool (valor representativo).
+     */
+    public static int desafioMaxConnectionsRecomendado() {
+        return 10;
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: config.setUsername("sa") y setPassword("") para H2.
+    /**
+     * TODO extra 5: Comprueba si el DataSource es una instancia de un pool Hikari (simulación).
+     */
+    public static boolean desafioEsHikariDataSource(javax.sql.DataSource ds) {
+        return ds != null && ds.getClass().getName().contains("Hikari");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: crea y devuelve new HikariDataSource(config).
+    /**
+     * TODO extra 6: Retorna el timeout de conexión recomendado en milisegundos (p.ej. 30000).
+     */
+    public static long desafioConnectionTimeoutRecomendado() {
+        return 30000L;
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: bucle n veces.
+    /**
+     * TODO extra 7: Verifica que una conexión obtenida del pool provenga de una URL válida.
+     */
+    public static boolean desafioVerificarUrlConexion(java.sql.Connection conn) {
+        try {
+            return conn.getMetaData().getURL() != null;
+        } catch (java.sql.SQLException e) {
+            return false;
+        }
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: en cada vuelta, try-with-resources ds.getConnection().
+    /**
+     * TODO extra 8: Simula la liberación de una conexión devolviéndola al pool (cierre try-with-resources).
+     */
+    public static void desafioLiberarConexion(java.sql.Connection conn) throws java.sql.SQLException {
+        if (conn != null) {
+            conn.close();
+        }
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: comprueba isValid(1); si alguna falla, devuelve false.
+    /**
+     * TODO extra 9: Comprueba si el pool está activo validando que no lance excepciones al conectar repetidamente.
+     */
+    public static boolean desafioTestearPool(javax.sql.DataSource ds, int intentos) {
+        for (int i = 0; i < intentos; i++) {
+            if (!desafioValidarConexionPool(ds)) return false;
+        }
+        return true;
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: cerrar la conexión la DEVUELVE al pool (no la destruye): devuelve true.
+    /**
+     * TODO extra 10: Retorna un resumen descriptivo del pool de conexiones.
+     */
+    public static String desafioResumirPool(javax.sql.DataSource ds) {
+        return ds == null ? "Pool desactivado" : "Pool activo: " + ds.getClass().getSimpleName();
     }
 
 }

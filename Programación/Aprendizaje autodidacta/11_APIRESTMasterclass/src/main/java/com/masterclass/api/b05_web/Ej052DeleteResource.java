@@ -43,7 +43,14 @@ public class Ej052DeleteResource {
     /**
      * Reto Extra 1: DELETE para borrado físico (retorna 204 No Content).
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.DeleteMapping("/{id}/fisico")
+    // TODO extra: anota con @org.springframework.web.bind.annotation.DeleteMapping("/{
+        // TODO extra: Reto Extra 1: DELETE para borrado físico (retorna 204 No Content).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para DeleteMapping");
+    }/fisico")
     public ResponseEntity<Void> borrarFisico(@org.springframework.web.bind.annotation.PathVariable long id) {
         // TODO extra: simula el borrado físico de la base de datos y retorna estatus 204.
         return null;
@@ -52,7 +59,14 @@ public class Ej052DeleteResource {
     /**
      * Reto Extra 2: DELETE para borrado lógico (retorna 200 OK con el DTO modificado).
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.DeleteMapping("/{id}/logico")
+    // TODO extra: anota con @org.springframework.web.bind.annotation.DeleteMapping("/{
+        // TODO extra: Reto Extra 2: DELETE para borrado lógico (retorna 200 OK con el DTO modificado).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para DeleteMapping");
+    }/logico")
     public ResponseEntity<ItemDto> borrarLogico(@org.springframework.web.bind.annotation.PathVariable long id) {
         // TODO extra: en lugar de eliminar, cambia el estado de 'activo' a false y devuelve estatus 200 con el DTO.
         return null;
@@ -64,15 +78,25 @@ public class Ej052DeleteResource {
     // TODO extra: anota con @org.springframework.web.bind.annotation.DeleteMapping("")
     public ResponseEntity<java.util.Map<String, Object>> borrarConFiltro(
             @org.springframework.web.bind.annotation.RequestParam("categoria") String categoria) {
-        // TODO extra: simula el borrado de recursos de una categoría específica y devuelve 200 OK con un Map
-        // conteniendo la clave "categoria" y la clave "borrados" con valor 5 (número simulado de filas afectadas).
-        return null;
+        // TODO extra: Reto Extra 3: DELETE con filtro por Query Parameter (borrado masivo selectivo).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para DeleteMapping");
     }
 
     /**
      * Reto Extra 4: DELETE protegido con autorización basada en token (simulado).
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.DeleteMapping("/{id}/protegido")
+    // TODO extra: anota con @org.springframework.web.bind.annotation.DeleteMapping("/{
+        // TODO extra: Reto Extra 4: DELETE protegido con autorización basada en token (simulado).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para DeleteMapping");
+    }/protegido")
     public ResponseEntity<?> borrarConProteccionAdmin(
             @org.springframework.web.bind.annotation.PathVariable long id,
             @org.springframework.web.bind.annotation.RequestHeader("Authorization") String token) {
@@ -84,7 +108,14 @@ public class Ej052DeleteResource {
     /**
      * Reto Extra 5: DELETE condicionado por relaciones de dependencia (cascade).
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.DeleteMapping("/{id}/dependencias")
+    // TODO extra: anota con @org.springframework.web.bind.annotation.DeleteMapping("/{
+        // TODO extra: Reto Extra 5: DELETE condicionado por relaciones de dependencia (cascade).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para DeleteMapping");
+    }/dependencias")
     public ResponseEntity<?> borrarConDependencias(
             @org.springframework.web.bind.annotation.PathVariable long id,
             @org.springframework.web.bind.annotation.RequestParam(value = "cascade", defaultValue = "false") boolean cascade) {
@@ -97,7 +128,14 @@ public class Ej052DeleteResource {
     /**
      * Reto Extra 6: DELETE que retorna una copia de seguridad (backup) del recurso borrado.
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.DeleteMapping("/{id}/backup")
+    // TODO extra: anota con @org.springframework.web.bind.annotation.DeleteMapping("/{
+        // TODO extra: Reto Extra 6: DELETE que retorna una copia de seguridad (backup) del recurso borrado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para DeleteMapping");
+    }/backup")
     public ResponseEntity<ItemDto> borrarRetornandoBackup(@org.springframework.web.bind.annotation.PathVariable long id) {
         // TODO extra: simula el borrado pero retorna estatus 200 con el ItemDto del recurso antes de ser destruido.
         return null;
@@ -106,7 +144,14 @@ public class Ej052DeleteResource {
     /**
      * Reto Extra 7: DELETE sobre un recurso bloqueado contra borrado (Locked).
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.DeleteMapping("/{id}/seguro")
+    // TODO extra: anota con @org.springframework.web.bind.annotation.DeleteMapping("/{
+        // TODO extra: Reto Extra 7: DELETE sobre un recurso bloqueado contra borrado (Locked).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para DeleteMapping");
+    }/seguro")
     public ResponseEntity<?> borrarSeguro(@org.springframework.web.bind.annotation.PathVariable long id) {
         // TODO extra: si el id es 99, simulamos que el recurso está bloqueado.
         // Devuelve estatus 423 (Locked, HttpStatus.LOCKED) con cuerpo "Recurso protegido contra borrado".
@@ -117,7 +162,14 @@ public class Ej052DeleteResource {
     /**
      * Reto Extra 8: DELETE con verificación de precondición temporal (Cabecera de fecha).
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.DeleteMapping("/{id}/precondicion-fecha")
+    // TODO extra: anota con @org.springframework.web.bind.annotation.DeleteMapping("/{
+        // TODO extra: Reto Extra 8: DELETE con verificación de precondición temporal (Cabecera de fecha).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para DeleteMapping");
+    }/precondicion-fecha")
     public ResponseEntity<?> borrarConPrecondicionFecha(
             @org.springframework.web.bind.annotation.PathVariable long id,
             @org.springframework.web.bind.annotation.RequestHeader(value = "X-Delete-Allowed-On", required = false) String fechaStr) {
@@ -133,15 +185,25 @@ public class Ej052DeleteResource {
     // TODO extra: anota con @org.springframework.web.bind.annotation.DeleteMapping("/batch")
     public ResponseEntity<java.util.Map<String, Object>> borrarMultiples(
             @org.springframework.web.bind.annotation.RequestBody java.util.List<Long> ids) {
-        // TODO extra: recibe la lista de IDs a borrar y devuelve estatus 200 con un Map conteniendo
-        // la clave "borrados" y la lista de IDs procesados.
-        return null;
+        // TODO extra: Reto Extra 9: DELETE en lote pasando lista de IDs en el cuerpo (Bulk DELETE).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para DeleteMapping");
     }
 
     /**
      * Reto Extra 10: Demostración de idempotencia en DELETE con estados de respuesta alternativos.
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.DeleteMapping("/{id}/idempotencia")
+    // TODO extra: anota con @org.springframework.web.bind.annotation.DeleteMapping("/{
+        // TODO extra: Reto Extra 10: Demostración de idempotencia en DELETE con estados de respuesta alternativos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para DeleteMapping");
+    }/idempotencia")
     public ResponseEntity<Void> borrarVerificarCabeceraNoModified(
             @org.springframework.web.bind.annotation.PathVariable long id,
             @org.springframework.web.bind.annotation.RequestHeader(value = "If-None-Match", required = false) String ifNoneMatch) {

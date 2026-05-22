@@ -78,8 +78,12 @@ public final class Ej020DateTimeApi {
      * @return true si es fin de semana
      */
     public static boolean esFinDeSemana(LocalDate fecha) {
-        // TODO extra: comprueba si el día de la semana es SATURDAY o SUNDAY
-        return false;
+        // TODO extra: Reto Extra 1: Verificación de fin de semana.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFinDeSemana");
     }
 
     /**
@@ -91,8 +95,12 @@ public final class Ej020DateTimeApi {
      * @return edad en años
      */
     public static int calcularEdad(LocalDate fechaNacimiento, LocalDate ahora) {
-        // TODO extra: usa Period.between() para calcular la diferencia y extrae los años
-        return -1;
+        // TODO extra: Reto Extra 2: Cálculo preciso de edad.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularEdad");
     }
 
     /**
@@ -103,8 +111,12 @@ public final class Ej020DateTimeApi {
      * @return instante equivalente en UTC
      */
     public static Instant convertirZonedDateTimeAInstant(ZonedDateTime zdt) {
-        // TODO extra: convierte el ZonedDateTime a un objeto Instant nativo
-        return null;
+        // TODO extra: Reto Extra 3: Alineación a UTC global.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para convertirZonedDateTimeAInstant");
     }
 
     /**
@@ -116,8 +128,12 @@ public final class Ej020DateTimeApi {
      * @return diferencia en minutos
      */
     public static long obtenerDiferenciaEnMinutos(Instant i1, Instant i2) {
-        // TODO extra: calcula la duración entre i1 e i2 y conviértela a minutos
-        return Long.MIN_VALUE;
+        // TODO extra: Reto Extra 4: Medición de latencia de red.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerDiferenciaEnMinutos");
     }
 
     /**
@@ -129,8 +145,12 @@ public final class Ej020DateTimeApi {
      * @return true si actual es anterior a limite
      */
     public static boolean esFechaAnterior(Instant actual, Instant limite) {
-        // TODO extra: verifica si el instante actual ocurre antes que el límite usando isBefore()
-        return false;
+        // TODO extra: Reto Extra 5: Comparaciones cronológicas seguras.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFechaAnterior");
     }
 
     /**
@@ -141,8 +161,12 @@ public final class Ej020DateTimeApi {
      * @return representación textual "yyyy-MM-dd"
      */
     public static String formatearAFechaIsoStandard(LocalDate fecha) {
-        // TODO extra: utiliza DateTimeFormatter.ISO_LOCAL_DATE para formatear la fecha
-        return "";
+        // TODO extra: Reto Extra 6: Formateo personalizado ISO estándar de fecha.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearAFechaIsoStandard");
     }
 
     /**
@@ -153,8 +177,12 @@ public final class Ej020DateTimeApi {
      * @return Optional con LocalDate, o vacío si el formato es inválido
      */
     public static java.util.Optional<LocalDate> parsearFechaIso(String fechaIso) {
-        // TODO extra: parsea la cadena con LocalDate.parse, capturando DateTimeParseException para retornar Optional.empty()
-        return java.util.Optional.empty();
+        // TODO extra: Reto Extra 7: Parsing robusto y libre de excepciones.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para parsearFechaIso");
     }
 
     /**
@@ -165,8 +193,12 @@ public final class Ej020DateTimeApi {
      * @return fecha del próximo día laboral
      */
     public static LocalDate obtenerProximoDiaLaboral(LocalDate fecha) {
-        // TODO extra: calcula el día siguiente e incrementa hasta un día laborable si cae en fin de semana
-        return null;
+        // TODO extra: Reto Extra 8: Ajustes temporales personalizados (Día laboral).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerProximoDiaLaboral");
     }
 
     /**
@@ -179,8 +211,12 @@ public final class Ej020DateTimeApi {
      * @return fecha y hora local equivalente en la zona destino
      */
     public static LocalDateTime convertirEntreZonasHorarias(LocalDateTime ldt, String zonaOrigen, String zonaDestino) {
-        // TODO extra: asocia ldt a la zona origen, conviértela preservando el instante a la zona destino, y extrae su LocalDateTime
-        return null;
+        // TODO extra: Reto Extra 9: Conversión y traducción entre zonas horarias.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para convertirEntreZonasHorarias");
     }
 
     /**
@@ -191,8 +227,12 @@ public final class Ej020DateTimeApi {
      * @return true si es bisiesto
      */
     public static boolean esBisiesto(int anio) {
-        // TODO extra: usa las capacidades de LocalDate para determinar si un año es bisiesto
-        return false;
+        // TODO extra: Reto Extra 10: Determinación de año bisiesto.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esBisiesto");
     }
 
 }

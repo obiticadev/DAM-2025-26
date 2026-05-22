@@ -27,7 +27,6 @@ class Ej019ExceptionsAndTryWithTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 1")
     void retoExtra01_cerrarRecursoSeguro() {
         var r = new Ej019ExceptionsAndTryWith.RecursoFragil(true);
         assertDoesNotThrow(() -> Ej019ExceptionsAndTryWith.cerrarRecursoSeguro(r));
@@ -35,7 +34,6 @@ class Ej019ExceptionsAndTryWithTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 2")
     void retoExtra02_procesarConTryWithResources() throws Exception {
         var r = new Ej019ExceptionsAndTryWith.RecursoFragil(false);
         assertEquals("operacion-exitosa", Ej019ExceptionsAndTryWith.procesarConTryWithResources(r, false));
@@ -48,7 +46,6 @@ class Ej019ExceptionsAndTryWithTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 3")
     void retoExtra03_lanzarConCausaOriginal() {
         var causa = new IllegalArgumentException("argumento incorrecto");
         var ex = assertThrows(Ej019ExceptionsAndTryWith.ErrorSistemaException.class,
@@ -58,7 +55,6 @@ class Ej019ExceptionsAndTryWithTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
     void retoExtra04_ejecutarAccionIgnorandoExcepcion() {
         assertDoesNotThrow(() -> Ej019ExceptionsAndTryWith.ejecutarAccionIgnorandoExcepcion(() -> {
             throw new RuntimeException("Ignórame");
@@ -66,7 +62,6 @@ class Ej019ExceptionsAndTryWithTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 5")
     void retoExtra05_detectarExcepcionSuprimida() {
         var r = new Ej019ExceptionsAndTryWith.RecursoFragil(true);
         String suprimidoMsg = Ej019ExceptionsAndTryWith.detectarExcepcionSuprimida(r);
@@ -75,7 +70,6 @@ class Ej019ExceptionsAndTryWithTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 6")
     void retoExtra06_esExcepcionDeNegocio() {
         var ex = new Ej019ExceptionsAndTryWith.ErrorNegocioException("Negocio");
         var exWrapper = new RuntimeException("Sistema", ex);
@@ -85,7 +79,6 @@ class Ej019ExceptionsAndTryWithTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 7")
     void retoExtra07_obtenerMensajeDeErrorFormateado() {
         var causaRaiz = new NullPointerException("Valor nulo inesperado");
         var ex = new RuntimeException("Error nivel 1", causaRaiz);
@@ -93,7 +86,6 @@ class Ej019ExceptionsAndTryWithTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
     void retoExtra08_ejecutarConReintentos() {
         java.util.concurrent.atomic.AtomicInteger intentos = new java.util.concurrent.atomic.AtomicInteger(0);
         String resultado = Ej019ExceptionsAndTryWith.ejecutarConReintentos(() -> {
@@ -107,7 +99,6 @@ class Ej019ExceptionsAndTryWithTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 9")
     void retoExtra09_esCausaRaiz() {
         var causa = new NullPointerException("NPE");
         var ex = new RuntimeException("E1", causa);
@@ -116,7 +107,6 @@ class Ej019ExceptionsAndTryWithTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     void retoExtra10_procesarRecursosMultiples() throws Exception {
         var r1 = new Ej019ExceptionsAndTryWith.RecursoFragil(false);
         var r2 = new Ej019ExceptionsAndTryWith.RecursoFragil(false);

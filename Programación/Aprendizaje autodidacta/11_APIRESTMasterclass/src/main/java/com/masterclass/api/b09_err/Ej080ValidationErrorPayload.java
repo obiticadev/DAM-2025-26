@@ -46,44 +46,124 @@ public final class Ej080ValidationErrorPayload {
                 new FieldError("email", "formato inválido"))));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si errores es null -> IllegalArgumentException.
+        /**
+     * RETO EXTRA 01: Valida nomenclatura estandar en formato camelCase.
+     */
+    public static boolean esNombreCampoValido(String fieldName) {
+        // TODO extra: RETO EXTRA 01: Valida nomenclatura estandar en formato camelCase.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esNombreCampoValido");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: usa un LinkedHashMap para conservar el orden de primera aparición.
+    /**
+     * RETO EXTRA 02: Construye la representacion leible de una violacion.
+     */
+    public static String formatearMensajeValidacion(String campo, String error) {
+        // TODO extra: RETO EXTRA 02: Construye la representacion leible de una violacion.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearMensajeValidacion");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: recorre cada FieldError.
+    /**
+     * RETO EXTRA 03: Determina si el error es global del objeto y no de un campo concreto.
+     */
+    public static boolean esErrorGlobal(String campo) {
+        // TODO extra: RETO EXTRA 03: Determina si el error es global del objeto y no de un campo concreto.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esErrorGlobal");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: si el campo no está en el mapa, crea una lista nueva (computeIfAbsent).
+    /**
+     * RETO EXTRA 04: Genera un String formateado del campo y su valor.
+     */
+    public static String crearParClaveValor(String k, String v) {
+        // TODO extra: RETO EXTRA 04: Genera un String formateado del campo y su valor.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearParClaveValor");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: añade el mensaje a la lista de ese campo.
+    /**
+     * RETO EXTRA 05: Busca signos extraños no permitidos en nombres de campos.
+     */
+    public static boolean tieneCaracteresEspeciales(String s) {
+        // TODO extra: RETO EXTRA 05: Busca signos extraños no permitidos en nombres de campos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneCaracteresEspeciales");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: un mismo campo puede acumular varios mensajes (p.ej. NotBlank + Size).
+    /**
+     * RETO EXTRA 06: Comprueba limites inclusivos de longitud.
+     */
+    public static boolean esLargoValido(String text, int min, int max) {
+        // TODO extra: RETO EXTRA 06: Comprueba limites inclusivos de longitud.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esLargoValido");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: no descartes duplicados salvo que sean idénticos (decisión: conservarlos).
+    /**
+     * RETO EXTRA 07: Comprueba limites inclusivos para campos numericos.
+     */
+    public static boolean esNumeroRangoValido(double n, double min, double max) {
+        // TODO extra: RETO EXTRA 07: Comprueba limites inclusivos para campos numericos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esNumeroRangoValido");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: el resultado debe ser estable y reproducible.
+    /**
+     * RETO EXTRA 08: Extrae la propiedad hoja de una ruta anidada.
+     */
+    public static String extraerUltimoSegmentoCampo(String path) {
+        // TODO extra: RETO EXTRA 08: Extrae la propiedad hoja de una ruta anidada.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerUltimoSegmentoCampo");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: si la lista está vacía, devuelve un mapa vacío (no null).
+    /**
+     * RETO EXTRA 09: Verifica si la coleccion tiene strings vacios o nulos.
+     */
+    public static boolean contieneErroresInvalidos(java.util.List<String> errors) {
+        // TODO extra: RETO EXTRA 09: Verifica si la coleccion tiene strings vacios o nulos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contieneErroresInvalidos");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve el mapa agrupado.
+    /**
+     * RETO EXTRA 10: Determina si el error reportado indica valores ya en uso.
+     */
+    public static boolean esErrorDuplicidad(String error) {
+        // TODO extra: RETO EXTRA 10: Determina si el error reportado indica valores ya en uso.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esErrorDuplicidad");
     }
 
 }

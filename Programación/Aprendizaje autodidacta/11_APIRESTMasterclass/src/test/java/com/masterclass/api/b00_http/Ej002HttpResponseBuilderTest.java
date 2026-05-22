@@ -31,7 +31,6 @@ class Ej002HttpResponseBuilderTest {
         assertTrue(out.startsWith("HTTP/1.1 204 No Content"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 1")
     @Test
     void retoExtra01_obtenerFamiliaDeRespuesta() {
         assertEquals("Success", Ej002HttpResponseBuilder.obtenerFamiliaDeRespuesta(200));
@@ -41,14 +40,12 @@ class Ej002HttpResponseBuilderTest {
         assertEquals("Unknown", Ej002HttpResponseBuilder.obtenerFamiliaDeRespuesta(99));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 2")
     @Test
     void retoExtra02_formatearCabeceraEstandar() {
         assertEquals("Content-Type: text/html", Ej002HttpResponseBuilder.formatearCabeceraEstandar("content-type", "text/html"));
         assertEquals("X-Cache-Status: HIT", Ej002HttpResponseBuilder.formatearCabeceraEstandar("x-cache-status", "HIT"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 3")
     @Test
     void retoExtra03_generarCabeceraFechaActual() {
         String fecha = Ej002HttpResponseBuilder.generarCabeceraFechaActual();
@@ -56,7 +53,6 @@ class Ej002HttpResponseBuilderTest {
         assertTrue(fecha.endsWith("GMT"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
     @Test
     void retoExtra04_requiereCabeceraLocation() {
         assertTrue(Ej002HttpResponseBuilder.requiereCabeceraLocation(301));
@@ -64,7 +60,6 @@ class Ej002HttpResponseBuilderTest {
         assertFalse(Ej002HttpResponseBuilder.requiereCabeceraLocation(200));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 5")
     @Test
     void retoExtra05_calcularLongitudEnBytes() {
         assertEquals(5, Ej002HttpResponseBuilder.calcularLongitudEnBytes("Hello"));
@@ -72,7 +67,6 @@ class Ej002HttpResponseBuilderTest {
         assertEquals(4, Ej002HttpResponseBuilder.calcularLongitudEnBytes("🚀"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 6")
     @Test
     void retoExtra06_inyectarContentLength() {
         Map<String, String> headers = Map.of("Host", "test");
@@ -80,7 +74,6 @@ class Ej002HttpResponseBuilderTest {
         assertEquals("4", res.get("Content-Length"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 7")
     @Test
     void retoExtra07_generarLineaEstadoSegura() {
         assertEquals("HTTP/1.1 200 OK", Ej002HttpResponseBuilder.generarLineaEstadoSegura(200));
@@ -88,14 +81,12 @@ class Ej002HttpResponseBuilderTest {
         assertThrows(IllegalArgumentException.class, () -> Ej002HttpResponseBuilder.generarLineaEstadoSegura(600));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
     @Test
     void retoExtra08_extraerCharset() {
         assertEquals("UTF-8", Ej002HttpResponseBuilder.extraerCharset(Map.of("Content-Type", "application/json; charset=UTF-8")));
         assertEquals("ISO-8859-1", Ej002HttpResponseBuilder.extraerCharset(Map.of("Content-Type", "application/json")));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 9")
     @Test
     void retoExtra09_esRespuestaSinCuerpo() {
         assertTrue(Ej002HttpResponseBuilder.esRespuestaSinCuerpo(204));
@@ -104,7 +95,6 @@ class Ej002HttpResponseBuilderTest {
         assertFalse(Ej002HttpResponseBuilder.esRespuestaSinCuerpo(200));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     @Test
     void retoExtra10_esSeguroContraResponseSplitting() {
         assertTrue(Ej002HttpResponseBuilder.esSeguroContraResponseSplitting(Map.of("X-Valid", "Good")));

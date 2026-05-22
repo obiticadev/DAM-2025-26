@@ -27,7 +27,6 @@ class Ej056CorsConfigurationTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 1")
     void testPasoExtra01() {
         List<String> allowed = List.of("https://*.company.com", "https://app.com");
         assertTrue(Ej056CorsConfiguration.pasoExtra01("https://sub.company.com", allowed));
@@ -37,7 +36,6 @@ class Ej056CorsConfigurationTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 2")
     void testPasoExtra02() {
         assertTrue(Ej056CorsConfiguration.pasoExtra02("OPTIONS", Map.of("Access-Control-Request-Method", "POST")));
         assertFalse(Ej056CorsConfiguration.pasoExtra02("GET", Map.of("Access-Control-Request-Method", "POST")));
@@ -45,7 +43,6 @@ class Ej056CorsConfigurationTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 3")
     void testPasoExtra03() {
         Map<String, String> headers = Map.of("Access-Control-Allow-Origin", "*");
         Map<String, String> resolved = Ej056CorsConfiguration.pasoExtra03(headers, true, "https://client.com");
@@ -55,7 +52,6 @@ class Ej056CorsConfigurationTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
     void testPasoExtra04() {
         assertEquals("60", Ej056CorsConfiguration.pasoExtra04("10"));
         assertEquals("1800", Ej056CorsConfiguration.pasoExtra04("3600"));
@@ -64,7 +60,6 @@ class Ej056CorsConfigurationTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 5")
     void testPasoExtra05() {
         List<String> allowed = List.of("Content-Type", "Authorization");
         assertTrue(Ej056CorsConfiguration.pasoExtra05(List.of("content-type"), allowed));
@@ -73,7 +68,6 @@ class Ej056CorsConfigurationTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 6")
     void testPasoExtra06() {
         assertTrue(Ej056CorsConfiguration.pasoExtra06("http://localhost:3000"));
         assertTrue(Ej056CorsConfiguration.pasoExtra06("http://127.0.0.1:8080"));
@@ -82,7 +76,6 @@ class Ej056CorsConfigurationTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 7")
     void testPasoExtra07() {
         Map<String, String> headers = Map.of();
         Map<String, String> exposed = Ej056CorsConfiguration.pasoExtra07(headers, List.of("X-Total-Count", "X-Limit"));
@@ -91,14 +84,12 @@ class Ej056CorsConfigurationTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
     void testPasoExtra08() {
         assertEquals("https://safe.com", Ej056CorsConfiguration.pasoExtra08("https://safe.com"));
         assertNull(Ej056CorsConfiguration.pasoExtra08("https://safe.com\r\nHeader-Injection: evil"));
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 9")
     void testPasoExtra09() {
         assertTrue(Ej056CorsConfiguration.pasoExtra09("GET"));
         assertTrue(Ej056CorsConfiguration.pasoExtra09("POST"));
@@ -108,7 +99,6 @@ class Ej056CorsConfigurationTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     void testPasoExtra10() {
         assertTrue(Ej056CorsConfiguration.pasoExtra10("Accept", "text/html"));
         assertTrue(Ej056CorsConfiguration.pasoExtra10("Content-Type", "application/x-www-form-urlencoded"));

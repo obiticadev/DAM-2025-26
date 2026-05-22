@@ -73,44 +73,158 @@ public final class Ej189Dockerfile {
         System.out.println("seguro=" + esSeguro(df));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: valida que imagenBuilder, imagenRuntime y nombreJar no sean null ni blank -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 01: Valida que una imagen base de Docker tenga un formato correcto con tag.
+     * 
+     * @param imagen la imagen base a validar
+     * @return true si tiene formato 'nombre:tag', false en caso contrario
+     */
+    public static boolean validarImagenBase(String imagen) {
+        // TODO extra: RETO EXTRA 01: Valida que una imagen base de Docker tenga un formato correcto con tag.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para validarImagenBase");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: valida que el puerto esté en (0, 65536) -> IllegalArgumentException (rango TCP válido).
+    /**
+     * RETO EXTRA 02: Parsea el puerto de una directiva EXPOSE.
+     * 
+     * @param lineaExpose la línea que contiene EXPOSE
+     * @return el número de puerto, o -1 si no es válido
+     */
+    public static int parsearPuerto(String lineaExpose) {
+        // TODO extra: RETO EXTRA 02: Parsea el puerto de una directiva EXPOSE.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para parsearPuerto");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: abre el stage builder: "FROM <imagenBuilder> AS build" (alias 'build' para referenciarlo luego).
+    /**
+     * RETO EXTRA 03: Extrae los nombres de los stages (alias) definidos con 'AS' en el Dockerfile.
+     * 
+     * @param lineas las líneas del Dockerfile
+     * @return lista de nombres de stages encontrados
+     */
+    public static List<String> extraerStageNames(List<String> lineas) {
+        // TODO extra: RETO EXTRA 03: Extrae los nombres de los stages (alias) definidos con 'AS' en el Dockerfile.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerStageNames");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: en el builder, fija WORKDIR /app, copia el código y ejecuta el empaquetado (mvn -q -DskipTests package).
+    /**
+     * RETO EXTRA 04: Cuenta la frecuencia de una determinada instrucción en el Dockerfile.
+     * 
+     * @param lineas las líneas del Dockerfile
+     * @param instruccion la instrucción a buscar (ej. "RUN", "COPY")
+     * @return el número de ocurrencias
+     */
+    public static long contarInstrucciones(List<String> lineas, String instruccion) {
+        // TODO extra: RETO EXTRA 04: Cuenta la frecuencia de una determinada instrucción en el Dockerfile.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarInstrucciones");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: abre el stage runtime: "FROM <imagenRuntime>" (imagen mínima, solo JRE: sin compilador).
+    /**
+     * RETO EXTRA 05: Detecta comandos potencialmente inseguros o desaconsejados en las líneas RUN.
+     * 
+     * @param lineas las líneas del Dockerfile
+     * @return lista de líneas que contienen comandos sospechosos
+     */
+    public static List<String> detectarInstruccionesSospechosas(List<String> lineas) {
+        // TODO extra: RETO EXTRA 05: Detecta comandos potencialmente inseguros o desaconsejados en las líneas RUN.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para detectarInstruccionesSospechosas");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: crea un usuario no-root y cámbiate a él (RUN adduser ... + USER appuser) por principio de menor privilegio.
+    /**
+     * RETO EXTRA 06: Genera una directiva COPY optimizada y segura indicando el origen.
+     * 
+     * @param fromStage nombre del stage origen
+     * @param origen ruta origen en el stage
+     * @param destino ruta destino final
+     * @return la directiva COPY generada
+     */
+    public static String generarDirectivaCopy(String fromStage, String origen, String destino) {
+        // TODO extra: RETO EXTRA 06: Genera una directiva COPY optimizada y segura indicando el origen.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para generarDirectivaCopy");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: fija WORKDIR /app y copia SOLO el jar desde el stage build: "COPY --from=build /app/target/<jar> app.jar".
+    /**
+     * RETO EXTRA 07: Verifica si un usuario configurado en la directiva USER es seguro (no root/0).
+     * 
+     * @param lineaUser la línea de USER
+     * @return true si es seguro, false de lo contrario
+     */
+    public static boolean esUsuarioSeguro(String lineaUser) {
+        // TODO extra: RETO EXTRA 07: Verifica si un usuario configurado en la directiva USER es seguro (no root/0).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esUsuarioSeguro");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: declara EXPOSE <puerto> (documenta el puerto; no abre nada por sí solo).
+    /**
+     * RETO EXTRA 08: Formatea una etiqueta metadata (LABEL) en formato estándar.
+     * 
+     * @param clave la clave de la etiqueta
+     * @param valor el valor de la etiqueta
+     * @return la línea del Dockerfile formateada
+     */
+    public static String formatearEtiqueta(String clave, String valor) {
+        // TODO extra: RETO EXTRA 08: Formatea una etiqueta metadata (LABEL) en formato estándar.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearEtiqueta");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: define ENTRYPOINT en forma exec (JSON array) para que la JVM reciba señales: ["java","-jar","app.jar"].
+    /**
+     * RETO EXTRA 09: Valida si una línea de comando (ENTRYPOINT/CMD) está en la forma 'exec' (JSON array).
+     * 
+     * @param linea la línea a verificar
+     * @return true si está en forma exec, false de lo contrario
+     */
+    public static boolean esExecFormEntrypoint(String linea) {
+        // TODO extra: RETO EXTRA 09: Valida si una línea de comando (ENTRYPOINT/CMD) está en la forma 'exec' (JSON array).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExecFormEntrypoint");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve la lista de líneas en orden; el stage final NO debe contener "mvn" ni el código fuente.
+    /**
+     * RETO EXTRA 10: Simplifica un Dockerfile eliminando comentarios y líneas en blanco para optimizar lectura.
+     * 
+     * @param lineas el Dockerfile original
+     * @return el Dockerfile optimizado y compacto
+     */
+    public static List<String> simplificarDockerfile(List<String> lineas) {
+        // TODO extra: RETO EXTRA 10: Simplifica un Dockerfile eliminando comentarios y líneas en blanco para optimizar lectura.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para simplificarDockerfile");
     }
 
 }

@@ -43,44 +43,124 @@ public final class Ej167ServiceUnitTest {
         System.out.println(transferir(repo, "A", "B", 30.0));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si saldos es null -> IllegalArgumentException.
+        /**
+     * RETO EXTRA 01: Formatea el saldo de la cuenta.
+     */
+    public static String formatearSaldo(SaldoRepo167 repo, String c) {
+        // TODO extra: RETO EXTRA 01: Formatea el saldo de la cuenta.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearSaldo");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si origen o destino son null/blank -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 02: Comprueba si el saldo califica como Premium.
+     */
+    public static boolean esCuentaPremium(SaldoRepo167 repo, String c) {
+        // TODO extra: RETO EXTRA 02: Comprueba si el saldo califica como Premium.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCuentaPremium");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: si origen.equals(destino) -> IllegalArgumentException (no a sí mismo).
+    /**
+     * RETO EXTRA 03: Comprueba si el saldo es positivo.
+     */
+    public static boolean esSaldoPositivo(SaldoRepo167 repo, String c) {
+        // TODO extra: RETO EXTRA 03: Comprueba si el saldo es positivo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esSaldoPositivo");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: si importe <= 0 -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 04: Comprueba si una transferencia es viable.
+     */
+    public static boolean transferenciaPosible(SaldoRepo167 repo, String o, double imp) {
+        // TODO extra: RETO EXTRA 04: Comprueba si una transferencia es viable.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para transferenciaPosible");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: lee saldoOrigen = saldos.saldoDe(origen).
+    /**
+     * RETO EXTRA 05: Calcula el interes anual estimado.
+     */
+    public static double calcularInteresAnual(SaldoRepo167 repo, String c, double tasa) {
+        // TODO extra: RETO EXTRA 05: Calcula el interes anual estimado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularInteresAnual");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: si saldoOrigen < importe -> IllegalStateException (fondos insuficientes).
+    /**
+     * RETO EXTRA 06: Devuelve el saldo duplicado.
+     */
+    public static double saldoDuplicado(SaldoRepo167 repo, String c) {
+        // TODO extra: RETO EXTRA 06: Devuelve el saldo duplicado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para saldoDuplicado");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: calcula nuevoSaldoOrigen = saldoOrigen - importe.
+    /**
+     * RETO EXTRA 07: Calcula la diferencia de saldo entre dos cuentas.
+     */
+    public static double obtenerDiferenciaSaldos(SaldoRepo167 repo, String c1, String c2) {
+        // TODO extra: RETO EXTRA 07: Calcula la diferencia de saldo entre dos cuentas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerDiferenciaSaldos");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: la regla de negocio no escribe BD aquí: el repo es un doble.
+    /**
+     * RETO EXTRA 08: Suma los saldos de dos cuentas.
+     */
+    public static double sumarSaldos(SaldoRepo167 repo, String c1, String c2) {
+        // TODO extra: RETO EXTRA 08: Suma los saldos de dos cuentas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para sumarSaldos");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: no debe mutar el repo de entrada (lógica pura verificable).
+    /**
+     * RETO EXTRA 09: Comprueba si el saldo no es negativo.
+     */
+    public static boolean saldoValido(SaldoRepo167 repo, String c) {
+        // TODO extra: RETO EXTRA 09: Comprueba si el saldo no es negativo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para saldoValido");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve nuevoSaldoOrigen.
+    /**
+     * RETO EXTRA 10: Retorna el saldo o lanza si es negativo.
+     */
+    public static double saldoOExcepcion(SaldoRepo167 repo, String c) {
+        // TODO extra: RETO EXTRA 10: Retorna el saldo o lanza si es negativo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para saldoOExcepcion");
     }
 
 }

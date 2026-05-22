@@ -50,44 +50,124 @@ public class Ej077GlobalExceptionHandler {
         System.out.println(new Ej077GlobalExceptionHandler().obtener(3));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: anota la clase con @RestController y @RequestMapping("/api").
+        /**
+     * RETO EXTRA 01: Determina si una excepcion es de negocio y no de Spring o Java standard.
+     */
+    public static boolean esExcepcionDeNegocio(Throwable t) {
+        // TODO extra: RETO EXTRA 01: Determina si una excepcion es de negocio y no de Spring o Java standard.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionDeNegocio");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: anota con @GetMapping("/recurso/{id}") y 'id' con @PathVariable.
+    /**
+     * RETO EXTRA 02: Categoriza la gravedad de fallos críticos del sistema.
+     */
+    public static boolean esExcepcionGravedadAlta(Throwable t) {
+        // TODO extra: RETO EXTRA 02: Categoriza la gravedad de fallos críticos del sistema.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionGravedadAlta");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: si id es par, lanza RecursoNoEncontrado("no existe: " + id).
+    /**
+     * RETO EXTRA 03: Mapea una excepcion a un codigo alfanumerico predefinido de error.
+     */
+    public static String obtenerCodigoError(Throwable t) {
+        // TODO extra: RETO EXTRA 03: Mapea una excepcion a un codigo alfanumerico predefinido de error.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerCodigoError");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: si es impar, devuelve "recurso-" + id.
+    /**
+     * RETO EXTRA 04: Formatea mensajes de error combinandolos con coherencia.
+     */
+    public static String formatearMensajeError(String defaultMsg, String customMsg) {
+        // TODO extra: RETO EXTRA 04: Formatea mensajes de error combinandolos con coherencia.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearMensajeError");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: NO captures la excepción aquí (que la gestione el advice).
+    /**
+     * RETO EXTRA 05: Extrae recursivamente la causa raiz de una excepcion.
+     */
+    public static String extraerDetalleCausa(Throwable t) {
+        // TODO extra: RETO EXTRA 05: Extrae recursivamente la causa raiz de una excepcion.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerDetalleCausa");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: anota con @ExceptionHandler(RecursoNoEncontrado.class).
+    /**
+     * RETO EXTRA 06: Verifica si la excepcion proviene del stack de persistencia.
+     */
+    public static boolean esErrorBaseDatos(Throwable t) {
+        // TODO extra: RETO EXTRA 06: Verifica si la excepcion proviene del stack de persistencia.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esErrorBaseDatos");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: usa ResponseEntity.status(HttpStatus.NOT_FOUND) (404).
+    /**
+     * RETO EXTRA 07: Genera el texto amigable de recurso no hallado.
+     */
+    public static String crearMensajeInformativo(String recurso, Long id) {
+        // TODO extra: RETO EXTRA 07: Genera el texto amigable de recurso no hallado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearMensajeInformativo");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: el cuerpo debe ser ex.getMessage().
+    /**
+     * RETO EXTRA 08: Comprueba si es un error del analizador o parseador JSON.
+     */
+    public static boolean esErrorSintaxis(Throwable t) {
+        // TODO extra: RETO EXTRA 08: Comprueba si es un error del analizador o parseador JSON.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esErrorSintaxis");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: este handler aplica a TODOS los endpoints del controller (centralizado).
+    /**
+     * RETO EXTRA 09: Genera el formato estructurado para auditorias en logs.
+     */
+    public static String construirCuerpoLog(String traceId, String errorMsg) {
+        // TODO extra: RETO EXTRA 09: Genera el formato estructurado para auditorias en logs.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para construirCuerpoLog");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve la ResponseEntity 404.
+    /**
+     * RETO EXTRA 10: Verifica si el problema se debe a conectividad o socket abortado.
+     */
+    public static boolean esErrorRed(Throwable t) {
+        // TODO extra: RETO EXTRA 10: Verifica si el problema se debe a conectividad o socket abortado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esErrorRed");
     }
 
 }

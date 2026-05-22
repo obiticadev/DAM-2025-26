@@ -44,8 +44,12 @@ public class Ej049ResponseEntity {
      */
     // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/no-content")
     public org.springframework.http.ResponseEntity<Void> respuestaVaciaConStatus() {
-        // TODO extra: devuelve una ResponseEntity vacía (ResponseEntity<Void>) con estatus 204.
-        return null;
+        // TODO extra: Reto Extra 1: Respuesta vacía con estatus HTTP 204 No Content.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para GetMapping");
     }
 
     /**
@@ -53,9 +57,12 @@ public class Ej049ResponseEntity {
      */
     // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/cached")
     public org.springframework.http.ResponseEntity<String> respuestaConCache() {
-        // TODO extra: devuelve estatus 200, cuerpo "cacheado" y cabecera "Cache-Control: max-age=3600".
-        // Utiliza org.springframework.http.CacheControl para construir la cabecera.
-        return null;
+        // TODO extra: Reto Extra 2: Respuesta con cabecera Cache-Control.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para GetMapping");
     }
 
     /**
@@ -63,9 +70,12 @@ public class Ej049ResponseEntity {
      */
     // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/descargar")
     public org.springframework.http.ResponseEntity<String> respuestaDescarga() {
-        // TODO extra: devuelve estatus 200, cuerpo "id,nombre\n1,cafe\n",
-        // Content-Type "text/csv" y cabecera "Content-Disposition" con valor "attachment; filename=\"datos.csv\"".
-        return null;
+        // TODO extra: Reto Extra 3: Descarga de archivo adjunto CSV.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para GetMapping");
     }
 
     /**
@@ -74,9 +84,12 @@ public class Ej049ResponseEntity {
     // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/recurso-etag")
     public org.springframework.http.ResponseEntity<String> respuestaCondicional(
             @org.springframework.web.bind.annotation.RequestHeader(value = "If-None-Match", required = false) String ifNoneMatch) {
-        // TODO extra: si ifNoneMatch es igual a "\"v1\"", devuelve estatus 304 (Not Modified) sin cuerpo.
-        // Si no coincide, devuelve estatus 200 con cuerpo "contenido fresco" y cabecera "ETag: \"v1\"".
-        return null;
+        // TODO extra: Reto Extra 4: Respuesta condicional basada en ETag (304 Not Modified).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para GetMapping");
     }
 
     /**
@@ -84,8 +97,12 @@ public class Ej049ResponseEntity {
      */
     // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/cookie")
     public org.springframework.http.ResponseEntity<String> respuestaConCookie() {
-        // TODO extra: devuelve estatus 200, cuerpo "cookie configurada" y cabecera "Set-Cookie" con "session-id=xyz123; Path=/; HttpOnly".
-        return null;
+        // TODO extra: Reto Extra 5: Incorporación de Cookie de respuesta en cabeceras.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para GetMapping");
     }
 
     /**
@@ -94,10 +111,12 @@ public class Ej049ResponseEntity {
     // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/error-detalle")
     public org.springframework.http.ResponseEntity<?> respuestaErrorDetallado(
             @org.springframework.web.bind.annotation.RequestParam(required = false) Integer code) {
-        // TODO extra: si code es 1, devuelve estatus 400 con un cuerpo ErrorResponse(101, "Parametro invalido").
-        // Si code es 2, devuelve estatus 403 con un cuerpo ErrorResponse(102, "Acceso prohibido").
-        // Si no es ninguno, devuelve estatus 200 con cuerpo "ok".
-        return null;
+        // TODO extra: Reto Extra 6: Respuestas alternativas condicionales de error estructurado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para GetMapping");
     }
 
     /**
@@ -105,8 +124,12 @@ public class Ej049ResponseEntity {
      */
     // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/redirect")
     public org.springframework.http.ResponseEntity<Void> respuestaRedireccion() {
-        // TODO extra: devuelve estatus 302 (Found) redirigiendo a la ruta "/api/hello" a través de la cabecera Location.
-        return null;
+        // TODO extra: Reto Extra 7: Redirección HTTP (302 Found).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para GetMapping");
     }
 
     /**
@@ -114,8 +137,12 @@ public class Ej049ResponseEntity {
      */
     // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/creado-vacio")
     public org.springframework.http.ResponseEntity<java.util.Map<String, String>> respuestaCreadoSinUri() {
-        // TODO extra: devuelve estatus 201 y un cuerpo vacío (Map.of()) sin cabecera Location.
-        return null;
+        // TODO extra: Reto Extra 8: Respuesta creada (201) sin URI de localización.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para GetMapping");
     }
 
     /**
@@ -123,8 +150,12 @@ public class Ej049ResponseEntity {
      */
     // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/custom")
     public org.springframework.http.ResponseEntity<java.util.Map<String, String>> respuestaConCustomStatusAndBody() {
-        // TODO extra: devuelve estatus 422 (UNPROCESSABLE_ENTITY) y un cuerpo conteniendo un Map con clave "error" y valor "entidad no procesable".
-        return null;
+        // TODO extra: Reto Extra 9: Respuesta con código de estado personalizado y mapa de errores.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para GetMapping");
     }
 
     /**
@@ -132,8 +163,12 @@ public class Ej049ResponseEntity {
      */
     // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping(value = "/html", produces = org.springframework.http.MediaType.TEXT_HTML_VALUE)
     public org.springframework.http.ResponseEntity<String> respuestaHtml() {
-        // TODO extra: devuelve estatus 200 y cuerpo "<h1>Hola</h1>".
-        return null;
+        // TODO extra: Reto Extra 10: Respuesta HTML explícita.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para GetMapping");
     }
 
 }

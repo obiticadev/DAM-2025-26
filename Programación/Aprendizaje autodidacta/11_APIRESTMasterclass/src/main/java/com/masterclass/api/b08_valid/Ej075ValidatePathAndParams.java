@@ -49,44 +49,160 @@ public final class Ej075ValidatePathAndParams {
         System.out.println(java.util.Arrays.toString(validarPaginacion(0, 20)));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: un id de recurso siempre debe ser > 0.
+    /**
+     * RETO EXTRA 1: Comprobar si el ID es positivo de forma booleana.
+     *
+     * @param id identificador
+     * @return true si es mayor que cero
+     */
+    public static boolean esIdPositivo(long id) {
+        // TODO extra: RETO EXTRA 1: Comprobar si el ID es positivo de forma booleana.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esIdPositivo");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si id <= 0, lanza IllegalArgumentException("id debe ser positivo").
+    /**
+     * RETO EXTRA 2: Comprobar la validez de los parámetros de paginación de forma booleana.
+     *
+     * @param page índice de página
+     * @param size tamaño de página
+     * @return true si ambos son correctos
+     */
+    public static boolean esPaginacionCorrecta(int page, int size) {
+        // TODO extra: RETO EXTRA 2: Comprobar la validez de los parámetros de paginación de forma booleana.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPaginacionCorrecta");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: si es válido, simplemente retorna (sin valor).
+    /**
+     * RETO EXTRA 3: Ofrecer valores por defecto tolerantes si la paginación de entrada es inválida.
+     *
+     * @param page índice de página
+     * @param size tamaño de página
+     * @return array {page, size} saneado
+     */
+    public static int[] paginacionPorDefectoSiInvalida(int page, int size) {
+        // TODO extra: RETO EXTRA 3: Ofrecer valores por defecto tolerantes si la paginación de entrada es inválida.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para paginacionPorDefectoSiInvalida");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: si page < 0 -> IllegalArgumentException("page >= 0").
+    /**
+     * RETO EXTRA 4: Validar y parsear un ID recibido como cadena de texto.
+     *
+     * @param idStr cadena con el ID
+     * @return id parseado a long
+     */
+    public static long normalizarIdString(String idStr) {
+        // TODO extra: RETO EXTRA 4: Validar y parsear un ID recibido como cadena de texto.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para normalizarIdString");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: si size < 1 -> IllegalArgumentException("size >= 1").
+    /**
+     * RETO EXTRA 5: Validar que la dirección de ordenación sea correcta (case-insensitive "asc" o "desc").
+     *
+     * @param sort dirección
+     * @return true si coincide con el estándar
+     */
+    public static boolean esOrdenValido(String sort) {
+        // TODO extra: RETO EXTRA 5: Validar que la dirección de ordenación sea correcta (case-insensitive "asc" o "desc").
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esOrdenValido");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: si size > 100 -> IllegalArgumentException("size <= 100").
+    /**
+     * RETO EXTRA 6: Sanitizar el parámetro de ordenación devolviendo un valor por defecto seguro.
+     *
+     * @param sort dirección
+     * @return "asc" o "desc" saneado
+     */
+    public static String saneamientoSort(String sort) {
+        // TODO extra: RETO EXTRA 6: Sanitizar el parámetro de ordenación devolviendo un valor por defecto seguro.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para saneamientoSort");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: estas son las constraints típicas de @RequestParam paginado.
+    /**
+     * RETO EXTRA 7: Validar que un filtro de búsqueda tenga longitud apropiada (entre 3 y 50 caracteres).
+     *
+     * @param q keyword de búsqueda
+     * @return true si es válido
+     */
+    public static boolean esFiltroBusquedaValido(String q) {
+        // TODO extra: RETO EXTRA 7: Validar que un filtro de búsqueda tenga longitud apropiada (entre 3 y 50 caracteres).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFiltroBusquedaValido");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: si todo es válido, construye int[]{page, size}.
+    /**
+     * RETO EXTRA 8: Extraer y limpiar una lista de filtros separados por coma.
+     *
+     * @param q cadena de filtros
+     * @return array de strings limpios
+     */
+    public static String[] extraerFiltros(String q) {
+        // TODO extra: RETO EXTRA 8: Extraer y limpiar una lista de filtros separados por coma.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerFiltros");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: NO satures silenciosamente fuera de rango: el contrato es fallar.
+    /**
+     * RETO EXTRA 9: Calcular el offset de base de datos a partir de la página y el tamaño.
+     *
+     * @param page página
+     * @param size tamaño
+     * @return número de elementos a saltar
+     */
+    public static int calcularOffset(int page, int size) {
+        // TODO extra: RETO EXTRA 9: Calcular el offset de base de datos a partir de la página y el tamaño.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularOffset");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve el array validado.
+    /**
+     * RETO EXTRA 10: Validar conjuntamente todos los parámetros de una petición paginada y ordenada.
+     *
+     * @param id identificador
+     * @param page página
+     * @param size tamaño
+     * @param sort dirección
+     * @return true si toda la petición es válida
+     */
+    public static boolean esPeticionPaginadaCompletaValida(long id, int page, int size, String sort) {
+        // TODO extra: RETO EXTRA 10: Validar conjuntamente todos los parámetros de una petición paginada y ordenada.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPeticionPaginadaCompletaValida");
     }
 
 }

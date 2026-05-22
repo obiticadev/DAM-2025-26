@@ -48,87 +48,120 @@ public final class Ej039ApplicationProperties {
      * Reto Extra 1: Obtención de propiedades desde el Environment de Spring.
      */
     public static String resolverPropiedadSpring(org.springframework.core.env.Environment env, String clave) {
-        // TODO extra (Reto 1): Usa env.getProperty(clave) para recuperar el valor.
-        return null;
+        // TODO extra: Reto Extra 1: Obtención de propiedades desde el Environment de Spring.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para resolverPropiedadSpring");
     }
 
     /**
      * Reto Extra 2: Recuperación de propiedad con fallback de contingencia dinámico en Spring.
      */
     public static String resolverConDefaultSpring(org.springframework.core.env.Environment env, String clave, String defaultVal) {
-        // TODO extra (Reto 2): Usa env.getProperty(clave, defaultVal) para recuperar el valor o el fallback.
-        return null;
+        // TODO extra: Reto Extra 2: Recuperación de propiedad con fallback de contingencia dinámico en Spring.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para resolverConDefaultSpring");
     }
 
     /**
      * Reto Extra 3: Recuperación con conversión directa a tipo Integer.
      */
     public static Integer resolverComoInteger(org.springframework.core.env.Environment env, String clave) {
-        // TODO extra (Reto 3): Usa env.getProperty(clave, Integer.class) para conversión automática de tipo.
-        return null;
+        // TODO extra: Reto Extra 3: Recuperación con conversión directa a tipo Integer.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para resolverComoInteger");
     }
 
     /**
      * Reto Extra 4: Recuperación con conversión directa a tipo Boolean.
      */
     public static Boolean resolverComoBoolean(org.springframework.core.env.Environment env, String clave) {
-        // TODO extra (Reto 4): Usa env.getProperty(clave, Boolean.class) para conversión automática de tipo.
-        return null;
+        // TODO extra: Reto Extra 4: Recuperación con conversión directa a tipo Boolean.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para resolverComoBoolean");
     }
 
     /**
      * Reto Extra 5: Conversión de propiedades con delimitadores (comas) a listas de Strings.
      */
     public static java.util.List<String> resolverComoLista(org.springframework.core.env.Environment env, String clave) {
-        // TODO extra (Reto 5): Usa env.getProperty(clave) y parsea el valor separado por comas a un List<String>, o usa otra facilidad de Spring.
-        return null;
+        // TODO extra: Reto Extra 5: Conversión de propiedades con delimitadores (comas) a listas de Strings.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para resolverComoLista");
     }
 
     /**
      * Reto Extra 6: Componente con valor inyectado por defecto usando @Value.
      */
     public static class BeanConValueDefault {
-        // TODO extra (Reto 6): Anota este campo con @Value("${app.nombre:Anonimo}") para la inyección por defecto.
-        private String nombre;
-
-        public String getNombre() {
-            return nombre;
-        }
+        // TODO extra: Reto Extra 6: Componente con valor inyectado por defecto usando @Value.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
     /**
      * Reto Extra 7: Componente con inyección de colecciones mediante expresiones SpEL.
      */
     public static class BeanConValueList {
-        // TODO extra (Reto 7): Anota este campo con @Value("#{'${app.admins:admin}'.split(',')}") para inyectar una lista.
-        private java.util.List<String> admins;
-
-        public java.util.List<String> getAdmins() {
-            return admins;
-        }
+        // TODO extra: Reto Extra 7: Componente con inyección de colecciones mediante expresiones SpEL.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
     }
 
     /**
      * Reto Extra 8: Comprobación estricta de la presencia de una propiedad en el Environment.
      */
     public static boolean verificarPropiedadDefinida(org.springframework.core.env.Environment env, String clave) {
-        // TODO extra (Reto 8): Usa env.containsProperty(clave) para validar su presencia física.
-        return false;
+        // TODO extra: Reto Extra 8: Comprobación estricta de la presencia de una propiedad en el Environment.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para verificarPropiedadDefinida");
     }
 
     /**
      * Reto Extra 9: Resolución recursiva de expresiones y marcadores homónimos anidados.
      */
     public static String resolverPropiedadesHomonimasSpring(org.springframework.core.env.Environment env, String expresion) {
-        // TODO extra (Reto 9): Usa env.resolveRequiredPlaceholders(expresion) o resolvePlaceholders(expresion) para resolver marcadores anidados.
-        return null;
+        // TODO extra: Reto Extra 9: Resolución recursiva de expresiones y marcadores homónimos anidados.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para resolverPropiedadesHomonimasSpring");
     }
 
     /**
      * Reto Extra 10: Carga dinámica de fuentes de propiedades en caliente sobre el Environment.
      */
     public static void registrarPropertySourceManual(org.springframework.core.env.ConfigurableEnvironment env, String nombreSource, java.util.Map<String, Object> mapa) {
-        // TODO extra (Reto 10): Crea un MapPropertySource y agrégalo al environment configurable mediante env.getPropertySources().addFirst(...).
+        // TODO extra: Reto Extra 10: Carga dinámica de fuentes de propiedades en caliente sobre el Environment.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para registrarPropertySourceManual");
     }
 
 }

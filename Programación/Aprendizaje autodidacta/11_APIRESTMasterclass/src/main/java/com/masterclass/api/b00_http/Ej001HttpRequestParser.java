@@ -124,13 +124,12 @@ public final class Ej001HttpRequestParser {
      *         control/escape (\r, \n, \t, etc.)
      */
     public static boolean esPeticionNulaOVacia(String raw) {
-        // TODO extra 1: implementa una validación que devuelva true si raw es null,
-        // está vacío, en blanco (sin caracteres imprimibles) o solo contiene espacios
-        // de control.
-        if (raw == null || raw.isEmpty()) {
-            return true;
-        }
-        return false;
+        // TODO extra: RETO EXTRA 1: Validación defensiva extrema.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPeticionNulaOVacia");
     }
 
     /**
@@ -144,10 +143,12 @@ public final class Ej001HttpRequestParser {
      *         hay primera línea
      */
     public static String extraerPrimeraLineaCompleta(String raw) {
-        // TODO extra 2: extrae la primera línea completa. Asegúrate de limpiar
-        // cualquier
-        // carácter de retorno de carro (\r) que pudiera venir al final de la línea.
-        return "";
+        // TODO extra: RETO EXTRA 2: Tolerancia de saltos de línea (\r\n vs \n).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerPrimeraLineaCompleta");
     }
 
     /**
@@ -160,11 +161,12 @@ public final class Ej001HttpRequestParser {
      *         PATCH, OPTIONS, HEAD
      */
     public static boolean validarMetodoSoportado(String raw) {
-        // TODO extra 3: extrae el método de la primera línea y valida si es un verbo
-        // HTTP
-        // estándar y soportado (GET, POST, PUT, DELETE, PATCH, OPTIONS, HEAD). Ignora
-        // mayúsculas/minúsculas al validar.
-        return false;
+        // TODO extra: RETO EXTRA 3: Validación de verbos HTTP estándar.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para validarMetodoSoportado");
     }
 
     /**
@@ -176,10 +178,12 @@ public final class Ej001HttpRequestParser {
      *         tiene el formato correcto
      */
     public static String extraerVersionHttp(String raw) {
-        // TODO extra 4: aísla la primera línea, divídela en tokens por espacios y
-        // extrae el tercer token correspondiente a la versión. Si no existe o no tiene
-        // 3 tokens, devuelve "".
-        return "";
+        // TODO extra: RETO EXTRA 4: Extracción de la versión del protocolo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerVersionHttp");
     }
 
     /**
@@ -190,9 +194,12 @@ public final class Ej001HttpRequestParser {
      * @return true si la ruta empieza por "/"; false en caso contrario
      */
     public static boolean validarRutaAbsoluta(String raw) {
-        // TODO extra 5: extrae la ruta del segundo token de la primera línea e
-        // identifica si comienza estrictamente con el carácter barra '/'.
-        return false;
+        // TODO extra: RETO EXTRA 5: Validación de ruta absoluta.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para validarRutaAbsoluta");
     }
 
     /**
@@ -205,11 +212,12 @@ public final class Ej001HttpRequestParser {
      *         parámetros (sin '?')
      */
     public static String extraerQueryString(String raw) {
-        // TODO extra 6: extrae la ruta completa de la petición. Si contiene el carácter
-        // '?',
-        // devuelve todo el fragmento que se encuentra justo después de él. Si no,
-        // devuelve "".
-        return "";
+        // TODO extra: RETO EXTRA 6: Separar Query String del Path.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerQueryString");
     }
 
     /**
@@ -221,10 +229,12 @@ public final class Ej001HttpRequestParser {
      * @return el valor de la cabecera recortado de espacios, o "" si no existe
      */
     public static String extraerCabeceraSegura(String raw, String cabeceraNombre) {
-        // TODO extra 7: recorre las cabeceras e identifica aquella cuyo nombre coincida
-        // con 'cabeceraNombre' ignorando mayúsculas/minúsculas. Devuelve su valor sin
-        // espacios.
-        return "";
+        // TODO extra: RETO EXTRA 7: Búsqueda de cabecera insensible a mayúsculas/minúsculas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerCabeceraSegura");
     }
 
     /**
@@ -236,11 +246,12 @@ public final class Ej001HttpRequestParser {
      *         (case-insensitive)
      */
     public static boolean esConexionCerrada(String raw) {
-        // TODO extra 8: usa la lógica de cabeceras para buscar "Connection". Si su
-        // valor
-        // es "close" (ignorando mayúsculas/minúsculas), devuelve true. De lo contrario,
-        // devuelve false.
-        return false;
+        // TODO extra: RETO EXTRA 8: Detección de conexión persistente vs transaccional.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esConexionCerrada");
     }
 
     /**
@@ -253,10 +264,12 @@ public final class Ej001HttpRequestParser {
      *         "chunked" (case-insensitive)
      */
     public static boolean contieneCuerpoChunky(String raw) {
-        // TODO extra 9: busca de forma segura la cabecera "Transfer-Encoding". Devuelve
-        // true
-        // si su valor contiene la palabra "chunked" (ignorando mayúsculas/minúsculas).
-        return false;
+        // TODO extra: RETO EXTRA 9: Detección de transferencia por fragmentos (chunked).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contieneCuerpoChunky");
     }
 
     /**
@@ -273,13 +286,12 @@ public final class Ej001HttpRequestParser {
      *         cuerpo disponible, devuelve el cuerpo disponible.
      */
     public static String obtenerCuerpoSeguroConContentLength(String raw) {
-        // TODO extra 10: localiza la cabecera "Content-Length" y parsea su valor a
-        // entero.
-        // Si existe y es válido, devuelve el cuerpo de la petición recortado a esa
-        // longitud máxima.
-        // Si no se encuentra la cabecera o su formato no es numérico, devuelve el
-        // cuerpo tal cual.
-        return "";
+        // TODO extra: RETO EXTRA 10: Lectura segura de cuerpo basada en Content-Length.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerCuerpoSeguroConContentLength");
     }
 
 }

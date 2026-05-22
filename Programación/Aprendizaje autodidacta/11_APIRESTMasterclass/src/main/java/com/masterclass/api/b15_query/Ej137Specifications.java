@@ -43,45 +43,127 @@ public final class Ej137Specifications {
         System.out.println("usa el test con EMF aislado");
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: obtén CriteriaBuilder con em.getCriteriaBuilder().
+    /**
+     * Reto Extra 1: Comprueba si un filtro es nulo o vacio.
+     */
+    public static boolean esFiltroVacio(String f) {
+        // TODO extra: Reto Extra 1: Comprueba si un filtro es nulo o vacio.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFiltroVacio");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: crea CriteriaQuery<Libro137> cq = cb.createQuery(Libro137.class).
+    /**
+     * Reto Extra 2: Comprueba si el precio minimo es valido.
+     */
+    public static boolean esPrecioValido(Double precio) {
+        // TODO extra: Reto Extra 2: Comprueba si el precio minimo es valido.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPrecioValido");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: Root<Libro137> root = cq.from(Libro137.class).
+    /**
+     * Reto Extra 3: Genera una expresion LIKE de forma segura.
+     */
+    public static String formatearLike(String f) {
+        // TODO extra: Reto Extra 3: Genera una expresion LIKE de forma segura.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearLike");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: crea una List<Predicate> vacía.
+    /**
+     * Reto Extra 4: Comprueba si el precio maximo es nulo.
+     */
+    public static boolean esPrecioNulo(Double p) {
+        // TODO extra: Reto Extra 4: Comprueba si el precio maximo es nulo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPrecioNulo");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: si generoOpt != null, añade cb.equal(root.get("genero"), generoOpt).
+    /**
+     * Reto Extra 5: Comprueba si la categoria esta vacia.
+     */
+    public static boolean esCategoriaVacia(String c) {
+        // TODO extra: Reto Extra 5: Comprueba si la categoria esta vacia.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCategoriaVacia");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: si paginasMin != null, añade cb.ge(root.get("paginas"), paginasMin).
+    /**
+     * Reto Extra 6: Comprueba si se requiere filtrar por nombre.
+     */
+    public static boolean requiereFiltroNombre(String nombre) {
+        // TODO extra: Reto Extra 6: Comprueba si se requiere filtrar por nombre.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para requiereFiltroNombre");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: cq.where(cb.and(predicados.toArray(new Predicate[0]))).
+    /**
+     * Reto Extra 7: Normaliza el nombre de la categoria.
+     */
+    public static String normalizarCategoria(String cat) {
+        // TODO extra: Reto Extra 7: Normaliza el nombre de la categoria.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para normalizarCategoria");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: cq.orderBy(cb.asc(root.get("id"))).
+    /**
+     * Reto Extra 8: Comprueba si hay especificaciones activas.
+     */
+    public static boolean tieneEspecificaciones(String nombre, Double min, Double max) {
+        // TODO extra: Reto Extra 8: Comprueba si hay especificaciones activas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneEspecificaciones");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: em.createQuery(cq).getResultList().
+    /**
+     * Reto Extra 9: Compara dos filtros de precio de forma logica.
+     */
+    public static boolean preciosCoherentes(Double min, Double max) {
+        // TODO extra: Reto Extra 9: Compara dos filtros de precio de forma logica.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para preciosCoherentes");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve la lista (predicados combinados con AND).
+    /**
+     * Reto Extra 10: Retorna representacion de especificaciones activas.
+     */
+    public static String formatearEspecificacion(String nom, Double min, Double max) {
+        // TODO extra: Reto Extra 10: Retorna representacion de especificaciones activas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearEspecificacion");
     }
+
+
 
 }
 

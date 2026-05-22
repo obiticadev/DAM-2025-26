@@ -18,7 +18,6 @@ class Ej049ResponseEntityTest {
                 .andExpect(content().string("no coffee"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 1")
     @Test
     void retoExtra01_respuestaVaciaConStatus() throws Exception {
         mvc.perform(get("/api/no-content"))
@@ -26,7 +25,6 @@ class Ej049ResponseEntityTest {
                 .andExpect(content().string(""));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 2")
     @Test
     void retoExtra02_respuestaConCache() throws Exception {
         mvc.perform(get("/api/cached"))
@@ -35,7 +33,6 @@ class Ej049ResponseEntityTest {
                 .andExpect(content().string("cacheado"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 3")
     @Test
     void retoExtra03_respuestaDescarga() throws Exception {
         mvc.perform(get("/api/descargar"))
@@ -45,7 +42,6 @@ class Ej049ResponseEntityTest {
                 .andExpect(content().string("id,nombre\n1,cafe\n"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
     @Test
     void retoExtra04_respuestaCondicional() throws Exception {
         mvc.perform(get("/api/recurso-etag").header("If-None-Match", "\"v1\""))
@@ -57,7 +53,6 @@ class Ej049ResponseEntityTest {
                 .andExpect(content().string("contenido fresco"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 5")
     @Test
     void retoExtra05_respuestaConCookie() throws Exception {
         mvc.perform(get("/api/cookie"))
@@ -66,7 +61,6 @@ class Ej049ResponseEntityTest {
                 .andExpect(content().string("cookie configurada"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 6")
     @Test
     void retoExtra06_respuestaErrorDetallado() throws Exception {
         mvc.perform(get("/api/error-detalle").param("code", "1"))
@@ -84,7 +78,6 @@ class Ej049ResponseEntityTest {
                 .andExpect(content().string("ok"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 7")
     @Test
     void retoExtra07_respuestaRedireccion() throws Exception {
         mvc.perform(get("/api/redirect"))
@@ -92,7 +85,6 @@ class Ej049ResponseEntityTest {
                 .andExpect(header().string("Location", "/api/hello"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
     @Test
     void retoExtra08_respuestaCreadoSinUri() throws Exception {
         mvc.perform(get("/api/creado-vacio"))
@@ -101,7 +93,6 @@ class Ej049ResponseEntityTest {
                 .andExpect(jsonPath("$").isEmpty());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 9")
     @Test
     void retoExtra09_respuestaConCustomStatusAndBody() throws Exception {
         mvc.perform(get("/api/custom"))
@@ -109,7 +100,6 @@ class Ej049ResponseEntityTest {
                 .andExpect(jsonPath("$.error").value("entidad no procesable"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     @Test
     void retoExtra10_respuestaHtml() throws Exception {
         mvc.perform(get("/api/html"))

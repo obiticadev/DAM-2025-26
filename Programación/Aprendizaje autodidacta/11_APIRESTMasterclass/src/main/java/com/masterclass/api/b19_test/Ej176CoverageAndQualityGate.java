@@ -63,44 +63,124 @@ public final class Ej176CoverageAndQualityGate {
         System.out.println(c + " -> " + pasaQualityGate(c, 70.0));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si lineasTotales <= 0 -> IllegalArgumentException (no divides por 0).
+        /**
+     * RETO EXTRA 01: Valida si es 100%.
+     */
+    public static boolean esCoberturaTotal(double cob) {
+        // TODO extra: RETO EXTRA 01: Valida si es 100%.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCoberturaTotal");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si lineasCubiertas < 0 -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 02: Valida si es 0%.
+     */
+    public static boolean esCoberturaNula(double cob) {
+        // TODO extra: RETO EXTRA 02: Valida si es 0%.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCoberturaNula");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: si lineasCubiertas > lineasTotales -> IllegalArgumentException (incoherente).
+    /**
+     * RETO EXTRA 03: Umbral estándar (80%).
+     */
+    public static double umbralPorDefecto() {
+        // TODO extra: RETO EXTRA 03: Umbral estándar (80%).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para umbralPorDefecto");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: calcula la fracción cubiertas/totales en punto flotante (cast a double).
+    /**
+     * RETO EXTRA 04: Umbral exigente (100%).
+     */
+    public static double umbralEstricto() {
+        // TODO extra: RETO EXTRA 04: Umbral exigente (100%).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para umbralEstricto");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: multiplica por 100 para obtener porcentaje.
+    /**
+     * RETO EXTRA 05: Valida si esta en [0,100].
+     */
+    public static boolean esUmbralValido(double u) {
+        // TODO extra: RETO EXTRA 05: Valida si esta en [0,100].
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esUmbralValido");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: redondea a 2 decimales (Math.round(x*100)/100.0).
+    /**
+     * RETO EXTRA 06: Calcula diferencia absoluta.
+     */
+    public static double diferenciaCobertura(double a, double b) {
+        // TODO extra: RETO EXTRA 06: Calcula diferencia absoluta.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para diferenciaCobertura");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: 0 cubiertas -> 0.0; todas cubiertas -> 100.0 (casos límite).
+    /**
+     * RETO EXTRA 07: Valida si es >= 80%.
+     */
+    public static boolean esCoberturaAceptable(double cob) {
+        // TODO extra: RETO EXTRA 07: Valida si es >= 80%.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCoberturaAceptable");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: el resultado siempre cae en [0,100].
+    /**
+     * RETO EXTRA 08: Valida si es < 50%.
+     */
+    public static boolean esCritica(double cob) {
+        // TODO extra: RETO EXTRA 08: Valida si es < 50%.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCritica");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: función determinista y sin efectos secundarios.
+    /**
+     * RETO EXTRA 09: Calculo rapido sin redondeo.
+     */
+    public static double calcularPorcentajeRapido(int c, int t) {
+        // TODO extra: RETO EXTRA 09: Calculo rapido sin redondeo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularPorcentajeRapido");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve el porcentaje.
+    /**
+     * RETO EXTRA 10: Formatea con simbolo de porcentaje.
+     */
+    public static String formatearCobertura(double cob) {
+        // TODO extra: RETO EXTRA 10: Formatea con simbolo de porcentaje.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearCobertura");
     }
 
 }

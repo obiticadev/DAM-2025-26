@@ -46,81 +46,102 @@ public final class Ej103EntityMapping {
         System.out.println("usa el test con EMF aislado");
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: inicia la transacción (em.getTransaction().begin()).
+    /**
+     * TODO extra 1: Comprueba si una clase tiene la anotación @Entity.
+     */
+    public static boolean desafioTieneAnotacionEntity(Class<?> clase) {
+        return clase.isAnnotationPresent(jakarta.persistence.Entity.class);
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: persiste la entidad con em.persist(p).
+    /**
+     * TODO extra 2: Comprueba si una clase tiene la anotación @Table.
+     */
+    public static boolean desafioTieneAnotacionTable(Class<?> clase) {
+        return clase.isAnnotationPresent(jakarta.persistence.Table.class);
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: haz commit (em.getTransaction().commit()).
+    /**
+     * TODO extra 3: Comprueba si un campo específico de una clase tiene la anotación @Id.
+     */
+    public static boolean desafioCampoTieneId(Class<?> clase, String campo) {
+        try {
+            var f = clase.getDeclaredField(campo);
+            return f.isAnnotationPresent(jakarta.persistence.Id.class);
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: devuelve p.getId() (ya poblado tras persistir).
+    /**
+     * TODO extra 4: Comprueba si un campo específico de una clase tiene la anotación @Column.
+     */
+    public static boolean desafioCampoTieneColumn(Class<?> clase, String campo) {
+        try {
+            var f = clase.getDeclaredField(campo);
+            return f.isAnnotationPresent(jakarta.persistence.Column.class);
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: si algo falla, deja propagar (el test verá el error).
+    /**
+     * TODO extra 5: Retorna el nombre de la tabla configurado en la anotación @Table de la clase.
+     */
+    public static String desafioObtenerNombreTabla(Class<?> clase) {
+        var table = clase.getAnnotation(jakarta.persistence.Table.class);
+        return table != null ? table.name() : null;
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: usa em.find(Producto103.class, id) (devuelve null si no existe).
+    /**
+     * TODO extra 6: Retorna el nombre de columna configurado en @Column para un campo.
+     */
+    public static String desafioObtenerNombreColumna(Class<?> clase, String campo) {
+        try {
+            var f = clase.getDeclaredField(campo);
+            var col = f.getAnnotation(jakarta.persistence.Column.class);
+            return col != null ? col.name() : null;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: anota la clase con @jakarta.persistence.Entity.
+    /**
+     * TODO extra 7: Valida que el nombre de un empleado no sea nulo.
+     */
+    public static void desafioValidarNombreEmpleado(String nombre) {
+        if (nombre == null) {
+            throw new IllegalArgumentException("Nombre no válido");
+        }
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: anota con @jakarta.persistence.Table(name = "PRODUCTO").
+    /**
+     * TODO extra 8: Comprueba si el campo es no nullable según la anotación @Column.
+     */
+    public static boolean desafioColumnaNoNula(Class<?> clase, String campo) {
+        try {
+            var f = clase.getDeclaredField(campo);
+            var col = f.getAnnotation(jakarta.persistence.Column.class);
+            return col != null && !col.nullable();
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: anota 'id' con @Id (clave primaria).
+    /**
+     * TODO extra 9: Crea una instancia básica del empleado mapeado.
+     */
+    public static Empleado desafioCrearEmpleadoBasico(Long id, String nombre) {
+        var e = new Empleado();
+        e.setId(id);
+        e.setNombre(nombre);
+        return e;
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: anota 'nombre' con @Column(nullable = false, length = 80).
+    /**
+     * TODO extra 10: Retorna verdadero si el empleado tiene un id configurado de forma correcta.
+     */
+    public static boolean desafioTieneIdConfigurado(Empleado e) {
+        return e != null && e.getId() != null;
     }
 
-}
-
-/**
- * Entidad de producto. Tabla PRODUCTO.
- */
-// TODO 7: anota la clase con @jakarta.persistence.Entity.
-// TODO 8: anota con @jakarta.persistence.Table(name = "PRODUCTO").
-class Producto103 {
-
-    // TODO 9: anota 'id' con @Id (clave primaria).
-    private Long id;
-
-    // TODO 10: anota 'nombre' con @Column(nullable = false, length = 80).
-    private String nombre;
-
-    private double precio;
-
-    protected Producto103() {
-    }
-
-    public Producto103(Long id, String nombre, double precio) {
-        this.id = id;
-        this.nombre = nombre;
-        this.precio = precio;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public double getPrecio() {
-        return precio;
-    }
 }

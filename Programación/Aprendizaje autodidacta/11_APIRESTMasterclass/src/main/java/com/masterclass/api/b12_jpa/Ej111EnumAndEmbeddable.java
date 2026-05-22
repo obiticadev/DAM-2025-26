@@ -34,103 +34,98 @@ public final class Ej111EnumAndEmbeddable {
         System.out.println("usa el test con EMF aislado");
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: begin tx, persist(s), commit.
+    /**
+     * TODO extra 1: Comprueba si un campo específico está anotado con @Enumerated.
+     */
+    public static boolean desafioTieneEnumerated(Class<?> clase, String campo) {
+        try {
+            var f = clase.getDeclaredField(campo);
+            return f.isAnnotationPresent(jakarta.persistence.Enumerated.class);
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: em.clear() para forzar lectura desde BD (no caché de 1er nivel).
+    /**
+     * TODO extra 2: Obtiene el tipo deEnumType configurado (STRING vs ORDINAL).
+     */
+    public static jakarta.persistence.EnumType desafioObtenerEnumType(Class<?> clase, String campo) {
+        try {
+            var f = clase.getDeclaredField(campo);
+            var env = f.getAnnotation(jakarta.persistence.Enumerated.class);
+            return env != null ? env.value() : null;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: devuelve em.find(Socio111.class, s.getId()).
+    /**
+     * TODO extra 3: Comprueba si un tipo está anotado con @Embeddable.
+     */
+    public static boolean desafioEsEmbeddable(Class<?> clase) {
+        return clase.isAnnotationPresent(jakarta.persistence.Embeddable.class);
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: anota Direccion111 con @jakarta.persistence.Embeddable.
+    /**
+     * TODO extra 4: Comprueba si un campo de una clase está anotado con @Embedded.
+     */
+    public static boolean desafioTieneEmbedded(Class<?> clase, String campo) {
+        try {
+            var f = clase.getDeclaredField(campo);
+            return f.isAnnotationPresent(jakarta.persistence.Embedded.class);
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: anota 'estado' con @Enumerated(EnumType.STRING)
+    /**
+     * TODO extra 5: Crea una instancia rápida del objeto embebido Direccion.
+     */
+    public static Direccion desafioCrearDireccion(String calle, String ciudad) {
+        var d = new Direccion();
+        d.setCalle(calle);
+        d.setCiudad(ciudad);
+        return d;
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: anota 'direccion' con @jakarta.persistence.Embedded.
+    /**
+     * TODO extra 6: Crea una instancia rápida de Pedido.
+     */
+    public static Pedido desafioCrearPedido(EstadoPedido estado, Direccion dir) {
+        var p = new Pedido();
+        p.setEstado(estado);
+        p.setDireccionEnvio(dir);
+        return p;
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: sin @Embedded el objeto Direccion111 no se persiste como columnas.
+    /**
+     * TODO extra 7: Lanza una excepción si el pedido a validar no tiene un estado asignado.
+     */
+    public static void desafioValidarEstadoAsignado(Pedido p) {
+        if (p == null || p.getEstado() == null) {
+            throw new IllegalArgumentException("Estado no asignado");
+        }
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: asigna los tres campos (constructor de conveniencia).
+    /**
+     * TODO extra 8: Comprueba si el pedido tiene asignada una dirección en una ciudad específica.
+     */
+    public static boolean desafioCoincideCiudad(Pedido p, String ciudad) {
+        return p != null && p.getDireccionEnvio() != null && ciudad.equals(p.getDireccionEnvio().getCiudad());
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: el enum se guardará como String por @Enumerated(STRING).
+    /**
+     * TODO extra 9: Comprueba si el estado del pedido es ENTREGADO de forma coherente.
+     */
+    public static boolean desafioEsEntregado(Pedido p) {
+        return p != null && EstadoPedido.ENTREGADO == p.getEstado();
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: la dirección se "aplana" en columnas de la tabla SOCIO111.
+    /**
+     * TODO extra 10: Retorna verdadero si la dirección de envío del pedido no es nula.
+     */
+    public static boolean desafioTieneDireccion(Pedido p) {
+        return p != null && p.getDireccionEnvio() != null;
     }
 
-}
-
-// TODO 4: anota Direccion111 con @jakarta.persistence.Embeddable.
-class Direccion111 {
-    private String calle;
-    private String ciudad;
-
-    protected Direccion111() {
-    }
-
-    public Direccion111(String calle, String ciudad) {
-        this.calle = calle;
-        this.ciudad = ciudad;
-    }
-
-    public String getCiudad() {
-        return ciudad;
-    }
-}
-
-@jakarta.persistence.Entity
-class Socio111 {
-    @jakarta.persistence.Id
-    @jakarta.persistence.GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
-    private Long id;
-
-    private String nombre;
-
-    // TODO 5: anota 'estado' con @Enumerated(EnumType.STRING)
-    //         (guardar el NOMBRE del enum, no su ordinal — más robusto).
-    private Ej111EnumAndEmbeddable.Estado estado;
-
-    // TODO 6: anota 'direccion' con @jakarta.persistence.Embedded.
-    // TODO 7: sin @Embedded el objeto Direccion111 no se persiste como columnas.
-    private Direccion111 direccion;
-
-    protected Socio111() {
-    }
-
-    public Socio111(String nombre, Ej111EnumAndEmbeddable.Estado estado, Direccion111 direccion) {
-        // TODO 8: asigna los tres campos (constructor de conveniencia).
-        // TODO 9: el enum se guardará como String por @Enumerated(STRING).
-        // TODO 10: la dirección se "aplana" en columnas de la tabla SOCIO111.
-        this.nombre = nombre;
-        this.estado = estado;
-        this.direccion = direccion;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public Ej111EnumAndEmbeddable.Estado getEstado() {
-        return estado;
-    }
-
-    public Direccion111 getDireccion() {
-        return direccion;
-    }
 }

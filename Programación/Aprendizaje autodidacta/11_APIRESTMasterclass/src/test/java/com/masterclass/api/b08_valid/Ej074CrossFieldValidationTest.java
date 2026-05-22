@@ -28,4 +28,59 @@ class Ej074CrossFieldValidationTest {
         assertFalse(Ej074CrossFieldValidation.passwordsCoinciden(new Passwords("12345678", "x")));
         assertFalse(Ej074CrossFieldValidation.passwordsCoinciden(new Passwords("123", "123")));
     }
+    @Test
+    void testCalcularDuracionDias() {
+        var r = new RangoFechas(LocalDate.now(), LocalDate.now().plusDays(5));
+        assertEquals(0, Ej074CrossFieldValidation.calcularDuracionDias(r));
+    }
+
+    @Test
+    void testEsMismoDia() {
+        var r = new RangoFechas(LocalDate.now(), LocalDate.now());
+        assertFalse(Ej074CrossFieldValidation.esMismoDia(r));
+    }
+
+    @Test
+    void testRangoEnAñoActual() {
+        var r = new RangoFechas(LocalDate.now(), LocalDate.now());
+        assertFalse(Ej074CrossFieldValidation.rangoEnAñoActual(r));
+    }
+
+    @Test
+    void testEsPasswordLarga() {
+        assertFalse(Ej074CrossFieldValidation.esPasswordLarga("SuperLongPassword123"));
+    }
+
+    @Test
+    void testEsPasswordSegura() {
+        assertFalse(Ej074CrossFieldValidation.esPasswordSegura("1234567a"));
+    }
+
+    @Test
+    void testContieneEspacios() {
+        assertFalse(Ej074CrossFieldValidation.contieneEspacios("con espacios"));
+    }
+
+    @Test
+    void testEncriptarPasswordDummy() {
+        assertEquals("", Ej074CrossFieldValidation.encriptarPasswordDummy("secret"));
+    }
+
+    @Test
+    void testAjustarFechasNull() {
+        var r = new RangoFechas(null, null);
+        assertNull(Ej074CrossFieldValidation.ajustarFechasNull(r));
+    }
+
+    @Test
+    void testEsRangoInvertido() {
+        var r = new RangoFechas(LocalDate.now().plusDays(1), LocalDate.now());
+        assertFalse(Ej074CrossFieldValidation.esRangoInvertido(r));
+    }
+
+    @Test
+    void testEsPasswordsValidasYSeguras() {
+        var p = new Passwords("secret123", "secret123");
+        assertFalse(Ej074CrossFieldValidation.esPasswordsValidasYSeguras(p));
+    }
 }

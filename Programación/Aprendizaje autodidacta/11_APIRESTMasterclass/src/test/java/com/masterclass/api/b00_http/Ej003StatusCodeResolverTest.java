@@ -29,7 +29,6 @@ class Ej003StatusCodeResolverTest {
         assertFalse(Ej003StatusCodeResolver.isClientFault(500));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 1")
     @Test
     void retoExtra01_esRedireccionEstrictaMetodo() {
         assertTrue(Ej003StatusCodeResolver.esRedireccionEstrictaMetodo(307));
@@ -38,7 +37,6 @@ class Ej003StatusCodeResolverTest {
         assertFalse(Ej003StatusCodeResolver.esRedireccionEstrictaMetodo(200));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 2")
     @Test
     void retoExtra02_resolverCodigoPorPhrase() {
         assertEquals(200, Ej003StatusCodeResolver.resolverCodigoPorPhrase("OK"));
@@ -48,7 +46,6 @@ class Ej003StatusCodeResolverTest {
         assertEquals(-1, Ej003StatusCodeResolver.resolverCodigoPorPhrase("Custom phrase"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 3")
     @Test
     void retoExtra03_esErrorDeServidorTemporal() {
         assertTrue(Ej003StatusCodeResolver.esErrorDeServidorTemporal(503));
@@ -56,7 +53,6 @@ class Ej003StatusCodeResolverTest {
         assertFalse(Ej003StatusCodeResolver.esErrorDeServidorTemporal(500));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
     @Test
     void retoExtra04_esReintentablePorElCliente() {
         assertTrue(Ej003StatusCodeResolver.esReintentablePorElCliente(429));
@@ -65,7 +61,6 @@ class Ej003StatusCodeResolverTest {
         assertFalse(Ej003StatusCodeResolver.esReintentablePorElCliente(400));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 5")
     @Test
     void retoExtra05_determinarAccionCliente() {
         assertEquals("PROCESAR_EXITO", Ej003StatusCodeResolver.determinarAccionCliente(200));
@@ -75,7 +70,6 @@ class Ej003StatusCodeResolverTest {
         assertEquals("NINGUNA", Ej003StatusCodeResolver.determinarAccionCliente(404));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 6")
     @Test
     void retoExtra06_esCodigoEstandarIana() {
         assertTrue(Ej003StatusCodeResolver.esCodigoEstandarIana(200));
@@ -83,7 +77,6 @@ class Ej003StatusCodeResolverTest {
         assertFalse(Ej003StatusCodeResolver.esCodigoEstandarIana(799));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 7")
     @Test
     void retoExtra07_permiteCuerpoEnRespuesta() {
         assertFalse(Ej003StatusCodeResolver.permiteCuerpoEnRespuesta(204));
@@ -93,7 +86,6 @@ class Ej003StatusCodeResolverTest {
         assertTrue(Ej003StatusCodeResolver.permiteCuerpoEnRespuesta(500));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
     @Test
     void retoExtra08_esErrorCriticoDeInfraestructura() {
         assertTrue(Ej003StatusCodeResolver.esErrorCriticoDeInfraestructura(502));
@@ -101,7 +93,6 @@ class Ej003StatusCodeResolverTest {
         assertFalse(Ej003StatusCodeResolver.esErrorCriticoDeInfraestructura(500));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 9")
     @Test
     void retoExtra09_resolverCodigoDesdeExcepcion() {
         assertEquals(400, Ej003StatusCodeResolver.resolverCodigoDesdeExcepcion(new IllegalArgumentException()));
@@ -110,7 +101,6 @@ class Ej003StatusCodeResolverTest {
         assertEquals(500, Ej003StatusCodeResolver.resolverCodigoDesdeExcepcion(new NullPointerException()));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     @Test
     void retoExtra10_esAutenticacionExpirada() {
         assertTrue(Ej003StatusCodeResolver.esAutenticacionExpirada(401));

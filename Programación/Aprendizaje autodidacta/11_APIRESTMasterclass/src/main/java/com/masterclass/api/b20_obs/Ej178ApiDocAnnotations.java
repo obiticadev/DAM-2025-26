@@ -43,44 +43,124 @@ public final class Ej178ApiDocAnnotations {
                 new AnnotationMeta178("Crea usuario", "", "Long", true)));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si anot es null -> IllegalArgumentException.
+        /**
+     * RETO EXTRA 01: Valida campo requerido.
+     */
+    public static boolean esRequerido(AnnotationMeta178 anot) {
+        // TODO extra: RETO EXTRA 01: Valida campo requerido.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRequerido");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: calcula la descripcion: usa anot.summary() si no esta en blanco.
+    /**
+     * RETO EXTRA 02: Obtiene tipo original.
+     */
+    public static String obtenerTipoJava(AnnotationMeta178 anot) {
+        // TODO extra: RETO EXTRA 02: Obtiene tipo original.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerTipoJava");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: si summary esta en blanco, cae a anot.description().
+    /**
+     * RETO EXTRA 03: Obtiene summary.
+     */
+    public static String obtenerSummary(AnnotationMeta178 anot) {
+        // TODO extra: RETO EXTRA 03: Obtiene summary.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerSummary");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: si ambas estan en blanco, usa el literal "sin descripcion".
+    /**
+     * RETO EXTRA 04: Obtiene descripcion.
+     */
+    public static String obtenerDescription(AnnotationMeta178 anot) {
+        // TODO extra: RETO EXTRA 04: Obtiene descripcion.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerDescription");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: calcula el tipo de esquema base segun anot.javaType() (String->"string").
+    /**
+     * RETO EXTRA 05: Verifica summary.
+     */
+    public static boolean tieneSummary(AnnotationMeta178 anot) {
+        // TODO extra: RETO EXTRA 05: Verifica summary.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneSummary");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: mapea Integer/Long/int/long a "integer"; Boolean/boolean a "boolean".
+    /**
+     * RETO EXTRA 06: Verifica descripcion.
+     */
+    public static boolean tieneDescription(AnnotationMeta178 anot) {
+        // TODO extra: RETO EXTRA 06: Verifica descripcion.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneDescription");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: cualquier otro tipo no primitivo -> "object".
+    /**
+     * RETO EXTRA 07: Crea anotacion simulada.
+     */
+    public static AnnotationMeta178 crearAnotacion(String s, String d, String t, boolean r) {
+        // TODO extra: RETO EXTRA 07: Crea anotacion simulada.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearAnotacion");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: si anot.required() es true, anexa " (required)" al schema.
+    /**
+     * RETO EXTRA 08: Valida si es tipo Objeto.
+     */
+    public static boolean esObjetoType(String t) {
+        // TODO extra: RETO EXTRA 08: Valida si es tipo Objeto.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esObjetoType");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: construye el Map de salida con claves "description" y "schema".
+    /**
+     * RETO EXTRA 09: Valida si es tipo Entero.
+     */
+    public static boolean esEnteroType(String t) {
+        // TODO extra: RETO EXTRA 09: Valida si es tipo Entero.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esEnteroType");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve el mapa resuelto.
+    /**
+     * RETO EXTRA 10: Texto representativo.
+     */
+    public static String formatearRequerido(AnnotationMeta178 anot) {
+        // TODO extra: RETO EXTRA 10: Texto representativo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearRequerido");
     }
 
 }

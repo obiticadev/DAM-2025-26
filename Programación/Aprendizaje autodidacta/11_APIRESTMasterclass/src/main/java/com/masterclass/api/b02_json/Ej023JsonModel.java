@@ -47,8 +47,12 @@ public final class Ej023JsonModel {
      * @return true si es un objeto vacío
      */
     public static boolean esObjetoVacio(String json) {
-        // TODO extra: limpia espacios y comprueba si es exactamente "{}"
-        return false;
+        // TODO extra: Reto Extra 1: Verificación de objeto vacío.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esObjetoVacio");
     }
 
     /**
@@ -59,8 +63,12 @@ public final class Ej023JsonModel {
      * @return true si es un array vacío
      */
     public static boolean esArrayVacio(String json) {
-        // TODO extra: limpia espacios y comprueba si es exactamente "[]"
-        return false;
+        // TODO extra: Reto Extra 2: Verificación de array vacío.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esArrayVacio");
     }
 
     /**
@@ -72,8 +80,12 @@ public final class Ej023JsonModel {
      * @return true si cumple con las comillas obligatorias de un String JSON
      */
     public static boolean esStringValido(String json) {
-        // TODO extra: verifica que no sea nulo, su longitud sea >= 2, e inicie y termine con comillas dobles
-        return false;
+        // TODO extra: Reto Extra 3: Validación sintáctica de cadena JSON.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esStringValido");
     }
 
     /**
@@ -84,8 +96,12 @@ public final class Ej023JsonModel {
      * @return true si es un entero válido
      */
     public static boolean esNumeroEntero(String json) {
-        // TODO extra: valida si es número usando Integer.parseInt o mediante regex (ej. ^-?\\d+$)
-        return false;
+        // TODO extra: Reto Extra 4: Validación de número entero.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esNumeroEntero");
     }
 
     /**
@@ -97,8 +113,12 @@ public final class Ej023JsonModel {
      * @return texto crudo procesado, o null si el JSON es inválido o nulo
      */
     public static String extraerTextoString(String json) {
-        // TODO extra: si es String válido, remueve las comillas externas y reemplaza \" por "
-        return null;
+        // TODO extra: Reto Extra 5: Extracción de valor de cadena JSON.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerTextoString");
     }
 
     /**
@@ -110,8 +130,12 @@ public final class Ej023JsonModel {
      * @return número de elementos, o 0 si está vacío o es inválido
      */
     public static int contarElementosArraySimple(String json) {
-        // TODO extra: limpia los corchetes externos, separa por comas si no está vacío, y cuenta los elementos
-        return 0;
+        // TODO extra: Reto Extra 6: Recuento de elementos en array JSON simple.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarElementosArraySimple");
     }
 
     /**
@@ -122,8 +146,12 @@ public final class Ej023JsonModel {
      * @return JSON normalizado libre de espacios externos irrelevantes
      */
     public static String limpiarEspaciosJson(String json) {
-        // TODO extra: recorre la cadena caracter a caracter omitiendo espacios excepto si estás dentro de comillas
-        return null;
+        // TODO extra: Reto Extra 7: Normalización sintáctica de espacios.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para limpiarEspaciosJson");
     }
 
     /**
@@ -134,8 +162,12 @@ public final class Ej023JsonModel {
      * @return true si es exactamente "false"
      */
     public static boolean esBooleanoFalso(String json) {
-        // TODO extra: verifica si tras recortar la cadena es idéntica a "false"
-        return false;
+        // TODO extra: Reto Extra 8: Validación de booleano falso.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esBooleanoFalso");
     }
 
     /**
@@ -146,8 +178,12 @@ public final class Ej023JsonModel {
      * @return true si es exactamente "null"
      */
     public static boolean esNullJson(String json) {
-        // TODO extra: verifica si tras recortar la cadena es idéntica a "null"
-        return false;
+        // TODO extra: Reto Extra 9: Validación de tipo nulo en JSON.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esNullJson");
     }
 
     /**
@@ -160,8 +196,12 @@ public final class Ej023JsonModel {
      * @return literal original o de contingencia
      */
     public static String obtenerLiteralDefecto(String json, String defecto) {
-        // TODO extra: si tipo(json) es "desconocido", devuelve defecto, de lo contrario json
-        return null;
+        // TODO extra: Reto Extra 10: Contingencia de literal JSON.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerLiteralDefecto");
     }
 
 }

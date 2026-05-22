@@ -71,44 +71,124 @@ public final class Ej183SpringCacheAbstraction {
         System.out.println("calculos=" + c[0]);
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si cache es null -> IllegalArgumentException.
+        /**
+     * RETO EXTRA 01: Comprueba si la clave esta en cache.
+     */
+    public static boolean estaEnCache(java.util.Map<String, String> cache, String k) {
+        // TODO extra: RETO EXTRA 01: Comprueba si la clave esta en cache.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para estaEnCache");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si clave es null -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 02: Obtiene el valor de la cache.
+     */
+    public static String obtenerDeCache(java.util.Map<String, String> cache, String k) {
+        // TODO extra: RETO EXTRA 02: Obtiene el valor de la cache.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerDeCache");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: si calculo es null -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 03: Guarda clave-valor en cache.
+     */
+    public static java.util.Map<String, String> ponerEnCache(java.util.Map<String, String> cache, String k, String v) {
+        // TODO extra: RETO EXTRA 03: Guarda clave-valor en cache.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para ponerEnCache");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: si contador es null o contador.length != 1 -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 04: Limpia toda la cache.
+     */
+    public static java.util.Map<String, String> limpiarCache(java.util.Map<String, String> cache) {
+        // TODO extra: RETO EXTRA 04: Limpia toda la cache.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para limpiarCache");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: si la clave ya esta en cache (cache hit), NO invoques 'calculo'.
+    /**
+     * RETO EXTRA 05: Valida si la clave es valida.
+     */
+    public static boolean esClaveValida(String k) {
+        // TODO extra: RETO EXTRA 05: Valida si la clave es valida.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esClaveValida");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: en un hit, devuelve directamente el valor cacheado sin tocar contador.
+    /**
+     * RETO EXTRA 06: Obtiene tamaño de cache.
+     */
+    public static int tamanioCache(java.util.Map<String, String> cache) {
+        // TODO extra: RETO EXTRA 06: Obtiene tamaño de cache.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tamanioCache");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: en un miss, invoca 'calculo.apply(clave)' UNA sola vez.
+    /**
+     * RETO EXTRA 07: Guarda multiples entradas en cache.
+     */
+    public static java.util.Map<String, String> ponerMultiples(java.util.Map<String, String> cache, java.util.Map<String, String> m) {
+        // TODO extra: RETO EXTRA 07: Guarda multiples entradas en cache.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para ponerMultiples");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: incrementa contador[0] solo cuando hubo calculo real (miss).
+    /**
+     * RETO EXTRA 08: Elimina multiples claves.
+     */
+    public static java.util.Map<String, String> eliminarVarios(java.util.Map<String, String> cache, java.util.List<String> ks) {
+        // TODO extra: RETO EXTRA 08: Elimina multiples claves.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para eliminarVarios");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: guarda el valor calculado en cache para futuras lecturas.
+    /**
+     * RETO EXTRA 09: Comprueba si esta vacia la cache.
+     */
+    public static boolean estaVacia(java.util.Map<String, String> cache) {
+        // TODO extra: RETO EXTRA 09: Comprueba si esta vacia la cache.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para estaVacia");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve el valor (recien calculado en el miss).
+    /**
+     * RETO EXTRA 10: Obtiene todas las claves de la cache.
+     */
+    public static java.util.List<String> obtenerClaves(java.util.Map<String, String> cache) {
+        // TODO extra: RETO EXTRA 10: Obtiene todas las claves de la cache.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerClaves");
     }
 
 }

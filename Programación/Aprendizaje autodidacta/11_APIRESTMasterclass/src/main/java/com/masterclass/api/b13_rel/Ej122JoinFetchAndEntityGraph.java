@@ -52,45 +52,127 @@ public final class Ej122JoinFetchAndEntityGraph {
         System.out.println("usa el test con EMF aislado");
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: crea un EntityGraph: em.createEntityGraph(Proyecto122.class).
+    /**
+     * Reto Extra 1: Cuenta tareas de un proyecto.
+     */
+    public static int contarTareas(Proyecto122 p) {
+        // TODO extra: Reto Extra 1: Cuenta tareas de un proyecto.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarTareas");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: añade el atributo a cargar: graph.addAttributeNodes("tareas").
+    /**
+     * Reto Extra 2: Comprueba si tiene tareas.
+     */
+    public static boolean tieneTareas(Proyecto122 p) {
+        // TODO extra: Reto Extra 2: Comprueba si tiene tareas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneTareas");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: prepara los hints: Map.of("jakarta.persistence.fetchgraph", graph)
+    /**
+     * Reto Extra 3: Comprueba si una tarea esta en proyecto.
+     */
+    public static boolean contieneTarea(Proyecto122 p, Tarea122 t) {
+        // TODO extra: Reto Extra 3: Comprueba si una tarea esta en proyecto.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contieneTarea");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: usa em.find(Proyecto122.class, id, hints).
+    /**
+     * Reto Extra 4: Comprueba si alguna tarea tiene un titulo.
+     */
+    public static boolean tieneTitulo(Proyecto122 p, String titulo) {
+        // TODO extra: Reto Extra 4: Comprueba si alguna tarea tiene un titulo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneTitulo");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: la colección 'tareas' debe quedar inicializada por el grafo.
+    /**
+     * Reto Extra 5: Cuenta titulos largos.
+     */
+    public static int contarTareasTituloLargo(Proyecto122 p, int len) {
+        // TODO extra: Reto Extra 5: Cuenta titulos largos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarTareasTituloLargo");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: devuelve el proyecto.
+    /**
+     * Reto Extra 6: Crea una tarea.
+     */
+    public static Tarea122 crearTarea(String titulo) {
+        // TODO extra: Reto Extra 6: Crea una tarea.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearTarea");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: el EntityGraph evita escribir JPQL para casos de carga.
+    /**
+     * Reto Extra 7: Remueve la primera tarea.
+     */
+    public static boolean removerPrimeraTarea(Proyecto122 p) {
+        // TODO extra: Reto Extra 7: Remueve la primera tarea.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para removerPrimeraTarea");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: JPQL "select p from Proyecto122 p join fetch p.tareas where p.id = :id".
+    /**
+     * Reto Extra 8: Valida proyecto no nulo.
+     */
+    public static boolean esValido(Proyecto122 p) {
+        // TODO extra: Reto Extra 8: Valida proyecto no nulo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esValido");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: setParameter("id", id) y getSingleResult().
+    /**
+     * Reto Extra 9: Vincula tareas en lote.
+     */
+    public static void vincularTareas(Proyecto122 p, java.util.List<Tarea122> lista) {
+        // TODO extra: Reto Extra 9: Vincula tareas en lote.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para vincularTareas");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: tras esto 'tareas' está inicializada aunque se haga em.clear() después.
+    /**
+     * Reto Extra 10: Retorna formato de proyecto.
+     */
+    public static String formatearProyecto(Proyecto122 p) {
+        // TODO extra: Reto Extra 10: Retorna formato de proyecto.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearProyecto");
     }
+
+
 
 }
 

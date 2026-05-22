@@ -34,7 +34,6 @@ class Ej034BeanLifecycleTest {
     @Lazy
     static class MiBeanLazy {}
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 1")
     @Test
     void retoExtra01_beanLifecycleConAnotaciones() {
         var b = new BeanLifecycleConAnotaciones();
@@ -43,7 +42,6 @@ class Ej034BeanLifecycleTest {
         assertTrue(b.isInicializado());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 2")
     @Test
     void retoExtra02_beanLifecycleConInterfaces() throws Exception {
         var b = new BeanLifecycleConInterfaces();
@@ -57,7 +55,6 @@ class Ej034BeanLifecycleTest {
         assertTrue(b.isDestruido());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 3")
     @Test
     void retoExtra03_customBeanPostProcessor() {
         var pp = new CustomBeanPostProcessor();
@@ -66,7 +63,6 @@ class Ej034BeanLifecycleTest {
         assertSame(bean, pp.postProcessAfterInitialization(bean, "dummy"));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
     @Test
     void retoExtra04_verificarLlamadaPreDestroy() {
         try (var ctx = new AnnotationConfigApplicationContext()) {
@@ -80,7 +76,6 @@ class Ej034BeanLifecycleTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 5")
     @Test
     void retoExtra05_initMetodoEnConfiguracion() {
         try (var ctx = new AnnotationConfigApplicationContext()) {
@@ -95,7 +90,6 @@ class Ej034BeanLifecycleTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 6")
     @Test
     void retoExtra06_beanConAwareInterfaces() {
         try (var ctx = new AnnotationConfigApplicationContext()) {
@@ -107,7 +101,6 @@ class Ej034BeanLifecycleTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 7")
     @Test
     void retoExtra07_postProcessorDeAuditoria() {
         try (var ctx = new AnnotationConfigApplicationContext()) {
@@ -121,7 +114,6 @@ class Ej034BeanLifecycleTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
     @Test
     void retoExtra08_evitarDestroyNulo() {
         boolean[] cerrado = {false};
@@ -133,14 +125,12 @@ class Ej034BeanLifecycleTest {
         assertDoesNotThrow(() -> Ej034BeanLifecycle.EvitarDestroyNulo(null));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 9")
     @Test
     void retoExtra09_obtenerOrdenDeCallbacks() {
         List<String> orden = Ej034BeanLifecycle.obtenerOrdenDeCallbacks();
         assertEquals(List.of("PostConstruct", "InitializingBean", "InitMethod"), orden);
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     @Test
     void retoExtra10_intercepcionConPostProcessorLazy() {
         try (var ctx = new AnnotationConfigApplicationContext()) {

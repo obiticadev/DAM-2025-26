@@ -65,44 +65,124 @@ public final class Ej158UserDetailsService {
         System.out.println(loadUserByUsername(repo, "ana"));
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: si repo es null -> IllegalArgumentException.
+        /**
+     * RETO EXTRA 01: Comprueba que no contenga espacios ni caracteres prohibidos.
+     */
+    public static boolean esNombreUsuarioValido(String username) {
+        // TODO extra: RETO EXTRA 01: Comprueba que no contenga espacios ni caracteres prohibidos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esNombreUsuarioValido");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: si username es null o blank -> IllegalArgumentException.
+    /**
+     * RETO EXTRA 02: Comprueba si la cuenta esta marcada como bloqueada o suspendida.
+     */
+    public static boolean esUsuarioBloqueado(String status) {
+        // TODO extra: RETO EXTRA 02: Comprueba si la cuenta esta marcada como bloqueada o suspendida.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esUsuarioBloqueado");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: normaliza el username (trim + lower) para comparar.
+    /**
+     * RETO EXTRA 03: Determina si es de tipo UsernameNotFoundException.
+     */
+    public static boolean esExcepcionUserNotFound(Throwable t) {
+        // TODO extra: RETO EXTRA 03: Determina si es de tipo UsernameNotFoundException.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionUserNotFound");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: recorre el repo buscando coincidencia exacta normalizada.
+    /**
+     * RETO EXTRA 04: Genera la ficha formateada del usuario cargado.
+     */
+    public static String crearUserDetailsString(String u, String roles) {
+        // TODO extra: RETO EXTRA 04: Genera la ficha formateada del usuario cargado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearUserDetailsString");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: si no hay coincidencia -> Optional.empty() (NO excepción que filtre info).
+    /**
+     * RETO EXTRA 05: Determina si la cuenta es apta para loguearse.
+     */
+    public static boolean esCuentaHabilitada(boolean active, boolean blocked) {
+        // TODO extra: RETO EXTRA 05: Determina si la cuenta es apta para loguearse.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCuentaHabilitada");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: si la cuenta existe pero locked == true -> Optional.empty().
+    /**
+     * RETO EXTRA 06: Separa roles por comas.
+     */
+    public static java.util.List<String> extraerRolesDeString(String authList) {
+        // TODO extra: RETO EXTRA 06: Separa roles por comas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerRolesDeString");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: no devuelvas la contraseña hash en logs.
+    /**
+     * RETO EXTRA 07: Verifica que la contrasena de base de datos no sea nula ni vacia.
+     */
+    public static boolean esPasswordValidaDb(String dbHash) {
+        // TODO extra: RETO EXTRA 07: Verifica que la contrasena de base de datos no sea nula ni vacia.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPasswordValidaDb");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: documenta que Spring envolvería esto en un UserDetails.
+    /**
+     * RETO EXTRA 08: Determina si no se supero el limite de intentos de acceso.
+     */
+    public static boolean esIntentoLoginPermitido(int fallidos, int max) {
+        // TODO extra: RETO EXTRA 08: Determina si no se supero el limite de intentos de acceso.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esIntentoLoginPermitido");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: usa stream().filter().findFirst() o bucle equivalente.
+    /**
+     * RETO EXTRA 09: Genera el texto de log de auditoria de login.
+     */
+    public static String generarResumenAuditoria(String u, boolean success) {
+        // TODO extra: RETO EXTRA 09: Genera el texto de log de auditoria de login.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para generarResumenAuditoria");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve el Optional resultante.
+    /**
+     * RETO EXTRA 10: Determina si el error ocurrio por caida de la conexion con el backend.
+     */
+    public static boolean esFalloServicioUser(Throwable t) {
+        // TODO extra: RETO EXTRA 10: Determina si el error ocurrio por caida de la conexion con el backend.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFalloServicioUser");
     }
 
 }

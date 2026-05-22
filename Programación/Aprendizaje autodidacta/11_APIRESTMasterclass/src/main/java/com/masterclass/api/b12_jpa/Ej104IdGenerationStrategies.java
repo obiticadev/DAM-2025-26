@@ -35,70 +35,113 @@ public final class Ej104IdGenerationStrategies {
         System.out.println("usa el test con EMF aislado");
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: begin transaction.
+    /**
+     * TODO extra 1: Comprueba si una clase tiene el campo id anotado con @GeneratedValue.
+     */
+    public static boolean desafioTieneGeneratedValue(Class<?> clase, String campo) {
+        try {
+            var f = clase.getDeclaredField(campo);
+            return f.isAnnotationPresent(jakarta.persistence.GeneratedValue.class);
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: persist(a).
+    /**
+     * TODO extra 2: Obtiene la estrategia de generación de ID para un campo.
+     */
+    public static jakarta.persistence.GenerationType desafioObtenerEstrategiaGeneracion(Class<?> clase, String campo) {
+        try {
+            var f = clase.getDeclaredField(campo);
+            var gen = f.getAnnotation(jakarta.persistence.GeneratedValue.class);
+            return gen != null ? gen.strategy() : null;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: persist(b).
+    /**
+     * TODO extra 3: Comprueba si un campo utiliza la estrategia SEQUENCE.
+     */
+    public static boolean desafioEsEstrategiaSequence(Class<?> clase, String campo) {
+        return jakarta.persistence.GenerationType.SEQUENCE == desafioObtenerEstrategiaGeneracion(clase, campo);
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: commit.
+    /**
+     * TODO extra 4: Comprueba si un campo utiliza la estrategia IDENTITY.
+     */
+    public static boolean desafioEsEstrategiaIdentity(Class<?> clase, String campo) {
+        return jakarta.persistence.GenerationType.IDENTITY == desafioObtenerEstrategiaGeneracion(clase, campo);
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: tras commit los ids están generados (no eran asignados a mano).
+    /**
+     * TODO extra 5: Comprueba si la entidad tiene anotado un @SequenceGenerator.
+     */
+    public static boolean desafioTieneSequenceGenerator(Class<?> clase, String campo) {
+        try {
+            var f = clase.getDeclaredField(campo);
+            return f.isAnnotationPresent(jakarta.persistence.SequenceGenerator.class);
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: devuelve new Long[]{a.getId(), b.getId()}.
+    /**
+     * TODO extra 6: Obtiene el nombre del sequence de base de datos desde el generador anotado.
+     */
+    public static String desafioObtenerNombreSequence(Class<?> clase, String campo) {
+        try {
+            var f = clase.getDeclaredField(campo);
+            var seq = f.getAnnotation(jakarta.persistence.SequenceGenerator.class);
+            return seq != null ? seq.sequenceName() : null;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: los ids deben ser distintos y no null (la estrategia los crea).
+    /**
+     * TODO extra 7: Obtiene el tamaño del pool de secuencia (allocationSize) del sequence generator.
+     */
+    public static int desafioObtenerAllocationSize(Class<?> clase, String campo) {
+        try {
+            var f = clase.getDeclaredField(campo);
+            var seq = f.getAnnotation(jakarta.persistence.SequenceGenerator.class);
+            return seq != null ? seq.allocationSize() : -1;
+        } catch (Exception e) {
+            return -1;
+        }
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: anota la clase con @jakarta.persistence.Entity.
+    /**
+     * TODO extra 8: Instancia de forma manual un Registro con ID manual para pruebas.
+     */
+    public static RegistroConSecuencia desafioCrearRegistroConSecuencia(Long id, String datos) {
+        var r = new RegistroConSecuencia();
+        r.setId(id);
+        r.setDatos(datos);
+        return r;
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: anota 'id' con @Id.
+    /**
+     * TODO extra 9: Instancia de forma manual un Registro con ID auto-incremental para pruebas.
+     */
+    public static RegistroConIdentidad desafioCrearRegistroConIdentidad(Long id, String datos) {
+        var r = new RegistroConIdentidad();
+        r.setId(id);
+        r.setDatos(datos);
+        return r;
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: anota 'id' con @GeneratedValue(strategy = GenerationType.IDENTITY)
+    /**
+     * TODO extra 10: Retorna verdadero si el ID de una entidad generada es nulo inicialmente (antes de persistir).
+     */
+    public static boolean desafioIdInicialEsNulo(Object entidad) {
+        try {
+            var method = entidad.getClass().getMethod("getId");
+            return method.invoke(entidad) == null;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-}
-
-// TODO 8: anota la clase con @jakarta.persistence.Entity.
-class Nota104 {
-
-    // TODO 9: anota 'id' con @Id.
-    // TODO 10: anota 'id' con @GeneratedValue(strategy = GenerationType.IDENTITY)
-    //          para que la BD genere el valor automáticamente.
-    private Long id;
-
-    private String texto;
-
-    protected Nota104() {
-    }
-
-    public Nota104(String texto) {
-        this.texto = texto;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getTexto() {
-        return texto;
-    }
 }

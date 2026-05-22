@@ -45,8 +45,12 @@ public class Ej060HttpCacheEtag {
      * en formato hexadecimal, encerrado obligatoriamente en comillas dobles (ej: "\"a1b2c3d4...\"").
      */
     public static String pasoExtra01(String body) {
-        // TODO extra: calcula y devuelve el ETag fuerte con SHA-256 encerrado entre comillas dobles.
-        return null;
+        // TODO extra: Reto Extra 1: Generador de ETag fuerte con SHA-256.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra01");
     }
 
     /**
@@ -55,8 +59,12 @@ public class Ej060HttpCacheEtag {
      * Si ya es un ETag débil, lo devuelve tal cual.
      */
     public static String pasoExtra02(String etag) {
-        // TODO extra: convierte el ETag a un ETag débil con el prefijo 'W/'.
-        return null;
+        // TODO extra: Reto Extra 2: Conversor a ETag débil (Weak ETag).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra02");
     }
 
     /**
@@ -65,8 +73,12 @@ public class Ej060HttpCacheEtag {
      * Si no coinciden, lanza o simula el estatus 412 (Precondition Failed) retornando false, de lo contrario true.
      */
     public static boolean pasoExtra03(String ifMatch, String currentEtag) {
-        // TODO extra: valida si el ETag actual coincide con el enviado en If-Match.
-        return false;
+        // TODO extra: Reto Extra 3: Validador de concurrencia con If-Match.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra03");
     }
 
     /**
@@ -75,8 +87,12 @@ public class Ej060HttpCacheEtag {
      * (ej: "\"a\", \"b\", \"c\""), verificando si el ETag actual del recurso se encuentra en la lista.
      */
     public static boolean pasoExtra04(String ifNoneMatch, String currentEtag) {
-        // TODO extra: comprueba si el ETag actual se encuentra en la lista de If-None-Match.
-        return false;
+        // TODO extra: Reto Extra 4: Validador de múltiples ETags en If-None-Match.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra04");
     }
 
     /**
@@ -85,8 +101,12 @@ public class Ej060HttpCacheEtag {
      * desde la cabecera 'If-Modified-Since' a un objeto Instant. Devuelve null si la fecha es inválida.
      */
     public static java.time.Instant pasoExtra05(String ifModifiedSinceHeader) {
-        // TODO extra: parsea la fecha HTTP RFC 1123 a un objeto Instant.
-        return null;
+        // TODO extra: Reto Extra 5: Parseo de fecha If-Modified-Since.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra05");
     }
 
     /**
@@ -95,8 +115,12 @@ public class Ej060HttpCacheEtag {
      * de cabecera HTTP RFC 1123 (ej: "Thu, 22 Oct 2015 08:30:00 GMT").
      */
     public static String pasoExtra06(java.time.Instant lastModifiedInstant) {
-        // TODO extra: formatea el Instant según RFC 1123 para la cabecera Last-Modified.
-        return null;
+        // TODO extra: Reto Extra 6: Generación de cabecera Last-Modified.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra06");
     }
 
     /**
@@ -105,8 +129,12 @@ public class Ej060HttpCacheEtag {
      * configurando el tiempo máximo de vida ('maxAgeSeconds') y la directiva 'must-revalidate'.
      */
     public static String pasoExtra07(int maxAgeSeconds) {
-        // TODO extra: construye el valor de Cache-Control con max-age y must-revalidate.
-        return null;
+        // TODO extra: Reto Extra 7: Configuración de Cache-Control público.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra07");
     }
 
     /**
@@ -115,8 +143,12 @@ public class Ej060HttpCacheEtag {
      * el cacheo del recurso tanto en navegadores como en proxies intermedios.
      */
     public static ResponseEntity.BodyBuilder pasoExtra08(ResponseEntity.BodyBuilder builder) {
-        // TODO extra: inyecta directivas 'no-store, no-cache, must-revalidate' en el builder.
-        return null;
+        // TODO extra: Reto Extra 8: Directiva estricta de no almacenamiento.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra08");
     }
 
     /**
@@ -125,8 +157,12 @@ public class Ej060HttpCacheEtag {
      * (ej: "max-age=3600, public"). Si no está definida o es inválida, devuelve -1.
      */
     public static int pasoExtra09(String cacheControlHeader) {
-        // TODO extra: analiza la cabecera y extrae el número de segundos en max-age.
-        return -1;
+        // TODO extra: Reto Extra 9: Extractor de Max-Age desde petición.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra09");
     }
 
     /**
@@ -135,8 +171,12 @@ public class Ej060HttpCacheEtag {
      * incorporando ETag calculado, Last-Modified, y configurando la directiva de caché 'max-age' indicada.
      */
     public static ResponseEntity<byte[]> pasoExtra10(byte[] content, String etag, java.time.Instant lastModified, int maxAgeSeconds) {
-        // TODO extra: construye la ResponseEntity incorporando todos los metadatos de caché y el contenido.
-        return null;
+        // TODO extra: Reto Extra 10: ResponseEntity condicional final con ETag y Cache-Control.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra10");
     }
 
 }

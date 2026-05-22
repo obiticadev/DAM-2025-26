@@ -41,8 +41,12 @@ public class Ej058FileDownload {
      * para asegurar una descarga limpia.
      */
     public static String pasoExtra01(String filename) {
-        // TODO extra: sanea el nombre de archivo reemplazando los caracteres no válidos.
-        return null;
+        // TODO extra: Reto Extra 1: Saneamiento de nombre de archivo para descarga.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra01");
     }
 
     /**
@@ -51,8 +55,12 @@ public class Ej058FileDownload {
      * codificando adecuadamente los caracteres especiales en UTF-8.
      */
     public static String pasoExtra02(String filename) {
-        // TODO extra: codifica el nombre según RFC 5987 para Content-Disposition.
-        return null;
+        // TODO extra: Reto Extra 2: Cabecera Content-Disposition con soporte RFC 5987 (caracteres no ASCII).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra02");
     }
 
     /**
@@ -60,8 +68,12 @@ public class Ej058FileDownload {
      * Inyecta de forma segura el tamaño exacto en bytes ('content') dentro del builder de la ResponseEntity.
      */
     public static ResponseEntity.BodyBuilder pasoExtra03(ResponseEntity.BodyBuilder builder, byte[] content) {
-        // TODO extra: añade la cabecera Content-Length al builder.
-        return null;
+        // TODO extra: Reto Extra 3: Inyección de cabecera Content-Length.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra03");
     }
 
     /**
@@ -70,8 +82,12 @@ public class Ej058FileDownload {
      * Para extensiones desconocidas, devuelve "application/octet-stream".
      */
     public static String pasoExtra04(String extension) {
-        // TODO extra: resuelve el tipo MIME a partir de la extensión del archivo.
-        return null;
+        // TODO extra: Reto Extra 4: Mapeador de extensiones a tipos MIME.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra04");
     }
 
     /**
@@ -80,8 +96,12 @@ public class Ej058FileDownload {
      * según su extensión (ej: pdf e imágenes inline, zip y exe attachment).
      */
     public static String pasoExtra05(String extension) {
-        // TODO extra: decide si se debe devolver "inline" o "attachment".
-        return null;
+        // TODO extra: Reto Extra 5: Selector de visualización Inline vs Descarga (Attachment).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra05");
     }
 
     /**
@@ -89,8 +109,12 @@ public class Ej058FileDownload {
      * Genera un ETag fuerte en formato hexadecimal para un contenido en bytes dado, encerrándolo en comillas dobles.
      */
     public static String pasoExtra06(byte[] content) {
-        // TODO extra: calcula y devuelve el ETag fuerte para los bytes del archivo.
-        return null;
+        // TODO extra: Reto Extra 6: Generador de ETags para descargas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra06");
     }
 
     /**
@@ -99,8 +123,12 @@ public class Ej058FileDownload {
      * cerrando el flujo adecuadamente.
      */
     public static byte[] pasoExtra07(java.io.InputStream inputStream) {
-        // TODO extra: convierte el InputStream a byte[] usando try-with-resources.
-        return null;
+        // TODO extra: Reto Extra 7: Conversor de InputStream a byte array.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra07");
     }
 
     /**
@@ -108,8 +136,12 @@ public class Ej058FileDownload {
      * Comprime una cadena de texto en formato GZIP devolviendo los bytes del resultado comprimido.
      */
     public static byte[] pasoExtra08(String content) {
-        // TODO extra: comprime el contenido de texto usando GZIPOutputStream.
-        return null;
+        // TODO extra: Reto Extra 8: Compresión GZIP al vuelo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra08");
     }
 
     /**
@@ -118,8 +150,12 @@ public class Ej058FileDownload {
      * dentro del directorio sandbox de pruebas ('sandboxDirectory') para evitar descargas arbitrarias de ficheros del sistema.
      */
     public static boolean pasoExtra09(String targetPath, String sandboxDirectory) {
-        // TODO extra: valida si la ruta del fichero de descarga se encuentra dentro del sandbox permitido.
-        return false;
+        // TODO extra: Reto Extra 9: Validación de seguridad de descargas (Sandboxing).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra09");
     }
 
     /**
@@ -128,8 +164,12 @@ public class Ej058FileDownload {
      * Content-Length correspondiente y Content-Disposition de descarga (attachment) con el nombre dado.
      */
     public static ResponseEntity<byte[]> pasoExtra10(String filename, byte[] content) {
-        // TODO extra: construye y devuelve la ResponseEntity configurada con todos los detalles.
-        return null;
+        // TODO extra: Reto Extra 10: Construcción completa de ResponseEntity de descarga.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra10");
     }
 
 }

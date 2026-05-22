@@ -56,12 +56,12 @@ public final class Ej009RestMaturityRichardson {
      * @return nivel estimado (0 a 3)
      */
     public static int evaluarNivelPorEjemplo(String url, String metodoHttp, String cuerpoRespuesta) {
-        // TODO extra 1: implementa una heurística básica:
-        // - Si la URL contiene "service", "soap" o termina en un verbo de acción y es POST -> Nivel 0.
-        // - Si la respuesta contiene "_links" o "href" -> Nivel 3.
-        // - Si el método HTTP no es solo POST/GET (ej. PUT, DELETE) -> Nivel 2.
-        // - Si usa URIs REST pero no tiene hipermedia -> Nivel 1 o 2.
-        return -1;
+        // TODO extra: RETO EXTRA 1: Evaluación heurística del nivel de madurez por ejemplo de tráfico.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para evaluarNivelPorEjemplo");
     }
 
     /**
@@ -73,9 +73,12 @@ public final class Ej009RestMaturityRichardson {
      * @return true si la URI delata un diseño RPC (contiene verbos o acciones en la URL, o todo es POST a un único punto)
      */
     public static boolean esDisenoRpc(String url, String metodoHttp) {
-        // TODO extra 2: comprueba si la URL contiene acciones típicas como "crear", "eliminar", "actualizar",
-        // o si es POST a un endpoint genérico como "/api" o "/service".
-        return false;
+        // TODO extra: RETO EXTRA 2: Detección de diseño estilo RPC (Nivel 0).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esDisenoRpc");
     }
 
     /**
@@ -86,9 +89,12 @@ public final class Ej009RestMaturityRichardson {
      * @return true si contiene enlaces hipermedia estándar (ej. "_links" en HAL, "links" en JSON:API)
      */
     public static boolean contieneHipermediaHateoas(String cuerpoJson) {
-        // TODO extra 3: busca de forma básica si la respuesta en formato JSON contiene la propiedad 
-        // "_links" o una propiedad de tipo arreglo "links" que contenga campos "href".
-        return false;
+        // TODO extra: RETO EXTRA 3: Detección de presencia de hipermedios HATEOAS (Nivel 3).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contieneHipermediaHateoas");
     }
 
     /**
@@ -100,8 +106,12 @@ public final class Ej009RestMaturityRichardson {
      * @return el bloque JSON formateado que representa el enlace en HAL
      */
     public static String generarEnlaceHal(String href, String rel) {
-        // TODO extra 4: construye una cadena JSON estructurada con la relación y su "href" correspondiente.
-        return "";
+        // TODO extra: RETO EXTRA 4: Generación de enlace conforme al estándar HAL.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para generarEnlaceHal");
     }
 
     /**
@@ -112,8 +122,12 @@ public final class Ej009RestMaturityRichardson {
      * @return la descripción semántica estándar (ej. "Created" para 201, "Conflict" para 409); o "Desconocido" si no es común
      */
     public static String clasificarCodigoEstadoMaturity(int status) {
-        // TODO extra 5: mapea los códigos HTTP más representativos de REST a sus descripciones textuales.
-        return "";
+        // TODO extra: RETO EXTRA 5: Clasificación semántica de código de estado HTTP (Nivel 2).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para clasificarCodigoEstadoMaturity");
     }
 
     /**
@@ -124,8 +138,12 @@ public final class Ej009RestMaturityRichardson {
      * @return true si es un método idempotente según la especificación HTTP (GET, PUT, DELETE, HEAD, OPTIONS)
      */
     public static boolean esIdempotenteParaMaturity(String metodo) {
-        // TODO extra 6: valida si el verbo cumple con la característica de idempotencia.
-        return false;
+        // TODO extra: RETO EXTRA 6: Validación de Idempotencia de verbos HTTP (Nivel 2).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esIdempotenteParaMaturity");
     }
 
     /**
@@ -136,8 +154,12 @@ public final class Ej009RestMaturityRichardson {
      * @return una cadena explicativa con el formato "MÉTODO -> CÓDIGO_RECOMENDADO" (ej. "POST -> 201 Created")
      */
     public static String sugerirVerboYCodigo(String operacionRpc) {
-        // TODO extra 7: asocia verbos de acción RPC comunes a la semántica HTTP REST ideal de Nivel 2.
-        return "";
+        // TODO extra: RETO EXTRA 7: Sugeridor de Semántica REST (Refactorización RPC a REST).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para sugerirVerboYCodigo");
     }
 
     /**
@@ -148,9 +170,12 @@ public final class Ej009RestMaturityRichardson {
      * @return un arreglo con las URLs de los enlaces encontrados para la relación "next"
      */
     public static String[] extraerEnlacesDeCabeceraLink(String headerLinkValue) {
-        // TODO extra 8: parsea la cabecera separando por comas, busca el atributo rel="next" y 
-        // extrae la URL que se encuentra entre los caracteres '<' y '>'.
-        return new String[0];
+        // TODO extra: RETO EXTRA 8: Parser de cabeceras HTTP Link de paginación (Nivel 3).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerEnlacesDeCabeceraLink");
     }
 
     /**
@@ -160,8 +185,12 @@ public final class Ej009RestMaturityRichardson {
      * @return true si es una respuesta que incluye navegación completa de paginación mediante enlaces
      */
     public static boolean esColeccionPaginadaSegura(String cuerpoJson) {
-        // TODO extra 9: verifica si están presentes los enlaces "first", "last", "next" o "prev" en el cuerpo.
-        return false;
+        // TODO extra: RETO EXTRA 9: Validación de Colección Paginada HATEOAS estándar.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esColeccionPaginadaSegura");
     }
 
     /**
@@ -173,8 +202,12 @@ public final class Ej009RestMaturityRichardson {
      * @return el objeto JSON HAL básico con los enlaces "self", "next" y "prev" según corresponda
      */
     public static String generarRespuestaHalPaginada(String resource, int page, int totalPages) {
-        // TODO extra 10: construye la estructura JSON HAL de enlaces para paginación de manera dinámica.
-        return "";
+        // TODO extra: RETO EXTRA 10: Generador de Colección HAL Paginada básica.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para generarRespuestaHalPaginada");
     }
 
 }

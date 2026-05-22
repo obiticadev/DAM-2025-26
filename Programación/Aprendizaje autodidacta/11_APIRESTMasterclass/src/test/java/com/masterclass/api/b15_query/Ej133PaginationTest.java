@@ -47,4 +47,64 @@ class Ej133PaginationTest {
         assertThrows(IllegalArgumentException.class, () -> p.page(-1, 10));
         assertThrows(IllegalArgumentException.class, () -> p.page(0, 0));
     }
+
+    @Test
+    void testRetoExtra01() {
+        assertEquals(20, Ej133Pagination.calcularOffset(2, 10));
+    }
+
+    @Test
+    void testRetoExtra02() {
+        assertTrue(Ej133Pagination.esValida(0, 10));
+        assertFalse(Ej133Pagination.esValida(-1, 10));
+    }
+
+    @Test
+    void testRetoExtra03() {
+        var p = new Ej133Pagination.Pagina<>(java.util.List.of("A"), 25, 0, 10);
+        assertTrue(Ej133Pagination.tieneSiguiente(p));
+    }
+
+    @Test
+    void testRetoExtra04() {
+        var p = new Ej133Pagination.Pagina<>(java.util.List.of("A"), 25, 1, 10);
+        assertTrue(Ej133Pagination.tieneAnterior(p));
+    }
+
+    @Test
+    void testRetoExtra05() {
+        var p = new Ej133Pagination.Pagina<>(java.util.List.of("A"), 25, 0, 10);
+        assertTrue(Ej133Pagination.esPrimera(p));
+    }
+
+    @Test
+    void testRetoExtra06() {
+        var p = new Ej133Pagination.Pagina<>(java.util.List.of("A"), 25, 2, 10);
+        assertTrue(Ej133Pagination.esUltima(p));
+    }
+
+    @Test
+    void testRetoExtra07() {
+        var p = new Ej133Pagination.Pagina<>(java.util.List.of("A"), 25, 0, 10);
+        assertEquals(1, Ej133Pagination.indiceSiguiente(p));
+    }
+
+    @Test
+    void testRetoExtra08() {
+        var p = new Ej133Pagination.Pagina<>(java.util.List.of("A"), 25, 1, 10);
+        assertEquals(0, Ej133Pagination.indiceAnterior(p));
+    }
+
+    @Test
+    void testRetoExtra09() {
+        var p = new Ej133Pagination.Pagina<>(java.util.List.of(), 25, 0, 10);
+        assertTrue(Ej133Pagination.estaVacia(p));
+    }
+
+    @Test
+    void testRetoExtra10() {
+        var p = new Ej133Pagination.Pagina<>(java.util.List.of("A"), 25, 0, 10);
+        assertEquals("Pagina[0/3, Contenido=1]", Ej133Pagination.formatearPagina(p));
+    }
+
 }

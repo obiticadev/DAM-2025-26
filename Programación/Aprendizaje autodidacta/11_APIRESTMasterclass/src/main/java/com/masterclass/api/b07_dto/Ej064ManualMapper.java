@@ -61,9 +61,12 @@ public final class Ej064ManualMapper {
      * @return DTO con el precio final calculado
      */
     public static ProductoDto pasoExtra01(ProductoEntity entity, double descuentoPorcentaje) {
-        // TODO extra: si la entidad es null o el descuento está fuera del rango [0, 100], lanzar IllegalArgumentException.
-        // Calcula el precio con IVA (21%) y luego aplica el descuento. Retorna el ProductoDto resultante.
-        return null;
+        // TODO extra: RETO EXTRA 01: Mapeador individual que calcula y aplica un descuento promocional
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra01");
     }
 
     /**
@@ -74,9 +77,12 @@ public final class Ej064ManualMapper {
      * @return lista de DTOs mapeados sin elementos null
      */
     public static List<ProductoDto> pasoExtra02(List<ProductoEntity> entidades) {
-        // TODO extra: si 'entidades' es null, retornar una lista vacía.
-        // Filtra los elementos null de la lista y mapea los válidos usando toDto.
-        return List.of();
+        // TODO extra: RETO EXTRA 02: Conversión en lote robusta que omite y filtra de forma segura
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra02");
     }
 
     /**
@@ -87,9 +93,12 @@ public final class Ej064ManualMapper {
      * @return Entidad con el precio base sin IVA deducido
      */
     public static ProductoEntity pasoExtra03(ProductoDto dto) {
-        // TODO extra: si el dto es null, lanzar IllegalArgumentException.
-        // Deduce el precioSinIva dividiendo el precioConIva entre 1.21.
-        return null;
+        // TODO extra: RETO EXTRA 03: Mapeo inverso de DTO a Entidad deduciendo algebraicamente el
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra03");
     }
 
     /**
@@ -102,9 +111,12 @@ public final class Ej064ManualMapper {
      * @return mapa que agrupa los productos mapeados por su rango de precio
      */
     public static java.util.Map<String, List<ProductoDto>> pasoExtra04(List<ProductoEntity> entidades) {
-        // TODO extra: si 'entidades' es null, lanzar IllegalArgumentException.
-        // Mapea a DTOs (omitiendo nulls) y agrúpalos en un mapa con claves "BARATO", "MEDIO" o "CARO".
-        return java.util.Map.of();
+        // TODO extra: RETO EXTRA 04: Conversión de catálogo agrupando productos por rangos de precio:
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra04");
     }
 
     /**
@@ -115,9 +127,12 @@ public final class Ej064ManualMapper {
      * @return importe redondeado a 2 decimales
      */
     public static double pasoExtra05(double precio) {
-        // TODO extra: si el precio es negativo, lanzar IllegalArgumentException.
-        // Redondea el valor double a 2 decimales con precisión exacta (puedes usar BigDecimal o Math).
-        return 0.0;
+        // TODO extra: RETO EXTRA 05: Redondeo matemático exacto de importes a dos cifras decimales
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra05");
     }
 
     /**
@@ -130,9 +145,12 @@ public final class Ej064ManualMapper {
      * @return sublista de DTOs paginados
      */
     public static List<ProductoDto> pasoExtra06(List<ProductoEntity> entidades, int offset, int limit) {
-        // TODO extra: si 'entidades' es null, o offset < 0, o limit <= 0, lanzar IllegalArgumentException.
-        // Mapea la lista a DTOs y devuelve la sublista adecuada cuidando de no exceder los límites de la lista.
-        return List.of();
+        // TODO extra: RETO EXTRA 06: Paginación manual de la lista mapeada aplicando desplazamientos
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra06");
     }
 
     /**
@@ -144,9 +162,12 @@ public final class Ej064ManualMapper {
      * @return true si tiene stock positivo y precio sin IVA mayor a cero, false en caso contrario
      */
     public static boolean pasoExtra07(ProductoEntity entity, int stock) {
-        // TODO extra: si la entidad es null o el stock es negativo, lanzar IllegalArgumentException.
-        // Verifica si es comercialmente viable (stock > 0 y precioSinIva > 0).
-        return false;
+        // TODO extra: RETO EXTRA 07: Validador de viabilidad comercial inyectando un indicador de "disponibilidad"
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra07");
     }
 
     /**
@@ -157,9 +178,12 @@ public final class Ej064ManualMapper {
      * @return el DTO del producto con el menor precio con IVA, o null si la lista está vacía
      */
     public static ProductoDto pasoExtra08(List<ProductoEntity> entidades) {
-        // TODO extra: si la lista 'entidades' es null, lanzar IllegalArgumentException.
-        // Mapea todas a DTOs y encuentra la de menor precio con IVA. Si está vacía, retorna null.
-        return null;
+        // TODO extra: RETO EXTRA 08: Búsqueda del producto más económico del catálogo de entidades
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra08");
     }
 
     /**
@@ -171,9 +195,12 @@ public final class Ej064ManualMapper {
      * @return lista de DTOs en la divisa destino
      */
     public static List<ProductoDto> pasoExtra09(List<ProductoEntity> entidades, double tasaCambio) {
-        // TODO extra: si la lista es null o la tasaCambio <= 0, lanzar IllegalArgumentException.
-        // Convierte a DTOs aplicando el IVA y multiplicando por la tasa de cambio dada.
-        return List.of();
+        // TODO extra: RETO EXTRA 09: Conversión bulk internacional recalculando precios multiplicándolos
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra09");
     }
 
     /**
@@ -184,9 +211,12 @@ public final class Ej064ManualMapper {
      * @return el código ISO de 3 letras de la moneda (ej: "EUR")
      */
     public static String pasoExtra10(String localeStr) {
-        // TODO extra: si localeStr es null o vacío, lanzar IllegalArgumentException.
-        // Parsea el localeStr (ej: dividiendo por "-" o usando Locale.forLanguageTag) y devuelve el código de moneda ISO 4217.
-        return null;
+        // TODO extra: RETO EXTRA 10: Resolución del símbolo y divisa local según el código de configuración de localización.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra10");
     }
 
 }

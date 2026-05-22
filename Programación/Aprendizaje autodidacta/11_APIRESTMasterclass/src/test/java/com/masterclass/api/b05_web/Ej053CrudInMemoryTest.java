@@ -30,7 +30,6 @@ class Ej053CrudInMemoryTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 1")
     void actualizarTarea_inexistente() throws Exception {
         mvc.perform(put("/api/tareas/1")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -39,7 +38,6 @@ class Ej053CrudInMemoryTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 2")
     void parchearTarea_inexistente() throws Exception {
         mvc.perform(patch("/api/tareas/1")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -48,7 +46,6 @@ class Ej053CrudInMemoryTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 3")
     void buscarPorTitulo() throws Exception {
         mvc.perform(get("/api/tareas/filtrar")
                         .param("q", "estudiar"))
@@ -56,14 +53,12 @@ class Ej053CrudInMemoryTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
     void limpiarTodo() throws Exception {
         mvc.perform(delete("/api/tareas"))
                 .andExpect(status().isNoContent());
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 5")
     void contarTareas() throws Exception {
         mvc.perform(get("/api/tareas/count"))
                 .andExpect(status().isOk())
@@ -71,7 +66,6 @@ class Ej053CrudInMemoryTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 6")
     void crearVarias() throws Exception {
         mvc.perform(post("/api/tareas/bulk")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -82,21 +76,18 @@ class Ej053CrudInMemoryTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 7")
     void duplicarTarea_inexistente() throws Exception {
         mvc.perform(post("/api/tareas/1/duplicar"))
                 .andExpect(status().isNotFound());
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
     void toggleCompletada_inexistente() throws Exception {
         mvc.perform(patch("/api/tareas/1/toggle"))
                 .andExpect(status().isNotFound());
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 9")
     void listarPaginado() throws Exception {
         mvc.perform(get("/api/tareas/paginadas")
                         .param("page", "0")
@@ -105,7 +96,6 @@ class Ej053CrudInMemoryTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     void obtenerPrimera_vacio() throws Exception {
         mvc.perform(get("/api/tareas/primera"))
                 .andExpect(status().isNoContent());

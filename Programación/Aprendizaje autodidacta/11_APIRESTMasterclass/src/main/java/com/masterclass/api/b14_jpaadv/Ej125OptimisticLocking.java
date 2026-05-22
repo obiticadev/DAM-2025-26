@@ -45,45 +45,127 @@ public final class Ej125OptimisticLocking {
         System.out.println("usa el test con EMF aislado");
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: begin tx, persist(p), commit.
+    /**
+     * Reto Extra 1: Obtiene el precio de un producto.
+     */
+    public static double obtenerPrecio(ProdVer125 p) {
+        // TODO extra: Reto Extra 1: Obtiene el precio de un producto.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerPrecio");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: devuelve p.getId().
+    /**
+     * Reto Extra 2: Obtiene la version de un producto.
+     */
+    public static long obtenerVersion(ProdVer125 p) {
+        // TODO extra: Reto Extra 2: Obtiene la version de un producto.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerVersion");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: begin tx.
+    /**
+     * Reto Extra 3: Comprueba si el precio es mayor que un limite.
+     */
+    public static boolean precioEsMayor(ProdVer125 p, double limite) {
+        // TODO extra: Reto Extra 3: Comprueba si el precio es mayor que un limite.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para precioEsMayor");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: find del producto (queda managed con su version actual).
+    /**
+     * Reto Extra 4: Comprueba si la version es inicial (0).
+     */
+    public static boolean esVersionInicial(ProdVer125 p) {
+        // TODO extra: Reto Extra 4: Comprueba si la version es inicial (0).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esVersionInicial");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: cambia el precio con el setter.
+    /**
+     * Reto Extra 5: Incrementa el precio en base a un porcentaje.
+     */
+    public static void incrementarPrecioPorcentaje(ProdVer125 p, double pct) {
+        // TODO extra: Reto Extra 5: Incrementa el precio en base a un porcentaje.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para incrementarPrecioPorcentaje");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: commit -> Hibernate incrementa la columna @Version.
+    /**
+     * Reto Extra 6: Crea un nuevo producto.
+     */
+    public static ProdVer125 crearProducto(double precio) {
+        // TODO extra: Reto Extra 6: Crea un nuevo producto.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearProducto");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: si otra tx ya cambió la version, aquí saltaría OptimisticLockException
+    /**
+     * Reto Extra 7: Descuenta un valor del precio.
+     */
+    public static void aplicarDescuento(ProdVer125 p, double desc) {
+        // TODO extra: Reto Extra 7: Descuenta un valor del precio.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para aplicarDescuento");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: anota 'version' con @jakarta.persistence.Version.
+    /**
+     * Reto Extra 8: Comprueba si el producto tiene ID.
+     */
+    public static boolean tieneId(ProdVer125 p) {
+        // TODO extra: Reto Extra 8: Comprueba si el producto tiene ID.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneId");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: el tipo long/Integer es válido para @Version; aquí usamos long.
+    /**
+     * Reto Extra 9: Valida si el precio es positivo.
+     */
+    public static boolean precioEsValido(ProdVer125 p) {
+        // TODO extra: Reto Extra 9: Valida si el precio es positivo.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para precioEsValido");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: asigna el precio inicial.
+    /**
+     * Reto Extra 10: Retorna formato de texto del producto.
+     */
+    public static String formatearProducto(ProdVer125 p) {
+        // TODO extra: Reto Extra 10: Retorna formato de texto del producto.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearProducto");
     }
+
+
 
 }
 

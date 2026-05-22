@@ -55,44 +55,76 @@ public final class Ej102NamedParameterJdbc {
         System.out.println("usa el test con H2 en memoria");
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: crea el NamedParameterJdbcTemplate a partir del DataSource.
+    /**
+     * TODO extra 1: Retorna el SQL de inserción con parámetros nombrados.
+     */
+    public static String desafioObtenerSqlInsert() {
+        return "INSERT INTO CLIENTE(id, nombre) VALUES (:id, :nombre)";
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: SQL "INSERT INTO EVENTO(id,tipo) VALUES (:id, :tipo)".
+    /**
+     * TODO extra 2: Retorna el SQL de búsqueda con parámetros nombrados.
+     */
+    public static String desafioObtenerSqlSelect() {
+        return "SELECT nombre FROM CLIENTE WHERE id = :id";
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: crea un MapSqlParameterSource.
+    /**
+     * TODO extra 3: Comprueba si un MapSqlParameterSource no es nulo.
+     */
+    public static boolean desafioParameterSourceActivo(org.springframework.jdbc.core.namedparam.MapSqlParameterSource ps) {
+        return ps != null;
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: addValue("id", id).
+    /**
+     * TODO extra 4: Crea un MapSqlParameterSource y le asigna el parámetro :id.
+     */
+    public static org.springframework.jdbc.core.namedparam.MapSqlParameterSource desafioCrearSourceConId(int id) {
+        return new org.springframework.jdbc.core.namedparam.MapSqlParameterSource("id", id);
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: addValue("tipo", tipo).
+    /**
+     * TODO extra 5: Añade el parámetro :nombre a un MapSqlParameterSource existente.
+     */
+    public static org.springframework.jdbc.core.namedparam.MapSqlParameterSource desafioAñadirNombre(org.springframework.jdbc.core.namedparam.MapSqlParameterSource source, String nombre) {
+        return source.addValue("nombre", nombre);
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: npjt.update(sql, params) y devuelve el resultado.
+    /**
+     * TODO extra 6: Comprueba si el template con parámetros nombrados está instanciado.
+     */
+    public static boolean desafioNamedTemplateActivo(org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate template) {
+        return template != null;
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: SQL "SELECT COUNT(*) FROM EVENTO WHERE tipo = :tipo".
+    /**
+     * TODO extra 7: Lanza una excepción si el nombre es nulo o vacío en parámetros.
+     */
+    public static void desafioValidarNombreParam(String nombre) {
+        if (nombre == null || nombre.isBlank()) {
+            throw new IllegalArgumentException("Nombre inválido");
+        }
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: pasa el parámetro nombrado :tipo.
+    /**
+     * TODO extra 8: Comprueba si un mapa de parámetros contiene una clave específica.
+     */
+    public static boolean desafioContieneParametro(java.util.Map<String, ?> params, String clave) {
+        return params.containsKey(clave);
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: usa npjt.queryForObject(sql, params, Integer.class).
+    /**
+     * TODO extra 9: Crea un Map representativo con los valores :id y :nombre de forma simple.
+     */
+    public static java.util.Map<String, Object> desafioCrearMapParametros(int id, String nombre) {
+        return java.util.Map.of("id", id, "nombre", nombre);
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuelve el conteo (no debe ser null para COUNT).
+    /**
+     * TODO extra 10: Retorna verdadero si el total de parámetros ingresados en un source es correcto (por ejemplo, mayor que cero).
+     */
+    public static boolean desafioTieneParametros(org.springframework.jdbc.core.namedparam.MapSqlParameterSource source) {
+        return source != null && source.getValues().size() > 0;
     }
 
 }

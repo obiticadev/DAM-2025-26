@@ -49,45 +49,127 @@ public final class Ej133Pagination {
         System.out.println("usa el test con EMF aislado");
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: valida pagina >= 0 y tamano > 0.
+    /**
+     * Reto Extra 1: Calcula el offset de paginacion de forma segura.
+     */
+    public static int calcularOffset(int pagina, int tamano) {
+        // TODO extra: Reto Extra 1: Calcula el offset de paginacion de forma segura.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularOffset");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: calcula el offset = pagina * tamano.
+    /**
+     * Reto Extra 2: Valida los parametros de paginacion.
+     */
+    public static boolean esValida(int pagina, int tamano) {
+        // TODO extra: Reto Extra 2: Valida los parametros de paginacion.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esValida");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: query de datos JPQL "select i from Item133 i order by i.id".
+    /**
+     * Reto Extra 3: Comprueba si hay una pagina siguiente.
+     */
+    public static boolean tieneSiguiente(Pagina<?> p) {
+        // TODO extra: Reto Extra 3: Comprueba si hay una pagina siguiente.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneSiguiente");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: aplica setFirstResult(offset).
+    /**
+     * Reto Extra 4: Comprueba si hay una pagina anterior.
+     */
+    public static boolean tieneAnterior(Pagina<?> p) {
+        // TODO extra: Reto Extra 4: Comprueba si hay una pagina anterior.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneAnterior");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: aplica setMaxResults(tamano).
+    /**
+     * Reto Extra 5: Comprueba si es la primera pagina.
+     */
+    public static boolean esPrimera(Pagina<?> p) {
+        // TODO extra: Reto Extra 5: Comprueba si es la primera pagina.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPrimera");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: getResultList() para el contenido.
+    /**
+     * Reto Extra 6: Comprueba si es la ultima pagina.
+     */
+    public static boolean esUltima(Pagina<?> p) {
+        // TODO extra: Reto Extra 6: Comprueba si es la ultima pagina.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esUltima");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: query aparte "select count(i) from Item133 i" para el total.
+    /**
+     * Reto Extra 7: Obtiene el indice de la siguiente pagina.
+     */
+    public static int indiceSiguiente(Pagina<?> p) {
+        // TODO extra: Reto Extra 7: Obtiene el indice de la siguiente pagina.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para indiceSiguiente");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: getSingleResult() -> long total.
+    /**
+     * Reto Extra 8: Obtiene el indice de la anterior pagina.
+     */
+    public static int indiceAnterior(Pagina<?> p) {
+        // TODO extra: Reto Extra 8: Obtiene el indice de la anterior pagina.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para indiceAnterior");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: construye la Pagina con contenido, total, pagina, tamano.
+    /**
+     * Reto Extra 9: Comprueba si el contenido de la pagina esta vacio.
+     */
+    public static boolean estaVacia(Pagina<?> p) {
+        // TODO extra: Reto Extra 9: Comprueba si el contenido de la pagina esta vacio.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para estaVacia");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: devuélvela (totalPaginas lo calcula el record).
+    /**
+     * Reto Extra 10: Retorna formato descriptivo de la pagina.
+     */
+    public static String formatearPagina(Pagina<?> p) {
+        // TODO extra: Reto Extra 10: Retorna formato descriptivo de la pagina.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearPagina");
     }
+
+
 
 }
 

@@ -47,45 +47,127 @@ public final class Ej119CascadeTypes {
         System.out.println("usa el test con EMF aislado");
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: begin tx, persist(f) SOLO (no persistas conceptos a mano), commit.
+    /**
+     * Reto Extra 1: Cuenta los conceptos de una factura.
+     */
+    public static int contarConceptos(Factura119 f) {
+        // TODO extra: Reto Extra 1: Cuenta los conceptos de una factura.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarConceptos");
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: gracias a cascade=ALL, los conceptos se guardan con la factura.
+    /**
+     * Reto Extra 2: Comprueba si la factura tiene conceptos.
+     */
+    public static boolean tieneConceptos(Factura119 f) {
+        // TODO extra: Reto Extra 2: Comprueba si la factura tiene conceptos.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneConceptos");
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: em.clear(), recarga la factura, devuelve su nº de conceptos.
+    /**
+     * Reto Extra 3: Comprueba si un concepto esta en la factura.
+     */
+    public static boolean contieneConcepto(Factura119 f, Concepto119 c) {
+        // TODO extra: Reto Extra 3: Comprueba si un concepto esta en la factura.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contieneConcepto");
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: begin tx, recupera la factura.
+    /**
+     * Reto Extra 4: Comprueba si algun concepto tiene una descripcion.
+     */
+    public static boolean tieneDescripcion(Factura119 f, String desc) {
+        // TODO extra: Reto Extra 4: Comprueba si algun concepto tiene una descripcion.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneDescripcion");
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: quita el primer concepto de la lista.
+    /**
+     * Reto Extra 5: Cuenta descripciones largas.
+     */
+    public static int contarConceptosDescLarga(Factura119 f, int len) {
+        // TODO extra: Reto Extra 5: Cuenta descripciones largas.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarConceptosDescLarga");
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: con orphanRemoval=true, al quitarlo de la colección se BORRA en BD.
+    /**
+     * Reto Extra 6: Crea un concepto.
+     */
+    public static Concepto119 crearConcepto(String descripcion) {
+        // TODO extra: Reto Extra 6: Crea un concepto.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearConcepto");
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: commit, em.clear(), recarga y devuelve el nº de conceptos.
+    /**
+     * Reto Extra 7: Remueve el primer concepto.
+     */
+    public static boolean removerPrimerConcepto(Factura119 f) {
+        // TODO extra: Reto Extra 7: Remueve el primer concepto.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para removerPrimerConcepto");
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: anota 'conceptos' con @OneToMany(mappedBy="factura").
+    /**
+     * Reto Extra 8: Valida factura no nula.
+     */
+    public static boolean esValida(Factura119 f) {
+        // TODO extra: Reto Extra 8: Valida factura no nula.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esValida");
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: añade cascade = CascadeType.ALL.
+    /**
+     * Reto Extra 9: Vincula conceptos en lote.
+     */
+    public static void vincularConceptos(Factura119 f, java.util.List<Concepto119> lista) {
+        // TODO extra: Reto Extra 9: Vincula conceptos en lote.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para vincularConceptos");
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: añade orphanRemoval = true (quitar de la lista => DELETE).
+    /**
+     * Reto Extra 10: Retorna formato de factura.
+     */
+    public static String formatearFactura(Factura119 f) {
+        // TODO extra: Reto Extra 10: Retorna formato de factura.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearFactura");
     }
+
+
 
 }
 

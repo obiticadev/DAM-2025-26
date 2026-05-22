@@ -70,44 +70,76 @@ public final class Ej096CrudDao {
         System.out.println("usa el test con H2 en memoria");
     }
 
-    public static void pasoExtra01() {
-        // TODO extra aislando concepto: prepara "INSERT INTO CLIENTE(id,nombre) VALUES (?,?)".
+    /**
+     * TODO extra 1: Retorna el SQL para insertar un cliente.
+     */
+    public static String desafioObtenerSqlInsert() {
+        return "INSERT INTO CLIENTE(id,nombre,email) VALUES (?,?,?)";
     }
 
-    public static void pasoExtra02() {
-        // TODO extra aislando concepto: setea parámetros y executeUpdate (try-with-resources).
+    /**
+     * TODO extra 2: Retorna el SQL para buscar un cliente por ID.
+     */
+    public static String desafioObtenerSqlFindById() {
+        return "SELECT id,nombre,email FROM CLIENTE WHERE id = ?";
     }
 
-    public static void pasoExtra03() {
-        // TODO extra aislando concepto: prepara "SELECT nombre FROM CLIENTE WHERE id=?".
+    /**
+     * TODO extra 3: Retorna el SQL para listar todos los clientes.
+     */
+    public static String desafioObtenerSqlFindAll() {
+        return "SELECT id,nombre,email FROM CLIENTE";
     }
 
-    public static void pasoExtra04() {
-        // TODO extra aislando concepto: ejecuta; si rs.next() devuelve el nombre.
+    /**
+     * TODO extra 4: Retorna el SQL para eliminar un cliente por ID.
+     */
+    public static String desafioObtenerSqlDelete() {
+        return "DELETE FROM CLIENTE WHERE id = ?";
     }
 
-    public static void pasoExtra05() {
-        // TODO extra aislando concepto: si no hay fila, devuelve null.
+    /**
+     * TODO extra 5: Comprueba si un Cliente es válido para inserción.
+     */
+    public static void desafioValidarCliente(Cliente c) {
+        if (c == null || c.nombre() == null || c.email() == null) {
+            throw new IllegalArgumentException("Cliente invalido");
+        }
     }
 
-    public static void pasoExtra06() {
-        // TODO extra aislando concepto: prepara "UPDATE CLIENTE SET nombre=? WHERE id=?".
+    /**
+     * TODO extra 6: Mapea una fila de ResultSet a un Cliente.
+     */
+    public static Cliente desafioMapearCliente(java.sql.ResultSet rs) throws java.sql.SQLException {
+        return new Cliente(rs.getInt("id"), rs.getString("nombre"), rs.getString("email"));
     }
 
-    public static void pasoExtra07() {
-        // TODO extra aislando concepto: executeUpdate devuelve nº de filas; true si > 0.
+    /**
+     * TODO extra 7: Configura los parámetros para eliminar un cliente.
+     */
+    public static void desafioConfigurarEliminar(java.sql.PreparedStatement ps, int id) throws java.sql.SQLException {
+        ps.setInt(1, id);
     }
 
-    public static void pasoExtra08() {
-        // TODO extra aislando concepto: prepara "DELETE FROM CLIENTE WHERE id=?".
+    /**
+     * TODO extra 8: Verifica si se ha insertado con éxito analizando las filas afectadas.
+     */
+    public static boolean desafioVerificarFilaAfectada(int filasAfectadas) {
+        return filasAfectadas > 0;
     }
 
-    public static void pasoExtra09() {
-        // TODO extra aislando concepto: executeUpdate; true si afectó alguna fila.
+    /**
+     * TODO extra 9: Comprueba que una lista de clientes no contenga elementos nulos.
+     */
+    public static boolean desafioNoTieneNulos(java.util.List<Cliente> clientes) {
+        return clientes.stream().allMatch(java.util.Objects::nonNull);
     }
 
-    public static void pasoExtra10() {
-        // TODO extra aislando concepto: cada método abre y cierra su PreparedStatement (no fugas de recursos).
+    /**
+     * TODO extra 10: Retorna un cliente vacío por defecto para simular un Fallback.
+     */
+    public static Cliente desafioClienteVacíoFallback() {
+        return new Cliente(0, "Sin Nombre", "sin@email.com");
     }
 
 }

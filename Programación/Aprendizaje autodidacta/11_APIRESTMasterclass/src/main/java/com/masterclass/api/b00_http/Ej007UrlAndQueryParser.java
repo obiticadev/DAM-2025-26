@@ -61,9 +61,12 @@ public final class Ej007UrlAndQueryParser {
      *         lista vacía si no existe la clave, si la URL es nula o no tiene query.
      */
     public static java.util.List<String> extraerValoresMultiplesQuery(String url, String clave) {
-        // TODO extra 1: extrae la query string, separa los pares por '&', y para cada par que
-        // coincida con la clave especificada, añade su valor decodificado a la lista.
-        return java.util.Collections.emptyList();
+        // TODO extra: RETO EXTRA 1: Extracción de múltiples valores para una misma clave.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerValoresMultiplesQuery");
     }
 
     /**
@@ -76,10 +79,12 @@ public final class Ej007UrlAndQueryParser {
      *         mapa vacío si no hay query o la entrada es nula.
      */
     public static Map<String, String> queryParamsDecodificados(String url) {
-        // TODO extra 2: extrae y separa los parámetros como en el ejercicio base, pero decodifica
-        // de forma segura tanto las claves como los valores usando URLDecoder.decode(..., StandardCharsets.UTF_8).
-        // Ten cuidado de no lanzar excepciones no controladas si el formato de codificación es corrupto.
-        return java.util.Collections.emptyMap();
+        // TODO extra: RETO EXTRA 2: Decodificación segura de parámetros codificados en porcentaje (URL-encoding).
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para queryParamsDecodificados");
     }
 
     /**
@@ -90,8 +95,12 @@ public final class Ej007UrlAndQueryParser {
      * @return true si la URL es absoluta e inicia con el protocolo https:// (fácilmente extensible, insensible a mayúsculas)
      */
     public static boolean esHttpsEsquema(String url) {
-        // TODO extra 3: valida que la URL no sea nula y empiece exactamente con "https://" sin importar mayúsculas.
-        return false;
+        // TODO extra: RETO EXTRA 3: Validación robusta del esquema seguro HTTPS.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esHttpsEsquema");
     }
 
     /**
@@ -102,9 +111,12 @@ public final class Ej007UrlAndQueryParser {
      * @return el host extraído (ej. "api.example.com"), o cadena vacía si es relativa o inválida
      */
     public static String extraerHost(String url) {
-        // TODO extra 4: analiza la URL absoluta, descarta el esquema, localiza dónde termina el host
-        // (ya sea por puerto ':' o por ruta '/') y devuélvelo.
-        return "";
+        // TODO extra: RETO EXTRA 4: Extracción de Host (dominio/IP) de una URL absoluta.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerHost");
     }
 
     /**
@@ -115,9 +127,12 @@ public final class Ej007UrlAndQueryParser {
      * @return el puerto explícito si existe en la URL; si no existe, devuelve 443 para HTTPS, 80 para HTTP; -1 si no se reconoce
      */
     public static int extraerPuertoConPredeterminados(String url) {
-        // TODO extra 5: detecta si hay un puerto explícito (ej. ":8080"). Si no lo hay, infiere el puerto
-        // por defecto basándote en el esquema (http -> 80, https -> 443).
-        return -1;
+        // TODO extra: RETO EXTRA 5: Extracción de puerto con fallback predeterminado.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerPuertoConPredeterminados");
     }
 
     /**
@@ -128,9 +143,12 @@ public final class Ej007UrlAndQueryParser {
      * @return la ruta normalizada con barras simples y sin barra final (a menos que sea la raíz "/")
      */
     public static String normalizarBarrasDeRuta(String path) {
-        // TODO extra 6: reemplaza múltiples barras consecutivas por una única barra, y elimina la barra final
-        // sobrante de forma limpia. Si es null o vacío, devuelve "/".
-        return "";
+        // TODO extra: RETO EXTRA 6: Normalización de barras diagonales redundantes de ruta.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para normalizarBarrasDeRuta");
     }
 
     /**
@@ -142,9 +160,12 @@ public final class Ej007UrlAndQueryParser {
      * @return el segmento de la ruta en la posición indicada; o vacío si no existe o el índice está fuera de rango
      */
     public static String obtenerSegmentoRuta(String url, int index) {
-        // TODO extra 7: limpia la parte del path de cualquier query string, divídelo en segmentos 
-        // usando "/" y devuelve el segmento en la posición 'index'. Evita excepciones por desbordamiento.
-        return "";
+        // TODO extra: RETO EXTRA 7: Obtener segmento individual de ruta por su posición.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerSegmentoRuta");
     }
 
     /**
@@ -156,9 +177,12 @@ public final class Ej007UrlAndQueryParser {
      * @return la query string resultante (sin el '?' inicial), ej. "activo=true&tag=java&tag=rest"
      */
     public static String construirQueryStringAlfabetica(Map<String, java.util.List<String>> params) {
-        // TODO extra 8: recorre las claves del mapa de forma ordenada (alfabéticamente), codifica 
-        // adecuadamente claves y valores, e hilvánalos separados por '&'. Omita valores vacíos o nulos.
-        return "";
+        // TODO extra: RETO EXTRA 8: Construcción de Query String determinista y ordenada.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para construirQueryStringAlfabetica");
     }
 
     /**
@@ -169,9 +193,12 @@ public final class Ej007UrlAndQueryParser {
      * @return true si la URL es sintácticamente bien formada y no contiene saltos de línea (\r, \n) ni caracteres peligrosos
      */
     public static boolean esUrlAbsolutaSegura(String url) {
-        // TODO extra 9: comprueba si es una URL válida y que no contenga secuencias de inyección CRLF, 
-        // ni scripts extraños embebidos.
-        return false;
+        // TODO extra: RETO EXTRA 9: Validación de URL absoluta y segura.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esUrlAbsolutaSegura");
     }
 
     /**
@@ -183,9 +210,12 @@ public final class Ej007UrlAndQueryParser {
      * @return la URL reconstruida sin el parámetro especificado ni sus valores, conservando el resto intacto
      */
     public static String eliminarParametroConsulta(String url, String claveAEliminar) {
-        // TODO extra 10: extrae el path y la query string. Filtra y elimina los pares de query que
-        // coincidan con 'claveAEliminar', y reconstruye la URL preservando el orden original del resto.
-        return "";
+        // TODO extra: RETO EXTRA 10: Eliminación selectiva de un parámetro de la query string.
+        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
+        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
+        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
+        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para eliminarParametroConsulta");
     }
 
 }

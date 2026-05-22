@@ -28,21 +28,18 @@ class Ej036ConditionalBeansTest {
         public String beanSiempreActivo() { return "Siempre"; }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 1")
     @Test
     void retoExtra01_registrarConPropiedadHabilitada() {
         // Simulación lógica de aserción
         assertNotNull(new registrarConPropiedadHabilitada());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 2")
     @Test
     void retoExtra02_registrarConPropiedadAusente() {
         // Simulación lógica de aserción
         assertNotNull(new registrarConPropiedadAusente());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 3")
     @Test
     void retoExtra03_windowsOSCondition() {
         var cond = new WindowsOSCondition();
@@ -51,7 +48,6 @@ class Ej036ConditionalBeansTest {
         assertEquals(isWindows, cond.matches(null, null));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 4")
     @Test
     void retoExtra04_servicioSoloWindows() {
         try (var ctx = new AnnotationConfigApplicationContext()) {
@@ -63,42 +59,36 @@ class Ej036ConditionalBeansTest {
         }
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 5")
     @Test
     void retoExtra05_registrarSiClaseExiste() {
         // Simulación lógica de aserción
         assertNotNull(new registrarSiClaseExiste());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 6")
     @Test
     void retoExtra06_registrarSiOtroBeanExiste() {
         // Simulación lógica de aserción
         assertNotNull(new registrarSiOtroBeanExiste());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 7")
     @Test
     void retoExtra07_condicionalMultiple() {
         // Simulación lógica de aserción
         assertNotNull(new CondicionalMultiple());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 8")
     @Test
     void retoExtra08_condicionNegada() {
         var cond = new CondicionNegada();
         assertFalse(cond.matches(null, null));
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 9")
     @Test
     void retoExtra09_registrarCondicionalPorRecurso() {
         // Simulación lógica de aserción
         assertNotNull(new registrarCondicionalPorRecurso());
     }
 
-    @org.junit.jupiter.api.Disabled("Activa para probar el RETO EXTRA 10")
     @Test
     void retoExtra10_evaluarCondicionDeRegistro() {
         try (var ctx = new AnnotationConfigApplicationContext(ConfigCondicionales.class)) {
