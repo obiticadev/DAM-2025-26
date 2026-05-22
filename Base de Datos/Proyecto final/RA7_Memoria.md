@@ -5,11 +5,8 @@
 **Resultado de aprendizaje:** RA7 – Gestiona la información almacenada en bases de datos no relacionales, evaluando y utilizando las posibilidades que proporciona el sistema gestor.
 
 **Autores:**
-- Nombre1 Apellido1
-- Nombre2 Apellido2
-- Nombre3 Apellido3
-
-> Documento principal del trabajo. Se entrega como PDF dentro del zip `RA7_nombre1_nombre2_nombre3.zip`.
+- Oliver Bitica
+- Rubén Barrado Pastor
 
 ---
 
@@ -25,139 +22,136 @@
 8. Reparto de tareas
 9. Bibliografía
 
-> A lo largo del Bloque E aparecen bloques destacados con `**[PASO — BORRAR AL TERMINAR]**`. Son instrucciones para nosotros: al completar el paso se sustituyen por la captura correspondiente. En la versión final que se entrega como PDF no debe quedar ninguno.
-
 ---
 
 ## 1. Introducción
 
-Hasta ahora hemos trabajado con bases de datos relacionales (MySQL): tablas, filas, claves y SQL. En este trabajo nos centramos en las bases de datos **no relacionales** (NoSQL): qué son, qué tipos hay, qué elementos las componen y cómo se gestiona la información en ellas.
+En lo que llevamos de curso de Bases de Datos en 1º de DAM, nos hemos centrado sobre todo en el modelo relacional (usando MySQL): bases de datos estructuradas en tablas fijas, filas, columnas, claves primarias y foráneas, y haciendo consultas con SQL. Sin embargo, en el mundo real muchas aplicaciones manejan datos masivos, muy cambiantes o directamente desordenados. Para solucionar esto nacieron las bases de datos **no relacionales** (también llamadas NoSQL).
 
-Para la parte práctica usamos **MongoDB**, una base de datos documental, desplegada en la nube con **MongoDB Atlas** en su capa gratuita (cluster M0 en AWS Frankfurt). Nos conectamos con **MongoDB Compass** (cliente gráfico de escritorio) usando la cadena de conexión:
+En esta memoria vamos a explicar de forma sencilla y directa qué son estas bases de datos, qué tipos existen, qué componentes las forman y cómo se gestionan.
+
+Para la parte práctica, hemos trabajado con **MongoDB**, que es la base de datos documental más popular. Hemos usado un clúster en la nube con **MongoDB Atlas** (en su capa gratuita M0 en AWS Fráncfort) y nos hemos conectado desde nuestros ordenadores con **MongoDB Compass**, que es la herramienta gráfica oficial. La cadena de conexión compartida que hemos usado es:
 
 ```
 mongodb+srv://<usuario>:<password>@dam.pb0dxmb.mongodb.net/
 ```
 
-- **Usuario:** `admin`
-- **Password:** `123`
+* **Usuario:** `admin`
+* **Contraseña:** `123`
 
-El cluster ya viene con varias **bases de datos de muestra** que proporciona MongoDB (`sample_mflix`, `sample_airbnb`, `sample_analytics`, etc.), lo que nos permite practicar consultas y agregaciones sobre datos reales sin tener que cargar nada nosotros.
+Para no empezar de cero y poder probar consultas potentes desde el primer minuto, el clúster ya venía cargado con varias **bases de datos de ejemplo** que ofrece MongoDB (como `sample_mflix` para películas, `sample_airbnb` para alojamientos, etc.). Esto nos ha permitido jugar con datos reales sin tener que importar nada nosotros al principio.
 
 ---
 
 ## 2. Bloque A – Caracterización de las bases de datos no relacionales
 
 ### 2.1 Qué es una base de datos no relacional
+Una base de datos no relacional (NoSQL) es aquella que **no almacena los datos en las clásicas tablas de filas y columnas**. En su lugar, utiliza formas mucho más libres y flexibles para guardar la información: documentos JSON, parejas de clave-valor, árboles de nodos (grafos) o familias de columnas.
 
-Una base de datos no relacional **no guarda la información en tablas** ni usa obligatoriamente SQL. En su lugar utiliza estructuras flexibles (documentos, pares clave-valor, grafos, familias de columnas).
-
-Surgieron porque las aplicaciones modernas generan datos en gran volumen, muy variados y en constante cambio, escenarios en los que el modelo relacional clásico se queda corto.
+Surgieron a principios de los años 2000 porque las grandes aplicaciones web (como Google, Amazon o Facebook) necesitaban guardar millones de datos al segundo y el modelo relacional tradicional con tablas rígidas y consultas complejas se quedaba demasiado lento y costoso.
 
 ### 2.2 Características principales
+* **Sin esquema rígido:** A diferencia de MySQL, donde todas las filas de una tabla deben tener exactamente las mismas columnas, aquí cada registro puede ser diferente. Si mañana queremos añadir un campo nuevo a un único registro, lo hacemos y listo, sin tener que alterar toda la base de datos.
+* **Escalabilidad horizontal (Sharding):** Si tu base de datos se queda pequeña, en vez de comprar un servidor gigante y súper caro (escalado vertical), añades varios ordenadores normales y baratos en red y repartes los datos entre ellos.
+* **Mucha rapidez de lectura y escritura:** Al no tener que comprobar relaciones complejas entre tablas cada vez que escribes, la base de datos funciona a toda velocidad.
+* **Muy cómodo para programar:** Los datos se guardan en formatos muy parecidos a los objetos que usamos al programar en Java o en JavaScript, por lo que no hace falta hacer traducciones raras de código a tablas.
+* **Teorema CAP y Consistencia Eventual (BASE):** 
+  * El **Teorema CAP** dice que en un sistema distribuido (repartido en varios servidores) es imposible tener a la vez el 100% de estas tres cosas: **C**onsistencia (que todos los servidores tengan la misma información al instante), **A**utonomía/Disponibilidad (que el sistema siempre responda aunque algún servidor falle) y **P**artición (tolerancia a fallos de red). Como internet siempre puede fallar, tenemos que elegir entre Consistencia y Disponibilidad.
+  * Por eso muchas NoSQL prefieren cumplir **BASE** en lugar de las reglas estrictas de ACID. Esto significa que el sistema prefiere estar siempre disponible y rápido, aceptando una **consistencia eventual**: los datos tardarán unos segundos en actualizarse en todos los ordenadores de la red, pero al final todos acabarán teniendo lo mismo.
 
-- **Sin esquema fijo:** documentos del mismo tipo pueden tener campos distintos.
-- **Escalabilidad horizontal:** se reparten los datos entre varios servidores (*sharding*) en lugar de necesitar uno más potente.
-- **Alto rendimiento** con grandes volúmenes de lectura/escritura.
-- **Modelo cercano a la aplicación:** un documento JSON se parece a un objeto del programa.
-- **Replicación y alta disponibilidad** integradas.
-- **Consistencia eventual (BASE)** en lugar de ACID estricto. Aplican el teorema **CAP**.
+### 2.3 Comparativa básica: Relacional vs No relacional
 
-### 2.3 Comparativa relacional vs no relacional
-
-| Aspecto | Relacional (SQL) | No relacional (NoSQL) |
+| Característica | Relacional (MySQL / SQL) | No relacional (NoSQL) |
 |---|---|---|
-| Estructura | Tablas, filas, columnas | Documentos, clave-valor, grafos, columnas |
-| Esquema | Fijo y definido antes | Flexible / sin esquema |
-| Lenguaje | SQL estándar | API propia por producto |
-| Escalado | Vertical | Horizontal |
-| Relaciones | Claves ajenas, JOIN | Documentos anidados o referencias |
-| Transacciones | ACID fuerte | BASE / consistencia eventual |
-| Caso típico | Banca, ERP | Big data, tiempo real, datos variables |
+| **Estructura** | Tablas de filas y columnas fijas. | Documentos JSON, clave-valor, grafos... |
+| **Esquema** | Estricto. Hay que definirlo antes de meter datos. | Flexible. Cada registro puede ser diferente. |
+| **Lenguaje** | SQL estándar. | Cada base de datos tiene sus comandos (API propia). |
+| **Escalado** | Vertical (comprar un servidor mejor y más caro). | Horizontal (añadir más ordenadores baratos a la red). |
+| **Relaciones** | Claves ajenas y operaciones `JOIN` costosas. | Documentos dentro de otros o referencias simples. |
+| **Garantías** | ACID fuerte (consistencia inmediata asegurada). | BASE (consistencia eventual para ganar velocidad). |
+| **Mejor para** | Cosas críticas como bancos, facturas, ERPs. | Apps móviles, Big Data, redes sociales, catálogos. |
 
 ### 2.4 Ventajas e inconvenientes
 
-**Ventajas:** flexibilidad de esquema, escalado horizontal, alto rendimiento, encajan con desarrollo ágil.
-
-**Inconvenientes:** no hay un lenguaje estándar, menos garantías de consistencia inmediata, las relaciones complejas son más incómodas y hay menos madurez de herramientas.
-
-> No hay una opción mejor que otra: se elige según el problema. Datos muy estructurados y transacciones críticas → relacional. Datos variables, escala enorme → no relacional.
+* **Ventajas:** Es facilísimo cambiar el diseño de los datos sobre la marcha, escala muy bien de forma barata y es súper rápida.
+* **Inconvenientes:** No hay un lenguaje estándar único como SQL (si cambias de base de datos tienes que aprender comandos nuevos), no es fácil hacer búsquedas complejas que relacionen muchas colecciones y tienes que controlar tú en tu programa que no se metan datos absurdos.
 
 ---
 
 ## 3. Bloque B – Tipos principales de bases de datos no relacionales
 
-Se clasifican en cuatro grandes familias.
+Las bases de datos NoSQL se agrupan en cuatro familias principales según cómo guardan los datos:
 
 ### 3.1 Clave-valor (Key-Value)
-- **Cómo funciona:** pares `clave → valor`, como un diccionario.
-- **Fuerte / débil:** muy rápida / no se consulta por contenido.
-- **Ejemplos:** Redis, Amazon DynamoDB.
-- **Uso típico:** cachés, sesiones, carritos.
+* **Cómo funciona:** Es el modelo más simple. Guarda la información en parejas formadas por una `clave única` (un ID) y un `valor` (que puede ser cualquier cosa: un texto, un número o una lista). Es exactamente igual que un diccionario de Python o un Map de Java.
+* **Puntos fuertes/débiles:** Es increíblemente rápida para leer y escribir / No puedes buscar cosas por el contenido del valor, solo puedes buscar por la clave.
+* **Ejemplos:** Redis, Amazon DynamoDB.
+* **Uso típico:** Guardar carritos de la compra de usuarios, sesiones activas o cachés de páginas web.
 
 ### 3.2 Documental
-- **Cómo funciona:** documentos JSON/BSON agrupados en colecciones.
-- **Fuerte / débil:** flexible y consultable por cualquier campo / puede duplicar datos.
-- **Ejemplos:** **MongoDB** (la que usamos), CouchDB, Firestore.
-- **Uso típico:** catálogos, APIs, CMS.
+* **Cómo funciona:** Es una evolución de la clave-valor. En lugar de valores sueltos, guarda **documentos** (normalmente ficheros en formato JSON). Cada documento tiene pares de `campo: valor`.
+* **Puntos fuertes/débiles:** Súper flexible y permite hacer búsquedas por cualquier campo que esté dentro del documento / Si no vigilamos, podemos acabar duplicando mucha información.
+* **Ejemplos:** **MongoDB** (la que usamos en la práctica), CouchDB, Firebase Firestore.
+* **Uso típico:** Páginas de blogs, tiendas online con catálogos de productos muy variados o APIs que intercambian JSONs.
 
-### 3.3 Columnar / familia de columnas
-- **Cómo funciona:** datos guardados por columnas, agrupados en familias.
-- **Fuerte / débil:** analítica masiva muy rápida / modelado complejo.
-- **Ejemplos:** Cassandra, HBase, Bigtable.
-- **Uso típico:** big data, series temporales, logs.
+### 3.3 Columnar / Familias de columnas
+* **Cómo funciona:** En lugar de guardar los datos fila a fila, los guarda por columnas. Esto permite leer columnas enteras a la vez.
+* **Puntos fuertes/débiles:** Ideal para procesar estadísticas sobre millones de registros / Modelar la base de datos es difícil y no sirve para consultar registros individuales de forma rápida.
+* **Ejemplos:** Cassandra, HBase.
+* **Uso típico:** Registro de sensores (IoT), análisis de Big Data, almacenamiento de logs del sistema.
 
 ### 3.4 Grafos
-- **Cómo funciona:** nodos y relaciones (aristas) entre ellos.
-- **Fuerte / débil:** ideal para relaciones / no ideal para volúmenes planos.
-- **Ejemplos:** Neo4j, Amazon Neptune.
-- **Uso típico:** redes sociales, recomendaciones, detección de fraude.
+* **Cómo funciona:** Representa los datos usando **nodos** (entidades, como personas) y **relaciones/aristas** (las líneas que los unen, como "es amigo de", "ha comprado").
+* **Puntos fuertes/débiles:** Te permite navegar por redes de relaciones complejas en milisegundos / No sirve para almacenar listas de datos planos o simples.
+* **Ejemplos:** Neo4j, Amazon Neptune.
+* **Uso típico:** Redes sociales (Facebook, LinkedIn), motores de recomendación (Netflix, Spotify) o sistemas para detectar fraude con tarjetas de crédito.
 
-### 3.5 Tabla resumen
+### 3.5 Resumen rápido
 
-| Tipo | Modelo | Ejemplo | Mejor para |
+| Tipo | Formato de almacenamiento | Ejemplo | Lo mejor para |
 |---|---|---|---|
-| Clave-valor | clave → valor | Redis | Caché, sesiones |
-| Documental | documentos JSON | MongoDB | Datos variables, APIs |
-| Columnar | familias de columnas | Cassandra | Big data, analítica |
-| Grafos | nodos y aristas | Neo4j | Relaciones, redes |
+| **Clave-valor** | `clave -> valor` | Redis | Cachés muy rápidas y carritos |
+| **Documental** | Documentos JSON | MongoDB | Datos variados y APIs web |
+| **Columnar** | Columnas agrupadas | Cassandra | Big Data y analizar logs |
+| **Grafos** | Nodos y líneas de conexión | Neo4j | Redes sociales y recomendaciones |
 
-> **Por qué MongoDB:** documental (la familia más versátil), capa gratuita en Atlas, herramientas gráficas accesibles y mucha documentación.
+> **Por qué elegimos MongoDB:** Al ser de tipo documental, es la más versátil y fácil de entender si vienes de SQL. Además, tiene herramientas visuales muy cómodas (Compass) y una nube gratis muy fácil de usar (Atlas).
 
 ---
 
 ## 4. Bloque C – Elementos utilizados en estas bases de datos
 
-### 4.1 Equivalencias con el modelo relacional
+Para no perdernos al usar MongoDB, podemos comparar sus elementos con los que ya conocemos de MySQL:
 
-| Relacional | MongoDB (documental) |
+### 4.1 Equivalencias entre mundos
+
+| Modelo Relacional (MySQL) | Modelo Documental (MongoDB) |
 |---|---|
 | Base de datos | Base de datos |
 | Tabla | Colección |
-| Fila / registro | Documento |
-| Columna / campo | Campo |
-| Clave primaria | Campo `_id` |
+| Fila / Registro | Documento |
+| Columna / Campo | Campo |
+| Clave Primaria (PK) | Campo `_id` |
 | Índice | Índice |
-| JOIN | Documentos anidados o `$lookup` |
+| Operación `JOIN` | Documentos anidados (subdocumentos) o `$lookup` |
 
-### 4.2 Elementos clave
+### 4.2 Conceptos clave en MongoDB
+* **Documento:** La pieza básica donde guardamos la información. Es un objeto con formato JSON que contiene parejas de `campo: valor`.
+* **Colección:** Un grupo de documentos. Equivale a una tabla de MySQL, pero con la diferencia de que los documentos dentro de una colección no tienen por qué ser idénticos.
+* **Base de datos:** El contenedor general que guarda las colecciones.
+* **BSON:** Es el formato que usa MongoDB por dentro para guardar la información. Es un "JSON Binario". Lo usa porque al ordenador le resulta mucho más rápido procesarlo y porque admite más tipos de datos que el JSON básico (como fechas reales, números enteros, decimales precisos o IDs especiales).
+* **Campo `_id`:** Es el DNI obligatorio de cada documento. Funciona como la clave primaria. Si al insertar un documento no le pones este campo, MongoDB se lo inventa automáticamente y le asigna un código único gigante llamado `ObjectId`.
+* **Tipos de datos:** Texto (string), números (enteros y decimales), booleanos (true/false), fechas, valores nulos (null), listas (arrays) y otros documentos metidos dentro (subdocumentos).
+* **Documentos anidados y Arrays:** Una de las mejores cosas de MongoDB. En lugar de hacer una tabla separada para guardar los teléfonos de un cliente y tener que hacer un `JOIN`, metemos una lista `["123456", "987654"]` directamente en un campo llamado `telefonos` dentro del propio documento del cliente.
+* **Índices:** Estructuras de datos que se crean sobre campos muy consultados (como el nombre o el correo) para que las búsquedas vayan a toda velocidad en lugar de tener que leer toda la base de datos entera.
+* **Replica Set (Réplica):** Copias idénticas de nuestra base de datos repartidas en otros servidores de forma automática. Si el servidor principal se rompe, uno de los secundarios se activa en milisegundos y la aplicación sigue funcionando sin que el usuario note nada.
+* **Sharding:** Dividir los datos de una colección gigante y repartirlos entre varios servidores para poder almacenar más información de la que cabría en un solo disco duro.
 
-- **Documento:** unidad básica, objeto tipo JSON con pares `campo: valor`.
-- **Colección:** conjunto de documentos (equivale a una tabla sin esquema).
-- **Base de datos:** conjunto de colecciones.
-- **BSON:** formato binario en el que MongoDB guarda los documentos (JSON con más tipos: fechas, `ObjectId`, binarios…).
-- **Campo `_id`:** identificador único por documento. Si no se indica, MongoDB genera un `ObjectId`. Hace de clave primaria.
-- **Tipos de datos:** texto, número, booleano, fecha, array, documento anidado, `null`, `ObjectId`…
-- **Documentos anidados y arrays:** permiten meter subobjetos o listas dentro de un documento, evitando muchos JOINs.
-- **Índices:** estructuras para acelerar búsquedas (el de `_id` se crea solo).
-- **Réplica (*Replica Set*):** conjunto de copias para tolerancia a fallos (Atlas lo monta automáticamente).
-- **Sharding:** reparto de una colección entre varios servidores para escalar (no se usa en el free tier).
-
-### 4.3 Ejemplo de documento (sacado de `sample_mflix.movies`)
+### 4.3 Ejemplo de documento real (de la base `sample_mflix.movies`)
 
 ```json
 {
-  "_id": ObjectId("..."),
+  "_id": ObjectId("573a1390f29313caabcd4135"),
   "title": "The Matrix",
   "year": 1999,
   "genres": ["Action", "Sci-Fi"],
@@ -167,112 +161,104 @@ Se clasifican en cuatro grandes familias.
 }
 ```
 
-Se ven los elementos típicos: `_id`, campos simples, arrays (`genres`, `cast`) y subdocumento (`imdb`).
+Aquí se ve todo muy claro: el `_id` autogenerado, campos de texto y número, listas (arrays) en `genres` y `cast`, y un subdocumento metido en el campo `imdb` para guardar la nota y los votos juntos.
 
 ---
 
 ## 5. Bloque D – Formas de gestión de la información según el tipo
 
-Cada familia NoSQL tiene su propia forma de insertar y consultar.
+Como en NoSQL no existe un lenguaje estándar como el SQL, cada familia tiene su propia manera de trabajar:
 
-| Tipo | Cómo se gestionan los datos | Lenguaje / API |
+| Tipo | Cómo se manejan los datos | Lenguaje o interfaz |
 |---|---|---|
-| Clave-valor (Redis) | Comandos `SET clave valor` / `GET clave` | Comandos propios |
-| Documental (MongoDB) | `insertOne`, `find`, `updateOne`, agregaciones | MQL (MongoDB Query Language) |
-| Columnar (Cassandra) | Sentencias parecidas a SQL sobre familias de columnas | CQL |
-| Grafos (Neo4j) | Patrones sobre nodos y aristas | Cypher |
+| **Clave-valor (Redis)** | Comandos directos para guardar y recuperar usando la clave. | Comandos como `SET` y `GET`. |
+| **Documental (MongoDB)** | Funciones CRUD para buscar, meter, cambiar y borrar. | MQL (MongoDB Query Language). |
+| **Columnar (Cassandra)** | Consultas parecidas a SQL pero adaptadas a columnas. | CQL (Cassandra Query Language). |
+| **Grafos (Neo4j)** | Dibujar patrones con flechas para buscar caminos de relación. | Cypher. |
 
-**En MongoDB concretamente** se gestiona mediante:
+### Cómo se gestiona la información en MongoDB
 
-- **CRUD:** `insertOne`/`insertMany`, `find`, `updateOne`/`updateMany`, `deleteOne`/`deleteMany`.
-- **Operadores de consulta:** `$gt`, `$lt`, `$in`, `$and`, `$or`, `$regex`…
-- **Framework de agregación:** etapas encadenadas (`$match`, `$group`, `$sort`, `$project`, `$unwind`) para consultas avanzadas, equivalente al `GROUP BY` de SQL.
-- **Índices:** simples, compuestos, de texto, geoespaciales.
-- **Importación/exportación:** JSON y CSV.
-- **Seguridad:** usuarios, roles y autenticación.
+En MongoDB trabajamos usando **MQL (MongoDB Query Language)** mediante las siguientes herramientas:
 
-En NoSQL **cada gestor tiene su propio lenguaje**, no existe un SQL común. Eso es precisamente lo que valora el apartado (e): saber usar las herramientas concretas del sistema gestor elegido.
+* **Operaciones CRUD:**
+  * **Crear:** `insertOne` (meter un documento) o `insertMany` (meter una lista de documentos).
+  * **Leer:** `find` (buscar documentos aplicando filtros).
+  * **Actualizar:** `updateOne` o `updateMany` para modificar campos usando operadores como `$set` o `$inc` (para sumar).
+  * **Borrar:** `deleteOne` o `deleteMany`.
+* **Operadores de filtro:** Para buscar datos usamos operadores especiales como `$gt` (mayor que), `$lt` (menor que), `$in` (que esté en una lista), `$and`, `$or` o `$regex` (búsquedas por texto).
+* **Framework de Agregación:** Es una de las herramientas más potentes de MongoDB. Funciona como una tubería (pipeline) en la que los documentos entran por un extremo y van pasando por diferentes "etapas" de procesamiento. Por ejemplo, primero filtramos con `$match`, luego troceamos listas con `$unwind`, después agrupamos para sumar o hacer medias con `$group` y finalmente ordenamos el resultado con `$sort`. Es el equivalente al `GROUP BY` y los `JOIN` complejos de SQL, pero mucho más visual y paso a paso.
+* **Herramientas de importación y exportación:** Utilidades como `mongoimport` y `mongoexport` para mover datos rápidamente en formatos estándar como JSON o CSV.
+* **Seguridad:** Creación de usuarios con contraseñas y asignación de roles (permisos) para controlar quién puede leer o escribir en cada colección.
 
 ---
 
 ## 6. Bloque E – Práctica con MongoDB Atlas + Compass
 
-> Esta es la demostración práctica (apartado **e** del enunciado). El cluster ya está creado y compartido (free tier M0 en AWS Frankfurt) y trae las bases de datos de muestra. Trabajaremos sobre `sample_mflix` (consulta) y sobre una base nuestra `practica_ra7` (escritura), para no contaminar las bases compartidas.
+A continuación, mostramos los pasos prácticos que hemos realizado para aprender a utilizar MongoDB conectándonos al clúster compartido en la nube.
 
-### 6.1 Conexión al cluster con Compass
+### 6.1 Conexión al clúster con Compass
 
-Abrimos MongoDB Compass y pegamos la *connection string* del cluster compartido (sustituyendo `<usuario>` por `admin` y `<password>` por `123`):
+Abrimos el programa de escritorio **MongoDB Compass**, pegamos la cadena de conexión compartida en la barra de direcciones (poniendo `admin` en el usuario y `123` en la contraseña) y pulsamos **Connect**.
 
 ```
-mongodb+srv://<usuario>:<password>@dam.pb0dxmb.mongodb.net/
+mongodb+srv://admin:123@dam.pb0dxmb.mongodb.net/
 ```
 
-Al pulsar **Connect**, Compass se conecta al cluster y muestra todas las bases de datos disponibles en el panel izquierdo (las `sample_*` y las que hayamos creado).
+Compass se conecta y nos muestra en la barra lateral izquierda todas las bases de datos que tenemos disponibles en la nube.
 
-> **[PASO 1 — BORRAR AL TERMINAR]**
-> 1. Abrir **MongoDB Compass**.
-> 2. En la pantalla inicial, pegar la cadena de conexión de arriba en el campo **URI**.
-> 3. Pulsar **Connect**.
-> 4. **Captura 1:** Compass conectado, con el panel izquierdo mostrando las bases `sample_*`. Conviene que se vea la barra de tareas con la fecha/hora del sistema.
-> _Sustituir este bloque por la captura cuando esté hecho._
-
-`![Captura 1](capturas/captura-01.png)`
+![Conexión completada a MongoDB Atlas](capturas/captura-01.png)
 
 ### 6.2 Exploración de las bases de datos de muestra
 
-`sample_mflix` contiene varias colecciones (`movies`, `comments`, `users`, `theaters`…). La que vamos a usar es **`movies`**, con miles de películas reales y campos ricos (título, año, géneros, reparto, valoración IMDb…).
+Para practicar consultas de lectura, abrimos la base de datos `sample_mflix` y nos metemos en la colección `movies`. Esta colección contiene miles de películas reales con un montón de campos (título, año, notas de IMDb, géneros, actores, etc.), lo cual es fantástico para probar filtros realistas.
 
-> **[PASO 2 — BORRAR AL TERMINAR]**
-> 1. En el panel izquierdo, expandir **`sample_mflix`** y pulsar la colección **`movies`**.
-> 2. Esperar a que Compass cargue documentos. Pulsar uno cualquiera para ver su estructura.
-> 3. **Captura 2:** vista de `sample_mflix.movies` con varios documentos visibles, mostrando campos como `title`, `year`, `genres`, `imdb`.
-> _Sustituir este bloque por la captura._
-
-`![Captura 2](capturas/captura-02.png)`
+![Exploración de la colección películas](capturas/captura-02.png)
 
 ### 6.3 Consultas (READ) con filtros en Compass
 
-Todas estas consultas se ejecutan en la **barra de filtros** de la pestaña **Documents** de la colección `movies`. Se introduce el filtro en formato JSON y se pulsa **Find**.
+Para filtrar las películas en Compass, escribimos los filtros en formato JSON en la barra de búsqueda de la pestaña **Documents** y pulsamos **Find**. Aquí están las consultas de prueba que realizamos:
 
-| Nº | Filtro | Qué pide |
-|---|---|---|
-| C1 | `{ year: 1999 }` | Películas estrenadas en 1999. |
-| C2 | `{ "imdb.rating": { $gt: 8.5 } }` | Películas con valoración IMDb > 8.5. |
-| C3 | `{ genres: "Comedy" }` | Películas de género Comedia (filtra dentro de un array). |
-| C4 | `{ genres: { $in: ["Action", "Adventure"] } }` | Acción **o** Aventura. |
-| C5 | `{ year: { $gte: 2000, $lte: 2005 }, "imdb.rating": { $gt: 8 } }` | Buenas películas entre 2000 y 2005. |
-| C6 | `{ title: { $regex: "matrix", $options: "i" } }` | Títulos que contienen "matrix" (insensible a mayúsculas). |
+* **C1: Películas del año 1999.**
+  ```json
+  { year: 1999 }
+  ```
+* **C2: Películas con una nota en IMDb superior a 8.5.**
+  ```json
+  { "imdb.rating": { $gt: 8.5 } }
+  ```
+* **C3: Películas que sean del género "Comedy" (Comedia).**
+  MongoDB busca automáticamente dentro del array de géneros.
+  ```json
+  { genres: "Comedy" }
+  ```
+* **C4: Películas que sean de Acción ("Action") o de Aventuras ("Adventure").**
+  ```json
+  { genres: { $in: ["Action", "Adventure"] } }
+  ```
+* **C5: Películas estrenadas entre los años 2000 y 2005 que tengan más de un 8 en IMDb.**
+  ```json
+  { year: { $gte: 2000, $lte: 2005 }, "imdb.rating": { $gt: 8 } }
+  ```
+* **C6: Películas que tengan la palabra "matrix" en el título (sin importar mayúsculas/minúsculas).**
+  ```json
+  { title: { $regex: "matrix", $options: "i" } }
+  ```
 
-Además podemos usar el **Sort** (`{ "imdb.rating": -1 }`) y **Limit** (`10`) para ordenar y limitar resultados (equivalente a `ORDER BY` y `LIMIT` en SQL).
+Además de filtrar, podemos usar las opciones de **Sort** (por ejemplo, `{ "imdb.rating": -1 }` para ordenar de mejor a peor nota) y **Limit** (por ejemplo, `10` para quedarnos solo con las 10 primeras películas), simulando el ordenamiento y límite de SQL.
 
-> **[PASO 3 — BORRAR AL TERMINAR]**
-> 1. En la pestaña **Documents** de `sample_mflix.movies`, ejecutar la consulta **C2** (`{ "imdb.rating": { $gt: 8.5 } }`).
-> 2. **Captura 3:** filtro pegado y resultados visibles abajo.
-> 3. Ejecutar **C5** (consulta con varios criterios).
-> 4. **Captura 4:** filtro de C5 con resultados.
-> 5. Ejecutar **C6** (con `$regex`) ordenando por `{ "imdb.rating": -1 }` y `Limit: 10`.
-> 6. **Captura 5:** filtro + sort + limit aplicados con resultados.
-> _Sustituir este bloque por las tres capturas._
-
-`![Captura 3](capturas/captura-03.png)`
-`![Captura 4](capturas/captura-04.png)`
-`![Captura 5](capturas/captura-05.png)`
+![Filtro por año y notas en Compass](capturas/captura-03.png)
+![Consulta avanzada con arrays en Compass](capturas/captura-04.png)
+![Búsqueda con expresión regular y ordenación](capturas/captura-05.png)
 
 ### 6.4 Creación de una base de datos propia para escritura
 
-Para no modificar las bases de muestra (son compartidas) creamos la nuestra: **`practica_ra7`** con la colección **`productos`**.
+Como las bases de datos de ejemplo (`sample_*`) son compartidas y de solo lectura para evitar que las borremos sin querer, decidimos crear nuestra propia base de datos llamada **`practica_ra7`** con una colección llamada **`productos`** para poder probar operaciones de escribir, cambiar y borrar.
 
-> **[PASO 4 — BORRAR AL TERMINAR]**
-> 1. En el panel izquierdo de Compass, pulsar **+** junto a *Databases* → **Create Database**.
-> 2. Database name: `practica_ra7`. Collection name: `productos`. **Create Database**.
-> 3. **Captura 6:** base `practica_ra7` con la colección `productos` recién creada.
-> _Sustituir este bloque por la captura._
-
-`![Captura 6](capturas/captura-06.png)`
+![Creando base de datos propia en Compass](capturas/captura-06.png)
 
 ### 6.5 Inserción de documentos (CREATE)
 
-Dentro de `practica_ra7.productos`, **Add Data → Insert Document** y pegamos en la ventana de inserción:
+Entramos en nuestra colección `practica_ra7.productos`, pulsamos en **Add Data -> Insert Document** y pegamos el siguiente array de JSON con 5 productos informáticos listos para vender. Compass detecta que es una lista de documentos y los inserta todos a la vez.
 
 ```json
 [
@@ -284,98 +270,71 @@ Dentro de `practica_ra7.productos`, **Add Data → Insert Document** y pegamos e
 ]
 ```
 
-(Compass acepta directamente un array de documentos en la inserción.)
-
-> **[PASO 5 — BORRAR AL TERMINAR]**
-> 1. Entrar en `practica_ra7.productos` → **Add Data → Insert Document**.
-> 2. Borrar la plantilla, pegar el array JSON de arriba y pulsar **Insert**.
-> 3. **Captura 7:** los 5 documentos insertados visibles en la colección, con su `_id` autogenerado.
-> _Sustituir este bloque por la captura._
-
-`![Captura 7](capturas/captura-07.png)`
+![Inserción de varios documentos JSON](capturas/captura-07.png)
 
 ### 6.6 Actualización (UPDATE) y borrado (DELETE) desde Compass
 
-Compass permite hacerlo gráficamente con los iconos **lápiz** (editar) y **papelera** (borrar) que aparecen al pasar el ratón sobre un documento.
+Compass nos permite modificar y eliminar documentos de forma gráfica, sin escribir comandos:
 
-- **Update:** localizar el documento `Webcam HD`, pulsar el lápiz, cambiar `stock` de 0 a 20 y **Update**.
-- **Delete:** localizar `Ratón óptico`, pulsar la papelera y confirmar.
+* **Modificar (Update):** Buscamos la `Webcam HD` (que tenía stock 0), pulsamos en el icono del **lápiz** que sale al pasar el ratón por encima, cambiamos el stock a `20` y pulsamos en **Update**.
+* **Eliminar (Delete):** Buscamos el `Ratón óptico`, pulsamos sobre el icono de la **papelera** y confirmamos el borrado.
 
-> **[PASO 6 — BORRAR AL TERMINAR]**
-> 1. Pasar el ratón sobre el documento `Webcam HD` → **lápiz** → cambiar `stock` a `20` → **Update**.
-> 2. **Captura 8:** el documento `Webcam HD` con `stock: 20` ya actualizado.
-> 3. Pasar el ratón sobre `Ratón óptico` → **papelera** → **Delete**.
-> 4. **Captura 9:** la colección sin el documento `Ratón óptico` (4 documentos restantes).
-> _Sustituir este bloque por las dos capturas._
+![Modificando el stock de la webcam](capturas/captura-08.png)
+![Borrando el documento del ratón óptico](capturas/captura-09.png)
 
-`![Captura 8](capturas/captura-08.png)`
-`![Captura 9](capturas/captura-09.png)`
+### 6.7 Creación de Índices
 
-### 6.7 Índices
+Por defecto, MongoDB solo indexa el campo `_id`. Para que las búsquedas por el nombre de los productos vayan mucho más rápidas en el futuro, fuimos a la pestaña **Indexes**, pulsamos en **Create Index**, le pusimos de nombre `nombre_1`, seleccionamos el campo `nombre` y elegimos el tipo `1` (orden ascendente).
 
-Cada colección lleva un índice automático sobre `_id`. Podemos crear otros para acelerar consultas sobre campos concretos. Lo hacemos sobre `practica_ra7.productos`, en la pestaña **Indexes → Create Index**:
+![Creando índice sobre el campo nombre](capturas/captura-10.png)
 
-- **Campo:** `nombre`
-- **Tipo:** `1` (ascendente)
+### 6.8 Pipeline de Agregación (Consulta avanzada)
 
-> **[PASO 7 — BORRAR AL TERMINAR]**
-> 1. En `practica_ra7.productos` → pestaña **Indexes** → **Create Index**.
-> 2. Field name: `nombre`. Type: `1` (Asc). **Create Index**.
-> 3. **Captura 10:** pestaña **Indexes** mostrando los dos índices: `_id_` y `nombre_1`.
-> _Sustituir este bloque por la captura._
+Volvemos a `sample_mflix.movies` para hacer una consulta estadística compleja. Queremos calcular **cuántas películas hay y cuál es su nota media para cada género, teniendo en cuenta solo películas del año 2000 en adelante**.
 
-`![Captura 10](capturas/captura-10.png)`
+En la pestaña **Aggregations** de Compass, fuimos añadiendo las siguientes etapas una a una:
 
-### 6.8 Framework de agregación (consulta avanzada)
+1. **`$match`**: Filtramos las películas que sean del año 2000 o posterior y que tengan nota registrada en IMDb.
+   ```json
+   { year: { $gte: 2000 }, "imdb.rating": { $exists: true } }
+   ```
+2. **`$unwind`**: Como una película puede pertenecer a varios géneros a la vez (están en un array), usamos `$unwind` para "desenrollar" la lista y duplicar la película para cada género individual.
+   ```json
+   "$genres"
+   ```
+3. **`$group`**: Agrupamos por género (`$genres`), contamos cuántas hay sumando 1 por cada una y calculamos la media del campo `imdb.rating`.
+   ```json
+   { _id: "$genres", peliculas: { $sum: 1 }, ratingMedio: { $avg: "$imdb.rating" } }
+   ```
+4. **`$sort`**: Ordenamos los resultados de mayor a menor nota media.
+   ```json
+   { ratingMedio: -1 }
+   ```
+5. **`$limit`**: Nos quedamos solo con los 10 géneros con mejor nota.
+   ```json
+   10
+   ```
 
-Volvemos a `sample_mflix.movies` y entramos en la pestaña **Aggregations** de Compass. Vamos a calcular el **número de películas y la valoración media por género** para películas a partir del año 2000:
+Compass mola mucho para esto porque en cada etapa que añades te va enseñando una vista previa de cómo se van transformando los datos en tiempo real.
 
-| Etapa | Operador | Contenido |
-|---|---|---|
-| 1 | `$match` | `{ year: { $gte: 2000 }, "imdb.rating": { $exists: true } }` |
-| 2 | `$unwind` | `"$genres"` |
-| 3 | `$group` | `{ _id: "$genres", peliculas: { $sum: 1 }, ratingMedio: { $avg: "$imdb.rating" } }` |
-| 4 | `$sort` | `{ ratingMedio: -1 }` |
-| 5 | `$limit` | `10` |
-
-Compass tiene una interfaz visual: vas añadiendo etapas con el botón **Add Stage**, eliges el operador en el desplegable y pegas el contenido. A la derecha muestra una vista previa de los resultados parciales por etapa.
-
-> **[PASO 8 — BORRAR AL TERMINAR]**
-> 1. Entrar en `sample_mflix.movies` → pestaña **Aggregations**.
-> 2. Añadir las 5 etapas indicadas en la tabla, en el mismo orden.
-> 3. **Captura 11:** vista del pipeline completo con las 5 etapas y los resultados a la derecha (géneros ordenados por nota media).
-> _Sustituir este bloque por la captura._
-
-`![Captura 11](capturas/captura-11.png)`
+![Pipeline de agregación y vista previa en Compass](capturas/captura-11.png)
 
 ### 6.9 Exportación e importación de datos
 
-Compass permite exportar e importar colecciones en JSON o CSV (gestión de información de entrada/salida del sistema gestor).
+Una tarea básica de administración es sacar datos e introducirlos en colecciones:
 
-**Exportar** `practica_ra7.productos`:
+* **Exportar:** Entramos en nuestra colección `productos`, pulsamos en el botón **Export Data**, elegimos exportar todos los campos en formato JSON y guardamos el fichero.
+* **Importar:** Para probar que el archivo funciona, nos creamos una colección vacía llamada `productos_copia`, pulsamos en **Import Data**, seleccionamos nuestro archivo JSON exportado y vemos cómo se cargan todos los productos idénticos en un segundo.
 
-> **[PASO 9 — BORRAR AL TERMINAR]**
-> 1. En `practica_ra7.productos`, menú **... → Export Collection** (o botón **Export Data**).
-> 2. Formato **JSON**, exportar todos los documentos, guardar como `productos.json` en la carpeta del trabajo.
-> 3. **Captura 12:** ventana de exportación con el formato JSON elegido y la confirmación de éxito.
-> _Sustituir este bloque por la captura._
+![Exportación de la colección a JSON](capturas/captura-12.png)
+![Configuración del archivo de exportación](capturas/captura-12.5.png)
+![Importando el fichero JSON a la colección de copia](capturas/captura-13.png)
 
-`![Captura 12](capturas/captura-12.png)`
+### 6.10 Validación de esquemas
 
-**Importar** el mismo fichero a una colección nueva para demostrar la importación:
+Aunque MongoDB destaca por no obligar a tener un esquema rígido, en la vida real a veces queremos evitar que los usuarios metan tonterías (como un producto sin precio o un precio que sea un texto).
 
-> **[PASO 10 — BORRAR AL TERMINAR]**
-> 1. En `practica_ra7` crear una colección nueva llamada `productos_copia`.
-> 2. Dentro de ella, **Add Data → Import JSON or CSV file** → seleccionar el `productos.json` exportado en el paso anterior.
-> 3. Pulsar **Import**.
-> 4. **Captura 13:** la colección `productos_copia` con los documentos importados.
-> _Sustituir este bloque por la captura._
-
-`![Captura 13](capturas/captura-13.png)`
-
-### 6.10 Validación de esquema (opcional, nota alta)
-
-Aunque MongoDB no obliga a tener esquema, permite definir reglas de validación con `$jsonSchema`. En Compass: colección `practica_ra7.productos` → pestaña **Validation → Add Rule**, pegar:
+Para configurar reglas, fuimos a nuestra colección `productos`, entramos en la pestaña **Validation**, pulsamos en **Add Rule** y pegamos esta regla en formato `$jsonSchema`:
 
 ```json
 {
@@ -391,51 +350,37 @@ Aunque MongoDB no obliga a tener esquema, permite definir reglas de validación 
 }
 ```
 
-Acción al fallar: **Error**. Tras guardar, intentamos insertar un documento sin `precio`: MongoDB rechaza la inserción.
+Configuramos la acción en caso de fallo como **Error** (bloquear la inserción). Tras guardar la regla, probamos a insertar a propósito un producto sin el campo `precio`. Compass nos mostró inmediatamente un mensaje de error diciendo que el documento no cumple las normas de validación y bloqueó la inserción.
 
-> **[PASO 11 (OPCIONAL) — BORRAR AL TERMINAR]**
-> 1. En `practica_ra7.productos` → pestaña **Validation** → **Add Rule** → pegar el JSON de arriba → **Update**.
-> 2. Intentar insertar `{ "nombre": "Producto sin precio" }` (falta el campo `precio`).
-> 3. **Captura 14:** mensaje de error de validación que muestra Compass al rechazar la inserción.
-> _Sustituir este bloque por la captura._
-
-`![Captura 14](capturas/captura-14.png)`
+![Añadiendo la regla de validación JSON](capturas/captura-14.png)
+![Intentando insertar un documento incorrecto](capturas/captura-14.1.png)
+![Error de validación y bloqueo de Compass](capturas/captura-14.2.png)
 
 ---
 
 ## 7. Conclusiones
 
-- Las bases de datos no relacionales **no sustituyen** a las relacionales: resuelven problemas distintos (escala, flexibilidad, datos variables).
-- Existen **cuatro familias** (clave-valor, documental, columnar, grafos) y cada una gestiona la información de forma distinta, con su propio lenguaje o API.
-- **MongoDB**, al ser documental, es muy intuitiva viniendo del modelo relacional, y **Atlas + Compass** permite practicar sin instalar nada en local.
-- En la práctica hemos cubierto un **CRUD completo, consultas con operadores, índices, agregaciones, import/export y validación de esquema**, que es exactamente lo que pide el apartado (e): usar las herramientas del sistema gestor para gestionar la información.
-- Lo más distinto respecto a SQL: la **flexibilidad de esquema** y que **cada gestor tiene su propio lenguaje** (no hay un equivalente universal a SQL).
+Tras realizar este trabajo y trastear a fondo con MongoDB Atlas y Compass, nos llevamos varias ideas clave:
+
+* **No vienen a sustituir a SQL:** Las bases de datos NoSQL no son mejores ni peores que las relacionales, simplemente sirven para problemas diferentes. Si estás haciendo una app de un banco donde cada céntimo debe cuadrar al instante, usa relacional. Si estás haciendo un catálogo de productos de una tienda que cambia cada semana o necesitas guardar miles de registros de sensores por segundo, NoSQL es mucho más cómoda y rápida.
+* **La flexibilidad es una gozada pero tiene peligro:** Que MongoDB no te obligue a definir esquemas te permite programar y hacer cambios súper rápido. El problema es que, si no tienes cuidado o no pones reglas de validación en tu código, tu base de datos puede acabar llena de datos desordenados y erróneos.
+* **El cambio de mentalidad:** Al principio cuesta entender cómo guardar datos sin hacer `JOINs`. Sin embargo, cuando te acostumbras a meter arrays y subdocumentos dentro de un mismo registro, te das cuenta de que el diseño es mucho más natural y se parece un montón a cómo programamos con objetos en Java.
+* **MongoDB Atlas + Compass es un combo perfecto:** Poder conectarte a una base de datos en la nube sin configurar servidores locales complicados y tener un programa visual para hacer consultas, agregaciones complejas y validaciones con unos pocos clics facilita muchísimo el aprendizaje en primero de DAM.
 
 ---
 
 ## 8. Reparto de tareas
 
-> Rellenar según el caso real del grupo. Cada alumno debe poder defender los puntos que ha hecho.
-
-| Apartado | Responsable | Defendido por |
-|---|---|---|
-| A – Caracterización | Nombre1 | Nombre1 |
-| B – Tipos de NoSQL | Nombre2 | Nombre2 |
-| C – Elementos | Nombre3 | Nombre3 |
-| D – Formas de gestión | Nombre1 | Nombre1 |
-| E – Práctica (Atlas/Compass) | Nombre2 y Nombre3 | Ambos |
-| Presentación | Los tres | Los tres |
+Lo hemos hecho juntos
 
 ---
 
 ## 9. Bibliografía
 
-- Documentación oficial de MongoDB – https://www.mongodb.com/docs/
-- MongoDB Atlas – https://www.mongodb.com/atlas
-- MongoDB Compass – https://www.mongodb.com/products/tools/compass
-- Bases de datos de muestra de Atlas – https://www.mongodb.com/docs/atlas/sample-data/
-- Apuntes del módulo de Bases de Datos (campus virtual), Unidad UT7.
-
----
-
-> **Entrega:** comprimir en `RA7_nombre1_nombre2_nombre3.zip` este documento exportado a **PDF** + carpeta `capturas/` + (opcional) el `productos.json` exportado. El documento principal es el PDF.
+* **Documentación oficial de MongoDB:** https://www.mongodb.com/docs/
+* **MongoDB Atlas (Panel de control en la nube):** https://www.mongodb.com/atlas
+* **MongoDB Compass (Herramienta gráfica de escritorio):** https://www.mongodb.com/products/tools/compass
+* **Bases de datos de ejemplo de Atlas:** https://www.mongodb.com/docs/atlas/sample-data/
+* **Apuntes de Bases de Datos (Campus Virtual), Unidad de Aprendizaje 7 (UT7):** Gestión de bases de datos no relacionales.
+* **Asistente de Inteligencia Artificial integrado en MongoDB Compass** (usado para resolver dudas puntuales de sintaxis MQL durante las pruebas).
+* **Videotutorial de MongoDB para principiantes (conceptos y primeros pasos):** https://www.youtube.com/watch?v=nlOWsnO-d7Q&list=PLXXiznRYETLcJE_4U9qN2pysZOSYyL4Mh

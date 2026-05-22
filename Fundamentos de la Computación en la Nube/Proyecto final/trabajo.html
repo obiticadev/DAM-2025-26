@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Proyecto Final: Laboratorio Integrado AWS Academy</title>
+  <style>
+    /* Importación de tipografía de alta calidad */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    /* Estilos Base del Documento */
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #2d3748;
+      line-height: 1.65;
+      font-size: 11pt;
+      background-color: #ffffff;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Configuración de tamaño de página y márgenes para exportación a PDF */
+    @page {
+      size: A4;
+      margin: 25mm 20mm 25mm 20mm;
+    }
+
+    /* Estilo de la Portada (Cover Page) */
+    .cover-page {
+      height: 235mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 50px 40px;
+      box-sizing: border-box;
+      background: radial-gradient(circle at 10% 20%, rgba(26, 54, 93, 0.05) 0%, rgba(49, 130, 206, 0.02) 90%);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+      page-break-after: always;
+      break-after: page;
+      margin: 0 auto;
+    }
+
+    /* Efecto decorativo en la portada */
+    .cover-page::before {
+      content: "";
+      position: absolute;
+      top: -10%;
+      right: -10%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(49, 130, 206, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .cover-page::after {
+      content: "";
+      position: absolute;
+      bottom: -10%;
+      left: -10%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(26, 54, 93, 0.05) 0%, transparent 70%);
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .cover-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .cloud-logo {
+      font-size: 42pt;
+      margin-bottom: 10px;
+      filter: drop-shadow(0 4px 6px rgba(49, 130, 206, 0.2));
+    }
+
+    .aws-academy {
+      font-size: 11pt;
+      font-weight: 700;
+      color: #3182ce;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .cover-body {
+      text-align: center;
+      margin: auto 0;
+      z-index: 1;
+    }
+
+    .cover-title {
+      font-size: 24pt;
+      color: #1a365d;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 15px;
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
+      border: none !important;
+      padding: 0 !important;
+      text-align: center !important;
+    }
+
+    .cover-subtitle {
+      font-size: 13pt;
+      color: #4a5568;
+      font-weight: 400;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    .cover-accent-line {
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #3182ce, #2b6cb0);
+      margin: 25px auto 0 auto;
+      border-radius: 2px;
+    }
+
+    .cover-footer {
+      z-index: 1;
+      border-top: 1px solid rgba(226, 232, 240, 0.8);
+      padding-top: 30px;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px 30px;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .meta-label {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: #718096;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+
+    .meta-value {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: #2d3748;
+    }
+
+    /* Estilos de Encabezados */
+    h1 {
+      font-size: 22pt;
+      color: #1a365d;
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 8px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 3px solid #3182ce;
+      padding-bottom: 12px;
+    }
+
+    h2.practice-sub {
+      font-size: 13pt;
+      color: #4a5568;
+      text-align: center;
+      font-weight: 500;
+      margin-top: 0;
+      margin-bottom: 30px;
+      border: none;
+      padding-bottom: 0;
+    }
+
+    h2 {
+      font-size: 15pt;
+      color: #1a365d;
+      margin-top: 35px;
+      margin-bottom: 15px;
+      font-weight: 700;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 6px;
+      page-break-before: always;
+      break-before: page;
+    }
+
+    .no-break {
+      page-break-before: avoid !important;
+      break-before: avoid !important;
+    }
+
+    h3 {
+      font-size: 11.5pt;
+      color: #2b6cb0;
+      margin-top: 22px;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    p {
+      margin-bottom: 12px;
+      text-align: justify;
+    }
+
+    ul, ol {
+      margin-bottom: 12px;
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    /* Contenedor del Índice (TOC) */
+    .toc-page {
+      page-break-after: always;
+      break-after: page;
+    }
+
+    .toc-container {
+      background: #f7fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 25px;
+      margin: 10px 0;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+    }
+
+    .toc-title {
+      font-size: 13pt;
+      font-weight: 700;
+      color: #1a365d;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid #3182ce;
+      padding-bottom: 4px;
+      display: inline-block;
+    }
+
+    .toc-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+      column-count: 2;
+      column-gap: 30px;
+    }
+
+    .toc-item {
+      margin-bottom: 12px;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    .toc-item > a {
+      color: #1a365d;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 10pt;
+      display: block;
+    }
+
+    .toc-item > a:hover {
+      color: #3182ce;
+      text-decoration: underline;
+    }
+
+    .toc-sublist {
+      margin-left: 12px;
+      margin-top: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      border-left: 1px solid #e2e8f0;
+      padding-left: 8px;
+    }
+
+    .toc-sublist a {
+      color: #4a5568;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 8.5pt;
+      display: block;
+    }
+
+    .toc-sublist a:hover {
+      color: #3182ce;
+      text-decoration: underline;
+    }
+
+    .toc-number {
+      font-weight: 700;
+      color: #3182ce;
+      margin-right: 6px;
+    }
+
+    .toc-subnumber {
+      font-weight: 600;
+      color: #718096;
+      margin-right: 4px;
+    }
+
+    /* Enlace de retorno al índice */
+    .back-to-index-container {
+      text-align: right;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .back-to-index {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 8.5pt;
+      color: #3182ce;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(49, 130, 206, 0.05);
+      border: 1px solid rgba(49, 130, 206, 0.15);
+      transition: all 0.2s ease;
+    }
+
+    .back-to-index:hover {
+      background: rgba(49, 130, 206, 0.1);
+      border-color: rgba(49, 130, 206, 0.3);
+      text-decoration: none;
+    }
+
+    /* Tarjeta de Imagen Premium (Apple Glass) */
+    .image-card {
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      border-radius: 12px;
+      padding: 0;
+      margin: 25px auto;
+      box-shadow: 
+        0 8px 32px 0 rgba(31, 38, 135, 0.06),
+        0 4px 6px 0 rgba(0, 0, 0, 0.02),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+      max-width: 92%;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      overflow: hidden;
+      display: table;
+    }
+
+    .image-card img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border: none;
+      border-radius: 12px 12px 0 0;
+    }
+
+    .image-caption {
+      font-size: 8.5pt;
+      color: #4a5568;
+      background: rgba(247, 250, 252, 0.75);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      padding: 8px 15px;
+      margin: 0;
+      font-weight: 500;
+      line-height: 1.4;
+      border-top: 1px solid rgba(226, 232, 240, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    /* Estilos de Tabla */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    th {
+      background-color: #2b6cb0;
+      color: #ffffff;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 8.5pt;
+      letter-spacing: 0.5px;
+      border: 1px solid #2b6cb0;
+      padding: 10px 12px;
+    }
+
+    td {
+      border: 1px solid #e2e8f0;
+      padding: 8px 12px;
+      font-size: 9.5pt;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f7fafc;
+    }
+
+    /* Cajas de Respuestas Estilizadas (Blockquotes) */
+    blockquote {
+      background-color: #ebf8ff;
+      border-left: 4px solid #3182ce;
+      color: #2b6cb0;
+      margin: 12px 0 12px 20px;
+      padding: 10px 15px;
+      border-radius: 0 6px 6px 0;
+      font-style: normal;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    blockquote p {
+      margin: 0;
+      text-align: left;
+      font-weight: 500;
+      color: #2b6cb0;
+    }
+
+    blockquote ul {
+      margin: 5px 0 0 0;
+      padding-left: 15px;
+    }
+
+    blockquote li {
+      margin-bottom: 4px;
+      font-weight: 500;
+      color: #2b6cb0;
+    }
+
+    /* Bloques de Código */
+    pre {
+      background-color: #1a202c;
+      color: #edf2f7;
+      padding: 12px 15px;
+      border-radius: 6px;
+      border: 1px solid #2d3748;
+      overflow-x: auto;
+      font-size: 9pt;
+      margin: 15px 0;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    code {
+      font-family: 'JetBrains Mono', Consolas, Monaco, monospace;
+    }
+
+    /* Código en línea */
+    p code, li code {
+      background-color: #edf2f7;
+      color: #e53e3e;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 9pt;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PORTADA ACADÉMICA -->
+  <div class="cover-page">
+    <div class="cover-header">
+      <div class="cloud-logo">☁️</div>
+      <div class="aws-academy">AWS Academy Cloud Foundations</div>
+    </div>
+    <div class="cover-body">
+      <h1 class="cover-title">Proyecto Final: Laboratorio Integrado</h1>
+      <p class="cover-subtitle">Despliegue y análisis de una infraestructura cloud completa utilizando Amazon Web Services (AWS) Learner Lab</p>
+      <div class="cover-accent-line"></div>
+    </div>
+    <div class="cover-footer">
+      <div class="meta-grid">
+        <div class="meta-item">
+          <span class="meta-label">Estudiante</span>
+          <span class="meta-value">Oliver Bitica</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Asignatura</span>
+          <span class="meta-value">Fundamentos de la Computación en la Nube</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Estudios</span>
+          <span class="meta-value">Desarrollo de Aplicaciones Multiplataforma (DAM)</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Fecha de Entrega</span>
+          <span class="meta-value">Mayo, 2026</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÍNDICE DE CONTENIDOS -->
+  <div class="toc-page">
+    <div id="indice" class="toc-container">
+      <div class="toc-title">Índice de Contenidos</div>
+      <div class="toc-list">
+        
+        <div class="toc-item">
+          <a href="#escenario"><span class="toc-number">1.</span> Escenario</a>
+        </div>
+        
+        <div class="toc-item">
+          <a href="#preparacion"><span class="toc-number">2.</span> Preparación del entorno</a>
+        </div>
+        
+        <div class="toc-item">
+          <a href="#ec2"><span class="toc-number">3.</span> Creación de servidor EC2</a>
+        </div>
+        
+        <div class="toc-item">
+          <a href="#s3"><span class="toc-number">4.</span> Almacenamiento con S3</a>
+          <div class="toc-sublist">
+            <a href="#s3-ventajas"><span class="toc-subnumber">4.1.</span> Ventajas frente a disco local</a>
+            <a href="#s3-carpetas"><span class="toc-subnumber">4.2.</span> Planificación de carpetas</a>
+          </div>
+        </div>
+        
+        <div class="toc-item">
+          <a href="#vpc"><span class="toc-number">5.</span> Red y conectividad (VPC)</a>
+          <div class="toc-sublist">
+            <a href="#vpc-igw"><span class="toc-subnumber">5.1.</span> Función del Internet Gateway</a>
+            <a href="#vpc-ruta"><span class="toc-subnumber">5.2.</span> Eliminación de ruta IGW</a>
+            <a href="#vpc-subredes"><span class="toc-subnumber">5.3.</span> Subnets públicas vs privadas</a>
+          </div>
+        </div>
+        
+        <div class="toc-item">
+          <a href="#rds"><span class="toc-number">6.</span> Base de datos en RDS</a>
+          <div class="toc-sublist">
+            <a href="#rds-datos"><span class="toc-subnumber">6.1.</span> Datos a almacenar</a>
+            <a href="#rds-ventajas"><span class="toc-subnumber">6.2.</span> Ventajas de RDS vs MySQL manual</a>
+          </div>
+        </div>
+        
+        <div class="toc-item">
+          <a href="#cloudwatch"><span class="toc-number">7.</span> Monitorización (CloudWatch)</a>
+          <div class="toc-sublist">
+            <a href="#cloudwatch-fun"><span class="toc-subnumber">7.1.</span> Propósito de monitorizar</a>
+            <a href="#cloudwatch-det"><span class="toc-subnumber">7.2.</span> Diagnóstico de rendimiento</a>
+          </div>
+        </div>
+        
+        <div class="toc-item">
+          <a href="#escalabilidad"><span class="toc-number">8.</span> Escalabilidad y Disponibilidad</a>
+          <div class="toc-sublist">
+            <a href="#escalabilidad-app"><span class="toc-subnumber">8.1.</span> Plan de escalabilidad</a>
+            <a href="#escalabilidad-sat"><span class="toc-subnumber">8.2.</span> Saturación por volumen</a>
+            <a href="#escalabilidad-disp"><span class="toc-subnumber">8.3.</span> Estrategia de alta disponibilidad</a>
+          </div>
+        </div>
+        
+        <div class="toc-item">
+          <a href="#costes"><span class="toc-number">9.</span> Optimización de costes</a>
+          <div class="toc-sublist">
+            <a href="#costes-red"><span class="toc-subnumber">9.1.</span> Métodos de ahorro activo</a>
+            <a href="#costes-apag"><span class="toc-subnumber">9.2.</span> Recursos para apagar</a>
+          </div>
+        </div>
+        
+        <div class="toc-item">
+          <a href="#well-architected"><span class="toc-number">10.</span> Well-Architected Framework</a>
+          <div class="toc-sublist">
+            <a href="#wa-seg"><span class="toc-subnumber">10.1.</span> Pilar de Seguridad</a>
+            <a href="#wa-fia"><span class="toc-subnumber">10.2.</span> Pilar de Fiabilidad</a>
+            <a href="#wa-ren"><span class="toc-subnumber">10.3.</span> Pilar de Rendimiento</a>
+            <a href="#wa-cos"><span class="toc-subnumber">10.4.</span> Pilar de Optimización de Costes</a>
+            <a href="#wa-sos"><span class="toc-subnumber">10.5.</span> Pilar de Sostenibilidad</a>
+          </div>
+        </div>
+        
+        <div class="toc-item">
+          <a href="#cuestiones"><span class="toc-number">11.</span> Cuestiones finales</a>
+          <div class="toc-sublist">
+            <a href="#cue-aws"><span class="toc-subnumber">11.1.</span> Nube AWS vs Infraestructura Física</a>
+            <a href="#cue-img"><span class="toc-subnumber">11.2.</span> Almacenamiento a gran escala</a>
+            <a href="#cue-pro"><span class="toc-subnumber">11.3.</span> Protección de datos sensibles</a>
+            <a href="#cue-ec2"><span class="toc-subnumber">11.4.</span> Mitigación ante caída de EC2</a>
+            <a href="#cue-cre"><span class="toc-subnumber">11.5.</span> Planificación de crecimiento futuro</a>
+          </div>
+        </div>
+        
+        <div class="toc-item">
+          <a href="#limpieza"><span class="toc-number">12.</span> Limpieza del laboratorio</a>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- INTRODUCCIÓN Y CONTENIDO -->
+  <h1 class="no-break">LABORATORIO INTEGRADO AWS ACADEMY CLOUD FOUNDATIONS</h1>
+  <h2 class="no-break practice-sub">Práctica avanzada utilizando AWS Academy Learner Lab</h2>
+  
+  <p>En esta práctica el alumnado deberá desplegar y analizar una infraestructura cloud completa utilizando distintos servicios de AWS. La actividad está diseñada para repasar de forma práctica los contenidos de los módulos 1 al 10 de AWS Academy Cloud Foundations.</p>
+
+  <h3 class="no-break">Módulos y Conceptos Trabajados</h3>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 15%; text-align: center;">Módulo</th>
+        <th>Conceptos trabajados</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align: center;"><strong>1</strong></td>
+        <td>Introducción al Cloud Computing</td>
+      </tr>
+      <tr>
+        <td style="text-align: center;"><strong>2</strong></td>
+        <td>Beneficios y modelos cloud</td>
+      </tr>
+      <tr>
+        <td style="text-align: center;"><strong>3</strong></td>
+        <td>Infraestructura global AWS</td>
+      </tr>
+      <tr>
+        <td style="text-align: center;"><strong>4</strong></td>
+        <td>EC2 y computación</td>
+      </tr>
+      <tr>
+        <td style="text-align: center;"><strong>5</strong></td>
+        <td>VPC y networking</td>
+      </tr>
+      <tr>
+        <td style="text-align: center;"><strong>6</strong></td>
+        <td>S3 y almacenamiento</td>
+      </tr>
+      <tr>
+        <td style="text-align: center;"><strong>7</strong></td>
+        <td>Bases de datos y monitorización</td>
+      </tr>
+      <tr>
+        <td style="text-align: center;"><strong>8</strong></td>
+        <td>Seguridad y buenas prácticas</td>
+      </tr>
+      <tr>
+        <td style="text-align: center;"><strong>9</strong></td>
+        <td>Escalabilidad y alta disponibilidad</td>
+      </tr>
+      <tr>
+        <td style="text-align: center;"><strong>10</strong></td>
+        <td>Optimización de costes y arquitectura</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 30px 0;">
+
+  <!-- SECCIÓN 1 -->
+  <h2><a id="escenario"></a>1. Escenario</h2>
+  <p>La empresa ficticia <strong>TravelBook Cloud</strong> quiere desplegar una plataforma web para gestionar reservas de viajes. La empresa necesita:</p>
+  <ul>
+    <li>Un servidor web accesible desde Internet.</li>
+    <li>Almacenamiento para imágenes y documentos.</li>
+    <li>Monitorización del sistema.</li>
+    <li>Arquitectura preparada para crecer.</li>
+    <li>Uso eficiente de recursos cloud.</li>
+  </ul>
+  <div class="back-to-index-container"><a href="#indice" class="back-to-index">▲ Volver al Índice</a></div>
+
+  <!-- SECCIÓN 2 -->
+  <h2><a id="preparacion"></a>2. Preparación del entorno</h2>
+  <ol>
+    <li>Accede a AWS Academy Learner Lab.</li>
+    <li>Abre la consola de AWS.</li>
+    <li>Selecciona una región.</li>
+    <li>Familiarízate con EC2, VPC, S3, RDS y CloudWatch.</li>
+    <li>Identifica los servicios disponibles en el laboratorio.</li>
+  </ol>
+  <div class="image-card">
+    <img src="capturas/captura-01.png" alt="Consola de AWS Academy Learner Lab activa">
+    <div class="image-caption">Acceso al entorno de laboratorio de AWS Academy Learner Lab.</div>
+  </div>
+  <div class="back-to-index-container"><a href="#indice" class="back-to-index">▲ Volver al Índice</a></div>
+
+  <!-- SECCIÓN 3 -->
+  <h2><a id="ec2"></a>3. Creación del servidor web EC2</h2>
+  <ol>
+    <li>Accede al servicio EC2.</li>
+    <li>Pulsa <strong>Launch Instance</strong>.</li>
+    <li>Configura:
+      <ul>
+        <li><strong>Nombre:</strong> <code>travelbook-web</code></li>
+        <li><strong>AMI:</strong> Amazon Linux</li>
+        <li><strong>Tipo:</strong> <code>t2.micro</code></li>
+      </ul>
+    </li>
+    <li>Configura un Security Group:
+      <ul>
+        <li>HTTP (80)</li>
+        <li>HTTPS (443)</li>
+        <li>SSH (22)</li>
+      </ul>
+    </li>
+    <li>En <strong>User Data</strong> introduce:</li>
+  </ol>
+  <pre><code class="language-bash">#!/bin/bash
+yum update -y
+yum install httpd -y
+systemctl start httpd
+systemctl enable httpd
+echo "&lt;h1&gt;TravelBook Cloud&lt;/h1&gt;" &gt; /var/www/html/index.html
+echo "&lt;p&gt;Sistema de reservas desplegado en AWS&lt;/p&gt;" &gt;&gt; /var/www/html/index.html</code></pre>
+  <ol start="6">
+    <li>Lanza la instancia.</li>
+    <li>Espera a que el estado sea <strong>Running</strong>.</li>
+    <li>Copia la IP pública.</li>
+    <li>Accede desde el navegador y verifica el funcionamiento.</li>
+  </ol>
+  <div class="image-card">
+    <img src="capturas/captura-02.png" alt="Instancia EC2 en estado 'Running'">
+    <div class="image-caption">Instancia EC2 'travelbook-web' activa y mostrando sus detalles de red.</div>
+  </div>
+  <div class="image-card">
+    <img src="capturas/captura-03.png" alt="Navegador web accediendo a la IP pública">
+    <div class="image-caption">Servidor web respondiendo correctamente a través de la IP pública.</div>
+  </div>
+  <div class="back-to-index-container"><a href="#indice" class="back-to-index">▲ Volver al Índice</a></div>
+
+  <!-- SECCIÓN 4 -->
+  <h2><a id="s3"></a>4. Configuración de almacenamiento con Amazon S3</h2>
+  <ol>
+    <li>Accede al servicio Amazon S3.</li>
+    <li>Crea un bucket: <code>travelbook-images-tu-nombre</code>.</li>
+    <li>Mantén activado el bloqueo de acceso público.</li>
+    <li>Sube imágenes, PDF y HTML.</li>
+    <li>Crea carpetas dentro del bucket: <code>/imagenes</code>, <code>/clientes</code> y <code>/reservas</code>.</li>
+  </ol>
+  <div class="image-card">
+    <img src="capturas/captura-04.png" alt="Bucket de S3 creado y estructura de carpetas visibles">
+    <div class="image-caption">Estructura interna de directorios configurada dentro del bucket de Amazon S3.</div>
+  </div>
+  <ol start="6">
+    <li><strong>Explica:</strong>
+      <ul>
+        <li><a id="s3-ventajas"></a><strong>¿Qué ventajas tiene S3 frente a un disco local?</strong>
+          <blockquote>
+            <p><strong>Respuesta:</strong> Tiene espacio casi infinito para guardar archivos sin preocuparnos por comprar más discos duros físicos. Además, es mucho más seguro porque AWS replica los archivos para que no se pierdan si se rompe nuestro servidor.</p>
+          </blockquote>
+        </li>
+        <li><a id="s3-carpetas"></a><strong>¿Qué almacenaría la empresa en cada carpeta?</strong>
+          <blockquote>
+            <p><strong>Respuesta:</strong></p>
+            <ul>
+              <li><code>/imagenes</code>: Fotos de los destinos de viaje, hoteles y paisajes para la web.</li>
+              <li><code>/clientes</code>: Documentos importantes de los usuarios, como fotos de pasaportes o contratos.</li>
+              <li><code>/reservas</code>: PDFs con los billetes de avión, facturas o itinerarios generados automáticamente.</li>
+            </ul>
+          </blockquote>
+        </li>
+      </ul>
+    </li>
+  </ol>
+  <div class="back-to-index-container"><a href="#indice" class="back-to-index">▲ Volver al Índice</a></div>
+
+  <!-- SECCIÓN 5 -->
+  <h2><a id="vpc"></a>5. Red y conectividad (VPC)</h2>
+  <ol>
+    <li>Accede al servicio VPC.</li>
+    <li>Identifica VPC utilizada, subred pública, tabla de rutas, Internet Gateway y Network ACL.</li>
+    <li>Comprueba que existe una ruta: <code>0.0.0.0/0</code> &rarr; <strong>Internet Gateway</strong>.</li>
+  </ol>
+  <div class="image-card">
+    <img src="capturas/captura-05.png" alt="Tabla de rutas de la VPC">
+    <div class="image-caption">Configuración de la tabla de rutas que permite la comunicación exterior.</div>
+  </div>
+  <ol start="4">
+    <li><strong>Explica:</strong>
+      <ul>
+        <li><a id="vpc-igw"></a><strong>¿Qué función tiene el IGW?</strong>
+          <blockquote>
+            <p><strong>Respuesta:</strong> Funciona como una puerta de enlace o puente para conectar nuestra red virtual privada (VPC) con el internet público, permitiendo el tráfico de entrada y salida.</p>
+          </blockquote>
+        </li>
+        <li><a id="vpc-ruta"></a><strong>¿Qué ocurriría si se elimina esa ruta?</strong>
+          <blockquote>
+            <p><strong>Respuesta:</strong> Nuestro servidor web perdería la conexión con el exterior por completo. Nadie podría acceder a la página web desde sus casas y el servidor no podría descargar actualizaciones de internet.</p>
+          </blockquote>
+        </li>
+        <li><a id="vpc-subredes"></a><strong>Diferencia entre subnet pública y privada:</strong>
+          <blockquote>
+            <p><strong>Respuesta:</strong> La subred pública tiene una ruta directa a internet a través del Internet Gateway y sirve para alojar el servidor web. La subred privada está aislada de internet y se utiliza para bases de datos o servicios internos que no deben ser visibles desde fuera por seguridad.</p>
+          </blockquote>
+        </li>
+      </ul>
+    </li>
+  </ol>
+  <div class="back-to-index-container"><a href="#indice" class="back-to-index">▲ Volver al Índice</a></div>
+
+  <!-- SECCIÓN 6 -->
+  <h2><a id="rds"></a>6. Bases de datos en Amazon RDS</h2>
+  <ol>
+    <li>Accede a Amazon RDS e investiga motores disponibles, backups automáticos, Multi-AZ y Snapshots.</li>
+  </ol>
+  <div class="image-card">
+    <img src="capturas/captura-06.png" alt="Consola de Amazon RDS">
+    <div class="image-caption">Panel de control de RDS para la gestión de las bases de datos relacionales.</div>
+  </div>
+  <ol start="2">
+    <li><strong>Explica:</strong>
+      <ul>
+        <li><a id="rds-datos"></a><strong>¿Qué datos almacenaría la empresa en la base de datos?</strong>
+          <blockquote>
+            <p><strong>Respuesta:</strong> Datos de texto que cambian rápido y necesitan estar organizados en tablas, como los nombres de usuario, contraseñas, listados de hoteles disponibles, precios y los datos de las reservas de los clientes.</p>
+          </blockquote>
+        </li>
+        <li><a id="rds-ventajas"></a><strong>¿Qué ventajas tiene RDS frente a instalar MySQL manualmente?</strong>
+          <blockquote>
+            <p><strong>Respuesta:</strong> RDS nos quita mucho trabajo porque AWS se encarga de hacer las copias de seguridad automáticas, actualizar el software y gestionar la infraestructura. No tenemos que usar la terminal del servidor ni preocuparnos si MySQL se apaga de golpe.</p>
+          </blockquote>
+        </li>
+      </ul>
+    </li>
+  </ol>
+  <div class="back-to-index-container"><a href="#indice" class="back-to-index">▲ Volver al Índice</a></div>
+
+  <!-- SECCIÓN 7 -->
+  <h2><a id="cloudwatch"></a>7. Monitorización con CloudWatch</h2>
+  <ol>
+    <li>Accede a CloudWatch y consulta las métricas de CPU, Network In/Out y Status Check Failed.</li>
+    <li>Genera tráfico y comprueba los cambios de las métricas.</li>
+  </ol>
+  <div class="image-card">
+    <img src="capturas/captura-07.png" alt="Gráficos de CloudWatch">
+    <div class="image-caption">Visualización de las métricas de rendimiento tras interactuar con el servidor web.</div>
+  </div>
+  <ol start="3">
+    <li><strong>Explica:</strong>
+      <ul>
+        <li><a id="cloudwatch-fun"></a><strong>¿Para qué sirve la monitorización?</strong>
+          <blockquote>
+            <p><strong>Respuesta:</strong> Sirve para vigilar en tiempo real cómo está funcionando nuestra infraestructura cloud (uso de CPU, red, etc.) y asegurarnos de que el servidor no está saturado ni tiene problemas.</p>
+          </blockquote>
+        </li>
+        <li><a id="cloudwatch-det"></a><strong>¿Cómo detectarías problemas de rendimiento?</strong>
+          <blockquote>
+            <p><strong>Respuesta:</strong> Si vemos en los gráficos que la métrica de CPU está muy cerca del 100% de forma constante, o si el gráfico "Status Check Failed" sube a 1, significa que el servidor va lento o se ha colgado y no responde.</p>
+          </blockquote>
+        </li>
+      </ul>
+    </li>
+  </ol>
+  <div class="back-to-index-container"><a href="#indice" class="back-to-index">▲ Volver al Índice</a></div>
+
+  <!-- SECCIÓN 8 -->
+  <h2><a id="escalabilidad"></a>8. Escalabilidad y alta disponibilidad</h2>
+  <p>Investiga los siguientes servicios: Auto Scaling y Elastic Load Balancer.</p>
+  <p><strong>Explica:</strong></p>
+  <ul>
+    <li><a id="escalabilidad-app"></a><strong>¿Cómo escalarías la aplicación?</strong>
+      <blockquote>
+        <p><strong>Respuesta:</strong> Usaría Auto Scaling para que, de forma automática, se creen más copias de nuestro servidor web si el uso de la CPU sube mucho, y que se apaguen cuando vuelva la normalidad.</p>
+      </blockquote>
+    </li>
+    <li><a id="escalabilidad-sat"></a><strong>¿Qué ocurriría si aumenta mucho el número de usuarios?</strong>
+      <blockquote>
+        <p><strong>Respuesta:</strong> Si solo tenemos un servidor, la máquina no dará abasto para procesar todas las peticiones, la página web se volverá extremadamente lenta y al final el servidor web se caerá, dejando a todos sin servicio.</p>
+      </blockquote>
+    </li>
+    <li><a id="escalabilidad-disp"></a><strong>¿Cómo mejorarías la disponibilidad del sistema?</strong>
+      <blockquote>
+        <p><strong>Respuesta:</strong> Creando varios servidores web repartidos en diferentes zonas de disponibilidad físicas (centros de datos separados) y usando un balanceador de carga (ELB) para repartir el tráfico web entre ellos de forma equitativa.</p>
+      </blockquote>
+    </li>
+  </ul>
+  <div class="back-to-index-container"><a href="#indice" class="back-to-index">▲ Volver al Índice</a></div>
+
+  <!-- SECCIÓN 9 -->
+  <h2><a id="costes"></a>9. Optimización de costes</h2>
+  <ol>
+    <li>Accede a <strong>Billing Dashboard</strong> e investiga Free Tier, tipos de instancias y pago por uso.</li>
+  </ol>
+  <div class="image-card">
+    <img src="capturas/captura-08.png" alt="Billing Dashboard">
+    <div class="image-caption">Interfaz de facturación y control de presupuestos del entorno AWS.</div>
+  </div>
+  <ol start="2">
+    <li><strong>Explica:</strong>
+      <ul>
+        <li><a id="costes-red"></a><strong>¿Cómo reducirías costes?</strong>
+          <blockquote>
+            <p><strong>Respuesta:</strong> Usando tipos de instancia muy pequeños (como la t2.micro) que se ajusten a lo que necesitamos realmente, configurando alertas de gasto para que nos avise si nos pasamos del límite y borrando los recursos de prueba que ya no usemos.</p>
+          </blockquote>
+        </li>
+        <li><a id="costes-apag"></a><strong>¿Qué recursos apagarías cuando no se utilicen?</strong>
+          <blockquote>
+            <p><strong>Respuesta:</strong> Apagaría las instancias EC2 y de base de datos que usemos para hacer pruebas o desarrollo durante los fines de semana y las noches, que es cuando nadie trabaja en el proyecto.</p>
+          </blockquote>
+        </li>
+      </ul>
+    </li>
+  </ol>
+  <div class="back-to-index-container"><a href="#indice" class="back-to-index">▲ Volver al Índice</a></div>
+
+  <!-- SECCIÓN 10 -->
+  <h2><a id="well-architected"></a>10. Well-Architected Framework</h2>
+  <p>Relaciona la infraestructura creada con los pilares del marco de buena arquitectura:</p>
+  <ul>
+    <li><a id="wa-seg"></a><strong>Seguridad:</strong>
+      <blockquote>
+        <p><strong>Respuesta:</strong> Usamos Security Groups para abrir únicamente los puertos necesarios (80 para web y 22 para SSH) y mantener todos los demás cerrados para evitar ataques.</p>
+      </blockquote>
+    </li>
+    <li><a id="wa-fia"></a><strong>Fiabilidad:</strong>
+      <blockquote>
+        <p><strong>Respuesta:</strong> La base de datos en RDS y los archivos en S3 se guardan de forma muy segura y con copias automáticas, por lo que el sistema no perderá los datos importantes de los clientes ante un fallo de la web.</p>
+      </blockquote>
+    </li>
+    <li><a id="wa-ren"></a><strong>Rendimiento:</strong>
+      <blockquote>
+        <p><strong>Respuesta:</strong> Utilizamos recursos de computación eficientes como instancias EC2 adaptadas a la carga del proyecto de clase, dejando las imágenes pesadas fuera del servidor web guardándolas directamente en S3.</p>
+      </blockquote>
+    </li>
+    <li><a id="wa-cos"></a><strong>Optimización de costes:</strong>
+      <blockquote>
+        <p><strong>Respuesta:</strong> Solo pagamos por lo que consumimos segundo a segundo (pago por uso) y usamos la capa gratuita de AWS (Free Tier) con máquinas t2.micro para evitar gastos innecesarios durante las pruebas.</p>
+      </blockquote>
+    </li>
+    <li><a id="wa-sos"></a><strong>Sostenibilidad:</strong>
+      <blockquote>
+        <p><strong>Respuesta:</strong> Al usar la nube de AWS en lugar de tener servidores físicos encendidos en un cuarto propio, compartimos máquinas eficientes en centros de datos ecológicos, reduciendo el consumo total de electricidad.</p>
+      </blockquote>
+    </li>
+  </ul>
+  <div class="back-to-index-container"><a href="#indice" class="back-to-index">▲ Volver al Índice</a></div>
+
+  <!-- SECCIÓN 11 -->
+  <h2><a id="cuestiones"></a>11. Cuestiones finales</h2>
+  <p>Responde a las siguientes preguntas con base en el desarrollo de la práctica:</p>
+  <ul>
+    <li><a id="cue-aws"></a><strong>¿Qué ventajas ofrece AWS frente a infraestructura física?</strong>
+      <blockquote>
+        <p><strong>Respuesta:</strong> No tenemos que gastar dinero en comprar servidores físicos ni mantenerlos en una oficina. Podemos crear, apagar o modificar cualquier servidor en segundos con unos clics, pagando únicamente por el tiempo que esté encendido.</p>
+      </blockquote>
+    </li>
+    <li><a id="cue-img"></a><strong>¿Qué servicio usarías para almacenar millones de imágenes?</strong>
+      <blockquote>
+        <p><strong>Respuesta:</strong> Amazon S3, porque es el servicio idóneo para guardar archivos estáticos pesados, es baratísimo, muy seguro y escala automáticamente sin tener que gestionar discos duros.</p>
+      </blockquote>
+    </li>
+    <li><a id="cue-pro"></a><strong>¿Cómo protegerías los datos de clientes?</strong>
+      <blockquote>
+        <p><strong>Respuesta:</strong> Poniendo la base de datos de RDS dentro de una subred privada para que nadie pueda atacarla desde fuera de internet, y utilizando contraseñas fuertes junto con cifrado para proteger los archivos en S3.</p>
+      </blockquote>
+    </li>
+    <li><a id="cue-ec2"></a><strong>¿Qué ocurriría si la instancia EC2 deja de funcionar?</strong>
+      <blockquote>
+        <p><strong>Respuesta:</strong> La página web se caería al instante y los clientes no podrían hacer reservas, ya que actualmente solo tenemos una máquina encargada de hacer funcionar todo el servidor web.</p>
+      </blockquote>
+    </li>
+    <li><a id="cue-cre"></a><strong>¿Cómo podría crecer esta arquitectura en el futuro?</strong>
+      <blockquote>
+        <p><strong>Respuesta:</strong> Separando el servidor web de la base de datos, usando una base de datos RDS dedicada, y configurando un balanceador de carga con Auto Scaling para añadir automáticamente más servidores web cuando haya muchos clientes conectados a la vez.</p>
+      </blockquote>
+    </li>
+  </ul>
+  <div class="back-to-index-container"><a href="#indice" class="back-to-index">▲ Volver al Índice</a></div>
+
+  <!-- SECCIÓN 12 -->
+  <h2><a id="limpieza"></a>12. Limpieza del laboratorio</h2>
+  <p>Para evitar costes innecesarios, realiza las siguientes acciones de limpieza una vez finalizada la práctica:</p>
+  <ol>
+    <li>Termina la instancia EC2 creada (<code>travelbook-web</code>).</li>
+    <li>Elimina los buckets de S3 creados (<code>travelbook-images-tu-nombre</code>).</li>
+    <li>Elimina recursos adicionales generados durante el desarrollo.</li>
+  </ol>
+  <div class="image-card">
+    <img src="capturas/captura-09.png" alt="EC2 Eliminado">
+    <div class="image-caption">EC2 de travelbook-web eliminado de forma segura.</div>
+  </div>
+  <div class="image-card">
+    <img src="capturas/captura-10.png" alt="S3 vaciado">
+    <div class="image-caption">Bucket de S3 travelbook-images vaciado y eliminado.</div>
+  </div>
+  <div class="back-to-index-container"><a href="#indice" class="back-to-index">▲ Volver al Índice</a></div>
+
+</body>
+</html>
