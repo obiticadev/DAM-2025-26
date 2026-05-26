@@ -1,0 +1,53 @@
+============================================================
+ EJERCICIO 02.02 — Yank (copiar) y paste (pegar)
+ Teoría:   teoria/02_Edicion_Y_Operadores.md (secciones 4, 5)
+ Verifica: bash scripts/verificar.sh 02 02
+============================================================
+
+CHULETA
+-------
+  yy / Y → copia línea entera
+  yw / yaw / yiw → copia palabra
+  y$ → copia hasta fin de línea     2yy → copia 2 líneas
+  p → pega DESPUÉS / DEBAJO         P → pega ANTES / ENCIMA
+  dd luego p → mover una línea de sitio
+  ]p → pega ajustando indentación al contexto
+
+TODOS
+-----
+TODO 1 (con pista): Duplica la línea "DUPLICAME" — debe aparecer dos
+  veces, una tras otra. Pista: ponte en ella, 'yy', luego 'p'.
+
+TODO 2 (con pista): MUEVE la línea "MOVER_ARRIBA" para que quede
+  ENCIMA de la línea marcada "AQUI_VA". Pista: 'dd' sobre MOVER_ARRIBA,
+  navega a AQUI_VA, pulsa 'P' (mayúscula = encima).
+
+TODO 3 (con pista): Reordena el bloque DESORDEN para que las líneas
+  queden en este orden:
+    LISTA_A: primero
+    LISTA_B: segundo
+    LISTA_C: tercero
+    LISTA_D: cuarto
+  Pista: para cada línea fuera de su sitio, 'dd' + navega + 'p' o 'P'.
+
+TODO 4 (LIBRE): Copia exactamente la palabra "MOLDE" de la línea-M y
+  pégala en el hueco _____ de la línea-N para que quede "Aquí va el MOLDE."
+  Pista: 'yiw' sobre MOLDE; en la línea-N, navega al hueco, borra el
+  '_____' con 'daw' o 'diw' y pega con 'P' o 'p' según corresponda.
+
+TODO 5 (LIBRE): Guarda y sal.
+
+============================================================
+DUPLICAME
+MOVER_ARRIBA debe quedar encima de AQUI_VA
+relleno
+AQUI_VA - esta línea debe quedar JUSTO debajo de MOVER_ARRIBA
+
+DESORDEN
+LISTA_C: tercero
+LISTA_A: primero
+LISTA_D: cuarto
+LISTA_B: segundo
+
+línea-M: la palabra clave es MOLDE
+línea-N: Aquí va el _____.

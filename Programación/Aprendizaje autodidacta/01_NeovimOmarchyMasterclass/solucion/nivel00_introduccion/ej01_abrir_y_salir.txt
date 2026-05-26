@@ -1,0 +1,46 @@
+============================================================
+ EJERCICIO 00.01 — Abrir, identificar el modo, salir
+ Teoría:   teoria/00_Por_Que_Vim_Y_Omarchy.md (secciones 4 y 5)
+ Verifica: bash scripts/verificar.sh 00 01
+============================================================
+
+CHULETA DE COMANDOS PARA ESTE EJERCICIO
+---------------------------------------
+  Esc       → volver a modo Normal (siempre, ante la duda, Esc)
+  i         → entrar a modo Insert ANTES del carácter del cursor
+  a         → entrar a modo Insert DESPUÉS del carácter del cursor
+  :w<Enter> → guardar
+  :q<Enter> → salir
+  :wq<Enter>→ guardar y salir
+  :q!<Enter>→ salir descartando cambios (modo "huida de emergencia")
+
+TODOS DEL EJERCICIO
+-------------------
+TODO 1 (con pista): Identifica en qué modo estás al abrir este archivo.
+  Pista: cuando abres nvim siempre arrancas en modo Normal. Mira la
+  barra inferior. NO escribas nada todavía.
+
+TODO 2 (con pista): Pulsa 'i' una vez, luego escribe la letra 'X' al
+  azar, luego pulsa Esc. Observa que mientras estabas en Insert podías
+  escribir, y al pulsar Esc dejas de poder. Acto seguido, deshaz lo
+  que acabas de hacer pulsando 'u' (undo) en modo Normal.
+  El archivo debe quedar IDÉNTICO a como lo abriste, salvo lo que
+  cambies en los TODOs siguientes.
+
+TODO 3 (con pista): En la línea marcada con [EDITAME_AQUI] de abajo,
+  borra la palabra "ORIGINAL" y escribe en su lugar la palabra "CAMBIADO".
+  Sugerencia rápida: posiciónate sobre la 'O' de ORIGINAL con hjkl,
+  pulsa 'cw' para "change word" (esto borra la palabra y te mete en
+  Insert), escribe CAMBIADO, pulsa Esc.
+
+TODO 4 (LIBRE): Guarda el archivo y sal del editor con UN solo comando
+  de tres caracteres.
+
+Si te equivocas y quieres descartarlo todo: :q! (salir sin guardar).
+Si necesitas reiniciar el ejercicio: bash scripts/reset_ej.sh 00 01
+
+============================================================
+
+[EDITAME_AQUI] La palabra siguiente es CAMBIADO y debes cambiarla.
+
+Esta línea NO la toques. Vim te dejará en paz si tú la dejas en paz.

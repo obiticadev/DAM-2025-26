@@ -1,0 +1,54 @@
+============================================================
+ EJERCICIO 03.01 — Text objects: palabra, frase, párrafo
+ Teoría:   teoria/03_Text_Objects_Y_Visual.md (secciones 1, 2)
+ Verifica: bash scripts/verificar.sh 03 01
+============================================================
+
+CHULETA
+-------
+  iw / aw → inner word / a word (con espacio)
+  is / as → inner sentence / a sentence
+  ip / ap → inner paragraph / a paragraph (líneas en blanco delimitan)
+  d c y + cualquiera de los anteriores = combina
+
+TODOS
+-----
+TODO 1 (con pista): En la línea-A, borra la palabra "INTRUSA" con
+  'daw' (sin dejar doble espacio). Hazlo desde cualquier letra de
+  "INTRUSA", no hace falta estar al principio.
+
+TODO 2 (con pista): En la línea-B, cambia la palabra "verde" por
+  "rojo" usando 'ciw'. Pista: ciw funciona desde cualquier letra de
+  la palabra.
+
+TODO 3 (con pista): Borra el párrafo PARR_BORRAR completo con 'dap'
+  desde cualquier línea de ese párrafo.
+
+TODO 4 (LIBRE): Copia el párrafo PARR_COPIAR completo y pégalo al
+  final del archivo, dejando una línea en blanco entre PARR_COPIAR
+  original y la copia.
+
+TODO 5 (LIBRE): En la frase compuesta de la línea-F, borra solo la
+  segunda frase ("Esta sí.") sin tocar las otras dos.
+  Pista: ponte sobre cualquier letra de "Esta sí." y pulsa 'das'
+  (delete a sentence).
+
+TODO 6 (LIBRE): Guarda y sal.
+
+============================================================
+línea-A: Aquí hay una palabra en el medio.
+línea-B: El coche rojo está aparcado.
+
+PARR_COPIAR
+Este otro párrafo
+también ocupa varias
+líneas y se copia.
+
+línea-F: Esta no. Esta tampoco.
+
+(no toques esta línea final)
+
+PARR_COPIAR
+Este otro párrafo
+también ocupa varias
+líneas y se copia.

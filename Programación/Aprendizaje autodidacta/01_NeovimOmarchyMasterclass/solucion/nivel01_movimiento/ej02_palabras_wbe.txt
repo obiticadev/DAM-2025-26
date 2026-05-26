@@ -1,0 +1,47 @@
+============================================================
+ EJERCICIO 01.02 — Movimiento por palabras (w b e W B E)
+ Teoría:   teoria/01_Modos_Y_Navegacion.md (sección 3)
+ Verifica: bash scripts/verificar.sh 01 02
+============================================================
+
+OBJETIVO
+--------
+Saltar de palabra en palabra para llegar rápido a destinos lejanos
+dentro de una misma línea. Practica w/b/e y la diferencia W/B/E.
+
+CHULETA
+-------
+  w → inicio de la siguiente palabra
+  b → inicio de la palabra anterior
+  e → final de la palabra actual (o de la siguiente si ya estás al final)
+  W B E → igual, pero "WORDS" (separadas solo por espacios)
+  dw → BORRAR de aquí hasta el siguiente inicio de palabra
+  daw → "delete a word" (palabra + un espacio)
+  cw → CAMBIAR palabra (te mete en Insert)
+
+TODOS
+-----
+TODO 1 (con pista): En la línea-A, sustituye la palabra "manzana" por
+  "naranja". Pista: navega con 'w' hasta la 'm' de manzana, pulsa 'cw',
+  escribe "naranja", Esc.
+
+TODO 2 (con pista): En la línea-B, borra la palabra "innecesaria"
+  completa (sin dejar espacios sobrantes). Pista: navega con 'w' hasta
+  ella, pulsa 'daw' (delete a word: incluye el espacio).
+
+TODO 3 (con pista): En la línea-C, sustituye "rojo" por "azul" y
+  "pequeño" por "grande". Pista: pulsa 'w' las veces necesarias para
+  llegar a cada palabra; usa 'cw' para cambiarlas.
+
+TODO 4 (LIBRE): En la línea-D, deja únicamente las palabras "alpha",
+  "bravo" y "charlie" en ese orden separados por espacios. Borra
+  TODO lo demás (palabras y caracteres entre medias). Resultado exacto:
+  "alpha bravo charlie"
+
+TODO 5 (LIBRE): Guarda y sal con un solo comando.
+
+============================================================
+línea-A: Me gusta comer naranja cada mañana.
+línea-B: Esta es una frase de prueba para practicar.
+línea-C: El coche azul es grande pero rápido.
+línea-D: alpha bravo charlie

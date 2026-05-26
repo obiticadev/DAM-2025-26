@@ -1,0 +1,48 @@
+============================================================
+ EJERCICIO 02.01 — Borrado básico (x X dd dw daw diw D)
+ Teoría:   teoria/02_Edicion_Y_Operadores.md (sección 3)
+ Verifica: bash scripts/verificar.sh 02 01
+============================================================
+
+CHULETA
+-------
+  x     → borra carácter bajo cursor       X    → borra carácter previo (backspace)
+  dd    → borra línea entera               D    → borra desde cursor a fin de línea
+  dw    → borra hasta inicio de siguiente palabra
+  daw   → "delete a word" (incluye espacio adyacente)
+  diw   → "delete inner word" (palabra sin espacios)
+  3dd   → borra 3 líneas    5x → borra 5 caracteres    d$ = D
+
+TODOS
+-----
+TODO 1 (con pista): Borra entera la "línea-A" (incluida).
+  Pista: navega hasta ella y pulsa 'dd'.
+
+TODO 2 (con pista): En "línea-B", borra la palabra "BASURA" usando 'daw'
+  (debe quedar la frase sin esa palabra y SIN doble espacio).
+
+TODO 3 (con pista): En "línea-C", borra desde el cursor hasta fin de
+  línea: ponte sobre la 'X' de "XXXAQUI" y pulsa 'D'.
+
+TODO 4 (con pista): En "línea-D", borra de UN SOLO comando las 3
+  líneas siguientes (D1, D2, D3).
+  Pista: ponte en la D1 y pulsa '3dd'.
+
+TODO 5 (LIBRE): En el bloque LIMPIAR, elimina TODAS las líneas que
+  empiezan por "#" (son 4). Las demás líneas se conservan.
+
+TODO 6 (LIBRE): Guarda y sal.
+
+============================================================
+ANTES
+línea-B: Esta frase contiene innecesaria por aquí.
+línea-C: Mantén esto
+línea-D: borrar también este bloque de aquí
+DESPUES queda sólo esta línea de cierre.
+
+LIMPIAR
+mantener línea 1
+mantener línea 2
+mantener línea 3
+mantener línea 4
+mantener línea 5

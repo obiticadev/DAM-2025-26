@@ -1,0 +1,69 @@
+============================================================
+ EJERCICIO 03.04 — Visual bloque (Ctrl-V): edición rectangular
+ Teoría:   teoria/03_Text_Objects_Y_Visual.md (sección 4)
+ Verifica: bash scripts/verificar.sh 03 04
+============================================================
+
+CHULETA
+-------
+  Ctrl-V      → entra a Visual bloque (rectángulo)
+  Movimiento extiende el rectángulo: hjkl, w, $, etc.
+  I + texto + Esc → INSERTA 'texto' al INICIO de TODAS las líneas
+  A + texto + Esc → AÑADE 'texto' al FINAL de TODAS las líneas
+  d            → BORRA toda la caja
+  c            → CAMBIA toda la caja (borra y entra a Insert)
+  r{x}         → REEMPLAZA cada carácter de la caja por x
+  $ después de bajar → extiende hasta el fin de CADA línea
+
+  En Windows/algunas terminales Ctrl-V está ocupado por Pegar;
+  alternativa: Ctrl-Q (configurado en Omarchy/LazyVim).
+
+TODOS
+-----
+TODO 1 (con pista): En el bloque PREFIJO, añade al INICIO de cada línea
+  el prefijo "// ". Pista:
+    1) Ponte en la primera columna de PREFIJO_1.
+    2) Pulsa Ctrl-V (o Ctrl-Q).
+    3) Pulsa '3j' (baja 3 líneas; quedan 4 seleccionadas en columna 1).
+    4) Pulsa 'I', escribe '// ' (slash-slash-espacio), Esc.
+  Espera 1 segundo después de Esc — la inserción se replica en TODAS.
+
+TODO 2 (con pista): En el bloque SUFIJO, añade al FINAL de cada línea
+  " // FIN". Pista:
+    1) Ponte en la primera columna de SUFIJO_1.
+    2) Ctrl-V (o Ctrl-Q) + '3j' + '$' (selecciona hasta fin de cada).
+    3) 'A', escribe ' // FIN', Esc.
+
+TODO 3 (con pista): En el bloque BORRAR_COL, borra la columna de "X"
+  (la primera columna no-blanca). Pista: Ctrl-V sobre la 'X' superior,
+  '3j' (baja 3), 'd'.
+
+TODO 4 (LIBRE): En el bloque REEMPLAZAR_CAJA, reemplaza la caja
+  rectangular de 3×3 'A's por 'B's. Pista: Ctrl-V, extiende 2j 2l,
+  'r' y luego 'B'.
+
+TODO 5 (LIBRE): Guarda y sal.
+
+============================================================
+PREFIJO
+PREFIJO_1
+PREFIJO_2
+PREFIJO_3
+PREFIJO_4
+
+SUFIJO
+SUFIJO_1
+SUFIJO_2
+SUFIJO_3
+SUFIJO_4
+
+BORRAR_COL
+Xfoo
+Xbar
+Xbaz
+Xqux
+
+REEMPLAZAR_CAJA
+AAA xxx
+AAA xxx
+AAA xxx

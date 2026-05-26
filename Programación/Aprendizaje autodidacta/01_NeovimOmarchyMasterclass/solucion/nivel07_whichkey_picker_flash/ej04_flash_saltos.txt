@@ -1,0 +1,50 @@
+============================================================
+ EJERCICIO 07.04 — Flash.nvim: saltos visuales rapidísimos
+ Teoría:   teoria/07_WhichKey_Picker_Flash.md (sección 5)
+ Verifica: bash scripts/verificar.sh 07 04
+============================================================
+
+CHULETA
+-------
+  s    flash adelante (jump labels)
+  S    flash treesitter (selecciona NODOS sintácticos)
+  En modo operator (después de d, c, y):
+    r  remote flash      R  treesitter remote
+  Tras pulsar s, ESCRIBE 2-3 letras y luego LA ETIQUETA que aparece.
+
+  Si Omarchy/LazyVim no tiene 's' configurado, prueba ',' o el atajo
+  configurado en tu instalación. Comprueba en :WhichKey s.
+
+TODOS
+-----
+TODO 1 (con pista): Salta desde la primera línea de este archivo hasta
+  la palabra "OBJETIVO_A" de abajo usando flash.
+  Pista: pulsa 's', escribe "OB" — verás etiquetas sobre cada coincidencia
+  de "OB" (probablemente solo OBJETIVO_A). Pulsa la etiqueta. Una vez ahí,
+  borra la palabra "OBJETIVO_A" con 'daw' y escribe en su lugar "LLEGUE".
+
+TODO 2 (con pista): Salta a "OBJETIVO_B" con flash y reemplaza por
+  "LLEGUE_B" (usa 'cw' o 'caw').
+
+TODO 3 (con pista): Salta a "OBJETIVO_C" con flash y reemplaza por
+  "LLEGUE_C".
+
+TODO 4 (LIBRE): Salta a "OBJETIVO_D" y reemplaza por "LLEGUE_D" usando
+  flash como prefieras. Si flash no funciona en tu config, usa /OB +
+  /OBJ + n para navegar.
+
+TODO 5 (LIBRE): Guarda y sal.
+
+============================================================
+relleno relleno relleno relleno relleno relleno relleno relleno
+relleno relleno relleno relleno relleno relleno relleno relleno
+relleno relleno LLEGUE relleno relleno relleno relleno relleno
+relleno relleno relleno relleno relleno relleno relleno relleno
+relleno relleno relleno relleno relleno relleno relleno relleno
+relleno relleno LLEGUE_B relleno relleno relleno relleno relleno
+relleno relleno relleno relleno relleno relleno relleno relleno
+relleno relleno relleno relleno relleno relleno relleno relleno
+relleno relleno LLEGUE_C relleno relleno relleno relleno relleno
+relleno relleno relleno relleno relleno relleno relleno relleno
+relleno relleno relleno relleno relleno relleno relleno relleno
+relleno relleno LLEGUE_D relleno relleno relleno relleno relleno

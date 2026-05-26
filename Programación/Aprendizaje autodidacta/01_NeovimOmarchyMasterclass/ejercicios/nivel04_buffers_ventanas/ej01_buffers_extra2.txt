@@ -1,0 +1,3 @@
+Línea 1 del extra2.
+Sustituye aquí: RELLENO_2
+Línea 3 del extra2.

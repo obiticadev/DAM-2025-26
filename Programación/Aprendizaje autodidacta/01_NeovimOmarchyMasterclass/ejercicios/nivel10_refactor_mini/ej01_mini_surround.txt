@@ -1,0 +1,42 @@
+============================================================
+ EJERCICIO 10.01 — mini.surround: delimitadores ágiles
+ Teoría:   teoria/10_Refactor_Mini_Conform_GrugFar.md (sección 2)
+ Verifica: bash scripts/verificar.sh 10 01
+============================================================
+
+CHULETA
+-------
+  gsaiw"  → rodea la palabra con "..."
+  gsa{movimiento}{delim}  → add surround
+  gsd"   → quita las " de alrededor (delete)
+  gsr"'  → cambia " por ' (replace)
+  gsr({  → cambia ( por { (replace)
+
+  Si en tu config los atajos son distintos (algunos LazyVim usan 'sa', 'sd', 'sr'),
+  comprueba con :WhichKey gs (o :WhichKey s).
+
+TODOS
+-----
+TODO 1 (con pista): En la línea-A, rodea la palabra "hola" con comillas
+  DOBLES. Pista: ponte sobre 'hola', pulsa gsa, luego iw, luego ". El
+  resultado debe ser:  Saluda: "hola" amigo
+
+TODO 2 (con pista): En la línea-B, cambia los apóstrofes (simples) por
+  comillas dobles. Pista: ponte DENTRO de las comillas y pulsa gsr'".
+  Resultado:  Texto entre "comillas"
+
+TODO 3 (con pista): En la línea-C, quita los paréntesis (no el contenido).
+  Pista: ponte dentro de los paréntesis y pulsa gsd(.
+  Resultado:  resultado = sumar 1, 2
+
+TODO 4 (LIBRE): En la línea-D, sustituye las llaves {} por corchetes [].
+  Pista: gsr{[.
+  Resultado:  array = [1, 2, 3]
+
+TODO 5 (LIBRE): Guarda y sal.
+
+============================================================
+línea-A: Saluda: hola amigo
+línea-B: Texto entre 'comillas'
+línea-C: resultado = (sumar 1, 2)
+línea-D: array = {1, 2, 3}

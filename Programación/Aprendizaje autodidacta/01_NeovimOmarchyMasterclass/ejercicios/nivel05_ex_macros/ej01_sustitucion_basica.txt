@@ -1,0 +1,97 @@
+============================================================
+ EJERCICIO 05.01 — Sustitución con :s y :%s
+ Teoría:   teoria/05_Ex_Macros_Y_Marks.md (secciones 2, 3)
+ Verifica: bash scripts/verificar.sh 05 01
+============================================================
+
+CHULETA
+-------
+  :s/foo/bar/        primera 'foo' de esta línea
+  :s/foo/bar/g       todas en la línea
+  :%s/foo/bar/g      todas en TODO el archivo
+  :%s/foo/bar/gc     idem con confirmación (y/n/a/q/l)
+  :%s/foo/bar/gi     ignorar mayúsculas
+  :%s/\<foo\>/bar/g  solo palabra completa
+
+TODOS
+-----
+TODO 1 (con pista): En el bloque BLOQUE_A, reemplaza TODAS las
+  apariciones de "perro" por "gato" en TODO el archivo.
+  Pista: ':%s/perro/gato/g'.
+
+TODO 2 (con pista): En el bloque BLOQUE_B, hay líneas que mezclan
+  "FOO" y "FOOBAR". Reemplaza SÓLO la palabra completa "FOO" por "ZZZ"
+  (sin tocar "FOOBAR"). Pista: ':%s/\<FOO\>/ZZZ/g'.
+
+TODO 3 (con pista): En el bloque BLOQUE_C, hay 'MIX', 'mix', 'Mix'.
+  Reemplázalos TODOS por 'cap' usando una sustitución INSENSIBLE a
+  mayúsculas. Pista: ':%s/mix/cap/gi'.
+
+TODO 4 (LIBRE): Limita un cambio a un rango concreto: en las líneas
+  60-65 (el bloque RANGO), reemplaza "marca" por "ok" SOLO ahí.
+  Pista: ':60,65s/marca/ok/g'.
+  Nota: las líneas 60-65 son las marcadas con `RANGO_x`. Si no caen
+  exactamente, ajusta el rango — el verificador comprueba el contenido.
+
+TODO 5 (LIBRE): Guarda y sal.
+
+============================================================
+BLOQUE_A
+El perro ladra. El otro perro también.
+Hay un perro en cada rincón. Perro grande, perro pequeño.
+
+BLOQUE_B
+FOO solo
+FOOBAR no se toca
+otro FOO suelto
+texto FOOBAR final
+último FOO
+
+BLOQUE_C
+Aquí va MIX uno
+luego mix dos
+y Mix tres
+final MIX cuatro
+
+Relleno línea 25
+Relleno línea 26
+Relleno línea 27
+Relleno línea 28
+Relleno línea 29
+Relleno línea 30
+Relleno línea 31
+Relleno línea 32
+Relleno línea 33
+Relleno línea 34
+Relleno línea 35
+Relleno línea 36
+Relleno línea 37
+Relleno línea 38
+Relleno línea 39
+Relleno línea 40
+Relleno línea 41
+Relleno línea 42
+Relleno línea 43
+Relleno línea 44
+Relleno línea 45
+Relleno línea 46
+Relleno línea 47
+Relleno línea 48
+Relleno línea 49
+Relleno línea 50
+Relleno línea 51
+Relleno línea 52
+Relleno línea 53
+Relleno línea 54
+Relleno línea 55
+Relleno línea 56
+Relleno línea 57
+Relleno línea 58
+Relleno línea 59
+RANGO_1 marca aquí
+RANGO_2 marca aquí
+RANGO_3 marca aquí
+RANGO_4 marca aquí
+RANGO_5 marca aquí
+RANGO_6 marca aquí
+FUERA marca aquí (NO debe cambiarse)

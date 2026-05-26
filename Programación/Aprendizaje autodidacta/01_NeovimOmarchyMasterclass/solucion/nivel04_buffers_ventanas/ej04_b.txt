@@ -1,0 +1,2 @@
+Archivo B.
+Sustituye: OK_B

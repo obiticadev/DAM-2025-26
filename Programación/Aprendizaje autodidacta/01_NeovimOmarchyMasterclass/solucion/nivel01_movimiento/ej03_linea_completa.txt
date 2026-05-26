@@ -1,0 +1,53 @@
+============================================================
+ EJERCICIO 01.03 — Inicio/fin de línea y salto entre líneas
+ Teoría:   teoria/01_Modos_Y_Navegacion.md (secciones 4, 5)
+ Verifica: bash scripts/verificar.sh 01 03
+============================================================
+
+OBJETIVO
+--------
+Moverte rápido al inicio/fin de línea y entre líneas concretas del
+archivo. Esto es crítico para no perder tiempo cuando el archivo
+crece.
+
+CHULETA
+-------
+  0  → primera columna (incluye indentación)
+  ^  → primer carácter NO blanco de la línea
+  $  → último carácter de la línea
+  g_ → último carácter NO blanco de la línea
+  gg → primera línea del archivo
+  G  → última línea del archivo
+  {n}G  o  :{n}  → línea número n
+  Ctrl-d / Ctrl-u → media pantalla abajo / arriba
+
+TODOS
+-----
+TODO 1 (con pista): Sal directamente a la línea 30 con ':30' (o '30G').
+  Allí encontrarás la palabra TRAMPA. Bórrala completa con 'daw'.
+
+TODO 2 (con pista): Vuelve al inicio del archivo con 'gg'. La primera
+  línea de contenido (la 25, después de la cabecera) tiene un espacio
+  extra al final. Llega al fin de línea con '$' y borra ese espacio con 'x'.
+  Pista: estar EN el último carácter y pulsar 'x' borra ese carácter.
+
+TODO 3 (con pista): En la línea 26, añade un punto '.' al FINAL.
+  Pista: usa 'A' para entrar en Insert al final de línea.
+
+TODO 4 (con pista): En la línea 27, la palabra "AQUI" está al inicio
+  precedida de espacios. Sin tocar los espacios, sustituye AQUI por
+  "OK". Pista: usa '^' para saltar al primer no-blanco y luego 'cw'.
+
+TODO 5 (LIBRE): Ve a la ÚLTIMA línea del archivo con 'G' y reemplaza
+  la palabra "FIN" por "TERMINADO".
+
+TODO 6 (LIBRE): Guarda y sal.
+
+============================================================
+Esta linea sin espacio extra al final
+Esta linea sin punto al final.
+    OK esta es la línea con indentación
+Esta línea queda como está.
+Esta línea queda como está.
+Esta línea contiene la palabra que hay que borrar.
+Y aquí va la palabra TERMINADO.

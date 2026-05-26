@@ -1,0 +1,2 @@
+Archivo secundario para integrador 11.05.
+Sustituye: EJ05_SEC_PENDIENTE

@@ -1,0 +1,49 @@
+============================================================
+ EJERCICIO 02.03 — Registros: el portapapeles múltiple
+ Teoría:   teoria/02_Edicion_Y_Operadores.md (sección 6)
+ Verifica: bash scripts/verificar.sh 02 03
+============================================================
+
+CHULETA
+-------
+  "ayy   → copia esta línea al registro 'a'
+  "Ayy   → AÑADE esta línea al registro 'a' (mayúscula = append)
+  "ap    → pega el contenido del registro 'a' debajo
+  "0p    → pega lo último que yankeaste (no se sobrescribe con dd)
+  "+y    → copia al portapapeles del sistema operativo
+  "+p    → pega del portapapeles del sistema operativo
+  :reg   → ver todos los registros activos
+  :reg a → ver SOLO el registro 'a'
+
+TODOS
+-----
+TODO 1 (con pista): Copia la línea "ORIGEN_A" al registro 'a'.
+  Pista: ponte en ella y pulsa "ayy (comilla, a, y, y).
+
+TODO 2 (con pista): Copia la línea "ORIGEN_B" al registro 'b'.
+
+TODO 3 (con pista): Borra la línea "BASURA_INTERMEDIA" (esto SOBREScribe
+  el registro " sin nombre, pero NO toca 'a' ni 'b').
+
+TODO 4 (con pista): Bajo la línea "DESTINO", pega primero el registro
+  'b' y luego el registro 'a' — en ese orden. Pista: navega a DESTINO,
+  pulsa "bp, luego pulsa "ap. Deberían quedar las líneas:
+    DESTINO
+    ORIGEN_B contenido B
+    ORIGEN_A contenido A
+
+TODO 5 (LIBRE): Comprueba que el registro 0 (el del último yank) sigue
+  conteniendo "ORIGEN_B" — ejecuta ':reg 0' (no modifica nada). Luego
+  pega ese registro 0 al final del archivo: navega a la última línea
+  y pulsa "0p.
+
+TODO 6 (LIBRE): Guarda y sal.
+
+============================================================
+ORIGEN_A contenido A
+ORIGEN_B contenido B
+DESTINO
+ORIGEN_B contenido B
+ORIGEN_A contenido A
+ÚLTIMA línea original del archivo.
+ORIGEN_B contenido B

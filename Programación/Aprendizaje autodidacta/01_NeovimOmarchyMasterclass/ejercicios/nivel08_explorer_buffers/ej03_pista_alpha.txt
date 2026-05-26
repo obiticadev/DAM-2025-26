@@ -1,0 +1,2 @@
+Pista alpha
+Sustituye: RELLENO_ALPHA

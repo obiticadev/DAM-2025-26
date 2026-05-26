@@ -1,0 +1,65 @@
+============================================================
+ EJERCICIO 05.02 — Rangos y comando global :g / :v
+ Teoría:   teoria/05_Ex_Macros_Y_Marks.md (secciones 3, 4)
+ Verifica: bash scripts/verificar.sh 05 02
+============================================================
+
+CHULETA
+-------
+  :g/patrón/comando    ejecuta 'comando' en cada línea que matchea
+  :v/patrón/comando    en cada línea que NO matchea
+  :g/^$/d              borra todas las líneas vacías
+  :g/TODO/d            borra todas las líneas que contienen TODO
+  :v/keep/d            borra todas las que NO contienen 'keep'
+  :5,15d               borra líneas 5-15
+  :%d                  borra TODO el archivo
+
+TODOS
+-----
+TODO 1 (con pista): Borra TODAS las líneas que empiezan por '#'
+  (son comentarios). Pista: ':g/^#/d'.
+  Nota: '^' significa "inicio de línea" en regex.
+
+TODO 2 (con pista): Borra TODAS las líneas vacías del archivo.
+  Pista: ':g/^$/d'.
+
+TODO 3 (con pista): En el bloque MANTEN, borra todas las líneas que
+  NO contengan la palabra "keep" — solo se quedan las que sí.
+  Pista: ':v/keep/d' aplicada al archivo entero borraría también líneas
+  de fuera del bloque. Para limitar al bloque, primero verifica las
+  líneas en las que está MANTEN (usa ':set number' si quieres ver
+  números) y aplica un rango: ':NNN,MMMv/keep/d' donde NNN-MMM es el
+  rango del bloque.
+
+TODO 4 (LIBRE): En el bloque CONTAR (al final), CUENTA cuántas líneas
+  contienen "match" con ':%s/match//gn' — esta sustitución con flag 'n'
+  NO modifica, sólo cuenta. El verificador NO cambia el archivo por
+  este TODO; sólo lo ejecutas para practicar.
+
+TODO 5 (LIBRE): Guarda y sal.
+
+============================================================
+# este comentario debe desaparecer
+línea útil 1
+# otro comentario
+línea útil 2
+
+# comentario en bloque vacío
+
+línea útil 3
+
+MANTEN
+linea sin keep aquí
+otra línea sin keep
+esta sí tiene keep ok
+otra más sin keep
+final con keep aquí
+FIN_MANTEN
+
+CONTAR
+match uno
+no aquí
+match dos
+match tres
+nada
+match cuatro
