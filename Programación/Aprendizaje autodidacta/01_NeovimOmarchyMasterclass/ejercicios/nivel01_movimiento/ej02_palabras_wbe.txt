@@ -44,4 +44,4 @@ TODO 5 (LIBRE): Guarda y sal con un solo comando.
 línea-A: Me gusta comer naranja cada mañana.
 línea-B: Esta es una frase de prueba para practicar.
 línea-C: El coche azul es grande pero rápido.
-línea-D: alpha
+línea-D: alpha, bravo, charlie
