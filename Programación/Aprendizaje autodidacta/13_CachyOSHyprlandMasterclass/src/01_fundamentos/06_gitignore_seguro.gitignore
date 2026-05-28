@@ -1,0 +1,204 @@
+# =============================================================================
+# Ejercicio 06 — .gitignore robusto para ~/.config
+# -----------------------------------------------------------------------------
+# Objetivo: ampliar tu .gitignore actual (ya excelente) para cubrir todos
+# los casos que aparecerán cuando integres waybar, swww, cliphist, mako,
+# hyprlock cache, etc., y para asegurarte de NO subir tokens nunca.
+#
+# Cuando esté completo, REEMPLAZA tu ~/.config/.gitignore con este archivo.
+#
+# Referencia teórica: teoria/01_Fundamentos.md  §1.2 y §5.4
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# SECCIÓN A — NAVEGADORES Y PERFILES (ya lo tienes, mantén)
+# -----------------------------------------------------------------------------
+mozilla/
+chromium/
+google-chrome/
+BraveSoftware/
+
+# TODO 01: añade dos más que probablemente uses o uses en el futuro:
+#            - vivaldi/   (Vivaldi browser)
+#            - opera/     (Opera, mismo motivo)
+#          Por qué: cualquier perfil de navegador trae cookies, history,
+#                   passwords cifradas, y archivos binarios que cambian a
+#                   cada pestaña. Cero valor versionarlos.
+
+
+
+# -----------------------------------------------------------------------------
+# SECCIÓN B — RUNTIME / SESIÓN EFÍMERA (ya lo tienes)
+# -----------------------------------------------------------------------------
+pulse/
+session/
+*.lock
+*.pid
+*.sock
+*.socket
+
+# TODO 02: añade el patrón `**/runtime/` (waybar y swww escriben estado
+#          en subdirectorios runtime/) y el patrón `*.tmp`.
+
+
+
+# -----------------------------------------------------------------------------
+# SECCIÓN C — BASES DE DATOS BINARIAS Y CACHÉS (ya lo tienes)
+# -----------------------------------------------------------------------------
+dconf/
+pnpm/
+
+# TODO 03: añade los siguientes que aparecerán al crecer:
+#            - cliphist/        (historial de portapapeles binario)
+#            - swww/            (estado del wallpaper daemon)
+#            - waybar/.cache/   (caches internos de waybar)
+#            - nix/             (si alguna vez instalas Nix)
+#            - libvirt/         (si usas VMs)
+#          Por qué: todos generan archivos binarios que cambian solos.
+
+
+
+# -----------------------------------------------------------------------------
+# SECCIÓN D — INPUT METHODS (ya lo tienes)
+# -----------------------------------------------------------------------------
+fcitx/
+ibus/
+fcitx5/conf/cached_layouts
+
+# TODO 04: el patrón actual mete `fcitx/` entero, lo cual está bien pero
+#          si más adelante quisieras versionar TU config de fcitx5
+#          (`fcitx5/conf/profile`, `fcitx5/config`), tendrías que
+#          excluir solo subdirs. Añade estas reglas más finas
+#          (las dejas COMENTADAS por ahora; las activas si lo necesitas):
+#
+#              # !fcitx5/                          # un día: dejar de ignorar todo
+#              # fcitx5/conf/cached_layouts/
+#              # fcitx5/data/
+#              # fcitx5/runtime/
+#
+#          Es válido tenerlas comentadas — son "anclas mentales" para tu
+#          yo del futuro.
+
+
+
+# -----------------------------------------------------------------------------
+# SECCIÓN E — CACHÉS GENÉRICAS (ya lo tienes)
+# -----------------------------------------------------------------------------
+*/Cache/
+*/cache/
+*/Cache2/
+*/CachedData/
+*/GPUCache/
+*/Code\ Cache/
+*/ShaderCache/
+*/blob_storage/
+*/Service\ Worker/
+*/IndexedDB/
+*/Local\ Storage/
+
+# TODO 05: tu patrón actual no escapa el espacio de "Code Cache" — git lo
+#          interpreta como dos tokens. Reescribe esa línea como:
+#              */Code\ Cache/
+#          (con backslash-space). Igual para "Service Worker", "Local Storage".
+#          Por qué: sin escapar, el patrón no matchea (Electron crea
+#          literalmente "Code Cache" con espacio).
+
+
+
+# -----------------------------------------------------------------------------
+# SECCIÓN F — CREDENCIALES Y SECRETOS (ya lo tienes — esto es CRÍTICO)
+# -----------------------------------------------------------------------------
+gh/hosts.yml
+**/token*
+**/credentials*
+**/auth.json
+**/secret*
+.env
+.env.*
+
+# TODO 06: refuerza con tres patrones más, todos ellos casos reales:
+#            - **/*.key                  (claves SSH/SSL que se cuelan)
+#            - **/*.pem
+#            - **/api_key*
+#            - **/*_token*
+#            - **/private*
+#          Por qué: un token de GitHub leakeado en git público se
+#                   detecta en minutos por bots; el daño es real.
+
+
+
+# -----------------------------------------------------------------------------
+# SECCIÓN G — LOGS (ya lo tienes)
+# -----------------------------------------------------------------------------
+*.log
+**/logs/
+
+# TODO 07: añade `*.log.*` (logs rotados con .gz/.1/.2) y `**/Logs/`
+#          (MAYÚSCULA — algunas apps Electron crean carpeta "Logs/").
+
+
+
+# -----------------------------------------------------------------------------
+# SECCIÓN H — HISTORIAL Y ESTADO EFÍMERO (ya lo tienes)
+# -----------------------------------------------------------------------------
+fish/fish_history
+fish/fishd.*
+**/history
+**/recently-used*
+
+# TODO 08: añade `**/places.sqlite*` (Firefox histories), `**/Cookies*`,
+#          `**/Web\ Data*`, `**/Login\ Data*` (Chrome-family).
+#          Aunque ya excluyes los navegadores entreos, esto cubre el
+#          caso de que algún día decidas versionar una parte selectiva.
+
+
+
+# -----------------------------------------------------------------------------
+# SECCIÓN I — EDITORES (ya lo tienes)
+# -----------------------------------------------------------------------------
+*.swp
+*.swo
+*~
+.DS_Store
+
+# TODO 09: añade `.vscode/`, `.idea/`, `.nvim_swap/`, y `.netrwhist`.
+#          Por qué: cuando edites tu config con vscode o nvim, no quieres
+#                   versionar sus archivos de proyecto/swap.
+
+
+
+# -----------------------------------------------------------------------------
+# SECCIÓN J — REGLA DE ORO: lo que NO está documentado, está ignorado
+# -----------------------------------------------------------------------------
+
+# TODO 10: añade un comentario explicando la política, y dos negaciones
+#          explícitas para los archivos clave que SÍ quieres versionar
+#          aunque caigan en patrones genéricos (no es tu caso ahora, pero
+#          deja preparado para el futuro):
+#
+#              # !hypr/scripts/important.fish
+#              # !waybar/style.css
+#
+#          (déjalas comentadas — son docs en forma de regla)
+
+
+# =============================================================================
+# Zona de Ejecución Master
+# -----------------------------------------------------------------------------
+# Local:
+#     bats tests/01_fundamentos/06_gitignore_seguro.bats
+#
+# En tu máquina, una vez aprobado:
+#     cp 13_CachyOSHyprlandMasterclass/src/01_fundamentos/06_gitignore_seguro.gitignore \
+#        ~/.config/.gitignore
+#     cd ~/.config
+#     git status                           # comprueba que no aparecen
+#                                          # archivos que antes sí salían
+#     git add .gitignore
+#     git commit -m "chore(gitignore): endurece reglas para waybar/swww/secrets"
+#
+# Auditoría rápida: ¿hay algo trackeado que NUEVAS reglas dejarían fuera?
+#     git ls-files | grep -iE 'token|secret|password|\.key$|\.pem$'
+# Si devuelve algo: GIT FILTER-BRANCH NECESARIO. Pide ayuda — historial
+# tóxico requiere reescribir el repo entero.
+# =============================================================================
