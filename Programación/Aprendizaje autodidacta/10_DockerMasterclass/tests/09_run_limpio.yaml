@@ -1,0 +1,16 @@
+schemaVersion: 2.0.0
+
+fileExistenceTests:
+  - name: "curl quedo instalado"
+    path: "/usr/bin/curl"
+    shouldExist: true
+
+commandTests:
+  - name: "curl funciona dentro de la imagen"
+    command: "curl"
+    args: ["--version"]
+    expectedOutput:
+      - "^curl "
+
+metadataTest:
+  cmd: ["curl", "--version"]

@@ -1,0 +1,16 @@
+schemaVersion: 2.0.0
+
+fileExistenceTests:
+  - name: "El script existe en la imagen"
+    path: "/saludo.sh"
+    shouldExist: true
+
+commandTests:
+  - name: "El saludo se imprime correctamente"
+    command: "/saludo.sh"
+    expectedOutput:
+      - "Hola, Contenedor!"
+      - "PID 1 dentro de una imagen Docker"
+
+metadataTest:
+  cmd: ["/saludo.sh"]

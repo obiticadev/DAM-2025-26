@@ -1,0 +1,22 @@
+schemaVersion: 2.0.0
+
+fileExistenceTests:
+  - name: "El script existe"
+    path: "/saludar.sh"
+    shouldExist: true
+
+commandTests:
+  - name: "Argumento por defecto (CMD = Mundo)"
+    command: "/saludar.sh"
+    args: ["Mundo"]
+    expectedOutput:
+      - "Hola, Mundo!"
+  - name: "Argumento sustituido en runtime"
+    command: "/saludar.sh"
+    args: ["Docker"]
+    expectedOutput:
+      - "Hola, Docker!"
+
+metadataTest:
+  entrypoint: ["/saludar.sh"]
+  cmd: ["Mundo"]

@@ -1,0 +1,18 @@
+schemaVersion: 2.0.0
+
+fileExistenceTests:
+  - name: "La app SI entra en la imagen"
+    path: "/app/servidor.py"
+    shouldExist: true
+  - name: "El secreto NO entra en la imagen"
+    path: "/app/secreto.txt"
+    shouldExist: false
+  - name: "Los logs NO entran en la imagen"
+    path: "/app/depuracion.log"
+    shouldExist: false
+  - name: "La cache de Python NO entra en la imagen"
+    path: "/app/__pycache__"
+    shouldExist: false
+  - name: "El Dockerfile no se copia dentro de la imagen"
+    path: "/app/Dockerfile"
+    shouldExist: false

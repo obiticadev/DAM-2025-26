@@ -1,0 +1,22 @@
+schemaVersion: 2.0.0
+
+fileExistenceTests:
+  - name: "config.py existe en la imagen"
+    path: "/config.py"
+    shouldExist: true
+
+commandTests:
+  - name: "Las variables de entorno se leen en runtime"
+    command: "python"
+    args: ["/config.py"]
+    expectedOutput:
+      - "APP_ENV = produccion"
+      - "APP_VERSION = 1\\.0\\.0"
+
+metadataTest:
+  cmd: ["python", "/config.py"]
+  env:
+    - key: "APP_ENV"
+      value: "produccion"
+    - key: "APP_VERSION"
+      value: "1.0.0"

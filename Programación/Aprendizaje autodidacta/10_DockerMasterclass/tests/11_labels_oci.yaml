@@ -1,0 +1,20 @@
+schemaVersion: 2.0.0
+
+commandTests:
+  - name: "El comando por defecto imprime el mensaje"
+    command: "echo"
+    args: ["imagen etiquetada"]
+    expectedOutput:
+      - "imagen etiquetada"
+
+metadataTest:
+  cmd: ["echo", "imagen etiquetada"]
+  labels:
+    - key: "org.opencontainers.image.title"
+      value: "masterclass-ej11"
+    - key: "org.opencontainers.image.version"
+      value: "1.0.0"
+    - key: "org.opencontainers.image.source"
+      value: "https://github.com/masterclass/docker"
+    - key: "org.opencontainers.image.authors"
+      value: "alumno@masterclass"
