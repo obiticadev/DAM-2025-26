@@ -63,11 +63,12 @@ public class GestorTareas implements Guardable {
                 lista.add(linea);
             }
             lista.remove(0);
-            for (String string : lista) {
-                String[] array = string.split(";");
-                this.listaTarea.add(new Tarea(array[0], Integer.parseInt(array[1]),
-                        Boolean.parseBoolean(array[2])));
-            }
+            lista.forEach(l -> {
+                String titulo = l.split(";")[0];
+                int prioridad = Integer.parseInt(l.split(";")[1]);
+                boolean completada = Boolean.parseBoolean(l.split(";")[2]);
+                this.listaTarea.add(new Tarea(titulo, prioridad, completada));
+            });
         }
     }
 

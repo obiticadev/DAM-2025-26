@@ -25,7 +25,9 @@ public class Tarea {
 
     @Override
     public String toString() {
-        return titulo + " - Prioridad: " + prioridad +
-                " - " + (completada ? "Completada" : "Pendiente");
+        StringBuilder sb = new StringBuilder();
+        return sb.append(
+                "Tarea\n\sTítulo: %s\n\sPrioridad: %d\n\sCompletada: %b\n".formatted(titulo, prioridad, completada))
+                .toString();
     }
 }
