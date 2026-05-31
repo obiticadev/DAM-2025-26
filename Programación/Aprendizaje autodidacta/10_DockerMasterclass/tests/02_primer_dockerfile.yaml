@@ -1,0 +1,20 @@
+schemaVersion: 2.0.0
+
+fileExistenceTests:
+  - name: "El codigo Python existe en la imagen"
+    path: "/saluda.py"
+    shouldExist: true
+
+commandTests:
+  - name: "El script imprime el saludo"
+    command: "python"
+    args: ["/saluda.py"]
+    expectedOutput:
+      - "Hola desde Python dentro de un contenedor!"
+      - "Version de Python: 3\\.12"
+
+metadataTest:
+  cmd: ["python", "/saluda.py"]
+  env:
+    - key: "PYTHONUNBUFFERED"
+      value: "1"

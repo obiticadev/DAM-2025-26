@@ -1,0 +1,86 @@
+============================================================
+ EJERCICIO 05.03 — Macros: grabar y reproducir secuencias
+ Teoría:   teoria/05_Ex_Macros_Y_Marks.md (sección 5)
+ Verifica: bash scripts/verificar.sh 05 03
+============================================================
+
+CHULETA
+-------
+  qa            empieza a grabar en registro 'a'
+  q             para de grabar
+  @a            reproduce la macro 'a'
+  @@            reproduce la última macro
+  5@a           reproduce la macro 'a' 5 veces
+  :reg a        ver el contenido de la macro 'a'
+
+  REGLA DE ORO: termina la macro con un MOVIMIENTO que la deje
+  preparada para la siguiente repetición (ej: j0).
+
+TODOS
+-----
+TODO 1 (con pista): En el bloque PUNTOCOMA, debes añadir ';' al final
+  de cada línea. Hay 10 líneas. Grabarás una macro y la repetirás.
+    1) Posiciónate en la primera línea de PUNTOCOMA.
+    2) qa           (empieza a grabar)
+    3) A;<Esc>      (añade ';' al final + sale de Insert)
+    4) j            (baja una línea)
+    5) q            (para de grabar)
+    6) 9@a          (repite la macro 9 veces más → total 10 líneas)
+
+TODO 2 (con pista): En el bloque NUMERAR, debes prefijar cada línea con
+  "1. ", "2. ", "3. "... (hay 5 líneas, quedan numeradas 1-5).
+  Pista: necesitas Ctrl-A en modo Normal para INCREMENTAR un número
+  bajo el cursor. Macro:
+    1) Posiciónate en la primera línea de NUMERAR.
+    2) qb
+    3) I1. <Esc>    (inserta "1. " al inicio)
+    4) j            (baja)
+    5) yyP          (duplica la línea anterior — para tener el "1. " que incrementar)
+       (NO usar este truco: mejor variante simple sin duplicar:)
+    Variante simple sin truco: para este ejercicio escribe los números a mano
+    o usa: ':%norm I' (norm + I + número), pero es más complicado.
+    Lo MÁS SENCILLO aquí: edita manualmente las 5 líneas con "1. ", "2. " etc.
+    El objetivo del TODO es FAMILIARIZARTE con la idea de macro
+    repetible. Lo importante es que las líneas queden con la numeración.
+
+TODO 3 (con pista): En el bloque MAYUSC, convierte cada línea a
+  MAYÚSCULAS con :norm + gUU. Pista: ':NNN,MMMnorm gUU' donde NNN-MMM
+  es el rango del bloque (gUU = mayúsculas en toda la línea).
+
+TODO 4 (LIBRE): En el bloque RESTA_X, hay líneas como "a-b-c". Para
+  cada línea, sustituye las 'a', 'b', 'c' por los textos "uno", "dos",
+  "tres" (en ese orden). Resultado por línea: "uno-dos-tres".
+  Usa una macro o cualquier técnica. El resultado es lo que cuenta.
+
+TODO 5 (LIBRE): Guarda y sal.
+
+============================================================
+PUNTOCOMA
+sin punto coma 1
+sin punto coma 2
+sin punto coma 3
+sin punto coma 4
+sin punto coma 5
+sin punto coma 6
+sin punto coma 7
+sin punto coma 8
+sin punto coma 9
+sin punto coma 10
+
+NUMERAR
+elemento uno
+elemento dos
+elemento tres
+elemento cuatro
+elemento cinco
+
+MAYUSC
+alpha
+bravo
+charlie
+delta
+
+RESTA_X
+a-b-c
+a-b-c
+a-b-c

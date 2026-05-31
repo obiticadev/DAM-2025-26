@@ -1,0 +1,61 @@
+============================================================
+ EJERCICIO 02.04 — Cambiar (c) y el operador mágico . (dot)
+ Teoría:   teoria/02_Edicion_Y_Operadores.md (secciones 7, 8)
+ Verifica: bash scripts/verificar.sh 02 04
+============================================================
+
+CHULETA
+-------
+  cw / ciw / caw → cambia palabra (borra + entra a Insert)
+  cc / S          → cambia línea entera (mantiene indentación)
+  C  / c$         → cambia de aquí al fin de línea
+  s              → borra carácter y entra a Insert (= cl)
+  .              → REPITE el último cambio
+  u              → deshace        Ctrl-R → rehace
+
+TODOS
+-----
+TODO 1 (con pista): En la línea-A, cambia la palabra "viejo" por "nuevo".
+  Pista: navega a "viejo", pulsa 'ciw', escribe 'nuevo', Esc.
+
+TODO 2 (con pista): En la línea-B, cambia la línea ENTERA por:
+  "Línea-B reemplazada del todo."
+  Pista: navega a esa línea y pulsa 'cc'. Se conserva la indentación
+  pero se borra el contenido. Escribe y Esc.
+
+TODO 3 (con pista): En la línea-C, cambia desde "BASURA" hasta el fin
+  de línea por "ok". Pista: navega a la 'B' de BASURA, pulsa 'C',
+  escribe 'ok', Esc.
+
+TODO 4 (con pista): En el bloque REPETIR, hay 5 líneas con "FOOBAR".
+  Cambia la primera por "EXITO" usando 'ciw'. Luego usa '/FOOBAR<Enter>'
+  + 'n' + '.' para repetir el cambio en las siguientes 4. El operador
+  '.' repite la última edición (en este caso, "borra palabra e inserta
+  EXITO").
+
+TODO 5 (LIBRE): En el bloque FINAL, cambia TODAS las apariciones de
+  "VARIABLE" por "constante". Hay 6. Usa la técnica con '.' del TODO
+  anterior, o ':%s/VARIABLE/constante/g' si prefieres lo masivo (esto
+  último es lo que veremos en el Nivel 05).
+
+TODO 6 (LIBRE): Guarda y sal.
+
+============================================================
+línea-A: el nuevo coche corre lento.
+    Línea-B reemplazada del todo.
+línea-C: mantén esto ok
+
+REPETIR
+- primero EXITO aquí
+- segundo EXITO otra
+- tercero EXITO más
+- cuarto EXITO otro
+- quinto EXITO final
+
+FINAL
+constante uno
+constante dos
+otra constante en medio
+casi constante acabamos
+penúltima constante
+última constante

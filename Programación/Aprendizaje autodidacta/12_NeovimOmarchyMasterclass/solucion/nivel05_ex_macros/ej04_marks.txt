@@ -1,0 +1,50 @@
+============================================================
+ EJERCICIO 05.04 — Marks: marcadores de posición
+ Teoría:   teoria/05_Ex_Macros_Y_Marks.md (sección 6)
+ Verifica: bash scripts/verificar.sh 05 04
+============================================================
+
+CHULETA
+-------
+  ma      crea mark 'a' en posición actual
+  'a      salta a la LÍNEA de la mark 'a'
+  `a      salta a la POSICIÓN exacta de la mark 'a'
+  :marks  lista todas las marks
+  ``      vuelve a la posición ANTES del último salto
+
+TODOS
+-----
+TODO 1 (con pista): Ve a la línea PUNTO_A y coloca una mark llamada 'a'
+  con 'ma'. Luego ve a PUNTO_B y coloca mark 'b' con 'mb'. Verifica
+  con ':marks' que ambas existen.
+
+TODO 2 (con pista): Salta de vuelta a la mark 'a' con `'a` (apóstrofo
+  + a). Estás de vuelta en PUNTO_A. Sustituye la palabra "PENDIENTE"
+  por "DONE" en esa línea (con `ciw`).
+
+TODO 3 (con pista): Salta a la mark 'b' con `'b`. Sustituye "PENDIENTE"
+  por "DONE" también ahí.
+
+TODO 4 (LIBRE): Coloca una mark MAYÚSCULA 'A' (mark global) en la
+  línea PUNTO_GLOBAL. Verifica con ':marks A' que existe. Esta mark
+  persiste incluso si abres otro archivo (no lo hagas ahora, solo es
+  para que lo sepas). Luego sustituye "PENDIENTE" por "DONE" en esa
+  línea.
+
+TODO 5 (LIBRE): Salta a la primera línea del archivo con 'gg'. Luego
+  vuelve a la posición ANTERIOR al salto con `` (dos backticks).
+  Sin modificar nada más, guarda y sal.
+
+============================================================
+PUNTO_A: aquí va una palabra DONE a marcar.
+
+(relleno)
+(relleno)
+(relleno)
+
+PUNTO_B: aquí va otra palabra DONE a marcar.
+
+(relleno)
+(relleno)
+
+PUNTO_GLOBAL: y una tercera palabra DONE.

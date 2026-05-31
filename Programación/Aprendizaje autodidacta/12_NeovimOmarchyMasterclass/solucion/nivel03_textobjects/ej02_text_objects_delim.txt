@@ -1,0 +1,52 @@
+============================================================
+ EJERCICIO 03.02 — Text objects con delimitadores
+ Teoría:   teoria/03_Text_Objects_Y_Visual.md (secciones 2, 6, 7)
+ Verifica: bash scripts/verificar.sh 03 02
+============================================================
+
+CHULETA
+-------
+  i" / a" → entre comillas dobles (sin / con comillas)
+  i' / a' → entre comillas simples
+  i( / a( → entre paréntesis (también ib / ab)
+  i{ / a{ → entre llaves       (también iB / aB)
+  i[ / a[ → entre corchetes
+  it / at → entre tags HTML/XML
+
+  Recuerda: ESTÉS DONDE ESTÉS dentro del delimitador, Vim lo encuentra.
+  Si hay anidamiento, busca el MÁS INTERNO.
+
+TODOS
+-----
+TODO 1 (con pista): En la línea-A, cambia el contenido entre comillas
+  dobles por "Hola". Pista: ponte EN CUALQUIER punto entre las comillas
+  (incluso sobre ellas) y pulsa 'ci"'.
+
+TODO 2 (con pista): En la línea-B, borra el contenido entre paréntesis
+  PERO no los paréntesis. Pista: 'di(' o 'dib'.
+
+TODO 3 (con pista): En la línea-C, borra los corchetes Y su contenido.
+  Pista: 'da[' (a = around).
+
+TODO 4 (con pista): En el bloque CODIGO, cambia el contenido entre
+  llaves (cuerpo de la función) por:
+        return 42;
+  (con su indentación normal, una sola línea). Pista: ponte dentro de
+  las llaves y pulsa 'ci{' (te mete en Insert con todo borrado).
+
+TODO 5 (LIBRE): En la línea-T (HTML), cambia el contenido del tag
+  <span>...</span> por "exito". Pista: 'cit'.
+
+TODO 6 (LIBRE): Guarda y sal.
+
+============================================================
+línea-A: const saludo = "Hola";
+línea-B: imprimir() = valor;
+línea-C: array = valor;
+
+CODIGO
+function calcular() {
+    return 42;
+}
+
+línea-T: <p>Antes <span>exito</span> después</p>

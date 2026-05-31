@@ -1,0 +1,15 @@
+# ============================================================
+#  EJERCICIO 08 - .dockerignore  (ESTE es el artefacto a rellenar)
+#
+#  Cada patron (uno por linea) excluye ficheros/carpetas del CONTEXTO de
+#  build, de modo que el "COPY . /app" del Dockerfile no los meta en la imagen.
+# ============================================================
+
+# TODO 1: Excluye cualquier fichero de log (todos los que terminen en .log).
+
+# TODO 2: Excluye el fichero de secretos  secreto.txt  (jamas debe entrar en la imagen).
+
+# TODO 3: Excluye el directorio de cache de Python  __pycache__/  (y su contenido).
+
+# TODO 4: Excluye la documentacion y los metadatos de build que no aporta la app:
+#         los ficheros *.md, el propio Dockerfile y este .dockerignore.

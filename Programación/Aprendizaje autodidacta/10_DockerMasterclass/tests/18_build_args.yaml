@@ -1,0 +1,20 @@
+schemaVersion: 2.0.0
+
+fileExistenceTests:
+  - name: "version.py existe"
+    path: "/version.py"
+    shouldExist: true
+
+commandTests:
+  - name: "Imprime version de Python (3.12) y de la app (2.0.0)"
+    command: "python"
+    args: ["/version.py"]
+    expectedOutput:
+      - "Python: 3\\.12"
+      - "APP_VERSION: 2\\.0\\.0"
+
+metadataTest:
+  cmd: ["python", "/version.py"]
+  env:
+    - key: "APP_VERSION"
+      value: "2.0.0"

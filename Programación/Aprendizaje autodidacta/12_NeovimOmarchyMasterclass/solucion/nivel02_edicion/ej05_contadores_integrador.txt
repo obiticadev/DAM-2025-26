@@ -1,0 +1,71 @@
+============================================================
+ EJERCICIO 02.05 — Contadores e integrador de edición
+ Teoría:   teoria/02_Edicion_Y_Operadores.md (sección 9 + todas)
+ Verifica: bash scripts/verificar.sh 02 05
+============================================================
+
+CHULETA
+-------
+  3dd → borra 3 líneas    5x → borra 5 caracteres
+  10j → baja 10 líneas    2yy → copia 2 líneas
+  3w  → salta 3 palabras
+  Combinable con CASI todo: contador + operador + movimiento.
+
+TODOS
+-----
+TODO 1 (con pista): En el bloque NUMERICO, borra de un solo golpe las
+  3 líneas marcadas BORRAME_N. Pista: '3dd' desde la primera.
+
+TODO 2 (con pista): En la línea-Z, borra los 7 caracteres exactos que
+  van entre el cursor (al inicio) y el primer espacio. La línea es:
+  "AAAAAAA quédate con esto"
+  Resultado: " quédate con esto" (con espacio inicial)
+  Pista: ponte en la primera 'A' y pulsa '7x'.
+
+TODO 3 (con pista): Duplica DOS VECES seguidas el bloque DUPLICAR_X3
+  (que ya está una vez), para que aparezca 3 veces en total.
+  Pista: ponte en la primera línea del bloque (no en la cabecera),
+  pulsa '3yy' (copia 3 líneas), navega a la última línea del bloque
+  original, pulsa 'p', luego 'p' otra vez.
+
+TODO 4 (LIBRE): En el bloque RECETA, las líneas están desordenadas.
+  Reordénalas para que queden en orden numérico ascendente (1, 2, 3,
+  4, 5). Cada línea empieza con "Paso N:".
+
+TODO 5 (LIBRE): En la última sección LIMPIAR_FINAL, deja exactamente:
+    OK1
+    OK2
+    OK3
+  Y nada más después de esa sección (borra el resto si lo hay).
+
+TODO 6 (LIBRE): Guarda y sal.
+
+============================================================
+NUMERICO
+KEEP_1
+KEEP_2
+
+línea-Z:  quédate con esto
+
+DUPLICAR_X3
+contenido linea 1
+contenido linea 2
+contenido linea 3
+contenido linea 1
+contenido linea 2
+contenido linea 3
+contenido linea 1
+contenido linea 2
+contenido linea 3
+
+RECETA
+Paso 1: precalentar horno
+Paso 2: mezclar ingredientes secos
+Paso 3: añadir levadura
+Paso 4: verter en molde
+Paso 5: hornear 25 minutos
+
+LIMPIAR_FINAL
+OK1
+OK2
+OK3

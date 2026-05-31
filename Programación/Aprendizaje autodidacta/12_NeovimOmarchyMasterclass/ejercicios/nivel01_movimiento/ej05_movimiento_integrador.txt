@@ -1,0 +1,80 @@
+============================================================
+ EJERCICIO 01.05 — Integrador de movimiento
+ Teoría:   teoria/01_Modos_Y_Navegacion.md (TODA)
+ Verifica: bash scripts/verificar.sh 01 05
+============================================================
+
+OBJETIVO
+--------
+Combinar TODO lo aprendido en el Nivel 01: hjkl, wbe, 0/^/$/g_,
+gg/G/{n}G, f/t/;,, / ? n N *. Este ejercicio asume velocidad.
+Si te lleva más de 5 minutos, repite los anteriores y vuelve.
+
+CHULETA (resumida)
+------------------
+  Carácter:   h j k l                  Búsqueda línea: f F t T ; ,
+  Palabra:    w b e W B E              Búsqueda archivo: / ? n N *
+  Línea:      0 ^ $ g_                 Archivo:        gg G {n}G
+  Edición:    x dw daw cw A I D u :wq
+
+TODOS
+-----
+TODO 1 (con pista): Lleva el cursor desde el inicio del archivo hasta
+  la palabra "OBJETIVO" del primer párrafo de DATOS y bórrala con 'daw'.
+  Pista: usa '/OBJETIVO<Enter>' y luego 'daw'.
+
+TODO 2 (con pista): En el bloque LISTA, sustituye los 5 "ITEM?" por
+  los nombres "uno", "dos", "tres", "cuatro", "cinco" respectivamente.
+  Pista: usa '/ITEM' y 'n' para saltar entre ellos; 'cw' para cambiar.
+
+TODO 3 (con pista): En la línea-T (etiquetada al inicio), borra TODO
+  lo que haya entre el primer guion '-' y el último guion '-' inclusive.
+  Pista: navega al primer guion con 'f-', y borra hasta el siguiente
+  guion (incluido) con 'df-'. Repite si queda algo.
+
+TODO 4 (LIBRE): Ve a la línea 60 directamente y deja esa línea con el
+  contenido exacto: "linea60_arreglada"
+  (Cualquier basura previa debe desaparecer; sin espacios ni caracteres
+  sobrantes.)
+
+TODO 5 (LIBRE): Ve a la ÚLTIMA línea del archivo. Debe quedar con el
+  contenido exacto: "EOF"
+
+TODO 6 (LIBRE): Guarda y sal.
+
+============================================================
+DATOS
+
+Este es el OBJETIVO que hay que borrar en el primer párrafo.
+Más texto que NO se toca por aquí.
+
+LISTA
+- ITEM?
+- ITEM?
+- ITEM?
+- ITEM?
+- ITEM?
+
+línea-T: prefijo intacto -borra esto-y esto-y esto- sufijo intacto
+
+Línea de relleno 1.
+Línea de relleno 2.
+Línea de relleno 3.
+Línea de relleno 4.
+Línea de relleno 5.
+Línea de relleno 6.
+Línea de relleno 7.
+Línea de relleno 8.
+Línea de relleno 9.
+Línea de relleno 10.
+Línea de relleno 11.
+Línea de relleno 12.
+Línea de relleno 13.
+Línea de relleno 14.
+Línea de relleno 15.
+Línea de relleno 16.
+basura previa que se sustituye_linea60
+Línea de relleno 18.
+Línea de relleno 19.
+Línea de relleno 20.
+ultima_linea_a_reemplazar

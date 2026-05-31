@@ -1,0 +1,50 @@
+============================================================
+ EJERCICIO 00.02 — Modal editing: alternar Normal ↔ Insert
+ Teoría:   teoria/00_Por_Que_Vim_Y_Omarchy.md (sección 4)
+ Verifica: bash scripts/verificar.sh 00 02
+============================================================
+
+CHULETA DE COMANDOS
+-------------------
+  i  → Insert antes del cursor                A  → Insert al FIN de línea
+  a  → Insert después del cursor              I  → Insert al INICIO no-blanco de línea
+  o  → abre nueva línea ABAJO y entra a Insert
+  O  → abre nueva línea ARRIBA y entra a Insert
+  Esc → vuelve a Normal
+
+TODOS
+-----
+TODO 1 (con pista): Sustituye RELLENAR_1 por la palabra "Hola".
+  Pista: navega con hjkl hasta la 'R' de RELLENAR_1, pulsa 'cw',
+  escribe "Hola", pulsa Esc.
+
+TODO 2 (con pista): Sustituye RELLENAR_2 por la palabra "Mundo".
+  Pista: igual que el anterior.
+
+TODO 3 (con pista): Al FINAL de la línea marcada con TODO3, añade el
+  texto: " (fin)" (espacio, paréntesis, fin, paréntesis).
+  Pista: navega hasta esa línea, pulsa 'A' (mayúscula) para insertar
+  al final, escribe " (fin)", pulsa Esc.
+
+TODO 4 (con pista): Al INICIO no-blanco de la línea marcada con TODO4,
+  añade el texto: "INICIO: " (8 caracteres).
+  Pista: navega hasta esa línea, pulsa 'I' (mayúscula), escribe
+  "INICIO: ", pulsa Esc.
+
+TODO 5 (LIBRE): Inserta una nueva línea ENTRE las dos líneas marcadas
+  con --- y --- con el contenido exacto:
+  LINEA_NUEVA_ENTRE_BARRAS
+
+  (Una sola línea, sin sangría, sin nada más).
+
+TODO 6 (LIBRE): Guarda y sal en un solo comando.
+
+============================================================
+
+Sustituye aquí: Hola
+Sustituye aquí: Mundo
+TODO3 (fin)
+INICIO: TODO4
+---
+
+---

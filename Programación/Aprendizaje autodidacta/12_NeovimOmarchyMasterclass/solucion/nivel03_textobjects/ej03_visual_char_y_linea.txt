@@ -1,0 +1,60 @@
+============================================================
+ EJERCICIO 03.03 — Visual carácter (v) y Visual línea (V)
+ Teoría:   teoria/03_Text_Objects_Y_Visual.md (secciones 3, 5)
+ Verifica: bash scripts/verificar.sh 03 03
+============================================================
+
+CHULETA
+-------
+  v       → entra a Visual carácter
+  V       → entra a Visual línea
+  Esc     → sale de Visual
+  Mientras estás en Visual: te mueves con hjkl, w, $, /, etc.
+  d / c / y → opera sobre la selección
+  > / <   → indenta / des-indenta (Visual línea)
+  =       → re-indenta auto
+  gv      → re-selecciona la última selección
+
+TODOS
+-----
+TODO 1 (con pista): En la línea-A, selecciona "BLOQUE_SELECCION" con
+  Visual carácter y bórralo. Pista: ponte en la 'B', pulsa 'v', luego
+  'e' (final de palabra), pulsa 'd'.
+
+TODO 2 (con pista): Selecciona en Visual LÍNEA las 3 líneas marcadas
+  con "INDENTAR_3" e indéntalas un nivel con '>'. Pista: ponte en la
+  primera, pulsa 'V', pulsa '2j' (baja 2 líneas más), pulsa '>'.
+
+TODO 3 (con pista): Selecciona en Visual LÍNEA las 4 líneas marcadas
+  "BORRAR_BLOQUE" y bórralas con 'd'. Pista: 'V' + '3j' + 'd'.
+
+TODO 4 (LIBRE): Copia el bloque YANK_ESTO (3 líneas) y pégalo al final
+  del archivo (justo antes de la línea EOF).
+
+TODO 5 (LIBRE): En el bloque MAYUSC, convierte las 3 líneas a
+  MAYÚSCULAS usando Visual línea + 'U' (mayúscula).
+  Pista: 'V' + '2j' + 'U'.
+
+TODO 6 (LIBRE): Guarda y sal.
+
+============================================================
+línea-A: aquí hay un  para borrar entero
+
+	INDENTAR_3 línea uno
+	INDENTAR_3 línea dos
+	INDENTAR_3 línea tres
+
+LINEA_QUE_SOBREVIVE
+
+YANK_ESTO 1
+YANK_ESTO 2
+YANK_ESTO 3
+
+MAYUSC ALPHA
+MAYUSC BRAVO
+MAYUSC CHARLIE
+
+YANK_ESTO 1
+YANK_ESTO 2
+YANK_ESTO 3
+EOF

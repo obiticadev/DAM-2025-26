@@ -1,0 +1,18 @@
+schemaVersion: 2.0.0
+
+fileExistenceTests:
+  - name: "El binario final existe"
+    path: "/server"
+    shouldExist: true
+  - name: "La cache de compilacion NO queda en la imagen final"
+    path: "/root/.cache/go-build"
+    shouldExist: false
+
+commandTests:
+  - name: "El binario imprime el mensaje"
+    command: "/server"
+    expectedOutput:
+      - "Compilado reutilizando la cache de BuildKit!"
+
+metadataTest:
+  cmd: ["/server"]

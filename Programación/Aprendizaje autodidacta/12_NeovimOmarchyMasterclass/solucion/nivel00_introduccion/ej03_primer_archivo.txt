@@ -1,0 +1,51 @@
+============================================================
+ EJERCICIO 00.03 — Primer archivo "real"
+ Teoría:   teoria/00_Por_Que_Vim_Y_Omarchy.md (todo)
+ Verifica: bash scripts/verificar.sh 00 03
+============================================================
+
+OBJETIVO
+--------
+Vas a completar una receta de cocina rellenando huecos. Esto te obliga
+a alternar varias veces Normal ↔ Insert y a guardar al final.
+
+CHULETA
+-------
+  cw    → cambia palabra (borra + Insert)
+  c$    → cambia hasta el fin de línea
+  A     → Insert al final de línea
+  u     → deshace tu último cambio
+  Ctrl-R→ rehace (recupera lo deshecho)
+  :wq   → guarda y sale
+
+TODOS
+-----
+TODO 1: Sustituye XXXXXX (en la línea Título) por "Tortilla".
+TODO 2: Sustituye ?? (en INGREDIENTES) por las cantidades exactas:
+        - patatas: "4"
+        - huevos:  "6"
+        - aceite:  "100ml"
+        - sal:     "una pizca"
+TODO 3 (LIBRE): En la sección PASOS, cambia los "???" por números 1, 2, 3
+        (sin comillas, sin nada más).
+TODO 4 (LIBRE): Al final del archivo, añade exactamente esta línea:
+        "Buen provecho!"
+
+============================================================
+RECETA
+============================================================
+
+Título: Tortilla
+
+INGREDIENTES
+- 4 patatas
+- 6 huevos
+- 100ml de aceite
+- una pizca de sal
+
+PASOS
+1 Pelar y cortar las patatas.
+2 Batir los huevos.
+3 Cuajar la tortilla.
+
+Buen provecho!

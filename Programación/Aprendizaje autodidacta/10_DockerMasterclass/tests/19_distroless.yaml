@@ -1,0 +1,21 @@
+schemaVersion: 2.0.0
+
+fileExistenceTests:
+  - name: "El binario final existe"
+    path: "/server"
+    shouldExist: true
+  - name: "NO hay shell en distroless (/bin/sh)"
+    path: "/bin/sh"
+    shouldExist: false
+  - name: "NO hay gestor de paquetes apt"
+    path: "/usr/bin/apt"
+    shouldExist: false
+
+commandTests:
+  - name: "El binario imprime el mensaje"
+    command: "/server"
+    expectedOutput:
+      - "Corriendo en distroless: sin shell, minima superficie de ataque!"
+
+metadataTest:
+  cmd: ["/server"]

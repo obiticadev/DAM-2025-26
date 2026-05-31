@@ -1,0 +1,19 @@
+# ============================================================
+#  EJERCICIO 28 - Tu primer Compose  (proyecto: masterclass/ej28)
+#
+#  Compose describe tu aplicacion de forma DECLARATIVA en un fichero YAML:
+#  que servicios hay, con que imagen, que puertos publican y que volumenes
+#  montan. Un solo  docker compose up  lo levanta todo.
+#
+#  Aqui defines UN servicio web (nginx) que sirve la pagina de  app/ .
+# ============================================================
+
+services:
+  web:
+    # TODO 1: usa la imagen  nginx:alpine
+
+    # TODO 2: publica el puerto del contenedor 80 en el puerto 8628 del host
+    #         (formato  "host:contenedor").
+
+    # TODO 3: monta la carpeta  ./app  en  /usr/share/nginx/html  en modo
+    #         solo-lectura (:ro).

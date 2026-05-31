@@ -1,0 +1,122 @@
+============================================================
+ EJERCICIO 05.05 — INTEGRADOR FINAL VIM PURO (Niveles 00-05)
+ Teoría:   teoria/00 a teoria/05 (TODA la Parte 0)
+ Verifica: bash scripts/verificar.sh 05 05
+============================================================
+
+OBJETIVO
+--------
+Este es el último ejercicio de la fase "Vim puro". Antes de pasar a
+los plugins de Omarchy, debes demostrar que dominas la combinación de
+TODO lo aprendido. Usa lo que prefieras: movimientos, text objects,
+macros, sustituciones, globales, marks. El verificador solo mira el
+estado final.
+
+CHULETA (master)
+----------------
+  Movimiento:    hjkl  wbe  0$  gg G {n}G  f/t  / ? n N
+  Edición:       x dd dw daw cw  yy p P  ciw  . u Ctrl-R
+  Text objects:  iw aw i" a" i( a( i{ a{ it at  ip ap
+  Visual:        v V Ctrl-V  > < =  gU gu
+  Ex:            :%s/foo/bar/g   :g/pat/d   :v/pat/d   :NNNs/x/y/g
+  Macros:        qa…q   @a   N@a
+  Marks:         ma  'a  `a  :marks  ``
+  Buffers/Ventanas: :sp :vsp :e :b :tabnew Ctrl-W hjkl :wa :qa
+
+TODOS
+-----
+TODO 1: En el bloque CODIGO_JAVA, reformatea para que:
+  - Cada método tenga su llave de apertura "{" al final de la línea
+    de declaración (estilo Java estándar) — ya lo está.
+  - Los nombres de variables 'foo', 'bar', 'baz' se cambien a 'a',
+    'b', 'c' RESPETANDO las palabras completas (no toques 'foobar').
+  - Las strings "viejo" se sustituyan por "nuevo" (todas).
+  - La línea con "BORRAR_LINEA_ENTERA" debe desaparecer.
+
+TODO 2: En el bloque LIMPIAR_LOG, deja sólo las líneas que contengan
+  "ERROR" (borra las INFO, DEBUG, WARN). Pista: :v/ERROR/d en un rango
+  acotado al bloque, o aplica el filtro al archivo entero si no
+  estorba (no estorba si solo el bloque LIMPIAR_LOG tiene esos
+  niveles).
+
+TODO 3: En el bloque ORDEN, las líneas están desordenadas. Deja:
+  uno
+  dos
+  tres
+  cuatro
+  cinco
+  Pista: dd + p ordenando con cabeza, o si conoces el comando
+  ':sort', podrías ':NNN,MMMsort' pero ojo: deja las cabeceras del
+  bloque (ORDEN y FIN_ORDEN) fuera del rango ordenado.
+
+TODO 4: En el bloque NUMERAR, añade al INICIO de cada línea "N. "
+  donde N es 1, 2, 3, 4, 5 secuencialmente. Resultado:
+  1. alpha
+  2. bravo
+  3. charlie
+  4. delta
+  5. echo
+
+TODO 5: En el bloque MAYUSC_TODO, pon TODO el bloque a MAYÚSCULAS
+  (incluyendo las cabeceras MAYUSC_TODO y FIN_MAYUSC). Aceptamos
+  ':NNN,MMMnorm gUU' o Visual + 'U'.
+
+TODO 6: Marca DOS posiciones: 'a' en el bloque CODIGO_JAVA (línea
+  inicial), 'b' en el bloque LIMPIAR_LOG. Salta entre ambas con 'a
+  y 'b para comprobar — no hay verificación en este TODO, es práctica
+  con marks.
+
+TODO 7: Guarda y sal (cerrando todo). Si hubieras abierto más buffers,
+  ':wa' + ':qa'.
+
+============================================================
+CODIGO_JAVA
+public class Demo {
+    public String saludar() {
+        String foo = "viejo";
+        String foobar = "no se toca";
+        return foo;
+    }
+BORRAR_LINEA_ENTERA
+    public int sumar(int bar, int baz) {
+        return bar + baz;
+    }
+
+    public void otro() {
+        String foo = "viejo";
+        System.out.println("viejo");
+    }
+}
+FIN_CODIGO_JAVA
+
+LIMPIAR_LOG
+INFO  arrancando servicio
+ERROR  conexión fallida
+DEBUG  intentando reconectar
+WARN   reintento agotado
+ERROR  abortando operación
+INFO  fin
+ERROR  cerrando socket
+FIN_LIMPIAR_LOG
+
+ORDEN
+tres
+uno
+cinco
+dos
+cuatro
+FIN_ORDEN
+
+NUMERAR
+alpha
+bravo
+charlie
+delta
+echo
+FIN_NUMERAR
+
+MAYUSC_TODO
+linea uno
+linea dos
+linea tres
+FIN_MAYUSC

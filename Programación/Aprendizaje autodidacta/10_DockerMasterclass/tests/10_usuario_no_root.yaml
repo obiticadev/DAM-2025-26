@@ -1,0 +1,16 @@
+schemaVersion: 2.0.0
+
+commandTests:
+  - name: "El usuario por defecto es appuser"
+    command: "whoami"
+    expectedOutput:
+      - "appuser"
+  - name: "El UID no es root (10001)"
+    command: "id"
+    args: ["-u"]
+    expectedOutput:
+      - "10001"
+
+metadataTest:
+  user: "appuser"
+  cmd: ["id"]

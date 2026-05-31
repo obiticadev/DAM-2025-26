@@ -1,0 +1,24 @@
+# ============================================================
+#  EJERCICIO 29 - Multi-servicio: web + db  (proyecto: masterclass/ej29)
+#
+#  El caso real: una aplicacion (web) y su base de datos (db) en el mismo
+#  compose. Compose les crea una red comun, asi que  web  alcanza a  db  por su
+#  NOMBRE de servicio. El Dockerfile del servicio web ya esta hecho en  app/ :
+#  tu trabajo es CABLEAR los dos servicios en este YAML.
+# ============================================================
+
+services:
+  db:
+    # TODO 1: imagen  postgres:16-alpine
+
+    # TODO 2: variable de entorno  POSTGRES_PASSWORD=secreto
+
+  web:
+    # TODO 3: construye la imagen desde el contexto  ./app  (build).
+
+    # TODO 4: publica el puerto del contenedor 8000 en el 8629 del host.
+
+    # TODO 5: pasa las variables de entorno para la conexion:
+    #         DB_HOST=db, DB_USER=postgres, DB_PASSWORD=secreto, DB_NAME=postgres
+
+    # TODO 6: declara que  web  depende de  db  (depends_on).

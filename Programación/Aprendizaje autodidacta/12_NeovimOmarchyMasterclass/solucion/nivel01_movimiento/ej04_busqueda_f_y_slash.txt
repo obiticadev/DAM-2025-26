@@ -1,0 +1,56 @@
+============================================================
+ EJERCICIO 01.04 — Saltos f/t y búsqueda / ? n N *
+ Teoría:   teoria/01_Modos_Y_Navegacion.md (secciones 6, 7)
+ Verifica: bash scripts/verificar.sh 01 04
+============================================================
+
+OBJETIVO
+--------
+Saltar a una letra concreta dentro de la línea (f/F/t/T) y a una
+palabra cualquiera dentro del archivo (/, ?, *, #). Estos comandos
+te liberan de moverte carácter a carácter para distancias medias.
+
+CHULETA
+-------
+  fx → siguiente 'x' (cursor sobre la 'x')
+  Fx → 'x' anterior
+  tx → hasta ANTES de la siguiente 'x'
+  Tx → hasta DESPUÉS de la 'x' anterior
+  ;  → repite el último f/F/t/T hacia adelante
+  ,  → repite el último f/F/t/T hacia atrás
+  /palabra<Enter> → busca palabra adelante
+  ?palabra<Enter> → busca palabra atrás
+  n  → siguiente coincidencia
+  N  → coincidencia anterior
+  *  → busca palabra bajo el cursor adelante
+  :nohl → quita el resaltado de búsqueda
+
+TODOS
+-----
+TODO 1 (con pista): En la línea-A, ponte sobre la primera 'k' usando
+  'fk', y bórrala con 'x'. Luego repite con ';' (siguiente 'k') y borra
+  esa también. Hazlo hasta que no queden 'k' en la línea.
+
+TODO 2 (con pista): Salta a la primera ocurrencia de la palabra
+  "ELIMINAR" en TODO el archivo usando '/ELIMINAR<Enter>'. Borra esa
+  palabra con 'daw'. Luego con 'n' pasa a la siguiente ELIMINAR y
+  bórrala. Repite hasta que no quede ninguna (hay 3 en total).
+
+TODO 3 (con pista): Busca la palabra "MAYUSC" con '/' y, una vez sobre
+  ella, sustitúyela por "EXITO". Tras esto, ejecuta ':nohl' para
+  apagar el resaltado.
+
+TODO 4 (LIBRE): Encuentra la palabra "secreto" (en minúsculas) y borra
+  todo desde la 's' de "secreto" hasta el FINAL de su línea (incluido
+  el punto final). Pista para tu yo del futuro: 'D' borra desde el
+  cursor hasta el fin de línea.
+
+TODO 5 (LIBRE): Guarda y sal.
+
+============================================================
+línea-A: aya noc nife ebab ettle
+esto es texto normal con palabras a aquí.
+La palabra aparece también en esta línea.
+La palabra EXITO debe ser sustituida.
+Y aquí hay un
+Esta línea queda intacta.

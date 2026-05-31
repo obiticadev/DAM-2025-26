@@ -1,0 +1,41 @@
+============================================================
+ EJERCICIO 01.01 — Movimiento carácter a carácter (hjkl)
+ Teoría:   teoria/01_Modos_Y_Navegacion.md (secciones 2, 9)
+ Verifica: bash scripts/verificar.sh 01 01
+============================================================
+
+OBJETIVO
+--------
+Limpiar de "X" intrusas un texto, usando ÚNICAMENTE el cursor con hjkl
+y el comando 'x' (borra el carácter bajo el cursor).
+PROHIBIDO usar flechas, ratón, búsqueda o reemplazo global.
+
+CHULETA
+-------
+  h ← cursor → l            j (abajo)    k (arriba)
+  x → borra el carácter bajo el cursor (en modo Normal)
+  u → deshacer si te equivocas
+  :wq → guarda y sale
+
+TODOS
+-----
+TODO 1 (con pista): En la línea-A, borra las 3 'X' intrusas.
+  Pista: navega con 'l' hacia cada 'X' y pulsa 'x'.
+
+TODO 2 (con pista): En la línea-B, borra las 4 'Q' intrusas.
+  Pista: las 'Q' están camufladas; ve letra a letra con 'l'/'h'.
+
+TODO 3 (con pista): En la línea-C, borra todos los caracteres '#'.
+  Pista: cuenta cuántos hay antes de empezar para no equivocarte.
+
+TODO 4 (LIBRE): En la línea-D, deja solo las letras en orden alfabético
+  de la 'A' a la 'Z'. Borra TODO lo demás (números, símbolos, espacios
+  extra). El resultado debe ser exactamente "ABCDEFGHIJKLMNOPQRSTUVWXYZ".
+
+TODO 5 (LIBRE): Guarda y sal.
+
+============================================================
+línea-A: Hola, este es un texto sencillo.
+línea-B: Tengo cuatro letras  intrusas escondidas.
+línea-C: Esta  línea  tiene  cinco  almohadillas .
+línea-D: ABCDEFGHIJKLMNOPQRSTUVWXYZ

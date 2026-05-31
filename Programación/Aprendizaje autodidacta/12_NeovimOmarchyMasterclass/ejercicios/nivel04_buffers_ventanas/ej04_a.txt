@@ -1,0 +1,2 @@
+Archivo A.
+Sustituye: RELLENO_A

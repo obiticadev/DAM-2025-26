@@ -1,0 +1,21 @@
+schemaVersion: 2.0.0
+
+fileExistenceTests:
+  - name: "El binario final existe"
+    path: "/server"
+    shouldExist: true
+  - name: "NO hay compilador de Go en la imagen final"
+    path: "/usr/local/go/bin/go"
+    shouldExist: false
+  - name: "NO hay codigo fuente en la imagen final"
+    path: "/src/main.go"
+    shouldExist: false
+
+commandTests:
+  - name: "El binario imprime el saludo"
+    command: "/server"
+    expectedOutput:
+      - "Hola desde un binario Go compilado en multi-stage!"
+
+metadataTest:
+  cmd: ["/server"]
