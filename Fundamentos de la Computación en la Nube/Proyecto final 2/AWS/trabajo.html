@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Proyecto Final 2: Laboratorio AWS Academy — StreamWave Media</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #2d3748;
+      line-height: 1.65;
+      font-size: 11pt;
+      background-color: #ffffff;
+      margin: 0;
+      padding: 0;
+    }
+
+    @page {
+      size: A4;
+      margin: 25mm 20mm 25mm 20mm;
+    }
+
+    .cover-page {
+      height: 235mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 50px 40px;
+      box-sizing: border-box;
+      background: radial-gradient(circle at 10% 20%, rgba(26, 54, 93, 0.05) 0%, rgba(49, 130, 206, 0.02) 90%);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+      page-break-after: always;
+      break-after: page;
+      margin: 0 auto;
+    }
+
+    .cover-page::before {
+      content: "";
+      position: absolute;
+      top: -10%;
+      right: -10%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(49, 130, 206, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .cover-page::after {
+      content: "";
+      position: absolute;
+      bottom: -10%;
+      left: -10%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(26, 54, 93, 0.05) 0%, transparent 70%);
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .cover-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .cloud-logo {
+      font-size: 42pt;
+      margin-bottom: 10px;
+      filter: drop-shadow(0 4px 6px rgba(49, 130, 206, 0.2));
+    }
+
+    .aws-academy {
+      font-size: 11pt;
+      font-weight: 700;
+      color: #3182ce;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .cover-body {
+      text-align: center;
+      margin: auto 0;
+      z-index: 1;
+    }
+
+    .cover-title {
+      font-size: 24pt;
+      color: #1a365d;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 15px;
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
+      border: none !important;
+      padding: 0 !important;
+      text-align: center !important;
+    }
+
+    .cover-subtitle {
+      font-size: 13pt;
+      color: #4a5568;
+      font-weight: 400;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    .cover-accent-line {
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #3182ce, #2b6cb0);
+      margin: 25px auto 0 auto;
+      border-radius: 2px;
+    }
+
+    .cover-footer {
+      z-index: 1;
+      border-top: 1px solid rgba(226, 232, 240, 0.8);
+      padding-top: 30px;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px 30px;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .meta-label {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: #718096;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+
+    .meta-value {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: #2d3748;
+    }
+
+    h1 {
+      font-size: 22pt;
+      color: #1a365d;
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 8px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 3px solid #3182ce;
+      padding-bottom: 12px;
+    }
+
+    h2.practice-sub {
+      font-size: 13pt;
+      color: #4a5568;
+      text-align: center;
+      font-weight: 500;
+      margin-top: 0;
+      margin-bottom: 30px;
+      border: none;
+      padding-bottom: 0;
+    }
+
+    h2 {
+      font-size: 15pt;
+      color: #1a365d;
+      margin-top: 35px;
+      margin-bottom: 15px;
+      font-weight: 700;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 6px;
+      page-break-before: always;
+      break-before: page;
+    }
+
+    .no-break {
+      page-break-before: avoid !important;
+      break-before: avoid !important;
+    }
+
+    h3 {
+      font-size: 11.5pt;
+      color: #2b6cb0;
+      margin-top: 22px;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    h4 {
+      font-size: 10.5pt;
+      color: #2b6cb0;
+      margin-top: 18px;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    p {
+      margin-bottom: 12px;
+      text-align: justify;
+    }
+
+    ul, ol {
+      margin-bottom: 12px;
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    .toc-page {
+      page-break-after: always;
+      break-after: page;
+    }
+
+    .toc-container {
+      background: #f7fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 25px;
+      margin: 10px 0;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+    }
+
+    .toc-title {
+      font-size: 13pt;
+      font-weight: 700;
+      color: #1a365d;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid #3182ce;
+      padding-bottom: 4px;
+      display: inline-block;
+    }
+
+    .toc-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+      column-count: 2;
+      column-gap: 30px;
+    }
+
+    .toc-item {
+      margin-bottom: 12px;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    .toc-item > a {
+      color: #1a365d;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 10pt;
+      display: block;
+    }
+
+    .toc-item > a:hover {
+      color: #3182ce;
+      text-decoration: underline;
+    }
+
+    .toc-sublist {
+      margin-left: 12px;
+      margin-top: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      border-left: 1px solid #e2e8f0;
+      padding-left: 8px;
+    }
+
+    .toc-sublist a {
+      color: #4a5568;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 8.5pt;
+      display: block;
+    }
+
+    .toc-sublist a:hover {
+      color: #3182ce;
+      text-decoration: underline;
+    }
+
+    .toc-number {
+      font-weight: 700;
+      color: #3182ce;
+      margin-right: 6px;
+    }
+
+    .toc-subnumber {
+      font-weight: 600;
+      color: #718096;
+      margin-right: 4px;
+    }
+
+    .back-to-index-container {
+      text-align: right;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .back-to-index {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 8.5pt;
+      color: #3182ce;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(49, 130, 206, 0.05);
+      border: 1px solid rgba(49, 130, 206, 0.15);
+      transition: all 0.2s ease;
+    }
+
+    .back-to-index:hover {
+      background: rgba(49, 130, 206, 0.1);
+      border-color: rgba(49, 130, 206, 0.3);
+      text-decoration: none;
+    }
+
+    .image-card {
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      border-radius: 12px;
+      padding: 0;
+      margin: 25px auto;
+      box-shadow:
+        0 8px 32px 0 rgba(31, 38, 135, 0.06),
+        0 4px 6px 0 rgba(0, 0, 0, 0.02),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+      max-width: 92%;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      overflow: hidden;
+      display: table;
+    }
+
+    .image-card img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border: none;
+      border-radius: 12px 12px 0 0;
+    }
+
+    .image-caption {
+      font-size: 8.5pt;
+      color: #4a5568;
+      background: rgba(247, 250, 252, 0.75);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      padding: 8px 15px;
+      margin: 0;
+      font-weight: 500;
+      line-height: 1.4;
+      border-top: 1px solid rgba(226, 232, 240, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    th {
+      background-color: #2b6cb0;
+      color: #ffffff;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 8.5pt;
+      letter-spacing: 0.5px;
+      border: 1px solid #2b6cb0;
+      padding: 10px 12px;
+      text-align: left;
+    }
+
+    td {
+      border: 1px solid #e2e8f0;
+      padding: 8px 12px;
+      font-size: 9.5pt;
+      vertical-align: top;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f7fafc;
+    }
+
+    blockquote {
+      background-color: #ebf8ff;
+      border-left: 4px solid #3182ce;
+      color: #2b6cb0;
+      margin: 12px 0 12px 20px;
+      padding: 10px 15px;
+      border-radius: 0 6px 6px 0;
+      font-style: normal;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    blockquote p {
+      margin: 0;
+      text-align: left;
+      font-weight: 500;
+      color: #2b6cb0;
+    }
+
+    blockquote ul {
+      margin: 5px 0 0 0;
+      padding-left: 15px;
+    }
+
+    blockquote li {
+      margin-bottom: 4px;
+      font-weight: 500;
+      color: #2b6cb0;
+    }
+
+    .note-box {
+      background-color: #fffaf0;
+      border-left: 4px solid #ed8936;
+      color: #7b341e;
+      margin: 12px 0;
+      padding: 10px 15px;
+      border-radius: 0 6px 6px 0;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .note-box p {
+      margin: 0;
+      text-align: left;
+      font-weight: 500;
+      color: #7b341e;
+    }
+
+    pre {
+      background-color: #1a202c;
+      color: #edf2f7;
+      padding: 12px 15px;
+      border-radius: 6px;
+      border: 1px solid #2d3748;
+      overflow-x: auto;
+      font-size: 9pt;
+      margin: 15px 0;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    code {
+      font-family: 'JetBrains Mono', Consolas, Monaco, monospace;
+    }
+
+    p code, li code, td code {
+      background-color: #edf2f7;
+      color: #e53e3e;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 9pt;
+      font-weight: 500;
+    }
+
+    .checklist {
+      list-style: none;
+      padding-left: 0;
+    }
+    .checklist li {
+      padding-left: 24px;
+      position: relative;
+      margin-bottom: 8px;
+    }
+    .checklist li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 18px;
+      height: 18px;
+      background: #3182ce;
+      color: #ffffff;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 10pt;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PORTADA -->
+  <div class="cover-page">
+    <div class="cover-header">
+      <div class="cloud-logo">☁️</div>
+      <div class="aws-academy">AWS Academy Cloud Foundations</div>
+    </div>
+    <div class="cover-body">
+      <h1 class="cover-title">Proyecto Final 2: StreamWave Media</h1>
+      <p class="cover-subtitle">Despliegue, monitorización y escalabilidad de una plataforma de streaming educativo en AWS Academy Learner Lab, validada desde un entorno con restricciones de red.</p>
+      <div class="cover-accent-line"></div>
+    </div>
+    <div class="cover-footer">
+      <div class="meta-grid">
+        <div class="meta-item">
+          <span class="meta-label">Estudiante</span>
+          <span class="meta-value">Oliver Bitica</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Asignatura</span>
+          <span class="meta-value">Fundamentos de la Computación en la Nube</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Estudios</span>
+          <span class="meta-value">Desarrollo de Aplicaciones Multiplataforma (DAM)</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Fecha de Entrega</span>
+          <span class="meta-value">Mayo, 2026</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÍNDICE -->
+  <div class="toc-page">
+    <div id="indice" class="toc-container">
+      <div class="toc-title">Índice de Contenidos</div>
+      <div class="toc-list">
+
+        <div class="toc-item">
+          <a href="#empresa"><span class="toc-number">1.</span> Empresa y necesidad</a>
+        </div>
+
+        <div class="toc-item">
+          <a href="#preparacion"><span class="toc-number">2.</span> Preparación del entorno</a>
+          <div class="toc-sublist">
+            <a href="#prep-acceso"><span class="toc-subnumber">2.1.</span> Acceso al Learner Lab</a>
+            <a href="#prep-region"><span class="toc-subnumber">2.2.</span> Región y servicios disponibles</a>
+          </div>
+        </div>
+
+        <div class="toc-item">
+          <a href="#ec2"><span class="toc-number">3.</span> Despliegue del portal web en EC2</a>
+          <div class="toc-sublist">
+            <a href="#ec2-instancia"><span class="toc-subnumber">3.1.</span> Crear la instancia</a>
+            <a href="#ec2-sg"><span class="toc-subnumber">3.2.</span> Configurar Security Group</a>
+            <a href="#ec2-userdata"><span class="toc-subnumber">3.3.</span> Script de User Data</a>
+            <a href="#ec2-comprobacion"><span class="toc-subnumber">3.4.</span> Lanzar y comprobar</a>
+          </div>
+        </div>
+
+        <div class="toc-item">
+          <a href="#s3"><span class="toc-number">4.</span> Almacenamiento de contenidos con S3</a>
+          <div class="toc-sublist">
+            <a href="#s3-bucket"><span class="toc-subnumber">4.1.</span> Crear el bucket principal</a>
+            <a href="#s3-estructura"><span class="toc-subnumber">4.2.</span> Organizar la estructura</a>
+            <a href="#s3-versionado"><span class="toc-subnumber">4.3.</span> Activar versionado</a>
+            <a href="#s3-ciclo"><span class="toc-subnumber">4.4.</span> Regla de ciclo de vida</a>
+          </div>
+        </div>
+
+        <div class="toc-item">
+          <a href="#vpc"><span class="toc-number">5.</span> Red y conectividad (VPC)</a>
+          <div class="toc-sublist">
+            <a href="#vpc-red"><span class="toc-subnumber">5.1.</span> Identificar la red</a>
+            <a href="#vpc-salida"><span class="toc-subnumber">5.2.</span> Salida a Internet</a>
+            <a href="#vpc-sg"><span class="toc-subnumber">5.3.</span> Prueba controlada del SG</a>
+          </div>
+        </div>
+
+        <div class="toc-item">
+          <a href="#cloudwatch"><span class="toc-number">6.</span> Monitorización con CloudWatch</a>
+          <div class="toc-sublist">
+            <a href="#cw-metricas"><span class="toc-subnumber">6.1.</span> Métricas básicas</a>
+            <a href="#cw-trafico"><span class="toc-subnumber">6.2.</span> Generar tráfico</a>
+            <a href="#cw-analisis"><span class="toc-subnumber">6.3.</span> Analizar el resultado</a>
+            <a href="#cw-alarma"><span class="toc-subnumber">6.4.</span> Crear alarma de CPU</a>
+          </div>
+        </div>
+
+        <div class="toc-item">
+          <a href="#casos"><span class="toc-number">7.</span> Casos de escalabilidad</a>
+          <div class="toc-sublist">
+            <a href="#caso-a"><span class="toc-subnumber">7.A.</span> Lanzamiento inicial</a>
+            <a href="#caso-b"><span class="toc-subnumber">7.B.</span> Picos en horario lectivo</a>
+            <a href="#caso-c"><span class="toc-subnumber">7.C.</span> Usuarios internacionales</a>
+            <a href="#caso-d"><span class="toc-subnumber">7.D.</span> Fallo del servidor</a>
+            <a href="#caso-e"><span class="toc-subnumber">7.E.</span> Crecimiento multimedia</a>
+            <a href="#caso-f"><span class="toc-subnumber">7.F.</span> Coste mensual alto</a>
+          </div>
+        </div>
+
+        <div class="toc-item">
+          <a href="#arquitecturas"><span class="toc-number">8.</span> Arquitecturas comparadas</a>
+          <div class="toc-sublist">
+            <a href="#arq-500"><span class="toc-subnumber">8.1.</span> 500 usuarios diarios</a>
+            <a href="#arq-10k"><span class="toc-subnumber">8.2.</span> 10.000 usuarios diarios</a>
+            <a href="#arq-intl"><span class="toc-subnumber">8.3.</span> Usuarios internacionales</a>
+            <a href="#arq-comp"><span class="toc-subnumber">8.4.</span> Comparación</a>
+          </div>
+        </div>
+
+        <div class="toc-item">
+          <a href="#costes"><span class="toc-number">9.</span> Costes, sostenibilidad y limpieza</a>
+          <div class="toc-sublist">
+            <a href="#costes-rev"><span class="toc-subnumber">9.1.</span> Posibles costes</a>
+            <a href="#costes-opt"><span class="toc-subnumber">9.2.</span> Medidas de optimización</a>
+            <a href="#costes-lim"><span class="toc-subnumber">9.3.</span> Limpieza final</a>
+          </div>
+        </div>
+
+        <div class="toc-item">
+          <a href="#cierre"><span class="toc-number">10.</span> Checklist y conclusión</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- INTRODUCCIÓN -->
+  <h1 class="no-break">LABORATORIO AWS ACADEMY — STREAMWAVE MEDIA</h1>
+  <h2 class="no-break practice-sub">Caso práctico empresarial: plataforma de streaming en entorno de instituto</h2>
+
+  <p>En este proyecto se despliega, valida, monitoriza y se plantea la escalabilidad de una arquitectura cloud para una empresa ficticia de streaming educativo. La práctica está diseñada para realizarse íntegramente desde el aula, sin acceso al router del centro y asumiendo que SSH o ciertos puertos externos pueden estar bloqueados por el firewall del instituto.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 32%;">Campo</th>
+        <th>Valor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Empresa ficticia</strong></td><td>StreamWave Media</td></tr>
+      <tr><td><strong>Entorno</strong></td><td>AWS Academy Learner Lab</td></tr>
+      <tr><td><strong>Trabajo principal</strong></td><td>Desplegar, validar, monitorizar y plantear escalabilidad de una arquitectura cloud</td></tr>
+      <tr><td><strong>Restricción del centro</strong></td><td>Sin acceso al router del instituto y con posibles bloqueos de firewall</td></tr>
+    </tbody>
+  </table>
+
+  <!-- SECCIÓN 1 -->
+  <h2><a id="empresa"></a>1. Empresa y necesidad</h2>
+  <p><strong>StreamWave Media</strong> es una empresa que ofrece vídeos educativos, documentales breves y material multimedia para centros de formación. Su necesidad es disponer de una infraestructura cloud inicial sencilla, escalable y económica que soporte una plataforma de streaming educativo, con posibilidad de crecer sin interrumpir el servicio.</p>
+  <p>La plataforma debe poder validarse desde un entorno con restricciones de red: sin acceso al router del instituto, con posible bloqueo de SSH y de puertos externos desde los equipos del aula. Las comprobaciones se realizan desde la consola de AWS, el navegador y, cuando sea necesario, desde <strong>AWS CloudShell</strong>.</p>
+  <div class="back-to-index-container"><a href="#indice" class="back-to-index">▲ Volver al Índice</a></div>
+
+  <!-- SECCIÓN 2 -->
+  <h2><a id="preparacion"></a>2. Preparación del entorno</h2>
+
+  <h3><a id="prep-acceso"></a>2.1. Acceder al laboratorio de AWS Academy</h3>
+  <ol>
+    <li>Entrar en AWS Academy Learner Lab.</li>
+    <li>Iniciar el laboratorio desde el botón correspondiente.</li>
+    <li>Acceder a la consola de AWS.</li>
+    <li>Comprobar que el estado del laboratorio aparece como activo.</li>
+  </ol>
+  <div class="image-card">
+    <img src="capturas/captura-01.png" alt="Consola AWS abierta dentro del Learner Lab">
+    <div class="image-caption">Consola AWS abierta dentro del Learner Lab con el estado del laboratorio activo.</div>
+  </div>
+
+  <h3><a id="prep-region"></a>2.2. Región y servicios disponibles</h3>
+  <ol>
+    <li>Anotar la región en la que se trabajará.</li>
+    <li>Buscar EC2, S3, VPC, CloudWatch y CloudShell desde el buscador de servicios.</li>
+    <li>Comprobar si CloudFront, Auto Scaling Groups y Load Balancers aparecen disponibles en el laboratorio.</li>
+  </ol>
+  <p><strong>Región utilizada:</strong> <code>us-east-1</code> — Estados Unidos (Norte de Virginia).</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 40%;">Servicio</th>
+        <th>Estado en el laboratorio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Amazon EC2</td><td>✅ Disponible</td></tr>
+      <tr><td>Amazon S3</td><td>✅ Disponible</td></tr>
+      <tr><td>Amazon VPC</td><td>✅ Disponible</td></tr>
+      <tr><td>Amazon CloudWatch</td><td>✅ Disponible</td></tr>
+      <tr><td>AWS CloudShell</td><td>✅ Disponible</td></tr>
+      <tr><td>Load Balancers (ELB)</td><td>✅ Disponible — página accesible sin errores, permisos de lectura y creación presentes</td></tr>
+      <tr><td>CloudFront</td><td>❌ Restringido — sin permisos IAM (<code>cloudfront:ListDistributions</code> denegado por la política del rol <code>voclabs</code>)</td></tr>
+      <tr><td>Auto Scaling Groups</td><td>❌ Restringido — sin permisos IAM (<code>autoscaling-plans:DescribeScalingPlans</code> denegado por la política del rol <code>voclabs</code>)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note-box">
+    <p><strong>Regla de trabajo en el aula:</strong> Si un servicio no está permitido por el laboratorio de AWS Academy, no se sustituye por acciones fuera de AWS ni se intenta cambiar la red del instituto. Se documenta la limitación y se realiza el apartado como análisis técnico.</p>
+  </div>
+
+  <div class="image-card">
+    <img src="capturas/captura-02.png" alt="Servicios AWS localizados en el buscador">
+    <div class="image-caption">Servicios AWS localizados: EC2, S3, VPC, CloudWatch y CloudShell disponibles; CloudFront y Auto Scaling restringidos por el rol <code>voclabs</code>.</div>
+  </div>
+  <div class="back-to-index-container"><a href="#indice" class="back-to-index">▲ Volver al Índice</a></div>
+
+  <!-- SECCIÓN 3 -->
+  <h2><a id="ec2"></a>3. Despliegue del portal web en EC2</h2>
+
+  <h3><a id="ec2-instancia"></a>3.1. Crear la instancia EC2</h3>
+  <ol>
+    <li>Abrir el servicio EC2.</li>
+    <li>Seleccionar <strong>Launch Instance</strong>.</li>
+    <li>Nombre de la instancia: <code>streamwave-web</code>.</li>
+    <li>AMI: <strong>Amazon Linux</strong>.</li>
+    <li>Tipo de instancia: <strong>t2.micro</strong> o equivalente permitido por el laboratorio.</li>
+    <li>Usar la VPC y subred por defecto, salvo que el profesor indique otra configuración.</li>
+  </ol>
+
+  <h3><a id="ec2-sg"></a>3.2. Configurar el Security Group</h3>
+  <ol>
+    <li>Crear un Security Group llamado <code>streamwave-sg</code>.</li>
+    <li>Permitir <strong>HTTP puerto 80</strong> desde <code>0.0.0.0/0</code>.</li>
+    <li>Permitir <strong>HTTPS puerto 443</strong> desde <code>0.0.0.0/0</code>, aunque la web inicial no use certificado.</li>
+    <li>No depender de SSH. Si se añade SSH puerto 22, será solo como observación, no como parte obligatoria de la práctica.</li>
+  </ol>
+  <div class="note-box">
+    <p><strong>Nota:</strong> En el instituto puede estar bloqueada la salida por SSH. La práctica está diseñada para completarse sin conectarse por SSH.</p>
+  </div>
+
+  <h3><a id="ec2-userdata"></a>3.3. Script de User Data</h3>
+  <p>Pegar este contenido en el apartado <strong>User Data</strong> antes de lanzar la instancia:</p>
+<pre><code>#!/bin/bash
+yum update -y
+yum install httpd -y
+systemctl start httpd
+systemctl enable httpd
+cat &gt; /var/www/html/index.html &lt;&lt;'EOF'
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;StreamWave Media&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;StreamWave Media&lt;/h1&gt;
+&lt;p&gt;Plataforma educativa de streaming desplegada en AWS.&lt;/p&gt;
+&lt;p&gt;Servidor web funcionando correctamente.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+EOF</code></pre>
+
+  <h3><a id="ec2-comprobacion"></a>3.4. Lanzar y comprobar la instancia</h3>
+  <ol>
+    <li>Esperar a que la instancia aparezca en estado <strong>Running</strong>.</li>
+    <li>Comprobar que los <strong>Status Checks</strong> estén correctos.</li>
+    <li>Copiar la IP pública de la instancia.</li>
+    <li>Intentar acceder desde el navegador con <code>http://IP_PUBLICA</code>.</li>
+  </ol>
+  <p><strong>Si el firewall del instituto bloquea la prueba desde el navegador:</strong></p>
+  <ol>
+    <li>No modificar el router ni pedir cambios en la red del centro.</li>
+    <li>Abrir <strong>AWS CloudShell</strong> desde la consola de AWS.</li>
+    <li>Ejecutar: <code>curl http://IP_PUBLICA</code></li>
+    <li>Si aparece el HTML de StreamWave Media, la web está funcionando aunque el aula no permita verla desde el navegador.</li>
+    <li>Guardar captura de CloudShell como evidencia alternativa.</li>
+  </ol>
+
+  <div class="image-card">
+    <img src="capturas/captura-03.png" alt="Instancia streamwave-web en estado Running">
+    <div class="image-caption">Instancia <code>streamwave-web</code> en estado Running con los dos Status Checks en verde.</div>
+  </div>
+  <div class="image-card">
+    <img src="capturas/captura-04.png" alt="Web de StreamWave Media cargada o curl en CloudShell">
+    <div class="image-caption">Web de StreamWave Media accesible: respuesta correcta desde navegador o desde <code>curl</code> en CloudShell.</div>
+  </div>
+  <div class="back-to-index-container"><a href="#indice" class="back-to-index">▲ Volver al Índice</a></div>
+
+  <!-- SECCIÓN 4 -->
+  <h2><a id="s3"></a>4. Almacenamiento de contenidos con Amazon S3</h2>
+
+  <h3><a id="s3-bucket"></a>4.1. Crear el bucket principal</h3>
+  <ol>
+    <li>Abrir Amazon S3.</li>
+    <li>Crear un bucket llamado <code>streamwave-media-tu-nombre</code>.</li>
+    <li>Mantener el bloqueo de acceso público activado, salvo indicación contraria del profesor.</li>
+    <li>No usar S3 como web pública en esta práctica si el laboratorio o el centro lo restringen.</li>
+  </ol>
+
+  <h3><a id="s3-estructura"></a>4.2. Organizar la estructura del bucket</h3>
+  <ol>
+    <li>Crear una carpeta <code>videos/</code>.</li>
+    <li>Crear una carpeta <code>trailers/</code>.</li>
+    <li>Crear una carpeta <code>imagenes/</code>.</li>
+    <li>Crear una carpeta <code>documentos/</code>.</li>
+    <li>Subir al menos un archivo a cada carpeta.</li>
+  </ol>
+  <div class="image-card">
+    <img src="capturas/captura-05.png" alt="Bucket S3 con cuatro carpetas">
+    <div class="image-caption">Bucket S3 con las carpetas <code>videos/</code>, <code>trailers/</code>, <code>imagenes/</code> y <code>documentos/</code> con archivos visibles.</div>
+  </div>
+
+  <h3><a id="s3-versionado"></a>4.3. Activar versionado</h3>
+  <ol>
+    <li>Entrar en la pestaña <strong>Properties</strong> del bucket.</li>
+    <li>Activar <strong>Bucket Versioning</strong>.</li>
+    <li>Subir un archivo llamado <code>cartel.html</code> o <code>descripcion.txt</code>.</li>
+    <li>Modificar el archivo en el ordenador y volver a subirlo con el mismo nombre.</li>
+    <li>Comprobar que aparecen varias versiones del mismo objeto.</li>
+  </ol>
+  <div class="image-card">
+    <img src="capturas/captura-06.png" alt="Bucket Versioning activado con varias versiones">
+    <div class="image-caption">Pestaña Properties con Bucket Versioning activado y al menos dos versiones del mismo objeto.</div>
+  </div>
+
+  <h3><a id="s3-ciclo"></a>4.4. Crear una regla de ciclo de vida</h3>
+  <ol>
+    <li>Entrar en <strong>Management</strong> dentro del bucket.</li>
+    <li>Crear una regla de ciclo de vida para la carpeta <code>videos/</code> o <code>documentos/</code>.</li>
+    <li>Configurar una transición simulada a una clase de almacenamiento más barata si el laboratorio lo permite.</li>
+  </ol>
+  <p><strong>Si el laboratorio no permite completar la regla:</strong></p>
+  <blockquote>
+    <p>En una empresa real se configuraría una transición automática a <strong>S3 Standard-IA</strong> (Infrequent Access) a los 30 días, y a <strong>S3 Glacier Instant Retrieval</strong> a los 90 días, para los vídeos con acceso poco frecuente. Esto reduce significativamente el coste de almacenamiento sin eliminar el contenido.</p>
+  </blockquote>
+  <div class="image-card">
+    <img src="capturas/captura-07.png" alt="Regla de ciclo de vida en S3">
+    <div class="image-caption">Pestaña Management del bucket con la regla de ciclo de vida creada (o evidencia de restricción del laboratorio).</div>
+  </div>
+
+  <div class="note-box">
+    <p><strong>Aplicación empresarial:</strong> StreamWave Media no debería guardar los vídeos dentro de la instancia EC2. Si la instancia falla o se sustituye, se perdería contenido. S3 permite separar el servidor web del almacenamiento multimedia y facilita el crecimiento de la plataforma.</p>
+  </div>
+  <div class="back-to-index-container"><a href="#indice" class="back-to-index">▲ Volver al Índice</a></div>
+
+  <!-- SECCIÓN 5 -->
+  <h2><a id="vpc"></a>5. Red y conectividad con VPC</h2>
+
+  <h3><a id="vpc-red"></a>5.1. Identificar la red utilizada</h3>
+  <ol>
+    <li>Abrir el servicio VPC.</li>
+    <li>Localizar la VPC usada por la instancia EC2.</li>
+    <li>Identificar la subred en la que está la instancia.</li>
+    <li>Localizar la tabla de rutas asociada.</li>
+    <li>Buscar el Internet Gateway conectado a la VPC.</li>
+  </ol>
+
+  <h3><a id="vpc-salida"></a>5.2. Comprobar la salida a Internet</h3>
+  <ol>
+    <li>En la tabla de rutas, buscar la ruta <code>0.0.0.0/0</code>.</li>
+    <li>Comprobar que el destino es un Internet Gateway con identificador <code>igw-...</code>.</li>
+    <li>Relacionar esta ruta con el acceso HTTP a la instancia.</li>
+  </ol>
+  <blockquote>
+    <p><strong>Explicación:</strong> La ruta <code>0.0.0.0/0</code> hacia el IGW es la que permite que el tráfico HTTP entrante desde cualquier IP pública llegue a la instancia EC2. Sin esta ruta, la instancia no sería accesible desde Internet aunque el Security Group lo permitiera.</p>
+  </blockquote>
+  <div class="image-card">
+    <img src="capturas/captura-08.png" alt="VPC y tabla de rutas con IGW">
+    <div class="image-caption">VPC usada por la instancia y tabla de rutas con <code>0.0.0.0/0</code> apuntando al Internet Gateway.</div>
+  </div>
+
+  <h3><a id="vpc-sg"></a>5.3. Prueba controlada de Security Group</h3>
+  <ol>
+    <li>Entrar en el Security Group de la instancia.</li>
+    <li>Eliminar temporalmente la regla HTTP puerto 80.</li>
+    <li>Intentar acceder de nuevo a la web desde navegador o CloudShell.</li>
+    <li>Volver a añadir la regla HTTP puerto 80.</li>
+    <li>Comprobar que vuelve a funcionar.</li>
+  </ol>
+  <div class="note-box">
+    <p><strong>Nota:</strong> Esta prueba se hace en AWS, no en el router del instituto. No modifica la red local del centro.</p>
+  </div>
+  <blockquote>
+    <p><strong>Resultado observado:</strong> Al eliminar la regla de puerto 80, la web deja de ser accesible (timeout o <em>connection refused</em>). Al restaurarla, el acceso se recupera de inmediato. Esto demuestra que el Security Group actúa como firewall a nivel de instancia, de forma completamente independiente de la red del instituto.</p>
+  </blockquote>
+  <div class="image-card">
+    <img src="capturas/captura-09.png" alt="SG sin puerto 80 — web no responde">
+    <div class="image-caption">Security Group con la regla HTTP puerto 80 eliminada: la web no responde.</div>
+  </div>
+  <div class="image-card">
+    <img src="capturas/captura-09.1.png" alt="SG restaurado — web responde">
+    <div class="image-caption">Security Group con la regla HTTP puerto 80 restaurada: la web vuelve a responder.</div>
+  </div>
+  <div class="back-to-index-container"><a href="#indice" class="back-to-index">▲ Volver al Índice</a></div>
+
+  <!-- SECCIÓN 6 -->
+  <h2><a id="cloudwatch"></a>6. Monitorización con CloudWatch</h2>
+
+  <h3><a id="cw-metricas"></a>6.1. Revisar métricas básicas de EC2</h3>
+  <ol>
+    <li>Abrir <strong>CloudWatch</strong>.</li>
+    <li>Acceder a <strong>Metrics</strong>.</li>
+    <li>Buscar las métricas de EC2.</li>
+    <li>Consultar <strong>CPUUtilization</strong>.</li>
+    <li>Consultar <strong>NetworkIn</strong> y <strong>NetworkOut</strong>.</li>
+    <li>Consultar <strong>StatusCheckFailed</strong> si aparece disponible.</li>
+  </ol>
+  <div class="image-card">
+    <img src="capturas/captura-10.png" alt="CloudWatch Metrics de la EC2">
+    <div class="image-caption">CloudWatch Metrics con las métricas de la instancia: CPUUtilization y NetworkIn/Out visibles.</div>
+  </div>
+
+  <h3><a id="cw-trafico"></a>6.2. Generar tráfico de forma segura</h3>
+  <p><strong>Opción A:</strong> Refrescar varias veces la web desde el navegador.</p>
+  <p><strong>Opción B</strong> — si el navegador del centro no accede a la IP pública, abrir CloudShell y ejecutar:</p>
+<pre><code>for i in {1..30}; do
+  curl -s http://IP_PUBLICA &gt; /dev/null
+  echo "Peticion $i enviada"
+done</code></pre>
+
+  <h3><a id="cw-analisis"></a>6.3. Analizar el resultado</h3>
+  <ol>
+    <li>Esperar unos minutos a que CloudWatch actualice las métricas.</li>
+    <li>Comprobar si <strong>NetworkIn</strong> o <strong>NetworkOut</strong> han cambiado.</li>
+    <li>Explicar si la CPU cambia o permanece estable.</li>
+    <li>Indicar por qué una web sencilla genera poca carga.</li>
+  </ol>
+  <blockquote>
+    <p><strong>Análisis:</strong></p>
+    <ul>
+      <li><strong>NetworkIn/NetworkOut:</strong> aumentan ligeramente al recibir y responder las peticiones HTTP, aunque los valores son bajos dado el reducido tamaño del HTML servido.</li>
+      <li><strong>CPUUtilization:</strong> permanece prácticamente estable (cercana al 0%). Servir una página HTML estática consume mínimos ciclos de CPU: Apache simplemente lee un archivo del disco y lo envía por red, sin procesamiento.</li>
+      <li><strong>Por qué genera poca carga:</strong> una web estática sin base de datos ni lógica de servidor apenas consume recursos. La carga real aparecería al introducir procesamiento dinámico, consultas a BD o transcodificación de vídeo.</li>
+    </ul>
+  </blockquote>
+  <div class="image-card">
+    <img src="capturas/captura-11.png" alt="CloudWatch tras generar tráfico">
+    <div class="image-caption">CloudWatch con las métricas actualizadas tras generar tráfico: NetworkIn/Out con variación y CPU estable cerca del 0%.</div>
+  </div>
+
+  <h3><a id="cw-alarma"></a>6.4. Crear una alarma de CPU</h3>
+  <ol>
+    <li>Desde CloudWatch, crear una alarma sobre <strong>CPUUtilization</strong>.</li>
+    <li>Configurar un umbral del <strong>70%</strong>.</li>
+    <li>No es obligatorio enviar notificación por correo si el laboratorio no permite SNS.</li>
+    <li>Guardar captura de la configuración.</li>
+  </ol>
+  <div class="image-card">
+    <img src="capturas/captura-12.png" alt="Alarma CPUUtilization en CloudWatch">
+    <div class="image-caption">Alarma de <code>CPUUtilization</code> creada en CloudWatch con umbral configurado al 70%.</div>
+  </div>
+  <div class="back-to-index-container"><a href="#indice" class="back-to-index">▲ Volver al Índice</a></div>
+
+  <!-- SECCIÓN 7 -->
+  <h2><a id="casos"></a>7. Casos de escalabilidad aplicados a empresa</h2>
+
+  <h3><a id="caso-a"></a>Caso A — Lanzamiento inicial</h3>
+  <p><em>Pocos usuarios, web informativa sencilla, una instancia EC2 pequeña, recursos multimedia en S3, monitorización con CloudWatch.</em></p>
+  <blockquote>
+    <p><strong>Solución:</strong> Una instancia EC2 <code>t2.micro</code> es suficiente para servir a cientos de usuarios concurrentes con contenido estático. Los recursos multimedia se alojan en S3, separando almacenamiento de servidor. CloudWatch monitoriza la instancia para detectar anomalías. No se sobredimensiona: el coste sería innecesario y la demanda no lo justifica en esta fase inicial.</p>
+  </blockquote>
+
+  <h3><a id="caso-b"></a>Caso B — Aumento de visitas en horario lectivo (9:00–14:00)</h3>
+  <p><em>Tráfico creciente entre las 9:00 y las 14:00, picos predecibles.</em></p>
+  <blockquote>
+    <p><strong>Solución:</strong> Implementar <strong>Auto Scaling</strong> con una política basada en métricas de CloudWatch (CPUUtilization &gt; 60% o número de peticiones elevado). Se crea una <strong>AMI</strong> de la instancia actual como plantilla de lanzamiento para replicar servidores idénticos. El grupo escala a 2–3 instancias durante el horario lectivo y vuelve a 1 fuera de él. Esto optimiza coste y capacidad de forma automática sin intervención manual.</p>
+  </blockquote>
+
+  <h3><a id="caso-c"></a>Caso C — Usuarios de varios países</h3>
+  <p><em>Acceso desde distintas ubicaciones geográficas con alta latencia.</em></p>
+  <blockquote>
+    <p><strong>Solución:</strong> Implementar <strong>Amazon CloudFront</strong> como CDN delante del contenido estático y multimedia. S3 actúa como origen de imágenes, trailers y documentos. CloudFront replica el contenido en <em>edge locations</em> cercanos a los usuarios, reduciendo drásticamente la latencia de descarga. El servidor EC2 solo recibe peticiones que no puedan cachearse. Una CDN reduce la latencia porque el usuario descarga desde un nodo cercano en lugar de desde la región de AWS, y descarga trabajo del servidor EC2 al evitar que sirva el mismo contenido repetidamente.</p>
+  </blockquote>
+
+  <h3><a id="caso-d"></a>Caso D — Fallo del servidor principal</h3>
+  <p><em>La instancia EC2 deja de responder.</em></p>
+  <blockquote>
+    <p><strong>Solución:</strong> Desplegar al menos <strong>dos instancias EC2</strong> detrás de un <strong>Application Load Balancer (ALB)</strong>, distribuidas en dos zonas de disponibilidad distintas (por ejemplo <code>us-east-1a</code> y <code>us-east-1b</code>). El ALB realiza <em>health checks</em> periódicos; si una instancia falla, deja de enviarle tráfico automáticamente. CloudWatch detectaría el fallo mediante <code>StatusCheckFailed</code> y podría activar una alarma o acción de Auto Scaling para reemplazar la instancia caída. El servicio se mantiene activo sin intervención manual y sin que el usuario perciba la interrupción.</p>
+  </blockquote>
+
+  <h3><a id="caso-e"></a>Caso E — Crecimiento del almacenamiento multimedia</h3>
+  <p><em>La empresa pasa de decenas a miles de vídeos.</em></p>
+  <p><strong>Solución:</strong> usar S3 con <strong>clases de almacenamiento por frecuencia de acceso</strong> y reglas de ciclo de vida automáticas:</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Clase</th>
+        <th>Cuándo</th>
+        <th style="width: 20%;">Coste relativo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>S3 Standard</td><td>Vídeos recientes y frecuentes</td><td>Alto</td></tr>
+      <tr><td>S3 Standard-IA</td><td>Vídeos de más de 30 días</td><td>Medio</td></tr>
+      <tr><td>S3 Glacier Instant Retrieval</td><td>Vídeos archivados +90 días</td><td>Bajo</td></tr>
+    </tbody>
+  </table>
+  <p>Las reglas de ciclo de vida mueven objetos entre clases automáticamente. La documentación interna se mantiene en una carpeta separada con permisos restringidos. Este enfoque escala ilimitadamente en capacidad y reduce el coste de almacenamiento hasta un 70% respecto a mantener todo en S3 Standard.</p>
+
+  <h3><a id="caso-f"></a>Caso F — Coste mensual demasiado alto</h3>
+  <p><em>La empresa detecta que el coste cloud crece demasiado.</em></p>
+  <blockquote>
+    <p><strong>Solución:</strong></p>
+    <ul>
+      <li>Revisar instancias EC2 encendidas sin uso y terminarlas.</li>
+      <li>Eliminar recursos de pruebas: snapshots, AMIs antiguas, buckets vacíos.</li>
+      <li>Usar métricas de CloudWatch para ajustar el tipo de instancia al uso real (<em>rightsizing</em>).</li>
+      <li>Revisar la transferencia de datos: CloudFront reduce los costes de <em>data transfer out</em> desde S3 y EC2.</li>
+      <li>Aplicar reglas de ciclo de vida en S3 para mover contenido antiguo a clases más baratas.</li>
+      <li>Usar <strong>AWS Cost Explorer</strong> para identificar los recursos que más facturan mes a mes.</li>
+    </ul>
+  </blockquote>
+  <div class="back-to-index-container"><a href="#indice" class="back-to-index">▲ Volver al Índice</a></div>
+
+  <!-- SECCIÓN 8 -->
+  <h2><a id="arquitecturas"></a>8. Tareas prácticas adicionales de escalabilidad</h2>
+
+  <h3><a id="arq-500"></a>8.1. Arquitectura para 500 usuarios diarios</h3>
+  <p><strong>Diagrama:</strong></p>
+<pre><code>         Internet
+            │
+            ▼
+  [EC2 t2.micro — streamwave-web]
+            │
+     ┌──────┴──────┐
+     ▼             ▼
+[S3 bucket]  [CloudWatch]
+(videos,      (métricas y
+ imágenes,     alarmas)
+ docs)
+
+VPC por defecto → Subred pública → Internet Gateway</code></pre>
+  <p><strong>Por qué no es imprescindible un Load Balancer:</strong> Con 500 usuarios diarios y contenido estático, una sola instancia <code>t2.micro</code> gestiona sin problema el tráfico concurrente estimado (decenas de usuarios simultáneos). Añadir un Load Balancer introduciría un coste mensual fijo sin beneficio real en este volumen.</p>
+  <p><strong>Métricas a vigilar:</strong> <code>CPUUtilization</code> (normal &lt; 40%), <code>NetworkIn/Out</code>, <code>StatusCheckFailed</code>.</p>
+
+  <h3><a id="arq-10k"></a>8.2. Arquitectura para 10.000 usuarios diarios</h3>
+  <p><strong>Diagrama:</strong></p>
+<pre><code>         Internet
+            │
+            ▼
+[Application Load Balancer]
+       │         │
+       ▼         ▼
+ [EC2 #1]    [EC2 #2]        [EC2 #3 — Auto Scaling]
+ AZ-1a       AZ-1b           (se lanza si CPU > 60%)
+       │
+  [S3 bucket] ← origen multimedia
+       │
+  [CloudWatch + Auto Scaling Policy]</code></pre>
+  <p><strong>Cambios respecto al caso anterior:</strong></p>
+  <ul>
+    <li>Se añade un <strong>ALB</strong> para distribuir el tráfico entre instancias y detectar fallos.</li>
+    <li>Las instancias se replican en <strong>dos zonas de disponibilidad</strong> para alta disponibilidad.</li>
+    <li><strong>Auto Scaling</strong> ajusta el número de instancias según CPU o número de peticiones: escala hacia arriba en picos y reduce en horas bajas, optimizando coste.</li>
+    <li>El tráfico se reparte en <em>round-robin</em> entre instancias sanas.</li>
+  </ul>
+
+  <h3><a id="arq-intl"></a>8.3. Arquitectura para usuarios internacionales</h3>
+  <p><strong>Diagrama:</strong></p>
+<pre><code>Usuarios en Europa, Asia, América
+            │
+            ▼
+  [CloudFront — Edge Locations globales]
+       │                    │
+       ▼                    ▼
+[S3 — origen        [ALB → EC2 x2 + Auto Scaling]
+ contenido           (peticiones dinámicas)
+ estático]
+                     [CloudWatch]</code></pre>
+  <p><strong>Qué sirve CloudFront y qué EC2:</strong></p>
+  <ul>
+    <li><strong>CloudFront:</strong> imágenes, vídeos, trailers, CSS, JS — contenido estático que no varía por usuario y puede cachearse en los <em>edge locations</em>.</li>
+    <li><strong>EC2:</strong> lógica dinámica que CloudFront no puede cachear: login, registro, personalización, APIs.</li>
+  </ul>
+  <p><strong>Impacto en el rendimiento percibido:</strong> El usuario descarga el contenido multimedia desde el <em>edge location</em> más cercano (latencia &lt; 50 ms) en lugar de desde la región de AWS (latencia 100–300 ms). La experiencia mejora drásticamente para usuarios en Europa, Asia y Latinoamérica sin modificar la infraestructura de origen.</p>
+
+  <h3><a id="arq-comp"></a>8.4. Comparación de las tres arquitecturas</h3>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 18%;">Arquitectura</th>
+        <th>Componentes</th>
+        <th>Ventajas</th>
+        <th>Inconvenientes</th>
+        <th style="width: 12%;">Coste relativo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Mínima</strong></td>
+        <td>EC2 + S3 + CloudWatch</td>
+        <td>Simple, económica, fácil de gestionar</td>
+        <td>Punto único de fallo, no escala automáticamente</td>
+        <td>Bajo</td>
+      </tr>
+      <tr>
+        <td><strong>Escalable</strong></td>
+        <td>ALB + varias EC2 + Auto Scaling + S3 + CloudWatch</td>
+        <td>Alta disponibilidad, escala automática, tolerante a fallos</td>
+        <td>Mayor complejidad y coste fijo del LB</td>
+        <td>Medio</td>
+      </tr>
+      <tr>
+        <td><strong>Internacional</strong></td>
+        <td>CloudFront + S3 + ALB + EC2 + Auto Scaling</td>
+        <td>Latencia global reducida, CDN descarga el origen, máxima escalabilidad</td>
+        <td>Más costosa, configuración avanzada de caché y CloudFront</td>
+        <td>Alto</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="back-to-index-container"><a href="#indice" class="back-to-index">▲ Volver al Índice</a></div>
+
+  <!-- SECCIÓN 9 -->
+  <h2><a id="costes"></a>9. Costes, sostenibilidad y limpieza del laboratorio</h2>
+
+  <h3><a id="costes-rev"></a>9.1. Revisar posibles costes</h3>
+  <p><strong>Recursos que generan coste en StreamWave Media:</strong></p>
+  <ul>
+    <li><strong>EC2:</strong> factura por hora de ejecución aunque no haya tráfico. Una instancia <code>t2.micro</code> puede suponer ~$8–10/mes.</li>
+    <li><strong>S3:</strong> factura por GB almacenado y por número de solicitudes GET/PUT. Con miles de vídeos el almacenamiento crece rápidamente.</li>
+    <li><strong>CloudFront:</strong> factura por GB transferido a los usuarios. En una plataforma multimedia, la transferencia de datos es el mayor coste potencial.</li>
+    <li><strong>Transferencia de datos (<em>data transfer out</em>):</strong> la salida de datos de AWS hacia Internet tiene coste por GB. CloudFront reduce este coste al cachear y servir desde <em>edge locations</em>.</li>
+  </ul>
+  <blockquote>
+    <p><strong>Por qué una plataforma multimedia aumenta costes rápidamente:</strong> Cada reproducción de vídeo implica transferencia de datos. Con miles de usuarios reproduciendo contenido en HD, el ancho de banda puede convertirse en el coste dominante, creciendo linealmente con el número de reproducciones y el peso de cada vídeo.</p>
+  </blockquote>
+
+  <h3><a id="costes-opt"></a>9.2. Proponer medidas de optimización</h3>
+  <p><strong>Medidas concretas aplicadas a StreamWave Media:</strong></p>
+  <ol>
+    <li>Apagar o detener instancias EC2 fuera del horario lectivo si el tráfico es predeciblemente nulo por la noche y fines de semana.</li>
+    <li>Aplicar reglas de ciclo de vida en S3 para mover vídeos de más de 30 días a Standard-IA y a Glacier a los 90 días.</li>
+    <li>Desplegar CloudFront para cachear el contenido estático y multimedia, reduciendo las solicitudes directas al origen y el <em>data transfer out</em> facturado.</li>
+    <li>Revisar mensualmente las métricas de CPU y memoria para ajustar el tipo de instancia al uso real (<em>rightsizing</em>).</li>
+    <li>Eliminar recursos temporales al finalizar pruebas: snapshots huérfanos, AMIs no usadas, buckets de test.</li>
+  </ol>
+
+  <h3><a id="costes-lim"></a>9.3. Limpieza final</h3>
+  <ol>
+    <li>Terminar la instancia EC2.</li>
+    <li>Eliminar buckets S3 creados, vaciándolos previamente.</li>
+    <li>Eliminar alarmas de CloudWatch creadas.</li>
+    <li>Eliminar distribuciones CloudFront si se llegaron a crear.</li>
+    <li>Comprobar que no quedan recursos activos innecesarios.</li>
+  </ol>
+  <div class="note-box">
+    <p><strong>Nota:</strong> La limpieza forma parte de la práctica. En cloud, dejar recursos activos puede generar costes aunque no se estén usando.</p>
+  </div>
+  <div class="image-card">
+    <img src="capturas/captura-13.png" alt="EC2 Terminated">
+    <div class="image-caption">Instancia EC2 en estado <strong>Terminated</strong> en la lista de instancias.</div>
+  </div>
+  <div class="image-card">
+    <img src="capturas/captura-13.1.png" alt="Lista S3 vacía">
+    <div class="image-caption">Lista de buckets S3 vacía tras eliminar el bucket del laboratorio.</div>
+  </div>
+  <div class="image-card">
+    <img src="capturas/captura-13.2.png" alt="CloudWatch sin alarmas">
+    <div class="image-caption">CloudWatch sin alarmas activas tras eliminarlas.</div>
+  </div>
+  <div class="back-to-index-container"><a href="#indice" class="back-to-index">▲ Volver al Índice</a></div>
+
+  <!-- SECCIÓN 10 -->
+  <h2><a id="cierre"></a>10. Checklist final y conclusión</h2>
+
+  <h3>Checklist final</h3>
+  <ul class="checklist">
+    <li>He creado una instancia EC2 con una web básica.</li>
+    <li>He probado la web desde navegador o desde CloudShell.</li>
+    <li>He creado un bucket S3 con carpetas organizadas.</li>
+    <li>He activado versionado o he explicado por qué no se pudo activar.</li>
+    <li>He identificado VPC, subred, tabla de rutas e Internet Gateway.</li>
+    <li>He revisado métricas en CloudWatch.</li>
+    <li>He planteado escenarios de escalabilidad.</li>
+    <li>He propuesto mejoras de coste y sostenibilidad.</li>
+    <li>He eliminado los recursos creados al finalizar.</li>
+  </ul>
+
+  <h3>Conclusión</h3>
+  <blockquote>
+    <p>Una arquitectura cloud no consiste solo en crear recursos, sino en diseñar una solución que funcione en un entorno real, que pueda crecer, que sea medible, que controle costes y que se adapte a restricciones como las de una red de instituto. <strong>StreamWave Media</strong> parte de una base mínima y viable, con capacidad de evolucionar hacia una plataforma global escalable conforme crezcan sus usuarios y necesidades.</p>
+  </blockquote>
+  <div class="back-to-index-container"><a href="#indice" class="back-to-index">▲ Volver al Índice</a></div>
+
+</body>
+</html>

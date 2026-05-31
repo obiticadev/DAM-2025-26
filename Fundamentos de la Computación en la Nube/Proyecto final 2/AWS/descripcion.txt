@@ -1,0 +1,13 @@
+Título: Introducción al streaming educativo
+Categoría: Documentación general
+Versión: 1.5
+
+StreamWave Media ofrece contenido educativo en formato vídeo para centros de formación.
+Nuestro catálogo incluye documentales breves, tutoriales técnicos y material de apoyo curricular.
+
+Idiomas disponibles: Español, Inglés
+Resolución máxima: 1080p
+Formato de vídeo: MP4 / HLS
+Almacenamiento: Amazon S3
+
+Contacto: info@streamwavemedia.com
