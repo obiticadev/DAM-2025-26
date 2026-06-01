@@ -1,0 +1,25 @@
+# ============================================================
+#  EJERCICIO 31 - Volumenes y redes en Compose  (proyecto: masterclass/ej31)
+#
+#  Compose puede declarar VOLUMENES NOMBRADOS y REDES propias a nivel raiz y
+#  luego asignarlos a los servicios. Compose los prefija con el nombre del
+#  proyecto (ej:  mc-ej31_datos ,  mc-ej31_backend ). Asi la persistencia y el
+#  aislamiento de red quedan descritos en el mismo fichero.
+# ============================================================
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_PASSWORD: secreto
+    # TODO 1: monta el volumen nombrado  datos  en  /var/lib/postgresql/data
+
+    # TODO 2: conecta este servicio a la red  backend
+
+# TODO 3: declara a nivel raiz el volumen nombrado  datos
+# volumes:
+#   ...
+
+# TODO 4: declara a nivel raiz la red  backend  con driver  bridge
+# networks:
+#   ...

@@ -18,9 +18,15 @@ header() { echo; echo -e "${C_CYAN}=============================================
 fail()   { echo; echo -e "${C_RED}============================================================${C_OFF}"; echo -e "${C_RED}  X  EJERCICIO ${NN} NO SUPERADO${C_OFF}"; echo -e "${C_RED}  $1${C_OFF}"; echo -e "${C_RED}============================================================${C_OFF}"; exit 1; }
 pass()   { echo; echo -e "${C_GREEN}============================================================${C_OFF}"; echo -e "${C_GREEN}  OK  EJERCICIO ${NN} SUPERADO${C_OFF}"; echo -e "${C_GREEN}============================================================${C_OFF}"; exit 0; }
 
-# --- Localiza la carpeta del ejercicio -------------------------------------
-EXDIR=$(find ejercicios -maxdepth 1 -type d -name "${NN}_*" | head -n1)
-[ -z "$EXDIR" ] && fail "No existe la carpeta ejercicios/${NN}_*"
+# --- Localiza la carpeta del ejercicio (ahora anidada por bloque) ----------
+# Los ejercicios viven en  ejercicios/<bloque>/NN_nombre/ . Buscamos en
+# profundidad y filtramos por ENUNCIADO.md para no confundir el ejercicio con
+# la carpeta de bloque (que puede compartir prefijo numerico).
+EXDIR=""
+while IFS= read -r d; do
+    if [ -f "$d/ENUNCIADO.md" ]; then EXDIR="$d"; break; fi
+done < <(find ejercicios -type d -name "${NN}_*" | sort)
+[ -z "$EXDIR" ] && fail "No existe ningun ejercicio ejercicios/**/${NN}_*"
 header "VALIDANDO EJERCICIO ${NN}  ($(basename "$EXDIR"))"
 
 # --- 1) Ruta RUNTIME -------------------------------------------------------

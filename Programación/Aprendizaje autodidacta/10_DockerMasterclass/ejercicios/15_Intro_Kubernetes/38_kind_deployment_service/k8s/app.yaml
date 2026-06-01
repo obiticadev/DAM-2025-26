@@ -1,0 +1,41 @@
+# ============================================================
+#  EJERCICIO 38 - Kubernetes con kind: Deployment + Service
+#
+#  En Kubernetes no lanzas contenedores sueltos: declaras el ESTADO DESEADO.
+#  Un DEPLOYMENT mantiene N replicas de un Pod vivas (si una muere, la repone).
+#  Un SERVICE da una direccion estable y reparte el trafico entre las replicas.
+#  Completa los TODO de este manifiesto.
+# ============================================================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+  labels:
+    app: web
+spec:
+  # TODO 1: mantener 2 replicas (replicas: 2)
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - name: web
+          # TODO 2: usar la imagen  nginx:alpine
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web
+spec:
+  selector:
+    app: web
+  ports:
+    - port: 80
+      targetPort: 80
+  # TODO 3: tipo de servicio  ClusterIP  (type: ClusterIP)

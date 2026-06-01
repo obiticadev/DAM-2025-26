@@ -1,0 +1,21 @@
+# ============================================================
+#  EJERCICIO 34 - Perfiles (profiles)  (proyecto: masterclass/ej34)
+#
+#  Los PROFILES permiten tener servicios OPCIONALES en el mismo compose: solo
+#  arrancan si activas su perfil ( --profile <nombre> ). Util para herramientas
+#  de depuracion, seeders, paneles de admin... que no quieres en marcha siempre.
+#  (Hermano de este mecanismo es el  compose.override.yaml , que se fusiona
+#   automaticamente sobre el compose base para ajustes locales de desarrollo.)
+# ============================================================
+
+services:
+  web:
+    image: nginx:alpine
+    ports:
+      - "8634:80"
+
+  herramientas:
+    image: alpine:3.20
+    command: ["sleep", "infinity"]
+    # TODO 1: marca este servicio con el perfil  debug  (profiles: ["debug"]),
+    #         de modo que SOLO arranque cuando se active  --profile debug .

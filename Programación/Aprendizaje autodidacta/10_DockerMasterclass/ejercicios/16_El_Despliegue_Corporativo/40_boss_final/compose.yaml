@@ -1,0 +1,43 @@
+# ============================================================
+#  BOSS FINAL (ej 40) - Stack completo con Compose
+#  (proyecto: masterclass/ej40)
+#
+#  Cuatro servicios trabajando juntos:
+#    proxy (nginx)  ->  api (tu imagen Go)  ->  cache (redis)
+#                                            \-> db (postgres)
+#  El proxy publica el puerto en el host; la api solo es accesible por la red
+#  interna. La api no arranca hasta que cache y db esten SANAS.
+# ============================================================
+
+services:
+  api:
+    # TODO 1: construye la imagen desde este directorio (build: .)
+    environment:
+      MENSAJE: "boss final superado"
+      REDIS_HOST: "cache:6379"
+      # API_KEY se inyecta como secreto; aqui lo tomamos de una variable de
+      # entorno del host para no incrustarlo en el fichero.
+      API_KEY: "${API_KEY:-clave-demo}"
+    # TODO 2: depends_on de  cache  y  db , ambos con  condition: service_healthy
+
+  cache:
+    image: redis:7-alpine
+    # TODO 3: healthcheck con  redis-cli ping  (interval 3s, timeout 3s, retries 5)
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_PASSWORD: secreto
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 3s
+      timeout: 3s
+      retries: 5
+
+  proxy:
+    image: nginx:alpine
+    # TODO 4: publica el puerto 80 del contenedor en el  8640  del host
+    # TODO 5: monta  ./proxy/nginx.conf  en
+    #         /etc/nginx/conf.d/default.conf  en modo solo lectura (:ro)
+    depends_on:
+      - api

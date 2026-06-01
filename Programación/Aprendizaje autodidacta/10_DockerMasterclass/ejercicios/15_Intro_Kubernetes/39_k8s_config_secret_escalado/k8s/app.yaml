@@ -1,0 +1,55 @@
+# ============================================================
+#  EJERCICIO 39 - ConfigMap, Secret, escalado y rolling update
+#
+#  La configuracion y los secretos NO se hornean en la imagen: en Kubernetes
+#  viven en objetos  ConfigMap  (config no sensible) y  Secret  (sensible) y se
+#  inyectan en los Pods como variables de entorno. Ademas el Deployment se
+#  escala (mas replicas) y se actualiza con ROLLING UPDATE (sin caida).
+#  Completa los TODO.
+# ============================================================
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: web-config
+data:
+  # TODO 1: clave  MENSAJE  con valor  hola desde configmap
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: web-secret
+type: Opaque
+stringData:
+  # TODO 2: clave  API_KEY  con valor  supersecreto
+  #         (stringData acepta texto plano; Kubernetes lo codifica por ti)
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+  labels:
+    app: web
+spec:
+  # TODO 3: arrancar con 2 replicas
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - name: web
+          image: nginx:alpine
+          ports:
+            - containerPort: 80
+          env:
+            # TODO 4: variable  MENSAJE  tomada del ConfigMap web-config (clave MENSAJE)
+            #   - name: MENSAJE
+            #     valueFrom:
+            #       configMapKeyRef: { name: ..., key: ... }
+            # TODO 5: variable  API_KEY  tomada del Secret web-secret (clave API_KEY)
+            #   - name: API_KEY
+            #     valueFrom:
+            #       secretKeyRef: { name: ..., key: ... }

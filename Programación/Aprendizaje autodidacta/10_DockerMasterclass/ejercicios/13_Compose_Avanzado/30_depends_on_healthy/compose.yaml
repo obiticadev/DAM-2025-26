@@ -1,0 +1,29 @@
+# ============================================================
+#  EJERCICIO 30 - depends_on con condicion service_healthy
+#  (proyecto: masterclass/ej30)
+#
+#  Un  depends_on  "a secas" solo espera a que el contenedor ARRANQUE, no a que
+#  el servicio este LISTO. Para que  web  no arranque hasta que la base ACEPTE
+#  conexiones, la  db  declara un HEALTHCHECK y  web  depende de ella con la
+#  condicion  service_healthy .
+# ============================================================
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_PASSWORD: secreto
+    # TODO 1: anade un healthcheck que use  pg_isready -U postgres
+    #         (test, interval: 3s, timeout: 3s, retries: 5).
+
+  web:
+    build: ./app
+    ports:
+      - "8630:8000"
+    environment:
+      DB_HOST: db
+      DB_USER: postgres
+      DB_PASSWORD: secreto
+      DB_NAME: postgres
+    # TODO 2: declara  depends_on  de  db  con  condition: service_healthy
+    #         (forma de mapa, no de lista).

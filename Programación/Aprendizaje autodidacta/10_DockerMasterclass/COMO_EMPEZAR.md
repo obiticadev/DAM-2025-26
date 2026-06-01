@@ -1,4 +1,4 @@
-# Cómo Empezar — Test-Driven Learning con Docker
+﻿# Cómo Empezar — Test-Driven Learning con Docker
 
 Si es tu primera vez con contenedores, esta es tu guía de 5 minutos para dejarlo todo operativo y entender el juego.
 
@@ -32,7 +32,7 @@ La primera vez tardará un poco (descarga las imágenes de las herramientas de t
 
 ```mermaid
 flowchart TD
-    A[Leo teoria/00_Que_Es_Un_Contenedor.md] --> B[Abro ejercicios/01_hola_contenedor/ENUNCIADO.md]
+    A[Leo teoria/00_Que_Es_Un_Contenedor.md] --> B[Abro ejercicios/00_Que_Es_Un_Contenedor/01_hola_contenedor/ENUNCIADO.md]
     B --> C[Sigo la especificacion y relleno los TODO]
     C --> D["Juego: docker build / docker run"]
     D --> E[.\validar.ps1 01]
@@ -42,7 +42,7 @@ flowchart TD
 ```
 
 1. Lee `teoria/00_Que_Es_Un_Contenedor.md`.
-2. Abre `ejercicios/01_hola_contenedor/ENUNCIADO.md` y sigue la especificación.
+2. Abre `ejercicios/00_Que_Es_Un_Contenedor/01_hola_contenedor/ENUNCIADO.md` y sigue la especificación.
 3. Rellena los `# TODO:`.
 4. Usa la "Zona de Ejecución Master" del enunciado para ver tu trabajo.
 5. Valida con `.\validar.ps1 01`.

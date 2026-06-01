@@ -37,9 +37,14 @@ function Pass() {
     exit 0
 }
 
-# --- Localiza la carpeta del ejercicio -------------------------------------
-$dir = Get-ChildItem -Path (Join-Path $root "ejercicios") -Directory -Filter "$nn`_*" | Select-Object -First 1
-if (-not $dir) { Fail "No existe la carpeta ejercicios/$nn`_*" }
+# --- Localiza la carpeta del ejercicio (ahora anidada por bloque) ----------
+# Los ejercicios viven en  ejercicios/<bloque>/NN_nombre/ . Buscamos en
+# profundidad y filtramos por ENUNCIADO.md para no confundir el ejercicio con
+# la carpeta de bloque (que puede compartir prefijo numerico).
+$dir = Get-ChildItem -Path (Join-Path $root "ejercicios") -Directory -Recurse -Filter "$nn`_*" |
+    Where-Object { Test-Path (Join-Path $_.FullName "ENUNCIADO.md") } |
+    Select-Object -First 1
+if (-not $dir) { Fail "No existe ningun ejercicio ejercicios/**/$nn`_*" }
 $exPath = $dir.FullName
 $tag = "masterclass/ej$nn`:latest"
 

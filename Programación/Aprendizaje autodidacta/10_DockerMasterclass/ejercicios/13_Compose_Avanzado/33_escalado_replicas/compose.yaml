@@ -1,0 +1,16 @@
+# ============================================================
+#  EJERCICIO 33 - Escalado horizontal (replicas)  (proyecto: masterclass/ej33)
+#
+#  Un servicio SIN ESTADO se puede ESCALAR: arrancar varias copias identicas
+#  (replicas) para repartir carga. En Compose se declara con  deploy.replicas
+#  (o en linea con  docker compose up --scale worker=N ). Ojo: un servicio
+#  escalado NO puede publicar un puerto fijo del host (colisionaria).
+# ============================================================
+
+services:
+  worker:
+    image: alpine:3.20
+    command: ["sleep", "infinity"]
+    # TODO 1: declara 3 replicas de este servicio usando  deploy.replicas
+    #         deploy:
+    #           replicas: ...
