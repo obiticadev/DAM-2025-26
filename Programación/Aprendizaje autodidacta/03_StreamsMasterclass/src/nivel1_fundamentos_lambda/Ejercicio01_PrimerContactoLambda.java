@@ -3,7 +3,6 @@ package nivel1_fundamentos_lambda;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * EJERCICIO 01 — PRIMER CONTACTO CON LAMBDA (CON GUÍA)
@@ -39,7 +38,7 @@ public class Ejercicio01_PrimerContactoLambda {
         // Recuerda que compareTo() devuelve negativo/0/positivo.
         // Para invertir el orden, simplemente invierte quién llama a compareTo.
 
-        // >>> ESCRIBE TU CÓDIGO AQUÍ <<<
+        lenguajes.sort((a, b) -> b.compareTo(a));
 
         // --- VALIDACIÓN ---
         if (lenguajes.size() == 5 && lenguajes.get(0).equals("Rust") && lenguajes.get(4).equals("C")) {

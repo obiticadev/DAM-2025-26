@@ -31,7 +31,7 @@ public class Ejercicio02_LambdaSinGuia {
         // No hay pista de sintaxis esta vez. Recuerda lo que hiciste en el ejercicio
         // anterior.
 
-        // >>> ESCRIBE TU CÓDIGO AQUÍ <<<
+        salarios.sort((a, b) -> b.compareTo(a));
 
         // --- VALIDACIÓN ---
         if (salarios.size() == 6 && salarios.get(0) == 90000 && salarios.get(5) == 28000) {
