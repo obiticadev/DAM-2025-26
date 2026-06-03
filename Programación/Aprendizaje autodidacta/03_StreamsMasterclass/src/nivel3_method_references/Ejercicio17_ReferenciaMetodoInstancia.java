@@ -2,7 +2,6 @@ package nivel3_method_references;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import modelos.Empleado;
 
 /**
@@ -30,17 +29,22 @@ public class Ejercicio17_ReferenciaMetodoInstancia {
         equipo.add(new Empleado("Pedro", "QA", "Java", 3, 30000, false, null));
 
         // TODO 1: Extrae los nombres usando Method Reference en lugar de Lambda
-        // En vez de: .map(e -> e.getNombre())  usa la sintaxis Clase::metodo
-        List<String> nombres = null; // <- Escribe aquí
+        // En vez de: .map(e -> e.getNombre()) usa la sintaxis Clase::metodo
+        List<String> nombres = equipo.stream()
+                .map(Empleado::getNombre)
+                .toList();
 
         // TODO 2: Filtra solo los activos usando Method Reference en .filter()
-        List<Empleado> activos = null; // <- Escribe aquí
+        List<Empleado> activos = equipo.stream()
+                .filter(Empleado::isActivo)
+                .toList();
 
         // --- VALIDACIÓN ---
         boolean nombresOk = nombres != null && nombres.size() == 4 && nombres.get(0).equals("Ana");
         boolean activosOk = activos != null && activos.size() == 3;
         if (nombresOk && activosOk) {
-            System.out.println(">> CORRECTO: Has reemplazado Lambdas por Method References tipo Clase::metodo.\033[0;32m [OK]\033[0m");
+            System.out.println(
+                    ">> CORRECTO: Has reemplazado Lambdas por Method References tipo Clase::metodo.\033[0;32m [OK]\033[0m");
         } else {
             System.err.println(">> [ERROR] nombres debe tener 4 elementos, activos debe tener 3.");
         }

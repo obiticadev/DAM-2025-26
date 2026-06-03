@@ -3,7 +3,6 @@ package nivel3_method_references;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 import modelos.Empleado;
 
 /**
@@ -31,18 +30,22 @@ public class Ejercicio19_ComparatorConMR {
         empresa.add(new Empleado("Marta", "Frontend", "JavaScript", 5, 48000, true, "marta@corp.com"));
         empresa.add(new Empleado("Lucía", "Backend", "Python", 10, 70000, true, "lucia@corp.com"));
 
-        // TODO: Ordena la lista usando SOLO Method References dentro de Comparator.comparing:
-        //   Primer criterio: departamento ASCENDENTE
-        //   Segundo criterio (desempate): salario DESCENDENTE
+        // TODO: Ordena la lista usando SOLO Method References dentro de
+        // Comparator.comparing:
+        // Primer criterio: departamento ASCENDENTE
+        // Segundo criterio (desempate): salario DESCENDENTE
 
-        // >>> ESCRIBE TU CÓDIGO AQUÍ <<<
+        empresa.sort(Comparator.comparing(Empleado::getDepartamento)
+                .thenComparing(Comparator.comparing(Empleado::getSalario).reversed()));
 
         // --- VALIDACIÓN ---
         if (empresa.get(0).getNombre().equals("Lucía") && empresa.get(2).getNombre().equals("Luis")
                 && empresa.get(3).getNombre().equals("Marta") && empresa.get(4).getNombre().equals("Carlos")) {
-            System.out.println(">> CORRECTO: Comparator.comparing con Method Reference y multicriterio.\033[0;32m [OK]\033[0m");
+            System.out.println(
+                    ">> CORRECTO: Comparator.comparing con Method Reference y multicriterio.\033[0;32m [OK]\033[0m");
         } else {
-            System.err.println(">> [ERROR] Esperado: Lucía(B,70k), Ana(B,55k), Luis(B,35k), Marta(F,48k), Carlos(F,32k)");
+            System.err
+                    .println(">> [ERROR] Esperado: Lucía(B,70k), Ana(B,55k), Luis(B,35k), Marta(F,48k), Carlos(F,32k)");
         }
     }
 }
