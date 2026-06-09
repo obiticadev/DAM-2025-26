@@ -203,8 +203,16 @@ public final class Ej001HttpRequestParser {
         // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin
         // simplificaciones triviales.
 
-        throw new UnsupportedOperationException(
-                "TODO: Implementar la lógica del reto extra para validarMetodoSoportado");
+        if (raw == null || raw.isEmpty()) {
+            return false;
+        }
+        if (raw.contains("\n")) {
+            String primeraLinea = raw.split("\n")[0];
+            if (primeraLinea.startsWith("(GET|POST|PUT|DELETE|PATCH|OPTIONS|HEAD)\\s+.*")) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
