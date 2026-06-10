@@ -71,11 +71,12 @@ public final class Ej008RestResourceModeler {
      * @return true si cumple con el plural básico en español/inglés (ej. termina en 's' y no tiene caracteres inválidos)
      */
     public static boolean esSustantivoPluralValido(String resource) {
-        // TODO extra: RETO EXTRA 1: Validación de sustantivo en plural para recursos REST.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 0.9 (convención 1: plural).
+        // 1. null o en blanco → false.
+        // 2. Solo letras minúsculas: el test rechaza "usuarios123" por los dígitos.
+        //    PISTA: resource.matches("[a-záéíóúñ]+").
+        // 3. Debe terminar en 's' (heurística simple de plural es/en):
+        //    endsWith("s"). "usuario" → false, "usuarios" → true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esSustantivoPluralValido");
     }
 
@@ -87,11 +88,14 @@ public final class Ej008RestResourceModeler {
      * @return nombre del recurso en plural (ej. "pedidos", "canales", "actividades")
      */
     public static String pluralizarRecurso(String singular) {
-        // TODO extra: RETO EXTRA 2: Pluralización automática de sustantivos en español.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: reglas del español, de la más específica a la general:
+        // 1. null o en blanco → "" (o lanza excepción: decide y documenta).
+        // 2. Termina en VOCAL (a,e,i,o,u) → añade "s": "pedido" → "pedidos".
+        // 3. Termina en 'd' o 'z' → añade "es" (con z real sería z→ces, pero el
+        //    test solo exige "actividad" → "actividades").
+        // 4. Termina en otra CONSONANTE → añade "es": "canal" → "canales".
+        // PISTA: char ultima = s.charAt(s.length() - 1);
+        //        "aeiou".indexOf(ultima) >= 0 detecta vocal.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pluralizarRecurso");
     }
 
@@ -103,11 +107,14 @@ public final class Ej008RestResourceModeler {
      * @return true si el id es un número entero positivo o si es una cadena UUID sintácticamente correcta
      */
     public static boolean esIdentificadorValido(Object id) {
-        // TODO extra: RETO EXTRA 3: Validación de Identificadores REST estándares.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: dos familias de id válidos — número positivo o UUID.
+        // 1. null → false.
+        // 2. Si es Number (instanceof): true solo si longValue() > 0
+        //    (el test rechaza -5).
+        // 3. Si es String: valida formato UUID. Dos opciones:
+        //    a) try { UUID.fromString(s); return true; } catch (IllegalArgumentException e) { return false; }
+        //    b) regex: "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}"
+        // 4. Cualquier otro tipo → false.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esIdentificadorValido");
     }
 
@@ -120,11 +127,15 @@ public final class Ej008RestResourceModeler {
      * @return la plantilla de ruta con marcadores genéricos de identificador
      */
     public static String mapearRutaAPlantilla(String urlCompleta) {
-        // TODO extra: RETO EXTRA 4: Conversión de Ruta Real a Ruta Plantilla (Path Template).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: así agrupan métricas las herramientas de observabilidad (b20):
+        // mil rutas "/usuarios/123", "/usuarios/456"... → UNA plantilla.
+        // 1. null → "".
+        // 2. Divide por '/' y, segmento a segmento: si "parece un id",
+        //    sustitúyelo por "{id}"; si no, déjalo igual.
+        // 3. "Parece un id" = es numérico (matches("\\d+")) o es un UUID
+        //    (reutiliza esIdentificadorValido del reto 3).
+        // 4. Reconstruye con String.join("/", segmentos).
+        // Test: "/usuarios/123/pedidos/da39..." → "/usuarios/{id}/pedidos/{id}".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para mapearRutaAPlantilla");
     }
 
@@ -137,11 +148,14 @@ public final class Ej008RestResourceModeler {
      * @return true si la ruta es una jerarquía bien diseñada (máximo un nivel de anidamiento de subrecurso)
      */
     public static boolean esJerarquiaDeSubrecursoValida(String path) {
-        // TODO extra: RETO EXTRA 5: Validación sintáctica de jerarquía de subrecursos (Antipatrón de profundidad).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 0.9 (convención 2: no anidar más de 2 niveles).
+        // 1. null → false.
+        // 2. Cuenta cuántos segmentos son NOMBRES DE RECURSO (no-numéricos,
+        //    no-id): "/usuarios/12/pedidos/34" tiene 2 recursos → válida;
+        //    "/tiendas/1/estanterias/2/cajas/3/productos" tiene 4 → inválida.
+        // 3. true si recursos <= 2.
+        // PISTA: reutiliza la detección de ids del reto 4 para distinguir
+        // recurso de identificador.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esJerarquiaDeSubrecursoValida");
     }
 
@@ -155,11 +169,11 @@ public final class Ej008RestResourceModeler {
      * @return la URI canónica completa formada
      */
     public static String generarLinkRel(String contextPath, String resource, Object id) {
-        // TODO extra: RETO EXTRA 6: Generar URI canónica para HATEOAS.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 0.10 (HATEOAS): es el "href" de los _links.
+        // 1. Reutiliza item(resource, id), que ya valida y construye "/pedidos/42".
+        // 2. Antepón contextPath (si es null, trátalo como "").
+        // 3. Cuida la doble barra: si contextPath termina en '/', quítala antes
+        //    de concatenar ("/api/v1" + "/pedidos/42" → "/api/v1/pedidos/42").
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para generarLinkRel");
     }
 
@@ -173,11 +187,13 @@ public final class Ej008RestResourceModeler {
      * @return el ID en formato String; o vacío si no se encuentra el recurso o no tiene ID a continuación
      */
     public static String extraerIdDeRuta(String url, String resource) {
-        // TODO extra: RETO EXTRA 7: Extraer identificador de ruta por nombre de recurso.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: "dame el segmento que va DESPUÉS del recurso X".
+        // 1. null en cualquiera de los dos → "".
+        // 2. Divide la ruta por '/' (recuerda el primer elemento vacío,
+        //    como en Ej007 reto 7).
+        // 3. Busca el índice i donde el segmento equals(resource).
+        // 4. Si existe Y hay un segmento i+1 → devuélvelo; si no → "".
+        // Test: ("/usuarios/123/pedidos", "usuarios") → "123".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerIdDeRuta");
     }
 
@@ -191,11 +207,15 @@ public final class Ej008RestResourceModeler {
      * @return la URL completa formateada, ej. "/pedidos/42?embed=cliente&sort=fecha"
      */
     public static String formatearRutaConQuery(String resource, Object id, String... queryKeysAndValues) {
-        // TODO extra: RETO EXTRA 8: Modelado de ruta con Query String de filtrado o expansión.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: primer encuentro con varargs (String...).
+        // 1. Base: item(resource, id) → "/pedidos/42".
+        // 2. Si no llegan pares (array vacío o null) → devuelve solo la base.
+        // 3. Recorre el array DE DOS EN DOS (for i += 2): queryKeysAndValues[i]
+        //    es la clave, [i+1] el valor → "clave=valor".
+        // 4. Une los pares con '&' y antepón '?' a la primera.
+        // PISTA: StringJoiner sj = new StringJoiner("&"); ... base + "?" + sj.
+        // DEFENSA: si llega un número impar de elementos, decide (ignorar el
+        // último o lanzar IllegalArgumentException) y documéntalo.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearRutaConQuery");
     }
 
@@ -206,11 +226,12 @@ public final class Ej008RestResourceModeler {
      * @return true si representa la colección completa del recurso, false si hace referencia a un elemento específico
      */
     public static boolean esColeccionRuta(String path) {
-        // TODO extra: RETO EXTRA 9: Detectar si una ruta representa una colección completa.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 0.9 (colección vs elemento).
+        // 1. null o en blanco → false.
+        // 2. Normaliza: quita la barra FINAL si existe ("/pedidos/" → "/pedidos";
+        //    el test exige que ambas formas den true).
+        // 3. Cuenta segmentos no vacíos: 1 segmento → colección (true);
+        //    2 o más → elemento o subruta (false).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esColeccionRuta");
     }
 
@@ -222,11 +243,15 @@ public final class Ej008RestResourceModeler {
      * @return el mensaje de error de antipatrón si se detectan palabras como "crear", "eliminar", "actualizar", "get", "post"; o cadena vacía si es correcta
      */
     public static String detectarAntipatronesRuta(String path) {
-        // TODO extra: RETO EXTRA 10: Auditoría sintáctica de inyección de acciones en URLs (Antipatrón RPC).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 0.9 (RPC vs REST) y error común nº7.
+        // 1. null → "" (nada que auditar).
+        // 2. Lista de verbos prohibidos: "crear", "eliminar", "actualizar",
+        //    "borrar", "get", "post", "delete", "update".
+        // 3. Pasa la ruta a minúsculas; si CONTIENE alguno → devuelve un mensaje
+        //    descriptivo, p.ej. "Antipatrón RPC: la ruta contiene el verbo 'crear'".
+        // 4. Si está limpia → "".
+        // El test solo comprueba vacío/no-vacío: el TEXTO del mensaje es tuyo,
+        // pero hazlo útil — tú serás quien lo lea en un log a las 3 AM.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para detectarAntipatronesRuta");
     }
 

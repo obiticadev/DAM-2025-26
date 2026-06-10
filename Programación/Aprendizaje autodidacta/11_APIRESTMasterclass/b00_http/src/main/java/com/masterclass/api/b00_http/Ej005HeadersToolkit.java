@@ -74,11 +74,14 @@ public final class Ej005HeadersToolkit {
      * @return lista de valores separados y recortados; lista vacía si no existe
      */
     public static java.util.List<String> obtenerMultiplesValores(Map<String, String> headers, String name) {
-        // TODO extra: RETO EXTRA 1: Parsear cabeceras con múltiples valores.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 0.6.
+        // 1. Busca el valor con get(headers, name) (case-insensitive gratis).
+        //    Si no existe → List.of() (lista vacía).
+        // 2. Divide por comas: split(",").
+        // 3. trim() a cada trozo y descarta los vacíos.
+        // PISTA con streams:
+        //   Arrays.stream(valor.split(",")).map(String::trim)
+        //         .filter(s -> !s.isEmpty()).toList();
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerMultiplesValores");
     }
 
@@ -90,11 +93,14 @@ public final class Ej005HeadersToolkit {
      * @return el token limpio; "" si no se encuentra o el esquema no es Bearer
      */
     public static String bearerTokenSeguro(Map<String, String> headers) {
-        // TODO extra: RETO EXTRA 2: Extracción robusta de token Bearer.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: versión endurecida de bearerToken().
+        // 1. get(headers, "Authorization"); ausente → "".
+        // 2. Comprueba que empieza por "Bearer" (puedes tolerar mayúsculas).
+        // 3. EL TRUCO del test ("Bearer    customTokenHere   "): hay VARIOS
+        //    espacios entre el esquema y el token, y espacios al final.
+        //    - Quita el prefijo "Bearer" y haz trim() al resto, o
+        //    - split("\\s+") y toma el segundo token (regex \s+ = 1 o más espacios).
+        // 4. Devuelve el token limpio.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para bearerTokenSeguro");
     }
 
@@ -106,11 +112,12 @@ public final class Ej005HeadersToolkit {
      * @return true si la cabecera Authorization está presente y utiliza exactamente dicho esquema (case-insensitive)
      */
     public static boolean esEsquemaDeAutorizacion(Map<String, String> headers, String esquema) {
-        // TODO extra: RETO EXTRA 3: Validar esquema de autorización.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: el esquema es la PRIMERA palabra del valor de Authorization
+        // ("Bearer abc.def" → esquema "Bearer").
+        // 1. get(headers, "Authorization"); ausente → false.
+        // 2. Toma la primera palabra: valor.trim().split("\\s+")[0].
+        // 3. Compárala con 'esquema' usando equalsIgnoreCase (el test prueba
+        //    "Bearer" y "bearer", y "Basic" debe dar false).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esEsquemaDeAutorizacion");
     }
 
@@ -123,11 +130,15 @@ public final class Ej005HeadersToolkit {
      * @return un nuevo mapa con todas las claves en minúsculas y sus valores originales
      */
     public static Map<String, String> normalizarClaves(Map<String, String> headers) {
-        // TODO extra: RETO EXTRA 4: Normalización completa de cabeceras.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: así lo hacen los frameworks de verdad — normalizan UNA vez al
+        // entrar la petición y luego todas las búsquedas son O(1) sin
+        // equalsIgnoreCase en bucle.
+        // 1. null → Map.of().
+        // 2. Crea un mapa nuevo; por cada entry guarda (clave.toLowerCase(), valor).
+        // PISTA bucle: forEach((k, v) -> resultado.put(k.toLowerCase(), v));
+        // PISTA streams: Collectors.toMap(e -> e.getKey().toLowerCase(), Map.Entry::getValue)
+        // (con streams, cuidado si hubiera claves duplicadas tras normalizar:
+        // toMap lanza excepción; el merge function (a, b) -> b lo resuelve).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para normalizarClaves");
     }
 
@@ -139,11 +150,12 @@ public final class Ej005HeadersToolkit {
      * @return el valor convertido a long; -1 si no existe o el formato no es numérico
      */
     public static long obtenerCabeceraNumerica(Map<String, String> headers, String name) {
-        // TODO extra: RETO EXTRA 5: Extracción de cabeceras numéricas de forma segura.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: el patrón "parseo defensivo" que usarás mil veces.
+        // 1. get(headers, name); ausente → -1.
+        // 2. try { return Long.parseLong(valor.trim()); }
+        //    catch (NumberFormatException e) { return -1; }
+        // El test mete "abc" en X-Limit a propósito: el catch ES el ejercicio.
+        // Nunca dejes que una cabecera basura tumbe tu servidor con una excepción.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerCabeceraNumerica");
     }
 
@@ -155,11 +167,10 @@ public final class Ej005HeadersToolkit {
      * @return true si la cabecera "X-Requested-With" es igual a "XMLHttpRequest" (case-insensitive)
      */
     public static boolean esPeticionAjax(Map<String, String> headers) {
-        // TODO extra: RETO EXTRA 6: Detección de petición AJAX.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: combina get() + comparación case-insensitive del valor.
+        // get(headers, "X-Requested-With") y compara con "XMLHttpRequest"
+        // usando equalsIgnoreCase. Ausente → false.
+        // PISTA con Optional: .map(v -> v.equalsIgnoreCase("XMLHttpRequest")).orElse(false)
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPeticionAjax");
     }
 
@@ -172,11 +183,15 @@ public final class Ej005HeadersToolkit {
      * @return IP real detectada; "" si no se encuentra ninguna cabecera proxy
      */
     public static String resolverDireccionIpCliente(Map<String, String> headers) {
-        // TODO extra: RETO EXTRA 7: Resolución de la dirección IP real del cliente (Proxy / Cloudflare).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: la cabecera estándar de facto es "X-Forwarded-For" y acumula la
+        // cadena de saltos: "ipCliente, ipProxy1, ipProxy2". La IP REAL es la
+        // PRIMERA de la lista.
+        // 1. get(headers, "X-Forwarded-For"); ausente → "".
+        // 2. Divide por comas y devuelve el primer trozo con trim()
+        //    ("192.168.1.1, 10.0.0.1" → "192.168.1.1").
+        // PISTA: reutiliza obtenerMultiplesValores y toma el índice 0.
+        // CULTURA: en producción esta cabecera la puede FALSIFICAR el cliente;
+        // solo es fiable si tu proxy la sobrescribe. No la uses para seguridad.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para resolverDireccionIpCliente");
     }
 
@@ -187,11 +202,12 @@ public final class Ej005HeadersToolkit {
      * @return true si la cabecera "User-Agent" contiene palabras como "Mobile", "Android", "iPhone"
      */
     public static boolean esAgenteMovil(Map<String, String> headers) {
-        // TODO extra: RETO EXTRA 8: Identificación de dispositivo móvil.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA:
+        // 1. get(headers, "User-Agent"); ausente → false.
+        // 2. Pasa el valor a minúsculas y comprueba si CONTIENE alguna de:
+        //    "mobile", "android", "iphone".
+        // PISTA: ua.contains("mobile") || ua.contains("android") || ua.contains("iphone")
+        // (el test manda "...iPhone; CPU iPhone OS 14_0..." → por eso minúsculas).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esAgenteMovil");
     }
 
@@ -204,11 +220,16 @@ public final class Ej005HeadersToolkit {
      * @return un Optional con el Instant correspondiente, o vacío si no existe o es inválida
      */
     public static Optional<java.time.Instant> obtenerCabeceraFecha(Map<String, String> headers, String name) {
-        // TODO extra: RETO EXTRA 9: Extracción y parseo de cabeceras de Fecha.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: el formato de fecha HTTP ("Sun, 06 Nov 1994 08:49:37 GMT") ya lo
+        // viste en Ej002; ahora lo PARSEAS en vez de generarlo.
+        // 1. get(headers, name); ausente → Optional.empty().
+        // 2. Dentro de un try:
+        //    ZonedDateTime zdt = ZonedDateTime.parse(valor,
+        //        DateTimeFormatter.RFC_1123_DATE_TIME);
+        //    return Optional.of(zdt.toInstant());
+        // 3. catch (DateTimeParseException e) → Optional.empty()
+        //    (una fecha corrupta no debe tumbar el servidor: mismo patrón
+        //    defensivo que en obtenerCabeceraNumerica).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerCabeceraFecha");
     }
 
@@ -219,11 +240,11 @@ public final class Ej005HeadersToolkit {
      * @return true si la petición contiene la cabecera "Origin" que indica una petición entre dominios
      */
     public static boolean esPeticionCors(Map<String, String> headers) {
-        // TODO extra: RETO EXTRA 10: Validación de cabecera de control CORS.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return has(headers, "Origin");
+        // CULTURA: el navegador añade "Origin" automáticamente cuando un script
+        // de un dominio llama a otro dominio. El servidor decide si lo permite
+        // respondiendo Access-Control-Allow-Origin. Esto es CORS, y lo
+        // configurarás en serio en el bloque de seguridad (b18).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPeticionCors");
     }
 

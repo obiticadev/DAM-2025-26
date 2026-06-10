@@ -58,11 +58,12 @@ public final class Ej002HttpResponseBuilder {
      * @return el nombre de la familia (ej. "Success" para 2xx, "Client Error" para 4xx, etc.)
      */
     public static String obtenerFamiliaDeRespuesta(int status) {
-        // TODO extra: RETO EXTRA 1: Obtener la familia de respuesta HTTP.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 0.4 (el primer dígito define la familia).
+        // 1. La familia se obtiene con división entera: status / 100 → 2, 3, 4, 5...
+        // 2. Mapea: 1→"Informational", 2→"Success", 3→"Redirection",
+        //    4→"Client Error", 5→"Server Error"; cualquier otro → "Unknown".
+        // 3. Fíjate en el test: 99 → "Unknown" (99/100 = 0, fuera de las familias).
+        // PISTA: un switch sobre (status / 100) queda de una limpieza ejemplar.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerFamiliaDeRespuesta");
     }
 
@@ -75,11 +76,13 @@ public final class Ej002HttpResponseBuilder {
      * @return la cabecera serializada en formato canónico "Nombre-Cabecera: Valor"
      */
     public static String formatearCabeceraEstandar(String clave, String valor) {
-        // TODO extra: RETO EXTRA 2: Normalización de cabeceras estándar.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 0.6.
+        // 1. Divide la clave por '-': "x-cache-status" → ["x","cache","status"].
+        // 2. Capitaliza cada trozo: primera letra mayúscula + resto minúsculas
+        //    (substring(0,1).toUpperCase() + substring(1).toLowerCase()).
+        // 3. Vuelve a unirlos con '-' → "X-Cache-Status" (String.join o StringBuilder).
+        // 4. Devuelve "Clave: Valor" (ojo: espacio después de los dos puntos).
+        // CUIDADO: un trozo podría ser vacío si llega "x--y"; protege el substring.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearCabeceraEstandar");
     }
 
@@ -90,11 +93,15 @@ public final class Ej002HttpResponseBuilder {
      * @return la fecha y hora actual formateada como "Sun, 06 Nov 1994 08:49:37 GMT"
      */
     public static String generarCabeceraFechaActual() {
-        // TODO extra: RETO EXTRA 3: Fecha HTTP en formato IMF-fixdate (RFC 7231).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: java.time hace todo el trabajo.
+        // 1. Obtén el instante actual EN GMT: ZonedDateTime.now(ZoneOffset.UTC)
+        //    (o ZoneId.of("GMT")).
+        // 2. Java ya trae el formateador exacto de HTTP:
+        //    DateTimeFormatter.RFC_1123_DATE_TIME.
+        // 3. Formatea y devuelve. El test solo exige que termine en "GMT";
+        //    con ZoneId.of("GMT") el sufijo sale solo.
+        // CULTURA: este formato ("Sun, 06 Nov 1994 08:49:37 GMT") es obligatorio
+        // en la cabecera Date de toda respuesta de un servidor serio.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para generarCabeceraFechaActual");
     }
 
@@ -106,11 +113,12 @@ public final class Ej002HttpResponseBuilder {
      * @return true si es 301, 302, 307 o 308 (redirecciones que exigen Location)
      */
     public static boolean requiereCabeceraLocation(int status) {
-        // TODO extra: RETO EXTRA 4: Validación de cabecera Location.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 0.4 (familia 3xx).
+        // 1. Compara contra el conjunto cerrado {301, 302, 307, 308}.
+        // PISTA: switch con caso múltiple (case 301, 302, 307, 308 -> true)
+        //    o Set.of(301, 302, 307, 308).contains(status).
+        // CULTURA: 303 y 304 son 3xx pero NO exigen Location; por eso no vale
+        //    responder "es 3xx" sin más.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para requiereCabeceraLocation");
     }
 
@@ -122,11 +130,12 @@ public final class Ej002HttpResponseBuilder {
      * @return tamaño del cuerpo en bytes usando la codificación UTF-8
      */
     public static int calcularLongitudEnBytes(String body) {
-        // TODO extra: RETO EXTRA 5: Longitud de cuerpo en bytes UTF-8.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: bytes ≠ caracteres.
+        // 1. null → 0.
+        // 2. body.getBytes(StandardCharsets.UTF_8).length — y ya está.
+        // POR QUÉ EXISTE ESTE RETO: "🚀".length() devuelve 2 (chars UTF-16 de Java)
+        // pero ocupa 4 BYTES en UTF-8. Si calculas Content-Length con length(),
+        // el cliente cortará el body a mitad de emoji/ñ/tilde. Bug clásico real.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularLongitudEnBytes");
     }
 
@@ -138,11 +147,14 @@ public final class Ej002HttpResponseBuilder {
      * @return un nuevo mapa (o el mapa modificado) que contenga la cabecera "Content-Length" recalculada en bytes.
      */
     public static Map<String, String> inyectarContentLength(Map<String, String> headers, String body) {
-        // TODO extra: RETO EXTRA 6: Inyección automática de Content-Length.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: combina los retos 2 y 5.
+        // 1. OJO: el test pasa un Map.of(...), que es INMUTABLE. Si haces
+        //    headers.put(...) directamente, explota con UnsupportedOperationException.
+        //    Crea una copia: new LinkedHashMap<>(headers).
+        // 2. Calcula la longitud reutilizando calcularLongitudEnBytes(body).
+        // 3. Guarda "Content-Length" → String.valueOf(longitud) (el mapa es
+        //    <String,String>: el test espera el texto "4", no el número).
+        // 4. Devuelve la copia.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para inyectarContentLength");
     }
 
@@ -154,11 +166,11 @@ public final class Ej002HttpResponseBuilder {
      * @throws IllegalArgumentException si el estado no está en el rango estándar [100, 599]
      */
     public static String generarLineaEstadoSegura(int status) {
-        // TODO extra: RETO EXTRA 7: Construcción defensiva de la primera línea de estado.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 0.3 (línea de estado = VERSIÓN CÓDIGO FRASE).
+        // 1. Si status < 100 o status > 599 → throw new IllegalArgumentException(
+        //    "Status fuera de rango: " + status). Falla PRONTO y con mensaje claro.
+        // 2. Si es válido, devuelve "HTTP/1.1 " + status + " " + reasonPhrase(status).
+        //    Reutiliza reasonPhrase: ya la implementaste arriba.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para generarLineaEstadoSegura");
     }
 
@@ -170,11 +182,14 @@ public final class Ej002HttpResponseBuilder {
      *         devuelve "ISO-8859-1" (default histórico HTTP) si no se especifica.
      */
     public static String extraerCharset(Map<String, String> headers) {
-        // TODO extra: RETO EXTRA 8: Negociación de tipo de contenido y charset.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 0.7 (media type = tipo/subtipo;parámetros).
+        // 1. headers null o sin "Content-Type" → "ISO-8859-1" (default histórico).
+        // 2. Busca en el valor la subcadena "charset=" (ignora mayúsculas:
+        //    pásalo a lowercase para BUSCAR, pero devuelve el valor ORIGINAL).
+        // 3. Si no aparece → "ISO-8859-1".
+        // 4. Si aparece, toma lo que va detrás del '=' hasta el siguiente ';'
+        //    (o el final) y devuélvelo con trim() → "UTF-8".
+        // PISTA: indexOf("charset=") + 8 te posiciona justo en el valor.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerCharset");
     }
 
@@ -186,11 +201,11 @@ public final class Ej002HttpResponseBuilder {
      * @return true si el código prohíbe tener cuerpo por especificación (1xx, 204, 304)
      */
     public static boolean esRespuestaSinCuerpo(int status) {
-        // TODO extra: RETO EXTRA 9: Restricciones de cuerpo (204 No Content / 304 Not Modified).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 0.3 (regla de oro: 204 y 304 jamás llevan body) y error común nº4.
+        // 1. true si: toda la familia 1xx (status >= 100 && status < 200),
+        //    o status == 204, o status == 304.
+        // 2. Cualquier otro → false.
+        // Es una sola expresión booleana; no necesitas if-else en cascada.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRespuestaSinCuerpo");
     }
 
@@ -203,11 +218,17 @@ public final class Ej002HttpResponseBuilder {
      * @return true si todas las cabeceras son seguras (ninguna clave ni valor contiene \r ni \n)
      */
     public static boolean esSeguroContraResponseSplitting(Map<String, String> headers) {
-        // TODO extra: RETO EXTRA 10: Prevención de HTTP Response Splitting.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: seguridad real, no teoría.
+        // EL ATAQUE: si serializas "X-Injected: Bad\nLocation: http://evil.com",
+        // el '\n' del VALOR genera una línea de header nueva que tú nunca
+        // escribiste. Así se envenenan cachés y se redirige a usuarios.
+        // PASOS:
+        // 1. headers null → decide una política y documéntala (true es razonable:
+        //    "sin cabeceras no hay nada inyectable").
+        // 2. Recorre cada entry: si la CLAVE o el VALOR contienen "\r" o "\n"
+        //    → return false inmediatamente.
+        // 3. Si terminas el bucle sin sustos → true.
+        // PISTA: contains("\r") || contains("\n"), cuatro comprobaciones por entry.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esSeguroContraResponseSplitting");
     }
 

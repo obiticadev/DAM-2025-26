@@ -9,7 +9,26 @@ el código de los `// TODO:`; los tests dicen cuándo está bien.
 - Maven 3.9+ (`mvn -version`)
 - Docker (solo para bloques de Postgres/Mongo/despliegue; el resto usa H2 en memoria)
 
-## 1. Compilar todo el ecosistema
+## 1. Rendimiento en VS Code: trabaja con UN bloque activo
+
+El proyecto tiene 26 módulos Maven con Spring Boot. Si VS Code los importa todos,
+el autocompletado de Java se arrastra. Solución: activa solo el bloque que estés
+estudiando con el script `bloque.ps1`:
+
+```powershell
+.\bloque.ps1 b00        # activa solo b00_http (el bloque actual)
+.\bloque.ps1 b04 b05    # puedes activar varios
+.\bloque.ps1            # muestra qué bloques están activos
+.\bloque.ps1 todos      # restaura los 26 (hazlo SIEMPRE antes de commit o mvn test global)
+```
+
+Tras ejecutarlo: `Ctrl+Shift+P` → **Java: Reload Projects**. Si las sugerencias
+siguen raras, usa **Java: Clean Java Language Server Workspace** (reinicia el índice).
+
+El resto de ajustes de rendimiento (memoria del language server, exclusión de
+`target/`, autocompletado perezoso) ya están aplicados en `.vscode/settings.json`.
+
+## 2. Compilar todo el ecosistema
 
 ```bash
 mvn compile
@@ -17,7 +36,7 @@ mvn compile
 
 Debe decir `BUILD SUCCESS`. Si falla, es que un esqueleto no compila: avísame.
 
-## 2. Ejecutar un ejercicio concreto (comprobación visual)
+## 3. Ejecutar un ejercicio concreto (comprobación visual)
 
 Cada ejercicio tiene una clase `*Playground` con un `main`. Pulsa **Run** en el IDE
 sobre ese `main`, o por terminal:
@@ -32,7 +51,7 @@ Para los ejercicios que levantan la API completa:
 mvn spring-boot:run
 ```
 
-## 3. Ejecutar la suite de tests (LA validación real)
+## 4. Ejecutar la suite de tests (LA validación real)
 
 Toda la suite:
 
@@ -54,14 +73,14 @@ mvn test -Dtest="Ej0*Test"
 
 Un ejercicio está **completado** únicamente cuando su test pasa a verde.
 
-## 4. Levantar Postgres / Mongo (bloques de persistencia y deploy)
+## 5. Levantar Postgres / Mongo (bloques de persistencia y deploy)
 
 ```bash
 docker compose up -d postgres mongo
 docker compose down          # parar
 ```
 
-## 5. Flujo de estudio recomendado
+## 6. Flujo de estudio recomendado
 
 1. Lee `teoria/NN_*.md` del bloque (tiene diagramas Mermaid).
 2. Abre el ejercicio en `src/main/java/.../bNN_*/`.

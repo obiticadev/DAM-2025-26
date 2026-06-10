@@ -51,11 +51,12 @@ public final class Ej006ContentTypeNegotiation {
      * @return el valor numérico de 'q' como double; 1.0 si no tiene parámetro o es inválido
      */
     public static double extraerCalidad(String token) {
-        // TODO extra: RETO EXTRA 1: Extracción del factor de calidad q (Quality Parameter).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 0.7 (factor de calidad q).
+        // 1. null o sin ";q=" → 1.0 (el default del estándar).
+        // 2. Localiza "q=" después del ';' y toma lo que sigue (hasta otro ';'
+        //    si lo hubiera).
+        // 3. Double.parseDouble dentro de try/catch: si llega "q=abc"
+        //    (NumberFormatException) → 1.0. El test lo comprueba a propósito.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerCalidad");
     }
 
@@ -66,11 +67,17 @@ public final class Ej006ContentTypeNegotiation {
      * @return lista de tipos ordenados de mayor a menor calidad (las que no tienen q equivalen a q=1.0)
      */
     public static List<String> ordenarPorCalidad(String accept) {
-        // TODO extra: RETO EXTRA 2: Ordenar cabecera Accept por preferencia de calidad (q).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: combina extraerCalidad + ordenación. Es el algoritmo real de
+        // negociación de los frameworks.
+        // 1. null o vacía → List.of().
+        // 2. Separa por comas y recorta espacios (lo mismo que en Ej005 reto 1).
+        // 3. Ordena los tokens de MAYOR a menor q usando extraerCalidad.
+        // 4. Devuelve solo los tipos SIN el ";q=..." (el test espera "text/html",
+        //    no "text/html;q=...") → corta en el ';' al final.
+        // PISTA streams:
+        //   .sorted(Comparator.comparingDouble(Ej006ContentTypeNegotiation::extraerCalidad).reversed())
+        //   .map(t -> t.split(";")[0].trim()).toList();
+        // OJO: ordena ANTES de quitar el ;q=, o perderás la información.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para ordenarPorCalidad");
     }
 
@@ -83,11 +90,15 @@ public final class Ej006ContentTypeNegotiation {
      * @return true si coincide de forma exacta o mediante comodín parcial
      */
     public static boolean esMimeSoportado(String mime, List<String> supportedLista) {
-        // TODO extra: RETO EXTRA 3: Compatibilidad de comodines MIME parciales (Wildcards).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 0.7 (comodines parciales).
+        // Para cada 'soportado' de la lista, hay match si:
+        //   a) es exactamente igual a 'mime' (equalsIgnoreCase), o
+        //   b) es "*/*", o
+        //   c) termina en "/*" y su TIPO coincide con el tipo de 'mime'
+        //      ("image/*" casa con "image/png": compara lo anterior al '/').
+        // PISTA para (c): soportado.substring(0, soportado.indexOf('/'))
+        //   .equals(mime.substring(0, mime.indexOf('/'))).
+        // Protege antes los null y los valores sin '/'.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMimeSoportado");
     }
 
@@ -99,11 +110,12 @@ public final class Ej006ContentTypeNegotiation {
      * @return true si representa datos XML (ej. "application/xml", "text/xml", o termina en "+xml")
      */
     public static boolean esXml(String mime) {
-        // TODO extra: RETO EXTRA 4: Identificar formatos XML estándar.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA:
+        // 1. null → false; normaliza con trim() + toLowerCase().
+        // 2. true si es "application/xml", "text/xml" o endsWith("+xml").
+        // CULTURA: el sufijo "+xml" (RFC 6839) marca formatos construidos SOBRE
+        // XML: "application/soap+xml", "image/svg+xml", "application/atom+xml".
+        // Tu API debe tratarlos todos como XML al deserializar.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esXml");
     }
 
@@ -114,11 +126,10 @@ public final class Ej006ContentTypeNegotiation {
      * @return true si representa datos JSON (ej. "application/json" o termina en "+json")
      */
     public static boolean esJson(String mime) {
-        // TODO extra: RETO EXTRA 5: Identificar formatos JSON.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: gemelo del reto anterior, cambiando el sufijo.
+        // true si es "application/json" o endsWith("+json")
+        // (p.ej. "application/ld+json", "application/problem+json" — este último
+        // lo usarás en el bloque de manejo de errores, b09).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esJson");
     }
 
@@ -129,11 +140,14 @@ public final class Ej006ContentTypeNegotiation {
      * @return tipo MIME limpio, en minúsculas y sin parámetros extras
      */
     public static String normalizarMime(String mime) {
-        // TODO extra: RETO EXTRA 6: Sanitización de cabeceras MIME.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: tres pasos, en este orden:
+        // 1. null → "".
+        // 2. Corta en el primer ';' para quitar parámetros
+        //    ("TEXT/html;charset=utf-8" → "TEXT/html").
+        // 3. trim() + toLowerCase() → "text/html".
+        // PISTA: mime.split(";")[0].trim().toLowerCase().
+        // Este helper te servirá para los retos 3, 4, 5 y 10: escríbelo bien una
+        // vez y reutilízalo.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para normalizarMime");
     }
 
@@ -145,11 +159,11 @@ public final class Ej006ContentTypeNegotiation {
      * @return true si el cliente acepta expresamente "text/html"
      */
     public static boolean clienteAceptaHtml(String accept) {
-        // TODO extra: RETO EXTRA 7: Validación de compatibilidad con Navegadores Clásicos (HTML).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA:
+        // 1. null → false.
+        // 2. Separa por comas, normaliza cada token (normalizarMime).
+        // 3. true si algún token es "text/html", "*/*" o "text/*"
+        //    (los dos comodines también aceptan HTML — el test exige que "*/*" dé true).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para clienteAceptaHtml");
     }
 
@@ -163,11 +177,14 @@ public final class Ej006ContentTypeNegotiation {
      * @return la mejor coincidencia teniendo en cuenta los pesos 'q' del cliente y la prioridad del servidor
      */
     public static String negociarConCalidad(String accept, List<String> supported) {
-        // TODO extra: RETO EXTRA 8: Negociación avanzada con factor de calidad.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: el jefe final del ejercicio — une los retos 1, 2 y 6.
+        // 1. Ordena los tipos del cliente por q descendente (ordenarPorCalidad).
+        // 2. Recorre ESA lista en orden: el primero que esté en 'supported'
+        //    gana. Aquí manda la preferencia del CLIENTE (a diferencia de
+        //    negotiate(), donde mandaba el servidor).
+        // 3. Sin coincidencias → "" (la API respondería 406).
+        // Comprueba con el test: json;q=0.5 vs xml;q=0.9 → gana "application/xml"
+        // aunque el servidor liste json primero.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para negociarConCalidad");
     }
 
@@ -179,11 +196,13 @@ public final class Ej006ContentTypeNegotiation {
      * @return true si el formato es un "tipo/subtipo" sintácticamente correcto (letras, números y caracteres seguros)
      */
     public static boolean esTipoDeContenidoValido(String contentType) {
-        // TODO extra: RETO EXTRA 9: Validación sintáctica de MIME Type.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: validación con regex.
+        // 1. null o vacío → false.
+        // 2. Debe tener forma "tipo/subtipo": una sola '/', con caracteres
+        //    seguros a ambos lados (letras, números y . + - estilo "soap+xml").
+        // PISTA: contentType.matches("[a-zA-Z0-9.+-]+/[a-zA-Z0-9.+-]+")
+        // Comprueba contra los tests: "application/json" ✔, "invalid-mime" ✘
+        // (no tiene '/'), "" ✘.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esTipoDeContenidoValido");
     }
 
@@ -194,11 +213,11 @@ public final class Ej006ContentTypeNegotiation {
      * @return el subtipo (ej. "application/json" -> "json", "image/png" -> "png")
      */
     public static String extraerSubtipo(String mime) {
-        // TODO extra: RETO EXTRA 10: Extracción de subtipo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA:
+        // 1. null o sin '/' → "" (el test pasa "invalid" sin barra).
+        // 2. Devuelve lo que va DESPUÉS del '/':
+        //    mime.substring(mime.indexOf('/') + 1).
+        // OJO: "application/xhtml+xml" → "xhtml+xml" entero; no toques el '+'.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerSubtipo");
     }
 

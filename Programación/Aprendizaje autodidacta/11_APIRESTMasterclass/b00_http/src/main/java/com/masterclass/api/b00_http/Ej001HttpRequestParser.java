@@ -125,15 +125,13 @@ public final class Ej001HttpRequestParser {
      *         control/escape (\r, \n, \t, etc.)
      */
     public static boolean esPeticionNulaOVacia(String raw) {
-        // TODO extra: RETO EXTRA 1: Validación defensiva extrema.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones
-        // del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de
-        // negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o
-        // fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin
-        // simplificaciones triviales.
+        // GUÍA: teoría 0.1.
+        // 1. null o "" → true directamente.
+        // 2. Recorre los caracteres: si alguno es "visible" (ni espacio ni control) →
+        // false.
+        // 3. Si terminas el bucle sin encontrar nada visible → true.
+        // PISTA: Character.isWhitespace(c) y Character.isISOControl(c).
+        // ATAJO: en Java 11+ raw.isBlank() ya cubre espacios, \r, \n y \t.
         if (raw == null || raw.isEmpty()) {
             return true;
         }
@@ -159,15 +157,13 @@ public final class Ej001HttpRequestParser {
      *         hay primera línea
      */
     public static String extraerPrimeraLineaCompleta(String raw) {
-        // TODO extra: RETO EXTRA 2: Tolerancia de saltos de línea (\r\n vs \n).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones
-        // del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de
-        // negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o
-        // fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin
-        // simplificaciones triviales.
+        // GUÍA: teoría 0.1 (CRLF vs LF).
+        // 1. null o vacía → "".
+        // 2. Localiza el primer '\n'; si no hay, toda la cadena es la primera línea.
+        // 3. Si la línea termina en '\r' (venía de un "\r\n"), elimínalo.
+        // PISTA: trim() elimina el '\r' final, pero también recortaría espacios
+        // legítimos al inicio; aquí los tests lo aceptan, pero la solución "fina"
+        // es comprobar endsWith("\r") y recortar solo ese carácter.
         if (raw == null || raw.isEmpty()) {
             return "";
         }
@@ -193,15 +189,16 @@ public final class Ej001HttpRequestParser {
      *         PATCH, OPTIONS, HEAD
      */
     public static boolean validarMetodoSoportado(String raw) {
-        // TODO extra: RETO EXTRA 3: Validación de verbos HTTP estándar.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones
-        // del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de
-        // negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o
-        // fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin
-        // simplificaciones triviales.
+        // GUÍA: teoría 0.5.
+        // 1. null o vacía → false.
+        // 2. Extrae el primer token de la primera línea (OJO: la petición puede ser
+        // UNA sola línea sin '\n'; no exijas que contenga salto de línea).
+        // 3. Normaliza a MAYÚSCULAS (el test manda "post" en minúsculas) y compara
+        // contra el conjunto cerrado: GET POST PUT DELETE PATCH OPTIONS HEAD.
+        // PISTA: Set.of("GET","POST",...).contains(verbo) es más legible que un regex.
+        // ⚠ CUIDADO con la implementación actual: startsWith() compara TEXTO LITERAL,
+        // no interpreta regex. Para regex existe matches(). Repasa el error común
+        // nº5 de la teoría y los tests de retoExtra03 (ahora mismo fallan).
 
         if (raw == null || raw.isEmpty()) {
             return false;
@@ -224,15 +221,13 @@ public final class Ej001HttpRequestParser {
      *         tiene el formato correcto
      */
     public static String extraerVersionHttp(String raw) {
-        // TODO extra: RETO EXTRA 4: Extracción de la versión del protocolo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones
-        // del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de
-        // negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o
-        // fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin
-        // simplificaciones triviales.
+        // GUÍA: teoría 0.2 (línea de petición = MÉTODO RUTA VERSIÓN).
+        // 1. null o vacía → "".
+        // 2. Reutiliza extraerPrimeraLineaCompleta(raw): ya resuelve \r\n y \n.
+        // 3. Divide por espacios. Si NO hay exactamente 3 tokens, el formato es
+        // inválido → "" (el test "GET /" espera "").
+        // 4. El tercer token es la versión; devuélvelo tal cual ("HTTP/1.1").
+        // PISTA: split(" ") vale, pero split("\\s+") tolera espacios dobles.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerVersionHttp");
     }
 
@@ -244,15 +239,13 @@ public final class Ej001HttpRequestParser {
      * @return true si la ruta empieza por "/"; false en caso contrario
      */
     public static boolean validarRutaAbsoluta(String raw) {
-        // TODO extra: RETO EXTRA 5: Validación de ruta absoluta.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones
-        // del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de
-        // negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o
-        // fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin
-        // simplificaciones triviales.
+        // GUÍA: teoría 0.2 y 0.8.
+        // 1. null o vacía → false.
+        // 2. Extrae el SEGUNDO token de la primera línea (la ruta).
+        // 3. Devuelve true solo si empieza por "/".
+        // OJO con el test: "GET http://google.com/ HTTP/1.1" debe dar false aunque
+        // la URL contenga '/': lo que importa es el PRIMER carácter de la ruta.
+        // PISTA: protege el acceso tokens[1] comprobando antes tokens.length >= 2.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para validarRutaAbsoluta");
     }
 
@@ -266,15 +259,13 @@ public final class Ej001HttpRequestParser {
      *         parámetros (sin '?')
      */
     public static String extraerQueryString(String raw) {
-        // TODO extra: RETO EXTRA 6: Separar Query String del Path.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones
-        // del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de
-        // negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o
-        // fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin
-        // simplificaciones triviales.
+        // GUÍA: teoría 0.8.
+        // 1. null o vacía → "".
+        // 2. Extrae la ruta (segundo token de la primera línea).
+        // 3. Busca '?': si no existe → "" (no hay query).
+        // 4. Devuelve TODO lo que va después del '?': "q=java&lang=es".
+        // PISTA: int i = ruta.indexOf('?'); i == -1 ? "" : ruta.substring(i + 1).
+        // Fíjate en el test "GET /?id=10": la ruta puede ser solo "/?id=10".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerQueryString");
     }
 
@@ -287,16 +278,14 @@ public final class Ej001HttpRequestParser {
      * @return el valor de la cabecera recortado de espacios, o "" si no existe
      */
     public static String extraerCabeceraSegura(String raw, String cabeceraNombre) {
-        // TODO extra: RETO EXTRA 7: Búsqueda de cabecera insensible a
-        // mayúsculas/minúsculas.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones
-        // del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de
-        // negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o
-        // fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin
-        // simplificaciones triviales.
+        // GUÍA: teoría 0.6 (regla 1: nombres case-insensitive).
+        // 1. null en cualquiera de los dos parámetros → "".
+        // 2. Recorre las líneas de headers (de la 2ª en adelante, hasta línea vacía).
+        // 3. Parte cada línea por el PRIMER ':' → split(":", 2).
+        // 4. Compara la clave con cabeceraNombre usando equalsIgnoreCase.
+        // 5. Si coincide, devuelve el valor con trim(); si ninguna coincide → "".
+        // El test busca "content-type", "Content-Type" y "AUTHORIZATION": las tres
+        // formas deben encontrar su cabecera.
         throw new UnsupportedOperationException(
                 "TODO: Implementar la lógica del reto extra para extraerCabeceraSegura");
     }
@@ -310,15 +299,11 @@ public final class Ej001HttpRequestParser {
      *         (case-insensitive)
      */
     public static boolean esConexionCerrada(String raw) {
-        // TODO extra: RETO EXTRA 8: Detección de conexión persistente vs transaccional.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones
-        // del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de
-        // negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o
-        // fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin
-        // simplificaciones triviales.
+        // GUÍA: teoría 0.6 (header Connection).
+        // 1. Reutiliza extraerCabeceraSegura(raw, "connection") — para eso la hiciste.
+        // 2. Devuelve true si el valor es "close" ignorando mayúsculas.
+        // El test manda "CONNECTION: CLOSE" → tanto la BÚSQUEDA del nombre como la
+        // COMPARACIÓN del valor deben ser case-insensitive (equalsIgnoreCase).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esConexionCerrada");
     }
 
@@ -332,16 +317,11 @@ public final class Ej001HttpRequestParser {
      *         "chunked" (case-insensitive)
      */
     public static boolean contieneCuerpoChunky(String raw) {
-        // TODO extra: RETO EXTRA 9: Detección de transferencia por fragmentos
-        // (chunked).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones
-        // del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de
-        // negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o
-        // fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin
-        // simplificaciones triviales.
+        // GUÍA: teoría 0.2 (Content-Length vs chunked).
+        // 1. Busca la cabecera "transfer-encoding" con extraerCabeceraSegura.
+        // 2. Devuelve true si el valor CONTIENE "chunked" ignorando mayúsculas
+        // (puede venir como "gzip, chunked", por eso "contiene" y no "es igual").
+        // PISTA: valor.toLowerCase().contains("chunked").
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contieneCuerpoChunky");
     }
 
@@ -359,15 +339,18 @@ public final class Ej001HttpRequestParser {
      *         cuerpo disponible, devuelve el cuerpo disponible.
      */
     public static String obtenerCuerpoSeguroConContentLength(String raw) {
-        // TODO extra: RETO EXTRA 10: Lectura segura de cuerpo basada en Content-Length.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones
-        // del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de
-        // negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o
-        // fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin
-        // simplificaciones triviales.
+        // GUÍA: teoría 0.2 (error común nº10: leer body ignorando Content-Length).
+        // 1. Obtén el body completo reutilizando body(raw).
+        // 2. Busca la cabecera "content-length" con extraerCabeceraSegura.
+        // - Si no existe o no es un número → devuelve el body completo.
+        // 3. Convierte a int con Integer.parseInt (envuélvelo en try/catch
+        // NumberFormatException por si llega basura).
+        // 4. Tres casos según el test:
+        // - length <= body disponible → body.substring(0, length) ("Hello")
+        // - sin Content-Length → body completo ("Hello World")
+        // - length > body disponible → todo el body disponible ("Short")
+        // PISTA: Math.min(length, body.length()) resuelve los casos 1 y 3 a la vez.
+
         throw new UnsupportedOperationException(
                 "TODO: Implementar la lógica del reto extra para obtenerCuerpoSeguroConContentLength");
     }

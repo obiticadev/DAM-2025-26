@@ -65,11 +65,10 @@ public final class Ej003StatusCodeResolver {
      * @return true si es una redirección estricta que preserva el método (307 o 308)
      */
     public static boolean esRedireccionEstrictaMetodo(int status) {
-        // TODO extra: RETO EXTRA 1: Redirecciones que no alteran la petición original.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — status == 307 || status == 308.
+        // CULTURA: con 301/302 los navegadores históricamente convierten el POST
+        // en GET al seguir la redirección (perdiendo el body). 307/308 nacieron
+        // para prohibir ese cambio: "repite EXACTAMENTE la misma petición allí".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRedireccionEstrictaMetodo");
     }
 
@@ -80,11 +79,15 @@ public final class Ej003StatusCodeResolver {
      * @return el código de estado correspondiente (ej. 404); -1 si no se reconoce
      */
     public static int resolverCodigoPorPhrase(String phrase) {
-        // TODO extra: RETO EXTRA 2: Resolución inversa de frases de motivo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA:
+        // 1. null o vacía → -1.
+        // 2. El test manda "internal server error" en minúsculas → normaliza la
+        //    entrada (toLowerCase + trim) antes de comparar.
+        // 3. Mapea al menos: "ok"→200, "created"→201, "no content"→204,
+        //    "not found"→404, "bad request"→400, "unauthorized"→401,
+        //    "internal server error"→500. Resto → -1.
+        // PISTA: un Map<String,Integer> estático con claves en minúsculas +
+        // getOrDefault(phrase, -1) es más limpio que una cascada de if.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para resolverCodigoPorPhrase");
     }
 
@@ -97,11 +100,10 @@ public final class Ej003StatusCodeResolver {
      * @return true si es 503 (Service Unavailable) o 504 (Gateway Timeout)
      */
     public static boolean esErrorDeServidorTemporal(int status) {
-        // TODO extra: RETO EXTRA 3: Detección de caída temporal de servidor.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — status == 503 || status == 504.
+        // POR QUÉ IMPORTA: 500 = bug (reintentar no arregla nada); 503/504 =
+        // sobrecarga o timeout (reintentar con espera SÍ tiene sentido). Esta
+        // distinción es la base de las políticas de retry de los clientes HTTP.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esErrorDeServidorTemporal");
     }
 
@@ -112,11 +114,11 @@ public final class Ej003StatusCodeResolver {
      * @return true si el cliente puede intentar realizar la misma petición de nuevo sin cambios
      */
     public static boolean esReintentablePorElCliente(int status) {
-        // TODO extra: RETO EXTRA 4: Identificar si una petición es reintentable de forma automática.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: según los tests, los reintentables son 408 (Request Timeout),
+        // 429 (Too Many Requests) y 503 (Service Unavailable); 400 NO lo es
+        // (la petición está mal: reenviarla idéntica dará 400 otra vez).
+        // PISTA: Set.of(408, 429, 503).contains(status).
+        // REFLEXIÓN: ¿añadirías 504? Defendible; los tests no lo exigen.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esReintentablePorElCliente");
     }
 
@@ -127,11 +129,15 @@ public final class Ej003StatusCodeResolver {
      * @return la directiva ("CORREGIR_PETICION", "REAUTENTICAR", "REINTENTAR_DESPUES", "PROCESAR_EXITO", "NINGUNA")
      */
     public static String determinarAccionCliente(int status) {
-        // TODO extra: RETO EXTRA 5: Directiva de acción recomendada para el cliente de la API.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: lee los tests, son la especificación exacta:
+        //   2xx           → "PROCESAR_EXITO"     (cualquier código de éxito)
+        //   401           → "REAUTENTICAR"       (renueva el token y repite)
+        //   400 y 422     → "CORREGIR_PETICION"  (el payload está mal)
+        //   503 (y 429)   → "REINTENTAR_DESPUES" (espera y reintenta)
+        //   resto (p.ej. 404) → "NINGUNA"
+        // ORDEN IMPORTA: evalúa primero los códigos concretos y deja los rangos
+        // (2xx) y el caso por defecto para el final. Un switch + un if para el
+        // rango 2xx resuelve esto con elegancia.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para determinarAccionCliente");
     }
 
@@ -143,11 +149,10 @@ public final class Ej003StatusCodeResolver {
      * @return true si es un código comúnmente aceptado en APIs REST (ej. 200, 201, 202, 204, 301, 302, 304, 400, 401, 403, 404, 409, 422, 500, 502, 503, 504)
      */
     public static boolean esCodigoEstandarIana(int status) {
-        // TODO extra: RETO EXTRA 6: Validación de código estándar IANA.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: el Javadoc ya te da la lista cerrada.
+        // PISTA: declara un Set<Integer> ESTÁTICO (constante de clase) con esos
+        // códigos y haz contains(status). Crear el Set dentro del método
+        // funcionaría, pero lo reconstruirías en cada llamada: mal hábito.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCodigoEstandarIana");
     }
 
@@ -159,11 +164,10 @@ public final class Ej003StatusCodeResolver {
      * @return true si la especificación permite retornar cuerpo de respuesta para este código
      */
     public static boolean permiteCuerpoEnRespuesta(int status) {
-        // TODO extra: RETO EXTRA 7: Comprobación de cuerpo permitido.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: es el INVERSO del reto esRespuestaSinCuerpo de Ej002.
+        // Prohíben cuerpo: toda la familia 1xx, el 204 y el 304. El resto lo permite.
+        // PISTA: return !(esa condición). Compara con los tests: 100/204/304 →
+        // false; 200/500 → true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para permiteCuerpoEnRespuesta");
     }
 
@@ -174,11 +178,11 @@ public final class Ej003StatusCodeResolver {
      * @return true si es 502 (Bad Gateway) o 504 (Gateway Timeout), indicando fallos en proxies/balanceadores
      */
     public static boolean esErrorCriticoDeInfraestructura(int status) {
-        // TODO extra: RETO EXTRA 8: Error crítico de infraestructura de red vs error de aplicación.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — status == 502 || status == 504.
+        // CULTURA: 502/504 los genera el INTERMEDIARIO (nginx, balanceador, API
+        // gateway) cuando tu aplicación no responde o responde basura. Si los ves
+        // en monitorización, el problema suele estar en red/despliegue, no en tu
+        // código de negocio (eso sería un 500).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esErrorCriticoDeInfraestructura");
     }
 
@@ -190,11 +194,14 @@ public final class Ej003StatusCodeResolver {
      * @return el código HTTP adecuado (ej. 400 para IllegalArgumentException, 403 para AccessDeniedException, etc.)
      */
     public static int resolverCodigoDesdeExcepcion(Throwable t) {
-        // TODO extra: RETO EXTRA 9: Traductor de excepciones de Backend a códigos HTTP.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: anticipo del @ExceptionHandler de Spring (bloque 9).
+        // Mapeo que exigen los tests (usa instanceof, en este orden):
+        //   IllegalArgumentException  → 400 (entrada inválida)
+        //   SecurityException         → 403 (acceso denegado)
+        //   NoSuchElementException    → 404 (no existe)
+        //   cualquier otra (o null)   → 500 (bug no contemplado)
+        // OJO AL ORDEN: comprueba las subclases concretas ANTES del caso genérico.
+        // PISTA: if (t instanceof IllegalArgumentException) return 400; ...
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para resolverCodigoDesdeExcepcion");
     }
 
@@ -206,11 +213,11 @@ public final class Ej003StatusCodeResolver {
      * @return true si el código representa que el cliente NO está autenticado (401)
      */
     public static boolean esAutenticacionExpirada(int status) {
-        // TODO extra: RETO EXTRA 10: Discriminar expiración de sesión de falta de privilegios.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — status == 401.
+        // EL CONCEPTO ES LO QUE VALE (teoría 0.4): 401 = "no sé quién eres,
+        // identifícate" (token caducado/ausente → el cliente debe REAUTENTICAR);
+        // 403 = "sé perfectamente quién eres y NO tienes permiso" (reautenticar
+        // no sirve de nada). Confundirlos rompe los flujos de renovación de token.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esAutenticacionExpirada");
     }
 
