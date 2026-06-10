@@ -116,11 +116,15 @@ public final class Ej019ExceptionsAndTryWith {
      * @param recurso recurso liberable
      */
     public static void cerrarRecursoSeguro(AutoCloseable recurso) {
-        // TODO extra: Reto Extra 1: Cierre manual y seguro de recursos.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: el "close quietly" clásico:
+        // if (recurso == null) return;
+        // try { recurso.close(); }
+        // catch (Exception e) { /* registrado/ignorado a propósito */ }
+        // El test pasa un RecursoFragil que EXPLOTA al cerrar y exige que no
+        // se propague. Único sitio legítimo para un catch casi-vacío: limpieza
+        // final donde ya no puedes hacer nada mejor. Deja el comentario
+        // explicando que es deliberado — un catch vacío sin comentario es
+        // el error común nº7.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para cerrarRecursoSeguro");
     }
 
@@ -134,11 +138,15 @@ public final class Ej019ExceptionsAndTryWith {
      * @throws ErrorNegocioException si la operación falla
      */
     public static String procesarConTryWithResources(RecursoFragil recurso, boolean lanzarAlOperar) throws ErrorNegocioException {
-        // TODO extra: Reto Extra 2: Procesamiento clásico con try-with-resources.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA:
+        // try (recurso) {                          // Java 9+: variable ya efectiva-final
+        //     return recurso.operar(lanzarAlOperar);
+        // } catch (Exception e) { ... }            // ojo: close() declara throws Exception
+        // El truco del test: cuando operar() LANZA, el recurso DEBE quedar
+        // cerrado igualmente (rFalla.cerrado == true) — eso es exactamente lo
+        // que garantiza try-with-resources y lo que un try normal olvidaría.
+        // Deja pasar la ErrorNegocioException (está en el throws); si close()
+        // lanzara otra cosa, decide cómo tratarla.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para procesarConTryWithResources");
     }
 
@@ -150,11 +158,11 @@ public final class Ej019ExceptionsAndTryWith {
      * @param causa   excepción original causante
      */
     public static void lanzarConCausaOriginal(String mensaje, Throwable causa) {
-        // TODO extra: Reto Extra 3: Propagación de excepciones con encadenamiento (exception chaining).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — throw new ErrorSistemaException(mensaje, causa);
+        // (el constructor de dos argumentos ya existe arriba).
+        // ESTA ES la regla 3 de la teoría 1.9: al envolver, pasa SIEMPRE la
+        // causa. El test verifica ex.getCause() == causa: sin ella, el stack
+        // trace real desaparece y depurar se vuelve arqueología.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para lanzarConCausaOriginal");
     }
 
@@ -165,11 +173,12 @@ public final class Ej019ExceptionsAndTryWith {
      * @param accion tarea a ejecutar
      */
     public static void ejecutarAccionIgnorandoExcepcion(Runnable accion) {
-        // TODO extra: Reto Extra 4: Modos silenciosos para procesos secundarios.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA:
+        // try { accion.run(); } catch (RuntimeException e) { /* deliberado */ }
+        // CASO DE USO legítimo: tareas secundarias cuyo fallo no debe tumbar
+        // la principal (enviar una métrica, un log remoto, un email de aviso).
+        // PERO que el nombre del método lo diga a gritos, como aquí: tragarse
+        // excepciones en silencio sin avisar en la firma es deuda técnica.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para ejecutarAccionIgnorandoExcepcion");
     }
 
@@ -183,11 +192,19 @@ public final class Ej019ExceptionsAndTryWith {
      * @return mensaje de la excepción suprimida, o vacío si no hay ninguna
      */
     public static String detectarExcepcionSuprimida(RecursoFragil recurso) {
-        // TODO extra: Reto Extra 5: Análisis de excepciones suprimidas.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: el rincón menos conocido de try-with-resources.
+        // ESCENARIO: operar(true) lanza ErrorNegocioException Y close() lanza
+        // IllegalStateException. ¿Cuál gana? La del try; la de close() no se
+        // pierde: queda ADJUNTA como "suppressed".
+        // try (recurso) {
+        //     recurso.operar(true);                    // lanza
+        // } catch (Exception e) {
+        //     Throwable[] sup = e.getSuppressed();     // aquí está la de close()
+        //     return sup.length > 0 ? sup[0].getMessage() : "";
+        // }
+        // return "";
+        // El test espera "Fallo catastrófico al cerrar". Antes de Java 7 esa
+        // excepción se PERDÍA de verdad — por eso existe este mecanismo.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para detectarExcepcionSuprimida");
     }
 
@@ -199,11 +216,16 @@ public final class Ej019ExceptionsAndTryWith {
      * @return true si es o contiene un error de negocio
      */
     public static boolean esExcepcionDeNegocio(Throwable t) {
-        // TODO extra: Reto Extra 6: Detección recursiva de excepciones de negocio.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: recorre la CADENA de causas (cada excepción puede envolver otra):
+        // Versión iterativa:
+        //   while (t != null) {
+        //       if (t instanceof ErrorNegocioException) return true;
+        //       t = t.getCause();
+        //   }
+        //   return false;
+        // Versión recursiva: ¿es? → true; ¿causa null? → false; si no,
+        // esExcepcionDeNegocio(t.getCause()). Elige una y entiende la otra.
+        // En el b09, tu @ExceptionHandler hará exactamente este "desempaquetado".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionDeNegocio");
     }
 
@@ -216,11 +238,14 @@ public final class Ej019ExceptionsAndTryWith {
      * @return mensaje formateado amigable
      */
     public static String obtenerMensajeDeErrorFormateado(Throwable t) {
-        // TODO extra: Reto Extra 7: Formateador de excepciones amigable para APIs.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: dos pasos:
+        // 1. Baja hasta la CAUSA RAÍZ: while (t.getCause() != null) t = t.getCause();
+        // 2. Formatea: el mensaje si lo hay, el nombre de clase si no:
+        //    String msg = t.getMessage() != null ? t.getMessage()
+        //                                        : t.getClass().getSimpleName();
+        //    return "Error: " + msg;
+        // Test: RuntimeException("Error nivel 1", NPE("Valor nulo inesperado"))
+        // → "Error: Valor nulo inesperado" (la raíz, no el envoltorio).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerMensajeDeErrorFormateado");
     }
 
@@ -234,11 +259,17 @@ public final class Ej019ExceptionsAndTryWith {
      * @return el resultado de la acción
      */
     public static String ejecutarConReintentos(java.util.concurrent.Callable<String> accion, int maxReintentos) {
-        // TODO extra: Reto Extra 8: Algoritmo de tolerancia a fallos con reintentos.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: el bucle de retry (versión casera de lo que Resilience4j hará en b21):
+        // Exception ultima = null;
+        // for (int intento = 0; intento < maxReintentos; intento++) {
+        //     try { return accion.call(); }
+        //     catch (Exception e) { ultima = e; }
+        // }
+        // throw new RuntimeException("Agotados los reintentos", ultima);
+        // El test: falla 2 veces, funciona a la 3ª, con maxReintentos=3 →
+        // debe devolver "conectado" tras exactamente 3 invocaciones. Cuadra
+        // tu condición de bucle con eso. Y la causa en el throw final: regla 3.
+        // (Callable.call() declara throws Exception — por eso el catch amplio.)
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para ejecutarConReintentos");
     }
 
@@ -251,11 +282,13 @@ public final class Ej019ExceptionsAndTryWith {
      * @return true si la causa raíz coincide con el tipo especificado
      */
     public static boolean esCausaRaiz(Class<? extends Throwable> tipoEx, Throwable ex) {
-        // TODO extra: Reto Extra 9: Inspección de tipo en la causa raíz.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: reutiliza la técnica del reto 7 (bajar a la raíz) y compara el tipo:
+        // 1. ex null → false.
+        // 2. while (ex.getCause() != null) ex = ex.getCause();
+        // 3. return tipoEx.isInstance(ex);
+        // tipoEx.isInstance(obj) es el "instanceof dinámico": el tipo llega
+        // como PARÁMETRO (Class<? extends Throwable>) — instanceof literal no
+        // sirve porque exige el tipo en tiempo de compilación.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCausaRaiz");
     }
 
@@ -269,11 +302,14 @@ public final class Ej019ExceptionsAndTryWith {
      * @throws Exception si ocurre algún error
      */
     public static String procesarRecursosMultiples(RecursoFragil r1, RecursoFragil r2) throws Exception {
-        // TODO extra: Reto Extra 10: Try-with-resources con múltiples recursos dependientes.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: varios recursos en UN try, separados por ';':
+        // try (r1; r2) {
+        //     return r1.operar(false) + "+" + r2.operar(false);
+        // }
+        // DETALLE DE ORO: se cierran en orden INVERSO (r2 primero, luego r1) —
+        // como una pila. Piensa por qué: si r2 dependiera de r1 (un Reader
+        // sobre un Stream), cerrar r1 primero rompería el cierre de r2.
+        // El throws Exception de la firma deja propagar lo que surja.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para procesarRecursosMultiples");
     }
 

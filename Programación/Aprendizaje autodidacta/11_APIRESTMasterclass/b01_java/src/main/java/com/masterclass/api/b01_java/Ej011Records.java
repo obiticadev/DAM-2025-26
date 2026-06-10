@@ -62,11 +62,12 @@ public final class Ej011Records {
      * @return true si el producto no es nulo, tiene un ID mayor a cero, precio >= 0 y nombre no nulo ni vacío
      */
     public static boolean esValido(ProductoDto p) {
-        // TODO extra: RETO EXTRA 1: Validación defensiva de DTOs.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 1.1.
+        // Devuelve true SOLO si se cumplen las 4 condiciones a la vez:
+        //   p != null  &&  p.id() != null && p.id() > 0  &&
+        //   p.precio() >= 0  &&  p.nombre() != null && !p.nombre().isBlank()
+        // ORDEN IMPORTA: comprueba p != null PRIMERO (el && cortocircuita y
+        // evita el NPE de las siguientes). El test pasa null y un id -1.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esValido");
     }
 
@@ -79,11 +80,12 @@ public final class Ej011Records {
      * @return nuevo ProductoDto con el precio reducido, conservando el resto de campos intactos
      */
     public static ProductoDto conDescuento(ProductoDto p, double pct) {
-        // TODO extra: RETO EXTRA 2: Copia inmutable con descuento.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: el patrón "wither" (teoría 1.1, punto 3) — gemelo de conIva pero
+        // restando:
+        // 1. p null → decide: null o IllegalArgumentException (documéntalo).
+        // 2. nuevoPrecio = p.precio() * (1 - pct / 100).
+        // 3. new ProductoDto(p.id(), p.nombre(), nuevoPrecio) — NUNCA mutes p.
+        // Test: 100.0 con 10% → 90.0, mismo id.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para conDescuento");
     }
 
@@ -95,11 +97,14 @@ public final class Ej011Records {
      * @return String JSON formateado (ej. {"id":1,"nombre":"Teclado","precio":100.0})
      */
     public static String aJsonSimple(ProductoDto p) {
-        // TODO extra: RETO EXTRA 3: Serialización manual simple a formato JSON.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: harás esto UNA vez a mano para entender qué hace Jackson (b02).
+        // 1. p null → "{}" o "null" (decide).
+        // 2. Formato exacto: {"id":1,"nombre":"Teclado","precio":100.0}
+        //    - números SIN comillas, strings CON comillas
+        //    - sin espacios tras los ':'
+        // PISTA: String.format("{\"id\":%d,\"nombre\":\"%s\",\"precio\":%s}",
+        //                      p.id(), p.nombre(), p.precio())
+        // (%s para el double conserva el "100.0" que espera el test).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para aJsonSimple");
     }
 
@@ -112,11 +117,10 @@ public final class Ej011Records {
      * @return un ProductoDto con ID null que represente este servicio
      */
     public static ProductoDto crearServicioDto(String descripcion, double precioHora) {
-        // TODO extra: RETO EXTRA 4: Creación de DTO de servicio (Record sin ID para inserción).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — new ProductoDto(null, descripcion, precioHora).
+        // EL CONCEPTO: en un POST de creación el cliente NO manda id (lo genera
+        // la BD). Por eso id es Long (objeto, admite null) y no long (primitivo).
+        // Esta distinción Long/long te perseguirá en JPA (b12): apréndela ya.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearServicioDto");
     }
 
@@ -129,11 +133,12 @@ public final class Ej011Records {
      * @return true si son semánticamente equivalentes
      */
     public static boolean esEquivalente(ProductoDto p1, ProductoDto p2) {
-        // TODO extra: RETO EXTRA 5: Comparación de equivalencia semántica de DTOs.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: el equals del record compara TODOS los campos (id incluido);
+        // aquí quieres una igualdad DISTINTA: solo nombre (ignorando mayúsculas)
+        // y precio. Por eso es un método aparte y no el equals.
+        // 1. Ambos null → true o false (decide); uno solo null → false.
+        // 2. p1.nombre().equalsIgnoreCase(p2.nombre()) && p1.precio() == p2.precio()
+        // El test: ids distintos (1 vs 2) y "Teclado" vs "TECLADO" → true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esEquivalente");
     }
 
@@ -145,11 +150,11 @@ public final class Ej011Records {
      * @return una copia normalizada con ID corregido a 999 si no era válido (> 0)
      */
     public static ProductoDto normalizarId(ProductoDto p) {
-        // TODO extra: RETO EXTRA 6: Normalización de copias DTO.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA:
+        // 1. Si el id ES válido (no null y > 0) → devuelve p tal cual (no copies
+        //    sin necesidad).
+        // 2. Si no → new ProductoDto(999L, p.nombre(), p.precio()).
+        // Test: id -5 → copia con id 999.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para normalizarId");
     }
 
@@ -161,11 +166,14 @@ public final class Ej011Records {
      * @return true si el precio tiene como máximo 2 decimales
      */
     public static boolean esPrecioRedondeado(ProductoDto p) {
-        // TODO extra: RETO EXTRA 7: Verificación de importes redondeados.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: "¿tiene como mucho 2 decimales?" sin pelearte con el double:
+        // TÉCNICA A (numérica): multiplica por 100 y comprueba si el resultado
+        //   es "prácticamente entero": Math.abs(x - Math.round(x)) < 1e-9
+        //   (la tolerancia absorbe el error de coma flotante de 10.25 * 100).
+        // TÉCNICA B (exacta): BigDecimal.valueOf(p.precio()).scale() <= 2.
+        // Tests: 10.25 → true; 10.3333 → false.
+        // CULTURA: por estos líos el dinero en producción se maneja con
+        // BigDecimal o céntimos enteros, nunca con double.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPrecioRedondeado");
     }
 
@@ -176,11 +184,15 @@ public final class Ej011Records {
      * @return ProductoDto parseado
      */
     public static ProductoDto crearDesdeValores(String csv) {
-        // TODO extra: RETO EXTRA 8: Deserialización a partir de línea de texto plana (CSV).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA:
+        // 1. null o en blanco → IllegalArgumentException.
+        // 2. split(",") → deben salir exactamente 3 partes; si no, excepción.
+        // 3. Parsea: Long.parseLong(partes[0].trim()),
+        //    partes[1].trim(), Double.parseDouble(partes[2].trim()).
+        // 4. Devuelve el ProductoDto — el constructor compacto que escribiste
+        //    arriba valida gratis (¡por eso se valida EN el record!).
+        // OJO: el nombre puede llevar espacios internos ("Teclado Mecanico"):
+        // no hagas split por espacio, solo por coma.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearDesdeValores");
     }
 
@@ -191,11 +203,9 @@ public final class Ej011Records {
      * @return String formateado como "Nombre - $Precio"
      */
     public static String formatoEtiqueta(ProductoDto p) {
-        // TODO extra: RETO EXTRA 9: Formateador de etiqueta de precio estética.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — p.nombre() + " - $" + p.precio()
+        // (el test espera exactamente "Teclado - $100.0": la concatenación de
+        // un double produce ese "100.0"). Protege p null si quieres nota alta.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatoEtiqueta");
     }
 
@@ -207,11 +217,11 @@ public final class Ej011Records {
      * @return ProductoDto copia con el costo de envío sumado al precio del producto
      */
     public static ProductoDto reconstruirConEnvio(ProductoDto p, double costoEnvio) {
-        // TODO extra: RETO EXTRA 10: Copia DTO combinando costo logístico (Envío).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: otro wither, esta vez sumando:
+        // new ProductoDto(p.id(), p.nombre(), p.precio() + costoEnvio).
+        // BONUS defensivo: ¿qué haces si costoEnvio es negativo? ¿Y si la suma
+        // hiciera el precio negativo (el constructor compacto lanzará)? Piensa
+        // la respuesta antes de que te la dé un stack trace.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para reconstruirConEnvio");
     }
 

@@ -71,11 +71,11 @@ public final class Ej012OptionalSafeAccess {
      * @return Optional con la longitud de la cadena, o vacío
      */
     public static Optional<Integer> obtenerLargoSiPresente(Optional<String> opt) {
-        // TODO extra: Reto Extra 1: Mapeo seguro con map.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 1.2 — map en estado puro.
+        // Una línea: return opt.map(String::length);
+        // map transforma SI hay valor y propaga el empty si no: exactamente lo
+        // que piden los dos tests. Nada de isPresent()/get().
+        // (Defensa opcional: si opt fuera null → Optional.empty().)
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerLargoSiPresente");
     }
 
@@ -87,11 +87,15 @@ public final class Ej012OptionalSafeAccess {
      * @return Optional con el primer valor String presente, o vacío
      */
     public static Optional<String> obtenerPrimeroValido(List<Optional<String>> optList) {
-        // TODO extra: Reto Extra 2: Aplanado de colecciones de Optionals.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: combinar Stream + Optional (teoría 1.2 y 1.4).
+        // 1. null → Optional.empty().
+        // 2. Camino elegante: optList.stream()
+        //        .flatMap(Optional::stream)   // descarta vacíos y desenvuelve
+        //        .findFirst();
+        //    Optional::stream convierte cada Optional en un stream de 0 o 1
+        //    elementos; flatMap los aplana → quedan solo los valores presentes.
+        // ALTERNATIVA legible: .filter(Optional::isPresent).map(Optional::get)
+        //    .findFirst() — válida, pero conoce la primera.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerPrimeroValido");
     }
 
@@ -104,11 +108,10 @@ public final class Ej012OptionalSafeAccess {
      * @return Optional filtrado
      */
     public static Optional<String> filtrarPorLongitud(Optional<String> opt, int minLen) {
-        // TODO extra: Reto Extra 3: Filtrado declarativo con filter.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return opt.filter(s -> s.length() >= minLen);
+        // filter mantiene el valor si cumple y devuelve empty si no (o si ya
+        // estaba vacío). OJO: aquí es >= (los tests: "Java" con minLen 3 pasa,
+        // con minLen 5 no), a diferencia del > estricto de primeroLargo.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para filtrarPorLongitud");
     }
 
@@ -121,11 +124,12 @@ public final class Ej012OptionalSafeAccess {
      * @return El valor contenido o el resultado del proveedor
      */
     public static String obtenerConLazyFallback(Optional<String> opt, Supplier<String> s) {
-        // TODO extra: Reto Extra 4: Lazy Fallbacks con orElseGet.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return opt.orElseGet(s);
+        // EL MATIZ QUE EVALÚA EL TEST: con orElse(s.get()) el supplier se
+        // ejecutaría SIEMPRE (los argumentos se evalúan antes de llamar);
+        // con orElseGet(s) solo se ejecuta si el Optional está vacío. El test
+        // cuenta las invocaciones y exige 0 cuando hay valor. Es la pregunta
+        // de entrevista clásica sobre Optional (teoría 1.2, tabla).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerConLazyFallback");
     }
 
@@ -138,11 +142,11 @@ public final class Ej012OptionalSafeAccess {
      * @throws IllegalArgumentException si está vacío con mensaje "Valor requerido ausente"
      */
     public static String lanzarExcepcionPersonalizada(Optional<String> opt) {
-        // TODO extra: Reto Extra 5: Lanzar excepción de negocio personalizada.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea —
+        // return opt.orElseThrow(() -> new IllegalArgumentException("Valor requerido ausente"));
+        // El mensaje debe ser EXACTO (el test lo compara con equals).
+        // Este es el patrón "si no está → 404" de la teoría 1.2: en Spring la
+        // excepción será NotFoundException y un handler la convertirá en HTTP.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para lanzarExcepcionPersonalizada");
     }
 
@@ -155,11 +159,16 @@ public final class Ej012OptionalSafeAccess {
      * @return Lista con el elemento transformado si existía y era válido
      */
     public static List<String> convertirAStreamYFiltrar(Optional<String> opt) {
-        // TODO extra: Reto Extra 6: Stream sobre Optional.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: descifra los tests antes de codificar:
+        //   Optional.of("hello") → ["HELLO"]   (estaba en minúsculas → pasa)
+        //   Optional.of("HELLO") → []          (NO estaba en minúsculas → fuera)
+        //   Optional.empty()     → []
+        // Es decir: conserva solo si s.equals(s.toLowerCase()), y devuelve la
+        // versión en MAYÚSCULAS.
+        // Pipeline: opt.stream()                       // 0 o 1 elementos
+        //              .filter(s -> s.equals(s.toLowerCase()))
+        //              .map(String::toUpperCase)
+        //              .toList();
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para convertirAStreamYFiltrar");
     }
 
@@ -172,11 +181,11 @@ public final class Ej012OptionalSafeAccess {
      * @param siNoEsta  Acción a ejecutar si el valor está vacío
      */
     public static void ejecutarAccionCondicional(Optional<String> opt, Consumer<String> siEsta, Runnable siNoEsta) {
-        // TODO extra: Reto Extra 7: Control condicional con ifPresentOrElse.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — opt.ifPresentOrElse(siEsta, siNoEsta);
+        // (Java 9+). El método YA existe en Optional con esta firma exacta:
+        // Consumer para el valor, Runnable para el caso vacío. Fíjate en que
+        // este método devuelve void: es para EFECTOS (log, métricas), no para
+        // transformar — para transformar siempre map/orElse.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para ejecutarAccionCondicional");
     }
 
@@ -188,11 +197,13 @@ public final class Ej012OptionalSafeAccess {
      * @return Optional aplanado
      */
     public static Optional<String> mapearConFlatMap(Optional<Optional<String>> opt) {
-        // TODO extra: Reto Extra 8: Reducción de Optionals anidados con flatMap.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return opt.flatMap(inner -> inner);
+        // (o el equivalente: opt.flatMap(Function.identity())).
+        // POR QUÉ: con map obtendrías Optional<Optional<String>> otra vez;
+        // flatMap espera que la función devuelva YA un Optional y no lo
+        // re-envuelve. Es la diferencia map/flatMap de la teoría 1.2 destilada
+        // al caso mínimo. Los Optional<Optional<...>> reales aparecen al
+        // encadenar dos búsquedas: usuario → su dirección → su ciudad.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para mapearConFlatMap");
     }
 
@@ -206,11 +217,12 @@ public final class Ej012OptionalSafeAccess {
      * @return Optional con el valor normalizado o vacío
      */
     public static Optional<String> reemplazarPorVacioSiInvalido(Optional<String> opt) {
-        // TODO extra: Reto Extra 9: Transformación y validaciones complejas.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: la cadena completa map → filter → map, el patrón estrella de 1.2:
+        // return opt.map(String::trim)              // limpia espacios
+        //           .filter(s -> !s.isEmpty())      // si quedó vacío → empty
+        //           .map(String::toUpperCase);      // normaliza
+        // Sigue los tests: "  hello  " → "HELLO"; "     " → empty; empty → empty.
+        // Date cuenta de que NO hay ni un if: el Optional propaga el vacío solo.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para reemplazarPorVacioSiInvalido");
     }
 
@@ -223,11 +235,11 @@ public final class Ej012OptionalSafeAccess {
      * @return El primer Optional con valor presente
      */
     public static Optional<String> obtenerPrimeroDeVarios(Optional<String> opt1, Optional<String> opt2) {
-        // TODO extra: Reto Extra 10: Concatenación y encadenamiento seguro con or.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return opt1.or(() -> opt2);
+        // Optional.or (Java 9+) recibe un Supplier<Optional<T>>: si opt1 tiene
+        // valor, gana; si no, evalúa el supplier. Es el "plan B" declarativo:
+        // buscar en caché .or(buscar en BD) .or(valor por defecto).
+        // No confundir con orElse (devuelve T) — or devuelve OTRO Optional.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerPrimeroDeVarios");
     }
 

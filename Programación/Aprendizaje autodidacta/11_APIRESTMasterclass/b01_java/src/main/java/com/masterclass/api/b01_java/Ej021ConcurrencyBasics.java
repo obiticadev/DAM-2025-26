@@ -71,11 +71,13 @@ public final class Ej021ConcurrencyBasics {
      * @return instancia de Thread iniciada
      */
     public static Thread ejecutarEnHiloSeparado(Runnable tarea) {
-        // TODO extra: Reto Extra 1: Creación clásica de hilos de ejecución.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: la base de todo, antes de las abstracciones:
+        // Thread t = new Thread(tarea);
+        // t.start();          // start, NO run: run() ejecutaría en ESTE hilo
+        // return t;
+        // El test hace t.join(2000): espera a que termine. En código real ya
+        // casi nunca creas Threads a mano (pools y CompletableFuture lo hacen
+        // mejor), pero tienes que saber qué hay debajo.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para ejecutarEnHiloSeparado");
     }
 
@@ -88,11 +90,12 @@ public final class Ej021ConcurrencyBasics {
      * @return valor resuelto
      */
     public static <T> T obtenerResultadoAsincrono(CompletableFuture<T> futuro) {
-        // TODO extra: Reto Extra 2: Obtención de resultados bloqueantes.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return futuro.join();
+        // join() vs get(): hacen lo mismo (bloquear hasta el resultado), pero
+        // get() lanza excepciones CHECKED (te obliga a try/catch) y join()
+        // lanza unchecked. Por eso en pipelines se prefiere join().
+        // REGLA DE ORO: bloquear solo en el BORDE (el test, el main); dentro
+        // de la cadena asíncrona, nunca — para eso están thenApply y compañía.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerResultadoAsincrono");
     }
 
@@ -110,11 +113,10 @@ public final class Ej021ConcurrencyBasics {
      */
     public static <A, B, R> CompletableFuture<R> combinarDosResultadosAsincronos(
             CompletableFuture<A> futA, CompletableFuture<B> futB, BiFunction<A, B, R> combinador) {
-        // TODO extra: Reto Extra 3: Coordinación de futuros paralelos.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return futA.thenCombine(futB, combinador);
+        // Es tu sumar() de arriba GENERALIZADO: el combinador llega como
+        // parámetro BiFunction<A,B,R>. Caso real de la teoría 1.11: pedir
+        // precio y stock EN PARALELO y fusionarlos cuando ambos lleguen.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para combinarDosResultadosAsincronos");
     }
 
@@ -129,11 +131,13 @@ public final class Ej021ConcurrencyBasics {
      * @return futuro protegido contra tiempos de espera excesivos
      */
     public static <T> CompletableFuture<T> ejecutarConTimeout(CompletableFuture<T> futuro, long ms, T valorPorDefecto) {
-        // TODO extra: Reto Extra 4: Prevención de bloqueos con límites de tiempo (timeout).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea (Java 9+) —
+        // return futuro.completeOnTimeout(valorPorDefecto, ms, TimeUnit.MILLISECONDS);
+        // El test crea un future que NUNCA completa: a los 100 ms debe
+        // resolverse solo con "defecto". Pariente: orTimeout(ms, unit), que en
+        // vez de un valor por defecto completa con TimeoutException.
+        // POR QUÉ IMPORTA: una API sin timeouts es una API que algún día se
+        // queda colgada esperando a un servicio caído (más en b21).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para ejecutarConTimeout");
     }
 
@@ -147,11 +151,11 @@ public final class Ej021ConcurrencyBasics {
      * @return futuro tolerante a fallos
      */
     public static <T> CompletableFuture<T> recuperarAnteErrorAsincrono(CompletableFuture<T> futuro, T fallback) {
-        // TODO extra: Reto Extra 5: Recuperación y tolerancia a fallos asíncronos.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return futuro.exceptionally(ex -> fallback);
+        // exceptionally es el "catch" del mundo asíncrono: si el future
+        // completó bien, pasa de largo; si completó con excepción, la
+        // intercepta y la sustituye por el fallback. Es el mismo patrón
+        // try/catch-con-fallback de Ej017 reto 10, en versión no bloqueante.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para recuperarAnteErrorAsincrono");
     }
 

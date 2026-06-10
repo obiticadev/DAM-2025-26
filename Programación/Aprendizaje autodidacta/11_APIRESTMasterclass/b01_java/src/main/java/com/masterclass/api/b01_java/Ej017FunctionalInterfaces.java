@@ -75,11 +75,11 @@ public final class Ej017FunctionalInterfaces {
      * @return predicado combinado (AND)
      */
     public static <T> Predicate<T> combinarPredicadosAND(Predicate<T> p1, Predicate<T> p2) {
-        // TODO extra: Reto Extra 1: Composición lógica AND de predicados.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 1.7 (composición) — una línea: return p1.and(p2);
+        // Predicate YA trae and() como default method. Entiende qué devuelve:
+        // no un boolean, sino un NUEVO Predicate que, al hacer test(x),
+        // evalúa p1.test(x) && p2.test(x) (con cortocircuito incluido).
+        // Devolver funciones que combinan funciones: eso es composición.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para combinarPredicadosAND");
     }
 
@@ -93,11 +93,9 @@ public final class Ej017FunctionalInterfaces {
      * @return predicado combinado (OR)
      */
     public static <T> Predicate<T> combinarPredicadosOR(Predicate<T> p1, Predicate<T> p2) {
-        // TODO extra: Reto Extra 2: Composición lógica OR de predicados.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return p1.or(p2);
+        // Repasa la tabla de verdad con los tests: 6 (>5 y par) ✔, 4 (par) ✔,
+        // 7 (>5) ✔, 3 (ni una ni otra) ✘.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para combinarPredicadosOR");
     }
 
@@ -110,11 +108,10 @@ public final class Ej017FunctionalInterfaces {
      * @return predicado negado
      */
     public static <T> Predicate<T> negarPredicado(Predicate<T> p) {
-        // TODO extra: Reto Extra 3: Negación lógica funcional.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return p.negate();
+        // ÚSALO LUEGO en streams: .filter(Predicate.not(String::isBlank)) es
+        // la forma idiomática de "filtra los NO vacíos" — Predicate.not es la
+        // versión estática de este mismo negate.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para negarPredicado");
     }
 
@@ -130,11 +127,12 @@ public final class Ej017FunctionalInterfaces {
      * @return función compuesta A -> C
      */
     public static <A, B, C> Function<A, C> componerFunciones(Function<A, B> f1, Function<B, C> f2) {
-        // TODO extra: Reto Extra 4: Composición secuencial de funciones (andThen).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return f1.andThen(f2);
+        // SIGUE LOS TIPOS: f1 es A→B, f2 es B→C, el resultado A→C. Con el test:
+        // 5 → (n*2) → 10 → ("res: "+n) → "res: 10".
+        // OJO con el espejo: f1.andThen(f2) = "f1 primero"; f1.compose(f2) =
+        // "f2 primero". Confundirlos compila y falla en runtime: dibuja la
+        // flecha de tipos cuando dudes.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para componerFunciones");
     }
 
@@ -146,11 +144,14 @@ public final class Ej017FunctionalInterfaces {
      * @return tiempo total transcurrido en milisegundos
      */
     public static long ejecutarYMedirTiempo(Runnable tarea) {
-        // TODO extra: Reto Extra 5: Auditoría temporal de tareas.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: el patrón "cronómetro envolvente":
+        // long inicio = System.nanoTime();   // nanoTime, NO currentTimeMillis
+        // tarea.run();
+        // return (System.nanoTime() - inicio) / 1_000_000;  // ns → ms
+        // ¿Por qué nanoTime? currentTimeMillis es la HORA del sistema (puede
+        // saltar por NTP); nanoTime es un cronómetro monotónico, lo correcto
+        // para medir duraciones. Este envoltorio es la semilla de los
+        // interceptores de métricas que verás en b20.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para ejecutarYMedirTiempo");
     }
 
@@ -163,11 +164,10 @@ public final class Ej017FunctionalInterfaces {
      * @param <T>        tipo de los elementos
      */
     public static <T> void consumirLista(List<T> lista, Consumer<T> consumidor) {
-        // TODO extra: Reto Extra 6: Iteración funcional controlada con Consumer.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — lista.forEach(consumidor);
+        // El test pasa dest::add como Consumer: una referencia a método de
+        // instancia sobre un objeto concreto (tercer tipo de :: de la teoría
+        // 1.7). Defensa: lista null → no hagas nada.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para consumirLista");
     }
 
@@ -180,11 +180,11 @@ public final class Ej017FunctionalInterfaces {
      * @return instancia de tipo T
      */
     public static <T> T crearConSupplier(Supplier<T> creador) {
-        // TODO extra: Reto Extra 7: Factorías funcionales diferidas con Supplier.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return creador.get();
+        // Parece trivial, pero la idea es grande: quien LLAMA decide CÓMO se
+        // construye el objeto, y la construcción se DIFIERE hasta este get().
+        // Spring usa Suppliers así para crear beans perezosos, y tú ya lo
+        // usaste sin saberlo en orElseGet (Ej012 reto 4).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearConSupplier");
     }
 
@@ -198,11 +198,10 @@ public final class Ej017FunctionalInterfaces {
      * @return consumidor compuesto
      */
     public static <T> Consumer<T> encadenarConsumidores(Consumer<T> c1, Consumer<T> c2) {
-        // TODO extra: Reto Extra 8: Acción secuencial múltiple con Consumers.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return c1.andThen(c2);
+        // Consumer también compone: el combinado ejecuta c1 y LUEGO c2 con el
+        // mismo argumento. El test verifica el ORDEN exacto (c1 antes que c2).
+        // Caso real: consumer de log + consumer de métricas encadenados.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para encadenarConsumidores");
     }
 
@@ -218,11 +217,11 @@ public final class Ej017FunctionalInterfaces {
      * @return lista resultante con elementos filtrados y transformados
      */
     public static <T, R> List<R> filtrarYTransformar(List<T> lista, Predicate<T> p, Function<T, R> f) {
-        // TODO extra: Reto Extra 9: Canalizaciones personalizadas.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: junta tus transformar() y filtrar() de arriba en un pipeline:
+        // return lista.stream().filter(p).map(f).toList();
+        // ORDEN: filtra ANTES de transformar (transformar lo que vas a
+        // descartar es trabajo tirado). Acabas de escribir la firma genérica
+        // del 80% de los métodos de servicio de una API (teoría 1.3).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para filtrarYTransformar");
     }
 
@@ -236,11 +235,13 @@ public final class Ej017FunctionalInterfaces {
      * @return el resultado de principal, o el resultado de fallback ante errores de principal
      */
     public static <T> T obtenerSeguroConSupplier(Supplier<T> principal, Supplier<T> fallback) {
-        // TODO extra: Reto Extra 10: Tolerancia a fallos encadenada con Suppliers.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: tu seguroOrElse de arriba, con fallback PEREZOSO:
+        // try { return principal.get(); }
+        // catch (RuntimeException e) { return fallback.get(); }
+        // Diferencia clave con seguroOrElse(s, valorFijo): aquí el plan B
+        // también se calcula bajo demanda. Es el esqueleto del patrón
+        // "circuit breaker con fallback" que verás en resiliencia (b21):
+        // intenta el servicio, y si falla, sirve la caché.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerSeguroConSupplier");
     }
 

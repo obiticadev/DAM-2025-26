@@ -69,11 +69,11 @@ public final class Ej014StreamsAdvanced {
      * @return mapa longitud -> lista de palabras
      */
     public static Map<Integer, List<String>> agruparPorLongitud(List<String> palabras) {
-        // TODO extra: Reto Extra 1: Clasificación con groupingBy.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 1.4, primer collector.
+        // palabras.stream().collect(Collectors.groupingBy(String::length));
+        // La función clasificadora (String::length) decide la CLAVE; los valores
+        // con la misma clave caen en la misma List, en orden de aparición
+        // (el test espera [bb, dd] para la clave 2, en ese orden).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para agruparPorLongitud");
     }
 
@@ -85,11 +85,11 @@ public final class Ej014StreamsAdvanced {
      * @return mapa booleano -> lista de números
      */
     public static Map<Boolean, List<Integer>> particionarParesImpares(List<Integer> numeros) {
-        // TODO extra: Reto Extra 2: Particionado binario con partitioningBy.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: numeros.stream().collect(Collectors.partitioningBy(n -> n % 2 == 0));
+        // partitioningBy vs groupingBy con clave booleana: partitioningBy
+        // GARANTIZA que existen ambas claves (true y false, aunque una lista
+        // quede vacía); groupingBy solo crea las claves que aparecen. Esa
+        // garantía evita nulls al hacer res.get(false).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para particionarParesImpares");
     }
 
@@ -101,11 +101,14 @@ public final class Ej014StreamsAdvanced {
      * @return lista plana de cadenas válidas
      */
     public static List<String> aplanarListas(List<List<String>> listas) {
-        // TODO extra: Reto Extra 3: Aplanamiento de jerarquías complejas.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: flatMap con minas: el test mete una SUBLISTA null y un "" dentro
+        // de otra. Hay que filtrar a DOS niveles:
+        // listas.stream()
+        //       .filter(sub -> sub != null)            // nivel 1: sublistas null
+        //       .flatMap(List::stream)                 // aplana
+        //       .filter(s -> s != null && !s.isEmpty()) // nivel 2: elementos
+        //       .toList();
+        // Resultado esperado: [hello, world].
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para aplanarListas");
     }
 
@@ -117,11 +120,12 @@ public final class Ej014StreamsAdvanced {
      * @return mapa palabra -> cantidad de ocurrencias
      */
     public static Map<String, Long> contarOcurrencias(List<String> palabras) {
-        // TODO extra: Reto Extra 4: Contar frecuencias con groupingBy y counting.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: primer groupingBy con DOWNSTREAM collector (teoría 1.4):
+        // palabras.stream().collect(
+        //     Collectors.groupingBy(p -> p, Collectors.counting()));
+        // El segundo argumento sustituye la List por defecto: en vez de
+        // acumular los elementos, los CUENTA (Long). Este "histograma en una
+        // línea" es comodín en entrevistas y en informes reales.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarOcurrencias");
     }
 
@@ -133,11 +137,11 @@ public final class Ej014StreamsAdvanced {
      * @return mapa longitud -> nombres concatenados
      */
     public static Map<Integer, String> obtenerNombresConcatenadosPorGrupo(List<String> palabras) {
-        // TODO extra: Reto Extra 5: Reducción secundaria de valores agrupados.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: mismo esquema que el reto 4, cambiando el downstream:
+        // Collectors.groupingBy(String::length, Collectors.joining(", "))
+        // Cada grupo, en vez de List o conteo, se reduce a una cadena unida.
+        // Test: clave 2 → "bb, dd". Date cuenta del patrón general:
+        // groupingBy(clave, QUÉ-HACER-CON-CADA-GRUPO).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerNombresConcatenadosPorGrupo");
     }
 
@@ -149,11 +153,12 @@ public final class Ej014StreamsAdvanced {
      * @return mapa categoria -> Optional con el producto más caro de esa categoría
      */
     public static Map<String, Optional<Producto>> encontrarProductoMasCaroPorCategoria(List<Producto> productos) {
-        // TODO extra: Reto Extra 6: Colector avanzado maxBy por categoría.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: groupingBy + maxBy:
+        // productos.stream().collect(Collectors.groupingBy(
+        //     Producto::categoria,
+        //     Collectors.maxBy(Comparator.comparingDouble(Producto::precio))));
+        // maxBy devuelve Optional<Producto> (un grupo podría quedar vacío en
+        // teoría) — por eso la firma del método ya lo declara así.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para encontrarProductoMasCaroPorCategoria");
     }
 
@@ -166,11 +171,14 @@ public final class Ej014StreamsAdvanced {
      * @return precio promedio, o 0.0 si no hay productos en esa categoría
      */
     public static double calcularPromedioPrecio(List<Producto> productos, String categoria) {
-        // TODO extra: Reto Extra 7: Promedio continuo con averagingDouble.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: dos opciones equivalentes; elige y entiende ambas:
+        // A) filter + average:
+        //    productos.stream().filter(p -> p.categoria().equals(categoria))
+        //        .mapToDouble(Producto::precio).average().orElse(0.0);
+        //    (average() devuelve OptionalDouble: vacío si no hubo elementos →
+        //    orElse(0.0) cubre el caso "CatC" del test).
+        // B) filter + collect(Collectors.averagingDouble(Producto::precio))
+        //    — devuelve 0.0 directamente con stream vacío.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularPromedioPrecio");
     }
 
@@ -183,11 +191,14 @@ public final class Ej014StreamsAdvanced {
      * @return mapa nombre -> producto
      */
     public static Map<String, Producto> crearMapaDeValoresUnicos(List<Producto> productos) {
-        // TODO extra: Reto Extra 8: Prevención de duplicados en toMap con merge.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: toMap de TRES argumentos — el tercero es la merge function:
+        // productos.stream().collect(Collectors.toMap(
+        //     Producto::nombre,                              // clave
+        //     p -> p,                                        // valor
+        //     (a, b) -> a.precio() >= b.precio() ? a : b));  // si chocan, gana el caro
+        // SIN el tercer argumento, dos productos llamados "prod" lanzan
+        // IllegalStateException: el test existe para que sufras (una vez) ese
+        // detalle. toMap sin merge function solo es seguro con claves únicas.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearMapaDeValoresUnicos");
     }
 
@@ -199,11 +210,11 @@ public final class Ej014StreamsAdvanced {
      * @return estadísticas de precios
      */
     public static java.util.DoubleSummaryStatistics generarEstadisticasPrecio(List<Producto> productos) {
-        // TODO extra: Reto Extra 9: Estadísticas completas con summarizingDouble.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea —
+        // productos.stream().collect(Collectors.summarizingDouble(Producto::precio));
+        // DoubleSummaryStatistics trae count, sum, min, max y average de UNA
+        // pasada. Es el endpoint "/estadisticas" de una API resuelto en una
+        // línea, en vez de recorrer la lista cuatro veces.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para generarEstadisticasPrecio");
     }
 
@@ -215,11 +226,13 @@ public final class Ej014StreamsAdvanced {
      * @return mapa ordenado categoria -> lista de productos
      */
     public static Map<String, List<Producto>> agruparYOrdenarResultados(List<Producto> productos) {
-        // TODO extra: Reto Extra 10: Agrupamiento con mapa ordenado (TreeMap).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: groupingBy de TRES argumentos — el del medio es la FÁBRICA del mapa:
+        // productos.stream().collect(Collectors.groupingBy(
+        //     Producto::categoria,
+        //     TreeMap::new,                       // mapa ordenado por clave
+        //     Collectors.toList()));
+        // groupingBy normal devuelve HashMap (orden impredecible); el test
+        // recorre keySet() y exige [CatA, CatB] → necesitas TreeMap.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para agruparYOrdenarResultados");
     }
 

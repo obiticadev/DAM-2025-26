@@ -78,11 +78,10 @@ public final class Ej020DateTimeApi {
      * @return true si es fin de semana
      */
     public static boolean esFinDeSemana(LocalDate fecha) {
-        // TODO extra: Reto Extra 1: Verificación de fin de semana.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: el enum DayOfWeek (ya importado) hace todo el trabajo:
+        // DayOfWeek dia = fecha.getDayOfWeek();
+        // return dia == DayOfWeek.SATURDAY || dia == DayOfWeek.SUNDAY;
+        // (Los enums se comparan con == sin miedo: son singletons.)
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFinDeSemana");
     }
 
@@ -95,11 +94,11 @@ public final class Ej020DateTimeApi {
      * @return edad en años
      */
     public static int calcularEdad(LocalDate fechaNacimiento, LocalDate ahora) {
-        // TODO extra: Reto Extra 2: Cálculo preciso de edad.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: Period es la clase de "cantidades de calendario" (teoría 1.10):
+        // return Period.between(fechaNacimiento, ahora).getYears();
+        // El segundo test es la trampa que Period resuelve solo: un día ANTES
+        // del cumpleaños → 30, no 31. Si lo calcularas con días/365 fallaría
+        // por los bisiestos. NO reinventes el calendario.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularEdad");
     }
 
@@ -111,11 +110,12 @@ public final class Ej020DateTimeApi {
      * @return instante equivalente en UTC
      */
     public static Instant convertirZonedDateTimeAInstant(ZonedDateTime zdt) {
-        // TODO extra: Reto Extra 3: Alineación a UTC global.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return zdt.toInstant();
+        // EL CONCEPTO vale más que la línea: "12:00 en Madrid" (ZonedDateTime)
+        // y "10:00 UTC" (Instant) son EL MISMO punto en la línea del tiempo.
+        // toInstant() tira la información de zona y deja el punto absoluto.
+        // Regla de la teoría 1.10: tu BD y tu JSON guardan Instant; la zona
+        // se aplica al MOSTRAR.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para convertirZonedDateTimeAInstant");
     }
 
@@ -128,11 +128,9 @@ public final class Ej020DateTimeApi {
      * @return diferencia en minutos
      */
     public static long obtenerDiferenciaEnMinutos(Instant i1, Instant i2) {
-        // TODO extra: Reto Extra 4: Medición de latencia de red.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: Duration para tiempo físico (Period era para calendario):
+        // return Duration.between(i1, i2).toMinutes();
+        // (Equivale a ChronoUnit.MINUTES.between(i1, i2) — conoce ambas.)
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerDiferenciaEnMinutos");
     }
 
@@ -145,11 +143,10 @@ public final class Ej020DateTimeApi {
      * @return true si actual es anterior a limite
      */
     public static boolean esFechaAnterior(Instant actual, Instant limite) {
-        // TODO extra: Reto Extra 5: Comparaciones cronológicas seguras.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return actual.isBefore(limite);
+        // Toda la familia java.time trae isBefore / isAfter / isEqual:
+        // SIEMPRE preferibles a compareTo() < 0 por legibilidad. Nunca
+        // compares fechas con == (compara referencias, no momentos).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFechaAnterior");
     }
 
@@ -161,11 +158,11 @@ public final class Ej020DateTimeApi {
      * @return representación textual "yyyy-MM-dd"
      */
     public static String formatearAFechaIsoStandard(LocalDate fecha) {
-        // TODO extra: Reto Extra 6: Formateo personalizado ISO estándar de fecha.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: esta vez con el formateador EXPLÍCITO (en aIso usaste toString):
+        // return fecha.format(DateTimeFormatter.ISO_LOCAL_DATE);
+        // Mismo resultado, pero conoce el mecanismo general: format(formatter)
+        // sirve para CUALQUIER patrón — ofPattern("dd/MM/yyyy") cuando el
+        // cliente lo pida. ISO_LOCAL_DATE es la constante para "yyyy-MM-dd".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearAFechaIsoStandard");
     }
 
@@ -177,11 +174,14 @@ public final class Ej020DateTimeApi {
      * @return Optional con LocalDate, o vacío si el formato es inválido
      */
     public static java.util.Optional<LocalDate> parsearFechaIso(String fechaIso) {
-        // TODO extra: Reto Extra 7: Parsing robusto y libre de excepciones.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: el patrón defensivo que ya practicaste en Ej005 reto 9:
+        // try { return Optional.of(LocalDate.parse(fechaIso)); }
+        // catch (DateTimeParseException | NullPointerException e) {
+        //     return Optional.empty();
+        // }
+        // El test mete "21/05/2026" (formato español, no ISO) → empty, no
+        // explosión. CONTEXTO API: una fecha mal formateada en un query param
+        // debe acabar en 400 Bad Request, jamás en un 500 por excepción suelta.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para parsearFechaIso");
     }
 
@@ -193,11 +193,15 @@ public final class Ej020DateTimeApi {
      * @return fecha del próximo día laboral
      */
     public static LocalDate obtenerProximoDiaLaboral(LocalDate fecha) {
-        // TODO extra: Reto Extra 8: Ajustes temporales personalizados (Día laboral).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: avanza un día y, si caes en finde, sigue avanzando:
+        // LocalDate siguiente = fecha.plusDays(1);
+        // while (esFinDeSemana(siguiente)) {      // ¡reutiliza el reto 1!
+        //     siguiente = siguiente.plusDays(1);
+        // }
+        // return siguiente;
+        // RECUERDA el error común nº3: plusDays DEVUELVE una fecha nueva;
+        // sin la reasignación, el bucle sería infinito. Los tres tests:
+        // jueves→viernes, viernes→lunes, sábado→lunes.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerProximoDiaLaboral");
     }
 
@@ -211,11 +215,15 @@ public final class Ej020DateTimeApi {
      * @return fecha y hora local equivalente en la zona destino
      */
     public static LocalDateTime convertirEntreZonasHorarias(LocalDateTime ldt, String zonaOrigen, String zonaDestino) {
-        // TODO extra: Reto Extra 9: Conversión y traducción entre zonas horarias.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: la coreografía completa de zonas, en tres pasos:
+        // 1. INTERPRETA la hora local en su zona origen:
+        //    ZonedDateTime enOrigen = ldt.atZone(ZoneId.of(zonaOrigen));
+        // 2. TRASLADA el mismo instante a la zona destino:
+        //    ZonedDateTime enDestino = enOrigen.withZoneSameInstant(ZoneId.of(zonaDestino));
+        // 3. Quédate con la hora local resultante: enDestino.toLocalDateTime();
+        // El test: 12:00 Madrid (UTC+2 en mayo) → 06:00 Nueva York (UTC-4).
+        // OJO: withZoneSameInstant (mismo momento, otra pared) ≠
+        // withZoneSameLocal (misma pared, otro momento). Aquí quieres Instant.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para convertirEntreZonasHorarias");
     }
 
@@ -227,11 +235,11 @@ public final class Ej020DateTimeApi {
      * @return true si es bisiesto
      */
     public static boolean esBisiesto(int anio) {
-        // TODO extra: Reto Extra 10: Determinación de año bisiesto.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: el JDK ya sabe la regla — java.time.Year.isLeap(anio).
+        // (También vale LocalDate.of(anio, 1, 1).isLeapYear().)
+        // Si quieres implementarla a mano para entenderla:
+        // divisible por 4 Y (no divisible por 100 O divisible por 400):
+        // 2024 ✔ (÷4), 2026 ✘, 1900 ✘ (÷100 pero no ÷400), 2000 ✔ (÷400).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esBisiesto");
     }
 

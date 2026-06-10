@@ -67,11 +67,10 @@ public final class Ej013StreamsBasics {
      * @return lista de mayores de edad
      */
     public static List<Integer> filtrarMayoresDeEdad(List<Integer> edades) {
-        // TODO extra: Reto Extra 1: Filtrado numérico simple.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 1.3, patrón 1 (filtrar).
+        // edades.stream().filter(e -> e >= 18).toList();
+        // OJO al test: 18 SÍ entra (>= , no >). Defensa: si edades es null,
+        // devuelve List.of().
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para filtrarMayoresDeEdad");
     }
 
@@ -83,11 +82,13 @@ public final class Ej013StreamsBasics {
      * @return lista de palabras en mayúsculas filtradas
      */
     public static List<String> convertirAMayusculas(List<String> palabras) {
-        // TODO extra: Reto Extra 2: Mapeo de cadenas de texto.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: filtra ANTES de mapear (si mapeas un null → NPE):
+        // palabras.stream()
+        //         .filter(p -> p != null && !p.isBlank())  // fuera nulls y vacíos
+        //         .map(String::toUpperCase)
+        //         .toList();
+        // El test mete null y "" en la lista a propósito (con Arrays.asList,
+        // porque List.of no admite nulls — detalle que conviene saber).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para convertirAMayusculas");
     }
 
@@ -99,11 +100,11 @@ public final class Ej013StreamsBasics {
      * @return suma de los cuadrados
      */
     public static int calcularSumaCuadrados(List<Integer> numeros) {
-        // TODO extra: Reto Extra 3: Reducción básica.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: map + reducción numérica (teoría 1.3, patrón 2):
+        // numeros.stream().mapToInt(n -> n * n).sum();
+        // mapToInt produce un IntStream, que trae sum() gratis (y para lista
+        // vacía devuelve 0, como exige el test). Sin mapToInt tendrías que usar
+        // reduce(0, Integer::sum) — también vale, compara ambas.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularSumaCuadrados");
     }
 
@@ -115,11 +116,9 @@ public final class Ej013StreamsBasics {
      * @return cantidad de cadenas vacías
      */
     public static long contarCadenasVacias(List<String> cadenas) {
-        // TODO extra: Reto Extra 4: Operación de conteo terminal.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: cadenas.stream().filter(String::isBlank).count();
+        // isBlank() cubre "" Y "   " (solo espacios), justo los dos casos del
+        // test. count() devuelve long — fíjate en el tipo de retorno del método.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarCadenasVacias");
     }
 
@@ -131,11 +130,10 @@ public final class Ej013StreamsBasics {
      * @return cadena con el formato especificado
      */
     public static String unirConComas(List<String> cadenas) {
-        // TODO extra: Reto Extra 5: Colector Collectors.joining.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: joining tiene una sobrecarga con (separador, prefijo, sufijo):
+        // cadenas.stream().collect(Collectors.joining(", ", "[", "]"));
+        // Con lista vacía produce "[]" solo — exactamente el segundo test.
+        // No concatenes los corchetes a mano: esta sobrecarga existe para eso.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para unirConComas");
     }
 
@@ -147,11 +145,11 @@ public final class Ej013StreamsBasics {
      * @return lista sin duplicados y ordenada
      */
     public static List<String> obtenerElementosUnicos(List<String> lista) {
-        // TODO extra: Reto Extra 6: Deduplicación y ordenación.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: dos intermedias encadenadas:
+        // lista.stream().distinct().sorted().toList();
+        // distinct() usa equals (dedup), sorted() sin argumentos usa el orden
+        // natural (alfabético en String). El orden distinct→sorted o
+        // sorted→distinct da igual aquí; piensa por qué.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerElementosUnicos");
     }
 
@@ -165,11 +163,11 @@ public final class Ej013StreamsBasics {
      * @return sublista paginada
      */
     public static List<String> limitarYDescartar(List<String> lista, int skip, int limit) {
-        // TODO extra: Reto Extra 7: Paginación con skip y limit.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: lista.stream().skip(skip).limit(limit).toList();
+        // ESTO ES LA PAGINACIÓN: ?page=2&size=10 de una API es skip(20).limit(10).
+        // Cuando llegues a Pageable en Spring Data (b12) será esta misma idea.
+        // skip/limit toleran pasarse del tamaño (segundo test: limit 5 sobre 2
+        // elementos → devuelve los 2, sin excepción).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para limitarYDescartar");
     }
 
@@ -182,11 +180,11 @@ public final class Ej013StreamsBasics {
      * @return true si alguna coincide, false de lo contrario
      */
     public static boolean algunoEmpiezaCon(List<String> palabras, String prefijo) {
-        // TODO extra: Reto Extra 8: Búsqueda con anyMatch.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: insensible a mayúsculas → normaliza AMBOS lados a minúsculas:
+        // String pref = prefijo.toLowerCase();
+        // return palabras.stream().anyMatch(p -> p.toLowerCase().startsWith(pref));
+        // El test busca "sp" y debe encontrar "Spring". anyMatch cortocircuita:
+        // en cuanto encuentra uno, deja de recorrer.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para algunoEmpiezaCon");
     }
 
@@ -198,11 +196,11 @@ public final class Ej013StreamsBasics {
      * @return true si todos son positivos o si la lista está vacía, false de lo contrario
      */
     public static boolean todosSonPositivos(List<Integer> numeros) {
-        // TODO extra: Reto Extra 9: Validación universal con allMatch.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: numeros.stream().allMatch(n -> n > 0);
+        // DETALLE LÓGICO que comprueba el test: allMatch sobre lista VACÍA da
+        // true ("verdad vacua": no hay ningún elemento que incumpla). Es el
+        // comportamiento matemático correcto del cuantificador universal, y
+        // sorprende la primera vez. anyMatch sobre vacía da false, simétricamente.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para todosSonPositivos");
     }
 
@@ -214,11 +212,12 @@ public final class Ej013StreamsBasics {
      * @return Optional con el máximo, o vacío si la lista no contiene números
      */
     public static Optional<Integer> obtenerMaximo(List<Integer> numeros) {
-        // TODO extra: Reto Extra 10: Reducción con max.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: numeros.stream().max(Integer::compare);
+        // max necesita un Comparator (también vale Comparator.naturalOrder())
+        // y devuelve Optional<Integer> — vacío si la lista lo está. Fíjate:
+        // streams y Optional se diseñaron juntos; toda reducción que puede
+        // "no tener respuesta" (max, min, findFirst, reduce sin identidad)
+        // devuelve Optional en vez de null. Eso ata las secciones 1.2 y 1.3.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerMaximo");
     }
 
