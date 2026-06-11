@@ -1,0 +1,8 @@
+# Finales de línea coherentes entre Windows (trabajo), CachyOS (casa) y Fedora (clase).
+# Solo se fijan los scripts: un bloque.sh con CRLF rompe bash en Linux, y un
+# bloque.ps1 con LF puede dar problemas en PowerShell 5.1.
+# (No se normaliza *.java/*.xml a propósito: renormalizar ficheros ya
+# committeados generaría diffs gigantes de solo finales de línea.)
+bloque.sh   text eol=lf
+*.sh        text eol=lf
+*.ps1       text eol=crlf

@@ -168,11 +168,15 @@ public final class Ej021ConcurrencyBasics {
      * @return ExecutorService configurado
      */
     public static ExecutorService ejecutarEnPoolAcotado(Runnable tarea, int nHilos) {
-        // TODO extra: Reto Extra 6: Pools de hilos acotados con ExecutorService.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: el ciclo de vida completo de un pool:
+        // ExecutorService pool = Executors.newFixedThreadPool(nHilos);  // crear
+        // pool.submit(tarea);                                           // encargar
+        // pool.shutdown();        // apagado ORDENADO: termina lo encolado y cierra
+        // return pool;
+        // shutdown() no mata nada: deja de aceptar tareas nuevas y termina las
+        // pendientes (shutdownNow() sí interrumpe). Olvidar el shutdown deja
+        // hilos vivos que impiden que la JVM muera — fuga clásica.
+        // CULTURA: Tomcat atiende tus peticiones HTTP con un pool como este.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para ejecutarEnPoolAcotado");
     }
 
@@ -183,11 +187,11 @@ public final class Ej021ConcurrencyBasics {
      * @param futuros lista de futuros
      */
     public static void esperarQueTerminenTodos(List<CompletableFuture<?>> futuros) {
-        // TODO extra: Reto Extra 7: Barrera de sincronización para múltiples futuros concurrentes.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: la barrera allOf, que ya usaste en esperarTodos():
+        // CompletableFuture.allOf(futuros.toArray(new CompletableFuture[0])).join();
+        // allOf recibe VARARGS (por eso el toArray) y devuelve un
+        // CompletableFuture<Void> que completa cuando TODOS terminan; el
+        // join() final es la espera. Su gemelo anyOf espera AL PRIMERO.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esperarQueTerminenTodos");
     }
 
@@ -201,11 +205,12 @@ public final class Ej021ConcurrencyBasics {
      * @return futuro completado con el resultado del ganador
      */
     public static <T> CompletableFuture<T> ejecutarPrimeroQueTermine(CompletableFuture<T> fut1, CompletableFuture<T> fut2) {
-        // TODO extra: Reto Extra 8: Carrera de futuros asíncronos.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return fut1.applyToEither(fut2, valor -> valor);
+        // applyToEither resuelve con el PRIMERO que complete y aplica la
+        // función al ganador (aquí, identidad). El test deja fut1 colgado
+        // para siempre: debe ganar fut2 ("ganador") sin esperar a fut1.
+        // CASO REAL: consultar dos réplicas del mismo servicio y quedarte
+        // con la respuesta más rápida ("hedged requests").
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para ejecutarPrimeroQueTermine");
     }
 
@@ -220,11 +225,11 @@ public final class Ej021ConcurrencyBasics {
      * @return futuro con el valor transformado
      */
     public static <T, R> CompletableFuture<R> mapearResultadoAsincrono(CompletableFuture<T> futuro, Function<T, R> mapeador) {
-        // TODO extra: Reto Extra 9: Transformaciones no bloqueantes de resultados asíncronos.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return futuro.thenApply(mapeador);
+        // thenApply ES el map de los futures (como Optional.map y Stream.map):
+        // transforma el resultado CUANDO llegue, sin bloquear a nadie.
+        // ¿Ves el patrón? Optional, Stream y CompletableFuture comparten el
+        // mismo vocabulario mental: map / flatMap / filtros / fallbacks.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para mapearResultadoAsincrono");
     }
 
@@ -240,11 +245,13 @@ public final class Ej021ConcurrencyBasics {
      */
     public static <T, R> CompletableFuture<R> encadenarFuturosAsincronos(
             CompletableFuture<T> futuro, Function<T, CompletableFuture<R>> mapeadorFuturo) {
-        // TODO extra: Reto Extra 10: Composición secuencial y encadenamiento asíncrono.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return futuro.thenCompose(mapeadorFuturo);
+        // thenCompose ES el flatMap de los futures: la función ya devuelve un
+        // CompletableFuture y NO quieres un CompletableFuture<CompletableFuture<R>>.
+        // thenApply : thenCompose :: map : flatMap — la misma distinción de
+        // Ej012 reto 8. CASO REAL: buscarUsuario(id).thenCompose(u ->
+        // buscarPedidos(u)) — la 2ª llamada DEPENDE del resultado de la 1ª
+        // (secuencial), a diferencia de thenCombine (paralelo).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para encadenarFuturosAsincronos");
     }
 

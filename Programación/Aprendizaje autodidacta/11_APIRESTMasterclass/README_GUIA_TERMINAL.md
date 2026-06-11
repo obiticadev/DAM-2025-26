@@ -13,14 +13,27 @@ el código de los `// TODO:`; los tests dicen cuándo está bien.
 
 El proyecto tiene 26 módulos Maven con Spring Boot. Si VS Code los importa todos,
 el autocompletado de Java se arrastra. Solución: activa solo el bloque que estés
-estudiando con el script `bloque.ps1`:
+estudiando. Hay dos scripts equivalentes según el sistema:
+
+**Windows (trabajo)** — PowerShell:
 
 ```powershell
-.\bloque.ps1 b00        # activa solo b00_http (el bloque actual)
+.\bloque.ps1 b00        # activa solo b00_http
 .\bloque.ps1 b04 b05    # puedes activar varios
 .\bloque.ps1            # muestra qué bloques están activos
-.\bloque.ps1 todos      # restaura los 26 (hazlo SIEMPRE antes de commit o mvn test global)
+.\bloque.ps1 todos      # restaura los 26 (SIEMPRE antes de commit o mvn test global)
 ```
+
+**CachyOS (casa) / Fedora (clase)** — bash, mismos argumentos:
+
+```bash
+./bloque.sh b00         # (la primera vez: chmod +x bloque.sh)
+./bloque.sh todos
+```
+
+Ambos hacen lo mismo: reescriben la lista `<modules>` del `pom.xml` raíz para que
+el language server solo importe los bloques activos. No borran nada; las demás
+carpetas simplemente dejan de indexarse.
 
 Tras ejecutarlo: `Ctrl+Shift+P` → **Java: Reload Projects**. Si las sugerencias
 siguen raras, usa **Java: Clean Java Language Server Workspace** (reinicia el índice).

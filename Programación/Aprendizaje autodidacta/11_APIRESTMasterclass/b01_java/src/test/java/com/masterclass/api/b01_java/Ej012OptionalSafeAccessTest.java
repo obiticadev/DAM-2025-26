@@ -2,6 +2,7 @@ package com.masterclass.api.b01_java;
 
 import org.junit.jupiter.api.Test;
 import java.util.Arrays;
+import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 class Ej012OptionalSafeAccessTest {
