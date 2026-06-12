@@ -48,11 +48,11 @@ public class Ej047QueryParams {
     public String multiplicar(
             @org.springframework.web.bind.annotation.RequestParam Integer a,
             @org.springframework.web.bind.annotation.RequestParam Integer b) {
-        // TODO extra: Reto Extra 1: Multiplicación con parámetros obligatorios.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 5.2 — @RequestParam sin defaultValue es OBLIGATORIO; si
+        //   falta, Spring responde 400 antes de entrar al método.
+        // 1. Una línea: return String.valueOf(a * b);
+        // OJO: el test pega a /api/mult?a=6&b=7 y espera body "42". Devuelve String
+        //   (no int) para que el cuerpo sea text/plain con el número.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para GetMapping");
     }
 
@@ -61,11 +61,12 @@ public class Ej047QueryParams {
      */
     // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/saludo")
     public String saludoPorDefecto(@org.springframework.web.bind.annotation.RequestParam(defaultValue = "es") String idioma) {
-        // TODO extra: Reto Extra 2: Parámetro con valor por defecto.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 5.2 — defaultValue hace el parámetro opcional con un valor base.
+        // 1. Devuelve el saludo según el idioma con un switch:
+        //    "es" -> "Hola"; "en" -> "Hello"; "fr" -> "Aloha".
+        //    PISTA: return switch (idioma) { case "en" -> "Hello"; ... };
+        // OJO: el test cubre /api/saludo (sin param → "es" → "Hola"),
+        //   ?idioma=en → "Hello" y ?idioma=fr → "Aloha". Los strings son exactos.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para GetMapping");
     }
 
@@ -74,11 +75,11 @@ public class Ej047QueryParams {
      */
     // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/nombres")
     public String listaQueryParams(@org.springframework.web.bind.annotation.RequestParam java.util.List<String> nombres) {
-        // TODO extra: Reto Extra 3: Parámetro multi-valor mapeado a lista.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 5.2 — un mismo parámetro repetido (?nombres=Ana&nombres=Luis)
+        //   o separado por comas se mapea a List<String>.
+        // 1. Una línea: return String.join(",", nombres);
+        // OJO: el test manda .param("nombres","Ana","Luis","Pedro") (tres valores) y
+        //   espera "Ana,Luis,Pedro" (unidos por coma, sin espacios, en orden).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para GetMapping");
     }
 
@@ -87,11 +88,11 @@ public class Ej047QueryParams {
      */
     // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/filtro")
     public java.util.Map<String, String> mapaQueryParams(@org.springframework.web.bind.annotation.RequestParam java.util.Map<String, String> params) {
-        // TODO extra: Reto Extra 4: Mapeo de todos los query params a un Map.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 5.2 — @RequestParam Map<String,String> recoge TODOS los query
+        //   params sin declararlos uno a uno (útil para filtros dinámicos).
+        // 1. Una línea: return params;
+        // OJO: el test manda ?criterio=activo&orden=desc y espera $.criterio=="activo"
+        //   y $.orden=="desc". El Map se serializa como objeto JSON tal cual.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para GetMapping");
     }
 
@@ -100,11 +101,11 @@ public class Ej047QueryParams {
      */
     // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/buscar")
     public String parametroOpcional(@org.springframework.web.bind.annotation.RequestParam(required = false) java.util.Optional<String> q) {
-        // TODO extra: Reto Extra 5: Parámetro de consulta completamente opcional mediante Optional.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 5.2 + Optional (1.2) — Optional<String> modela "puede no venir"
+        //   sin riesgo de null.
+        // 1. Una línea: return q.map(v -> "buscando: " + v).orElse("sin criterio");
+        // OJO: el test pega a ?q=muelle → "buscando: muelle" y a /api/buscar (sin q)
+        //   → "sin criterio". Encadena map/orElse, nada de isPresent()/get().
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para GetMapping");
     }
 
@@ -115,11 +116,13 @@ public class Ej047QueryParams {
     public String booleanoParam(
             @org.springframework.web.bind.annotation.RequestParam(defaultValue = "false") Boolean invertido,
             @org.springframework.web.bind.annotation.RequestParam String texto) {
-        // TODO extra: Reto Extra 6: Conversión de booleano con valor predeterminado.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 5.2 — Spring convierte "true"/"false" a Boolean; defaultValue
+        //   cubre el caso en que el flag no venga.
+        // 1. Si invertido es true, devuelve el texto al revés; si no, tal cual.
+        //    PISTA: new StringBuilder(texto).reverse().toString() para invertir.
+        //    return invertido ? new StringBuilder(texto).reverse().toString() : texto;
+        // OJO: el test con ?texto=antigravity&invertido=true espera "ytivargitna" y
+        //   sin invertido (default false) espera "antigravity".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para GetMapping");
     }
 
@@ -131,11 +134,11 @@ public class Ej047QueryParams {
             @org.springframework.web.bind.annotation.RequestParam
             @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE)
             java.time.LocalDate limite) {
-        // TODO extra: Reto Extra 7: Conversión a LocalDate con anotación DateTimeFormat.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 5.2 + java.time — @DateTimeFormat(iso = ISO.DATE) parsea
+        //   "2026-05-21" a LocalDate también en query params.
+        // 1. Una línea: return String.valueOf(limite.getMonth());
+        // OJO: el test pega a ?limite=2026-05-21 y espera "MAY" (el name() del enum
+        //   Month, en inglés y mayúsculas). getMonth() devuelve Month.MAY.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para GetMapping");
     }
 
@@ -144,11 +147,12 @@ public class Ej047QueryParams {
      */
     // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/horario")
     public String enumParam(@org.springframework.web.bind.annotation.RequestParam DiaSemana dia) {
-        // TODO extra: Reto Extra 8: Conversión automática a Enum.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 5.2 — Spring convierte el texto al valor del enum por nombre
+        //   ("LUNES" → DiaSemana.LUNES); si no existe, 400.
+        // 1. Si el día es SABADO o DOMINGO devuelve "fin de semana"; si no
+        //    "dia laborable". PISTA: dia == DiaSemana.SABADO || dia == DiaSemana.DOMINGO.
+        // OJO: el test cubre ?dia=LUNES → "dia laborable" y ?dia=SABADO →
+        //   "fin de semana".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para GetMapping");
     }
 
@@ -157,11 +161,12 @@ public class Ej047QueryParams {
      */
     // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/edad")
     public String validarMayorDeEdad(@org.springframework.web.bind.annotation.RequestParam Integer edad) {
-        // TODO extra: Reto Extra 9: Validación defensiva y lanzamiento manual de IllegalArgumentException.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 5.3 — validación manual lanzando una excepción de negocio.
+        // 1. Si edad < 18, lanza new IllegalArgumentException(...) (mensaje libre);
+        //    si no, return "acceso concedido".
+        // OJO: el test con ?edad=20 espera "acceso concedido"; con ?edad=15 hace
+        //   assertThrows(Exception.class, ...) — basta con que el endpoint propague
+        //   una excepción (aquí no hay handler, en Ej054 sí la mapearás a HTTP).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para GetMapping");
     }
 
@@ -170,11 +175,11 @@ public class Ej047QueryParams {
      */
     // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/profile")
     public String queryConMismoNombre(@org.springframework.web.bind.annotation.RequestParam(name = "username") String user) {
-        // TODO extra: Reto Extra 10: Query parameter con nombre explícito diferente.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 5.2 — name="username" desacopla el nombre del query param del
+        //   nombre de la variable Java (igual que @PathVariable("...") en Ej046 reto 1).
+        // 1. Una línea: return "perfil de: " + user;
+        // OJO: el test manda ?username=master (no ?user=master) y espera
+        //   "perfil de: master". El binding usa el name, no el identificador 'user'.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para GetMapping");
     }
 

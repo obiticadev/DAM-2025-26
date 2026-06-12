@@ -42,11 +42,13 @@ public class Ej059RequestResponseHeaders {
      * la primera etiqueta de idioma (ej: "es-ES"), que representa la de mayor prioridad.
      */
     public static String pasoExtra01(String acceptLanguage) {
-        // TODO extra: Reto Extra 1: Extracción del idioma preferente (Accept-Language).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 6.5. Accept-Language es como Accept (6.1): lista por comas
+        // con q-values. La primera etiqueta (sin ;q) es la preferente.
+        // 1. Si acceptLanguage es null/blank -> decide ("" o un default).
+        // 2. Coge el primer token: split(",")[0], y quítale el ;q: split(";")[0].
+        // 3. trim() y devuelve.
+        // PISTA: return acceptLanguage.split(",")[0].split(";")[0].trim();
+        // OJO: el test pasa "es-ES,es;q=0.9" y espera "es-ES" (la primera, sin más).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra01");
     }
 
@@ -56,11 +58,11 @@ public class Ej059RequestResponseHeaders {
      * contiene exactamente el valor "XMLHttpRequest" (ignora mayúsculas/minúsculas).
      */
     public static boolean pasoExtra02(String xRequestedWith) {
-        // TODO extra: Reto Extra 2: Detección de petición AJAX.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea. Las peticiones AJAX (jQuery/XHR) mandan
+        // X-Requested-With: XMLHttpRequest.
+        // return "XMLHttpRequest".equalsIgnoreCase(xRequestedWith);
+        // El equalsIgnoreCase tolera null en el ARGUMENTO (no en el literal) y
+        // cubre variaciones de caso. El test pasa "XMLHttpRequest" -> true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra02");
     }
 
@@ -71,11 +73,17 @@ public class Ej059RequestResponseHeaders {
      * Si el formato es inválido o no es Basic, devuelve null.
      */
     public static String[] pasoExtra03(String authorizationHeader) {
-        // TODO extra: Reto Extra 3: Decodificador de credenciales Basic Auth.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 6.5 (Basic = base64(usuario:contraseña)).
+        // 1. Si es null o no empieza por "Basic " -> null.
+        // 2. Quita el prefijo: authorizationHeader.substring(6).
+        // 3. Decodifica base64: new String(Base64.getDecoder().decode(b64),
+        //        StandardCharsets.UTF_8)  -> "usuario:contraseña".
+        // 4. Parte por el PRIMER ':': split(":", 2) -> [usuario, contraseña].
+        // PISTA: el "dXNlcjpwYXNz" del test decodifica a "user:pass" -> ["user","pass"].
+        // OJO/CUIDADO: usa split(":", 2), NO split(":"): si la contraseña tiene
+        //      ':' (p.ej. "a:b:c"), con el límite 2 obtienes ["a","b:c"]; sin
+        //      límite la trocearías mal. El test solo pide assertNotNull, pero
+        //      hazlo bien.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra03");
     }
 
@@ -86,11 +94,15 @@ public class Ej059RequestResponseHeaders {
      * Si no cumple el formato, devuelve null.
      */
     public static String pasoExtra04(String authorizationHeader) {
-        // TODO extra: Reto Extra 4: Extractor de Token Bearer JWT.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 6.5 (Bearer <token>). Es el formato de los JWT (bloque 18).
+        // 1. Si es null -> null.
+        // 2. Comprueba el prefijo "Bearer " de forma INSENSIBLE a mayúsculas:
+        //    if (authorizationHeader.length() < 7
+        //        || !authorizationHeader.substring(0,7).equalsIgnoreCase("Bearer ")) return null;
+        // 3. Devuelve el resto: authorizationHeader.substring(7).trim().
+        // OJO: el test pasa "Bearer token123" y espera "token123" (sin el prefijo).
+        // CULTURA: este es literalmente el primer paso de un filtro de seguridad
+        //          JWT que verás en b18_sec.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra04");
     }
 
@@ -101,11 +113,13 @@ public class Ej059RequestResponseHeaders {
      * se debe retornar la primera IP de la lista. Si es nula o vacía, devuelve "unknown".
      */
     public static String pasoExtra05(String xForwardedFor) {
-        // TODO extra: Reto Extra 5: Extractor de IP real del cliente (X-Forwarded-For).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 6.5. X-Forwarded-For = "ip-cliente, proxy1, proxy2".
+        // La IP real del cliente es la PRIMERA de la lista.
+        // 1. Si es null/blank -> "unknown".
+        // 2. return xForwardedFor.split(",")[0].trim();
+        // OJO: el test pasa "192.168.1.1, 10.0.0.1" y espera "192.168.1.1".
+        // CULTURA: tras un balanceador, request.getRemoteAddr() te da la IP del
+        //          PROXY, no la del usuario; por eso se lee esta cabecera.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra05");
     }
 
@@ -115,11 +129,15 @@ public class Ej059RequestResponseHeaders {
      * "Mobile", "Tablet" o "Desktop".
      */
     public static String pasoExtra06(String userAgent) {
-        // TODO extra: Reto Extra 6: Categorización de dispositivo desde User-Agent.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 6.5. Clasifica el User-Agent en Mobile/Tablet/Desktop por
+        // palabras clave. Devuelve SIEMPRE algo no nulo.
+        // 1. Si userAgent es null -> "Desktop" (default razonable).
+        // 2. Pásalo a minúsculas y comprueba en orden:
+        //    - contiene "tablet" o "ipad" -> "Tablet"
+        //    - contiene "mobile" o "android" o "iphone" -> "Mobile"
+        //    - si no -> "Desktop".
+        // OJO: el test solo pide assertNotNull con "Mozilla/5.0" (cae en Desktop):
+        //      basta no devolver null, pero cubre las tres ramas por claridad.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra06");
     }
 
@@ -129,11 +147,14 @@ public class Ej059RequestResponseHeaders {
      * y "X-Frame-Options: DENY") en un ResponseEntity.BodyBuilder.
      */
     public static ResponseEntity.BodyBuilder pasoExtra07(ResponseEntity.BodyBuilder builder) {
-        // TODO extra: Reto Extra 7: Inyección aditiva de cabeceras de seguridad.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 6.5 (cabeceras de seguridad casi gratis). El builder es
+        // fluido: cada .header(...) devuelve el builder.
+        // return builder
+        //     .header("X-Content-Type-Options", "nosniff")
+        //     .header("X-Frame-Options", "DENY");
+        // - nosniff: impide que el navegador "adivine" el Content-Type.
+        // - DENY: prohíbe meter tu página en un <iframe> (anti clickjacking).
+        // OJO: el test solo pide assertNotNull; devuelve el builder, no null.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra07");
     }
 
@@ -143,11 +164,12 @@ public class Ej059RequestResponseHeaders {
      * comprobando si el valor "gzip" está presente (ignora mayúsculas/minúsculas).
      */
     public static boolean pasoExtra08(String acceptEncoding) {
-        // TODO extra: Reto Extra 8: Comprobación de soporte de compresión (Accept-Encoding).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 6.5. Accept-Encoding lista las compresiones que el cliente
+        // acepta ("gzip, deflate, br"). ¿Soporta gzip?
+        // 1. Si es null -> false.
+        // 2. return acceptEncoding.toLowerCase().contains("gzip");
+        // OJO: el test pasa "gzip, deflate" -> true. Compara en minúsculas por si
+        //      llega "GZIP". Enlaza con Ej058.pasoExtra08 (la compresión real).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra08");
     }
 
@@ -157,11 +179,13 @@ public class Ej059RequestResponseHeaders {
      * limpiando espacios y devolviendo una lista de cadenas con cada valor independiente.
      */
     public static java.util.List<String> pasoExtra09(String customHeaderValue) {
-        // TODO extra: Reto Extra 9: Parseo de cabeceras multivalor avanzadas.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 1.3 (streams) sobre una cabecera multivalor "a, b, c".
+        // 1. Si es null/blank -> List.of() (lista vacía).
+        // 2. Parte por comas, recorta espacios y descarta vacíos:
+        //    return Arrays.stream(customHeaderValue.split(","))
+        //              .map(String::trim).filter(s -> !s.isEmpty()).toList();
+        // OJO: el test pasa "admin, user" -> ["admin","user"] (sin el espacio).
+        //      Solo comprueba assertNotNull, pero limpiar espacios es lo correcto.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra09");
     }
 
@@ -172,11 +196,17 @@ public class Ej059RequestResponseHeaders {
      * Si las firmas coinciden, devuelve true, de lo contrario false.
      */
     public static boolean pasoExtra10(String signature, String body) {
-        // TODO extra: Reto Extra 10: Validación de cabecera de firma (X-Signature).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: integridad de petición: la firma esperada es el MD5(body) en hex.
+        // 1. Calcula el MD5 hex de 'body' (mismo método que Ej057.pasoExtra05;
+        //    plantéate extraer un helper md5Hex(String) reutilizable).
+        // 2. Compáralo con 'signature' (equals; o equalsIgnoreCase por si el hex
+        //    viene en mayúsculas).
+        // 3. Si signature o body son null -> false.
+        // OJO: el test pasa ("wrongsignature","hello"): MD5("hello") es
+        //      "5d41402..." ≠ "wrongsignature" -> false. Asegúrate de NO
+        //      devolver true por error (no inviertas la comparación).
+        // CULTURA: los webhooks (Stripe, GitHub) firman así su payload para que
+        //          verifiques que el mensaje no se ha manipulado.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra10");
     }
 

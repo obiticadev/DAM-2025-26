@@ -7,7 +7,7 @@ import java.util.Set;
 /**
  * Ejercicio 044 · Bootstrap de arranque (CommandLineRunner).
  *
- * <p>Teoría: {@code teoria/04_Spring_Boot_Config.md} (sección 4.1).
+ * <p>Teoría: {@code teoria/04_Spring_Boot_Config.md} (sección 4.6).
  *
  * <p>Un runner ejecuta tareas justo tras arrancar el contexto (seed de datos, etc.).
  */
@@ -54,92 +54,106 @@ public class Ej044CommandLineRunner {
         System.out.println(r.log());
     }
 
+    // === Runners y generadores (LOS RETOS) ==================================
+
     /**
      * RETO EXTRA 01: Runner estándar utilizando CommandLineRunner.
      */
-    // TODO extra: Implementa la interfaz org.springframework.boot.CommandLineRunner
     public static class CustomCommandLineRunner implements org.springframework.boot.CommandLineRunner {
-        // TODO extra: RETO EXTRA 01: Runner estándar utilizando CommandLineRunner.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
+        // GUÍA: teoría 4.6 — un CommandLineRunner real recibe los args crudos.
+        // El test (pasoExtra01) comprueba isRunExecuted()==false ANTES de ejecutarlo
+        // y que es instanceof CommandLineRunner. Tu trabajo:
+        //   - en run(...), marca runExecuted = true (y haz el trabajo de arranque).
+        // OJO: el flag arranca en false; el test NO llama a run(), solo verifica el
+        //   estado inicial y el tipo.
+        private boolean runExecuted = false;
+
+        @Override
+        public void run(String... args) {
+            // GUÍA: aquí va la tarea de arranque; al hacerla, runExecuted = true;
+            throw new UnsupportedOperationException("TODO: implementar run() y poner runExecuted = true");
+        }
+
+        public boolean isRunExecuted() {
+            return runExecuted;
+        }
     }
 
     /**
      * RETO EXTRA 02: Runner avanzado utilizando ApplicationArguments.
      */
-    // TODO extra: Implementa la interfaz org.springframework.boot.ApplicationRunner
     public static class CustomApplicationRunner implements org.springframework.boot.ApplicationRunner {
-        // TODO extra: RETO EXTRA 02: Runner avanzado utilizando ApplicationArguments.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
+        // GUÍA: teoría 4.6 — ApplicationRunner recibe los args YA PARSEADOS.
+        // El test (pasoExtra02) solo comprueba que es instanceof ApplicationRunner.
+        // En run(args) tienes args.getOptionNames(), args.getOptionValues("x"),
+        // args.getNonOptionArgs() (la API que explotas en los retos 06-08).
+        @Override
+        public void run(org.springframework.boot.ApplicationArguments args) {
+            throw new UnsupportedOperationException("TODO: implementar run(ApplicationArguments)");
+        }
     }
 
     /**
      * RETO EXTRA 03: Runner con alta prioridad.
      */
-    // TODO extra: Añade anotación @org.springframework.core.annotation.Order(1)
+    // GUÍA: para que pasoExtra03 lea 1, AÑADE sobre la clase la anotación:
+    //   @org.springframework.core.annotation.Order(1)
     public static class HighPriorityRunner {
-        // TODO extra: RETO EXTRA 03: Runner con alta prioridad.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para Order");
+        // (sin miembros: la información del reto está en la anotación @Order)
     }
 
     /**
      * RETO EXTRA 04: Runner con baja prioridad.
      */
-    // TODO extra: Añade anotación @org.springframework.core.annotation.Order(2)
+    // GUÍA: para que pasoExtra04 lea 2, AÑADE sobre la clase:
+    //   @org.springframework.core.annotation.Order(2)
     public static class LowPriorityRunner {
-        // TODO extra: RETO EXTRA 04: Runner con baja prioridad.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para Order");
+        // (sin miembros: la información del reto está en la anotación @Order)
     }
 
     /**
      * RETO EXTRA 05: Runner que lee configuraciones inyectadas.
      */
     public static class ConfiguredRunner {
-        // TODO extra: RETO EXTRA 05: Runner que lee configuraciones inyectadas.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
+        // GUÍA: teoría 4.1/4.6 — un runner suele leer un flag de config para decidir
+        // si actúa. El test (pasoExtra05) espera isSeedEnabled()==false.
+        // Para realismo, anota el campo con el default false:
+        //   @org.springframework.beans.factory.annotation.Value("${app.seed.enabled:false}")
+        //   private boolean seedEnabled;
+        // (el default false ya satisface al test sin necesidad de contexto Spring).
+        private boolean seedEnabled;
+
+        public boolean isSeedEnabled() {
+            return seedEnabled;
+        }
     }
 
     /**
      * RETO EXTRA 09: Generador de códigos de salida del sistema.
      */
-    // TODO extra: Implementa la interfaz org.springframework.boot.ExitCodeGenerator
     public static class CustomExitCodeGenerator implements org.springframework.boot.ExitCodeGenerator {
-        // TODO extra: RETO EXTRA 09: Generador de códigos de salida del sistema.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
+        // GUÍA: teoría 4.6 — un ExitCodeGenerator decide con qué código termina la JVM.
+        // El test (pasoExtra09) crea uno con código 42 y comprueba que es instanceof
+        // ExitCodeGenerator. Guarda el código en el constructor y devuélvelo:
+        private final int exitCode;
+
+        public CustomExitCodeGenerator(int exitCode) {
+            this.exitCode = exitCode;
+        }
+
+        @Override
+        public int getExitCode() {
+            return exitCode;
+        }
     }
+
+    // === Métodos de los retos ===============================================
 
     /**
      * RETO EXTRA 01: Retorna una nueva instancia del CommandLineRunner personalizado.
      */
     public static CustomCommandLineRunner pasoExtra01() {
-        // TODO extra: RETO EXTRA 01: Retorna una nueva instancia del CommandLineRunner personalizado.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return new CustomCommandLineRunner();
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra01");
     }
 
@@ -147,11 +161,7 @@ public class Ej044CommandLineRunner {
      * RETO EXTRA 02: Retorna una nueva instancia del ApplicationRunner personalizado.
      */
     public static CustomApplicationRunner pasoExtra02() {
-        // TODO extra: RETO EXTRA 02: Retorna una nueva instancia del ApplicationRunner personalizado.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return new CustomApplicationRunner();
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra02");
     }
 
@@ -159,11 +169,14 @@ public class Ej044CommandLineRunner {
      * RETO EXTRA 03: Inspecciona y retorna el valor de la anotación @Order en el runner de alta prioridad.
      */
     public static int pasoExtra03(Object runner) {
-        // TODO extra: RETO EXTRA 03: Inspecciona y retorna el valor de la anotación @Order en el runner de alta prioridad.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 4.6 — leer @Order por reflexión.
+        // PISTA: var ann = org.springframework.core.annotation.AnnotationUtils
+        //            .findAnnotation(runner.getClass(),
+        //                            org.springframework.core.annotation.Order.class);
+        //        return ann.value();
+        // OJO: el test pasa un HighPriorityRunner y espera 1 (asegúrate de haber
+        //   puesto @Order(1) sobre esa clase). Si la anotación faltara, ann sería
+        //   null y esto reventaría: ese NPE es justo la señal de que olvidaste anotar.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra03");
     }
 
@@ -171,11 +184,8 @@ public class Ej044CommandLineRunner {
      * RETO EXTRA 04: Inspecciona y retorna el valor de la anotación @Order en el runner de baja prioridad.
      */
     public static int pasoExtra04(Object runner) {
-        // TODO extra: RETO EXTRA 04: Inspecciona y retorna el valor de la anotación @Order en el runner de baja prioridad.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: idéntico a pasoExtra03 — REUTILIZA su lógica (o llama a pasoExtra03).
+        // OJO: el test pasa LowPriorityRunner y espera 2 (anota @Order(2) en la clase).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra04");
     }
 
@@ -183,11 +193,7 @@ public class Ej044CommandLineRunner {
      * RETO EXTRA 05: Retorna el runner que lee configuraciones inyectadas.
      */
     public static ConfiguredRunner pasoExtra05() {
-        // TODO extra: RETO EXTRA 05: Retorna el runner que lee configuraciones inyectadas.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return new ConfiguredRunner();
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra05");
     }
 
@@ -195,11 +201,10 @@ public class Ej044CommandLineRunner {
      * RETO EXTRA 06: Recupera los argumentos sin opción (non-option) desde ApplicationArguments.
      */
     public static List<String> pasoExtra06(org.springframework.boot.ApplicationArguments args) {
-        // TODO extra: RETO EXTRA 06: Recupera los argumentos sin opción (non-option) desde ApplicationArguments.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 4.6 — los "non-option" son los que NO empiezan por "--".
+        // PISTA: return args.getNonOptionArgs();
+        // OJO: el test pasa ("--optionA=val1", "nonOptionA") y espera que la lista
+        //   contenga "nonOptionA" (pero NO "optionA", que es una opción).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra06");
     }
 
@@ -207,11 +212,10 @@ public class Ej044CommandLineRunner {
      * RETO EXTRA 07: Recupera el listado completo de nombres de opciones de arranque desde ApplicationArguments.
      */
     public static Set<String> pasoExtra07(org.springframework.boot.ApplicationArguments args) {
-        // TODO extra: RETO EXTRA 07: Recupera el listado completo de nombres de opciones de arranque desde ApplicationArguments.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 4.6 — los nombres de las "--opciones" (sin el -- ni el valor).
+        // PISTA: return args.getOptionNames();
+        // OJO: el test pasa ("--optionA=val1", "--optionB") y espera que el set
+        //   contenga "optionA" y "optionB" (una opción sin valor también cuenta).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra07");
     }
 
@@ -219,11 +223,11 @@ public class Ej044CommandLineRunner {
      * RETO EXTRA 08: Recupera los valores asociados a una opción particular de arranque.
      */
     public static List<String> pasoExtra08(org.springframework.boot.ApplicationArguments args, String optionName) {
-        // TODO extra: RETO EXTRA 08: Recupera los valores asociados a una opción particular de arranque.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 4.6 — una misma opción puede repetirse y acumular valores.
+        // PISTA: return args.getOptionValues(optionName);
+        // OJO: el test pasa ("--optionA=val1", "--optionA=val2") y espera que los
+        //   valores de "optionA" contengan "val1" Y "val2": getOptionValues
+        //   devuelve la LISTA de todos.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra08");
     }
 
@@ -231,11 +235,7 @@ public class Ej044CommandLineRunner {
      * RETO EXTRA 09: Retorna una instancia del generador de códigos de salida con un código determinado.
      */
     public static CustomExitCodeGenerator pasoExtra09(int exitCode) {
-        // TODO extra: RETO EXTRA 09: Retorna una instancia del generador de códigos de salida con un código determinado.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return new CustomExitCodeGenerator(exitCode);
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra09");
     }
 
@@ -243,11 +243,14 @@ public class Ej044CommandLineRunner {
      * RETO EXTRA 10: Ejecuta el CommandLineRunner capturando cualquier excepción para encapsularla de forma segura.
      */
     public static void pasoExtra10(org.springframework.boot.CommandLineRunner runner, String... args) throws Exception {
-        // TODO extra: RETO EXTRA 10: Ejecuta el CommandLineRunner capturando cualquier excepción para encapsularla de forma segura.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 1.9 (excepciones, encadena la causa) + 4.6.
+        // 1. Ejecuta runner.run(args) dentro de un try.
+        // 2. Captura la Exception (checked) y RELÁNZALA envuelta, conservando la causa:
+        // PISTA: try { runner.run(args); }
+        //        catch (Exception e) { throw new RuntimeException("fallo en el runner", e); }
+        // OJO: el test pasa un runner que lanza Exception("Boot failed") y espera
+        //   assertThrows(RuntimeException.class, ...). Por eso conviertes la checked
+        //   en unchecked SIN perder la original (el segundo argumento 'e' = causa).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra10");
     }
 

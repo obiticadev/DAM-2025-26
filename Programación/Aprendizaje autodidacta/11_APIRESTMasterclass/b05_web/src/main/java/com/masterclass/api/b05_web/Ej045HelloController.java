@@ -43,11 +43,14 @@ public class Ej045HelloController {
     // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/saludo-custom")
     // y recibe el header "X-User-Name" con @org.springframework.web.bind.annotation.RequestHeader("X-User-Name").
     public String saludoPersonalizado(String nombre) {
-        // TODO extra: Reto Extra 1: Saludo personalizado leyendo cabecera.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 5.2 (cabeceras con @RequestHeader, prima de @RequestParam).
+        // 1. Renombra el parámetro a @RequestHeader("X-User-Name") String nombre:
+        //    Spring inyecta el valor de esa cabecera HTTP, no de la query string.
+        // 2. Una línea: return "Hola, " + nombre;
+        // OJO: el test manda X-User-Name="Carlos" y compara el body EXACTO con
+        //   "Hola, Carlos" (coma + espacio). Cualquier espacio de más falla.
+        // CULTURA: las cabeceras transportan metadatos (auth, idioma, trazas);
+        //   los datos de negocio van en path/query/body.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para GetMapping");
     }
 
@@ -56,11 +59,14 @@ public class Ej045HelloController {
      */
     // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/saludo-json")
     public MensajeJson saludoJson() {
-        // TODO extra: Reto Extra 2: Respuesta serializada a JSON.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 5.2 — un @RestController serializa a JSON cualquier objeto
+        //   que NO sea String (Jackson, bloque 2). Devolviendo un record sale JSON.
+        // 1. Una línea: return new MensajeJson("hola", 1234567890L);
+        // OJO: el test lee $.mensaje == "hola" y $.timestamp == 1234567890.
+        //   El timestamp es un VALOR FIJO esperado, no System.currentTimeMillis()
+        //   (un tiempo real haría el test indeterminista).
+        // PISTA: los nombres de campo JSON salen de los componentes del record
+        //   (mensaje, timestamp) sin que tengas que configurar nada.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para GetMapping");
     }
 
@@ -70,25 +76,26 @@ public class Ej045HelloController {
     // TODO extra: anota con @org.springframework.web.bind.annotation.PostMapping("/creado")
     // y con @org.springframework.web.bind.annotation.ResponseStatus(org.springframework.http.HttpStatus.CREATED).
     public String endpointCreado() {
-        // TODO extra: Reto Extra 3: Código de estado declarativo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 5.3 — status declarativo con @ResponseStatus.
+        // 1. Sobre el método (además de @PostMapping("/creado")) añade
+        //    @ResponseStatus(HttpStatus.CREATED): fija el 201 sin ResponseEntity.
+        // 2. Una línea: return "recurso creado";
+        // OJO: el test hace POST (no GET) a /api/creado, espera status 201 y body
+        //   EXACTO "recurso creado".
+        // CULTURA: @ResponseStatus es la vía "fija"; ResponseEntity es la vía
+        //   "dinámica" cuando el código depende de la lógica (lo ves en el reto 9).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PostMapping");
     }
 
     /**
      * Reto Extra 4: Múltiples rutas de alias.
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping(value = {
-        // TODO extra: Reto Extra 4: Múltiples rutas de alias.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para GetMapping");
-    }).
+    // GUÍA: teoría 5.2 — una misma acción puede escuchar en VARIAS rutas.
+    // 1. Anota con @GetMapping({"/alias1", "/alias2"}) (el atributo value acepta
+    //    un array de rutas; las llaves {} son las de un array Java, no una ruta).
+    // 2. El cuerpo ya está resuelto abajo: return "alias";
+    // OJO: el test pega a /api/alias1 Y a /api/alias2 y ambos deben dar "alias".
+    // TODO extra: anota con @GetMapping({"/alias1", "/alias2"}) y devuelve "alias".
     public String aliasSaludo() {
         // TODO extra: devuelve "alias".
         return null;
@@ -97,14 +104,16 @@ public class Ej045HelloController {
     /**
      * Reto Extra 5: Mapeo genérico multimetodo (GET y POST).
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.RequestMapping(value = "/echo-method", method = {
-        // TODO extra: Reto Extra 5: Mapeo genérico multimetodo (GET y POST).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para RequestMapping");
-    }).
+    // GUÍA: teoría 5.2 — @RequestMapping es la anotación genérica de la que
+    //   @GetMapping/@PostMapping son atajos; con method={...} escucha varios verbos.
+    // 1. Anota con @RequestMapping(value = "/echo-method",
+    //      method = {RequestMethod.GET, RequestMethod.POST})
+    //    (RequestMethod está en org.springframework.web.bind.annotation).
+    // 2. El cuerpo ya está abajo: return request.getMethod();
+    // OJO: el test hace GET → espera "GET" y POST → espera "POST" en la misma ruta.
+    //   request.getMethod() devuelve el verbo en MAYÚSCULAS, justo lo que se compara.
+    // TODO extra: anota con @RequestMapping(value="/echo-method",
+    //   method={RequestMethod.GET, RequestMethod.POST}) y devuelve request.getMethod().
     public String echoMethod(jakarta.servlet.http.HttpServletRequest request) {
         // TODO extra: devuelve el método HTTP de la petición (request.getMethod()).
         return null;
@@ -117,11 +126,14 @@ public class Ej045HelloController {
     public java.util.Map<String, String> cabecerasPersonalizadas(
             @org.springframework.web.bind.annotation.RequestHeader("User-Agent") String userAgent,
             @org.springframework.web.bind.annotation.RequestHeader("Accept") String accept) {
-        // TODO extra: Reto Extra 6: Inspección de cabeceras de petición.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 5.2 — devolver un Map<String,String> se serializa a objeto JSON.
+        // 1. Los dos @RequestHeader ya inyectan User-Agent y Accept (params listos).
+        // 2. Construye y devuelve un Map con esas dos entradas. La forma robusta es
+        //    un LinkedHashMap (Map.of NO admite null y el test no lo necesita aquí):
+        //    var m = new java.util.LinkedHashMap<String,String>();
+        //    m.put("User-Agent", userAgent); m.put("Accept", accept); return m;
+        // OJO: el test lee $.['User-Agent']=="Mozilla" y $.Accept=="application/json":
+        //   las CLAVES del JSON deben ser literalmente "User-Agent" y "Accept".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para GetMapping");
     }
 
@@ -130,11 +142,13 @@ public class Ej045HelloController {
      */
     // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping(value = "/json-only", produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
     public String contentTypeJson() {
-        // TODO extra: Reto Extra 7: Producción de JSON explícito.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 5.2 — produces fija el Content-Type de salida.
+        // 1. La anotación (arriba) ya lleva produces = APPLICATION_JSON_VALUE: el
+        //    método devuelve un String que YA ES JSON; Spring no lo reserializa.
+        // 2. Devuelve el JSON a mano como texto: return "{\"status\":\"ok\"}";
+        // OJO: el test exige Content-Type compatible con application/json Y
+        //   $.status == "ok". Si devolvieras texto plano sin produces, jsonPath
+        //   fallaría. Cuida las comillas escapadas dentro del String.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para GetMapping");
     }
 
@@ -143,11 +157,13 @@ public class Ej045HelloController {
      */
     // TODO extra: anota con @org.springframework.web.bind.annotation.PostMapping(value = "/text-only", consumes = org.springframework.http.MediaType.TEXT_PLAIN_VALUE)
     public int consumesTextPlain(@org.springframework.web.bind.annotation.RequestBody String cuerpo) {
-        // TODO extra: Reto Extra 8: Consumo de texto plano exclusivo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 5.2 — consumes restringe el Content-Type de ENTRADA.
+        // 1. La anotación (arriba) ya lleva consumes = TEXT_PLAIN_VALUE: el cuerpo
+        //    llega como String crudo en 'cuerpo' (sin pasar por Jackson).
+        // 2. Una línea: return cuerpo.length();
+        // OJO: el test manda content("hola mundo") como text/plain y espera body
+        //   "10" (longitud de "hola mundo", con el espacio). Devuelves un int y
+        //   Spring lo serializa como "10".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PostMapping");
     }
 
@@ -156,11 +172,13 @@ public class Ej045HelloController {
      */
     // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/teapot")
     public org.springframework.http.ResponseEntity<String> teapotStatus() {
-        // TODO extra: Reto Extra 9: Respuesta directa con ResponseEntity I_AM_A_TEAPOT.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 5.3 — ResponseEntity da control total de status + body.
+        // 1. Una línea:
+        //    return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).body("soy una tetera");
+        //    (HttpStatus está en org.springframework.http; I_AM_A_TEAPOT == 418).
+        // OJO: el test comprueba status().is(418) y body EXACTO "soy una tetera".
+        // CULTURA: el 418 es el chiste de RFC 2324 (Hyper Text Coffee Pot Control
+        //   Protocol); lo verás de nuevo en Ej049 como cabecera personalizada.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para GetMapping");
     }
 
@@ -171,11 +189,14 @@ public class Ej045HelloController {
      */
     // TODO extra: anota con @org.springframework.web.bind.annotation.GetMapping("/contador")
     public int contadorVisitas() {
-        // TODO extra: Reto Extra 10: Contador de visitas en memoria.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 5.1 + concurrencia (1.11) — un controller es un singleton
+        //   que atiende muchas peticiones a la vez: el estado debe ser thread-safe.
+        // 1. El campo 'contador' (arriba) es un AtomicInteger ya inicializado a 0.
+        // 2. Una línea: return contador.incrementAndGet();
+        //    incrementAndGet() suma 1 y DEVUELVE el nuevo valor de forma atómica.
+        // OJO: el test llama dos veces y espera "1" y luego "2": por eso el campo
+        //   es de instancia (persiste entre peticiones), no una variable local.
+        // CUIDADO: contador++ sobre un int normal perdería incrementos bajo carga.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para GetMapping");
     }
 

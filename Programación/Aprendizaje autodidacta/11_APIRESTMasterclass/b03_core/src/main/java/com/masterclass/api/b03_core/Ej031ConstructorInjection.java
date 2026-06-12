@@ -1,5 +1,9 @@
 package com.masterclass.api.b03_core;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
 /**
  * Ejercicio 031 · Inyección por constructor.
  *
@@ -60,12 +64,22 @@ public final class Ej031ConstructorInjection {
      * Concatena la plantilla de todos ellos separados por una coma y un espacio.
      */
     public static class ServicioConMultiplesRepos {
-        // TODO extra: Reto Extra 1: Servicio que inyecta múltiples repositorios de saludos.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
+        private final List<RepoSaludos> repos;   // colección de dependencias (teoría 3.3)
+
+        public ServicioConMultiplesRepos(List<RepoSaludos> repos) {
+            this.repos = repos;
+        }
+
+        public String saludarTodos() {
+            // GUÍA: teoría 1.4 + 3.3 (inyectar una List de beans del mismo tipo y reducirla).
+            // 1. Stream de 'repos', map(RepoSaludos::plantilla) para sacar cada texto.
+            // 2. collect(Collectors.joining(", ")) para unirlos con coma + espacio.
+            // PISTA: repos.stream().map(RepoSaludos::plantilla).collect(Collectors.joining(", "))
+            // OJO: el test inyecta r1=()->"Hola", r2=()->"Mundo" y espera EXACTAMENTE
+            //   "Hola, Mundo" (coma y UN espacio). CULTURA: inyectar List<T> es el patrón
+            //   "estrategias" de Spring (todas las implementaciones de una interfaz).
+            throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para saludarTodos");
+        }
     }
 
     /**
@@ -73,12 +87,21 @@ public final class Ej031ConstructorInjection {
      * Si no se inyecta ningún repo, utiliza un fallback predeterminado que retorne "Default".
      */
     public static class ServicioConDependenciaOpcional {
-        // TODO extra: Reto Extra 2: Servicio con inyección de dependencia opcional.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
+        private final Optional<RepoSaludos> repo;
+
+        public ServicioConDependenciaOpcional(Optional<RepoSaludos> repo) {
+            this.repo = repo;
+        }
+
+        public String obtenerPlantilla() {
+            // GUÍA: teoría 1.2 + 3.3 (dependencia opcional con fallback).
+            // 1. Si el Optional tiene valor -> devuelve repo.get().plantilla().
+            // 2. Si está vacío -> devuelve "Default".
+            // PISTA, una línea: return repo.map(RepoSaludos::plantilla).orElse("Default");
+            // OJO: el test prueba Optional.of(()->"Hola") -> "Hola" y Optional.empty() ->
+            //   "Default" (literal exacto). NO uses isPresent()+get(): encadena map/orElse.
+            throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerPlantilla");
+        }
     }
 
     /**
@@ -86,12 +109,26 @@ public final class Ej031ConstructorInjection {
      * Si el saludo excede el límite de longitud indicado, lo recorta y añade "...".
      */
     public static class ServicioConConfiguracion {
-        // TODO extra: Reto Extra 3: Servicio que inyecta dependencias de negocio junto a configuraciones constantes.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
+        private final RepoSaludos repo;
+        private final int limite;
+
+        public ServicioConConfiguracion(RepoSaludos repo, int limite) {
+            this.repo = repo;
+            this.limite = limite;
+        }
+
+        public String saludarConLimite(String nombre) {
+            // GUÍA: teoría 3.3 (dependencia de negocio + constante de configuración inyectadas).
+            // 1. Construye el saludo: repo.plantilla() con "{}" reemplazado por 'nombre'.
+            // 2. Si su longitud <= 'limite' -> devuélvelo tal cual.
+            // 3. Si excede el límite -> recorta a 'limite' caracteres y añade "...":
+            //    saludo.substring(0, limite) + "..."
+            // OJO: el test usa plantilla "Saludo: {}", limite=10, nombre="Ana" -> "Saludo: Ana"
+            //   (longitud 11 > 10) -> "Saludo: An" + "..." = "Saludo: An..." (13). Comprueba
+            //   endsWith("...") y length <= 13 (= limite + 3). CUIDADO con el substring: el
+            //   índice final es 'limite', no length.
+            throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para saludarConLimite");
+        }
     }
 
     /**
@@ -99,11 +136,14 @@ public final class Ej031ConstructorInjection {
      * entre dos clases simulando de forma reflectiva lo que hace Spring.
      */
     public static boolean detectarInyeccionCircular(Class<?> claseA, Class<?> claseB) {
-        // TODO extra: Reto Extra 4: Detecta si existe una dependencia circular directa por constructor
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 3.3 (ciclo por constructor: A pide B y B pide A -> irresoluble).
+        // 1. Mira los parámetros del constructor de A: claseA.getDeclaredConstructors()[0]
+        //    .getParameterTypes() ¿contiene claseB?
+        // 2. Haz lo simétrico con B: ¿el constructor de claseB recibe claseA?
+        // 3. Devuelve true SOLO si AMBOS se piden mutuamente.
+        // PISTA: java.util.Arrays.asList(ctor.getParameterTypes()).contains(otraClase).
+        // OJO: el test pasa CircularA(CircularB)+CircularB(CircularA) -> true, y
+        //   CircularA + NoCircular(String) -> false (NoCircular no recibe CircularA).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para detectarInyeccionCircular");
     }
 
@@ -111,48 +151,94 @@ public final class Ej031ConstructorInjection {
      * Reto Extra 5: Servicio compuesto que delega lógicas de negocio en múltiples servicios de nivel inferior.
      */
     public static class ServicioComposicion {
-        // TODO extra: Reto Extra 5: Servicio compuesto que delega lógicas de negocio en múltiples servicios de nivel inferior.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
+        private final ServicioSaludo primero;
+        private final ServicioSaludo segundo;
+
+        public ServicioComposicion(ServicioSaludo primero, ServicioSaludo segundo) {
+            this.primero = primero;
+            this.segundo = segundo;
+        }
+
+        public String saludarCompuesto(String nombre) {
+            // GUÍA: teoría 3.3 (un servicio que ORQUESTA otros dos servicios inyectados).
+            // 1. Llama a primero.saludar(nombre) y a segundo.saludar(nombre).
+            // 2. Únelos con ". " (punto + espacio) en medio.
+            // PISTA: return primero.saludar(nombre) + ". " + segundo.saludar(nombre);
+            // OJO: con s1="Buenos días, {}" y s2="¡Que tengas un buen día, {}!" y nombre="Carlos"
+            //   el test espera "Buenos días, Carlos. ¡Que tengas un buen día, Carlos!".
+            //   Reutiliza ServicioSaludo.saludar (el del ejercicio base); no reimplementes el {}.
+            throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para saludarCompuesto");
+        }
     }
 
     /**
      * Reto Extra 6: Simulación pedagógica de inicialización perezosa de dependencias utilizando patrones de diseño proxy o lazy suppliers.
      */
     public static class ServicioLazyProxy {
-        // TODO extra: Reto Extra 6: Simulación pedagógica de inicialización perezosa de dependencias utilizando patrones de diseño proxy o lazy suppliers.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
+        private final java.util.function.Supplier<RepoSaludos> proveedor;
+
+        public ServicioLazyProxy(java.util.function.Supplier<RepoSaludos> proveedor) {
+            // OJO: aquí SOLO guardas el Supplier; NO lo invoques (no llames proveedor.get()).
+            this.proveedor = proveedor;
+        }
+
+        public String obtenerPlantillaDiferida() {
+            // GUÍA: teoría 3.5 (inicialización perezosa: la dependencia se crea al USARLA).
+            // 1. Ahora SÍ resuelves la dependencia: proveedor.get() devuelve el RepoSaludos.
+            // 2. Devuelve su plantilla(): return proveedor.get().plantilla();
+            // OJO: el test cuenta cuántas veces se evalúa el Supplier: 0 tras construir (no lo
+            //   tocas en el constructor) y 1 tras la PRIMERA llamada a este método. Si lo
+            //   resuelves en el constructor, el primer assertEquals(0, counter) falla.
+            throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerPlantillaDiferida");
+        }
     }
 
     /**
      * Reto Extra 7: Servicio decorador que añade un prefijo/sufijo a los resultados de otro RepoSaludos sin mutar su lógica interna.
      */
     public static class ServicioDecorador implements RepoSaludos {
-        // TODO extra: Reto Extra 7: Servicio decorador que añade un prefijo/sufijo a los resultados de otro RepoSaludos sin mutar su lógica interna.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
+        private final RepoSaludos delegado;
+        private final String prefijo;
+        private final String sufijo;
+
+        public ServicioDecorador(RepoSaludos delegado, String prefijo, String sufijo) {
+            this.delegado = delegado;
+            this.prefijo = prefijo;
+            this.sufijo = sufijo;
+        }
+
+        @Override
+        public String plantilla() {
+            // GUÍA: teoría 3.3 (patrón Decorador: implementa la MISMA interfaz, envuelve a otra
+            // instancia y añade comportamiento sin tocarla).
+            // 1. Pide la plantilla original: delegado.plantilla().
+            // 2. Envuélvela: return prefijo + delegado.plantilla() + sufijo;
+            // OJO: con delegado=()->"Hola {}", prefijo="[", sufijo="]" el test espera
+            //   "[Hola {}]". El decorador NO modifica el delegado: solo rodea su resultado.
+            throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para plantilla");
+        }
     }
 
     /**
      * Reto Extra 8: Inyecta una factoría de dependencias para delegar la creación de repositorios en caliente basados en una clave string.
      */
     public static class ServicioConFactory {
-        // TODO extra: Reto Extra 8: Inyecta una factoría de dependencias para delegar la creación de repositorios en caliente basados en una clave string.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
+        private final Map<String, RepoSaludos> factory;
+
+        public ServicioConFactory(Map<String, RepoSaludos> factory) {
+            this.factory = factory;
+        }
+
+        public String saludarCon(String clave, String nombre) {
+            // GUÍA: teoría 3.3 (factoría por clave: eliges la dependencia en caliente).
+            // 1. Recupera el repo: factory.get(clave) (asume que existe para el test).
+            // 2. Toma su plantilla() y sustituye "{}" por 'nombre' (como hace ServicioSaludo).
+            // PISTA: factory.get(clave).plantilla().replace("{}", nombre)
+            // OJO: factory{"formal"->"Estimado {},", "casual"->"¡Qué pasa, {}!"}; el test espera
+            //   saludarCon("formal","Juan") -> "Estimado Juan," y saludarCon("casual","Pepe")
+            //   -> "¡Qué pasa, Pepe!". Conserva la coma final de "Estimado {},".
+            throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para saludarCon");
+        }
     }
 
     /**
@@ -160,11 +246,16 @@ public final class Ej031ConstructorInjection {
      * todos sus campos inyectados marcados como final (inmutabilidad).
      */
     public static boolean verificarInyeccionSegura(Class<?> clase) {
-        // TODO extra: Reto Extra 9: Comprobación de seguridad reflectiva. Valida si la clase tiene
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 3.3 (por qué la inyección por constructor usa campos final).
+        // 1. Recorre clase.getDeclaredFields().
+        // 2. Para cada campo comprueba si es final:
+        //    java.lang.reflect.Modifier.isFinal(campo.getModifiers()).
+        // 3. Devuelve true SOLO si TODOS son final (un solo campo no-final -> false).
+        // PISTA: java.util.Arrays.stream(clase.getDeclaredFields())
+        //          .allMatch(f -> Modifier.isFinal(f.getModifiers()));
+        // OJO: el test pasa ClaseInmutable (campo final -> true) y ClaseMutable (campo no
+        //   final -> false). allMatch sobre 0 campos devolvería true, pero ambos test tienen
+        //   exactamente un campo.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para verificarInyeccionSegura");
     }
 
@@ -172,12 +263,23 @@ public final class Ej031ConstructorInjection {
      * Reto Extra 10: Inyecta un listado de repositorios y los filtra por un prefijo para devolver el saludo del repositorio coincidente.
      */
     public static class ServicioConFiltro {
-        // TODO extra: Reto Extra 10: Inyecta un listado de repositorios y los filtra por un prefijo para devolver el saludo del repositorio coincidente.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retoExtra");
+        private final List<RepoSaludos> repos;
+
+        public ServicioConFiltro(List<RepoSaludos> repos) {
+            this.repos = repos;
+        }
+
+        public String saludarConPrefijo(String prefijo) {
+            // GUÍA: teoría 1.3 + 3.3 (filtrar la lista inyectada y quedarte con el que casa).
+            // 1. Stream de 'repos', filter por el que su plantilla() empiece por 'prefijo':
+            //    .filter(r -> r.plantilla().startsWith(prefijo))
+            // 2. findFirst() (devuelve Optional) y .map(RepoSaludos::plantilla).orElse(...) o
+            //    .orElseThrow() si no hay coincidencia.
+            // OJO: con r1=()->"ES_Hola", r2=()->"EN_Hello" el test espera
+            //   saludarConPrefijo("ES_") -> "ES_Hola" y saludarConPrefijo("EN_") -> "EN_Hello".
+            //   Devuelve la plantilla COMPLETA del repo que casa, no solo el prefijo.
+            throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para saludarConPrefijo");
+        }
     }
 
 }

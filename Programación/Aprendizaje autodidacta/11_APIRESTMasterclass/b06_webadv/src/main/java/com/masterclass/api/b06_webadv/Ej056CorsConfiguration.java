@@ -44,11 +44,21 @@ public final class Ej056CorsConfiguration {
      * la cual puede contener patrones con comodín de subdominio (ej: "https://*.company.com").
      */
     public static boolean pasoExtra01(String origin, List<String> allowedOrigins) {
-        // TODO extra: Reto Extra 1: Soporte de comodines en subdominios para orígenes permitidos.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 6.2. Un patrón "https://*.company.com" debe casar con
+        // cualquier subdominio, pero NO con el dominio pelado ni con otro dominio.
+        // 1. Si origin o allowedOrigins son null -> false.
+        // 2. Para cada patrón permitido:
+        //    - si NO tiene "*", compara con equals (coincidencia exacta).
+        //    - si tiene "*", conviértelo en sufijo: quita "*" y comprueba que el
+        //      origin TERMINE en lo que queda (".company.com"). Así "sub.company.com"
+        //      pasa y "company.com" no (le falta el punto del subdominio).
+        // PISTA: String sufijo = patron.replace("*", "");  // "https://.company.com"
+        //        origin.endsWith(sufijo)  // cuidado: ver OJO
+        // OJO: el test exige que "https://company.com" -> false con el patrón
+        //      "https://*.company.com". Si haces replace("*","") obtienes
+        //      "https://.company.com" y "https://company.com" NO termina así
+        //      (falta el punto) -> false. ¡Justo lo que quieres! Verifica que
+        //      "https://app.com" (exacto en la lista) -> true por la rama equals.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra01");
     }
 
@@ -59,11 +69,17 @@ public final class Ej056CorsConfiguration {
      * "Access-Control-Request-Method".
      */
     public static boolean pasoExtra02(String httpMethod, Map<String, String> headers) {
-        // TODO extra: Reto Extra 2: Identificación de peticiones Preflight.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 6.2 (diagrama de preflight). Es preflight si y solo si:
+        //   método == OPTIONS  Y  headers contiene "Access-Control-Request-Method".
+        // 1. Si method o headers son null -> false.
+        // 2. return "OPTIONS".equalsIgnoreCase(httpMethod)
+        //           && headers.containsKey("Access-Control-Request-Method");
+        // OJO: el test castiga los dos fallos por separado:
+        //   ("GET", {ACRM:POST}) -> false  (no es OPTIONS)
+        //   ("OPTIONS", {})      -> false  (no trae la cabecera)
+        //   ("OPTIONS", {ACRM:POST}) -> true.
+        // CULTURA: ese OPTIONS "fantasma" que ves en la pestaña Red del navegador
+        //          antes de un DELETE es justo esto.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra02");
     }
 
@@ -75,11 +91,19 @@ public final class Ej056CorsConfiguration {
      * el 'origin' específico.
      */
     public static Map<String, String> pasoExtra03(Map<String, String> currentHeaders, boolean allowCredentials, String origin) {
-        // TODO extra: Reto Extra 3: Modificación segura de cabeceras para habilitar credenciales.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 6.2, "la trampa nº 1": "*" y credenciales son INCOMPATIBLES.
+        // 1. Copia currentHeaders a un mapa MUTABLE (los Map.of son inmutables):
+        //    var h = new HashMap<>(currentHeaders);
+        // 2. Si allowCredentials:
+        //    - pon "Access-Control-Allow-Credentials" = "true".
+        //    - si el Allow-Origin actual es "*", SUSTITÚYELO por el 'origin'
+        //      concreto (con credenciales no se puede el comodín).
+        // 3. Devuelve el mapa.
+        // OJO: el test entra con {Allow-Origin: "*"}, allowCredentials=true,
+        //      origin="https://client.com" y espera Allow-Credentials="true" Y
+        //      Allow-Origin="https://client.com" (el "*" reemplazado).
+        // CULTURA: este bug real abre la API a CUALQUIER web con las cookies del
+        //          usuario; los navegadores hoy lo bloquean por eso mismo.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra03");
     }
 
@@ -89,11 +113,15 @@ public final class Ej056CorsConfiguration {
      * y un máximo de "1800" (30 minutos) por políticas de seguridad del servidor.
      */
     public static String pasoExtra04(String requestMaxAge) {
-        // TODO extra: Reto Extra 4: Cálculo y acotamiento de la cabecera Max-Age.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 6.2 (Max-Age cachea el preflight). Acota a [60, 1800].
+        // 1. Parsea requestMaxAge a int dentro de try/catch.
+        // 2. Si NO es numérico -> devuelve "1800" (el máximo, ver OJO).
+        // 3. Si es válido: si < 60 -> "60"; si > 1800 -> "1800"; si no, su valor.
+        //    Truco limpio: Math.max(60, Math.min(1800, n)).
+        // 4. Devuelve SIEMPRE un String (la cabecera es texto).
+        // OJO: el test fija "10"->"60", "3600"->"1800", "600"->"600" y, atención,
+        //      "invalid"->"1800" (el inválido cae al MÁXIMO, no al mínimo).
+        // PISTA: catch (NumberFormatException e) { return "1800"; }
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra04");
     }
 
@@ -104,11 +132,17 @@ public final class Ej056CorsConfiguration {
      * insensible a mayúsculas/minúsculas.
      */
     public static boolean pasoExtra05(List<String> requestedHeaders, List<String> allowedHeaders) {
-        // TODO extra: Reto Extra 5: Validación de cabeceras personalizadas en Preflight.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 6.2. TODAS las cabeceras pedidas deben estar en las
+        // permitidas, comparando SIN distinguir mayúsculas (HTTP es case-insensitive
+        // en nombres de cabecera).
+        // 1. Si requestedHeaders es null/vacío -> true (no pide nada raro).
+        // 2. Normaliza las permitidas a minúsculas una sola vez (Set para O(1)):
+        //    var permitidas = allowedHeaders.stream().map(String::toLowerCase)
+        //                        .collect(Collectors.toSet());
+        // 3. requestedHeaders.stream().allMatch(h -> permitidas.contains(h.toLowerCase()));
+        // OJO: el test pasa ["content-type"] (minúsculas) y ["CONTENT-TYPE",
+        //      "AUTHORIZATION"] contra ["Content-Type","Authorization"] -> true,
+        //      y ["X-Custom-Header"] -> false. La insensibilidad es lo evaluado.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra05");
     }
 
@@ -118,11 +152,17 @@ public final class Ej056CorsConfiguration {
      * con puerto dinámico (ej: "http://localhost:3000" o "http://127.0.0.1:8080").
      */
     public static boolean pasoExtra06(String origin) {
-        // TODO extra: Reto Extra 6: Validación de orígenes locales de desarrollo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 6.2. Un origen local de desarrollo es http:// + localhost o
+        // 127.0.0.1 + ':' + puerto. Una regex lo expresa exacto.
+        // 1. Si origin es null -> false.
+        // 2. return origin.matches("http://(localhost|127\\.0\\.0\\.1):\\d+");
+        // OJO: el test es muy puntilloso:
+        //   "http://localhost:3000"   -> true
+        //   "http://127.0.0.1:8080"   -> true
+        //   "https://localhost"       -> false  (es https Y sin puerto)
+        //   "http://localhostcompany.com" -> false  (no es "localhost" exacto)
+        //   Por eso anclas con regex (no un contains("localhost"), que dejaría
+        //   pasar "localhostcompany").
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra06");
     }
 
@@ -133,11 +173,18 @@ public final class Ej056CorsConfiguration {
      * de respuesta customizadas.
      */
     public static Map<String, String> pasoExtra07(Map<String, String> currentHeaders, List<String> exposedHeaders) {
-        // TODO extra: Reto Extra 7: Configuración de cabeceras expuestas.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 6.2. Por defecto el JS del cliente solo puede leer un puñado
+        // de cabeceras; Expose-Headers amplía esa lista.
+        // 1. Copia currentHeaders a un HashMap mutable (Map.of es inmutable).
+        // 2. Une exposedHeaders con ", " (coma y espacio) y mételo en
+        //    "Access-Control-Expose-Headers".
+        //    PISTA: String.join(", ", exposedHeaders);
+        // 3. Devuelve el mapa.
+        // OJO: el test espera EXACTAMENTE "X-Total-Count, X-Limit" (con el espacio
+        //      tras la coma). Y currentHeaders entra como Map.of() inmutable: si
+        //      intentas .put sobre él directamente -> UnsupportedOperationException.
+        // CULTURA: sin esto, un front no puede leer tu cabecera de paginación
+        //          "X-Total-Count" aunque la envíes.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra07");
     }
 
@@ -147,11 +194,16 @@ public final class Ej056CorsConfiguration {
      * Si detecta saltos de línea (\r, \n) o caracteres maliciosos, devuelve null.
      */
     public static String pasoExtra08(String origin) {
-        // TODO extra: Reto Extra 8: Saneamiento y validación defensiva de la cabecera Origin.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: defensa contra HTTP Response Splitting / header injection (CRLF).
+        // Si el origin trae un salto de línea, un atacante podría "inyectar" una
+        // cabecera nueva en la respuesta. Regla: si hay \r o \n -> rechaza (null).
+        // 1. Si origin es null -> null.
+        // 2. if (origin.contains("\r") || origin.contains("\n")) return null;
+        // 3. Si está limpio -> devuélvelo tal cual.
+        // OJO: el test pasa "https://safe.com" -> se devuelve igual, y
+        //      "https://safe.com\r\nHeader-Injection: evil" -> null.
+        // CULTURA: nunca metas en una cabecera de respuesta un valor de entrada
+        //          sin sanear; es una familia entera de vulnerabilidades.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra08");
     }
 
@@ -160,11 +212,12 @@ public final class Ej056CorsConfiguration {
      * Evalúa si un método HTTP califica como "CORS Simple Method" (GET, HEAD, POST).
      */
     public static boolean pasoExtra09(String method) {
-        // TODO extra: Reto Extra 9: Comprobación de métodos CORS simples.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 6.2. Los métodos "simples" (sin preflight) son GET, HEAD y
+        // POST. Cualquier otro (PUT, DELETE, PATCH) dispara preflight.
+        // 1. Si method es null -> false.
+        // 2. return List.of("GET", "HEAD", "POST").contains(method.toUpperCase());
+        //    (o un switch). Compara en mayúsculas para tolerar "post".
+        // OJO: el test exige PUT y DELETE -> false; GET/POST/HEAD -> true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra09");
     }
 
@@ -174,11 +227,21 @@ public final class Ej056CorsConfiguration {
      * (ej: Accept, Accept-Language, Content-Language, o Content-Type con valores específicos).
      */
     public static boolean pasoExtra10(String headerName, String headerValue) {
-        // TODO extra: Reto Extra 10: Comprobación de cabeceras CORS simples.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 6.2. Son "cabeceras simples": Accept, Accept-Language,
+        // Content-Language y Content-Type SOLO con ciertos valores
+        // (text/plain, multipart/form-data, application/x-www-form-urlencoded).
+        // 1. Si headerName es null -> false.
+        // 2. Si el nombre (ignore case) es Accept / Accept-Language /
+        //    Content-Language -> true (sin mirar el valor).
+        // 3. Si es Content-Type -> true SOLO si el valor está en esos tres MIME.
+        // 4. Cualquier otro nombre -> false.
+        // OJO: el test:
+        //   ("Accept","text/html") -> true
+        //   ("Content-Type","application/x-www-form-urlencoded") -> true
+        //   ("Content-Type","application/json") -> FALSE (json NO es simple)
+        //   ("X-Custom","value") -> false
+        // CULTURA: que Content-Type: application/json NO sea "simple" es el motivo
+        //          por el que tus POST de JSON disparan un preflight OPTIONS.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra10");
     }
 

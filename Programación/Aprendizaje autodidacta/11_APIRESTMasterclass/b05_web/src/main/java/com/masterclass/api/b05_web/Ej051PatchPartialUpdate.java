@@ -50,14 +50,14 @@ public class Ej051PatchPartialUpdate {
     /**
      * Reto Extra 1: PATCH utilizando DTO parcial.
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{
-        // TODO extra: Reto Extra 1: PATCH utilizando DTO parcial.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PatchMapping");
-    }/dto")
+    // GUÍA: teoría 5.3 — un DTO parcial (ItemPatchDto) usa campos WRAPPER (String,
+    //   Boolean) para que "ausente" sea null y "presente" sea su valor.
+    // 1. Parte del estado base (nombre="viejo", activo=true). Si cambios.nombre()
+    //    != null actualiza el nombre; si cambios.activo() != null actualiza activo.
+    // 2. return ResponseEntity.ok(new ItemDto(id, nombreFinal, activoFinal));
+    // OJO: el test manda {"nombre":"nuevo-dto"} (sin activo) y espera $.nombre==
+    //   "nuevo-dto"; activo no se toca. null = "no enviado", clave del PATCH parcial.
+    // TODO extra: anota con @PatchMapping("/{id}/dto").
     public org.springframework.http.ResponseEntity<ItemDto> patchConDto(
             @org.springframework.web.bind.annotation.PathVariable long id,
             @org.springframework.web.bind.annotation.RequestBody ItemPatchDto cambios) {

@@ -45,11 +45,16 @@ public class Ej060HttpCacheEtag {
      * en formato hexadecimal, encerrado obligatoriamente en comillas dobles (ej: "\"a1b2c3d4...\"").
      */
     public static String pasoExtra01(String body) {
-        // TODO extra: Reto Extra 1: Generador de ETag fuerte con SHA-256.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 6.6 (ETag fuerte = hash del contenido, ENTRE COMILLAS).
+        // 1. Si body es null -> decide (""); el test usa "datos".
+        // 2. MessageDigest md = MessageDigest.getInstance("SHA-256");
+        //    byte[] hash = md.digest(body.getBytes(StandardCharsets.UTF_8));
+        // 3. Pasa el hash a hex (igual que el MD5 de Ej057.pasoExtra05, pero con
+        //    32 bytes) y enciérralo en comillas:  "\"" + hex + "\"".
+        // OJO: el test solo pide assertNotNull, pero las COMILLAS son obligatorias
+        //      en el estándar; respétalas para que enlace con If-None-Match.
+        // CULTURA: SHA-256 (vs el MD5 roto) es el hash que usarías hoy para
+        //          integridad seria.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra01");
     }
 
@@ -59,11 +64,14 @@ public class Ej060HttpCacheEtag {
      * Si ya es un ETag débil, lo devuelve tal cual.
      */
     public static String pasoExtra02(String etag) {
-        // TODO extra: Reto Extra 2: Conversor a ETag débil (Weak ETag).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 6.6 (ETag débil = prefijo "W/"). Idempotente: si ya es
+        // débil, no lo dupliques.
+        // 1. Si etag es null -> null.
+        // 2. Si ya empieza por "W/" -> devuélvelo tal cual.
+        // 3. Si no -> "W/" + etag.
+        // PISTA: return etag.startsWith("W/") ? etag : "W/" + etag;
+        // OJO: el test pasa "\"abc\"" y espera "W/\"abc\"" (las comillas se
+        //      conservan; solo se antepone W/).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra02");
     }
 
@@ -73,11 +81,14 @@ public class Ej060HttpCacheEtag {
      * Si no coinciden, lanza o simula el estatus 412 (Precondition Failed) retornando false, de lo contrario true.
      */
     public static boolean pasoExtra03(String ifMatch, String currentEtag) {
-        // TODO extra: Reto Extra 3: Validador de concurrencia con If-Match.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 6.6 (If-Match en PUT/DELETE → control de concurrencia
+        // optimista; 412 si no coincide). Aquí true = adelante, false = 412.
+        // 1. Si ifMatch o currentEtag son null -> false (no puedes garantizar).
+        // 2. return ifMatch.equals(currentEtag);
+        //    (un soporte completo aceptaría "*" o lista; el test no lo pide).
+        // OJO: el test pasa ("\"123\"","\"123\"") -> true.
+        // CULTURA: es la misma idea del @Version de JPA (b14): modificar solo si
+        //          nadie ha tocado el recurso desde que lo leíste.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra03");
     }
 
@@ -87,11 +98,17 @@ public class Ej060HttpCacheEtag {
      * (ej: "\"a\", \"b\", \"c\""), verificando si el ETag actual del recurso se encuentra en la lista.
      */
     public static boolean pasoExtra04(String ifNoneMatch, String currentEtag) {
-        // TODO extra: Reto Extra 4: Validador de múltiples ETags en If-None-Match.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 6.6. If-None-Match puede ser "*" o una LISTA de ETags
+        // ("\"a\", \"b\", \"c\""). ¿Está el actual?
+        // 1. Si ifNoneMatch o currentEtag son null -> false.
+        // 2. Si ifNoneMatch es "*" (trim) -> true (casa con cualquier recurso
+        //    existente).
+        // 3. Parte por comas, trim de cada uno, y comprueba si alguno equals al
+        //    currentEtag.
+        // PISTA: Arrays.stream(ifNoneMatch.split(","))
+        //              .map(String::trim).anyMatch(e -> e.equals(currentEtag));
+        // OJO: el test pasa ("\"abc\", \"xyz\"", "\"xyz\"") -> true; fíjate en el
+        //      ESPACIO tras la coma, por eso el trim es imprescindible.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra04");
     }
 
@@ -101,11 +118,14 @@ public class Ej060HttpCacheEtag {
      * desde la cabecera 'If-Modified-Since' a un objeto Instant. Devuelve null si la fecha es inválida.
      */
     public static java.time.Instant pasoExtra05(String ifModifiedSinceHeader) {
-        // TODO extra: Reto Extra 5: Parseo de fecha If-Modified-Since.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 6.6 + 1.10 (java.time). Las fechas HTTP usan RFC 1123.
+        // 1. Si el header es null/blank -> null.
+        // 2. Parsea con el formateador del JDK y conviértelo a Instant, dentro de
+        //    try/catch (fecha mala -> null):
+        //    return Instant.from(DateTimeFormatter.RFC_1123_DATE_TIME.parse(header));
+        // OJO: el test pasa "Wed, 21 Oct 2015 07:28:00 GMT" y solo pide
+        //      assertNotNull. NO inventes el formato a mano: RFC_1123_DATE_TIME
+        //      ya entiende ese patrón exacto.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra05");
     }
 
@@ -115,11 +135,14 @@ public class Ej060HttpCacheEtag {
      * de cabecera HTTP RFC 1123 (ej: "Thu, 22 Oct 2015 08:30:00 GMT").
      */
     public static String pasoExtra06(java.time.Instant lastModifiedInstant) {
-        // TODO extra: Reto Extra 6: Generación de cabecera Last-Modified.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: el inverso del reto 5: Instant -> cadena RFC 1123.
+        // 1. Si lastModifiedInstant es null -> null.
+        // 2. El formateador RFC_1123 necesita zona horaria; aплícale GMT:
+        //    return DateTimeFormatter.RFC_1123_DATE_TIME
+        //               .format(lastModifiedInstant.atZone(ZoneOffset.UTC));
+        // OJO/CUIDADO: si formateas un Instant "pelado" sin zona, lanza
+        //      UnsupportedTemporalTypeException. Por eso el .atZone(ZoneOffset.UTC)
+        //      (o ZoneId.of("GMT")). El test solo pide assertNotNull.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra06");
     }
 
@@ -129,11 +152,13 @@ public class Ej060HttpCacheEtag {
      * configurando el tiempo máximo de vida ('maxAgeSeconds') y la directiva 'must-revalidate'.
      */
     public static String pasoExtra07(int maxAgeSeconds) {
-        // TODO extra: Reto Extra 7: Configuración de Cache-Control público.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 6.6 (directivas de Cache-Control). Componla como texto.
+        // return "public, max-age=" + maxAgeSeconds + ", must-revalidate";
+        // - public: cacheable también por proxies intermedios.
+        // - max-age=N: segundos que se considera "fresco".
+        // - must-revalidate: al caducar, revalida con el origen (no sirvas viejo).
+        // OJO: el test exige que el resultado CONTENGA "max-age=3600" (con
+        //      maxAgeSeconds=3600). El orden/extras no importan mientras esté eso.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra07");
     }
 

@@ -113,11 +113,16 @@ public final class Ej025JsonAnnotations {
      * @return JSON sin propiedades nulas
      */
     public static String serializarExcluyendoNulos(Object obj) {
-        // TODO extra: Reto Extra 1: Exclusión de valores nulos.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 2.3 (@JsonInclude(NON_NULL), configurado a nivel de mapper).
+        // 1. Crea un mapper y dile que omita los campos null:
+        //    new ObjectMapper().setSerializationInclusion(JsonInclude.Include.NON_NULL).
+        // 2. Serializa obj con writeValueAsString dentro de un try.
+        // 3. Captura JsonProcessingException -> RuntimeException.
+        // PISTA: import com.fasterxml.jackson.annotation.JsonInclude;
+        //        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        // OJO: el test pasa Usuario("ana", null) y comprueba que NO aparece "password".
+        // CULTURA: configurar NON_NULL en el mapper aplica a TODOS los campos, sin tener
+        // que anotar cada uno; Spring lo expone como spring.jackson.default-property-inclusion.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para serializarExcluyendoNulos");
     }
 
@@ -129,11 +134,13 @@ public final class Ej025JsonAnnotations {
      * @return JSON sin propiedades vacías
      */
     public static String serializarConInclusionNoVacio(Object obj) {
-        // TODO extra: Reto Extra 2: Exclusión de valores vacíos.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 2.3 (NON_EMPTY: omite null Y vacíos -> "", listas/maps vacíos).
+        // 1. Igual que el reto 1 pero con JsonInclude.Include.NON_EMPTY.
+        // 2. setSerializationInclusion(JsonInclude.Include.NON_EMPTY) + writeValueAsString.
+        // PISTA: mapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+        // OJO: el test envuelve una List<String> VACÍA en el campo "items" y espera que
+        // "items" NO aparezca. NON_NULL no bastaría (la lista no es null, está vacía):
+        // necesitas NON_EMPTY, que es justo la diferencia que pregunta la autoevaluación.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para serializarConInclusionNoVacio");
     }
 
@@ -145,11 +152,15 @@ public final class Ej025JsonAnnotations {
      * @return JSON con claves ordenadas alfabéticamente
      */
     public static String serializarConOrdenEspecifico(Object obj) {
-        // TODO extra: Reto Extra 3: Orden de propiedades.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 2.3 (ordenar claves alfabéticamente vía MapperFeature).
+        // 1. Crea un mapper y activa el orden alfabético:
+        //    mapper.configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true).
+        // 2. Serializa obj con writeValueAsString.
+        // PISTA: import com.fasterxml.jackson.databind.MapperFeature;
+        //        mapper.configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
+        // OJO: el wrapper del test declara los campos en orden z, a; el test comprueba que
+        // en el JSON "a" aparece ANTES que "z" (indexOf("a") < indexOf("z")) -> sin orden
+        // alfabético saldrían en orden de declaración y fallaría.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para serializarConOrdenEspecifico");
     }
 
@@ -161,11 +172,17 @@ public final class Ej025JsonAnnotations {
      * @return JSON con representación de fecha estructurada
      */
     public static String serializarConFormatoFecha(Object obj) {
-        // TODO extra: Reto Extra 4: Formateador de fechas personalizado.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 2.3 (las fechas necesitan JavaTimeModule, ver la nota del recuadro).
+        // 1. Crea el mapper y registra el módulo de java.time:
+        //    mapper.registerModule(new JavaTimeModule());  (o mapper.findAndRegisterModules()).
+        // 2. Desactiva los timestamps para que la fecha salga como texto ISO, no como array:
+        //    mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS).
+        // 3. Serializa obj con writeValueAsString.
+        // PISTA: import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+        //        import com.fasterxml.jackson.databind.SerializationFeature;
+        // OJO: el test usa LocalDate.of(2026,5,21) y espera que el JSON contenga "2026-05-21".
+        // SIN desactivar WRITE_DATES_AS_TIMESTAMPS, Jackson escribiría [2026,5,21] (array) y
+        // el contains fallaría. Ese es el error nº 3 de la tabla del bloque.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para serializarConFormatoFecha");
     }
 
@@ -179,11 +196,13 @@ public final class Ej025JsonAnnotations {
      * @return objeto deserializado
      */
     public static <T> T deserializarConAlias(String json, Class<T> clase) {
-        // TODO extra: Reto Extra 5: Compatibilidad con nombres alternativos (Alias).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 2.3 (@JsonAlias: el DTO ya trae la anotación, tú solo deserializas).
+        // 1. Una línea dentro de try: return MAPPER.readValue(json, clase);
+        // PISTA: el trabajo lo hace la anotación @JsonAlias({"nombre_completo","full_name"})
+        //   que YA está en DtoConAlias.nombre; readValue normal la respeta.
+        // OJO: el test manda {"full_name":"Ana María"} y espera que aterrice en el campo
+        //   'nombre'. No tienes que hacer nada especial: @JsonAlias se aplica AL LEER.
+        //   (Contrasta con @JsonProperty, que renombra tanto al leer como al escribir.)
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para deserializarConAlias");
     }
 
@@ -197,11 +216,13 @@ public final class Ej025JsonAnnotations {
      * @return objeto deserializado con su campo anidado debidamente poblado
      */
     public static <T> T deserializarConCamposUnwrapped(String json, Class<T> clase) {
-        // TODO extra: Reto Extra 6: Aplanamiento de campos aninados (Unwrapped).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 2.3 (@JsonUnwrapped: el DTO ya lo declara, tú solo deserializas).
+        // 1. Una línea dentro de try: return MAPPER.readValue(json, clase);
+        // PISTA: DtoConUnwrapped.direccion lleva @JsonUnwrapped, así que Jackson sabe que
+        //   "calle" y "ciudad" del nivel raíz pertenecen al objeto anidado direccion.
+        // OJO: el test manda {"id":123,"calle":"Mayor 12","ciudad":"Madrid"} (todo PLANO) y
+        //   espera que dto.direccion NO sea null y dto.direccion.calle == "Mayor 12".
+        //   @JsonUnwrapped hace lo contrario que la anidación normal: aplana en vez de anidar.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para deserializarConCamposUnwrapped");
     }
 
@@ -213,11 +234,12 @@ public final class Ej025JsonAnnotations {
      * @return representación en JSON del valor primitivo
      */
     public static String serializarValorUnico(Object obj) {
-        // TODO extra: Reto Extra 7: Serialización de valor único.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 2.3 (@JsonValue: el objeto se serializa COMO ese único valor).
+        // 1. Una línea dentro de try: return MAPPER.writeValueAsString(obj);
+        // PISTA: EstadoPedido.codigo() lleva @JsonValue, así que Jackson serializa el enum
+        //   como su código en vez de como objeto o nombre de constante.
+        // OJO: el test pasa EstadoPedido.ENVIADO y espera EXACTAMENTE "\"E\"" (la cadena E
+        //   entre comillas, no "ENVIADO" ni un objeto). El método codigo() devuelve "E".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para serializarValorUnico");
     }
 
@@ -230,11 +252,18 @@ public final class Ej025JsonAnnotations {
      * @return true si el campo posee la anotación @JsonIgnore
      */
     public static boolean esCampoIgnorado(Class<?> clase, String campo) {
-        // TODO extra: Reto Extra 8: Inspección reflectiva de exclusión de Jackson.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: reflexión Java (no Jackson en sí: leer una anotación de un campo).
+        // 1. Obtén el campo por nombre: clase.getDeclaredField(campo).
+        // 2. Pregunta si tiene la anotación: campo.isAnnotationPresent(JsonIgnore.class).
+        // 3. getDeclaredField lanza NoSuchFieldException (checked): try/catch -> en el
+        //    catch devuelve false (campo inexistente = no ignorado).
+        // PISTA: import com.fasterxml.jackson.annotation.JsonIgnore;
+        //   return clase.getDeclaredField(campo).isAnnotationPresent(JsonIgnore.class);
+        // OJO: el test espera true para "password" y false para "nombre". Esto SOLO funciona
+        //   si en el ejercicio base hiciste el TODO 2 (poner @JsonIgnore sobre password). Si
+        //   aún no lo has anotado, este reto dará false en password -> hazlo primero.
+        // CULTURA: leer anotaciones por reflexión es exactamente cómo Spring descubre tus
+        //   @GetMapping, @Autowired, etc. al arrancar.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCampoIgnorado");
     }
 
@@ -249,11 +278,13 @@ public final class Ej025JsonAnnotations {
      * @return objeto deserializado
      */
     public static <T> T deserializarConPropiedadesDinamicas(String json, Class<T> clase) {
-        // TODO extra: Reto Extra 9: Deserialización de propiedades dinámicas.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 2.3 (@JsonAnySetter: recoge claves no declaradas en un Map).
+        // 1. Una línea dentro de try: return MAPPER.readValue(json, clase);
+        // PISTA: DtoDinamico ya tiene setExtra anotado con @JsonAnySetter; readValue normal
+        //   manda a ese setter cualquier campo que no encaje en una propiedad declarada.
+        // OJO: el test manda {"id":1,"campo_extra":"valor_extra"}: "id" va al campo id, y
+        //   "campo_extra" no existe como campo -> cae en el Map extra. Espera
+        //   dinamico.extra().get("campo_extra") == "valor_extra".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para deserializarConPropiedadesDinamicas");
     }
 
@@ -265,11 +296,12 @@ public final class Ej025JsonAnnotations {
      * @return JSON serializado con las propiedades del mapa expuestas en el nivel raíz
      */
     public static String serializarConPropiedadesDinamicas(Object obj) {
-        // TODO extra: Reto Extra 10: Serialización de propiedades dinámicas.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 2.3 (@JsonAnyGetter: vuelca el Map interno al nivel raíz del JSON).
+        // 1. Una línea dentro de try: return MAPPER.writeValueAsString(obj);
+        // PISTA: DtoDinamico.extra() lleva @JsonAnyGetter; writeValueAsString normal
+        //   "aplana" las entradas del Map como si fueran propiedades del objeto.
+        // OJO: el test pone id=1 y extra "color"->"rojo", y espera que el JSON contenga
+        //   "color":"rojo" Y "id":1 al MISMO nivel (no anidados bajo "extra").
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para serializarConPropiedadesDinamicas");
     }
 

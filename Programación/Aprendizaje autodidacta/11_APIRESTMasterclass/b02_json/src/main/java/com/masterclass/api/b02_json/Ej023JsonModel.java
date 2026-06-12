@@ -47,11 +47,15 @@ public final class Ej023JsonModel {
      * @return true si es un objeto vacío
      */
     public static boolean esObjetoVacio(String json) {
-        // TODO extra: Reto Extra 1: Verificación de objeto vacío.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 2.1 (objeto = empieza por '{'; aquí el objeto VACÍO exacto).
+        // 1. Si json es null -> false (no lances NPE).
+        // 2. Recorta los espacios de los extremos: json.strip().
+        // 3. Compara el resultado con "{}" usando equals.
+        // PISTA: return json != null && json.strip().equals("{}");
+        // OJO: el test manda " {   } " con espacios INTERIORES y espera true ->
+        // por eso strip() NO basta para los espacios de dentro. Tienes que quitar
+        // TODOS los espacios antes de comparar (json.replace(" ", "")) o reutilizar
+        // limpiarEspaciosJson del reto 7. El test {"id":1} debe dar false.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esObjetoVacio");
     }
 
@@ -63,11 +67,11 @@ public final class Ej023JsonModel {
      * @return true si es un array vacío
      */
     public static boolean esArrayVacio(String json) {
-        // TODO extra: Reto Extra 2: Verificación de array vacío.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 2.1 (array = empieza por '['; aquí el array VACÍO exacto).
+        // 1. Calca esObjetoVacio del reto 1 pero comparando con "[]".
+        // 2. Quita TODOS los espacios (el test manda " [  ] " y espera true).
+        // PISTA: return json != null && json.replace(" ", "").equals("[]");
+        // OJO: el test [1,2] debe dar false.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esArrayVacio");
     }
 
@@ -80,11 +84,14 @@ public final class Ej023JsonModel {
      * @return true si cumple con las comillas obligatorias de un String JSON
      */
     public static boolean esStringValido(String json) {
-        // TODO extra: Reto Extra 3: Validación sintáctica de cadena JSON.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 2.1 (un string JSON va entre comillas dobles).
+        // 1. Si json es null -> false.
+        // 2. Necesita AL MENOS 2 caracteres (las dos comillas): json.length() >= 2.
+        // 3. Debe empezar Y terminar por comilla doble: startsWith("\"") && endsWith("\"").
+        // PISTA: return json != null && json.length() >= 2 && json.startsWith("\"") && json.endsWith("\"");
+        // OJO: el test manda "\"" (UNA sola comilla, length 1) y espera false ->
+        // por eso la comprobación de longitud >= 2 es imprescindible: sin ella, una
+        // sola comilla cumpliría startsWith y endsWith a la vez. "hola" (sin comillas) -> false.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esStringValido");
     }
 
@@ -96,11 +103,15 @@ public final class Ej023JsonModel {
      * @return true si es un entero válido
      */
     public static boolean esNumeroEntero(String json) {
-        // TODO extra: Reto Extra 4: Validación de número entero.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 2.1 (un número JSON es entero si NO tiene parte decimal).
+        // 1. Si json es null -> false.
+        // 2. Intenta parsear como ENTERO dentro de un try/catch:
+        //    Integer.parseInt(json.strip())  (o Long.parseLong para enteros grandes).
+        // 3. Si parsea sin lanzar -> true; si lanza NumberFormatException -> false.
+        // PISTA: try { Long.parseLong(json.strip()); return true; } catch (NumberFormatException e) { return false; }
+        // OJO: el test manda "3.14" y espera false: parseInt/parseLong LANZAN con el
+        // punto decimal (a diferencia de Double.parseDouble que sí lo acepta) -> por eso
+        // usamos parseInt/parseLong, no parseDouble. "-5" debe dar true; "abc" -> false.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esNumeroEntero");
     }
 
@@ -113,11 +124,15 @@ public final class Ej023JsonModel {
      * @return texto crudo procesado, o null si el JSON es inválido o nulo
      */
     public static String extraerTextoString(String json) {
-        // TODO extra: Reto Extra 5: Extracción de valor de cadena JSON.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 2.1 (extraer el texto interior de un string JSON y desescapar).
+        // 1. Reutiliza esStringValido(json) del reto 3: si NO es un string válido -> return null.
+        // 2. Quita la comilla inicial y final: json.substring(1, json.length() - 1).
+        // 3. Desescapa las comillas interiores: reemplaza la secuencia \" por ".
+        // PISTA: cuerpo.replace("\\\"", "\"")  ← en Java fuente \\\" representa los dos
+        //   caracteres barra+comilla; en el JSON real eso es un \" escapado.
+        // OJO: el test manda "\"dijo \\\"si\\\"\"" (en el JSON real: "dijo \"si\"") y espera
+        // exactamente  dijo "si"  con las comillas ya desescapadas. Para "sincomillas"
+        // (sin comillas) espera null -> de ahí la validación del paso 1.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerTextoString");
     }
 
@@ -130,11 +145,16 @@ public final class Ej023JsonModel {
      * @return número de elementos, o 0 si está vacío o es inválido
      */
     public static int contarElementosArraySimple(String json) {
-        // TODO extra: Reto Extra 6: Recuento de elementos en array JSON simple.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 2.1 (array plano: contar elementos separados por comas).
+        // 1. Si json es null -> 0. Recorta con strip().
+        // 2. Quita los corchetes externos: substring(1, len-1) -> el "interior".
+        // 3. Si el interior (tras strip) está vacío -> 0 (caso "[]").
+        // 4. Si no, parte por comas y cuenta los trozos.
+        // PISTA: String interior = json.strip(); interior = interior.substring(1, interior.length()-1).strip();
+        //        if (interior.isEmpty()) return 0; return interior.split(",").length;
+        // OJO: el test "[1, \"dos\", null]" espera 3 y "[]" espera 0. Asume array PLANO
+        // (sin objetos ni arrays anidados), así que split(",") basta; no compliques con
+        // comas dentro de strings (no las hay en los casos de prueba).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarElementosArraySimple");
     }
 
@@ -146,11 +166,16 @@ public final class Ej023JsonModel {
      * @return JSON normalizado libre de espacios externos irrelevantes
      */
     public static String limpiarEspaciosJson(String json) {
-        // TODO extra: Reto Extra 7: Normalización sintáctica de espacios.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 2.1 (quitar espacios FUERA de los strings, no dentro).
+        // 1. Si json es null -> null.
+        // 2. Recorre el texto carácter a carácter con un StringBuilder.
+        // 3. Lleva un booleano "dentroDeComillas" que conmutas cada vez que ves un '"'.
+        // 4. Añade el carácter siempre, EXCEPTO si es espacio Y estás fuera de comillas.
+        // PISTA: boolean dentro = false; for (char c : json.toCharArray()) { if (c=='"') dentro=!dentro;
+        //        if (c==' ' && !dentro) continue; sb.append(c); }
+        // OJO: el test  " \"con espacios\" "  espera  "con espacios"  CON su espacio interior
+        // intacto -> por eso NO vale json.replace(" ",""): hay que respetar lo que va entre
+        // comillas. El otro caso  " { \"a\" : 1 } "  debe quedar  {"a":1}.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para limpiarEspaciosJson");
     }
 
@@ -162,11 +187,10 @@ public final class Ej023JsonModel {
      * @return true si es exactamente "false"
      */
     public static boolean esBooleanoFalso(String json) {
-        // TODO extra: Reto Extra 8: Validación de booleano falso.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea —
+        // return json != null && json.strip().equals("false");
+        // OJO: el test manda "  false  " con espacios y espera true -> strip() obligatorio.
+        // "true" debe dar false. La comparación es con equals (exacta y sensible a mayúsculas).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esBooleanoFalso");
     }
 
@@ -178,11 +202,10 @@ public final class Ej023JsonModel {
      * @return true si es exactamente "null"
      */
     public static boolean esNullJson(String json) {
-        // TODO extra: Reto Extra 9: Validación de tipo nulo en JSON.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea —
+        // return json != null && json.strip().equals("null");
+        // OJO: distingue el null de JAVA (parámetro ausente -> false) del literal de
+        // texto "null" de JSON (-> true). El test manda "  null  " (true) y "undefined" (false).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esNullJson");
     }
 
@@ -196,11 +219,14 @@ public final class Ej023JsonModel {
      * @return literal original o de contingencia
      */
     public static String obtenerLiteralDefecto(String json, String defecto) {
-        // TODO extra: Reto Extra 10: Contingencia de literal JSON.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 2.1 (patrón "valor por defecto si no es reconocible").
+        // 1. Reutiliza tipo(json) (el método base de este fichero).
+        // 2. Si json es null O tipo(json) devuelve "desconocido" -> return defecto.
+        // 3. En cualquier otro caso (objeto/array/string/numero/booleano/null) -> return json.
+        // PISTA: return (json == null || tipo(json).equals("desconocido")) ? defecto : json;
+        // OJO: el test pasa ("{}", "\"defecto\"") y espera "{}" (es reconocible);
+        // ("??", "\"defecto\"") espera "\"defecto\"" (no reconocible -> contingencia).
+        // CULTURA: es el mismo patrón que orElse de Optional (teoría 1.2): "esto o un default".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerLiteralDefecto");
     }
 
