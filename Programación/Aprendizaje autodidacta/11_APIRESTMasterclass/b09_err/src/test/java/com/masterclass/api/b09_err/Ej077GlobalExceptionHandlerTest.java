@@ -1,10 +1,12 @@
 package com.masterclass.api.b09_err;
 
 import org.junit.jupiter.api.Test;
+import com.masterclass.api.b09_err.Ej077GlobalExceptionHandler.RecursoNoEncontrado;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 class Ej077GlobalExceptionHandlerTest {
 

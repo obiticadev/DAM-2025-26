@@ -57,11 +57,19 @@ public final class Ej068NestedDtoGraphs {
      * @return lista de nombres de ciudades (sin duplicados, ignorando nulos)
      */
     public static java.util.List<String> mapearCiudades(java.util.List<ClienteEntity> clientes) {
-        // TODO extra: RETO EXTRA 1: Obtener una lista de nombres de ciudades de todos los clientes.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 7.6 (navegar el grafo con null-safety en cada nivel).
+        // 1. Si clientes es null -> List.of().
+        // 2. De cada cliente saca la dirección; descarta clientes con direccion null;
+        //    extrae ciudad; quita duplicados con distinct().
+        // PISTA: return clientes.stream()
+        //          .map(ClienteEntity::direccion)
+        //          .filter(java.util.Objects::nonNull)
+        //          .map(DireccionEntity::ciudad)
+        //          .distinct()
+        //          .toList();
+        // OJO: el test mete clientes de "Madrid" y "Barcelona" -> esperado 2 ciudades
+        //      sin duplicados. Es PLACEHOLDER (assertNull); ajústalo al resolver.
+        //      El filter de null va ANTES de pedir la ciudad, o saltaría NPE.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para mapearCiudades");
     }
 
@@ -73,11 +81,17 @@ public final class Ej068NestedDtoGraphs {
      * @return clientes de esa ciudad
      */
     public static java.util.List<ClienteEntity> filtrarPorCiudad(java.util.List<ClienteEntity> clientes, String ciudad) {
-        // TODO extra: RETO EXTRA 2: Filtrar clientes por una ciudad concreta.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: filtro navegando el anidado con guardia de null.
+        // 1. Si clientes es null -> List.of().
+        // 2. Quédate con los clientes cuya direccion no sea null Y su ciudad coincida
+        //    con 'ciudad' (usa equals; reutiliza esDeMadrid como modelo de comparación).
+        // PISTA: return clientes.stream()
+        //          .filter(c -> c.direccion() != null
+        //                    && c.direccion().ciudad().equals(ciudad))
+        //          .toList();
+        // OJO: el test filtra un cliente de "Madrid" por "Madrid" -> size 1. Es
+        //      PLACEHOLDER (assertNull); ajústalo al resolver. Comprueba direccion no
+        //      nula ANTES de leer ciudad (corto-circuito del &&).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para filtrarPorCiudad");
     }
 
@@ -88,11 +102,18 @@ public final class Ej068NestedDtoGraphs {
      * @return conjunto de todos los teléfonos únicos
      */
     public static java.util.Set<String> obtenerTodosTelefonos(java.util.List<ClienteEntity> clientes) {
-        // TODO extra: RETO EXTRA 3: Recopilar todos los números de teléfono del listado de clientes de forma global.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 7.6 (flatMap aplana List<Cliente>·List<Telefono>, bloque 1.4).
+        // 1. Si clientes es null -> Set.of().
+        // 2. De cada cliente toma su lista de teléfonos (si es null, trátala vacía con
+        //    Optional o un filtro) y APLÁNALA con flatMap a un único stream de teléfonos.
+        // 3. Recoge a un Set (únicos).
+        // PISTA: return clientes.stream()
+        //          .flatMap(c -> (c.telefonos() == null ? java.util.List.<String>of()
+        //                          : c.telefonos()).stream())
+        //          .collect(java.util.stream.Collectors.toSet());
+        // OJO: el test mete un cliente con ["600"] -> Set {"600"}. Es PLACEHOLDER
+        //      (assertNull); ajústalo al resolver. flatMap (1→muchos) NO es map (1→1):
+        //      aquí cada cliente aporta VARIOS teléfonos a un solo stream plano.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerTodosTelefonos");
     }
 
@@ -103,11 +124,14 @@ public final class Ej068NestedDtoGraphs {
      * @return true si la ciudad es "Madrid" (insensible a mayúsculas/minúsculas)
      */
     public static boolean esDeMadrid(ClienteEntity e) {
-        // TODO extra: RETO EXTRA 4: Comprobar si el cliente reside en Madrid.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: predicado navegando el anidado, insensible a mayúsculas.
+        // 1. Si e es null o e.direccion() es null o su ciudad es null -> false.
+        // 2. Devuelve true si la ciudad es "Madrid" con equalsIgnoreCase.
+        // PISTA: return e != null && e.direccion() != null
+        //          && "Madrid".equalsIgnoreCase(e.direccion().ciudad());
+        // OJO: el test usa ciudad "Madrid" -> debería ser true. Es PLACEHOLDER
+        //      (assertFalse); ajústalo al resolver. Usa equalsIgnoreCase (la espec dice
+        //      insensible a may/min) y pon "Madrid" a la izquierda para tolerar null.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esDeMadrid");
     }
 
@@ -118,11 +142,15 @@ public final class Ej068NestedDtoGraphs {
      * @return DTO con direccion = null
      */
     public static ClienteDto crearClienteSinDireccion(ClienteEntity e) {
-        // TODO extra: RETO EXTRA 5: Crear un DTO de Cliente omitiendo su dirección física.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: variante de toDto que omite el anidado (decisión de contrato, 7.6).
+        // 1. Si e es null -> IllegalArgumentException.
+        // 2. Crea un ClienteDto con direccion = null; copia id, nombre y el conteo de
+        //    teléfonos (0 si la lista es null).
+        // PISTA: int numTel = (e.telefonos() == null) ? 0 : e.telefonos().size();
+        //        return new ClienteDto(e.id(), e.nombre(), null, numTel);
+        // OJO: el test es PLACEHOLDER (assertNull); ajústalo al resolver. Aquí el null
+        //      en direccion es DELIBERADO: estás recortando el grafo en el contrato,
+        //      no es un descuido.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearClienteSinDireccion");
     }
 
@@ -133,11 +161,12 @@ public final class Ej068NestedDtoGraphs {
      * @return conteo de clientes con dirección nula
      */
     public static long contarClientesSinDireccion(java.util.List<ClienteEntity> clientes) {
-        // TODO extra: RETO EXTRA 6: Contar cuántos clientes no tienen una dirección registrada.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: filtro por null en el anidado + count.
+        // 1. Si clientes es null -> devuelve 0.
+        // 2. Cuenta los clientes cuya direccion() sea null.
+        // PISTA: return clientes.stream().filter(c -> c.direccion() == null).count();
+        // OJO: el test mete un cliente con direccion null -> esperado 1L. Es PLACEHOLDER
+        //      (assertEquals(0,...)); ajústalo al resolver. count() devuelve long.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarClientesSinDireccion");
     }
 
@@ -148,11 +177,17 @@ public final class Ej068NestedDtoGraphs {
      * @return DTO con la ciudad en mayúsculas
      */
     public static ClienteDto capitalizarCiudad(ClienteEntity e) {
-        // TODO extra: RETO EXTRA 7: Mapear a DTO asegurando que la ciudad se guarda en mayúsculas.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: variante de toDto que transforma el campo del anidado.
+        // 1. Si e es null -> IllegalArgumentException.
+        // 2. Si hay direccion, crea DireccionDto con ciudad.toUpperCase() (calle igual);
+        //    si direccion es null, deja la del DTO null.
+        // 3. Reutiliza la lógica de toDto (id, nombre, conteo de teléfonos).
+        // PISTA: DireccionDto dir = (e.direccion() == null) ? null
+        //          : new DireccionDto(e.direccion().calle(),
+        //                             e.direccion().ciudad().toUpperCase());
+        // OJO: el test mete ciudad "madrid" -> en el DTO esperarías "MADRID". Es
+        //      PLACEHOLDER (assertNull); ajústalo al resolver. No olvides el conteo de
+        //      teléfonos null-safe (0 si la lista es null).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para capitalizarCiudad");
     }
 
@@ -163,11 +198,15 @@ public final class Ej068NestedDtoGraphs {
      * @return el primer teléfono, o "Sin Teléfono" si no tiene ninguno o la lista es nula
      */
     public static String telefonoPrincipal(ClienteEntity e) {
-        // TODO extra: RETO EXTRA 8: Obtener el primer teléfono registrado de un cliente.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: acceso seguro al primer elemento de la lista anidada (bloque 1.2).
+        // 1. Si e es null, su lista de teléfonos es null o está vacía -> "Sin Teléfono".
+        // 2. Si hay al menos uno, devuelve telefonos().get(0).
+        // PISTA: if (e == null || e.telefonos() == null || e.telefonos().isEmpty())
+        //            return "Sin Teléfono";
+        //        return e.telefonos().get(0);
+        // OJO: el test usa ["600"] -> esperado "600". Es PLACEHOLDER (assertEquals("",...));
+        //      ajústalo al resolver. El literal del caso por defecto es EXACTAMENTE
+        //      "Sin Teléfono" (con tilde y esa capitalización), según la espec del Javadoc.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para telefonoPrincipal");
     }
 
@@ -178,11 +217,13 @@ public final class Ej068NestedDtoGraphs {
      * @return true si tiene > 3 teléfonos
      */
     public static boolean esClienteFrecuente(ClienteEntity e) {
-        // TODO extra: RETO EXTRA 9: Determinar si el cliente es frecuente por poseer más de 3 teléfonos.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: predicado sobre el tamaño de la lista anidada.
+        // 1. Si e es null o e.telefonos() es null -> false.
+        // 2. Devuelve true si telefonos().size() > 3.
+        // PISTA: return e != null && e.telefonos() != null && e.telefonos().size() > 3;
+        // OJO: el test mete 4 teléfonos -> 4 > 3 -> debería ser true. Es PLACEHOLDER
+        //      (assertFalse); ajústalo al resolver. El umbral es estricto (> 3): con
+        //      exactamente 3 teléfonos NO es frecuente.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esClienteFrecuente");
     }
 
@@ -194,11 +235,17 @@ public final class Ej068NestedDtoGraphs {
      * @return nuevo DTO actualizado
      */
     public static ClienteDto actualizarCalle(ClienteDto dto, String nuevaCalle) {
-        // TODO extra: RETO EXTRA 10: Devolver una copia modificada de ClienteDto con una nueva calle.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: copia inmutable de un grafo -> cambia solo la calle del anidado (1.1).
+        // 1. Si dto es null -> IllegalArgumentException.
+        // 2. Crea una DireccionDto NUEVA con la nuevaCalle y la ciudad actual; luego
+        //    un ClienteDto NUEVO con esa dirección y el resto de campos iguales.
+        //    Cuidado si dto.direccion() es null (decide: crear con ciudad null o IAE).
+        // PISTA: var dir = new DireccionDto(nuevaCalle, dto.direccion().ciudad());
+        //        return new ClienteDto(dto.id(), dto.nombre(), dir, dto.numTelefonos());
+        // OJO: el test parte de calle "Mayor"/"Madrid" y pide "Nueva Mayor": la ciudad
+        //      "Madrid" debe conservarse. Es PLACEHOLDER (assertNull); ajústalo al
+        //      resolver. Para cambiar el anidado hay que recrear DOS records (el de
+        //      dirección y el de cliente): los records no se mutan.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para actualizarCalle");
     }
 

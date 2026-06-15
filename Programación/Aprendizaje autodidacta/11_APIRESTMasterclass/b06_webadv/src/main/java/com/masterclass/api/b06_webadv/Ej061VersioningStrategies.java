@@ -48,11 +48,14 @@ public final class Ej061VersioningStrategies {
      * y extrae el número de versión (ej: 2). Si no está definido o no coincide, devuelve -1.
      */
     public static int pasoExtra01(String acceptHeader) {
-        // TODO extra: Reto Extra 1: Extractor de versión desde cabecera Accept (Content Negotiation).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 6.7 (versionado por Accept) + 6.1 (vnd.). Extrae el número
+        // tras "-v" del media-type vendor-specific.
+        // 1. Si acceptHeader es null -> -1.
+        // 2. Busca el patrón "-v" seguido de dígitos con una regex:
+        //    Matcher m = Pattern.compile("-v(\\d+)").matcher(acceptHeader);
+        //    return m.find() ? Integer.parseInt(m.group(1)) : -1;
+        // OJO: el test pasa "application/vnd.company.app-v2+json" y espera 2.
+        //      Si no encuentra el patrón -> -1.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra01");
     }
 
@@ -62,11 +65,19 @@ public final class Ej061VersioningStrategies {
      * (ej: "/api/users?api-version=3.0" -> "3.0"). Si no está presente, devuelve null.
      */
     public static String pasoExtra02(String uri) {
-        // TODO extra: Reto Extra 2: Extractor de versión desde Query Parameter.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 6.7 (versionado por query param). Extrae 'api-version' de
+        // la query string.
+        // 1. Si uri es null o no tiene '?' -> null.
+        // 2. Toma la query (lo de tras '?'), pártela por '&' y busca el par cuya
+        //    clave sea "api-version"; devuelve su valor.
+        // PISTA: String query = uri.substring(uri.indexOf('?') + 1);
+        //        for (String par : query.split("&")) {
+        //            String[] kv = par.split("=", 2);
+        //            if (kv.length == 2 && kv[0].equals("api-version")) return kv[1];
+        //        }
+        //        return null;
+        // OJO: el test pasa "/api/users?api-version=3.0" y espera "3.0" (String,
+        //      con el punto; NO lo conviertas a int aquí).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra02");
     }
 
@@ -76,11 +87,14 @@ public final class Ej061VersioningStrategies {
      * y no es un falso positivo (como "/api/av1/users" o "/api/v/users").
      */
     public static boolean pasoExtra03(String uri) {
-        // TODO extra: Reto Extra 3: Validador estricto de segmento de versión en ruta.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 6.7 ("error común nº 9": /av2/ NO es versión). Valida un
+        // segmento /v{dígitos}/ de verdad, anclado entre barras.
+        // 1. Si uri es null -> false.
+        // 2. Busca el patrón "/v\\d+(/|$)" (v + dígitos, seguido de '/' o fin):
+        //    return Pattern.compile("/v\\d+(/|$)").matcher(uri).find();
+        // OJO: el test exige "/api/v2/users" -> true y "/api/av2/users" -> false.
+        //      La clave es que la 'v' vaya JUSTO tras '/'. Un contains("v2") o un
+        //      patrón sin anclar dejaría colar "av2" -> bug clásico.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra03");
     }
 
@@ -93,11 +107,17 @@ public final class Ej061VersioningStrategies {
      * Retorna la versión resuelta, o 1 como fallback si no se detecta ninguna.
      */
     public static int pasoExtra04(String customHeader, String queryParam, String uriPath) {
-        // TODO extra: Reto Extra 4: Resolutor jerárquico de versiones.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 6.7 (precedencia de estrategias). Orden ESTRICTO:
+        // 1º cabecera, 2º query param, 3º segmento /v{n}/, y 1 como fallback.
+        // 1. Si customHeader no es null/blank -> parséalo a int y devuélvelo.
+        // 2. Si no, si queryParam no es null/blank -> parséalo a int.
+        // 3. Si no, intenta extraer /v{n}/ de uriPath (reutiliza la regla de
+        //    pasoExtra03/resolveVersion).
+        // 4. Si nada hay -> 1.
+        //    Protege cada parseInt con try/catch (no es objeto del test, pero es lo
+        //    correcto).
+        // OJO: el test pasa ("3","2","/v1/") y espera 3: aunque las TRES fuentes
+        //      traen versión, gana la cabecera por precedencia. Comprueba el orden.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra04");
     }
 
@@ -107,11 +127,17 @@ public final class Ej061VersioningStrategies {
      * de enteros conteniendo [major, minor, patch]. Retorna null si no tiene formato SemVer válido.
      */
     public static int[] pasoExtra05(String semVerStr) {
-        // TODO extra: Reto Extra 5: Mapeador de versiones semánticas (SemVer).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 6.7 (SemVer MAJOR.MINOR.PATCH). Parte la versión en 3 ints.
+        // 1. Si semVerStr es null -> null.
+        // 2. Descarta el sufijo de pre-release tras '-' (p.ej. "-beta"):
+        //    String core = semVerStr.split("-")[0];   // "1.4.2"
+        // 3. Pártelo por '.'; deben salir 3 trozos numéricos:
+        //    String[] p = core.split("\\.");
+        //    if (p.length != 3) return null;
+        //    return new int[]{ Integer.parseInt(p[0]), parseInt(p[1]), parseInt(p[2]) };
+        //    Envuelve los parseInt en try/catch -> null si algún trozo no es número.
+        // OJO: el test pasa "1.4.2-beta" y espera {1,4,2}: el "-beta" se DESCARTA
+        //      antes de partir por puntos. Recuerda escapar el punto: split("\\.").
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra05");
     }
 
@@ -121,11 +147,17 @@ public final class Ej061VersioningStrategies {
      * (ej: "^1.0.0" que permite >= 1.0.0 y < 2.0.0).
      */
     public static boolean pasoExtra06(String requestedVersion, String semVerRange) {
-        // TODO extra: Reto Extra 6: Comprobador de rango SemVer (Rango de compatibilidad).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 6.7 (rango "caret" ^X.Y.Z = >=X.Y.Z y <(X+1).0.0).
+        // Apóyate en pasoExtra05 para parsear ambas versiones.
+        // 1. El rango "^1.0.0" -> quita el '^' y parsea con pasoExtra05 -> base.
+        //    Parsea también requestedVersion -> req.
+        // 2. Compatible si: req.major == base.major  Y  req >= base
+        //    (compara major; si igual, minor; si igual, patch).
+        // 3. Si algo no parsea -> false.
+        // OJO: el test pasa ("1.5.2","^1.0.0") -> true: mismo major (1) y
+        //      1.5.2 >= 1.0.0. Una "2.0.0" daría false (cambió el major).
+        // CULTURA: es justo la regla que usa npm/Maven para decidir qué
+        //          actualización es "segura" (no rompe la API).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra06");
     }
 
@@ -135,11 +167,17 @@ public final class Ej061VersioningStrategies {
      * para advertir a los clientes de que la versión que están llamando está obsoleta y se retirará pronto.
      */
     public static org.springframework.http.ResponseEntity.BodyBuilder pasoExtra07(org.springframework.http.ResponseEntity.BodyBuilder builder, String sunsetDate) {
-        // TODO extra: Reto Extra 7: Inyección de cabeceras de API obsoleta (Deprecation / Sunset).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 6.7 (avisar de que una versión va a retirarse). El builder
+        // es fluido.
+        // return builder
+        //     .header("Deprecation", "true")
+        //     .header("Sunset", sunsetDate);
+        // - Deprecation: marca el endpoint como obsoleto.
+        // - Sunset: fecha (RFC 1123) a partir de la cual dejará de existir.
+        // OJO: el test pasa la fecha "Wed, 11 Nov 2026 00:00:00 GMT" y solo pide
+        //      assertNotNull; devuelve el builder, no null.
+        // CULTURA: dar a los clientes una fecha de "sunset" por cabecera es la
+        //          forma educada de retirar una versión sin romper de golpe.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra07");
     }
 
@@ -149,11 +187,11 @@ public final class Ej061VersioningStrategies {
      * de versiones que el backend soporta activamente en producción.
      */
     public static boolean pasoExtra08(int version, java.util.List<Integer> supportedVersions) {
-        // TODO extra: Reto Extra 8: Validación contra lista de versiones soportadas.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea defensiva.
+        // return supportedVersions != null && supportedVersions.contains(version);
+        // CUIDADO: contains sobre List<Integer> hace autoboxing de 'version' a
+        //      Integer y compara con equals (no por ==): correcto aquí. El test
+        //      pasa (2, [1,2,3]) -> true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra08");
     }
 
@@ -163,11 +201,15 @@ public final class Ej061VersioningStrategies {
      * para obtener la ruta canónica interna del recurso (ej: "/api/v2/users/1" -> "/api/users/1").
      */
     public static String pasoExtra09(String uriPath) {
-        // TODO extra: Reto Extra 9: Generador de ruta limpia (Stripping de versión).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 6.7 (ruta canónica interna sin la versión). Quita el
+        // segmento "/v{n}" de la ruta.
+        // 1. Si uriPath es null -> null.
+        // 2. Reemplaza "/v\\d+" por "" con replaceAll:
+        //    return uriPath.replaceFirst("/v\\d+", "");
+        //    (replaceFirst para no tocar un hipotético "/v9" dentro de un id).
+        // OJO: el test pasa "/api/v2/users/1" y espera "/api/users/1": solo
+        //      desaparece "/v2", el resto de la ruta intacto.
+        // PISTA: es el inverso de pasoExtra10 (que AÑADE la versión).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra09");
     }
 
@@ -177,11 +219,12 @@ public final class Ej061VersioningStrategies {
      * según la preferencia del cliente (ej: "/users/5" con versión 3 -> "/v3/users/5").
      */
     public static String pasoExtra10(String baseUri, int version) {
-        // TODO extra: Reto Extra 10: Generador de enlaces versionados HATEOAS.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 6.7 (inverso del reto 9: AÑADIR el prefijo de versión).
+        // 1. return "/v" + version + baseUri;
+        //    (defensa: asegúrate de que baseUri empiece por '/').
+        // OJO: el test pasa ("/users/5", 3) y espera "/v3/users/5".
+        // CULTURA: en HATEOAS la API te devuelve enlaces ya construidos a los
+        //          recursos relacionados; versionarlos así mantiene la coherencia.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra10");
     }
 

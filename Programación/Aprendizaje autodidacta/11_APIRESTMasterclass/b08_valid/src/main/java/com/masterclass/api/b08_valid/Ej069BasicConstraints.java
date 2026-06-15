@@ -74,11 +74,14 @@ public final class Ej069BasicConstraints {
      * @return true si no tiene ninguna violación de validación
      */
     public static boolean esRegistroValido(RegistroDto dto) {
-        // TODO extra: RETO EXTRA 1: Comprobar si un RegistroDto es completamente válido.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 8.1 (un objeto es válido si el Set de violaciones está vacío).
+        // 1. Reutiliza camposInvalidos(dto): es válido cuando ese Set está vacío.
+        // 2. Una línea: return camposInvalidos(dto).isEmpty();
+        //    (o directamente VALIDATOR.validate(dto).isEmpty()).
+        // PISTA: return camposInvalidos(dto).isEmpty();
+        // OJO: el test pasa un dto VÁLIDO y espera assertFalse → es una aserción
+        //      placeholder, NO la espec real. Implementa la regla correcta (un dto
+        //      válido debe dar true); el test placeholder quedará en rojo a propósito.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRegistroValido");
     }
 
@@ -89,11 +92,15 @@ public final class Ej069BasicConstraints {
      * @return lista de mensajes de error de las violaciones
      */
     public static java.util.List<String> obtenerMensajesError(RegistroDto dto) {
-        // TODO extra: RETO EXTRA 2: Obtener los mensajes de error legibles.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 8.1 y 8.8 (de cada ConstraintViolation sacas getMessage()).
+        // 1. Valida: VALIDATOR.validate(dto) devuelve Set<ConstraintViolation<RegistroDto>>.
+        // 2. Mapea cada violación a su mensaje y recoge en lista:
+        //    .stream().map(ConstraintViolation::getMessage).sorted().toList().
+        // 3. Si no hay violaciones devuelve una lista VACÍA (no null).
+        // PISTA: return VALIDATOR.validate(dto).stream()
+        //            .map(v -> v.getMessage()).sorted().collect(Collectors.toList());
+        // OJO: el test usa assertNull → aserción placeholder. La espec real (Javadoc)
+        //      pide una LISTA de mensajes; impleméntala así aunque el test quede rojo.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerMensajesError");
     }
 
@@ -103,11 +110,12 @@ public final class Ej069BasicConstraints {
      * @return RegistroDto válido
      */
     public static RegistroDto crearRegistroPorDefecto() {
-        // TODO extra: RETO EXTRA 3: Crear un RegistroDto de demostración pre-validado y correcto.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — construye un dto que cumpla TODAS las constraints de 8.1.
+        // 1. nombre con 2..50 chars, email con formato válido, edad en [18,120],
+        //    telefono de 9 dígitos.
+        // PISTA: return new RegistroDto("Ana", "ana@b.com", 30, "600123456");
+        // COMPRUEBA: esRegistroValido(crearRegistroPorDefecto()) debería dar true.
+        // OJO: el test usa assertNull (placeholder); la espec pide un dto VÁLIDO.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearRegistroPorDefecto");
     }
 
@@ -118,11 +126,13 @@ public final class Ej069BasicConstraints {
      * @return true si cumple con el patrón de email estándar
      */
     public static boolean esEmailValido(String email) {
-        // TODO extra: RETO EXTRA 4: Comprobar si una dirección de email es válida usando la constraint Email.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: dos enfoques (teoría 8.1). El "de libro": validar SOLO ese campo.
+        // 1. Camino Bean Validation: crea un dto con ese email y el resto válido y
+        //    comprueba que "email" NO aparece en camposInvalidos.
+        // 2. Camino simple (suficiente aquí): regex de email básica.
+        // PISTA: return email != null && email.matches("[^@\\s]+@[^@\\s]+\\.[^@\\s]+");
+        // OJO: el test manda "ana@b.com" (válido) y espera assertFalse → placeholder.
+        //      Implementa la regla real: un email bien formado debe dar true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esEmailValido");
     }
 
@@ -133,11 +143,13 @@ public final class Ej069BasicConstraints {
      * @return true si cumple la condición
      */
     public static boolean esTelefonoValido(String telefono) {
-        // TODO extra: RETO EXTRA 5: Comprobar si un número de teléfono tiene exactamente 9 dígitos.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea con el mismo patrón que la constraint del DTO (teoría 8.2).
+        // 1. null → false (no lances; es un test booleano).
+        // 2. Reutiliza la regex "\\d{9}" de la anotación @Pattern del campo telefono.
+        // PISTA: return telefono != null && telefono.matches("\\d{9}");
+        // OJO: matches ancla a TODA la cadena, así que "1234567890" (10 dígitos) da
+        //      false. El test manda "600123456" (9 dígitos, válido) y espera
+        //      assertFalse → placeholder; tu implementación correcta dará true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esTelefonoValido");
     }
 
@@ -148,11 +160,11 @@ public final class Ej069BasicConstraints {
      * @return true si está en rango
      */
     public static boolean edadEnRango(Integer edad) {
-        // TODO extra: RETO EXTRA 6: Validar si la edad está en el rango permitido (18 a 120).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea (equivale a @Min(18) + @Max(120) del DTO, teoría 8.1).
+        // 1. null → false (Integer puede venir nulo).
+        // 2. Rango cerrado [18, 120]: ambos extremos incluidos.
+        // PISTA: return edad != null && edad >= 18 && edad <= 120;
+        // OJO: el test manda 30 (en rango) y espera assertFalse → placeholder.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para edadEnRango");
     }
 
@@ -163,11 +175,12 @@ public final class Ej069BasicConstraints {
      * @return nombre limpio, o vacío si es nulo
      */
     public static String normalizarNombre(String nombre) {
-        // TODO extra: RETO EXTRA 7: Normalizar el nombre de un registro (quitar espacios sobrantes).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — el Javadoc pide "nombre limpio, o vacío si es nulo".
+        // 1. Si nombre es null → devuelve "" (cadena vacía).
+        // 2. Si no, quita espacios de los extremos con trim().
+        // PISTA: return nombre == null ? "" : nombre.trim();
+        // OJO: el test manda " Ana " y espera "" — aserción placeholder. La espec
+        //      real produciría "Ana" (trim, no vaciado). Implementa el trim correcto.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para normalizarNombre");
     }
 
@@ -178,11 +191,12 @@ public final class Ej069BasicConstraints {
      * @return true si el campo 'email' es inválido
      */
     public static boolean tieneErroresDeEmail(RegistroDto dto) {
-        // TODO extra: RETO EXTRA 8: Determinar si el registro tiene errores concretamente en el campo 'email'.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 8.1 — filtrar el resultado del validador por nombre de campo.
+        // 1. Reutiliza camposInvalidos(dto) (devuelve las rutas inválidas).
+        // 2. Comprueba si ese Set contiene "email".
+        // PISTA: return camposInvalidos(dto).contains("email");
+        // OJO: el test manda email "malo" (inválido) y espera assertFalse →
+        //      placeholder; tu implementación correcta dará true para ese caso.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneErroresDeEmail");
     }
 
@@ -193,11 +207,12 @@ public final class Ej069BasicConstraints {
      * @return cadena con todos los mensajes de error separados por comas
      */
     public static String formatearErrores(RegistroDto dto) {
-        // TODO extra: RETO EXTRA 9: Formatear todos los errores de un registro en una sola línea de texto.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 8.8 — reutiliza obtenerMensajesError (reto 2) y une con comas.
+        // 1. Obtén la lista de mensajes y únelos con ", " usando Collectors.joining.
+        // PISTA: return String.join(", ", obtenerMensajesError(dto));
+        //    (o ...stream().collect(Collectors.joining(", "))).
+        // OJO: el test espera "" — placeholder; con un dto inválido la espec real
+        //      devolvería los mensajes concatenados, no cadena vacía.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearErrores");
     }
 
@@ -208,11 +223,16 @@ public final class Ej069BasicConstraints {
      * @return nuevo RegistroDto corregido si procede
      */
     public static RegistroDto validarYCorregir(RegistroDto dto) {
-        // TODO extra: RETO EXTRA 10: Validar y corregir un RegistroDto (si el nombre es nulo/vacío, le asigna "Usuario Genérico").
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: "withers" de records/inmutables (teoría 1.1) aplicado a un DTO.
+        // 1. Si dto es null → devuelve null (o lanza, según prefieras; el test no lo cubre).
+        // 2. Comprueba si el nombre es null o está en blanco (isBlank()).
+        // 3. Si lo está, crea un NUEVO RegistroDto copiando email/edad/telefono pero
+        //    con nombre "Usuario Genérico"; si no, devuelve el dto tal cual.
+        // PISTA: boolean malo = dto.nombre == null || dto.nombre.isBlank();
+        //        return malo ? new RegistroDto("Usuario Genérico", dto.email,
+        //                                      dto.edad, dto.telefono) : dto;
+        // OJO: el test manda nombre "" y espera assertNull → placeholder; la espec
+        //      real devuelve un dto corregido, nunca null.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para validarYCorregir");
     }
 

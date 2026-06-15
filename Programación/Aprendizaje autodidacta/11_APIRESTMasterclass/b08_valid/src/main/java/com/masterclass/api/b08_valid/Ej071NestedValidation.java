@@ -70,11 +70,9 @@ public final class Ej071NestedValidation {
      * @return true si es correcta
      */
     public static boolean esCalleValida(String calle) {
-        // TODO extra: RETO EXTRA 1: Comprobar si una calle es válida (no vacía y no nula).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — equivale a @NotBlank (teoría 8.1). null/""/"   " → false.
+        // PISTA: return calle != null && !calle.isBlank();
+        // OJO: el test manda "Calle Mayor" (válida) y espera assertFalse → placeholder.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCalleValida");
     }
 
@@ -85,11 +83,10 @@ public final class Ej071NestedValidation {
      * @return true si cumple el patrón de 5 dígitos
      */
     public static boolean esCpValido(String cp) {
-        // TODO extra: RETO EXTRA 2: Comprobar si un código postal es válido (5 dígitos).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: misma regex que la constraint del campo cp (teoría 8.2): "\\d{5}".
+        // PISTA: return cp != null && cp.matches("\\d{5}");
+        // OJO: el test manda "28001" (válido) y espera assertFalse → placeholder.
+        //      "2800" (4) o "abcde" deben dar false: matches ancla a toda la cadena.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCpValido");
     }
 
@@ -100,11 +97,9 @@ public final class Ej071NestedValidation {
      * @return true si es válido
      */
     public static boolean esNombreValido(String nombre) {
-        // TODO extra: RETO EXTRA 3: Comprobar si un nombre de cliente es válido.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — equivale a @NotBlank (teoría 8.1). Reutiliza esCalleValida.
+        // PISTA: return nombre != null && !nombre.isBlank();
+        // OJO: el test manda "Juan" (válido) y espera assertFalse → placeholder.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esNombreValido");
     }
 
@@ -115,11 +110,12 @@ public final class Ej071NestedValidation {
      * @return true si la dirección no es nula
      */
     public static boolean tieneDireccion(Cliente c) {
-        // TODO extra: RETO EXTRA 4: Comprobar si el cliente tiene dirección establecida.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — comprueba que el campo anidado no es null (teoría 8.3).
+        // 1. Protege también c null para no romper.
+        // PISTA: return c != null && c.direccion != null;
+        // OJO: el test manda un Cliente con direccion null y espera assertFalse →
+        //      ahí casualmente coincide con la espec; pero un cliente CON dirección
+        //      debe dar true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneDireccion");
     }
 
@@ -130,11 +126,15 @@ public final class Ej071NestedValidation {
      * @return conjunto de propiedades inválidas de la dirección
      */
     public static Set<String> validarDireccionDirecta(Direccion d) {
-        // TODO extra: RETO EXTRA 5: Validar una dirección de forma directa e independiente.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: el validador puede validar CUALQUIER objeto, no solo el raíz (8.1).
+        // 1. Necesitas un Validator: instáncialo igual que el VALIDATOR del ejercicio
+        //    (Validation.buildDefaultValidatorFactory().getValidator()) o reutilízalo.
+        // 2. validator.validate(d) sobre la Direccion suelta y mapea las rutas.
+        // PISTA: return VALIDATOR.validate(d).stream()
+        //            .map(v -> v.getPropertyPath().toString()).collect(Collectors.toSet());
+        //    (el campo VALIDATOR es private static; puedes usarlo aquí dentro).
+        // OJO: el test usa assertNull → placeholder; la espec pide un Set de rutas
+        //      inválidas ("calle","cp" para una Direccion mala).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para validarDireccionDirecta");
     }
 
@@ -145,11 +145,10 @@ public final class Ej071NestedValidation {
      * @return true si es válida
      */
     public static boolean esDireccionCompleta(Direccion d) {
-        // TODO extra: RETO EXTRA 6: Determinar si la dirección está completamente libre de errores de validación.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: reutiliza validarDireccionDirecta (reto 5): válida = Set vacío.
+        // PISTA: return validarDireccionDirecta(d).isEmpty();
+        // OJO: el test manda una Direccion válida y espera assertFalse → placeholder;
+        //      la espec real da true para una dirección correcta.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esDireccionCompleta");
     }
 
@@ -160,11 +159,12 @@ public final class Ej071NestedValidation {
      * @return true si pasa todas las validaciones
      */
     public static boolean esClienteValido(Cliente c) {
-        // TODO extra: RETO EXTRA 7: Validar programáticamente si el cliente y su dirección anidada son correctos.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: gracias a @Valid en el campo direccion, validar el Cliente valida
+        //       TAMBIÉN la dirección en cascada (teoría 8.3). Reutiliza rutasInvalidas.
+        // PISTA: return rutasInvalidas(c).isEmpty();
+        // OJO: el test manda un Cliente válido y espera assertFalse → placeholder;
+        //      la espec real da true. CUIDADO: si en el ejercicio base olvidaste el
+        //      @Valid sobre direccion, una dirección mala pasaría desapercibida.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esClienteValido");
     }
 
@@ -175,11 +175,13 @@ public final class Ej071NestedValidation {
      * @return conjunto de rutas que empiezan por "direccion."
      */
     public static Set<String> obtenerErroresDeDireccion(Cliente c) {
-        // TODO extra: RETO EXTRA 8: Obtener únicamente los errores procedentes del objeto anidado dirección.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: filtra las rutas en cascada por su prefijo (teoría 8.3).
+        // 1. Reutiliza rutasInvalidas(c) y quédate con las que empiezan por "direccion.".
+        // PISTA: return rutasInvalidas(c).stream()
+        //            .filter(r -> r.startsWith("direccion.")).collect(Collectors.toSet());
+        // OJO: el test usa assertNull → placeholder; la espec pide el Set de rutas
+        //      anidadas ("direccion.calle","direccion.cp"). Fíjate en el punto: solo
+        //      aparecen así si el campo lleva @Valid.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerErroresDeDireccion");
     }
 
@@ -191,11 +193,12 @@ public final class Ej071NestedValidation {
      * @return true si pertenece
      */
     public static boolean cpPerteneceAProvincia(String cp, String prefijoProvincia) {
-        // TODO extra: RETO EXTRA 9: Comprobar si el código postal pertenece a una provincia concreta por su prefijo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: el prefijo provincial son los 2 primeros dígitos del CP.
+        // 1. Reutiliza esCpValido(cp) (reto 2) para asegurarte de que es un CP real.
+        // 2. Comprueba cp.startsWith(prefijoProvincia).
+        // PISTA: return esCpValido(cp) && cp.startsWith(prefijoProvincia);
+        // OJO: el test ("28001","28") espera assertFalse → placeholder; la espec real
+        //      da true (Madrid empieza por 28).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para cpPerteneceAProvincia");
     }
 
@@ -206,11 +209,15 @@ public final class Ej071NestedValidation {
      * @return copia de Cliente con strings limpios
      */
     public static Cliente clonarYLimpiarCliente(Cliente c) {
-        // TODO extra: RETO EXTRA 10: Limpiar y normalizar los espacios en blanco del nombre del cliente y calle.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: copia profunda con trim de los strings (patrón inmutable, teoría 1.1).
+        // 1. Si c es null → null. Cuida también c.direccion null.
+        // 2. Crea una NUEVA Direccion con calle/cp trim, y un NUEVO Cliente con el
+        //    nombre trim y esa dirección limpia.
+        // PISTA: var d = c.direccion == null ? null
+        //            : new Direccion(c.direccion.calle.trim(), c.direccion.cp.trim());
+        //        return new Cliente(c.nombre.trim(), d);
+        // OJO: el test usa assertNull → placeholder; la espec real devuelve el cliente
+        //      con "  Juan  " → "Juan" y "  Calle Mayor  " → "Calle Mayor".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para clonarYLimpiarCliente");
     }
 

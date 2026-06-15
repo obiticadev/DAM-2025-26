@@ -70,14 +70,15 @@ public class Ej051PatchPartialUpdate {
     /**
      * Reto Extra 2: PATCH para modificar una colección anidada (tags).
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{
-        // TODO extra: Reto Extra 2: PATCH para modificar una colección anidada (tags).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PatchMapping");
-    }/tags")
+    // GUÍA: teoría 5.3 — PATCH sobre una colección con operaciones "add/remove".
+    // 1. Parte de una lista MUTABLE base: new ArrayList<>(List.of("java","spring")).
+    // 2. Si cambios contiene "addTag" → tags.add((String) cambios.get("addTag")).
+    //    Si contiene "removeTag" → tags.remove((String) cambios.get("removeTag")).
+    // 3. return ResponseEntity.ok(new ItemConTagsDto(id, "viejo", true, tags));
+    // OJO: el test add "docker" espera $.tags[2]=="docker" (tercer elemento, tras
+    //   java y spring); remove "spring" espera $.tags[0]=="java". Usa ArrayList
+    //   mutable: List.of(...) lanzaría UnsupportedOperationException al modificar.
+    // TODO extra: anota con @PatchMapping("/{id}/tags").
     public org.springframework.http.ResponseEntity<ItemConTagsDto> patchColeccion(
             @org.springframework.web.bind.annotation.PathVariable long id,
             @org.springframework.web.bind.annotation.RequestBody java.util.Map<String, Object> cambios) {
@@ -91,14 +92,12 @@ public class Ej051PatchPartialUpdate {
     /**
      * Reto Extra 3: PATCH implícito para incrementar un contador.
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{
-        // TODO extra: Reto Extra 3: PATCH implícito para incrementar un contador.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PatchMapping");
-    }/incrementar")
+    // GUÍA: teoría 5.3 — PATCH sin cuerpo que solo "muta" un campo (incrementar).
+    // 1. Construye un Map<String,Object> con "id" = id y "visitas" = 11 (el valor
+    //    base 10 + 1) y devuélvelo con ResponseEntity.ok(...).
+    //    PISTA: un LinkedHashMap con dos put, o Map.of("id", id, "visitas", 11).
+    // OJO: el test (sin cuerpo) espera $.visitas == 11.
+    // TODO extra: anota con @PatchMapping("/{id}/incrementar").
     public org.springframework.http.ResponseEntity<java.util.Map<String, Object>> patchIncrementarContador(
             @org.springframework.web.bind.annotation.PathVariable long id) {
         // TODO extra: simula el incremento de un contador de visitas para el recurso.
@@ -109,14 +108,16 @@ public class Ej051PatchPartialUpdate {
     /**
      * Reto Extra 4: Simulador simple de JSON Patch (RFC 6902).
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{
-        // TODO extra: Reto Extra 4: Simulador simple de JSON Patch (RFC 6902).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PatchMapping");
-    }/rfc6902")
+    // GUÍA: teoría 5.3 — JSON Patch (RFC 6902) es una LISTA de operaciones
+    //   {op, path, value} que el servidor aplica en orden.
+    // 1. Parte de nombre="viejo", activo=true. Recorre 'operaciones'; para cada una
+    //    si op=="replace" y path=="/nombre" → nombre = (String) op.get("value").
+    //    (con extenderlo a /activo basta para el patrón).
+    // 2. return ResponseEntity.ok(new ItemDto(id, nombre, activo));
+    // OJO: el test manda [{"op":"replace","path":"/nombre","value":"cambiado"}] y
+    //   espera $.nombre=="cambiado". Cada operación es un Map<String,Object>.
+    // CULTURA: librerías como json-patch hacen esto completo (add/remove/move/test).
+    // TODO extra: anota con @PatchMapping("/{id}/rfc6902").
     public org.springframework.http.ResponseEntity<ItemDto> patchConJsonPatch(
             @org.springframework.web.bind.annotation.PathVariable long id,
             @org.springframework.web.bind.annotation.RequestBody java.util.List<java.util.Map<String, Object>> operaciones) {
@@ -128,14 +129,15 @@ public class Ej051PatchPartialUpdate {
     /**
      * Reto Extra 5: Validación estricta del tipo de datos de entrada.
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{
-        // TODO extra: Reto Extra 5: Validación estricta del tipo de datos de entrada.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PatchMapping");
-    }/valida-tipos")
+    // GUÍA: teoría 5.3 — al recibir Map<String,Object> tú validas los tipos a mano
+    //   (Jackson no sabe que "activo" debe ser boolean).
+    // 1. Si cambios contiene "activo" y su valor NO es Boolean → 400 con body
+    //    "Tipo de dato invalido para activo".
+    //    PISTA: !(cambios.get("activo") instanceof Boolean).
+    // 2. Si pasa → 200 (con el ItemDto o un ok vacío).
+    // OJO: el test manda {"activo":"no-booleano"} → 400 y {"activo":false} → 200.
+    //   En JSON, false llega como Boolean; "no-booleano" como String.
+    // TODO extra: anota con @PatchMapping("/{id}/valida-tipos").
     public org.springframework.http.ResponseEntity<?> patchValidarTipos(
             @org.springframework.web.bind.annotation.PathVariable long id,
             @org.springframework.web.bind.annotation.RequestBody java.util.Map<String, Object> cambios) {
@@ -147,14 +149,12 @@ public class Ej051PatchPartialUpdate {
     /**
      * Reto Extra 6: Protección contra modificación de campos de solo lectura (como ID).
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{
-        // TODO extra: Reto Extra 6: Protección contra modificación de campos de solo lectura (como ID).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PatchMapping");
-    }/readonly")
+    // GUÍA: teoría 5.3 — hay campos de solo lectura (el id) que el PATCH no debe tocar.
+    // 1. Si cambios.containsKey("id") → 400 con body "No esta permitido modificar el ID".
+    // 2. Si no → 200 (con el ItemDto o un ok).
+    // OJO: el test manda {"id":2,...} → 400 y {"nombre":"nuevo"} (sin id) → 200.
+    //   El mensaje debe ser EXACTO (sin tilde en "esta", tal como lo pide el test).
+    // TODO extra: anota con @PatchMapping("/{id}/readonly").
     public org.springframework.http.ResponseEntity<?> patchNoPermitido(
             @org.springframework.web.bind.annotation.PathVariable long id,
             @org.springframework.web.bind.annotation.RequestBody java.util.Map<String, Object> cambios) {
@@ -166,14 +166,13 @@ public class Ej051PatchPartialUpdate {
     /**
      * Reto Extra 7: PATCH con cabecera de auditoría del usuario que modifica.
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{
-        // TODO extra: Reto Extra 7: PATCH con cabecera de auditoría del usuario que modifica.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PatchMapping");
-    }/auditoria")
+    // GUÍA: teoría 5.2/5.3 — combina @RequestBody + @RequestHeader y devuelve quién
+    //   hizo el cambio (auditoría).
+    // 1. Construye un Map con el recurso actualizado (p.ej. "id", "nombre") y añade
+    //    "modificadoPor" = user (valor de la cabecera X-User).
+    // 2. return ResponseEntity.ok(mapa);
+    // OJO: el test manda header X-User=obitica y espera $.modificadoPor=="obitica".
+    // TODO extra: anota con @PatchMapping("/{id}/auditoria").
     public org.springframework.http.ResponseEntity<java.util.Map<String, Object>> patchAuditoria(
             @org.springframework.web.bind.annotation.PathVariable long id,
             @org.springframework.web.bind.annotation.RequestBody java.util.Map<String, Object> cambios,
@@ -185,14 +184,14 @@ public class Ej051PatchPartialUpdate {
     /**
      * Reto Extra 8: Validación cruzada de campos en actualización parcial.
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{
-        // TODO extra: Reto Extra 8: Validación cruzada de campos en actualización parcial.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PatchMapping");
-    }/estado-exclusivo")
+    // GUÍA: teoría 5.3 — validación CRUZADA: dos campos que, combinados, son inválidos.
+    // 1. Si en cambios viene "activo" == false Y además viene "nombre" → 422 con
+    //    body "No se puede renombrar un recurso que se desactiva".
+    //    PISTA: Boolean.FALSE.equals(cambios.get("activo")) && cambios.containsKey("nombre").
+    // 2. Si no → 200.
+    // OJO: el test manda {"activo":false,"nombre":"nuevo"} → 422 y
+    //   {"activo":true,"nombre":"nuevo"} → 200.
+    // TODO extra: anota con @PatchMapping("/{id}/estado-exclusivo").
     public org.springframework.http.ResponseEntity<?> patchEstadoExclusivo(
             @org.springframework.web.bind.annotation.PathVariable long id,
             @org.springframework.web.bind.annotation.RequestBody java.util.Map<String, Object> cambios) {
@@ -204,14 +203,12 @@ public class Ej051PatchPartialUpdate {
     /**
      * Reto Extra 9: Control de conflictos y recursos bloqueados (Conflict).
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{
-        // TODO extra: Reto Extra 9: Control de conflictos y recursos bloqueados (Conflict).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PatchMapping");
-    }/bloqueado")
+    // GUÍA: teoría 5.3 — 409 Conflict para un recurso "bloqueado".
+    // 1. Si id == 99 → 409 con body "Recurso bloqueado contra modificaciones".
+    // 2. Cualquier otro id → 200.
+    // OJO: el test usa id=99 → 409 e id=1 → 200. Mismo patrón que Ej050 reto 8 pero
+    //   con PATCH.
+    // TODO extra: anota con @PatchMapping("/{id}/bloqueado").
     public org.springframework.http.ResponseEntity<?> patchLanzaConflicto(
             @org.springframework.web.bind.annotation.PathVariable long id,
             @org.springframework.web.bind.annotation.RequestBody java.util.Map<String, Object> cambios) {
@@ -223,14 +220,14 @@ public class Ej051PatchPartialUpdate {
     /**
      * Reto Extra 10: PATCH condicional condicionado a la cabecera If-Match.
      */
-    // TODO extra: anota con @org.springframework.web.bind.annotation.PatchMapping("/{
-        // TODO extra: Reto Extra 10: PATCH condicional condicionado a la cabecera If-Match.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para PatchMapping");
-    }/conditional")
+    // GUÍA: teoría 5.3 — mismo patrón If-Match que Ej050 reto 3, ahora con PATCH.
+    // 1. En cascada sobre ifMatch:
+    //    - null/vacío           → 428 Precondition Required.
+    //    - distinto de "\"v1\"" → 412 Precondition Failed.
+    //    - igual a "\"v1\""     → 200.
+    // OJO: el test cubre sin header → 428, "\"v2\"" → 412 y "\"v1\"" → 200.
+    //   Reutiliza la lógica que ya razonaste en Ej050 reto 3.
+    // TODO extra: anota con @PatchMapping("/{id}/conditional").
     public org.springframework.http.ResponseEntity<?> patchCondicionalEtag(
             @org.springframework.web.bind.annotation.PathVariable long id,
             @org.springframework.web.bind.annotation.RequestBody java.util.Map<String, Object> cambios,

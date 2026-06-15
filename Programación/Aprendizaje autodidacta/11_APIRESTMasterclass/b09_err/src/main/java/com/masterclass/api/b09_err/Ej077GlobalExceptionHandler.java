@@ -54,11 +54,15 @@ public class Ej077GlobalExceptionHandler {
      * RETO EXTRA 01: Determina si una excepcion es de negocio y no de Spring o Java standard.
      */
     public static boolean esExcepcionDeNegocio(Throwable t) {
-        // TODO extra: RETO EXTRA 01: Determina si una excepcion es de negocio y no de Spring o Java standard.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 9.3 (qué es un error "de negocio" / de dominio).
+        // 1. null → false (defensa: un Throwable nulo no es de negocio).
+        // 2. "De negocio" aquí = una de NUESTRAS excepciones de dominio, no una
+        //    de Java/Spring. La única que conoce este fichero es RecursoNoEncontrado.
+        // 3. return t instanceof RecursoNoEncontrado;
+        // OJO: el test solo manda new RecursoNoEncontrado("") y espera true; no
+        // confundas con NullPointerException o SQLException (esas NO son de negocio).
+        // CULTURA: en b09 las de dominio extienden DominioException (Ej079); el
+        // criterio real sería t instanceof DominioException.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionDeNegocio");
     }
 
@@ -66,11 +70,16 @@ public class Ej077GlobalExceptionHandler {
      * RETO EXTRA 02: Categoriza la gravedad de fallos críticos del sistema.
      */
     public static boolean esExcepcionGravedadAlta(Throwable t) {
-        // TODO extra: RETO EXTRA 02: Categoriza la gravedad de fallos críticos del sistema.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: clasifica por tipo de fallo (teoría 9.3, fila "técnica → 500").
+        // 1. null → false.
+        // 2. Gravedad alta = fallos técnicos/de programación, no errores de
+        //    negocio. NullPointerException es el ejemplo canónico.
+        // 3. Criterio amplio y robusto: cuenta como grave un NPE, un Error de la
+        //    JVM o cualquier RuntimeException que NO sea de dominio.
+        // PISTA: return t instanceof NullPointerException
+        //               || t instanceof Error;
+        // OJO: el test manda new NullPointerException() y espera true.
+        // CULTURA: estos son los que SÍ acaban en 500 y disparan una alerta.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionGravedadAlta");
     }
 
@@ -78,11 +87,15 @@ public class Ej077GlobalExceptionHandler {
      * RETO EXTRA 03: Mapea una excepcion a un codigo alfanumerico predefinido de error.
      */
     public static String obtenerCodigoError(Throwable t) {
-        // TODO extra: RETO EXTRA 03: Mapea una excepcion a un codigo alfanumerico predefinido de error.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: tabla excepción → código de error (como la de 9.3 pero a String).
+        // 1. null → un código por defecto (p.ej. "ERR-DESCONOCIDO").
+        // 2. Mapea por tipo con instanceof/switch de patrones:
+        //    NullPointerException → "ERR-NULO".
+        // 3. Devuelve el código que toque; añade más ramas si quieres.
+        // PISTA: if (t instanceof NullPointerException) return "ERR-NULO";
+        // OJO: el test exige EXACTAMENTE "ERR-NULO" para un NPE (compara con equals).
+        // CULTURA: estos códigos estables son los que el cliente busca en tu
+        // catálogo de errores (el campo "type" del ProblemDetail de 9.2).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerCodigoError");
     }
 
@@ -90,11 +103,10 @@ public class Ej077GlobalExceptionHandler {
      * RETO EXTRA 04: Formatea mensajes de error combinandolos con coherencia.
      */
     public static String formatearMensajeError(String defaultMsg, String customMsg) {
-        // TODO extra: RETO EXTRA 04: Formatea mensajes de error combinandolos con coherencia.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea de formateo — return defaultMsg + ": " + customMsg;
+        // OJO: el separador es ": " (dos puntos + espacio). El test compara con
+        // "Default: Custom" usando equals, así que el espacio importa.
+        // (Defensa opcional: si alguno es null, sustitúyelo por "" antes de unir.)
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearMensajeError");
     }
 
@@ -102,11 +114,17 @@ public class Ej077GlobalExceptionHandler {
      * RETO EXTRA 05: Extrae recursivamente la causa raiz de una excepcion.
      */
     public static String extraerDetalleCausa(Throwable t) {
-        // TODO extra: RETO EXTRA 05: Extrae recursivamente la causa raiz de una excepcion.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: recorre la cadena de causas hasta la raíz (teoría 1.9 + 9.7).
+        // 1. null → devuelve null o "" (defensa).
+        // 2. Avanza con getCause() mientras no sea null, quedándote con el último:
+        //       Throwable raiz = t;
+        //       while (raiz.getCause() != null) raiz = raiz.getCause();
+        // 3. Devuelve raiz.getMessage().
+        // OJO: el test pasa new RuntimeException(new Exception("raiz")) y espera
+        // EXACTAMENTE "raiz" — es decir, el mensaje de la causa más profunda, no
+        // el del wrapper externo (que es null aquí).
+        // CULTURA: esto es lo que haces al loguear un 500: el mensaje del wrapper
+        // no dice nada; la raíz sí. Conecta con la traducción de 9.7.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerDetalleCausa");
     }
 
@@ -114,11 +132,13 @@ public class Ej077GlobalExceptionHandler {
      * RETO EXTRA 06: Verifica si la excepcion proviene del stack de persistencia.
      */
     public static boolean esErrorBaseDatos(Throwable t) {
-        // TODO extra: RETO EXTRA 06: Verifica si la excepcion proviene del stack de persistencia.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: detecta excepciones del stack de persistencia (teoría 9.7).
+        // 1. null → false.
+        // 2. La marca técnica de JDBC es java.sql.SQLException:
+        //       return t instanceof java.sql.SQLException;
+        // OJO: el test manda new java.sql.SQLException() y espera true.
+        // CULTURA: justo estas son las que NO deben llegar a la web crudas; en
+        // Ej083 las traduces a DatoDuplicado/Persistencia. Aquí solo las detectas.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esErrorBaseDatos");
     }
 
@@ -126,11 +146,13 @@ public class Ej077GlobalExceptionHandler {
      * RETO EXTRA 07: Genera el texto amigable de recurso no hallado.
      */
     public static String crearMensajeInformativo(String recurso, Long id) {
-        // TODO extra: RETO EXTRA 07: Genera el texto amigable de recurso no hallado.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: compón un mensaje legible con el recurso y el id (como el detail
+        // de un ProblemDetail 404, teoría 9.2).
+        // PISTA: return recurso + " con id " + id + " no encontrado";
+        // OJO: el test solo exige que el resultado .contains("User") cuando
+        // recurso="User"; no fija el texto completo, así que tienes libertad de
+        // redacción siempre que el nombre del recurso aparezca literal.
+        // (Defensa: si recurso es null, usa "recurso".)
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearMensajeInformativo");
     }
 
@@ -138,11 +160,15 @@ public class Ej077GlobalExceptionHandler {
      * RETO EXTRA 08: Comprueba si es un error del analizador o parseador JSON.
      */
     public static boolean esErrorSintaxis(Throwable t) {
-        // TODO extra: RETO EXTRA 08: Comprueba si es un error del analizador o parseador JSON.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: detecta un error de parseo/sintaxis JSON.
+        // 1. null o sin mensaje → false.
+        // 2. Criterio del test: el mensaje menciona "json".
+        //    PISTA: return t != null && t.getMessage() != null
+        //                  && t.getMessage().toLowerCase().contains("json");
+        // OJO: el test pasa new IllegalArgumentException("json") y espera true,
+        // así que NO filtres por tipo (no es por la clase, es por el mensaje).
+        // CULTURA: en Spring el error real es HttpMessageNotReadableException; un
+        // @ExceptionHandler suyo devuelve 400 "JSON mal formado".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esErrorSintaxis");
     }
 
@@ -150,11 +176,13 @@ public class Ej077GlobalExceptionHandler {
      * RETO EXTRA 09: Genera el formato estructurado para auditorias en logs.
      */
     public static String construirCuerpoLog(String traceId, String errorMsg) {
-        // TODO extra: RETO EXTRA 09: Genera el formato estructurado para auditorias en logs.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: formatea una línea de log con el traceId delante (teoría 9.6).
+        // PISTA: return "[" + traceId + "] " + errorMsg;
+        // OJO: el test solo exige que el resultado .contains("T1") cuando
+        // traceId="T1"; el formato exacto es tuyo, pero pon el trace al principio
+        // para poder grep-earlo. Compáralo con formatearLogConTrace de Ej082.
+        // CULTURA: este prefijo [trace] es lo que te deja reconstruir una
+        // petición que cruzó varios servicios (observabilidad, b20).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para construirCuerpoLog");
     }
 
@@ -162,11 +190,15 @@ public class Ej077GlobalExceptionHandler {
      * RETO EXTRA 10: Verifica si el problema se debe a conectividad o socket abortado.
      */
     public static boolean esErrorRed(Throwable t) {
-        // TODO extra: RETO EXTRA 10: Verifica si el problema se debe a conectividad o socket abortado.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: detecta un fallo de red (conectividad/socket).
+        // 1. null → false.
+        // 2. El test manda new java.io.IOException("Connection refused"). El
+        //    criterio más robusto que lo cubre: es una IOException (toda la
+        //    familia de red la extiende: SocketException, ConnectException...).
+        //    PISTA: return t instanceof java.io.IOException;
+        // ALTERNATIVA por mensaje: t.getMessage() contiene "refused"/"Connection"
+        //    — válida, pero el filtro por tipo es más sólido aquí.
+        // CULTURA: estos errores son los que disparan el fallback de Ej084 (9.8).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esErrorRed");
     }
 

@@ -44,11 +44,15 @@ public final class Ej078ProblemDetail {
      * RETO EXTRA 01: Comprueba que el tipo de error tenga un formato URI absoluto valido.
      */
     public static boolean esTipoValidoUri(String uri) {
-        // TODO extra: RETO EXTRA 01: Comprueba que el tipo de error tenga un formato URI absoluto valido.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: valida que el "type" del ProblemDetail sea una URI absoluta (9.2).
+        // 1. null o en blanco → false.
+        // 2. Una URI es absoluta si tiene esquema (https://...). Camino limpio:
+        //       try { return java.net.URI.create(uri).isAbsolute(); }
+        //       catch (IllegalArgumentException e) { return false; }
+        // PISTA alternativa: uri.startsWith("http://") || uri.startsWith("https://").
+        // OJO: el test pasa "https://api.masterclass.com/errors/not-found" → true.
+        // CULTURA: el RFC 7807 recomienda que "type" sea una URL real a tu doc de
+        // errores; "about:blank" es solo el default cuando no la tienes.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esTipoValidoUri");
     }
 
@@ -56,11 +60,10 @@ public final class Ej078ProblemDetail {
      * RETO EXTRA 02: Verifica que el codigo este entre 400 y 599.
      */
     public static boolean validarCodigoEstadoHttp(int status) {
-        // TODO extra: RETO EXTRA 02: Verifica que el codigo este entre 400 y 599.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return status >= 400 && status <= 599;
+        // Es el rango de TODOS los errores HTTP (4xx cliente + 5xx servidor), la
+        // misma validación "status >= 400" del ejercicio base pero con tope.
+        // OJO: el test pasa 404 → true. Los límites son inclusivos.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para validarCodigoEstadoHttp");
     }
 
@@ -68,11 +71,16 @@ public final class Ej078ProblemDetail {
      * RETO EXTRA 03: Obtiene un valor del JSON de detalle del problema.
      */
     public static Object extraerPropiedadAdicional(String bodyJson, String property) {
-        // TODO extra: RETO EXTRA 03: Obtiene un valor del JSON de detalle del problema.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: extrae el valor de una propiedad de un JSON simple (string→string).
+        // 1. bodyJson o property null → devuelve null.
+        // 2. NO necesitas un parser real: el test pasa {"key":"val"} y pide "val".
+        //    Busca el patrón "property":"...valor..." y devuelve el contenido.
+        // PISTA: localiza "\"" + property + "\":\"" , corta desde ahí hasta la
+        //    siguiente comilla. O un regex: "\"key\"\\s*:\\s*\"([^\"]*)\"".
+        // OJO: el test compara con equals "val" — sin comillas ni espacios.
+        // CULTURA: en producción esto lo hace Jackson (ObjectMapper.readTree);
+        // aquí lo haces a mano para entender qué hay debajo del campo "property"
+        // que añadiste con setProperty en el ejercicio base.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerPropiedadAdicional");
     }
 
@@ -80,11 +88,11 @@ public final class Ej078ProblemDetail {
      * RETO EXTRA 04: Crea la URI de la instancia del error concreto.
      */
     public static String generarInstanciaUri(String path, Long id) {
-        // TODO extra: RETO EXTRA 04: Crea la URI de la instancia del error concreto.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: construye el "instance" del ProblemDetail (9.2) uniendo path + id.
+        // PISTA: return path + "/" + id;
+        // OJO: el test pasa ("/api/users", 42L) y espera EXACTAMENTE "/api/users/42".
+        // No metas doble barra: el path no la trae al final. (Defensa: si path
+        // terminara en "/", evita duplicarla.)
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para generarInstanciaUri");
     }
 
@@ -92,11 +100,16 @@ public final class Ej078ProblemDetail {
      * RETO EXTRA 05: Filtra stacktraces o datos de usuario del payload.
      */
     public static String limpiarCamposSensibles(String json) {
-        // TODO extra: RETO EXTRA 05: Filtra stacktraces o datos de usuario del payload.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: elimina campos sensibles (stacktrace, datos de usuario) del JSON.
+        // 1. null → "" o null (defensa).
+        // 2. Quita el par "stack":"..." del JSON. Lo mínimo que pasa el test:
+        //    eliminar el fragmento que contenga la clave "stack".
+        // PISTA: un regex que borre "\"stack\"\\s*:\\s*\"[^\"]*\",?" , o si solo
+        //    hay esa clave, devolver "{}".
+        // OJO: el test solo exige que el resultado NO contenga "stack"
+        //    (assertFalse(...contains("stack"))). No fija el JSON exacto.
+        // CULTURA: nunca devuelvas el stacktrace al cliente — es el error nº 2 del
+        // bloque y una fuga de información (rutas de clase, versiones, lógica).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para limpiarCamposSensibles");
     }
 
@@ -104,11 +117,13 @@ public final class Ej078ProblemDetail {
      * RETO EXTRA 06: Valida los requisitos minimos del RFC 7807.
      */
     public static boolean esProblemDetailValido(String type, String title, int status) {
-        // TODO extra: RETO EXTRA 06: Valida los requisitos minimos del RFC 7807.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: un ProblemDetail mínimo válido (9.2) necesita type, title y un
+        // status de error.
+        // PISTA: return type != null && !type.isBlank()
+        //               && title != null && !title.isBlank()
+        //               && status >= 400 && status <= 599;
+        // OJO: el test pasa ("urn:err", "Title", 400) → true. Reutiliza el rango
+        // de validarCodigoEstadoHttp (reto 2) para la parte del status.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esProblemDetailValido");
     }
 
@@ -116,11 +131,12 @@ public final class Ej078ProblemDetail {
      * RETO EXTRA 07: Devuelve la marca temporal en formato ISO 8601 UTC.
      */
     public static String formatearFechaIso(java.time.Instant instant) {
-        // TODO extra: RETO EXTRA 07: Devuelve la marca temporal en formato ISO 8601 UTC.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return instant.toString();
+        // Instant.toString() YA produce ISO-8601 en UTC y termina en "Z"
+        // (p.ej. "2026-06-15T10:30:00Z"). Es justo lo que viste en teoría 1.10.
+        // OJO: el test exige .endsWith("Z"); no formatees con ofPattern (le
+        // perderías la 'Z'). El timestamp del ProblemDetail (9.2) sale así.
+        // (Defensa: si instant es null, IllegalArgumentException.)
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearFechaIso");
     }
 
@@ -128,11 +144,9 @@ public final class Ej078ProblemDetail {
      * RETO EXTRA 08: Une el titulo principal y la causa de forma elegante.
      */
     public static String combinarDetalles(String main, String sub) {
-        // TODO extra: RETO EXTRA 08: Une el titulo principal y la causa de forma elegante.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return main + ": " + sub;
+        // OJO: separador ": " (dos puntos + espacio). El test compara con
+        // "Main: Sub". Mismo patrón que formatearMensajeError de Ej077 reto 4.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para combinarDetalles");
     }
 
@@ -140,11 +154,8 @@ public final class Ej078ProblemDetail {
      * RETO EXTRA 09: Determina si el codigo corresponde a un error del cliente (4xx).
      */
     public static boolean esErrorCliente(int status) {
-        // TODO extra: RETO EXTRA 09: Determina si el codigo corresponde a un error del cliente (4xx).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return status >= 400 && status <= 499;
+        // 4xx = el cliente se equivocó (404, 409, 400...). El test pasa 400 → true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esErrorCliente");
     }
 
@@ -152,11 +163,10 @@ public final class Ej078ProblemDetail {
      * RETO EXTRA 10: Determina si el codigo corresponde a un error del servidor (5xx).
      */
     public static boolean esErrorServidor(int status) {
-        // TODO extra: RETO EXTRA 10: Determina si el codigo corresponde a un error del servidor (5xx).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return status >= 500 && status <= 599;
+        // 5xx = el servidor falló (500, 503...). El test pasa 500 → true.
+        // CULTURA: la frontera 4xx/5xx es la de "culpa del cliente" vs "culpa
+        // nuestra": determina si la respuesta es accionable por quien llama.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esErrorServidor");
     }
 

@@ -168,11 +168,15 @@ public class Ej060HttpCacheEtag {
      * el cacheo del recurso tanto en navegadores como en proxies intermedios.
      */
     public static ResponseEntity.BodyBuilder pasoExtra08(ResponseEntity.BodyBuilder builder) {
-        // TODO extra: Reto Extra 8: Directiva estricta de no almacenamiento.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 6.6 (lo contrario del reto 7: prohibir TODO cacheo).
+        // return builder.header("Cache-Control", "no-store, no-cache, must-revalidate")
+        //               .header("Pragma", "no-cache");   // compat HTTP/1.0
+        // - no-store: ni navegador ni proxy guardan NADA (datos sensibles).
+        // - no-cache: si guardan, revalidan SIEMPRE antes de usar.
+        // OJO: el test solo pide assertNotNull; devuelve el builder (es fluido),
+        //      nunca null.
+        // CULTURA: esto es lo que pones en respuestas de banca/saldo: jamás
+        //          quieres que quede una copia cacheada.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra08");
     }
 
@@ -182,11 +186,15 @@ public class Ej060HttpCacheEtag {
      * (ej: "max-age=3600, public"). Si no está definida o es inválida, devuelve -1.
      */
     public static int pasoExtra09(String cacheControlHeader) {
-        // TODO extra: Reto Extra 9: Extractor de Max-Age desde petición.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 6.6. Extrae el número de "max-age=N" dentro de la cabecera.
+        // 1. Si es null o no contiene "max-age=" -> -1.
+        // 2. Localiza "max-age=" y toma lo que sigue hasta la siguiente coma/fin;
+        //    parsea a int dentro de try/catch (inválido -> -1).
+        // PISTA (robusto, con regex):
+        //    Matcher m = Pattern.compile("max-age=(\\d+)").matcher(cacheControlHeader);
+        //    return m.find() ? Integer.parseInt(m.group(1)) : -1;
+        // OJO: el test pasa "max-age=3600, public" y espera 3600 (solo el número,
+        //      sin el ", public"). La regex \\d+ corta justo en el número.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra09");
     }
 
@@ -196,11 +204,17 @@ public class Ej060HttpCacheEtag {
      * incorporando ETag calculado, Last-Modified, y configurando la directiva de caché 'max-age' indicada.
      */
     public static ResponseEntity<byte[]> pasoExtra10(byte[] content, String etag, java.time.Instant lastModified, int maxAgeSeconds) {
-        // TODO extra: Reto Extra 10: ResponseEntity condicional final con ETag y Cache-Control.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: junta todo el bloque de caché en UNA respuesta de lectura.
+        // 1. byte[] body = (content != null) ? content : new byte[0];
+        // 2. return ResponseEntity.ok()
+        //        .header("ETag", etag)
+        //        .header("Last-Modified", pasoExtra06(lastModified))   // reutiliza
+        //        .header("Cache-Control", pasoExtra07(maxAgeSeconds))  // reutiliza
+        //        .body(body);
+        //    Reaprovecha pasoExtra06 (Last-Modified) y pasoExtra07 (Cache-Control)
+        //    en lugar de repetir su lógica.
+        // OJO: el test solo comprueba assertNotNull. Maneja lastModified null si
+        //      pasoExtra06 puede devolver null (no añadas la cabecera en ese caso).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para pasoExtra10");
     }
 

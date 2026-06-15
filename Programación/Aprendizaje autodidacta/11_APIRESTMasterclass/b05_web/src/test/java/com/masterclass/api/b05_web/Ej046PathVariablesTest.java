@@ -91,11 +91,11 @@ class Ej046PathVariablesTest {
 
     @Test
     void retoExtra10_matrizVariables() throws Exception {
-        var helper = new org.springframework.web.util.UrlPathHelper();
-        helper.setRemoveSemicolonContent(false);
+        // Spring 6 usa PathPatternParser por defecto, que conserva las matrix
+        // variables sin necesidad de UrlPathHelper.setRemoveSemicolonContent(false)
+        // (API eliminada del builder standalone en Spring 6.0).
         var localMvc = org.springframework.test.web.servlet.setup.MockMvcBuilders
                 .standaloneSetup(new Ej046PathVariables())
-                .setUrlPathHelper(helper)
                 .build();
 
         localMvc.perform(get("/api/coches/renault;color=rojo;anio=2020"))
