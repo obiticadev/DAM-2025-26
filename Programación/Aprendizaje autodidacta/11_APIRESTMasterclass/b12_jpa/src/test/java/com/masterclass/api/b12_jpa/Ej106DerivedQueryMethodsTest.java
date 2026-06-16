@@ -4,24 +4,27 @@ import com.masterclass.api.support.JpaTestSupport;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import org.junit.jupiter.api.*;
+import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class Ej106DerivedQueryMethodsTest {
 
     private EntityManagerFactory emf;
     private EntityManager em;
-    private Ej106DerivedQueryMethods repo;
+    private Ej106DerivedQueryMethods consultasRepo;
+    private EmpleadoRepository repo;
 
     @BeforeEach
     void setUp() {
-        emf = JpaTestSupport.emf(Articulo106.class);
+        emf = JpaTestSupport.emf(Articulo106.class, Empleado.class);
         em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(new Articulo106("libros", 10));
         em.persist(new Articulo106("libros", 30));
         em.persist(new Articulo106("ropa", 50));
         em.getTransaction().commit();
-        repo = new Ej106DerivedQueryMethods(em);
+        consultasRepo = new Ej106DerivedQueryMethods(em);
+        repo = new EmpleadoRepositoryEm(em);
     }
 
     @AfterEach
@@ -32,10 +35,10 @@ class Ej106DerivedQueryMethodsTest {
 
     @Test
     void consultas() {
-        assertEquals(2, repo.findByCategoria("libros").size());
-        assertEquals(2, repo.findByPrecioMayorQue(20).size());
-        assertEquals(2, repo.countByCategoria("libros"));
-        assertEquals(0, repo.countByCategoria("nada"));
+        assertEquals(2, consultasRepo.findByCategoria("libros").size());
+        assertEquals(2, consultasRepo.findByPrecioMayorQue(20).size());
+        assertEquals(2, consultasRepo.countByCategoria("libros"));
+        assertEquals(0, consultasRepo.countByCategoria("nada"));
     }
 
 @Test

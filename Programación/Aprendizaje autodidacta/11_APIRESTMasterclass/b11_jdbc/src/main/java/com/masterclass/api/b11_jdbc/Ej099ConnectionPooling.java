@@ -8,7 +8,7 @@ import java.sql.SQLException;
 /**
  * Ejercicio 099 · Pool de conexiones con HikariCP.
  *
- * <p>Teoría: {@code teoria/11_JDBC_Profundo.md} (sección 11.4).
+ * <p>Teoría: {@code teoria/11_JDBC_Profundo.md} (sección 11.7).
  */
 public final class Ej099ConnectionPooling {
 
@@ -31,6 +31,24 @@ public final class Ej099ConnectionPooling {
         // TODO 5: config.setUsername("sa") y setPassword("") para H2.
         // TODO 6: crea y devuelve new HikariDataSource(config).
         return null;
+    }
+
+    /**
+     * Sobrecarga de apoyo para los retos extra: crea un pool Hikari indicando
+     * credenciales. (La usan los tests de los desafíos; se da implementada para
+     * que el módulo compile — el ejercicio base sigue siendo {@link #crearPool(String, int)}.)
+     *
+     * @param url  URL JDBC
+     * @param user usuario
+     * @param pass password
+     * @return un HikariDataSource configurado
+     */
+    public static DataSource crearPool(String url, String user, String pass) {
+        HikariConfig config = new HikariConfig();
+        config.setJdbcUrl(url);
+        config.setUsername(user);
+        config.setPassword(pass);
+        return new HikariDataSource(config);
     }
 
     /**
@@ -57,83 +75,98 @@ public final class Ej099ConnectionPooling {
      * TODO extra 1: Comprueba si un DataSource está configurado de forma no nula.
      */
     public static boolean desafioDataSourceNoNulo(javax.sql.DataSource ds) {
-        return ds != null;
+        // GUÍA: teoría 11.7. Una línea: return ds != null;
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioDataSourceNoNulo");
     }
 
     /**
      * TODO extra 2: Obtiene una conexión del pool y valida que esté abierta.
      */
     public static boolean desafioValidarConexionPool(javax.sql.DataSource ds) {
-        try (var c = ds.getConnection()) {
-            return c != null && !c.isClosed();
-        } catch (java.sql.SQLException e) {
-            return false;
-        }
+        // GUÍA: teoría 11.7 — pedir una conexión al pool y comprobar que está viva.
+        // 1. try (var c = ds.getConnection()) { return c != null && !c.isClosed(); }
+        // 2. catch (SQLException e) { return false; }
+        // OJO: el try-with-resources DEVUELVE la conexión al pool al salir (no la destruye).
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioValidarConexionPool");
     }
 
     /**
      * TODO extra 3: Retorna el tamaño mínimo de conexiones inactivas configurado en el pool (valor representativo).
      */
     public static int desafioMinIdleRecomendado() {
-        return 5;
+        // GUÍA: teoría 11.7 (parámetro minimumIdle). Una línea: return 5;
+        // OJO: el test exige exactamente 5.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioMinIdleRecomendado");
     }
 
     /**
      * TODO extra 4: Retorna el tamaño máximo de conexiones configurado en el pool (valor representativo).
      */
     public static int desafioMaxConnectionsRecomendado() {
-        return 10;
+        // GUÍA: teoría 11.7 (parámetro maximumPoolSize). Una línea: return 10;
+        // OJO: el test exige exactamente 10.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioMaxConnectionsRecomendado");
     }
 
     /**
      * TODO extra 5: Comprueba si el DataSource es una instancia de un pool Hikari (simulación).
      */
     public static boolean desafioEsHikariDataSource(javax.sql.DataSource ds) {
-        return ds != null && ds.getClass().getName().contains("Hikari");
+        // GUÍA: teoría 11.7 — Hikari es el pool por defecto de Spring Boot.
+        // Una línea: return ds != null && ds.getClass().getName().contains("Hikari");
+        // OJO: el test crea el pool con crearPool(url,"sa","") y espera true.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioEsHikariDataSource");
     }
 
     /**
      * TODO extra 6: Retorna el timeout de conexión recomendado en milisegundos (p.ej. 30000).
      */
     public static long desafioConnectionTimeoutRecomendado() {
-        return 30000L;
+        // GUÍA: teoría 11.7 (parámetro connectionTimeout, en ms). Una línea: return 30000L;
+        // OJO: el test exige 30000L exacto (long, no int).
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioConnectionTimeoutRecomendado");
     }
 
     /**
      * TODO extra 7: Verifica que una conexión obtenida del pool provenga de una URL válida.
      */
     public static boolean desafioVerificarUrlConexion(java.sql.Connection conn) {
-        try {
-            return conn.getMetaData().getURL() != null;
-        } catch (java.sql.SQLException e) {
-            return false;
-        }
+        // GUÍA: los metadatos de la conexión incluyen la URL JDBC (teoría 11.1/11.7).
+        // 1. try { return conn.getMetaData().getURL() != null; }
+        // 2. catch (SQLException e) { return false; }
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioVerificarUrlConexion");
     }
 
     /**
      * TODO extra 8: Simula la liberación de una conexión devolviéndola al pool (cierre try-with-resources).
      */
     public static void desafioLiberarConexion(java.sql.Connection conn) throws java.sql.SQLException {
-        if (conn != null) {
-            conn.close();
-        }
+        // GUÍA: teoría 11.7 — close() sobre una conexión del pool la DEVUELVE al pool.
+        // if (conn != null) conn.close();
+        // OJO: el test comprueba que tras llamar, conn.isClosed() es true (la "vista"
+        //      de la conexión queda cerrada aunque por dentro el pool la recicle).
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioLiberarConexion");
     }
 
     /**
      * TODO extra 9: Comprueba si el pool está activo validando que no lance excepciones al conectar repetidamente.
      */
     public static boolean desafioTestearPool(javax.sql.DataSource ds, int intentos) {
-        for (int i = 0; i < intentos; i++) {
-            if (!desafioValidarConexionPool(ds)) return false;
-        }
-        return true;
+        // GUÍA: reutiliza el reto 2 en bucle (teoría 11.7: reutilización de conexiones).
+        // for (int i = 0; i < intentos; i++) if (!desafioValidarConexionPool(ds)) return false;
+        // return true;
+        // OJO: el test pide 3 intentos sobre un pool válido y espera true.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioTestearPool");
     }
 
     /**
      * TODO extra 10: Retorna un resumen descriptivo del pool de conexiones.
      */
     public static String desafioResumirPool(javax.sql.DataSource ds) {
-        return ds == null ? "Pool desactivado" : "Pool activo: " + ds.getClass().getSimpleName();
+        // GUÍA: teoría 11.7. Operador ternario:
+        // return ds == null ? "Pool desactivado" : "Pool activo: " + ds.getClass().getSimpleName();
+        // OJO: el test exige EXACTAMENTE "Pool desactivado" cuando ds es null.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioResumirPool");
     }
 
 }

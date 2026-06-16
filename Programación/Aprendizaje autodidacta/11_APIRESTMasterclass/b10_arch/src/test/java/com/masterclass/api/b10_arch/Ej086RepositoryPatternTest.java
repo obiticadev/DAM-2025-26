@@ -2,6 +2,7 @@ package com.masterclass.api.b10_arch;
 
 import org.junit.jupiter.api.Test;
 import com.masterclass.api.b10_arch.Ej086RepositoryPattern.*;
+import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class Ej086RepositoryPatternTest {

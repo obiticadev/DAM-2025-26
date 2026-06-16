@@ -14,7 +14,7 @@ class Ej112PersistenceContextTest {
 
     @BeforeEach
     void setUp() {
-        emf = JpaTestSupport.emf(Doc112.class);
+        emf = JpaTestSupport.emf(Doc112.class, Usuario.class);
         em = emf.createEntityManager();
         em.getTransaction().begin();
         var d = new Doc112("original");
@@ -66,7 +66,10 @@ class Ej112PersistenceContextTest {
 
     @Test
     void testDesafioSincronizarContexto() {
+        // flush() exige una transacción activa; la abrimos para probar que no falla.
+        em.getTransaction().begin();
         assertDoesNotThrow(() -> Ej112PersistenceContext.desafioSincronizarContexto(em));
+        em.getTransaction().rollback();
     }
 
     @Test

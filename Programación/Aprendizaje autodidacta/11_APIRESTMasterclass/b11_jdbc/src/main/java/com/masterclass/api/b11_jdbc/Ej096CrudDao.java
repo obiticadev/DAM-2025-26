@@ -8,9 +8,11 @@ import java.sql.SQLException;
 /**
  * Ejercicio 096 · DAO CRUD con JDBC puro.
  *
- * <p>Teoría: {@code teoria/11_JDBC_Profundo.md} (sección 11.1).
+ * <p>Teoría: {@code teoria/11_JDBC_Profundo.md} (sección 11.4).
  *
- * <p>Tabla CLIENTE(id INT PRIMARY KEY, nombre VARCHAR) (la crea el test).
+ * <p>Tabla CLIENTE(id INT PRIMARY KEY, nombre VARCHAR) (la crea el test). Los
+ * retos extra trabajan sobre una variante con columna {@code email} y el record
+ * {@link Cliente} de paquete.
  */
 public final class Ej096CrudDao {
 
@@ -74,72 +76,101 @@ public final class Ej096CrudDao {
      * TODO extra 1: Retorna el SQL para insertar un cliente.
      */
     public static String desafioObtenerSqlInsert() {
-        return "INSERT INTO CLIENTE(id,nombre,email) VALUES (?,?,?)";
+        // GUÍA: teoría 11.4 — INSERT parametrizado con las 3 columnas.
+        // Una línea: return "INSERT INTO CLIENTE(id,nombre,email) VALUES (?,?,?)";
+        // OJO: el test compara con equals — fíjate en que aquí son TRES columnas
+        //      (id,nombre,email) y TRES marcadores (?,?,?).
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioObtenerSqlInsert");
     }
 
     /**
      * TODO extra 2: Retorna el SQL para buscar un cliente por ID.
      */
     public static String desafioObtenerSqlFindById() {
-        return "SELECT id,nombre,email FROM CLIENTE WHERE id = ?";
+        // GUÍA: teoría 11.4. Una línea:
+        // return "SELECT id,nombre,email FROM CLIENTE WHERE id = ?";
+        // OJO: el test exige espacios alrededor del '=' ("WHERE id = ?").
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioObtenerSqlFindById");
     }
 
     /**
      * TODO extra 3: Retorna el SQL para listar todos los clientes.
      */
     public static String desafioObtenerSqlFindAll() {
-        return "SELECT id,nombre,email FROM CLIENTE";
+        // GUÍA: teoría 11.4. Una línea: return "SELECT id,nombre,email FROM CLIENTE";
+        // OJO: sin WHERE ni ORDER BY — el test compara la cadena exacta.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioObtenerSqlFindAll");
     }
 
     /**
      * TODO extra 4: Retorna el SQL para eliminar un cliente por ID.
      */
     public static String desafioObtenerSqlDelete() {
-        return "DELETE FROM CLIENTE WHERE id = ?";
+        // GUÍA: teoría 11.4. Una línea: return "DELETE FROM CLIENTE WHERE id = ?";
+        // OJO: el test exige "WHERE id = ?" con espacios.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioObtenerSqlDelete");
     }
 
     /**
      * TODO extra 5: Comprueba si un Cliente es válido para inserción.
      */
     public static void desafioValidarCliente(Cliente c) {
-        if (c == null || c.nombre() == null || c.email() == null) {
-            throw new IllegalArgumentException("Cliente invalido");
-        }
+        // GUÍA: validación defensiva antes de tocar la BD (teoría 1.9).
+        // if (c == null || c.nombre() == null || c.email() == null)
+        //     throw new IllegalArgumentException("Cliente invalido");
+        // OJO: el test espera IllegalArgumentException con null, y NINGUNA con
+        //      new Cliente(1, "A", "b@c.com"). El mensaje "Cliente invalido" va sin tilde.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioValidarCliente");
     }
 
     /**
      * TODO extra 6: Mapea una fila de ResultSet a un Cliente.
      */
     public static Cliente desafioMapearCliente(java.sql.ResultSet rs) throws java.sql.SQLException {
-        return new Cliente(rs.getInt("id"), rs.getString("nombre"), rs.getString("email"));
+        // GUÍA: teoría 11.3/11.9 — fila → objeto (igual que un RowMapper a mano).
+        // return new Cliente(rs.getInt("id"), rs.getString("nombre"), rs.getString("email"));
+        // OJO: el test inserta (1,'Ana','a@b.com') y comprueba id()=1, nombre()="Ana",
+        //      email()="a@b.com": lee por nombre de columna.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioMapearCliente");
     }
 
     /**
      * TODO extra 7: Configura los parámetros para eliminar un cliente.
      */
     public static void desafioConfigurarEliminar(java.sql.PreparedStatement ps, int id) throws java.sql.SQLException {
-        ps.setInt(1, id);
+        // GUÍA: teoría 11.2 — el único parámetro del DELETE es el índice 1.
+        // Una línea: ps.setInt(1, id);
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioConfigurarEliminar");
     }
 
     /**
      * TODO extra 8: Verifica si se ha insertado con éxito analizando las filas afectadas.
      */
     public static boolean desafioVerificarFilaAfectada(int filasAfectadas) {
-        return filasAfectadas > 0;
+        // GUÍA: teoría 11.4 — executeUpdate devuelve nº de filas; > 0 = hubo cambio.
+        // Una línea: return filasAfectadas > 0;
+        // OJO: el test manda 1 (true) y 0 (false).
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioVerificarFilaAfectada");
     }
 
     /**
      * TODO extra 9: Comprueba que una lista de clientes no contenga elementos nulos.
      */
     public static boolean desafioNoTieneNulos(java.util.List<Cliente> clientes) {
-        return clientes.stream().allMatch(java.util.Objects::nonNull);
+        // GUÍA: streams (teoría 1.3) — allMatch con la referencia Objects::nonNull.
+        // Una línea: return clientes.stream().allMatch(java.util.Objects::nonNull);
+        // OJO: el test pasa una lista de un Cliente no nulo y espera true.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioNoTieneNulos");
     }
 
     /**
      * TODO extra 10: Retorna un cliente vacío por defecto para simular un Fallback.
      */
     public static Cliente desafioClienteVacíoFallback() {
-        return new Cliente(0, "Sin Nombre", "sin@email.com");
+        // GUÍA: el patrón "objeto nulo" / fallback (teoría 1.2: alternativa a null).
+        // Una línea: return new Cliente(0, "Sin Nombre", "sin@email.com");
+        // OJO: el test comprueba id()=0 y nombre()="Sin Nombre" (con espacio y mayúsculas).
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioClienteVacíoFallback");
     }
 
 }

@@ -24,11 +24,9 @@ public final class Ej118BidirectionalSync {
      * Reto Extra 1: Cuenta libros de un autor.
      */
     public static int contarLibros(Autor118 a) {
-        // TODO extra: Reto Extra 1: Cuenta libros de un autor.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.4. El lado inverso (libros) es una List.
+        // PISTA: return a == null ? 0 : a.getLibros().size();
+        // OJO: depende de que addLibro (TODO 1-5 del ejercicio base) añada de verdad a la lista.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarLibros");
     }
 
@@ -36,11 +34,9 @@ public final class Ej118BidirectionalSync {
      * Reto Extra 2: Comprueba si el autor tiene libros.
      */
     public static boolean tieneLibros(Autor118 a) {
-        // TODO extra: Reto Extra 2: Comprueba si el autor tiene libros.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.4. Reutiliza contarLibros del reto 1.
+        // PISTA: return contarLibros(a) > 0;
+        // OJO: vacío → false; tras addLibro → true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneLibros");
     }
 
@@ -48,11 +44,10 @@ public final class Ej118BidirectionalSync {
      * Reto Extra 3: Verifica si un libro esta sincronizado con el autor.
      */
     public static boolean esLibroSincronizado(Autor118 a, Libro118 l) {
-        // TODO extra: Reto Extra 3: Verifica si un libro esta sincronizado con el autor.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.4. Sincronizado = el lado dueño (FK) apunta al autor.
+        // PISTA: return a != null && l != null && l.getAutor() == a;
+        // OJO: == (misma instancia). Si addLibro olvidó el setAutor, esto sería false
+        //      y delataría el bug clásico de la sección 13.4.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esLibroSincronizado");
     }
 
@@ -60,11 +55,9 @@ public final class Ej118BidirectionalSync {
      * Reto Extra 4: Comprueba si el autor tiene un libro con determinado titulo.
      */
     public static boolean tieneLibroConTitulo(Autor118 a, String titulo) {
-        // TODO extra: Reto Extra 4: Comprueba si el autor tiene un libro con determinado titulo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.4 + streams. Libro118 ya tiene getTitulo().
+        // PISTA: a.getLibros().stream().anyMatch(l -> titulo.equals(l.getTitulo()));
+        // OJO: "Quijote" true, "Novela" false.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneLibroConTitulo");
     }
 
@@ -72,11 +65,10 @@ public final class Ej118BidirectionalSync {
      * Reto Extra 5: Cuenta libros con titulo largo.
      */
     public static int contarLibrosTituloLargo(Autor118 a, int len) {
-        // TODO extra: Reto Extra 5: Cuenta libros con titulo largo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.4 + filter+count.
+        // PISTA: (int) a.getLibros().stream()
+        //            .filter(l -> l.getTitulo() != null && l.getTitulo().length() > len).count();
+        // OJO: "El Quijote" mide 10; con len=8 pasa → 1. Estrictamente mayor.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarLibrosTituloLargo");
     }
 
@@ -84,11 +76,9 @@ public final class Ej118BidirectionalSync {
      * Reto Extra 6: Crea un nuevo libro.
      */
     public static Libro118 crearLibro(String titulo) {
-        // TODO extra: Reto Extra 6: Crea un nuevo libro.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — factory simple.
+        // PISTA: return new Libro118(titulo);
+        // OJO: el test solo comprueba assertNotNull.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearLibro");
     }
 
@@ -96,11 +86,13 @@ public final class Ej118BidirectionalSync {
      * Reto Extra 7: Desvincula de forma sincronizada un libro de su autor.
      */
     public static void desvincularLibro(Autor118 a, Libro118 l) {
-        // TODO extra: Reto Extra 7: Desvincula de forma sincronizada un libro de su autor.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.4. Desvincular SINCRONIZADO = romper los dos lados.
+        // 1. Quita l de la lista del autor (lado inverso).
+        // 2. Pon l.setAutor(null) (lado dueño de la FK).
+        // PISTA: reutiliza a.removeLibro(l) si ya implementaste TODO 6/7/8 del base; si no:
+        //        a.getLibros().remove(l); l.setAutor(null);
+        // OJO: el test exige a.getLibros() SIN l Y l.getAutor() == null. Romper solo un
+        //      lado dejaría el otro colgando.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desvincularLibro");
     }
 
@@ -108,11 +100,9 @@ public final class Ej118BidirectionalSync {
      * Reto Extra 8: Comprueba si un libro tiene autor.
      */
     public static boolean tieneAutor(Libro118 l) {
-        // TODO extra: Reto Extra 8: Comprueba si un libro tiene autor.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.4. ¿La FK apunta a algún autor?
+        // PISTA: return l != null && l.getAutor() != null;
+        // OJO: un Libro118 recién creado (sin addLibro) tiene autor null → false.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneAutor");
     }
 
@@ -120,11 +110,10 @@ public final class Ej118BidirectionalSync {
      * Reto Extra 9: Sincroniza en lote multiples libros.
      */
     public static void vincularEnLote(Autor118 a, java.util.List<Libro118> lista) {
-        // TODO extra: Reto Extra 9: Sincroniza en lote multiples libros.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.4. Itera y usa addLibro (que sincroniza ambos lados).
+        // PISTA: lista.forEach(a::addLibro);
+        // OJO: el test pasa 2 libros y espera size 2. addLibro debe estar implementado
+        //      (TODO 1-5 del base) y rechazar null, como exige addNullFalla.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para vincularEnLote");
     }
 
@@ -132,11 +121,10 @@ public final class Ej118BidirectionalSync {
      * Reto Extra 10: Retorna texto del autor.
      */
     public static String formatearAutor(Autor118 a) {
-        // TODO extra: Reto Extra 10: Retorna texto del autor.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: formato EXACTO. Aquí NO va el Id, solo el nº de libros.
+        // PISTA: return "Autor[Libros=" + a.getLibros().size() + "]";
+        // OJO: el test espera literalmente "Autor[Libros=0]" (fíjate: sin "Id=", a
+        //      diferencia de los formatos de Ej116/Ej117).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearAutor");
     }
 
@@ -149,9 +137,21 @@ class Autor118 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String nombre;
 
     @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL)
     private List<Libro118> libros = new ArrayList<>();
+
+    protected Autor118() {
+    }
+
+    public Autor118(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
 
     /**
      * Añade un libro manteniendo COHERENTES ambos lados de la relación.
@@ -208,5 +208,9 @@ class Libro118 {
 
     public Autor118 getAutor() {
         return autor;
+    }
+
+    public String getTitulo() {
+        return titulo;
     }
 }

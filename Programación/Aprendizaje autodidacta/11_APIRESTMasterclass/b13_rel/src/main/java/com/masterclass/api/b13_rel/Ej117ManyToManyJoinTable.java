@@ -36,11 +36,11 @@ public final class Ej117ManyToManyJoinTable {
      * Reto Extra 1: Cuenta el numero de cursos de un alumno.
      */
     public static int contarCursos(Alumno117 a) {
-        // TODO extra: Reto Extra 1: Cuenta el numero de cursos de un alumno.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.3 (el lado @ManyToMany es un Set normal).
+        // 1. Protege a null (devuelve 0).
+        // 2. Devuelve a.getCursos().size().
+        // PISTA: return a == null ? 0 : a.getCursos().size();
+        // OJO: depende de que matricular (TODO 7 del ejercicio base) añada de verdad al Set.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarCursos");
     }
 
@@ -48,11 +48,9 @@ public final class Ej117ManyToManyJoinTable {
      * Reto Extra 2: Comprueba si el alumno tiene al menos un curso.
      */
     public static boolean tieneCursos(Alumno117 a) {
-        // TODO extra: Reto Extra 2: Comprueba si el alumno tiene al menos un curso.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.3. Reutiliza contarCursos del reto 1.
+        // PISTA: return contarCursos(a) > 0;   // o !a.getCursos().isEmpty()
+        // OJO: vacío → false; tras matricular un curso → true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneCursos");
     }
 
@@ -60,11 +58,12 @@ public final class Ej117ManyToManyJoinTable {
      * Reto Extra 3: Verifica si un alumno esta matriculado en un curso concreto.
      */
     public static boolean estaMatriculado(Alumno117 a, Curso117 c) {
-        // TODO extra: Reto Extra 3: Verifica si un alumno esta matriculado en un curso concreto.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.3. El Set sabe responder contains.
+        // 1. Protege los null.
+        // 2. Devuelve a.getCursos().contains(c).
+        // PISTA: return a != null && c != null && a.getCursos().contains(c);
+        // OJO: Curso117 no define equals, así que contains compara por identidad; el test
+        //      matricula y consulta LA MISMA instancia de curso → true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para estaMatriculado");
     }
 
@@ -72,11 +71,9 @@ public final class Ej117ManyToManyJoinTable {
      * Reto Extra 4: Comprueba si el alumno tiene un curso por nombre.
      */
     public static boolean tieneCursoPorNombre(Alumno117 a, String nombreCurso) {
-        // TODO extra: Reto Extra 4: Comprueba si el alumno tiene un curso por nombre.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.3 + streams. Curso117 ya tiene getNombre().
+        // PISTA: a.getCursos().stream().anyMatch(c -> nombreCurso.equals(c.getNombre()));
+        // OJO: el test espera "Historia" true y "Lengua" false.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneCursoPorNombre");
     }
 
@@ -84,11 +81,10 @@ public final class Ej117ManyToManyJoinTable {
      * Reto Extra 5: Cuenta cursos con nombre mas largo que len.
      */
     public static int contarCursosNombreLargo(Alumno117 a, int len) {
-        // TODO extra: Reto Extra 5: Cuenta cursos con nombre mas largo que len.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.3 + filter+count.
+        // PISTA: (int) a.getCursos().stream()
+        //            .filter(c -> c.getNombre() != null && c.getNombre().length() > len).count();
+        // OJO: "Geografia" mide 9; con len=5 pasa → 1. Es estrictamente mayor.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarCursosNombreLargo");
     }
 
@@ -96,11 +92,9 @@ public final class Ej117ManyToManyJoinTable {
      * Reto Extra 6: Crea un nuevo curso.
      */
     public static Curso117 crearCurso(String nombre) {
-        // TODO extra: Reto Extra 6: Crea un nuevo curso.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — factory simple.
+        // PISTA: return new Curso117(nombre);
+        // OJO: el test solo comprueba assertNotNull.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearCurso");
     }
 
@@ -108,11 +102,11 @@ public final class Ej117ManyToManyJoinTable {
      * Reto Extra 7: Desmatricula a un alumno de un curso.
      */
     public static boolean desmatricular(Alumno117 a, Curso117 c) {
-        // TODO extra: Reto Extra 7: Desmatricula a un alumno de un curso.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.3. En N–N, quitar del Set borra la fila de la tabla de unión,
+        //       NO el curso (a diferencia de orphanRemoval en 1–N, teoría 13.5).
+        // 1. Devuelve el resultado de a.getCursos().remove(c) (true si estaba).
+        // PISTA: return a.getCursos().remove(c);
+        // OJO: el test espera true y que el Set quede en size 0.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desmatricular");
     }
 
@@ -120,11 +114,11 @@ public final class Ej117ManyToManyJoinTable {
      * Reto Extra 8: Comprueba si dos alumnos comparten al menos un curso.
      */
     public static boolean compartenCurso(Alumno117 a1, Alumno117 a2) {
-        // TODO extra: Reto Extra 8: Comprueba si dos alumnos comparten al menos un curso.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.3 + álgebra de conjuntos (intersección no vacía).
+        // 1. Recorre los cursos de a1 y mira si alguno está también en los de a2.
+        // PISTA: a1.getCursos().stream().anyMatch(a2.getCursos()::contains);
+        //        (alternativa clásica: java.util.Collections.disjoint(a1.getCursos(), a2.getCursos()) == false)
+        // OJO: el test matricula a ambos en LA MISMA instancia de curso → comparten → true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para compartenCurso");
     }
 
@@ -132,11 +126,12 @@ public final class Ej117ManyToManyJoinTable {
      * Reto Extra 9: Matricula a un alumno en multiples cursos.
      */
     public static void matricularEnLote(Alumno117 a, java.util.List<Curso117> lista) {
-        // TODO extra: Reto Extra 9: Matricula a un alumno en multiples cursos.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.3. Itera la lista y matricula cada curso.
+        // 1. Protege que a y lista no sean null.
+        // 2. Por cada curso, llama a a.matricular(c) (o a.getCursos().add(c)).
+        // PISTA: lista.forEach(a::matricular);
+        // OJO: el test pasa 2 cursos y espera size 2. Si reutilizas matricular, asegúrate
+        //      de haber implementado TODO 7 del ejercicio base.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para matricularEnLote");
     }
 
@@ -144,11 +139,9 @@ public final class Ej117ManyToManyJoinTable {
      * Reto Extra 10: Retorna una representacion de texto del alumno.
      */
     public static String formatearAlumno(Alumno117 a) {
-        // TODO extra: Reto Extra 10: Retorna una representacion de texto del alumno.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: formato EXACTO.
+        // PISTA: return "Alumno[Id=" + a.getId() + ", Cursos=" + a.getCursos().size() + "]";
+        // OJO: el test espera literalmente "Alumno[Id=null, Cursos=0]".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearAlumno");
     }
 
@@ -172,6 +165,10 @@ class Curso117 {
 
     public Long getId() {
         return id;
+    }
+
+    public String getNombre() {
+        return nombre;
     }
 }
 

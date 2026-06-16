@@ -3,6 +3,7 @@ package com.masterclass.api.b11_jdbc;
 import org.junit.jupiter.api.*;
 import org.h2.jdbcx.JdbcDataSource;
 import javax.sql.DataSource;
+import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class Ej101RowMapperAndExtractorTest {

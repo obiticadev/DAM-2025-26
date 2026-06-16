@@ -42,11 +42,10 @@ public final class Ej120FetchLazyEager {
      * Reto Extra 1: Cuenta libros de una biblioteca.
      */
     public static int contarLibros(Biblioteca120 b) {
-        // TODO extra: Reto Extra 1: Cuenta libros de una biblioteca.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.6. OJO conceptual: aquí 'b' está en memoria (no detached),
+        //       así que getLibros() NO lanza LazyInitializationException; eso solo pasa
+        //       con una entidad detached recién traída de BD (ver cargarYDetach).
+        // PISTA: return b == null ? 0 : b.getLibros().size();
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarLibros");
     }
 
@@ -54,11 +53,8 @@ public final class Ej120FetchLazyEager {
      * Reto Extra 2: Comprueba si tiene libros.
      */
     public static boolean tieneLibros(Biblioteca120 b) {
-        // TODO extra: Reto Extra 2: Comprueba si tiene libros.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.6. Reutiliza contarLibros.
+        // PISTA: return contarLibros(b) > 0;
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneLibros");
     }
 
@@ -66,11 +62,8 @@ public final class Ej120FetchLazyEager {
      * Reto Extra 3: Comprueba si un libro esta en biblioteca.
      */
     public static boolean contieneLibro(Biblioteca120 b, LibroLazy120 l) {
-        // TODO extra: Reto Extra 3: Comprueba si un libro esta en biblioteca.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.6. contains por identidad (LibroLazy120 no define equals).
+        // PISTA: return b != null && l != null && b.getLibros().contains(l);
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contieneLibro");
     }
 
@@ -78,11 +71,9 @@ public final class Ej120FetchLazyEager {
      * Reto Extra 4: Comprueba si algun libro tiene un titulo.
      */
     public static boolean tieneTitulo(Biblioteca120 b, String titulo) {
-        // TODO extra: Reto Extra 4: Comprueba si algun libro tiene un titulo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.6 + streams. LibroLazy120 ya tiene getTitulo().
+        // PISTA: b.getLibros().stream().anyMatch(l -> titulo.equals(l.getTitulo()));
+        // OJO: "Quijote" true, "Celestina" false.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneTitulo");
     }
 
@@ -90,11 +81,10 @@ public final class Ej120FetchLazyEager {
      * Reto Extra 5: Cuenta titulos largos.
      */
     public static int contarLibrosTituloLargo(Biblioteca120 b, int len) {
-        // TODO extra: Reto Extra 5: Cuenta titulos largos.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.6 + filter+count.
+        // PISTA: (int) b.getLibros().stream()
+        //            .filter(l -> l.getTitulo() != null && l.getTitulo().length() > len).count();
+        // OJO: "Quijote" mide 7; con len=5 → 1. Estrictamente mayor.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarLibrosTituloLargo");
     }
 
@@ -102,11 +92,8 @@ public final class Ej120FetchLazyEager {
      * Reto Extra 6: Crea un libro lazy.
      */
     public static LibroLazy120 crearLibro(String titulo) {
-        // TODO extra: Reto Extra 6: Crea un libro lazy.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — factory simple.
+        // PISTA: return new LibroLazy120(titulo);
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearLibro");
     }
 
@@ -114,11 +101,10 @@ public final class Ej120FetchLazyEager {
      * Reto Extra 7: Remueve el primer libro.
      */
     public static boolean removerPrimerLibro(Biblioteca120 b) {
-        // TODO extra: Reto Extra 7: Remueve el primer libro.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.6. Mismo patrón que removerPrimerConcepto (Ej119 reto 7).
+        // PISTA: if (b.getLibros().isEmpty()) return false;
+        //        b.getLibros().remove(0); return true;
+        // OJO: el test espera true y size 0.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para removerPrimerLibro");
     }
 
@@ -126,11 +112,8 @@ public final class Ej120FetchLazyEager {
      * Reto Extra 8: Valida biblioteca no nula.
      */
     public static boolean esValida(Biblioteca120 b) {
-        // TODO extra: Reto Extra 8: Valida biblioteca no nula.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea.
+        // PISTA: return b != null;
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esValida");
     }
 
@@ -138,11 +121,9 @@ public final class Ej120FetchLazyEager {
      * Reto Extra 9: Vincula libros en lote.
      */
     public static void vincularLibros(Biblioteca120 b, java.util.List<LibroLazy120> lista) {
-        // TODO extra: Reto Extra 9: Vincula libros en lote.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.6. Usa b.add (ya implementado: sincroniza el lado dueño).
+        // PISTA: lista.forEach(b::add);
+        // OJO: el test pasa 2 libros y espera size 2.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para vincularLibros");
     }
 
@@ -150,11 +131,9 @@ public final class Ej120FetchLazyEager {
      * Reto Extra 10: Retorna formato de biblioteca.
      */
     public static String formatearBiblioteca(Biblioteca120 b) {
-        // TODO extra: Reto Extra 10: Retorna formato de biblioteca.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: formato EXACTO.
+        // PISTA: return "Biblioteca[Id=" + b.getId() + ", Libros=" + b.getLibros().size() + "]";
+        // OJO: el test espera literalmente "Biblioteca[Id=null, Libros=0]".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearBiblioteca");
     }
 
@@ -182,6 +161,10 @@ class LibroLazy120 {
 
     public void setBiblioteca(Biblioteca120 b) {
         this.biblioteca = b;
+    }
+
+    public String getTitulo() {
+        return titulo;
     }
 }
 

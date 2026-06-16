@@ -58,84 +58,110 @@ public final class Ej094StatementVsPrepared {
      * TODO extra 1: Retorna el SQL de inserción parametrizado.
      */
     public static String desafioObtenerSqlInsert() {
-        return "INSERT INTO USUARIO(id,nombre) VALUES (?,?)";
+        // GUÍA: teoría 11.2 (marcadores ? en vez de concatenar).
+        // Una línea: return "INSERT INTO USUARIO(id,nombre) VALUES (?,?)";
+        // OJO: el test compara con equals carácter a carácter — copia el SQL EXACTO
+        //      (sin espacios extra, columnas id,nombre en ese orden).
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioObtenerSqlInsert");
     }
 
     /**
      * TODO extra 2: Evita la inyección SQL simulando el formateo y escapado de un string.
      */
     public static String desafioEvitarConcatenacionSql(String nombre) {
-        if (nombre == null) return "NULL";
-        return "'" + nombre.replace("'", "''") + "'";
+        // GUÍA: muestra POR QUÉ escapar a mano es frágil (teoría 11.2). En SQL una
+        // comilla simple se escapa duplicándola ('' = una comilla literal).
+        // 1. Si nombre es null, devuelve "NULL" (sin comillas).
+        // 2. Si no: envuelve en comillas y duplica las internas:
+        //    return "'" + nombre.replace("'", "''") + "'";
+        // OJO: el test manda "O'Reilly" y espera "'O''Reilly'" (comillas externas +
+        //      la interna duplicada). Esto es lo que el PreparedStatement hace por ti.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioEvitarConcatenacionSql");
     }
 
     /**
      * TODO extra 3: Prepara un PreparedStatement a partir de la conexión.
      */
     public static java.sql.PreparedStatement desafioCrearPreparedStatement(java.sql.Connection conn, String sql) throws java.sql.SQLException {
-        return conn.prepareStatement(sql);
+        // GUÍA: teoría 11.2. Una línea: return conn.prepareStatement(sql);
+        // OJO: el test solo comprueba assertNotNull sobre el resultado.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioCrearPreparedStatement");
     }
 
     /**
      * TODO extra 4: Fija el ID en el primer parámetro del PreparedStatement.
      */
     public static void desafioEstablecerIdParam(java.sql.PreparedStatement ps, int id) throws java.sql.SQLException {
-        ps.setInt(1, id);
+        // GUÍA: teoría 11.2 — los índices EMPIEZAN EN 1, no en 0.
+        // Una línea: ps.setInt(1, id);
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioEstablecerIdParam");
     }
 
     /**
      * TODO extra 5: Fija el nombre en el segundo parámetro del PreparedStatement.
      */
     public static void desafioEstablecerNombreParam(java.sql.PreparedStatement ps, String nombre) throws java.sql.SQLException {
-        ps.setString(2, nombre);
+        // GUÍA: teoría 11.2 — el segundo ? es el índice 2.
+        // Una línea: ps.setString(2, nombre);
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioEstablecerNombreParam");
     }
 
     /**
      * TODO extra 6: Ejecuta la actualización (INSERT) y devuelve el número de filas afectadas.
      */
     public static int desafioEjecutarUpdate(java.sql.PreparedStatement ps) throws java.sql.SQLException {
-        return ps.executeUpdate();
+        // GUÍA: teoría 11.2 — executeUpdate() devuelve el nº de filas afectadas.
+        // Una línea: return ps.executeUpdate();
+        // OJO: el test prepara un INSERT de una fila y espera 1.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioEjecutarUpdate");
     }
 
     /**
      * TODO extra 7: Verifica si un Statement está cerrado de forma segura.
      */
     public static boolean desafioVerificarCierreStatement(java.sql.PreparedStatement ps) {
-        try {
-            return ps == null || ps.isClosed();
-        } catch (java.sql.SQLException e) {
-            return true;
-        }
+        // GUÍA: análogo a desafioVerificarEstadoCerrada del Ej093 (teoría 11.4: no fugas).
+        // 1. try { return ps == null || ps.isClosed(); }
+        // 2. catch (SQLException e) { return true; }   // si no podemos saberlo, asúmelo cerrado.
+        // OJO: el test comprueba false con el ps abierto y true tras ps.close().
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioVerificarCierreStatement");
     }
 
     /**
      * TODO extra 8: Retorna el SQL de conteo parametrizado.
      */
     public static String desafioObtenerSqlSelectCount() {
-        return "SELECT COUNT(*) FROM USUARIO WHERE nombre = ?";
+        // GUÍA: teoría 11.2. Una línea:
+        // return "SELECT COUNT(*) FROM USUARIO WHERE nombre = ?";
+        // OJO: el test compara con equals — respeta espacios y mayúsculas (COUNT(*) ... = ?).
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioObtenerSqlSelectCount");
     }
 
     /**
      * TODO extra 9: Mapea la primera columna de un ResultSet a un entero.
      */
     public static int desafioMapearCountResultSet(java.sql.ResultSet rs) throws java.sql.SQLException {
-        if (rs.next()) {
-            return rs.getInt(1);
-        }
-        return 0;
+        // GUÍA: teoría 11.2/11.3 — un COUNT siempre da una fila; léela y saca la columna 1.
+        // 1. if (rs.next()) return rs.getInt(1);
+        // 2. return 0;   // por si acaso no hubiera fila.
+        // OJO: el test ejecuta SELECT COUNT(*) sobre una tabla con 1 fila y espera 1.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioMapearCountResultSet");
     }
 
     /**
      * TODO extra 10: Retorna el conteo total realizando toda la consulta parametrizada localmente.
      */
     public static int desafioContarSeguroLocal(java.sql.Connection conn, String nombre) throws java.sql.SQLException {
-        String sql = desafioObtenerSqlSelectCount();
-        try (var ps = conn.prepareStatement(sql)) {
-            ps.setString(1, nombre);
-            try (var rs = ps.executeQuery()) {
-                return desafioMapearCountResultSet(rs);
-            }
-        }
+        // GUÍA: ensambla los retos 8 y 9 (teoría 11.2) — el patrón COUNT parametrizado completo.
+        // 1. String sql = desafioObtenerSqlSelectCount();              // reutiliza el reto 8
+        // 2. try (var ps = conn.prepareStatement(sql)) {
+        // 3.     ps.setString(1, nombre);
+        // 4.     try (var rs = ps.executeQuery()) {
+        // 5.         return desafioMapearCountResultSet(rs);           // reutiliza el reto 9
+        //        }
+        //    }
+        // OJO: el test espera 1 para "Ana" (existe) y 0 para "Inexistente".
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioContarSeguroLocal");
     }
 
 }

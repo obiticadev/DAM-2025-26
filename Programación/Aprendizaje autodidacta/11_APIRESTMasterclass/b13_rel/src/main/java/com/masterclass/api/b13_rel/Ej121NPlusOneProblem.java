@@ -45,11 +45,9 @@ public final class Ej121NPlusOneProblem {
      * Reto Extra 1: Cuenta posts de un blog.
      */
     public static int contarPosts(Blog121 b) {
-        // TODO extra: Reto Extra 1: Cuenta posts de un blog.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.7. Aquí 'b' está en memoria; en producción contar así sobre N
+        //       blogs traídos LAZY es justo lo que dispara el N+1 (una query por getPosts()).
+        // PISTA: return b == null ? 0 : b.getPosts().size();
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarPosts");
     }
 
@@ -57,11 +55,8 @@ public final class Ej121NPlusOneProblem {
      * Reto Extra 2: Comprueba si tiene posts.
      */
     public static boolean tienePosts(Blog121 b) {
-        // TODO extra: Reto Extra 2: Comprueba si tiene posts.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.7. Reutiliza contarPosts.
+        // PISTA: return contarPosts(b) > 0;
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tienePosts");
     }
 
@@ -69,11 +64,8 @@ public final class Ej121NPlusOneProblem {
      * Reto Extra 3: Comprueba si un post esta en blog.
      */
     public static boolean contienePost(Blog121 b, Post121 p) {
-        // TODO extra: Reto Extra 3: Comprueba si un post esta en blog.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.7. contains por identidad.
+        // PISTA: return b != null && p != null && b.getPosts().contains(p);
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contienePost");
     }
 
@@ -81,11 +73,9 @@ public final class Ej121NPlusOneProblem {
      * Reto Extra 4: Comprueba si algun post tiene un titulo.
      */
     public static boolean tieneTitulo(Blog121 b, String titulo) {
-        // TODO extra: Reto Extra 4: Comprueba si algun post tiene un titulo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.7 + streams. Post121 ya tiene getTitulo().
+        // PISTA: b.getPosts().stream().anyMatch(p -> titulo.equals(p.getTitulo()));
+        // OJO: "JPA" true, "Spring" false.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneTitulo");
     }
 
@@ -93,11 +83,10 @@ public final class Ej121NPlusOneProblem {
      * Reto Extra 5: Cuenta titulos largos.
      */
     public static int contarPostsTituloLargo(Blog121 b, int len) {
-        // TODO extra: Reto Extra 5: Cuenta titulos largos.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.7 + filter+count.
+        // PISTA: (int) b.getPosts().stream()
+        //            .filter(p -> p.getTitulo() != null && p.getTitulo().length() > len).count();
+        // OJO: "Hibernate" mide 9; con len=5 → 1. Estrictamente mayor.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarPostsTituloLargo");
     }
 
@@ -105,11 +94,8 @@ public final class Ej121NPlusOneProblem {
      * Reto Extra 6: Crea un post.
      */
     public static Post121 crearPost(String titulo) {
-        // TODO extra: Reto Extra 6: Crea un post.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — factory simple.
+        // PISTA: return new Post121(titulo);
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearPost");
     }
 
@@ -117,11 +103,9 @@ public final class Ej121NPlusOneProblem {
      * Reto Extra 7: Remueve el primer post.
      */
     public static boolean removerPrimerPost(Blog121 b) {
-        // TODO extra: Reto Extra 7: Remueve el primer post.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.7. Mismo patrón que removerPrimerConcepto/removerPrimerLibro.
+        // PISTA: if (b.getPosts().isEmpty()) return false;
+        //        b.getPosts().remove(0); return true;
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para removerPrimerPost");
     }
 
@@ -129,11 +113,8 @@ public final class Ej121NPlusOneProblem {
      * Reto Extra 8: Valida blog no nulo.
      */
     public static boolean esValido(Blog121 b) {
-        // TODO extra: Reto Extra 8: Valida blog no nulo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea.
+        // PISTA: return b != null;
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esValido");
     }
 
@@ -141,11 +122,8 @@ public final class Ej121NPlusOneProblem {
      * Reto Extra 9: Vincula posts en lote.
      */
     public static void vincularPosts(Blog121 b, java.util.List<Post121> lista) {
-        // TODO extra: Reto Extra 9: Vincula posts en lote.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.7. Usa b.add (ya implementado: sincroniza el lado dueño).
+        // PISTA: lista.forEach(b::add);
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para vincularPosts");
     }
 
@@ -153,11 +131,9 @@ public final class Ej121NPlusOneProblem {
      * Reto Extra 10: Retorna formato de blog.
      */
     public static String formatearBlog(Blog121 b) {
-        // TODO extra: Reto Extra 10: Retorna formato de blog.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: formato EXACTO. Aquí NO va el Id, solo el nº de posts.
+        // PISTA: return "Blog[Posts=" + b.getPosts().size() + "]";
+        // OJO: el test espera literalmente "Blog[Posts=0]" (sin "Id=").
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearBlog");
     }
 
@@ -185,6 +161,10 @@ class Post121 {
 
     public void setBlog(Blog121 b) {
         this.blog = b;
+    }
+
+    public String getTitulo() {
+        return titulo;
     }
 }
 

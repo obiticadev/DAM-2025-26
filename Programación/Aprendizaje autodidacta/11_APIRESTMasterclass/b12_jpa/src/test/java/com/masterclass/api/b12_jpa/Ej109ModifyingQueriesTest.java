@@ -4,6 +4,7 @@ import com.masterclass.api.support.JpaTestSupport;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import org.junit.jupiter.api.*;
+import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class Ej109ModifyingQueriesTest {
@@ -11,10 +12,11 @@ class Ej109ModifyingQueriesTest {
     private EntityManagerFactory emf;
     private EntityManager em;
     private Ej109ModifyingQueries q;
+    private EmpleadoRepository repo;
 
     @BeforeEach
     void setUp() {
-        emf = JpaTestSupport.emf(Prod109.class);
+        emf = JpaTestSupport.emf(Prod109.class, Empleado.class);
         em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(new Prod109("a", 100, 5));
@@ -22,6 +24,7 @@ class Ej109ModifyingQueriesTest {
         em.persist(new Prod109("b", 50, 3));
         em.getTransaction().commit();
         q = new Ej109ModifyingQueries(em);
+        repo = new EmpleadoRepositoryEm(em);
     }
 
     @AfterEach

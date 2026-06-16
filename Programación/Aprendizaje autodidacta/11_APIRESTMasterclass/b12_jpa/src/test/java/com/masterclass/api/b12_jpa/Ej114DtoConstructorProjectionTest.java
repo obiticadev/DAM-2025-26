@@ -4,6 +4,7 @@ import com.masterclass.api.support.JpaTestSupport;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import org.junit.jupiter.api.*;
+import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class Ej114DtoConstructorProjectionTest {
@@ -11,16 +12,18 @@ class Ej114DtoConstructorProjectionTest {
     private EntityManagerFactory emf;
     private EntityManager em;
     private Ej114DtoConstructorProjection q;
+    private EmpleadoRepository repo;
 
     @BeforeEach
     void setUp() {
-        emf = JpaTestSupport.emf(Pedido114.class);
+        emf = JpaTestSupport.emf(Pedido114.class, Empleado.class);
         em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(new Pedido114(100.0));
         em.persist(new Pedido114(250.0));
         em.getTransaction().commit();
         q = new Ej114DtoConstructorProjection(em);
+        repo = new EmpleadoRepositoryEm(em);
     }
 
     @AfterEach

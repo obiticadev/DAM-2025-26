@@ -56,6 +56,9 @@ public final class Ej092StrategyAndPolicy {
      * TODO extra 1: Retorna la estrategia None (operación identidad).
      */
     public static java.util.function.DoubleUnaryOperator desafioEstrategiaNone() {
+        // GUÍA: teoría 10.8 — cada estrategia es un DoubleUnaryOperator (double →
+        // double). "none" es la identidad: devuelve el precio sin cambios. El test
+        // aplica 100 y espera 100. (Equivale a DoubleUnaryOperator.identity().)
         return p -> p;
     }
 
@@ -63,6 +66,8 @@ public final class Ej092StrategyAndPolicy {
      * TODO extra 2: Retorna la estrategia Black Friday (descuento del 30%).
      */
     public static java.util.function.DoubleUnaryOperator desafioEstrategiaBlackFriday() {
+        // GUÍA: descuento del 30% → se paga el 70% (p * 0.70). El test aplica 100
+        // y espera 70.0. Cada política encapsulada en su propia lambda, sin if.
         return p -> p * 0.70;
     }
 
@@ -70,6 +75,8 @@ public final class Ej092StrategyAndPolicy {
      * TODO extra 3: Retorna la estrategia VIP (descuento del 10%).
      */
     public static java.util.function.DoubleUnaryOperator desafioEstrategiaVip() {
+        // GUÍA: descuento del 10% → se paga el 90% (p * 0.90). El test aplica 100
+        // y espera 90.0. CUIDADO: es 0.90 (descuento), no 0.10.
         return p -> p * 0.90;
     }
 
@@ -80,6 +87,10 @@ public final class Ej092StrategyAndPolicy {
             java.util.function.DoubleUnaryOperator none,
             java.util.function.DoubleUnaryOperator bf,
             java.util.function.DoubleUnaryOperator vip) {
+        // GUÍA: el "registro" de estrategias indexadas por su clave (Map.of es
+        // inmodificable). CUIDADO con las claves EXACTAS: "none", "black-friday"
+        // (con guion), "vip" — son las que aplicar() y los tests buscan. El test
+        // solo comprueba size()==3.
         return java.util.Map.of("none", none, "black-friday", bf, "vip", vip);
     }
 
@@ -87,6 +98,9 @@ public final class Ej092StrategyAndPolicy {
      * TODO extra 5: Verifica el resultado de aplicar un operador a un precio.
      */
     public static boolean desafioVerificarOperador(java.util.function.DoubleUnaryOperator op, double precio, double esperado) {
+        // GUÍA: comparar doubles con == es peligroso (errores de redondeo IEEE);
+        // se usa una tolerancia (epsilon) con Math.abs(diff) < 0.0001. El test:
+        // op = p->p*0.5 sobre 100 debe dar ~50 → true.
         return Math.abs(op.applyAsDouble(precio) - esperado) < 0.0001;
     }
 
@@ -94,6 +108,8 @@ public final class Ej092StrategyAndPolicy {
      * TODO extra 6: Valida que el precio no sea negativo.
      */
     public static void desafioValidarPrecioEstrategia(double precio) {
+        // GUÍA: precondición de aplicar(). CUIDADO: el corte es < 0 (NO <= 0); el
+        // test exige excepción con -1 pero que 0 PASE (un precio de 0 es válido).
         if (precio < 0) {
             throw new IllegalArgumentException("Precio no puede ser negativo");
         }
@@ -104,6 +120,9 @@ public final class Ej092StrategyAndPolicy {
      */
     public static java.util.function.DoubleUnaryOperator desafioObtenerEstrategiaEspecífica(
             java.util.Map<String, java.util.function.DoubleUnaryOperator> mapa, String nombre) {
+        // GUÍA: seleccionar la estrategia es un simple map.get(clave). El test
+        // busca "vip" en un mapa que la contiene y espera assertNotNull. Elegir
+        // algoritmo = buscar en el registro, sin if/switch.
         return mapa.get(nombre);
     }
 
@@ -112,6 +131,10 @@ public final class Ej092StrategyAndPolicy {
      */
     public static void desafioLanzarEstrategiaInexistente(
             java.util.Map<String, java.util.function.DoubleUnaryOperator> mapa, String nombre) {
+        // GUÍA: una estrategia desconocida es un error de cliente →
+        // IllegalArgumentException. containsKey distingue "no está" de "está pero
+        // su valor es null". El test busca "hack" en un mapa con solo "vip" y
+        // espera la excepción.
         if (!mapa.containsKey(nombre)) {
             throw new IllegalArgumentException("Estrategia inexistente");
         }
@@ -121,6 +144,9 @@ public final class Ej092StrategyAndPolicy {
      * TODO extra 9: Ejecuta una estrategia aplicando su función sobre un precio.
      */
     public static double desafioEjecutarEstrategia(java.util.function.DoubleUnaryOperator op, double precio) {
+        // GUÍA: aplicar la estrategia es invocar su método funcional,
+        // applyAsDouble (el de DoubleUnaryOperator; en Function sería apply). El
+        // test: op = p->p-20 sobre 100 → 80.
         return op.applyAsDouble(precio);
     }
 
@@ -128,6 +154,11 @@ public final class Ej092StrategyAndPolicy {
      * TODO extra 10: Comprueba que el mapa devuelto por estrategias() es inmodificable.
      */
     public static void desafioEstrategiasInmodificables(java.util.Map<String, java.util.function.DoubleUnaryOperator> mapa) {
+        // GUÍA: error nº 4/seguridad — estrategias() devuelve un mapa INMODIFICABLE
+        // (Map.of), así nadie inyecta una estrategia "pirata" en caliente. El
+        // truco del test: intentar put() DEBE lanzar UnsupportedOperationException;
+        // si NO la lanza, se fuerza un AssertionError (el mapa era mutable = fallo).
+        // El test base llama esto con estrategias() y espera que NO propague error.
         try {
             mapa.put("hacked", p -> 0);
             throw new AssertionError("El mapa debería ser inmodificable");

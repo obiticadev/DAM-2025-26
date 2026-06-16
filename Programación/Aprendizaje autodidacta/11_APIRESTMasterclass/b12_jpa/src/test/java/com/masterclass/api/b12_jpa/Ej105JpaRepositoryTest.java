@@ -4,19 +4,22 @@ import com.masterclass.api.support.JpaTestSupport;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import org.junit.jupiter.api.*;
+import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class Ej105JpaRepositoryTest {
 
     private EntityManagerFactory emf;
     private EntityManager em;
-    private Ej105JpaRepository repo;
+    private Ej105JpaRepository manualRepo;
+    private ProductoRepository repo;
 
     @BeforeEach
     void setUp() {
-        emf = JpaTestSupport.emf(Tarea105.class);
+        emf = JpaTestSupport.emf(Tarea105.class, Producto.class);
         em = emf.createEntityManager();
-        repo = new Ej105JpaRepository(em);
+        manualRepo = new Ej105JpaRepository(em);
+        repo = new ProductoRepositoryEm(em);
     }
 
     @AfterEach
@@ -27,14 +30,14 @@ class Ej105JpaRepositoryTest {
 
     @Test
     void crudCompleto() {
-        var t = repo.save(new Tarea105("comprar"));
+        var t = manualRepo.save(new Tarea105("comprar"));
         assertNotNull(t.getId());
-        assertEquals("comprar", repo.findById(t.getId()).getTitulo());
-        repo.save(new Tarea105("otra"));
-        assertEquals(2, repo.findAll().size());
-        assertTrue(repo.deleteById(t.getId()));
-        assertEquals(1, repo.findAll().size());
-        assertFalse(repo.deleteById(999L));
+        assertEquals("comprar", manualRepo.findById(t.getId()).getTitulo());
+        manualRepo.save(new Tarea105("otra"));
+        assertEquals(2, manualRepo.findAll().size());
+        assertTrue(manualRepo.deleteById(t.getId()));
+        assertEquals(1, manualRepo.findAll().size());
+        assertFalse(manualRepo.deleteById(999L));
     }
 
 @Test

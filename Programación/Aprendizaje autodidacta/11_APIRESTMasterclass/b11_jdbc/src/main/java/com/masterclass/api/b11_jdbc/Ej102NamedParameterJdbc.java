@@ -7,7 +7,7 @@ import javax.sql.DataSource;
 /**
  * Ejercicio 102 · NamedParameterJdbcTemplate.
  *
- * <p>Teoría: {@code teoria/11_JDBC_Profundo.md} (sección 11.4).
+ * <p>Teoría: {@code teoria/11_JDBC_Profundo.md} (sección 11.10).
  *
  * <p>Parámetros con nombre (:clave) en vez de '?': más legible y mantenible.
  * Tabla EVENTO(id INT, tipo VARCHAR) (la crea el test).
@@ -59,72 +59,99 @@ public final class Ej102NamedParameterJdbc {
      * TODO extra 1: Retorna el SQL de inserción con parámetros nombrados.
      */
     public static String desafioObtenerSqlInsert() {
-        return "INSERT INTO CLIENTE(id, nombre) VALUES (:id, :nombre)";
+        // GUÍA: teoría 11.10 — marcadores :clave en vez de ?.
+        // Una línea: return "INSERT INTO CLIENTE(id, nombre) VALUES (:id, :nombre)";
+        // OJO: el test compara con equals — los marcadores van con dos puntos (:id, :nombre)
+        //      y hay espacios tras las comas. Cópialo literal.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioObtenerSqlInsert");
     }
 
     /**
      * TODO extra 2: Retorna el SQL de búsqueda con parámetros nombrados.
      */
     public static String desafioObtenerSqlSelect() {
-        return "SELECT nombre FROM CLIENTE WHERE id = :id";
+        // GUÍA: teoría 11.10. Una línea:
+        // return "SELECT nombre FROM CLIENTE WHERE id = :id";
+        // OJO: el test exige "WHERE id = :id" con espacios alrededor del '='.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioObtenerSqlSelect");
     }
 
     /**
      * TODO extra 3: Comprueba si un MapSqlParameterSource no es nulo.
      */
     public static boolean desafioParameterSourceActivo(org.springframework.jdbc.core.namedparam.MapSqlParameterSource ps) {
-        return ps != null;
+        // GUÍA: una línea — return ps != null;
+        // OJO: el test pasa un new MapSqlParameterSource() (true) y null (false).
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioParameterSourceActivo");
     }
 
     /**
      * TODO extra 4: Crea un MapSqlParameterSource y le asigna el parámetro :id.
      */
     public static org.springframework.jdbc.core.namedparam.MapSqlParameterSource desafioCrearSourceConId(int id) {
-        return new org.springframework.jdbc.core.namedparam.MapSqlParameterSource("id", id);
+        // GUÍA: teoría 11.10 — el constructor (clave, valor) es un atajo de addValue.
+        // Una línea: return new MapSqlParameterSource("id", id);
+        // OJO: el test crea con id=10 y comprueba source.getValue("id") == 10.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioCrearSourceConId");
     }
 
     /**
      * TODO extra 5: Añade el parámetro :nombre a un MapSqlParameterSource existente.
      */
     public static org.springframework.jdbc.core.namedparam.MapSqlParameterSource desafioAñadirNombre(org.springframework.jdbc.core.namedparam.MapSqlParameterSource source, String nombre) {
-        return source.addValue("nombre", nombre);
+        // GUÍA: teoría 11.10 — addValue DEVUELVE el propio source (encadenable, estilo builder).
+        // Una línea: return source.addValue("nombre", nombre);
+        // OJO: el test comprueba después source.getValue("nombre") == "Ana".
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioAñadirNombre");
     }
 
     /**
      * TODO extra 6: Comprueba si el template con parámetros nombrados está instanciado.
      */
     public static boolean desafioNamedTemplateActivo(org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate template) {
-        return template != null;
+        // GUÍA: una línea — return template != null;
+        // OJO: el test pasa un NamedParameterJdbcTemplate real (true) y null (false).
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioNamedTemplateActivo");
     }
 
     /**
      * TODO extra 7: Lanza una excepción si el nombre es nulo o vacío en parámetros.
      */
     public static void desafioValidarNombreParam(String nombre) {
-        if (nombre == null || nombre.isBlank()) {
-            throw new IllegalArgumentException("Nombre inválido");
-        }
+        // GUÍA: validación defensiva (teoría 1.9).
+        // if (nombre == null || nombre.isBlank()) throw new IllegalArgumentException("Nombre inválido");
+        // OJO: el test espera IllegalArgumentException con null y NINGUNA con "Ana".
+        //      isBlank() también caza cadenas solo-espacios.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioValidarNombreParam");
     }
 
     /**
      * TODO extra 8: Comprueba si un mapa de parámetros contiene una clave específica.
      */
     public static boolean desafioContieneParametro(java.util.Map<String, ?> params, String clave) {
-        return params.containsKey(clave);
+        // GUÍA: una línea — return params.containsKey(clave);
+        // OJO: el test con Map.of("id", 1) espera true para "id" y false para "nombre".
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioContieneParametro");
     }
 
     /**
      * TODO extra 9: Crea un Map representativo con los valores :id y :nombre de forma simple.
      */
     public static java.util.Map<String, Object> desafioCrearMapParametros(int id, String nombre) {
-        return java.util.Map.of("id", id, "nombre", nombre);
+        // GUÍA: teoría 11.10 — alternativa a MapSqlParameterSource: un Map normal.
+        // Una línea: return java.util.Map.of("id", id, "nombre", nombre);
+        // OJO: el test comprueba map.get("id")==1 y map.get("nombre")=="Ana".
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioCrearMapParametros");
     }
 
     /**
      * TODO extra 10: Retorna verdadero si el total de parámetros ingresados en un source es correcto (por ejemplo, mayor que cero).
      */
     public static boolean desafioTieneParametros(org.springframework.jdbc.core.namedparam.MapSqlParameterSource source) {
-        return source != null && source.getValues().size() > 0;
+        // GUÍA: teoría 11.10 — getValues() devuelve el Map interno de parámetros.
+        // Una línea: return source != null && source.getValues().size() > 0;
+        // OJO: el test crea un source con un parámetro y espera true.
+        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para desafioTieneParametros");
     }
 
 }

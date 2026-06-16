@@ -74,6 +74,11 @@ public final class Ej085LayeredArchitecture {
      * @param importe cantidad a validar
      */
     public static void desafioValidarImporte(double importe) {
+        // GUÍA: teoría 10.1 — la validación de negocio vive en el Service y va
+        // ANTES de tocar datos. OJO: el corte es ESTRICTO (importe <= 0 falla):
+        // el test exige excepción con 0.0 y con -5.0, y que 10.0 pase limpio.
+        // CULTURA: en Spring esta misma comprobación la hará @Valid o el Service
+        // antes de llamar al Repository (bloque 8).
         if (importe <= 0) {
             throw new IllegalArgumentException("Importe debe ser mayor que cero");
         }
@@ -87,6 +92,10 @@ public final class Ej085LayeredArchitecture {
      * @return un Optional con la cuenta
      */
     public static java.util.Optional<Cuenta> desafioBuscarCuenta(CuentaRepository repo, Long id) {
+        // GUÍA: teoría 10.1 y 10.2 — el Service delega la búsqueda en el puerto
+        // Repository y recibe un Optional (nunca null). El test espera present
+        // para el id 1 (guardado) y empty para el 2 (inexistente): por eso se
+        // devuelve el Optional tal cual, sin desenvolverlo aquí.
         return repo.findById(id);
     }
 
@@ -97,6 +106,11 @@ public final class Ej085LayeredArchitecture {
      * @return la cuenta contenida
      */
     public static Cuenta desafioObtenerCuentaOrThrow(java.util.Optional<Cuenta> optionalCuenta) {
+        // GUÍA: el patrón "si no está → error" de la teoría 1.2 aplicado a una
+        // capa de servicio. orElseThrow desenvuelve si hay valor o lanza la
+        // excepción de dominio si está vacío. El test comprueba que con
+        // Optional.of(c) devuelve esa misma cuenta y con Optional.empty() lanza
+        // NoSuchElementException (que el bloque 9 convertirá en un 404 HTTP).
         return optionalCuenta.orElseThrow(() -> new java.util.NoSuchElementException("Cuenta no encontrada"));
     }
 
@@ -108,6 +122,9 @@ public final class Ej085LayeredArchitecture {
      * @return el nuevo saldo
      */
     public static double desafioCalcularNuevoSaldo(double saldoActual, double importe) {
+        // GUÍA: regla de negocio pura (sin estado, sin I/O), fácil de testear de
+        // forma aislada. El test verifica 100 + 50 = 150. Aislar el cálculo del
+        // acceso a datos es lo que hace que el Service sea testeable sin BD.
         return saldoActual + importe;
     }
 
@@ -119,6 +136,10 @@ public final class Ej085LayeredArchitecture {
      * @return la nueva cuenta
      */
     public static Cuenta desafioCrearNuevaCuenta(Long id, double nuevoSaldo) {
+        // GUÍA: Cuenta es un record INMUTABLE (teoría 1.1): no hay setSaldo();
+        // "cambiar" el saldo es crear una instancia nueva con el mismo id. El
+        // test comprueba que id()==5 y saldo()==200. Reutiliza esto en el
+        // método base ingresar() en lugar de mutar.
         return new Cuenta(id, nuevoSaldo);
     }
 
@@ -130,6 +151,9 @@ public final class Ej085LayeredArchitecture {
      * @return la cuenta guardada
      */
     public static Cuenta desafioGuardarCuenta(CuentaRepository repo, Cuenta cuenta) {
+        // GUÍA: save persiste y DEVUELVE lo guardado (convención de Spring Data:
+        // la entidad vuelve con su id ya asignado). El test exige que el
+        // retorno sea igual a la cuenta y que luego repo.findById la recupere.
         return repo.save(cuenta);
     }
 
@@ -140,6 +164,11 @@ public final class Ej085LayeredArchitecture {
      * @return true si es excepcion de dominio
      */
     public static boolean desafioVerificarAislamientoHttp(Throwable e) {
+        // GUÍA: teoría 10.1 — el Service NO conoce HTTP. Este método "demuestra"
+        // ese aislamiento: una excepción de dominio no lleva "Http" ni
+        // "ResponseStatus" en su nombre de clase. El test pasa
+        // IllegalArgumentException y NoSuchElementException (ambas de negocio) y
+        // espera true en las dos. Es una idea didáctica, no algo de producción.
         return !e.getClass().getName().contains("Http") && !e.getClass().getName().contains("ResponseStatus");
     }
 
@@ -150,6 +179,8 @@ public final class Ej085LayeredArchitecture {
      * @return la lista de cuentas
      */
     public static java.util.List<Cuenta> desafioObtenerTodasLasCuentas(CuentaRepository repo) {
+        // GUÍA: delega en el puerto findAll(). El test guarda 2 cuentas y espera
+        // size()==2. Lo usarás como primer paso de saldoTotal() (método base).
         return repo.findAll();
     }
 
@@ -160,6 +191,9 @@ public final class Ej085LayeredArchitecture {
      * @return la suma de todos los saldos
      */
     public static double desafioSumarSaldosConStream(java.util.List<Cuenta> cuentas) {
+        // GUÍA: teoría 1.3 — mapToDouble + sum es la reducción numérica estándar.
+        // mapToDouble pasa de Stream<Cuenta> a un DoubleStream primitivo que ya
+        // sabe sumar. El test verifica 100 + 200 = 300.
         return cuentas.stream().mapToDouble(Cuenta::saldo).sum();
     }
 
@@ -170,6 +204,10 @@ public final class Ej085LayeredArchitecture {
      * @return el saldo total
      */
     public static double desafioCalcularSaldoTotalSeguro(java.util.List<Cuenta> cuentas) {
+        // GUÍA: versión defensiva que reutiliza desafioSumarSaldosConStream. OJO:
+        // el test pasa null Y List.of() y exige 0.0 en ambos casos; sin el guard
+        // de null, cuentas.stream() lanzaría NullPointerException. Con una cuenta
+        // de 100 espera 100. Patrón "null/vacío → neutro" del bloque.
         if (cuentas == null || cuentas.isEmpty()) {
             return 0.0;
         }

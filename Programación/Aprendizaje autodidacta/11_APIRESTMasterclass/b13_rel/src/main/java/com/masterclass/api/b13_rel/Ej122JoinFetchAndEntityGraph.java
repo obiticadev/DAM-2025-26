@@ -56,11 +56,9 @@ public final class Ej122JoinFetchAndEntityGraph {
      * Reto Extra 1: Cuenta tareas de un proyecto.
      */
     public static int contarTareas(Proyecto122 p) {
-        // TODO extra: Reto Extra 1: Cuenta tareas de un proyecto.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.8. Con 'p' en memoria la colección ya está disponible; en BD
+        //       la inicializarías con cargarConGrafo o cargarConJoinFetch antes de contar.
+        // PISTA: return p == null ? 0 : p.getTareas().size();
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarTareas");
     }
 
@@ -68,11 +66,8 @@ public final class Ej122JoinFetchAndEntityGraph {
      * Reto Extra 2: Comprueba si tiene tareas.
      */
     public static boolean tieneTareas(Proyecto122 p) {
-        // TODO extra: Reto Extra 2: Comprueba si tiene tareas.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.8. Reutiliza contarTareas.
+        // PISTA: return contarTareas(p) > 0;
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneTareas");
     }
 
@@ -80,11 +75,8 @@ public final class Ej122JoinFetchAndEntityGraph {
      * Reto Extra 3: Comprueba si una tarea esta en proyecto.
      */
     public static boolean contieneTarea(Proyecto122 p, Tarea122 t) {
-        // TODO extra: Reto Extra 3: Comprueba si una tarea esta en proyecto.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.8. contains por identidad.
+        // PISTA: return p != null && t != null && p.getTareas().contains(t);
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contieneTarea");
     }
 
@@ -92,11 +84,9 @@ public final class Ej122JoinFetchAndEntityGraph {
      * Reto Extra 4: Comprueba si alguna tarea tiene un titulo.
      */
     public static boolean tieneTitulo(Proyecto122 p, String titulo) {
-        // TODO extra: Reto Extra 4: Comprueba si alguna tarea tiene un titulo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.8 + streams. Tarea122 ya tiene getTitulo().
+        // PISTA: p.getTareas().stream().anyMatch(t -> titulo.equals(t.getTitulo()));
+        // OJO: "UI" true, "DB" false.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneTitulo");
     }
 
@@ -104,11 +94,10 @@ public final class Ej122JoinFetchAndEntityGraph {
      * Reto Extra 5: Cuenta titulos largos.
      */
     public static int contarTareasTituloLargo(Proyecto122 p, int len) {
-        // TODO extra: Reto Extra 5: Cuenta titulos largos.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.8 + filter+count.
+        // PISTA: (int) p.getTareas().stream()
+        //            .filter(t -> t.getTitulo() != null && t.getTitulo().length() > len).count();
+        // OJO: "Backend" mide 7; con len=5 → 1. Estrictamente mayor.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarTareasTituloLargo");
     }
 
@@ -116,11 +105,8 @@ public final class Ej122JoinFetchAndEntityGraph {
      * Reto Extra 6: Crea una tarea.
      */
     public static Tarea122 crearTarea(String titulo) {
-        // TODO extra: Reto Extra 6: Crea una tarea.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — factory simple.
+        // PISTA: return new Tarea122(titulo);
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearTarea");
     }
 
@@ -128,11 +114,9 @@ public final class Ej122JoinFetchAndEntityGraph {
      * Reto Extra 7: Remueve la primera tarea.
      */
     public static boolean removerPrimeraTarea(Proyecto122 p) {
-        // TODO extra: Reto Extra 7: Remueve la primera tarea.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.8. Mismo patrón que removerPrimerConcepto/Libro/Post.
+        // PISTA: if (p.getTareas().isEmpty()) return false;
+        //        p.getTareas().remove(0); return true;
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para removerPrimeraTarea");
     }
 
@@ -140,11 +124,8 @@ public final class Ej122JoinFetchAndEntityGraph {
      * Reto Extra 8: Valida proyecto no nulo.
      */
     public static boolean esValido(Proyecto122 p) {
-        // TODO extra: Reto Extra 8: Valida proyecto no nulo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea.
+        // PISTA: return p != null;
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esValido");
     }
 
@@ -152,11 +133,8 @@ public final class Ej122JoinFetchAndEntityGraph {
      * Reto Extra 9: Vincula tareas en lote.
      */
     public static void vincularTareas(Proyecto122 p, java.util.List<Tarea122> lista) {
-        // TODO extra: Reto Extra 9: Vincula tareas en lote.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.8. Usa p.add (ya implementado: sincroniza el lado dueño).
+        // PISTA: lista.forEach(p::add);
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para vincularTareas");
     }
 
@@ -164,11 +142,9 @@ public final class Ej122JoinFetchAndEntityGraph {
      * Reto Extra 10: Retorna formato de proyecto.
      */
     public static String formatearProyecto(Proyecto122 p) {
-        // TODO extra: Reto Extra 10: Retorna formato de proyecto.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: formato EXACTO.
+        // PISTA: return "Proyecto[Id=" + p.getId() + ", Tareas=" + p.getTareas().size() + "]";
+        // OJO: el test espera literalmente "Proyecto[Id=null, Tareas=0]".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearProyecto");
     }
 
@@ -196,6 +172,10 @@ class Tarea122 {
 
     public void setProyecto(Proyecto122 p) {
         this.proyecto = p;
+    }
+
+    public String getTitulo() {
+        return titulo;
     }
 }
 

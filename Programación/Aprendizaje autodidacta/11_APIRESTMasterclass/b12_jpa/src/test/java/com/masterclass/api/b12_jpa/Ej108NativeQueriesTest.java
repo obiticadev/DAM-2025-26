@@ -4,6 +4,7 @@ import com.masterclass.api.support.JpaTestSupport;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import org.junit.jupiter.api.*;
+import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class Ej108NativeQueriesTest {
@@ -11,16 +12,18 @@ class Ej108NativeQueriesTest {
     private EntityManagerFactory emf;
     private EntityManager em;
     private Ej108NativeQueries q;
+    private EmpleadoRepository repo;
 
     @BeforeEach
     void setUp() {
-        emf = JpaTestSupport.emf(Ciudad108.class);
+        emf = JpaTestSupport.emf(Ciudad108.class, Empleado.class);
         em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(new Ciudad108("Madrid", 3000000));
         em.persist(new Ciudad108("Soria", 40000));
         em.getTransaction().commit();
         q = new Ej108NativeQueries(em);
+        repo = new EmpleadoRepositoryEm(em);
     }
 
     @AfterEach

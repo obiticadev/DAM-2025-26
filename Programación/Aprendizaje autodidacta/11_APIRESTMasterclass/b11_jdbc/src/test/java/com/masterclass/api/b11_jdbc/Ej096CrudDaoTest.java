@@ -2,6 +2,7 @@ package com.masterclass.api.b11_jdbc;
 
 import org.junit.jupiter.api.*;
 import java.sql.*;
+import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class Ej096CrudDaoTest {

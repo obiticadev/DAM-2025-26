@@ -51,11 +51,9 @@ public final class Ej119CascadeTypes {
      * Reto Extra 1: Cuenta los conceptos de una factura.
      */
     public static int contarConceptos(Factura119 f) {
-        // TODO extra: Reto Extra 1: Cuenta los conceptos de una factura.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.5. La colección de conceptos es una List normal.
+        // PISTA: return f == null ? 0 : f.getConceptos().size();
+        // OJO: Factura119.add ya está implementado (no es TODO), así que el test cambia a 1.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarConceptos");
     }
 
@@ -63,11 +61,8 @@ public final class Ej119CascadeTypes {
      * Reto Extra 2: Comprueba si la factura tiene conceptos.
      */
     public static boolean tieneConceptos(Factura119 f) {
-        // TODO extra: Reto Extra 2: Comprueba si la factura tiene conceptos.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.5. Reutiliza contarConceptos.
+        // PISTA: return contarConceptos(f) > 0;
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneConceptos");
     }
 
@@ -75,11 +70,9 @@ public final class Ej119CascadeTypes {
      * Reto Extra 3: Comprueba si un concepto esta en la factura.
      */
     public static boolean contieneConcepto(Factura119 f, Concepto119 c) {
-        // TODO extra: Reto Extra 3: Comprueba si un concepto esta en la factura.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.5. La List sabe contains (por identidad: Concepto119 no define equals).
+        // PISTA: return f != null && c != null && f.getConceptos().contains(c);
+        // OJO: el test añade y consulta la MISMA instancia → true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contieneConcepto");
     }
 
@@ -87,11 +80,9 @@ public final class Ej119CascadeTypes {
      * Reto Extra 4: Comprueba si algun concepto tiene una descripcion.
      */
     public static boolean tieneDescripcion(Factura119 f, String desc) {
-        // TODO extra: Reto Extra 4: Comprueba si algun concepto tiene una descripcion.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.5 + streams. Concepto119 ya tiene getDescripcion().
+        // PISTA: f.getConceptos().stream().anyMatch(c -> desc.equals(c.getDescripcion()));
+        // OJO: "Premium" true, "Normal" false.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneDescripcion");
     }
 
@@ -99,11 +90,10 @@ public final class Ej119CascadeTypes {
      * Reto Extra 5: Cuenta descripciones largas.
      */
     public static int contarConceptosDescLarga(Factura119 f, int len) {
-        // TODO extra: Reto Extra 5: Cuenta descripciones largas.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.5 + filter+count.
+        // PISTA: (int) f.getConceptos().stream()
+        //            .filter(c -> c.getDescripcion() != null && c.getDescripcion().length() > len).count();
+        // OJO: "Mantenimiento" mide 13; con len=8 → 1. Estrictamente mayor.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarConceptosDescLarga");
     }
 
@@ -111,11 +101,8 @@ public final class Ej119CascadeTypes {
      * Reto Extra 6: Crea un concepto.
      */
     public static Concepto119 crearConcepto(String descripcion) {
-        // TODO extra: Reto Extra 6: Crea un concepto.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — factory simple.
+        // PISTA: return new Concepto119(descripcion);
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearConcepto");
     }
 
@@ -123,11 +110,13 @@ public final class Ej119CascadeTypes {
      * Reto Extra 7: Remueve el primer concepto.
      */
     public static boolean removerPrimerConcepto(Factura119 f) {
-        // TODO extra: Reto Extra 7: Remueve el primer concepto.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.5. En memoria es un remove de lista; en una entidad gestionada,
+        //       con orphanRemoval=true, ese mismo remove dispararía un DELETE en BD.
+        // 1. Si la lista está vacía, devuelve false.
+        // 2. Quita el elemento 0 y devuelve true.
+        // PISTA: if (f.getConceptos().isEmpty()) return false;
+        //        f.getConceptos().remove(0); return true;
+        // OJO: el test espera true y que getConceptos() quede en 0.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para removerPrimerConcepto");
     }
 
@@ -135,11 +124,9 @@ public final class Ej119CascadeTypes {
      * Reto Extra 8: Valida factura no nula.
      */
     public static boolean esValida(Factura119 f) {
-        // TODO extra: Reto Extra 8: Valida factura no nula.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea.
+        // PISTA: return f != null;
+        // OJO: el test espera true con new Factura119() y false con null.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esValida");
     }
 
@@ -147,11 +134,9 @@ public final class Ej119CascadeTypes {
      * Reto Extra 9: Vincula conceptos en lote.
      */
     public static void vincularConceptos(Factura119 f, java.util.List<Concepto119> lista) {
-        // TODO extra: Reto Extra 9: Vincula conceptos en lote.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 13.5. Usa f.add (ya implementado: sincroniza el lado dueño).
+        // PISTA: lista.forEach(f::add);
+        // OJO: el test pasa 2 conceptos y espera size 2.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para vincularConceptos");
     }
 
@@ -159,11 +144,9 @@ public final class Ej119CascadeTypes {
      * Reto Extra 10: Retorna formato de factura.
      */
     public static String formatearFactura(Factura119 f) {
-        // TODO extra: Reto Extra 10: Retorna formato de factura.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: formato EXACTO.
+        // PISTA: return "Factura[Id=" + f.getId() + ", Conceptos=" + f.getConceptos().size() + "]";
+        // OJO: el test espera literalmente "Factura[Id=null, Conceptos=0]".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearFactura");
     }
 
@@ -191,6 +174,10 @@ class Concepto119 {
 
     public void setFactura(Factura119 f) {
         this.factura = f;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
     }
 }
 
