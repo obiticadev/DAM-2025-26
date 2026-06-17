@@ -45,11 +45,10 @@ public final class Ej168WebMvcTest {
      * RETO EXTRA 01: Crea una respuesta exitosa.
      */
     public static Respuesta168 crearRespuestaOK(String c) {
-        // TODO extra: RETO EXTRA 01: Crea una respuesta exitosa.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.5 — fabrica una Respuesta168 con status 200.
+        // return new Respuesta168(200, c);   // el body puede ser el propio c
+        // El test solo comprueba crearRespuestaOK("c").status == 200, así que lo
+        // único obligatorio es el 200; el cuerpo es libre.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearRespuestaOK");
     }
 
@@ -57,11 +56,10 @@ public final class Ej168WebMvcTest {
      * RETO EXTRA 02: Crea una respuesta de error.
      */
     public static Respuesta168 crearRespuestaError(int code, String err) {
-        // TODO extra: RETO EXTRA 02: Crea una respuesta de error.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.5 — Respuesta168 con el código y un cuerpo de error.
+        // return new Respuesta168(code, "{\"error\":\"" + err + "\"}");
+        // El test (crearRespuestaError(400, "err")) solo verifica .status == 400.
+        // Reutiliza esto desde handle() para los casos 400/404/405.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearRespuestaError");
     }
 
@@ -69,11 +67,10 @@ public final class Ej168WebMvcTest {
      * RETO EXTRA 03: Comprueba si la respuesta es de exito.
      */
     public static boolean esRespuestaExitosa(Respuesta168 r) {
-        // TODO extra: RETO EXTRA 03: Comprueba si la respuesta es de exito.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.5 — éxito = familia 2xx.
+        // return r.status >= 200 && r.status < 300;
+        // El test pasa new Respuesta168(200, "") y espera true. Modela el rango
+        // 2xx completo (no solo == 200) para que valga también con 201, 204…
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRespuestaExitosa");
     }
 
@@ -81,11 +78,9 @@ public final class Ej168WebMvcTest {
      * RETO EXTRA 04: Extrae el cuerpo de la respuesta.
      */
     public static String obtenerCuerpo(Respuesta168 r) {
-        // TODO extra: RETO EXTRA 04: Extrae el cuerpo de la respuesta.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.5 — una línea: return r.body;
+        // El test (new Respuesta168(200, "x")) espera "x". Es el accesor del
+        // campo body que MockMvc inspeccionaría con .andReturn().getResponse().
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerCuerpo");
     }
 
@@ -93,11 +88,10 @@ public final class Ej168WebMvcTest {
      * RETO EXTRA 05: Comprueba si es un error de servidor.
      */
     public static boolean esErrorServidor(Respuesta168 r) {
-        // TODO extra: RETO EXTRA 05: Comprueba si es un error de servidor.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.5 — error de servidor = familia 5xx.
+        // return r.status >= 500 && r.status < 600;
+        // El test (new Respuesta168(500, "")) espera true. 5xx = "culpa del
+        // servidor"; contrasta con esErrorCliente (4xx) del reto 10.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esErrorServidor");
     }
 
@@ -105,11 +99,10 @@ public final class Ej168WebMvcTest {
      * RETO EXTRA 06: Valida si es la ruta del saludo.
      */
     public static boolean esRutaValida(String ruta) {
-        // TODO extra: RETO EXTRA 06: Valida si es la ruta del saludo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.5 — una línea: return "/saludo".equals(ruta);
+        // El test ("/saludo") espera true. PISTA: invoca equals sobre el literal
+        // para que ruta == null devuelva false sin NPE. Es la comprobación que
+        // usa handle() para decidir 404.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRutaValida");
     }
 
@@ -117,11 +110,9 @@ public final class Ej168WebMvcTest {
      * RETO EXTRA 07: Valida si el metodo es soportado.
      */
     public static boolean esMetodoSoportado(String metodo) {
-        // TODO extra: RETO EXTRA 07: Valida si el metodo es soportado.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.5 — una línea: return "GET".equals(metodo);
+        // El test ("GET") espera true. Este endpoint solo soporta GET; cualquier
+        // otro método daría 405 en handle().
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMetodoSoportado");
     }
 
@@ -129,11 +120,9 @@ public final class Ej168WebMvcTest {
      * RETO EXTRA 08: Extrae el codigo de estado.
      */
     public static int obtenerStatus(Respuesta168 r) {
-        // TODO extra: RETO EXTRA 08: Extrae el codigo de estado.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.5 — una línea: return r.status;
+        // El test (new Respuesta168(200, "")) espera 200. Accesor simétrico a
+        // obtenerCuerpo (reto 4).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerStatus");
     }
 
@@ -141,11 +130,11 @@ public final class Ej168WebMvcTest {
      * RETO EXTRA 09: Genera el JSON del saludo.
      */
     public static String generarJsonSaludo(String nombre) {
-        // TODO extra: RETO EXTRA 09: Genera el JSON del saludo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.5 — monta el cuerpo JSON del saludo.
+        // return "{\"saludo\":\"Hola, " + nombre + "\"}";
+        // El test solo exige generarJsonSaludo("Ada").contains("Ada"), así que
+        // basta con que el nombre aparezca. PISTA: escapa las comillas dobles
+        // internas con \" — es justo el cuerpo que handle() devuelve en el 200.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para generarJsonSaludo");
     }
 
@@ -153,11 +142,10 @@ public final class Ej168WebMvcTest {
      * RETO EXTRA 10: Comprueba si es un error del cliente.
      */
     public static boolean esErrorCliente(Respuesta168 r) {
-        // TODO extra: RETO EXTRA 10: Comprueba si es un error del cliente.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.5 — error del cliente = familia 4xx.
+        // return r.status >= 400 && r.status < 500;
+        // El test (new Respuesta168(400, "")) espera true. Completa el trío con
+        // esRespuestaExitosa (2xx) y esErrorServidor (5xx).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esErrorCliente");
     }
 

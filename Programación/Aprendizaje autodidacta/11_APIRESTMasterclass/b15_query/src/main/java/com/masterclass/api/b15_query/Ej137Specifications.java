@@ -47,11 +47,11 @@ public final class Ej137Specifications {
      * Reto Extra 1: Comprueba si un filtro es nulo o vacio.
      */
     public static boolean esFiltroVacio(String f) {
-        // TODO extra: Reto Extra 1: Comprueba si un filtro es nulo o vacio.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 15.3. Cada Specification decide si APORTA un predicado o no;
+        //   un filtro vacío equivale a "no añadir condición" (cb.conjunction()).
+        // 1. Una línea: return f == null || f.isBlank();
+        // OJO: el test pide true para " " → usa isBlank(), no isEmpty(). false
+        //   para "Ropa".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFiltroVacio");
     }
 
@@ -59,11 +59,8 @@ public final class Ej137Specifications {
      * Reto Extra 2: Comprueba si el precio minimo es valido.
      */
     public static boolean esPrecioValido(Double precio) {
-        // TODO extra: Reto Extra 2: Comprueba si el precio minimo es valido.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return precio != null && precio > 0;
+        // El test pide true para 10.0 y false para -5.0.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPrecioValido");
     }
 
@@ -71,11 +68,9 @@ public final class Ej137Specifications {
      * Reto Extra 3: Genera una expresion LIKE de forma segura.
      */
     public static String formatearLike(String f) {
-        // TODO extra: Reto Extra 3: Genera una expresion LIKE de forma segura.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: igual que en Ej136 — return "%" + f.trim().toLowerCase() + "%";
+        // OJO: el test pasa "Ropa" y espera "%ropa%". CULTURA: en una Specification
+        //   real esto alimenta a cb.like(cb.lower(root.get("nombre")), patron).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearLike");
     }
 
@@ -83,11 +78,8 @@ public final class Ej137Specifications {
      * Reto Extra 4: Comprueba si el precio maximo es nulo.
      */
     public static boolean esPrecioNulo(Double p) {
-        // TODO extra: Reto Extra 4: Comprueba si el precio maximo es nulo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return p == null;
+        // El test pide true para null, false para 10.0.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPrecioNulo");
     }
 
@@ -95,11 +87,9 @@ public final class Ej137Specifications {
      * Reto Extra 5: Comprueba si la categoria esta vacia.
      */
     public static boolean esCategoriaVacia(String c) {
-        // TODO extra: Reto Extra 5: Comprueba si la categoria esta vacia.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: reutiliza esFiltroVacio (reto 1).
+        // 1. Una línea: return esFiltroVacio(c);
+        // El test pide true para " ".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCategoriaVacia");
     }
 
@@ -107,11 +97,9 @@ public final class Ej137Specifications {
      * Reto Extra 6: Comprueba si se requiere filtrar por nombre.
      */
     public static boolean requiereFiltroNombre(String nombre) {
-        // TODO extra: Reto Extra 6: Comprueba si se requiere filtrar por nombre.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: es el complemento de esFiltroVacio — reutilízalo.
+        // 1. Una línea: return !esFiltroVacio(nombre);
+        // El test pasa "Laptop" y espera true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para requiereFiltroNombre");
     }
 
@@ -119,11 +107,10 @@ public final class Ej137Specifications {
      * Reto Extra 7: Normaliza el nombre de la categoria.
      */
     public static String normalizarCategoria(String cat) {
-        // TODO extra: Reto Extra 7: Normaliza el nombre de la categoria.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return cat == null ? null : cat.trim().toUpperCase();
+        // ⚠ OJO: aquí se normaliza a MAYÚSCULAS (el test pasa "  Ropa  " y espera
+        //   "ROPA"), al contrario que normalizarFiltro de Ej136 (que era a
+        //   minúsculas). Mira siempre el valor exacto que pide el test.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para normalizarCategoria");
     }
 
@@ -131,11 +118,10 @@ public final class Ej137Specifications {
      * Reto Extra 8: Comprueba si hay especificaciones activas.
      */
     public static boolean tieneEspecificaciones(String nombre, Double min, Double max) {
-        // TODO extra: Reto Extra 8: Comprueba si hay especificaciones activas.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: hay specs activas si CUALQUIER filtro está presente (OR).
+        // 1. Una línea: return !esFiltroVacio(nombre) || min != null || max != null;
+        // OJO: el test pide true para ("Laptop", null, null) y false para
+        //   (null, null, null). Reutiliza esFiltroVacio para el nombre.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneEspecificaciones");
     }
 
@@ -143,11 +129,10 @@ public final class Ej137Specifications {
      * Reto Extra 9: Compara dos filtros de precio de forma logica.
      */
     public static boolean preciosCoherentes(Double min, Double max) {
-        // TODO extra: Reto Extra 9: Compara dos filtros de precio de forma logica.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: un rango es coherente si min <= max.
+        // 1. Defensa: si min o max es null, considéralo coherente (no hay rango
+        //    que contradecir) → return min == null || max == null || min <= max;
+        // OJO: el test pide true para (10.0, 20.0) y false para (20.0, 10.0).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para preciosCoherentes");
     }
 
@@ -155,11 +140,10 @@ public final class Ej137Specifications {
      * Reto Extra 10: Retorna representacion de especificaciones activas.
      */
     public static String formatearEspecificacion(String nom, Double min, Double max) {
-        // TODO extra: Reto Extra 10: Retorna representacion de especificaciones activas.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: String.format con tres huecos.
+        // PISTA: String.format("Specs[Nom=%s, Min=%s, Max=%s]", nom, min, max);
+        // OJO: el test espera EXACTAMENTE "Specs[Nom=Ropa, Min=10.0, Max=20.0]".
+        //   %s sobre Double imprime "10.0"/"20.0". Usa el nombre tal cual.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearEspecificacion");
     }
 

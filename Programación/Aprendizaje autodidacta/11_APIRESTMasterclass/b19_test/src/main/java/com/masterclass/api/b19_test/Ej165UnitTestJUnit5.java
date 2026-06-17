@@ -44,11 +44,10 @@ public final class Ej165UnitTestJUnit5 {
      * RETO EXTRA 01: Suma dos numeros reales.
      */
     public static double adicionar(double a, double b) {
-        // TODO extra: RETO EXTRA 01: Suma dos numeros reales.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.2 — la pieza más simple que un assertEquals puede probar.
+        // Una línea: return a + b;
+        // OJO: el test es assertEquals(5.0, adicionar(2.0, 3.0)) — comparación de
+        // double exacta. Con sumas pequeñas no hay problema de coma flotante.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para adicionar");
     }
 
@@ -56,11 +55,9 @@ public final class Ej165UnitTestJUnit5 {
      * RETO EXTRA 02: Resta dos numeros reales.
      */
     public static double restar(double a, double b) {
-        // TODO extra: RETO EXTRA 02: Resta dos numeros reales.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.2 — una línea: return a - b;
+        // OJO: el test espera -1.0 para restar(2.0, 3.0), no 1.0. El orden
+        // importa: es minuendo - sustraendo, a - b (no b - a).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para restar");
     }
 
@@ -68,11 +65,8 @@ public final class Ej165UnitTestJUnit5 {
      * RETO EXTRA 03: Multiplica dos numeros reales.
      */
     public static double multiplicar(double a, double b) {
-        // TODO extra: RETO EXTRA 03: Multiplica dos numeros reales.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.2 — una línea: return a * b;
+        // El test: assertEquals(6.0, multiplicar(2.0, 3.0)).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para multiplicar");
     }
 
@@ -80,11 +74,15 @@ public final class Ej165UnitTestJUnit5 {
      * RETO EXTRA 04: Divide dos numeros reales.
      */
     public static double dividir(double a, double b) {
-        // TODO extra: RETO EXTRA 04: Divide dos numeros reales.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.2 — EL RETO TRAMPA del bloque (error común nº 2).
+        // 1. El test es assertThrows(ArithmeticException.class, () -> dividir(1.0, 0.0)).
+        // 2. CUIDADO: en Java, 1.0 / 0.0 con double NO lanza: da Double.INFINITY.
+        //    Si haces solo "return a / b;", el test FALLA (no se lanza nada).
+        // 3. Tienes que detectar el divisor cero TÚ y lanzar:
+        //       if (b == 0) throw new ArithmeticException("división por cero");
+        //       return a / b;
+        // CULTURA: la división ENTERA (int/int) sí lanza ArithmeticException sola;
+        // la de coma flotante no. Esa asimetría es justo lo que el test verifica.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para dividir");
     }
 
@@ -92,11 +90,10 @@ public final class Ej165UnitTestJUnit5 {
      * RETO EXTRA 05: Determina si un entero es par.
      */
     public static boolean esPar(int n) {
-        // TODO extra: RETO EXTRA 05: Determina si un entero es par.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.2 — una línea: return n % 2 == 0;
+        // El test: assertTrue(esPar(4)). El operador módulo (%) da el resto;
+        // resto 0 al dividir entre 2 = par. (Funciona también para negativos:
+        // -4 % 2 == 0.)
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPar");
     }
 
@@ -104,11 +101,9 @@ public final class Ej165UnitTestJUnit5 {
      * RETO EXTRA 06: Devuelve una cadena vacia.
      */
     public static String obtenerVacio() {
-        // TODO extra: RETO EXTRA 06: Devuelve una cadena vacia.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.2 — una línea: return "";
+        // OJO: cadena VACÍA (""), no null. El test usa assertEquals("", ...),
+        // y "".equals(null) sería false. Vacío ≠ null (lo verás en 19.3).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerVacio");
     }
 
@@ -116,11 +111,9 @@ public final class Ej165UnitTestJUnit5 {
      * RETO EXTRA 07: Devuelve un valor nulo.
      */
     public static Object retornarNulo() {
-        // TODO extra: RETO EXTRA 07: Devuelve un valor nulo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.2 — una línea: return null;
+        // El test usa assertNull(retornarNulo()). assertNull pasa solo si el
+        // valor es exactamente null (contrapartida de assertNotNull).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para retornarNulo");
     }
 
@@ -128,11 +121,9 @@ public final class Ej165UnitTestJUnit5 {
      * RETO EXTRA 08: Concatena dos cadenas.
      */
     public static String concatenarTextos(String a, String b) {
-        // TODO extra: RETO EXTRA 08: Concatena dos cadenas.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.2 — una línea: return a + b;
+        // El test: assertEquals("ab", concatenarTextos("a", "b")). El "+" sobre
+        // String concatena; sin separador, "a"+"b" = "ab".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para concatenarTextos");
     }
 
@@ -140,11 +131,9 @@ public final class Ej165UnitTestJUnit5 {
      * RETO EXTRA 09: Devuelve el mayor de dos enteros.
      */
     public static int obtenerMayor(int a, int b) {
-        // TODO extra: RETO EXTRA 09: Devuelve el mayor de dos enteros.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.2 — una línea: return Math.max(a, b);
+        // El test: assertEquals(5, obtenerMayor(3, 5)). Math.max evita el
+        // if/else manual y deja la intención clarísima.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerMayor");
     }
 
@@ -152,11 +141,8 @@ public final class Ej165UnitTestJUnit5 {
      * RETO EXTRA 10: Devuelve el menor de dos enteros.
      */
     public static int obtenerMenor(int a, int b) {
-        // TODO extra: RETO EXTRA 10: Devuelve el menor de dos enteros.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.2 — una línea: return Math.min(a, b);
+        // El test: assertEquals(3, obtenerMenor(3, 5)). Simétrico al reto 9.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerMenor");
     }
 

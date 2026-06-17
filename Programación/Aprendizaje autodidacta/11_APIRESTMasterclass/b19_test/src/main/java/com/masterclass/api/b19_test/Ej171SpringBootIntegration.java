@@ -50,11 +50,9 @@ public final class Ej171SpringBootIntegration {
      * RETO EXTRA 01: Crea comando de agregacion.
      */
     public static String crearComandoAdd(String arg) {
-        // TODO extra: RETO EXTRA 01: Crea comando de agregacion.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.8 — una línea: return "ADD:" + arg;
+        // El test ("x") espera "ADD:x". Es el inverso de extraerAccion/Argumento
+        // (retos 3 y 4): construye lo que aquellos descomponen.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearComandoAdd");
     }
 
@@ -62,11 +60,8 @@ public final class Ej171SpringBootIntegration {
      * RETO EXTRA 02: Crea comando de eliminacion.
      */
     public static String crearComandoDel(String arg) {
-        // TODO extra: RETO EXTRA 02: Crea comando de eliminacion.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.8 — una línea: return "DEL:" + arg;
+        // El test ("x") espera "DEL:x". Simétrico a crearComandoAdd.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearComandoDel");
     }
 
@@ -74,11 +69,11 @@ public final class Ej171SpringBootIntegration {
      * RETO EXTRA 03: Extrae la accion del comando.
      */
     public static String extraerAccion(String cmd) {
-        // TODO extra: RETO EXTRA 03: Extrae la accion del comando.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.8 — parte por el primer ":" y toma la izquierda.
+        // return cmd.split(":", 2)[0];
+        // El test ("ADD:x") espera "ADD". PISTA: el límite 2 en split(":", 2) es
+        // clave: parte solo en el PRIMER ":", para que un argumento con más ":"
+        // (p.ej. "ADD:a:b") no se rompa. Es el mismo split que usa ejecutarFlujo.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerAccion");
     }
 
@@ -86,11 +81,10 @@ public final class Ej171SpringBootIntegration {
      * RETO EXTRA 04: Extrae el argumento del comando.
      */
     public static String extraerArgumento(String cmd) {
-        // TODO extra: RETO EXTRA 04: Extrae el argumento del comando.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.8 — toma la parte derecha del split.
+        // return cmd.split(":", 2)[1];
+        // El test ("ADD:x") espera "x". Mismo split que extraerAccion, pero
+        // índice [1]. Con límite 2, [1] contiene TODO lo que va tras el primer ":".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerArgumento");
     }
 
@@ -98,11 +92,11 @@ public final class Ej171SpringBootIntegration {
      * RETO EXTRA 05: Comprueba si es un comando estructurado.
      */
     public static boolean esComandoValido(String cmd) {
-        // TODO extra: RETO EXTRA 05: Comprueba si es un comando estructurado.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.8 — válido = tiene el separador ":".
+        // return cmd != null && cmd.contains(":");
+        // El test ("ADD:x") espera true. Es la comprobación que ejecutarFlujo
+        // hace antes de lanzar IllegalArgumentException por comando malformado
+        // (un "BADCMD" sin ":" sería inválido).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esComandoValido");
     }
 
@@ -110,11 +104,8 @@ public final class Ej171SpringBootIntegration {
      * RETO EXTRA 06: Obtiene tamaño de la lista.
      */
     public static int tamanioInicial(java.util.List<String> list) {
-        // TODO extra: RETO EXTRA 06: Obtiene tamaño de la lista.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.8 — una línea: return list.size();
+        // El test (List.of("a","b")) espera 2.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tamanioInicial");
     }
 
@@ -122,11 +113,9 @@ public final class Ej171SpringBootIntegration {
      * RETO EXTRA 07: Verifica si la lista contiene el valor.
      */
     public static boolean listaContiene(java.util.List<String> list, String val) {
-        // TODO extra: RETO EXTRA 07: Verifica si la lista contiene el valor.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.8 — una línea: return list.contains(val);
+        // El test (List.of("a"), "a") espera true. Es lo que verificaría un e2e
+        // tras un POST: "¿aparece el recurso creado al listar?".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para listaContiene");
     }
 
@@ -134,11 +123,14 @@ public final class Ej171SpringBootIntegration {
      * RETO EXTRA 08: Combina dos listas de comandos.
      */
     public static java.util.List<String> combinarComandos(java.util.List<String> a, java.util.List<String> b) {
-        // TODO extra: RETO EXTRA 08: Combina dos listas de comandos.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.8 — concatena las dos listas en una nueva.
+        // List<String> r = new ArrayList<>(a);
+        // r.addAll(b);
+        // return r;
+        // El test (["1"], ["2"]) espera size()==2. OJO: crea una lista NUEVA; no
+        // hagas a.addAll(b) porque mutarías la lista de entrada (y List.of es
+        // inmutable: lanzaría UnsupportedOperationException). Alternativa stream:
+        // Stream.concat(a.stream(), b.stream()).toList().
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para combinarComandos");
     }
 
@@ -146,11 +138,11 @@ public final class Ej171SpringBootIntegration {
      * RETO EXTRA 09: Filtra comandos ADD.
      */
     public static java.util.List<String> filtrarComandosAdd(java.util.List<String> cmds) {
-        // TODO extra: RETO EXTRA 09: Filtra comandos ADD.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.8 — filtra por prefijo "ADD:".
+        // return cmds.stream().filter(c -> c.startsWith("ADD:")).toList();
+        // El test (["ADD:a", "DEL:b"]) espera size()==1 (solo "ADD:a"). PISTA:
+        // usa startsWith("ADD:") con los dos puntos para no confundir con un
+        // hipotético "ADDED:" — sé estricto con el prefijo.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para filtrarComandosAdd");
     }
 
@@ -158,11 +150,9 @@ public final class Ej171SpringBootIntegration {
      * RETO EXTRA 10: Filtra comandos DEL.
      */
     public static java.util.List<String> filtrarComandosDel(java.util.List<String> cmds) {
-        // TODO extra: RETO EXTRA 10: Filtra comandos DEL.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.8 — simétrico al reto 9, prefijo "DEL:".
+        // return cmds.stream().filter(c -> c.startsWith("DEL:")).toList();
+        // El test (["ADD:a", "DEL:b"]) espera size()==1 (solo "DEL:b").
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para filtrarComandosDel");
     }
 

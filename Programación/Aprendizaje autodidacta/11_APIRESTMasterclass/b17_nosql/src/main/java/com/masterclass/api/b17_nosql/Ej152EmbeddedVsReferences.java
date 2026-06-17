@@ -71,11 +71,13 @@ public final class Ej152EmbeddedVsReferences {
      * RETO EXTRA 01: Determina si la relacion se modela con documentos embebidos.
      */
     public static boolean esRelacionEmbebida(String typeConfig) {
-        // TODO extra: RETO EXTRA 01: Determina si la relacion se modela con documentos embebidos.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 17.4 (clasifica la estrategia de modelado por su nombre).
+        // 1. Si typeConfig es null -> false.
+        // 2. Es embebida si la config dice "embedded" (ignora mayúsculas).
+        // PISTA: return "embedded".equalsIgnoreCase(typeConfig);
+        //    (o typeConfig.toLowerCase().contains("embed")).
+        // OJO: el test manda "embedded" y espera true.
+        // CULTURA: embebido = hijos dentro del padre, 1 sola lectura (17.4).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRelacionEmbebida");
     }
 
@@ -83,11 +85,12 @@ public final class Ej152EmbeddedVsReferences {
      * RETO EXTRA 02: Determina si la relacion se modela mediante DBRef o ID de referencia.
      */
     public static boolean esRelacionReferenciada(String typeConfig) {
-        // TODO extra: RETO EXTRA 02: Determina si la relacion se modela mediante DBRef o ID de referencia.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: el espejo del reto 1 (¿es por referencia?).
+        // 1. Si typeConfig es null -> false.
+        // 2. Es referenciada si la config dice "referenced".
+        // PISTA: return "referenced".equalsIgnoreCase(typeConfig);
+        // OJO: el test manda "referenced" y espera true.
+        // CULTURA: referencia = guardas el id, exige 2ª lectura/$lookup (17.4).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRelacionReferenciada");
     }
 
@@ -95,11 +98,12 @@ public final class Ej152EmbeddedVsReferences {
      * RETO EXTRA 03: Genera la estructura de un DBRef standard.
      */
     public static String crearReferenciaDbRef(String collection, String id) {
-        // TODO extra: RETO EXTRA 03: Genera la estructura de un DBRef standard.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 17.4 (un DBRef es {"$ref":"coleccion","$id":"valor"}).
+        // 1. Construye esa cadena con collection e id.
+        // PISTA: return "{\"$ref\":\"" + collection + "\",\"$id\":\"" + id + "\"}";
+        // OJO: el test SOLO exige que .contains("$ref"); aun así dale la forma
+        //      completa con $ref y $id para que case con esReferenciaValida (reto 4).
+        // CULTURA: este formato { $ref, $id } es el DBRef estándar de Mongo.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearReferenciaDbRef");
     }
 
@@ -107,11 +111,13 @@ public final class Ej152EmbeddedVsReferences {
      * RETO EXTRA 04: Comprueba la estructura de un DBRef.
      */
     public static boolean esReferenciaValida(String dbRefStr) {
-        // TODO extra: RETO EXTRA 04: Comprueba la estructura de un DBRef.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: un DBRef válido tiene AMBAS claves: $ref y $id.
+        // 1. Si dbRefStr es null -> false.
+        // 2. Debe contener "$ref" Y "$id" (las dos).
+        // PISTA: return dbRefStr != null && dbRefStr.contains("$ref") && dbRefStr.contains("$id");
+        // OJO: el test manda {"$ref":"u","$id":"1"} y espera true; con una sola
+        //      de las dos claves NO debería valer.
+        // CULTURA: es lo que produce crearReferenciaDbRef (reto 3): consistencia.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esReferenciaValida");
     }
 
@@ -119,11 +125,12 @@ public final class Ej152EmbeddedVsReferences {
      * RETO EXTRA 05: Advierte si el documento excede el limite teorico seguro (e.g. 16MB) de MongoDB BSON.
      */
     public static boolean esDocumentoGrande(long bytes) {
-        // TODO extra: RETO EXTRA 05: Advierte si el documento excede el limite teorico seguro (e.g. 16MB) de MongoDB BSON.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 17.4 (Mongo tiene un tope DURO de 16 MB por documento).
+        // 1. Calcula el límite: 16 * 1024 * 1024 bytes.
+        // 2. Devuelve true si bytes lo supera.
+        // PISTA: return bytes > 16L * 1024 * 1024;  (la L evita overflow de int).
+        // OJO: el test manda 20*1024*1024 (20 MB) y espera true (excede los 16).
+        // CULTURA: por eso embeber arrays que crecen sin freno es peligroso (17.4).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esDocumentoGrande");
     }
 
@@ -131,11 +138,13 @@ public final class Ej152EmbeddedVsReferences {
      * RETO EXTRA 06: Verifica si la lista de referencias tiene ids repetidos.
      */
     public static boolean contieneIdsDuplicados(java.util.List<String> ids) {
-        // TODO extra: RETO EXTRA 06: Verifica si la lista de referencias tiene ids repetidos.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: detectar ids duplicados en una lista de referencias.
+        // 1. Si ids es null o vacío -> false (no hay duplicados).
+        // 2. Truco clásico: mete todo en un Set; si el Set tiene MENOS
+        //    elementos que la lista, hubo repetidos.
+        // PISTA: return new java.util.HashSet<>(ids).size() < ids.size();
+        // OJO: el test manda ["1","1"] (dos iguales) y espera true.
+        // CULTURA: referencias duplicadas inflan el documento y rompen invariantes.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contieneIdsDuplicados");
     }
 
@@ -143,11 +152,12 @@ public final class Ej152EmbeddedVsReferences {
      * RETO EXTRA 07: Valida que la profundidad del arbol embebido no sature lecturas (maximo 5 niveles).
      */
     public static boolean esEmbeddedSeguroNivel(int profundidad) {
-        // TODO extra: RETO EXTRA 07: Valida que la profundidad del arbol embebido no sature lecturas (maximo 5 niveles).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: validar la profundidad de anidamiento embebido (máx 5 niveles).
+        // 1. profundidad debe ser positiva (>= 1).
+        // 2. Y no pasar de 5 (regla del enunciado).
+        // PISTA: return profundidad >= 1 && profundidad <= 5;
+        // OJO: el test manda 3 y espera true (3 cae dentro de [1, 5]).
+        // CULTURA: anidar demasiado complica las queries y el mantenimiento (17.4).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esEmbeddedSeguroNivel");
     }
 
@@ -155,11 +165,15 @@ public final class Ej152EmbeddedVsReferences {
      * RETO EXTRA 08: Obtiene la coleccion destino de una referencia DBRef.
      */
     public static String extraerNombreDeColeccionReferenciada(String dbRef) {
-        // TODO extra: RETO EXTRA 08: Obtiene la coleccion destino de una referencia DBRef.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: extraer el valor de "$ref" de un DBRef {"$ref":"users"}.
+        // 1. Si dbRef es null o no contiene "$ref" -> "" o null.
+        // 2. Localiza el valor entre comillas que sigue a "$ref":.
+        // 3. Mismo patrón que extraerCampoObjectId (Ej150 reto 5): partes por
+        //    "$ref" y coges lo que hay entre el siguiente par de comillas.
+        // PISTA: regex "\"\\$ref\":\"([^\"]+)\"" + Matcher.group(1) (ojo: $ se
+        //    escapa en regex como \\$).
+        // OJO: el test manda {"$ref":"users"} y espera EXACTAMENTE "users".
+        // CULTURA: la colección destino es a la que harías el $lookup.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerNombreDeColeccionReferenciada");
     }
 
@@ -167,11 +181,14 @@ public final class Ej152EmbeddedVsReferences {
      * RETO EXTRA 09: Determina si el error apunta a una referencia no resuelta.
      */
     public static boolean esExcepcionReferenciaRota(Throwable t) {
-        // TODO extra: RETO EXTRA 09: Determina si el error apunta a una referencia no resuelta.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: clasificar una excepción de "referencia rota" (por mensaje).
+        // 1. Si t es null -> false.
+        // 2. Criterio: el mensaje contiene "reference" (ignorando case).
+        // PISTA: msg != null && msg.toLowerCase().contains("reference");
+        //    mismo patrón que esExcepcionMongo (Ej149 reto 8).
+        // OJO: el test pasa new IllegalArgumentException("reference") y espera true.
+        // CULTURA: una referencia rota es un id que apunta a nada (resolverReferencia
+        //    lanza NoSuchElementException en este mismo fichero).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionReferenciaRota");
     }
 
@@ -179,11 +196,12 @@ public final class Ej152EmbeddedVsReferences {
      * RETO EXTRA 10: Genera el formato simple de clave ajena referenciada.
      */
     public static String crearJsonReferencia(String id) {
-        // TODO extra: RETO EXTRA 10: Genera el formato simple de clave ajena referenciada.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — referencia simple solo con $id.
+        // PISTA: return "{\"$id\":\"" + id + "\"}";
+        // OJO: el test compara EXACTO con {"$id":"5"} (id="5"): solo $id, con el
+        //      valor entre comillas, sin $ref ni espacios.
+        // CULTURA: versión ligera del DBRef del reto 3 cuando la colección es
+        //    implícita (siempre la misma).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearJsonReferencia");
     }
 

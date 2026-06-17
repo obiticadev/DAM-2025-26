@@ -52,11 +52,11 @@ public final class Ej177OpenApiSwagger {
      * RETO EXTRA 01: Comprueba ruta valida.
      */
     public static boolean esRutaValida(String p) {
-        // TODO extra: RETO EXTRA 01: Comprueba ruta valida.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 20.1 (las rutas de OpenAPI empiezan por "/").
+        // 1. Si p es null -> false (sin NPE).
+        // 2. Una ruta válida no está en blanco y empieza por "/".
+        // PISTA: return p != null && !p.isBlank() && p.startsWith("/");
+        // OJO: el test solo manda "/users" (true), pero la regla debe cubrir null.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRutaValida");
     }
 
@@ -64,11 +64,13 @@ public final class Ej177OpenApiSwagger {
      * RETO EXTRA 02: Comprueba metodo HTTP.
      */
     public static boolean esMetodoValido(String m) {
-        // TODO extra: RETO EXTRA 02: Comprueba metodo HTTP.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 20.1 (métodos HTTP del estándar).
+        // 1. Si m es null -> false.
+        // 2. Normaliza a mayúsculas (trim + toUpperCase) y comprueba pertenencia
+        //    a un conjunto de métodos válidos: GET, POST, PUT, PATCH, DELETE...
+        // PISTA: Set.of("GET","POST","PUT","PATCH","DELETE","HEAD","OPTIONS")
+        //        .contains(m.trim().toUpperCase()).
+        // OJO: el test manda "GET" en mayúsculas, pero normalizar deja pasar "get".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMetodoValido");
     }
 
@@ -76,11 +78,11 @@ public final class Ej177OpenApiSwagger {
      * RETO EXTRA 03: Crea metadato.
      */
     public static EndpointMeta177 crearMeta(String p, String m, String d) {
-        // TODO extra: RETO EXTRA 03: Crea metadato.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — factoría del record.
+        // return new EndpointMeta177(p, m, d);
+        // El test solo comprueba que no sea null (assertNotNull). Puedes reusar
+        // esRutaValida/esMetodoValido para validar antes si quieres robustez,
+        // pero no es obligatorio para pasar.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearMeta");
     }
 
@@ -88,11 +90,10 @@ public final class Ej177OpenApiSwagger {
      * RETO EXTRA 04: Extrae ruta.
      */
     public static String extraerRuta(EndpointMeta177 meta) {
-        // TODO extra: RETO EXTRA 04: Extrae ruta.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — accesor del record (teoría 1.1: los records dan
+        // accesores SIN get, se llaman como el campo).
+        // return meta.path();
+        // (Defensa opcional: si meta es null podrías lanzar IllegalArgumentException.)
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerRuta");
     }
 
@@ -100,11 +101,9 @@ public final class Ej177OpenApiSwagger {
      * RETO EXTRA 05: Extrae metodo.
      */
     public static String extraerMetodo(EndpointMeta177 meta) {
-        // TODO extra: RETO EXTRA 05: Extrae metodo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — accesor del record. Reutiliza el patrón de extraerRuta.
+        // return meta.metodo();
+        // OJO: el test espera "GET" tal cual (sin tocar mayúsculas) — NO normalices.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerMetodo");
     }
 
@@ -112,11 +111,9 @@ public final class Ej177OpenApiSwagger {
      * RETO EXTRA 06: Extrae descripcion.
      */
     public static String extraerDescripcion(EndpointMeta177 meta) {
-        // TODO extra: RETO EXTRA 06: Extrae descripcion.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — accesor del record.
+        // return meta.descripcion();
+        // El test manda EndpointMeta177("/a","GET","d") y espera "d".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerDescripcion");
     }
 
@@ -124,11 +121,12 @@ public final class Ej177OpenApiSwagger {
      * RETO EXTRA 07: Comprueba version semantica.
      */
     public static boolean esVersionSemantica(String v) {
-        // TODO extra: RETO EXTRA 07: Comprueba version semantica.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: versión semántica = MAJOR.MINOR.PATCH, tres números con puntos.
+        // 1. Si v es null -> false.
+        // 2. Valídalo con una expresión regular de tres grupos de dígitos.
+        // PISTA: return v != null && v.matches("\\d+\\.\\d+\\.\\d+");
+        // OJO: el test manda "1.0.0" (true). "1.0" (dos partes) NO sería semántica.
+        // CULTURA: es el esquema de versionado de Maven, npm y casi todo el mundo.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esVersionSemantica");
     }
 
@@ -136,11 +134,12 @@ public final class Ej177OpenApiSwagger {
      * RETO EXTRA 08: Comprueba campos no nulos.
      */
     public static boolean esMetaCompleto(EndpointMeta177 meta) {
-        // TODO extra: RETO EXTRA 08: Comprueba campos no nulos.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: "completo" = el meta existe y sus tres campos no son null.
+        // 1. Si meta es null -> false.
+        // 2. Comprueba path, metodo y descripcion != null.
+        // PISTA: return meta != null && meta.path() != null
+        //        && meta.metodo() != null && meta.descripcion() != null;
+        // OJO: el test manda los tres campos rellenos (true).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMetaCompleto");
     }
 
@@ -148,11 +147,11 @@ public final class Ej177OpenApiSwagger {
      * RETO EXTRA 09: Formatea ruta.
      */
     public static String formatearRuta(String p) {
-        // TODO extra: RETO EXTRA 09: Formatea ruta.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: limpiar espacios sobrantes de la ruta.
+        // 1. Si p es null -> devuelve null (o "" si prefieres; el test no lo prueba).
+        // 2. Aplica trim() para quitar los espacios de los extremos.
+        // PISTA: return p == null ? null : p.trim();
+        // OJO: el test manda " /a " (con espacios) y espera exactamente "/a".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearRuta");
     }
 
@@ -160,11 +159,11 @@ public final class Ej177OpenApiSwagger {
      * RETO EXTRA 10: Comprueba lista no vacia.
      */
     public static boolean esColeccionEndpoint(java.util.List<EndpointMeta177> list) {
-        // TODO extra: RETO EXTRA 10: Comprueba lista no vacia.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: lista de endpoints "usable" = no null y no vacía.
+        // 1. Si list es null -> false.
+        // 2. Comprueba que tenga al menos un elemento.
+        // PISTA: return list != null && !list.isEmpty();
+        // OJO: el test manda una lista con un EndpointMeta177 (true).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esColeccionEndpoint");
     }
 

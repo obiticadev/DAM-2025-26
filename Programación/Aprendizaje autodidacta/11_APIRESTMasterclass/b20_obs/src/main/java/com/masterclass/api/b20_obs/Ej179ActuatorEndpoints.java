@@ -46,11 +46,12 @@ public final class Ej179ActuatorEndpoints {
      * RETO EXTRA 01: Valida si es UP.
      */
     public static boolean esEstadoUp(String estado) {
-        // TODO extra: RETO EXTRA 01: Valida si es UP.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 20.3 (normaliza antes de comparar: "up " cuenta como UP).
+        // 1. Si estado es null -> false.
+        // 2. trim() + toUpperCase() y compara con "UP".
+        // PISTA: return estado != null && "UP".equals(estado.trim().toUpperCase());
+        // OJO: el test manda "UP", pero la misma lógica deja pasar "up " (la que
+        // usa estadoAgregado del ejercicio base).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esEstadoUp");
     }
 
@@ -58,11 +59,10 @@ public final class Ej179ActuatorEndpoints {
      * RETO EXTRA 02: Valida si es DOWN.
      */
     public static boolean esEstadoDown(String estado) {
-        // TODO extra: RETO EXTRA 02: Valida si es DOWN.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: espejo de esEstadoUp comparando con "DOWN". Reutiliza el patrón.
+        // PISTA: return estado != null && "DOWN".equals(estado.trim().toUpperCase());
+        // OJO: NO lo definas como !esEstadoUp(estado): "UNKNOWN" no es ni UP ni
+        // DOWN, así que la negación daría un falso positivo de DOWN.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esEstadoDown");
     }
 
@@ -70,11 +70,9 @@ public final class Ej179ActuatorEndpoints {
      * RETO EXTRA 03: Total componentes.
      */
     public static int cantidadComponentes(java.util.Map<String, String> comps) {
-        // TODO extra: RETO EXTRA 03: Total componentes.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — tamaño del mapa.
+        // PISTA: return comps == null ? 0 : comps.size();
+        // El test manda un mapa de 2 entradas y espera 2.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para cantidadComponentes");
     }
 
@@ -82,11 +80,9 @@ public final class Ej179ActuatorEndpoints {
      * RETO EXTRA 04: Busca existencia.
      */
     public static boolean contieneComponente(java.util.Map<String, String> comps, String c) {
-        // TODO extra: RETO EXTRA 04: Busca existencia.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — containsKey.
+        // PISTA: return comps != null && comps.containsKey(c);
+        // El test pregunta por "db" en un mapa que lo tiene (true).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contieneComponente");
     }
 
@@ -94,11 +90,9 @@ public final class Ej179ActuatorEndpoints {
      * RETO EXTRA 05: Obtiene estado.
      */
     public static String obtenerEstadoComponente(java.util.Map<String, String> comps, String c) {
-        // TODO extra: RETO EXTRA 05: Obtiene estado.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — get del mapa.
+        // PISTA: return comps == null ? null : comps.get(c);
+        // El test pide "db" y espera "UP". (get ya devuelve null si no existe.)
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerEstadoComponente");
     }
 
@@ -106,11 +100,10 @@ public final class Ej179ActuatorEndpoints {
      * RETO EXTRA 06: Crea un mapa limpio.
      */
     public static java.util.Map<String, String> inicializarAgregador() {
-        // TODO extra: RETO EXTRA 06: Crea un mapa limpio.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — mapa mutable vacío al que luego añadir componentes.
+        // return new java.util.LinkedHashMap<>();   // o HashMap; orden estable mejor
+        // OJO: NO devuelvas Map.of() (inmutable): el reto 07 hará put sobre él.
+        // El test solo comprueba assertNotNull.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para inicializarAgregador");
     }
 
@@ -118,11 +111,11 @@ public final class Ej179ActuatorEndpoints {
      * RETO EXTRA 07: Agrega componente.
      */
     public static java.util.Map<String, String> agregarComponente(java.util.Map<String, String> comps, String c, String e) {
-        // TODO extra: RETO EXTRA 07: Agrega componente.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: añade el par (c,e) y DEVUELVE el mismo mapa para encadenar.
+        // 1. comps.put(c, e);
+        // 2. return comps;
+        // OJO: el test pasa un HashMap vacío y espera size()==1 sobre el RETORNO,
+        // así que devuelve el mapa (no void). Recibe mapa mutable (no Map.of()).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para agregarComponente");
     }
 
@@ -130,11 +123,10 @@ public final class Ej179ActuatorEndpoints {
      * RETO EXTRA 08: Elimina componente.
      */
     public static java.util.Map<String, String> eliminarComponente(java.util.Map<String, String> comps, String c) {
-        // TODO extra: RETO EXTRA 08: Elimina componente.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: espejo de agregarComponente — quita la clave y devuelve el mapa.
+        // 1. comps.remove(c);
+        // 2. return comps;
+        // El test pasa {db=UP}, elimina "db" y espera size()==0.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para eliminarComponente");
     }
 
@@ -142,11 +134,11 @@ public final class Ej179ActuatorEndpoints {
      * RETO EXTRA 09: Verifica homogeneidad.
      */
     public static boolean todosConEstado(java.util.Map<String, String> comps, String e) {
-        // TODO extra: RETO EXTRA 09: Verifica homogeneidad.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: ¿TODOS los valores valen e? (teoría 1.3: stream + allMatch).
+        // PISTA: return comps.values().stream().allMatch(v -> v.equals(e));
+        // OJO: allMatch sobre un mapa vacío devuelve true (no hay contraejemplo);
+        // valóralo si quieres exigir al menos uno. El test manda {db=UP,ping=UP}
+        // con e="UP" y espera true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para todosConEstado");
     }
 
@@ -154,11 +146,11 @@ public final class Ej179ActuatorEndpoints {
      * RETO EXTRA 10: Verifica si hay algun caso.
      */
     public static boolean algunoConEstado(java.util.Map<String, String> comps, String e) {
-        // TODO extra: RETO EXTRA 10: Verifica si hay algun caso.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: ¿ALGÚN valor vale e? Espejo de todosConEstado con anyMatch.
+        // PISTA: return comps.values().stream().anyMatch(v -> v.equals(e));
+        // El test manda {db=DOWN,ping=UP} con e="DOWN" y espera true.
+        // CULTURA: allMatch/anyMatch son justo lo que evalúa el health agregado
+        // por dentro (todos UP -> UP; alguno DOWN -> DOWN).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para algunoConEstado");
     }
 

@@ -67,11 +67,10 @@ public final class Ej176CoverageAndQualityGate {
      * RETO EXTRA 01: Valida si es 100%.
      */
     public static boolean esCoberturaTotal(double cob) {
-        // TODO extra: RETO EXTRA 01: Valida si es 100%.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.13 — una línea: return cob == 100.0;
+        // El test (100.0) espera true. (Comparar double con == funciona aquí
+        // porque 100.0 es exacto en binario; en cálculos derivados no fíes la
+        // igualdad a == — usa un epsilon.)
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCoberturaTotal");
     }
 
@@ -79,11 +78,8 @@ public final class Ej176CoverageAndQualityGate {
      * RETO EXTRA 02: Valida si es 0%.
      */
     public static boolean esCoberturaNula(double cob) {
-        // TODO extra: RETO EXTRA 02: Valida si es 0%.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.13 — una línea: return cob == 0.0;
+        // El test (0.0) espera true. Simétrico a esCoberturaTotal.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCoberturaNula");
     }
 
@@ -91,11 +87,9 @@ public final class Ej176CoverageAndQualityGate {
      * RETO EXTRA 03: Umbral estándar (80%).
      */
     public static double umbralPorDefecto() {
-        // TODO extra: RETO EXTRA 03: Umbral estándar (80%).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.13 — una línea: return 80.0;
+        // El test espera 80.0. 80% es el umbral "razonable por defecto" que se
+        // suele poner en una rule de JaCoCo.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para umbralPorDefecto");
     }
 
@@ -103,11 +97,9 @@ public final class Ej176CoverageAndQualityGate {
      * RETO EXTRA 04: Umbral exigente (100%).
      */
     public static double umbralEstricto() {
-        // TODO extra: RETO EXTRA 04: Umbral exigente (100%).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.13 — una línea: return 100.0;
+        // El test espera 100.0. Un gate al 100% solo pasa con cobertura total
+        // (raro y a menudo contraproducente: invita a tests-teatro sin valor).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para umbralEstricto");
     }
 
@@ -115,11 +107,9 @@ public final class Ej176CoverageAndQualityGate {
      * RETO EXTRA 05: Valida si esta en [0,100].
      */
     public static boolean esUmbralValido(double u) {
-        // TODO extra: RETO EXTRA 05: Valida si esta en [0,100].
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.13 — una línea: return u >= 0 && u <= 100;
+        // El test (50.0) espera true. Es la validación de rango que
+        // pasaQualityGate aplica a cobertura y umbral antes de comparar.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esUmbralValido");
     }
 
@@ -127,11 +117,9 @@ public final class Ej176CoverageAndQualityGate {
      * RETO EXTRA 06: Calcula diferencia absoluta.
      */
     public static double diferenciaCobertura(double a, double b) {
-        // TODO extra: RETO EXTRA 06: Calcula diferencia absoluta.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.13 — una línea: return Math.abs(a - b);
+        // El test (90.0, 80.0) espera 10.0. "Diferencia" → valor absoluto, igual
+        // que en obtenerDiferenciaSaldos (Ej167 reto 7).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para diferenciaCobertura");
     }
 
@@ -139,11 +127,9 @@ public final class Ej176CoverageAndQualityGate {
      * RETO EXTRA 07: Valida si es >= 80%.
      */
     public static boolean esCoberturaAceptable(double cob) {
-        // TODO extra: RETO EXTRA 07: Valida si es >= 80%.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.13 — una línea: return cob >= 80.0;
+        // El test (85.0) espera true. Es pasaQualityGate(cob, 80.0) hecho atajo;
+        // podrías incluso devolver pasaQualityGate(cob, umbralPorDefecto()).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCoberturaAceptable");
     }
 
@@ -151,11 +137,9 @@ public final class Ej176CoverageAndQualityGate {
      * RETO EXTRA 08: Valida si es < 50%.
      */
     public static boolean esCritica(double cob) {
-        // TODO extra: RETO EXTRA 08: Valida si es < 50%.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.13 — una línea: return cob < 50.0;
+        // El test (45.0) espera true. OJO: aquí es < ESTRICTO (50 NO es crítica),
+        // a diferencia del >= de esCoberturaAceptable.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCritica");
     }
 
@@ -163,11 +147,11 @@ public final class Ej176CoverageAndQualityGate {
      * RETO EXTRA 09: Calculo rapido sin redondeo.
      */
     public static double calcularPorcentajeRapido(int c, int t) {
-        // TODO extra: RETO EXTRA 09: Calculo rapido sin redondeo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.13 — porcentaje sin la validación ni el redondeo.
+        // return (double) c / t * 100;
+        // El test (5, 10) espera 50.0. ⚠ CUIDADO con la división entera: si
+        // escribes c / t SIN el (double), 5/10 = 0 (int) y daría 0.0. El cast a
+        // double ANTES de dividir es lo que evita ese clásico error.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularPorcentajeRapido");
     }
 
@@ -175,11 +159,10 @@ public final class Ej176CoverageAndQualityGate {
      * RETO EXTRA 10: Formatea con simbolo de porcentaje.
      */
     public static String formatearCobertura(double cob) {
-        // TODO extra: RETO EXTRA 10: Formatea con simbolo de porcentaje.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.13 — una línea: return cob + "%";
+        // El test (85.5) espera "85.5%". La concatenación double + String usa
+        // Double.toString → "85.5", y le pegas el "%". No metas espacios ni
+        // formatees decimales: el test compara la cadena exacta.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearCobertura");
     }
 

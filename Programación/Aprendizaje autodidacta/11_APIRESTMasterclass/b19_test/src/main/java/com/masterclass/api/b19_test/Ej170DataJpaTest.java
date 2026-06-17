@@ -49,11 +49,10 @@ public final class Ej170DataJpaTest {
      * RETO EXTRA 01: Cuenta total de entidades en el repo.
      */
     public static int contarEntidades(RepoMem170 repo) {
-        // TODO extra: RETO EXTRA 01: Cuenta total de entidades en el repo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.7 — equivalente a repo.count() de Spring Data.
+        // return repo.findAll().size();
+        // El test (repo con 2 entradas) espera 2. findAll() devuelve el mapa
+        // nombre→edad; size() cuenta sus entradas.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarEntidades");
     }
 
@@ -61,11 +60,10 @@ public final class Ej170DataJpaTest {
      * RETO EXTRA 02: Obtiene edad de una persona.
      */
     public static int obtenerEdadDe(RepoMem170 repo, String nombre) {
-        // TODO extra: RETO EXTRA 02: Obtiene edad de una persona.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.7 — busca por clave (como un findById).
+        // return repo.findAll().get(nombre);
+        // El test ({Ada:25}, "Ada") espera 25. Map.get devuelve el valor (la
+        // edad) o null si la clave no existe.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerEdadDe");
     }
 
@@ -73,11 +71,9 @@ public final class Ej170DataJpaTest {
      * RETO EXTRA 03: Comprueba si la lista esta vacia.
      */
     public static boolean esListaVacia(java.util.List<String> list) {
-        // TODO extra: RETO EXTRA 03: Comprueba si la lista esta vacia.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.7 — una línea: return list.isEmpty();
+        // El test (List.of()) espera true. isEmpty() es más expresivo que
+        // size() == 0.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esListaVacia");
     }
 
@@ -85,11 +81,10 @@ public final class Ej170DataJpaTest {
      * RETO EXTRA 04: Verifica existencia del nombre.
      */
     public static boolean contieneNombre(RepoMem170 repo, String nombre) {
-        // TODO extra: RETO EXTRA 04: Verifica existencia del nombre.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.7 — equivalente a repo.existsById(nombre).
+        // return repo.findAll().containsKey(nombre);
+        // El test ({Ada:25}, "Ada") espera true. containsKey comprueba la
+        // existencia de la clave sin traer el valor.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contieneNombre");
     }
 
@@ -97,11 +92,11 @@ public final class Ej170DataJpaTest {
      * RETO EXTRA 05: Obtiene todas las edades.
      */
     public static java.util.List<Integer> obtenerEdades(RepoMem170 repo) {
-        // TODO extra: RETO EXTRA 05: Obtiene todas las edades.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.7 — proyecta solo los valores (las edades).
+        // return new ArrayList<>(repo.findAll().values());
+        // El test ({A:10}) espera size()==1. Map.values() devuelve los valores;
+        // envuélvelos en una lista NUEVA (no expongas la colección interna del
+        // mapa — error común nº 7 del bloque, aislamiento).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerEdades");
     }
 
@@ -109,11 +104,11 @@ public final class Ej170DataJpaTest {
      * RETO EXTRA 06: Calcula la edad maxima registrada.
      */
     public static int edadMaxima(RepoMem170 repo) {
-        // TODO extra: RETO EXTRA 06: Calcula la edad maxima registrada.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.7 — agregación MAX (como un SELECT MAX(edad)).
+        // return repo.findAll().values().stream().mapToInt(Integer::intValue).max().getAsInt();
+        // El test ({Ada:30, Bob:18}) espera 30. mapToInt convierte a IntStream
+        // (su max() devuelve OptionalInt → getAsInt). Estas agregaciones son lo
+        // que en JPA harías con @Query("SELECT MAX(p.edad) ...").
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para edadMaxima");
     }
 
@@ -121,11 +116,9 @@ public final class Ej170DataJpaTest {
      * RETO EXTRA 07: Calcula la edad minima registrada.
      */
     public static int edadMinima(RepoMem170 repo) {
-        // TODO extra: RETO EXTRA 07: Calcula la edad minima registrada.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.7 — agregación MIN, simétrica al reto 6.
+        // return repo.findAll().values().stream().mapToInt(Integer::intValue).min().getAsInt();
+        // El test ({Ada:30, Bob:18}) espera 18.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para edadMinima");
     }
 
@@ -133,11 +126,9 @@ public final class Ej170DataJpaTest {
      * RETO EXTRA 08: Verifica si el repo esta vacio.
      */
     public static boolean estaVacio(RepoMem170 repo) {
-        // TODO extra: RETO EXTRA 08: Verifica si el repo esta vacio.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.7 — una línea: return repo.findAll().isEmpty();
+        // El test (Map::of, repo vacío) espera true. No confundas con
+        // esListaVacia (reto 3): aquí preguntas al REPO, no a una lista dada.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para estaVacio");
     }
 
@@ -145,11 +136,10 @@ public final class Ej170DataJpaTest {
      * RETO EXTRA 09: Calcula la edad promedio de las personas.
      */
     public static double edadPromedio(RepoMem170 repo) {
-        // TODO extra: RETO EXTRA 09: Calcula la edad promedio de las personas.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.7 — agregación AVG.
+        // return repo.findAll().values().stream().mapToInt(Integer::intValue).average().getAsDouble();
+        // El test ({Ada:30, Bob:18}) espera 24.0 = (30+18)/2. average() devuelve
+        // OptionalDouble (vacío si no hay elementos) → getAsDouble.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para edadPromedio");
     }
 
@@ -157,11 +147,14 @@ public final class Ej170DataJpaTest {
      * RETO EXTRA 10: Nombres que superan la edad dada.
      */
     public static java.util.List<String> nombresMayoresQue(RepoMem170 repo, int edad) {
-        // TODO extra: RETO EXTRA 10: Nombres que superan la edad dada.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.7 — es findByEdadMayorQue SIN el sorted final.
+        // repo.findAll().entrySet().stream()
+        //     .filter(e -> e.getValue() > edad)
+        //     .map(Map.Entry::getKey)
+        //     .toList();
+        // El test ({Ada:30, Bob:18}, 20) espera size()==1 (solo Ada > 20).
+        // Reutiliza el patrón del ejercicio base; aquí el test solo mira el
+        // tamaño, no el orden.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para nombresMayoresQue");
     }
 

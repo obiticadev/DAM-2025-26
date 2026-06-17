@@ -49,11 +49,9 @@ public final class Ej181StructuredLoggingMdc {
      * RETO EXTRA 01: Valida si el nivel no es blanco.
      */
     public static boolean esNivelValido(String nivel) {
-        // TODO extra: RETO EXTRA 01: Valida si el nivel no es blanco.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: nivel válido = presente y no en blanco (teoría 20.5: isBlank cubre " ").
+        // PISTA: return nivel != null && !nivel.isBlank();
+        // El test manda "INFO" -> true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esNivelValido");
     }
 
@@ -61,11 +59,10 @@ public final class Ej181StructuredLoggingMdc {
      * RETO EXTRA 02: Valida mensaje no nulo.
      */
     public static boolean esMensajeValido(String mensaje) {
-        // TODO extra: RETO EXTRA 02: Valida mensaje no nulo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: el mensaje solo debe NO ser null (un mensaje vacío "" es válido,
+        // a diferencia del nivel). Mira formatear(): allí solo se exige != null.
+        // PISTA: return mensaje != null;
+        // El test manda "ok" -> true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMensajeValido");
     }
 
@@ -73,11 +70,9 @@ public final class Ej181StructuredLoggingMdc {
      * RETO EXTRA 03: Valida mdc no nulo.
      */
     public static boolean esMdcValido(java.util.Map<String, String> mdc) {
-        // TODO extra: RETO EXTRA 03: Valida mdc no nulo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: el mdc solo debe NO ser null (un mapa vacío SÍ es válido).
+        // PISTA: return mdc != null;
+        // OJO: el test manda Map.of() (vacío) y espera true; no exijas !isEmpty().
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMdcValido");
     }
 
@@ -85,11 +80,10 @@ public final class Ej181StructuredLoggingMdc {
      * RETO EXTRA 04: Limpia y capitaliza nivel.
      */
     public static String normalizarNivel(String nivel) {
-        // TODO extra: RETO EXTRA 04: Limpia y capitaliza nivel.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: trim + mayúsculas (la misma normalización que usa formatear() en TODO 5).
+        // PISTA: return nivel.trim().toUpperCase();
+        // OJO: el test manda " info " (con espacios y minúscula) y espera "INFO".
+        // "Capitaliza" aquí significa pasar TODO a mayúsculas, no solo la inicial.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para normalizarNivel");
     }
 
@@ -97,11 +91,10 @@ public final class Ej181StructuredLoggingMdc {
      * RETO EXTRA 05: Crea un LinkedHashMap para preservar orden.
      */
     public static java.util.Map<String, String> crearMdcMap() {
-        // TODO extra: RETO EXTRA 05: Crea un LinkedHashMap para preservar orden.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — mapa que preserva orden de inserción (teoría 20.5).
+        // return new java.util.LinkedHashMap<>();
+        // OJO: LinkedHashMap (no HashMap) para que en el JSON las claves salgan
+        // en el orden en que las metiste. El test solo comprueba assertNotNull.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearMdcMap");
     }
 
@@ -109,11 +102,10 @@ public final class Ej181StructuredLoggingMdc {
      * RETO EXTRA 06: Inserta clave-valor en mdc.
      */
     public static java.util.Map<String, String> insertarMdc(java.util.Map<String, String> mdc, String k, String v) {
-        // TODO extra: RETO EXTRA 06: Inserta clave-valor en mdc.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: put y devuelve el mismo mapa (patrón fluido, como en Ej179).
+        // 1. mdc.put(k, v);
+        // 2. return mdc;
+        // OJO: el test pasa un HashMap mutable y espera size()==1 sobre el RETORNO.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para insertarMdc");
     }
 
@@ -121,11 +113,12 @@ public final class Ej181StructuredLoggingMdc {
      * RETO EXTRA 07: Limpia todas las claves del mdc.
      */
     public static java.util.Map<String, String> limpiarMdc(java.util.Map<String, String> mdc) {
-        // TODO extra: RETO EXTRA 07: Limpia todas las claves del mdc.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: vacía el mapa y devuélvelo. Espejo de insertarMdc.
+        // 1. mdc.clear();
+        // 2. return mdc;
+        // El test pasa {a=b} y espera size()==0 tras limpiar.
+        // CULTURA: en producción esto es MDC.clear() al terminar la petición, para
+        // que el traceId de una no se filtre al hilo reciclado por la siguiente.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para limpiarMdc");
     }
 
@@ -133,11 +126,9 @@ public final class Ej181StructuredLoggingMdc {
      * RETO EXTRA 08: Verifica si contiene traceId.
      */
     public static boolean contieneTrazaMdc(java.util.Map<String, String> mdc) {
-        // TODO extra: RETO EXTRA 08: Verifica si contiene traceId.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — ¿el mdc tiene la clave "traceId"? (la del bloque 20.6).
+        // PISTA: return mdc != null && mdc.containsKey("traceId");
+        // OJO: clave EXACTA "traceId" (camelCase). El test manda {traceId=123}.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contieneTrazaMdc");
     }
 
@@ -145,11 +136,11 @@ public final class Ej181StructuredLoggingMdc {
      * RETO EXTRA 09: Serializa un log vacio.
      */
     public static String serializarVacio() {
-        // TODO extra: RETO EXTRA 09: Serializa un log vacio.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: serializa un mapa vacío con Jackson -> "{}".
+        // PISTA: new ObjectMapper().writeValueAsString(new LinkedHashMap<>());
+        // OJO: writeValueAsString lanza JsonProcessingException (checked);
+        // envuélvela en try/catch -> IllegalStateException (igual que formatear()).
+        // El test espera EXACTAMENTE "{}".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para serializarVacio");
     }
 
@@ -157,11 +148,12 @@ public final class Ej181StructuredLoggingMdc {
      * RETO EXTRA 10: Obtiene un campo textual del JSON.
      */
     public static String obtenerDeJson(String json, String k) {
-        // TODO extra: RETO EXTRA 10: Obtiene un campo textual del JSON.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: parsea el JSON y extrae el campo de texto k (operación inversa a formatear).
+        // 1. JsonNode raiz = new ObjectMapper().readTree(json);
+        // 2. return raiz.get(k).asText();   // asText() devuelve el String sin comillas
+        // OJO: readTree lanza JsonProcessingException (checked) -> envuélvela en
+        // IllegalStateException, como en formatear(). El test pasa
+        // {"level":"INFO"} con k="level" y espera "INFO".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerDeJson");
     }
 

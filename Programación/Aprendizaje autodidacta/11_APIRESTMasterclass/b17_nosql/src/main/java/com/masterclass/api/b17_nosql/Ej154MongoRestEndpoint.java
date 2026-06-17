@@ -70,11 +70,14 @@ public final class Ej154MongoRestEndpoint {
      * RETO EXTRA 01: Valida rutas validas bajo el api rest de mongo.
      */
     public static boolean esPeticionMongoValida(String method, String path) {
-        // TODO extra: RETO EXTRA 01: Valida rutas validas bajo el api rest de mongo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 17.6 (valida método HTTP + ruta del API).
+        // 1. Si method o path son null -> false.
+        // 2. El método debe ser uno válido: GET, POST, PUT, PATCH, DELETE.
+        // 3. La ruta debe empezar por "/" (y aquí, por "/api/mongo").
+        // PISTA: Set.of("GET","POST","PUT","PATCH","DELETE").contains(method)
+        //    && path.startsWith("/").
+        // OJO: el test manda ("GET", "/api/mongo") y espera true.
+        // CULTURA: el verbo + la ruta son la firma de un endpoint REST (b05).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPeticionMongoValida");
     }
 
@@ -82,11 +85,13 @@ public final class Ej154MongoRestEndpoint {
      * RETO EXTRA 02: Verifica si el contentType de entrada corresponde a JSON o BSON.
      */
     public static boolean esCabeceraJson(String contentType) {
-        // TODO extra: RETO EXTRA 02: Verifica si el contentType de entrada corresponde a JSON o BSON.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: comprobar que el Content-Type sea JSON (o BSON).
+        // 1. Si contentType es null -> false.
+        // 2. Debe contener "json" (o "bson"), ignorando mayúsculas.
+        // PISTA: contentType.toLowerCase().contains("json").
+        // OJO: el test manda "application/json" y espera true; usa contains, no
+        //      equals, porque puede venir "application/json; charset=utf-8".
+        // CULTURA: es la cabecera que mira Spring para elegir el HttpMessageConverter (b02).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCabeceraJson");
     }
 
@@ -94,11 +99,12 @@ public final class Ej154MongoRestEndpoint {
      * RETO EXTRA 03: Genera el JSON standard de retorno de endpoints.
      */
     public static String crearRespuestaRestMongo(String id, String data) {
-        // TODO extra: RETO EXTRA 03: Genera el JSON standard de retorno de endpoints.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: construir un JSON de respuesta con id y data.
+        // 1. Forma sugerida: {"id":"<id>","data":"<data>"}.
+        // PISTA: return "{\"id\":\"" + id + "\",\"data\":\"" + data + "\"}";
+        // OJO: el test (id="1", data="data") solo exige que el resultado
+        //      .contains("data"); con incluir el valor data ya cuadra.
+        // CULTURA: en real esto lo serializa Jackson desde un record DTO (b07).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearRespuestaRestMongo");
     }
 
@@ -106,11 +112,13 @@ public final class Ej154MongoRestEndpoint {
      * RETO EXTRA 04: Identifica metodos HTTP que pueden mutar o eliminar colecciones enteras (DELETE).
      */
     public static boolean esAccionCritica(String method) {
-        // TODO extra: RETO EXTRA 04: Identifica metodos HTTP que pueden mutar o eliminar colecciones enteras (DELETE).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: marcar como crítico el método que destruye datos (DELETE).
+        // 1. Si method es null -> false.
+        // 2. Devuelve true para "DELETE" (puedes incluir también PUT si quieres
+        //    ser más estricto, pero el test solo exige DELETE).
+        // PISTA: return "DELETE".equalsIgnoreCase(method);
+        // OJO: el test manda "DELETE" y espera true.
+        // CULTURA: GET es seguro/idempotente; DELETE no se debe exponer sin control (b18).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esAccionCritica");
     }
 
@@ -118,11 +126,12 @@ public final class Ej154MongoRestEndpoint {
      * RETO EXTRA 05: Filtra endpoints reservados para administración y gestion de indices.
      */
     public static boolean esRutaExclusivaAdmin(String path) {
-        // TODO extra: RETO EXTRA 05: Filtra endpoints reservados para administración y gestion de indices.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: detectar rutas de administración (contienen "/admin").
+        // 1. Si path es null -> false.
+        // 2. Devuelve true si la ruta contiene "/admin".
+        // PISTA: return path != null && path.contains("/admin");
+        // OJO: el test manda "/api/mongo/admin" y espera true.
+        // CULTURA: las rutas /admin se protegen con un rol distinto (b18, Security).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRutaExclusivaAdmin");
     }
 
@@ -130,11 +139,12 @@ public final class Ej154MongoRestEndpoint {
      * RETO EXTRA 06: Determina si la excepcion proviene de fallos de serializacion de red.
      */
     public static boolean esExcepcionApiRest(Throwable t) {
-        // TODO extra: RETO EXTRA 06: Determina si la excepcion proviene de fallos de serializacion de red.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: clasificar una excepción del API REST (por mensaje).
+        // 1. Si t es null -> false.
+        // 2. Criterio: el mensaje contiene "rest" (ignorando case).
+        // PISTA: msg != null && msg.toLowerCase().contains("rest");
+        //    mismo patrón que esExcepcionMongo (Ej149 reto 8).
+        // OJO: el test pasa new IllegalArgumentException("rest") y espera true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionApiRest");
     }
 
@@ -142,11 +152,12 @@ public final class Ej154MongoRestEndpoint {
      * RETO EXTRA 07: Crea la explicacion de error del endpoint rest.
      */
     public static String generarMensajeFalloMongo(String operation, String err) {
-        // TODO extra: RETO EXTRA 07: Crea la explicacion de error del endpoint rest.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — formatea un mensaje de error con plantilla fija.
+        // PISTA: return "Mongo error on " + operation + ": " + err;
+        // OJO: el test (operation="OP", err="err") compara EXACTO con
+        //      "Mongo error on OP: err". Respeta espacios y los dos puntos al pie
+        //      de la letra: "Mongo error on " + ... + ": " + ...
+        // CULTURA: mensajes consistentes facilitan el grep en logs (b20, Observabilidad).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para generarMensajeFalloMongo");
     }
 
@@ -154,11 +165,11 @@ public final class Ej154MongoRestEndpoint {
      * RETO EXTRA 08: Verifica que el offset no sea negativo.
      */
     public static boolean esLimiteOffsetValido(int offset) {
-        // TODO extra: RETO EXTRA 08: Verifica que el offset no sea negativo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: un offset de paginación no puede ser negativo.
+        // PISTA: return offset >= 0;
+        // OJO: el test manda 0 y espera true (0 es válido: primera página).
+        //      Cuidado: la condición es >= 0, NO > 0 (si no, 0 fallaría).
+        // CULTURA: el offset es el .skip(n) de Mongo (conecta con b15, paginación).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esLimiteOffsetValido");
     }
 
@@ -166,11 +177,12 @@ public final class Ej154MongoRestEndpoint {
      * RETO EXTRA 09: Comprueba que venga algun cabezal basico de autorizacion.
      */
     public static boolean contieneTokenSeguridad(String authorizationHeader) {
-        // TODO extra: RETO EXTRA 09: Comprueba que venga algun cabezal basico de autorizacion.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: detectar una cabecera Authorization con token (Bearer).
+        // 1. Si authorizationHeader es null o vacío -> false.
+        // 2. Debe empezar por "Bearer " (o contener un token).
+        // PISTA: authorizationHeader.startsWith("Bearer ").
+        // OJO: el test manda "Bearer tok" y espera true.
+        // CULTURA: "Bearer <jwt>" es el esquema estándar de OAuth2/JWT (b18).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contieneTokenSeguridad");
     }
 
@@ -178,11 +190,12 @@ public final class Ej154MongoRestEndpoint {
      * RETO EXTRA 10: Determina si la consulta a Mongo se resolvio en tiempo optimo (menos de 500ms).
      */
     public static boolean tiempoRespuestaOptimo(long ms) {
-        // TODO extra: RETO EXTRA 10: Determina si la consulta a Mongo se resolvio en tiempo optimo (menos de 500ms).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una consulta es "óptima" si tardó menos de 500 ms.
+        // 1. ms no debería ser negativo (defensivo), pero el foco es el umbral.
+        // PISTA: return ms >= 0 && ms < 500;
+        // OJO: el test manda 100 y espera true (100 < 500). El límite es ESTRICTO:
+        //      con < 500, justo 500 ms NO sería óptimo.
+        // CULTURA: medir latencia por petición es la base de las métricas (b20).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tiempoRespuestaOptimo");
     }
 

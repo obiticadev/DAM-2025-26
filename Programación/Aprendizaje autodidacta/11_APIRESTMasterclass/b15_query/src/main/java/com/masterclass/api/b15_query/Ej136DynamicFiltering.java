@@ -47,11 +47,11 @@ public final class Ej136DynamicFiltering {
      * Reto Extra 1: Comprueba si un filtro es nulo o vacio.
      */
     public static boolean esFiltroVacio(String f) {
-        // TODO extra: Reto Extra 1: Comprueba si un filtro es nulo o vacio.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 15.2. Decidir si un filtro "cuenta" es el primer paso del
+        //   WHERE dinámico (TODO 2/3 de buscar()): un filtro vacío = no filtrar.
+        // 1. Una línea: return f == null || f.isBlank();
+        // OJO: el test pide true para " " (un espacio) → usa isBlank(), NO
+        //   isEmpty() (isEmpty(" ") es false). false para "Ropa".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFiltroVacio");
     }
 
@@ -59,11 +59,9 @@ public final class Ej136DynamicFiltering {
      * Reto Extra 2: Comprueba si un filtro numerico es valido (positivo).
      */
     public static boolean esPrecioValido(Double precio) {
-        // TODO extra: Reto Extra 2: Comprueba si un filtro numerico es valido (positivo).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return precio != null && precio > 0;
+        // OJO: el test pide true para 10.0 y false para -5.0. Comprueba null
+        //   ANTES de comparar (precio es Double, podría llegar null).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPrecioValido");
     }
 
@@ -71,11 +69,10 @@ public final class Ej136DynamicFiltering {
      * Reto Extra 3: Genera una clausula select base de JPQL.
      */
     public static String selectBase() {
-        // TODO extra: Reto Extra 3: Genera una clausula select base de JPQL.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return "select p from Prod136 p";
+        // ⚠ CUIDADO: el test espera literalmente "select p from Prod136 p" (con
+        //   "Prod136", aunque la entidad real de este ejercicio sea Coche136).
+        //   Devuelve la cadena EXACTA que pide el test, se compara con equals.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para selectBase");
     }
 
@@ -83,11 +80,8 @@ public final class Ej136DynamicFiltering {
      * Reto Extra 4: Comprueba si el filtro de precio es nulo.
      */
     public static boolean esPrecioNulo(Double precio) {
-        // TODO extra: Reto Extra 4: Comprueba si el filtro de precio es nulo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return precio == null;
+        // El test pide true para null y false para 10.0.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPrecioNulo");
     }
 
@@ -95,11 +89,9 @@ public final class Ej136DynamicFiltering {
      * Reto Extra 5: Comprueba si el filtro de categoria es nulo o vacio.
      */
     public static boolean esCategoriaVacia(String cat) {
-        // TODO extra: Reto Extra 5: Comprueba si el filtro de categoria es nulo o vacio.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: misma lógica que esFiltroVacio (reto 1) — reutilízalo.
+        // 1. Una línea: return esFiltroVacio(cat);  (o cat == null || cat.isBlank())
+        // El test pide true para " ".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCategoriaVacia");
     }
 
@@ -107,11 +99,8 @@ public final class Ej136DynamicFiltering {
      * Reto Extra 6: Limpia e normaliza un filtro de texto.
      */
     public static String normalizarFiltro(String f) {
-        // TODO extra: Reto Extra 6: Limpia e normaliza un filtro de texto.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return f == null ? null : f.trim().toLowerCase();
+        // OJO: el test pasa "  Ropa  " y espera "ropa" (trim + MINÚSCULAS).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para normalizarFiltro");
     }
 
@@ -119,11 +108,11 @@ public final class Ej136DynamicFiltering {
      * Reto Extra 7: Comprueba si se debe aplicar algun filtro.
      */
     public static boolean debeFiltrar(String cat, Double maxPrecio) {
-        // TODO extra: Reto Extra 7: Comprueba si se debe aplicar algun filtro.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: hay que filtrar si HAY al menos un filtro activo. Reutiliza los
+        //   retos 5 y 4.
+        // 1. Una línea: return !esCategoriaVacia(cat) || maxPrecio != null;
+        // OJO: el test pide true para ("Ropa", null) y false para (null, null).
+        //   Es un OR: basta con un filtro presente.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para debeFiltrar");
     }
 
@@ -131,11 +120,12 @@ public final class Ej136DynamicFiltering {
      * Reto Extra 8: Retorna un parametro de tipo LIKE formateado (%valor%).
      */
     public static String formatearLike(String f) {
-        // TODO extra: Reto Extra 8: Retorna un parametro de tipo LIKE formateado (%valor%).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: envuelve el valor normalizado entre comodines % para un LIKE.
+        // PISTA: return "%" + f.trim().toLowerCase() + "%";
+        //   (o reutiliza: "%" + normalizarFiltro(f) + "%")
+        // OJO: el test pasa "Ropa" y espera "%ropa%" (en minúsculas, con un % a
+        //   cada lado). CULTURA: el % busca "contiene"; %valor (sin % final)
+        //   sería "termina en"; valor% sería "empieza por".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearLike");
     }
 
@@ -143,11 +133,9 @@ public final class Ej136DynamicFiltering {
      * Reto Extra 9: Comprueba si dos filtros de categoria son iguales sin importar mayusculas.
      */
     public static boolean sonCategoriasIguales(String c1, String c2) {
-        // TODO extra: Reto Extra 9: Comprueba si dos filtros de categoria son iguales sin importar mayusculas.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return c1 != null && c1.equalsIgnoreCase(c2);
+        // OJO: el test pasa ("Ropa", "ROPA") y espera true. Comprueba c1 != null
+        //   primero para no romper si llega null.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para sonCategoriasIguales");
     }
 
@@ -155,11 +143,11 @@ public final class Ej136DynamicFiltering {
      * Reto Extra 10: Retorna una representacion de texto de los filtros activos.
      */
     public static String formatearFiltrosActivos(String cat, Double maxPrecio) {
-        // TODO extra: Reto Extra 10: Retorna una representacion de texto de los filtros activos.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: String.format con la categoría (cruda) y el precio.
+        // PISTA: String.format("Filtros[Cat=%s, MaxPrecio=%s]", cat, maxPrecio);
+        // OJO: el test espera EXACTAMENTE "Filtros[Cat=Ropa, MaxPrecio=10.0]".
+        //   %s sobre un Double 10.0 imprime "10.0". Usa la categoría TAL CUAL
+        //   ("Ropa", sin normalizar).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearFiltrosActivos");
     }
 

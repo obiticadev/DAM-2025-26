@@ -69,11 +69,12 @@ public final class Ej158UserDetailsService {
      * RETO EXTRA 01: Comprueba que no contenga espacios ni caracteres prohibidos.
      */
     public static boolean esNombreUsuarioValido(String username) {
-        // TODO extra: RETO EXTRA 01: Comprueba que no contenga espacios ni caracteres prohibidos.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: username sin espacios ni caracteres peligrosos (regex).
+        // 1. Si username es null -> false.
+        // 2. Permite letras, dígitos y unos pocos separadores seguros.
+        // PISTA: return username != null && username.matches("[a-zA-Z0-9._-]+");
+        // OJO: el test pasa "ada" y espera true. La clase [..]+ ya excluye espacios;
+        // restringir el alfabeto evita inyección y suplantación (parecido a Ej156-01).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esNombreUsuarioValido");
     }
 
@@ -81,11 +82,12 @@ public final class Ej158UserDetailsService {
      * RETO EXTRA 02: Comprueba si la cuenta esta marcada como bloqueada o suspendida.
      */
     public static boolean esUsuarioBloqueado(String status) {
-        // TODO extra: RETO EXTRA 02: Comprueba si la cuenta esta marcada como bloqueada o suspendida.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: estado de cuenta contra un conjunto de estados "no operativos".
+        // 1. Si status es null -> false.
+        // 2. true si el estado es de bloqueo/suspensión.
+        // PISTA: Set.of("BLOCKED","SUSPENDED","LOCKED").contains(status.toUpperCase());
+        // OJO: el test pasa "BLOCKED" y espera true. Normaliza a mayúsculas para
+        // tolerar "blocked"/"Blocked"; relaciona con el flag locked de teoría 18.4.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esUsuarioBloqueado");
     }
 
@@ -93,11 +95,14 @@ public final class Ej158UserDetailsService {
      * RETO EXTRA 03: Determina si es de tipo UsernameNotFoundException.
      */
     public static boolean esExcepcionUserNotFound(Throwable t) {
-        // TODO extra: RETO EXTRA 03: Determina si es de tipo UsernameNotFoundException.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: detectar "usuario no encontrado" por el mensaje.
+        // 1. Si t o t.getMessage() son null -> false.
+        // 2. En Spring sería UsernameNotFoundException; aquí va por mensaje.
+        // PISTA: t != null && t.getMessage() != null
+        //        && t.getMessage().toLowerCase().contains("notfound");
+        // OJO: el test pasa IllegalArgumentException("notfound") y espera true.
+        // CUIDADO: de cara al cliente esto NO debe distinguirse de "clave mala"
+        // (user enumeration, teoría 18.4); el detalle se queda en logs internos.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionUserNotFound");
     }
 
@@ -105,11 +110,11 @@ public final class Ej158UserDetailsService {
      * RETO EXTRA 04: Genera la ficha formateada del usuario cargado.
      */
     public static String crearUserDetailsString(String u, String roles) {
-        // TODO extra: RETO EXTRA 04: Genera la ficha formateada del usuario cargado.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: representación legible del UserDetails cargado.
+        // 1. Combina username y roles en una cadena descriptiva.
+        // PISTA: return String.format("User(%s, roles=[%s])", u, roles);
+        // OJO: el test pasa ("u","USER") y solo exige .contains("USER"); el formato
+        // es libre mientras incluya los roles. NUNCA incluyas aquí el passwordHash.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearUserDetailsString");
     }
 
@@ -117,11 +122,10 @@ public final class Ej158UserDetailsService {
      * RETO EXTRA 05: Determina si la cuenta es apta para loguearse.
      */
     public static boolean esCuentaHabilitada(boolean active, boolean blocked) {
-        // TODO extra: RETO EXTRA 05: Determina si la cuenta es apta para loguearse.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — misma regla que puedeAutenticar (teoría 18.4).
+        // return active && !blocked;
+        // OJO: el test pasa (true, false) y espera true. Una cuenta activa pero
+        // bloqueada NO puede loguearse: el AND con la negación de blocked es la clave.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCuentaHabilitada");
     }
 
@@ -129,11 +133,13 @@ public final class Ej158UserDetailsService {
      * RETO EXTRA 06: Separa roles por comas.
      */
     public static java.util.List<String> extraerRolesDeString(String authList) {
-        // TODO extra: RETO EXTRA 06: Separa roles por comas.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: CSV de roles -> List<String> (streams, teoría 1.3).
+        // 1. Si authList es null/blank -> List.of() (lista vacía, no null).
+        // 2. Parte por comas, recorta espacios y descarta vacíos.
+        // PISTA: java.util.Arrays.stream(authList.split(","))
+        //        .map(String::trim).filter(s -> !s.isEmpty()).toList();
+        // OJO: el test pasa "USER" (sin comas) y espera List.of("USER"); el split
+        // de una cadena sin separador devuelve la cadena entera en un elemento.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerRolesDeString");
     }
 
@@ -141,11 +147,10 @@ public final class Ej158UserDetailsService {
      * RETO EXTRA 07: Verifica que la contrasena de base de datos no sea nula ni vacia.
      */
     public static boolean esPasswordValidaDb(String dbHash) {
-        // TODO extra: RETO EXTRA 07: Verifica que la contrasena de base de datos no sea nula ni vacia.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — el hash de BD debe existir y no estar vacío.
+        // return dbHash != null && !dbHash.isBlank();
+        // OJO: el test pasa "hash" y espera true. Un usuario sin hash en BD nunca
+        // debería poder autenticar (cuenta mal aprovisionada).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPasswordValidaDb");
     }
 
@@ -153,11 +158,10 @@ public final class Ej158UserDetailsService {
      * RETO EXTRA 08: Determina si no se supero el limite de intentos de acceso.
      */
     public static boolean esIntentoLoginPermitido(int fallidos, int max) {
-        // TODO extra: RETO EXTRA 08: Determina si no se supero el limite de intentos de acceso.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — control de intentos fallidos.
+        // return fallidos < max;
+        // OJO: el test pasa (2, 5) y espera true. Decide el límite: aquí permitir
+        // mientras fallidos < max; al llegar a max se bloquea (lleva al flag locked).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esIntentoLoginPermitido");
     }
 
@@ -165,11 +169,11 @@ public final class Ej158UserDetailsService {
      * RETO EXTRA 09: Genera el texto de log de auditoria de login.
      */
     public static String generarResumenAuditoria(String u, boolean success) {
-        // TODO extra: RETO EXTRA 09: Genera el texto de log de auditoria de login.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: línea de auditoría con el resultado del login.
+        // 1. Mapea el booleano a un literal: success ? "SUCCESS" : "FAILURE".
+        // PISTA: return String.format("login %s user=%s", success ? "SUCCESS" : "FAILURE", u);
+        // OJO: el test pasa ("u", true) y exige que el resultado .contains("SUCCESS").
+        // El literal debe ir en MAYÚSCULAS exactas. No registres la contraseña.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para generarResumenAuditoria");
     }
 
@@ -177,11 +181,12 @@ public final class Ej158UserDetailsService {
      * RETO EXTRA 10: Determina si el error ocurrio por caida de la conexion con el backend.
      */
     public static boolean esFalloServicioUser(Throwable t) {
-        // TODO extra: RETO EXTRA 10: Determina si el error ocurrio por caida de la conexion con el backend.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: distinguir fallo de INFRAESTRUCTURA de fallo de credenciales.
+        // 1. Si t es null -> false.
+        // 2. Un fallo de conexión con el backend es de tipo I/O.
+        // PISTA: return t instanceof java.io.IOException;
+        // OJO: el test pasa new IOException() y espera true. Importa la distinción:
+        // un IOException es un 500 (problema nuestro), no un 401 (credenciales).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFalloServicioUser");
     }
 

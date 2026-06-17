@@ -51,11 +51,13 @@ public final class Ej153AggregationPipeline {
      * RETO EXTRA 01: Verifica si el string representa un operador de stage valido ($match, $group, $project).
      */
     public static boolean esEtapaAgregacionValida(String stage) {
-        // TODO extra: RETO EXTRA 01: Verifica si el string representa un operador de stage valido ($match, $group, $project).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 17.5 (etapas válidas del pipeline).
+        // 1. Si stage es null -> false.
+        // 2. Comprueba que esté en el conjunto de etapas conocidas.
+        // PISTA: Set.of("$match","$group","$sort","$project","$limit","$skip",
+        //    "$lookup","$unwind","$count").contains(stage).
+        // OJO: el test manda "$match" y espera true; toda etapa empieza por '$'.
+        // CULTURA: tabla de etapas de la teoría 17.5.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esEtapaAgregacionValida");
     }
 
@@ -63,11 +65,11 @@ public final class Ej153AggregationPipeline {
      * RETO EXTRA 02: Genera el JSON de un stage de filtrado $match.
      */
     public static String crearEtapaMatch(String filter) {
-        // TODO extra: RETO EXTRA 02: Genera el JSON de un stage de filtrado $match.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — envuelve el filtro en una etapa $match.
+        // PISTA: return "{\"$match\":" + filter + "}";
+        // OJO: el test compara EXACTO con {"$match":f} (filter="f"): el filtro va
+        //      SIN comillas alrededor (es un objeto, no un string), pegado tras los ':'.
+        // CULTURA: $match es la primera etapa recomendada (filtra antes, 17.5).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearEtapaMatch");
     }
 
@@ -75,11 +77,14 @@ public final class Ej153AggregationPipeline {
      * RETO EXTRA 03: Genera la definicion del stage $group.
      */
     public static String crearEtapaGroup(String idField, String accumOp, String accumField) {
-        // TODO extra: RETO EXTRA 03: Genera la definicion del stage $group.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 17.5 (un $group define _id = clave y un acumulador).
+        // 1. La forma real es: {"$group":{"_id":"$idField","total":{"$sum":"$accumField"}}}
+        //    usando accumOp como operador ($sum, $avg...).
+        // 2. Constrúyela por concatenación con los tres parámetros.
+        // PISTA: el test SOLO exige que el resultado .contains("$group");
+        //    incluye al menos la clave "$group" y los campos.
+        // OJO: el _id del $group es la clave de agrupación (17.5).
+        // CULTURA: es lo que arma Aggregation.group(idField).sum(accumField) de Spring.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearEtapaGroup");
     }
 
@@ -87,11 +92,11 @@ public final class Ej153AggregationPipeline {
      * RETO EXTRA 04: Comprueba si la coleccion de etapas esta vacia.
      */
     public static boolean esPipelineVacio(java.util.List<String> pipeline) {
-        // TODO extra: RETO EXTRA 04: Comprueba si la coleccion de etapas esta vacia.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: un pipeline está vacío si no tiene etapas.
+        // 1. Trata null como vacío también (defensivo).
+        // PISTA: return pipeline == null || pipeline.isEmpty();
+        // OJO: el test manda List.of() (lista vacía) y espera true.
+        // CULTURA: un pipeline vacío no transforma nada; devolvería la colección tal cual.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPipelineVacio");
     }
 
@@ -99,11 +104,13 @@ public final class Ej153AggregationPipeline {
      * RETO EXTRA 05: Resuelve que funcion se aplica en la agregacion.
      */
     public static String extraerOperadorAcumulacion(String groupStage) {
-        // TODO extra: RETO EXTRA 05: Resuelve que funcion se aplica en la agregacion.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: detectar el operador de acumulación y devolver su nombre en mayúsculas.
+        // 1. Si groupStage es null -> "" o null.
+        // 2. Mira qué $ contiene y mapéalo: "$sum"->"SUM", "$avg"->"AVG",
+        //    "$min"->"MIN", "$max"->"MAX", "$count"->"COUNT".
+        // PISTA: if (groupStage.contains("$sum")) return "SUM"; ... (else if...).
+        // OJO: el test manda {"$sum":1} y espera EXACTAMENTE "SUM" (mayúsculas, sin '$').
+        // CULTURA: es el operador que reduce muchos valores a uno por grupo (17.5).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerOperadorAcumulacion");
     }
 
@@ -111,11 +118,12 @@ public final class Ej153AggregationPipeline {
      * RETO EXTRA 06: Determina si la etapa reduce la cantidad de filas de forma directa ($limit o $skip).
      */
     public static boolean esStageLimitacion(String stage) {
-        // TODO extra: RETO EXTRA 06: Determina si la etapa reduce la cantidad de filas de forma directa ($limit o $skip).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: ¿la etapa recorta filas? Solo $limit y $skip lo hacen directamente.
+        // 1. Si stage es null -> false.
+        // 2. Devuelve true si es "$limit" o "$skip".
+        // PISTA: return "$limit".equals(stage) || "$skip".equals(stage);
+        // OJO: el test manda "$limit" y espera true.
+        // CULTURA: $match también reduce, pero por contenido; $limit/$skip por posición.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esStageLimitacion");
     }
 
@@ -123,11 +131,12 @@ public final class Ej153AggregationPipeline {
      * RETO EXTRA 07: Valida que el pipeline no tenga mas de 20 etapas por legibilidad.
      */
     public static boolean esPipelineSeguroTamano(int etapas) {
-        // TODO extra: RETO EXTRA 07: Valida que el pipeline no tenga mas de 20 etapas por legibilidad.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: validar el número de etapas (1 a 20 por legibilidad).
+        // 1. etapas debe ser positivo (>= 1).
+        // 2. Y no pasar de 20 (regla del enunciado).
+        // PISTA: return etapas >= 1 && etapas <= 20;
+        // OJO: el test manda 5 y espera true (5 cae dentro de [1, 20]).
+        // CULTURA: pipelines monstruosos son ilegibles; mejor partir en varios.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPipelineSeguroTamano");
     }
 
@@ -135,11 +144,12 @@ public final class Ej153AggregationPipeline {
      * RETO EXTRA 08: Determina si el error proviene de una ejecucion fallida de pipeline.
      */
     public static boolean esExcepcionDeAgregacion(Throwable t) {
-        // TODO extra: RETO EXTRA 08: Determina si el error proviene de una ejecucion fallida de pipeline.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: clasificar una excepción de agregación (por mensaje).
+        // 1. Si t es null -> false.
+        // 2. Criterio: el mensaje contiene "aggregation" (ignorando case).
+        // PISTA: msg != null && msg.toLowerCase().contains("aggregation");
+        //    mismo patrón que esExcepcionMongo (Ej149 reto 8).
+        // OJO: el test pasa new IllegalArgumentException("aggregation") y espera true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionDeAgregacion");
     }
 
@@ -147,11 +157,14 @@ public final class Ej153AggregationPipeline {
      * RETO EXTRA 09: Genera el JSON de la proyeccion $project.
      */
     public static String crearEtapaProject(java.util.List<String> fields) {
-        // TODO extra: RETO EXTRA 09: Genera el JSON de la proyeccion $project.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 17.5 ($project elige campos: {"$project":{"a":1,"b":1}}).
+        // 1. Si fields es null o vacío -> {"$project":{}} (o lanza, pero el test
+        //    siempre manda al menos un campo).
+        // 2. Une cada campo como "campo":1 separados por coma y envuélvelo.
+        // PISTA: usa un stream/StringBuilder para "\"a\":1,\"b\":1"; el test solo
+        //    exige que el resultado .contains("$project").
+        // OJO: el test manda ["a"] y espera que contenga "$project".
+        // CULTURA: $project es el SELECT de campos (el map de los streams, 17.5).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearEtapaProject");
     }
 
@@ -159,11 +172,13 @@ public final class Ej153AggregationPipeline {
      * RETO EXTRA 10: Indica si la query usa ordenamientos de tiempo.
      */
     public static boolean esAgregacionTemporal(String query) {
-        // TODO extra: RETO EXTRA 10: Indica si la query usa ordenamientos de tiempo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: detectar si la query es temporal (menciona fechas).
+        // 1. Si query es null -> false.
+        // 2. Criterio: contiene "date" (o "time", "$dateToString"...), ignorando case.
+        // PISTA: query.toLowerCase().contains("date");
+        // OJO: el test manda "date" y espera true.
+        // CULTURA: Mongo tiene operadores temporales ($year, $month, $dateToString)
+        //    para agrupar por periodos.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esAgregacionTemporal");
     }
 

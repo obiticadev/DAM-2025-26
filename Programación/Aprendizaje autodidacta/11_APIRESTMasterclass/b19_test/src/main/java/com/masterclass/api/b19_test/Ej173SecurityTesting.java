@@ -47,11 +47,10 @@ public final class Ej173SecurityTesting {
      * RETO EXTRA 01: Valida rol Admin.
      */
     public static boolean esRolAdmin(String r) {
-        // TODO extra: RETO EXTRA 01: Valida rol Admin.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.10 — una línea: return "ROLE_ADMIN".equals(r);
+        // El test ("ROLE_ADMIN") espera true. CULTURA: Spring Security prefija
+        // los roles con "ROLE_" por convención (@PreAuthorize("hasRole('ADMIN')")
+        // compara contra "ROLE_ADMIN" internamente).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRolAdmin");
     }
 
@@ -59,11 +58,8 @@ public final class Ej173SecurityTesting {
      * RETO EXTRA 02: Valida rol User.
      */
     public static boolean esRolUser(String r) {
-        // TODO extra: RETO EXTRA 02: Valida rol User.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.10 — una línea: return "ROLE_USER".equals(r);
+        // El test ("ROLE_USER") espera true. Simétrico a esRolAdmin.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRolUser");
     }
 
@@ -71,11 +67,10 @@ public final class Ej173SecurityTesting {
      * RETO EXTRA 03: Crea un set con dos roles.
      */
     public static java.util.Set<String> crearSetRoles(String r1, String r2) {
-        // TODO extra: RETO EXTRA 03: Crea un set con dos roles.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.10 — una línea: return Set.of(r1, r2);
+        // El test ("A", "B") espera size()==2. OJO: Set.of NO admite duplicados;
+        // si r1 y r2 fueran iguales lanzaría IllegalArgumentException — el test
+        // pasa dos distintos, así que aquí no hay problema.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearSetRoles");
     }
 
@@ -83,11 +78,11 @@ public final class Ej173SecurityTesting {
      * RETO EXTRA 04: Valida si el token esta ausente.
      */
     public static boolean esTokenVacio(String token) {
-        // TODO extra: RETO EXTRA 04: Valida si el token esta ausente.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.10 — token ausente = null o en blanco.
+        // return token == null || token.isBlank();
+        // El test ("") espera true: la cadena vacía cuenta como ausente. Un token
+        // así → 401 en statusEndpointProtegido. Comprueba null ANTES de isBlank
+        // para no provocar NPE.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esTokenVacio");
     }
 
@@ -95,11 +90,12 @@ public final class Ej173SecurityTesting {
      * RETO EXTRA 05: Verifica si se cumple algun rol.
      */
     public static boolean contieneAlgunRol(java.util.Set<String> userRoles, java.util.Set<String> reqRoles) {
-        // TODO extra: RETO EXTRA 05: Verifica si se cumple algun rol.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.10 — ¿hay intersección entre los roles del usuario y
+        // los exigidos? Sin mutar ninguno:
+        //   return userRoles.stream().anyMatch(reqRoles::contains);
+        // El test ({A}, {A,B}) espera true (A está en ambos). PISTA: anyMatch
+        // corta en cuanto encuentra uno. ⚠ NO uses userRoles.retainAll(reqRoles):
+        // mutaría el set de entrada (error común nº 7).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contieneAlgunRol");
     }
 
@@ -107,11 +103,10 @@ public final class Ej173SecurityTesting {
      * RETO EXTRA 06: Comprueba si hay token.
      */
     public static boolean esAutenticado(boolean tokenPresente) {
-        // TODO extra: RETO EXTRA 06: Comprueba si hay token.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.10 — autenticado = trae token.
+        // return tokenPresente;
+        // El test (true) espera true. Es el complemento exacto de esAnonimo
+        // (reto 9): autenticado == !anónimo.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esAutenticado");
     }
 
@@ -119,11 +114,9 @@ public final class Ej173SecurityTesting {
      * RETO EXTRA 07: Valida si el usuario es Admin.
      */
     public static boolean esAdmin(java.util.Set<String> roles) {
-        // TODO extra: RETO EXTRA 07: Valida si el usuario es Admin.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.10 — una línea: return roles.contains("ROLE_ADMIN");
+        // El test ({ROLE_ADMIN}) espera true. Aquí compruebas pertenencia en el
+        // SET (reto 1 comprobaba un único String).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esAdmin");
     }
 
@@ -131,11 +124,11 @@ public final class Ej173SecurityTesting {
      * RETO EXTRA 08: Comprueba autenticacion y rol.
      */
     public static boolean tienePermiso(boolean tokenPresente, java.util.Set<String> roles, String rol) {
-        // TODO extra: RETO EXTRA 08: Comprueba autenticacion y rol.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.10 — permiso = autenticado Y con el rol.
+        // return tokenPresente && roles.contains(rol);
+        // El test (true, {ROLE_USER}, "ROLE_USER") espera true. Es justo la
+        // condición que separa el 200 del 401/403 en statusEndpointProtegido,
+        // pero devuelta como boolean.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tienePermiso");
     }
 
@@ -143,11 +136,9 @@ public final class Ej173SecurityTesting {
      * RETO EXTRA 09: Comprueba si es anonimo.
      */
     public static boolean esAnonimo(boolean tokenPresente) {
-        // TODO extra: RETO EXTRA 09: Comprueba si es anonimo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.10 — anónimo = sin token.
+        // return !tokenPresente;
+        // El test (false) espera true. La negación de esAutenticado (reto 6).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esAnonimo");
     }
 
@@ -155,11 +146,9 @@ public final class Ej173SecurityTesting {
      * RETO EXTRA 10: Codigo HTTP de exito.
      */
     public static int codigoAutorizado() {
-        // TODO extra: RETO EXTRA 10: Codigo HTTP de exito.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.10 — una línea: return 200;
+        // El test espera 200 (OK). Es el código que statusEndpointProtegido
+        // devuelve cuando el usuario está autenticado Y tiene el rol.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para codigoAutorizado");
     }
 

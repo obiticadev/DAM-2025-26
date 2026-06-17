@@ -43,11 +43,12 @@ public final class Ej131FlushModesBatching {
      * Reto Extra 1: Obtiene el nombre del item de forma segura.
      */
     public static String obtenerNombre(Item131 i) {
-        // TODO extra: Reto Extra 1: Obtiene el nombre del item de forma segura.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: ⚠ CUIDADO: Item131 NO tiene getters. Añádele dos:
+        //     public Long getId() { return id; }
+        //     public String getNombre() { return nombre; }
+        //   (los necesitan los retos 3,4,5,7,10 además de este).
+        // 1. Una vez añadidos: return i.getNombre();
+        // OJO: el test espera "Laptop".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerNombre");
     }
 
@@ -55,11 +56,8 @@ public final class Ej131FlushModesBatching {
      * Reto Extra 2: Crea un nuevo item.
      */
     public static Item131 crearItem(String nombre) {
-        // TODO extra: Reto Extra 2: Crea un nuevo item.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return new Item131(nombre);
+        // El test solo comprueba que no es null.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearItem");
     }
 
@@ -67,11 +65,9 @@ public final class Ej131FlushModesBatching {
      * Reto Extra 3: Comprueba si el item tiene ID.
      */
     public static boolean tieneId(Item131 i) {
-        // TODO extra: Reto Extra 3: Comprueba si el item tiene ID.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: usa el getId() que añadiste en el reto 1.
+        // 1. Una línea: return i.getId() != null;
+        // OJO: el test usa un item sin persistir y espera false.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneId");
     }
 
@@ -79,11 +75,9 @@ public final class Ej131FlushModesBatching {
      * Reto Extra 4: Comprueba si el item es nuevo.
      */
     public static boolean esNuevo(Item131 i) {
-        // TODO extra: Reto Extra 4: Comprueba si el item es nuevo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: "nuevo" = id null. Negación del reto 3.
+        // 1. Una línea: return i.getId() == null;
+        // El test espera true en un item recién creado.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esNuevo");
     }
 
@@ -91,11 +85,9 @@ public final class Ej131FlushModesBatching {
      * Reto Extra 5: Comprueba si el nombre del item contiene una palabra.
      */
     public static boolean nombreContiene(Item131 i, String palabra) {
-        // TODO extra: Reto Extra 5: Comprueba si el nombre del item contiene una palabra.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: usa getNombre() (reto 1).
+        // 1. Una línea: return i.getNombre().contains(palabra);
+        // OJO: el test pide true para "Dell" y false para "HP" sobre "Laptop Dell".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para nombreContiene");
     }
 
@@ -103,11 +95,10 @@ public final class Ej131FlushModesBatching {
      * Reto Extra 6: Valida si el item es valido.
      */
     public static boolean esValido(Item131 i) {
-        // TODO extra: Reto Extra 6: Valida si el item es valido.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: "válido" = tiene nombre no nulo y no en blanco.
+        // 1. return i.getNombre() != null && !i.getNombre().isBlank();
+        // OJO: el test usa "Laptop" y espera true. isBlank() (Java 11+) también
+        //      descarta cadenas de solo espacios.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esValido");
     }
 
@@ -115,11 +106,8 @@ public final class Ej131FlushModesBatching {
      * Reto Extra 7: Obtiene el ID del item de forma segura.
      */
     public static Long obtenerId(Item131 i) {
-        // TODO extra: Reto Extra 7: Obtiene el ID del item de forma segura.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return i.getId();
+        // El test usa un item sin persistir y espera null.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerId");
     }
 
@@ -127,11 +115,9 @@ public final class Ej131FlushModesBatching {
      * Reto Extra 8: Comprueba si el FlushModeType es COMMIT.
      */
     public static boolean esFlushModeCommit(FlushModeType mode) {
-        // TODO extra: Reto Extra 8: Comprueba si el FlushModeType es COMMIT.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 14.9. FlushModeType.COMMIT = solo hace flush al confirmar.
+        // 1. Una línea: return mode == FlushModeType.COMMIT;
+        // OJO: el test pide true para COMMIT y false para AUTO.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFlushModeCommit");
     }
 
@@ -139,11 +125,9 @@ public final class Ej131FlushModesBatching {
      * Reto Extra 9: Comprueba si el FlushModeType es AUTO.
      */
     public static boolean esFlushModeAuto(FlushModeType mode) {
-        // TODO extra: Reto Extra 9: Comprueba si el FlushModeType es AUTO.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: AUTO es el modo por defecto (flush antes de cada query). Espejo del reto 8.
+        // 1. Una línea: return mode == FlushModeType.AUTO;
+        // OJO: el test pide true para AUTO y false para COMMIT.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFlushModeAuto");
     }
 
@@ -151,11 +135,9 @@ public final class Ej131FlushModesBatching {
      * Reto Extra 10: Retorna formato del item.
      */
     public static String formatearItem(Item131 i) {
-        // TODO extra: Reto Extra 10: Retorna formato del item.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: usa getId() y getNombre().
+        // 1. return "Item[Id=" + i.getId() + ", Nombre=" + i.getNombre() + "]";
+        // OJO: el test usa un item nuevo y espera "Item[Id=null, Nombre=Laptop]".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearItem");
     }
 

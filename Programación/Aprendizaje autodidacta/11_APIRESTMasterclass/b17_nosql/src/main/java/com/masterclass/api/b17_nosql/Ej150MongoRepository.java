@@ -30,11 +30,14 @@ public final class Ej150MongoRepository {
      * RETO EXTRA 01: Verifica si el patron regex de busqueda es correcto.
      */
     public static boolean esFiltroRegexValido(String regex) {
-        // TODO extra: RETO EXTRA 01: Verifica si el patron regex de busqueda es correcto.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 17.3 (Mongo permite filtrar con $regex; valida que el patrón compile).
+        // 1. Si regex es null o vacío -> false.
+        // 2. Intenta compilarlo: java.util.regex.Pattern.compile(regex).
+        // 3. Envuélvelo en try/catch (PatternSyntaxException): si lanza -> false;
+        //    si compila -> true.
+        // PISTA: try { Pattern.compile(regex); return true; } catch (Exception e) { return false; }
+        // OJO: el test manda "^Ada" (regex válida que ancla al inicio) y espera true.
+        // CULTURA: { campo: { $regex: "^Ada" } } busca "empieza por Ada" en Mongo.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFiltroRegexValido");
     }
 
@@ -42,11 +45,14 @@ public final class Ej150MongoRepository {
      * RETO EXTRA 02: Valida limites de filtro de edad en queries.
      */
     public static boolean esRangoEdadValido(int min, int max) {
-        // TODO extra: RETO EXTRA 02: Valida limites de filtro de edad en queries.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: validar un rango [min, max] para un filtro de edad.
+        // 1. min no puede ser negativo (una edad < 0 no existe).
+        // 2. max no puede ser absurdo (pon un techo razonable, p.ej. <= 150).
+        // 3. min debe ser <= max (rango bien orientado).
+        // PISTA: return min >= 0 && max <= 150 && min <= max;
+        // OJO: el test manda (18, 99) y espera true; (debería dar false con
+        //      min negativo o min > max, aunque el test no lo compruebe).
+        // CULTURA: equivaldría a { edad: { $gte: min, $lte: max } } (17.3).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRangoEdadValido");
     }
 
@@ -54,11 +60,12 @@ public final class Ej150MongoRepository {
      * RETO EXTRA 03: Une dos condiciones BSON en una operacion $and.
      */
     public static String combinarFiltrosY(String f1, String f2) {
-        // TODO extra: RETO EXTRA 03: Une dos condiciones BSON en una operacion $and.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 17.3 ($and combina varias condiciones en un array).
+        // 1. Construye el JSON {"$and":[f1,f2]} concatenando las dos cadenas.
+        // PISTA: return "{\"$and\":[" + f1 + "," + f2 + "]}";
+        // OJO: el test compara EXACTO con {"$and":[f1,f2]} (f1="f1", f2="f2");
+        //      sin espacios y con las dos cadenas separadas por una sola coma.
+        // CULTURA: { $and: [ {a:1}, {b:2} ] } exige que TODAS se cumplan (AND).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para combinarFiltrosY");
     }
 
@@ -66,11 +73,12 @@ public final class Ej150MongoRepository {
      * RETO EXTRA 04: Determina si la consulta no tiene restricciones (documento vacio).
      */
     public static boolean esFiltroVacio(String filter) {
-        // TODO extra: RETO EXTRA 04: Determina si la consulta no tiene restricciones (documento vacio).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: un filtro vacío {} en Mongo significa "trae todo" (sin restricción).
+        // 1. Si filter es null -> false (no es un filtro vacío, es ausencia).
+        // 2. Quita espacios y compara con "{}": filter.trim().equals("{}").
+        // PISTA: return filter != null && filter.trim().equals("{}");
+        // OJO: el test manda "{}" y espera true.
+        // CULTURA: db.coleccion.find({}) es el equivalente a un SELECT * (17.2).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFiltroVacio");
     }
 
@@ -78,11 +86,16 @@ public final class Ej150MongoRepository {
      * RETO EXTRA 05: Obtiene el valor del identificador dentro de un BSON string.
      */
     public static String extraerCampoObjectId(String bsonDoc) {
-        // TODO extra: RETO EXTRA 05: Obtiene el valor del identificador dentro de un BSON string.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: extraer el valor de "_id" de un BSON tipo {"_id":"123"}.
+        // 1. Si bsonDoc es null o no contiene "_id" -> devuelve "" o null.
+        // 2. Localiza la subcadena tras "_id": el valor va entre las comillas
+        //    que siguen a los dos puntos.
+        // 3. Truco robusto: parte por "_id" y luego quédate con lo que hay entre
+        //    el primer y el segundo '"' posteriores.
+        // PISTA: usa indexOf("\"", desde) dos veces y substring entre ambos,
+        //    o una regex "\"_id\":\"([^\"]+)\"" con Matcher.group(1).
+        // OJO: el test manda {"_id":"123"} y espera EXACTAMENTE "123" (sin comillas).
+        // CULTURA: lo que de verdad hace Jackson/BSON al deserializar (17.1).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerCampoObjectId");
     }
 
@@ -90,11 +103,14 @@ public final class Ej150MongoRepository {
      * RETO EXTRA 06: Verifica que el salto y limite cumplan margenes seguros de memoria.
      */
     public static boolean esConsultaPaginadaSegura(int skip, int limit) {
-        // TODO extra: RETO EXTRA 06: Verifica que el salto y limite cumplan margenes seguros de memoria.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: validar paginación skip/limit (proteger memoria; conecta con b15).
+        // 1. skip no puede ser negativo.
+        // 2. limit debe ser positivo y con un techo (p.ej. <= 1000) para no
+        //    traer la colección entera de golpe.
+        // PISTA: return skip >= 0 && limit > 0 && limit <= 1000;
+        // OJO: el test manda (0, 50) y espera true.
+        // CULTURA: en Mongo es .skip(n).limit(m); skip grande es CARO (recorre y
+        //    descarta). En producción se prefiere keyset pagination (b15, Ej142).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esConsultaPaginadaSegura");
     }
 
@@ -102,11 +118,14 @@ public final class Ej150MongoRepository {
      * RETO EXTRA 07: Determina si el fallo ocurrio por sintaxis invalida en consulta.
      */
     public static boolean esExcepcionDeQueryMongo(Throwable t) {
-        // TODO extra: RETO EXTRA 07: Determina si el fallo ocurrio por sintaxis invalida en consulta.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: clasificar una excepción como "error de query" (por mensaje).
+        // 1. Si t es null -> false.
+        // 2. Criterio: t.getMessage() contiene "query" (ignorando mayúsculas).
+        // PISTA: msg != null && msg.toLowerCase().contains("query");
+        //    reutiliza el patrón de esExcepcionMongo del Ej149 reto 8.
+        // OJO: el test pasa new IllegalArgumentException("query") y espera true:
+        //      mira el MENSAJE, no el tipo de la clase.
+        // CULTURA: con el driver real sería instanceof MongoQueryException.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionDeQueryMongo");
     }
 
@@ -114,11 +133,15 @@ public final class Ej150MongoRepository {
      * RETO EXTRA 08: Genera la query geo-JSON de cercania.
      */
     public static String crearQueryGeospatial(double lon, double lat, double maxDist) {
-        // TODO extra: RETO EXTRA 08: Genera la query geo-JSON de cercania.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: construir una query geoespacial $near de Mongo.
+        // 1. La forma real es:
+        //    { "location": { "$near": { "$geometry": { "type":"Point",
+        //      "coordinates":[lon,lat] }, "$maxDistance": maxDist } } }
+        // 2. Constrúyela con concatenación de String + los tres double.
+        // PISTA: el test SOLO exige que el resultado .contains("$near"); con que
+        //    incluyas "$near" y los valores cuadra. No te obsesiones con el formato.
+        // OJO: el orden GeoJSON es [longitud, latitud] (lon ANTES que lat).
+        // CULTURA: requiere un índice 2dsphere sobre el campo de localización.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearQueryGeospatial");
     }
 
@@ -126,11 +149,13 @@ public final class Ej150MongoRepository {
      * RETO EXTRA 09: Verifica si la cadena es un operador de consulta de Mongo valido.
      */
     public static boolean esOperadorMongoValido(String op) {
-        // TODO extra: RETO EXTRA 09: Verifica si la cadena es un operador de consulta de Mongo valido.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 17.3 (operadores de consulta: $gt, $lt, $gte, $lte, $in, $eq...).
+        // 1. Si op es null -> false.
+        // 2. Comprueba que esté en el conjunto de operadores conocidos.
+        // PISTA: Set.of("$gt","$lt","$gte","$lte","$eq","$ne","$in","$nin",
+        //    "$and","$or").contains(op).
+        // OJO: el test manda "$gt" y espera true; un operador debe empezar por '$'.
+        // CULTURA: tabla de operadores de la teoría 17.3.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esOperadorMongoValido");
     }
 
@@ -138,11 +163,13 @@ public final class Ej150MongoRepository {
      * RETO EXTRA 10: Resuelve la direccion del orden (1 asc, -1 desc).
      */
     public static String extraerOrdenacionDeQuery(String sortJson) {
-        // TODO extra: RETO EXTRA 10: Resuelve la direccion del orden (1 asc, -1 desc).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: en Mongo el sort se expresa { campo: 1 } (asc) o { campo: -1 } (desc).
+        // 1. Si sortJson es null -> devuelve "" o lanza (el test siempre da válido).
+        // 2. Si contiene "-1" -> devuelve "DESC"; si contiene "1" -> "ASC".
+        // 3. Comprueba "-1" ANTES que "1" (porque "-1" también contiene "1").
+        // PISTA: return sortJson.contains("-1") ? "DESC" : "ASC";
+        // OJO: el test manda {"edad":1} y espera EXACTAMENTE "ASC" (mayúsculas).
+        // CULTURA: es lo que traduce Sort.Direction.ASC/DESC de Spring Data (b15).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerOrdenacionDeQuery");
     }
 

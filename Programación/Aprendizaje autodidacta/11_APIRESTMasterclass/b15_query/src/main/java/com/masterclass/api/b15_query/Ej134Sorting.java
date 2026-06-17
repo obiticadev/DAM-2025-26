@@ -51,11 +51,13 @@ public final class Ej134Sorting {
      * Reto Extra 1: Comprueba si un campo de ordenacion esta en la whitelist.
      */
     public static boolean esCampoPermitido(String campo) {
-        // TODO extra: Reto Extra 1: Comprueba si un campo de ordenacion esta en la whitelist.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 15.2 (ordenación segura por whitelist). Es el corazón del
+        //   anti-inyección: solo dejas ordenar por columnas que TÚ apruebas.
+        // 1. Una línea: return campo != null && CAMPOS_PERMITIDOS.contains(campo);
+        // OJO: el test pide true para "nombre" y false para "password". El null
+        //   debe dar false (Set.contains(null) no lanza, pero protege igual).
+        // CULTURA: en Spring, Pageable acepta cualquier "sort"; sin esta lista
+        //   blanca un atacante ordena por columnas internas o inyecta SQL.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCampoPermitido");
     }
 
@@ -63,11 +65,10 @@ public final class Ej134Sorting {
      * Reto Extra 2: Determina la direccion de ordenacion ("asc" o "desc").
      */
     public static String determinarDireccion(boolean ascendente) {
-        // TODO extra: Reto Extra 2: Determina la direccion de ordenacion ("asc" o "desc").
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return ascendente ? "asc" : "desc";
+        // OJO: el test exige las palabras en MINÚSCULAS ("asc"/"desc"), que es lo
+        //   que entiende JPQL. No confundas con formatearOrdenacion (reto 10),
+        //   que usa "ASC"/"DESC" en mayúsculas para mostrar al usuario.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para determinarDireccion");
     }
 
@@ -75,11 +76,13 @@ public final class Ej134Sorting {
      * Reto Extra 3: Genera una clausula JPQL ORDER BY de forma segura.
      */
     public static String construirOrderJpql(String campo, boolean ascendente) {
-        // TODO extra: Reto Extra 3: Genera una clausula JPQL ORDER BY de forma segura.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: reutiliza los dos retos anteriores en vez de repetir lógica.
+        // 1. (Recomendado) valida el campo con esCampoPermitido(campo) antes de
+        //    concatenar; si no, lanza IllegalArgumentException.
+        // 2. Construye: return "order by p." + campo + " " + determinarDireccion(ascendente);
+        // OJO: el test espera EXACTAMENTE "order by p.nombre asc" para
+        //   ("nombre", true). Cuida el alias "p.", el espacio antes de la
+        //   dirección y la dirección en minúsculas.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para construirOrderJpql");
     }
 
@@ -87,11 +90,9 @@ public final class Ej134Sorting {
      * Reto Extra 4: Valida si la whitelist esta inicializada correctamente.
      */
     public static boolean whitelistValida() {
-        // TODO extra: Reto Extra 4: Valida si la whitelist esta inicializada correctamente.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return CAMPOS_PERMITIDOS != null && !CAMPOS_PERMITIDOS.isEmpty();
+        // El test solo comprueba que devuelve true (la lista está inicializada con
+        //   3 campos). Una whitelist vacía dejaría la ordenación inservible.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para whitelistValida");
     }
 
@@ -99,11 +100,12 @@ public final class Ej134Sorting {
      * Reto Extra 5: Devuelve una copia de los campos permitidos.
      */
     public static java.util.Set<String> obtenerCamposPermitidos() {
-        // TODO extra: Reto Extra 5: Devuelve una copia de los campos permitidos.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: COPIA defensiva, no devuelvas la constante directamente.
+        // 1. Una línea: return new java.util.HashSet<>(CAMPOS_PERMITIDOS);
+        //    (o Set.copyOf(CAMPOS_PERMITIDOS), que además es inmutable).
+        // CULTURA: si devolvieras la referencia interna, quien la reciba podría
+        //   mutarla y abrir un agujero de seguridad en la whitelist. El test solo
+        //   pide assertNotNull, pero la copia es la práctica correcta.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerCamposPermitidos");
     }
 
@@ -111,11 +113,10 @@ public final class Ej134Sorting {
      * Reto Extra 6: Comprueba si la direccion indicada es descendente.
      */
     public static boolean esDireccionDescendente(String dir) {
-        // TODO extra: Reto Extra 6: Comprueba si la direccion indicada es descendente.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return "desc".equalsIgnoreCase(dir);
+        // PISTA: pon el literal "desc" a la IZQUIERDA del equalsIgnoreCase para
+        //   que un dir == null devuelva false sin NPE.
+        // OJO: el test pide true para "desc" y false para "asc".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esDireccionDescendente");
     }
 
@@ -123,11 +124,10 @@ public final class Ej134Sorting {
      * Reto Extra 7: Normaliza el nombre de un campo (trim y lowercase).
      */
     public static String normalizarCampo(String campo) {
-        // TODO extra: Reto Extra 7: Normaliza el nombre de un campo (trim y lowercase).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return campo == null ? null : campo.trim().toLowerCase();
+        // OJO: el test pasa "  Nombre  " y espera "nombre" (sin espacios y en
+        //   minúsculas). El orden trim → toLowerCase da igual aquí, pero hazlo
+        //   antes de comparar con la whitelist para tolerar entradas sucias.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para normalizarCampo");
     }
 
@@ -135,11 +135,9 @@ public final class Ej134Sorting {
      * Reto Extra 8: Comprueba si el campo es de tipo ID.
      */
     public static boolean esCampoId(String campo) {
-        // TODO extra: Reto Extra 8: Comprueba si el campo es de tipo ID.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return "id".equalsIgnoreCase(campo);
+        // (o reutiliza: "id".equals(normalizarCampo(campo)) para tolerar "  ID ").
+        // El test pasa "id" y espera true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCampoId");
     }
 
@@ -147,11 +145,9 @@ public final class Ej134Sorting {
      * Reto Extra 9: Comprueba si la whitelist contiene al menos 3 campos.
      */
     public static boolean tieneSuficientesCampos() {
-        // TODO extra: Reto Extra 9: Comprueba si la whitelist contiene al menos 3 campos.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return CAMPOS_PERMITIDOS.size() >= 3;
+        // La whitelist tiene {id, nombre, precio} → 3 campos, así que el test
+        //   espera true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneSuficientesCampos");
     }
 
@@ -159,11 +155,11 @@ public final class Ej134Sorting {
      * Reto Extra 10: Retorna un string formateado con el criterio de ordenacion.
      */
     public static String formatearOrdenacion(String campo, boolean ascendente) {
-        // TODO extra: Reto Extra 10: Retorna un string formateado con el criterio de ordenacion.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: campo + ":" + dirección en MAYÚSCULAS.
+        // PISTA: return campo + ":" + (ascendente ? "ASC" : "DESC");
+        // OJO: el test espera EXACTAMENTE "nombre:ASC" para ("nombre", true).
+        //   Aquí la dirección va en mayúsculas, al contrario que determinarDireccion
+        //   (reto 2). Es formato "de cara al usuario", no JPQL.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearOrdenacion");
     }
 

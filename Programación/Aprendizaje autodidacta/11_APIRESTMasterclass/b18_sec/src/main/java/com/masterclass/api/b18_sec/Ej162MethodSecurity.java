@@ -72,11 +72,11 @@ public final class Ej162MethodSecurity {
      * RETO EXTRA 01: Determina si el usuario tiene permiso sobre el recurso (es el dueño o es admin).
      */
     public static boolean esPropietarioOAdmin(String username, String owner, boolean isAdmin) {
-        // TODO extra: RETO EXTRA 01: Determina si el usuario tiene permiso sobre el recurso (es el dueño o es admin).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: versión simplificada de propietarioOAdmin (teoría 18.8, anti-IDOR).
+        // PISTA: return isAdmin || (username != null && username.equals(owner));
+        // OJO: el test pasa ("ada","ada",false) y espera true: no es admin, pero ES
+        // el propietario. Aquí el rol admin ya viene resuelto como boolean, así que
+        // no necesitas el Set de roles. OR entre "soy admin" y "soy el dueño".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPropietarioOAdmin");
     }
 
@@ -84,11 +84,13 @@ public final class Ej162MethodSecurity {
      * RETO EXTRA 02: Valida sintaxis SpEL basica de Spring Security.
      */
     public static boolean esExpresionSpelValida(String spel) {
-        // TODO extra: RETO EXTRA 02: Valida sintaxis SpEL basica de Spring Security.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: forma básica de una expresión SpEL "func(args)".
+        // 1. Si spel es null/blank -> false.
+        // 2. Debe tener un nombre de función seguido de paréntesis.
+        // PISTA: return spel != null && spel.matches("\\w+\\(.*\\)");
+        // OJO: el test pasa "hasRole('USER')" y espera true. \\w+ es el nombre,
+        // \\(.*\\) los paréntesis con su contenido. CULTURA: hasRole, hasAnyRole,
+        // hasAuthority, permitAll son las funciones SpEL típicas de @PreAuthorize.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExpresionSpelValida");
     }
 
@@ -96,11 +98,12 @@ public final class Ej162MethodSecurity {
      * RETO EXTRA 03: Determina si la excepcion es lanzada por la seguridad del metodo (PreAuthorize).
      */
     public static boolean esExcepcionDeMetodo(Throwable t) {
-        // TODO extra: RETO EXTRA 03: Determina si la excepcion es lanzada por la seguridad del metodo (PreAuthorize).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: comprobación de tipo (como Ej155 reto 07).
+        // 1. Si t es null -> false.
+        // PISTA: return t instanceof SecurityException;
+        // OJO: el test pasa new SecurityException() (sin mensaje) y espera true;
+        // por eso aquí miras el TIPO, no el mensaje. En Spring sería
+        // AccessDeniedException lanzada por el AuthorizationManager de @PreAuthorize.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionDeMetodo");
     }
 
@@ -108,11 +111,10 @@ public final class Ej162MethodSecurity {
      * RETO EXTRA 04: Genera el log descriptivo de llamada segura.
      */
     public static String crearLogMetodoSeguro(String m, String user) {
-        // TODO extra: RETO EXTRA 04: Genera el log descriptivo de llamada segura.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: log de invocación de método protegido.
+        // PISTA: return String.format("método=%s usuario=%s", m, user);
+        // OJO: el test pasa ("m","u") y exige .contains("m"); el formato es libre
+        // mientras incluya el nombre del método.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearLogMetodoSeguro");
     }
 
@@ -120,11 +122,12 @@ public final class Ej162MethodSecurity {
      * RETO EXTRA 05: Verifica si el usuario es del dominio interno de la organizacion.
      */
     public static boolean esUsuarioInterno(String email) {
-        // TODO extra: RETO EXTRA 05: Verifica si el usuario es del dominio interno de la organizacion.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: el correo pertenece al dominio interno.
+        // 1. Si email es null -> false.
+        // PISTA: return email != null && email.endsWith("@masterclass.com");
+        // OJO: el test pasa "a@masterclass.com" y espera true. Usa endsWith (no
+        // contains): "x@masterclass.com.attacker.com" debe FALLAR; endsWith con el
+        // dominio exacto lo evita.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esUsuarioInterno");
     }
 
@@ -132,11 +135,10 @@ public final class Ej162MethodSecurity {
      * RETO EXTRA 06: Determina si el parametro del metodo no es nulo.
      */
     public static boolean esArgumentoSeguro(Object arg) {
-        // TODO extra: RETO EXTRA 06: Determina si el parametro del metodo no es nulo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — el argumento no debe ser null.
+        // return arg != null;
+        // OJO: el test pasa "arg" y espera true. Un null en un método protegido
+        // suele indicar petición malformada; rechazarlo pronto evita NPE más abajo.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esArgumentoSeguro");
     }
 
@@ -144,11 +146,10 @@ public final class Ej162MethodSecurity {
      * RETO EXTRA 07: Indica si el metodo esta exceptuado de validacion previa.
      */
     public static boolean esMetodoPublico(String methodName, java.util.List<String> publicMethods) {
-        // TODO extra: RETO EXTRA 07: Indica si el metodo esta exceptuado de validacion previa.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: pertenencia a la lista de métodos públicos (sin @PreAuthorize).
+        // 1. Si methodName o publicMethods son null -> false.
+        // PISTA: return publicMethods != null && publicMethods.contains(methodName);
+        // OJO: el test pasa ("saludar", List.of("saludar")) y espera true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMetodoPublico");
     }
 
@@ -156,11 +157,13 @@ public final class Ej162MethodSecurity {
      * RETO EXTRA 08: Determina si la excepcion es por mala configuracion del PreAuthorize.
      */
     public static boolean esFalloAnotacion(Throwable t) {
-        // TODO extra: RETO EXTRA 08: Determina si la excepcion es por mala configuracion del PreAuthorize.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: fallo de configuración SpEL por el mensaje.
+        // 1. Si t o t.getMessage() son null -> false.
+        // PISTA: t != null && t.getMessage() != null
+        //        && t.getMessage().toLowerCase().contains("spel");
+        // OJO: el test pasa IllegalArgumentException("spel") y espera true. Es una
+        // expresión @PreAuthorize mal escrita (error del programador, no del usuario):
+        // distinto de un acceso denegado legítimo (reto 03).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFalloAnotacion");
     }
 
@@ -168,11 +171,11 @@ public final class Ej162MethodSecurity {
      * RETO EXTRA 09: Comprueba si la expresion SpEL menciona un rol concreto.
      */
     public static boolean esRolePresente(String expression, String rol) {
-        // TODO extra: RETO EXTRA 09: Comprueba si la expresion SpEL menciona un rol concreto.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: la expresión SpEL menciona el rol.
+        // 1. Si expression o rol son null -> false.
+        // PISTA: return expression != null && expression.contains(rol);
+        // OJO: el test pasa ("hasRole('ADMIN')","ADMIN") y espera true. Aquí
+        // contains basta porque buscas la presencia del nombre del rol en la cadena.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRolePresente");
     }
 
@@ -180,11 +183,12 @@ public final class Ej162MethodSecurity {
      * RETO EXTRA 10: Resuelve si es denegacion por defecto o permitAll.
      */
     public static String determinarEstrategiaMetodo(String metadata) {
-        // TODO extra: RETO EXTRA 10: Resuelve si es denegacion por defecto o permitAll.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: estrategia por defecto = DENY (deny by default, teoría 18.1).
+        // 1. Si metadata menciona permitAll -> "PERMIT"; en cualquier otro caso "DENY".
+        // PISTA: return metadata != null && metadata.contains("permitAll")
+        //        ? "PERMIT" : "DENY";
+        // OJO: el test pasa "" (cadena vacía) y espera EXACTAMENTE "DENY". Sin
+        // metadatos -> deny by default: lo no autorizado explícitamente, se niega.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para determinarEstrategiaMetodo");
     }
 

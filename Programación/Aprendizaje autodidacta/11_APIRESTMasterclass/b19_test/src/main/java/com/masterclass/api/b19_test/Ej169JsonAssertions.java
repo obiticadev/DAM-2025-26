@@ -69,11 +69,12 @@ public final class Ej169JsonAssertions {
      * RETO EXTRA 01: Crea un nodo JSON simple.
      */
     public static com.fasterxml.jackson.databind.JsonNode crearJsonNodo(String key, String value) {
-        // TODO extra: RETO EXTRA 01: Crea un nodo JSON simple.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.6 — construye un nodo objeto con Jackson.
+        // 1. ObjectMapper mapper = new ObjectMapper();
+        // 2. return mapper.createObjectNode().put(key, value);
+        // El test solo hace assertNotNull, así que basta devolver un ObjectNode
+        // con un campo. PISTA: createObjectNode() crea un objeto mutable; .put
+        // añade un par clave/valor y lo devuelve encadenable.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearJsonNodo");
     }
 
@@ -81,11 +82,13 @@ public final class Ej169JsonAssertions {
      * RETO EXTRA 02: Comprueba si contiene el campo.
      */
     public static boolean contieneCampo(String json, String c) {
-        // TODO extra: RETO EXTRA 02: Comprueba si contiene el campo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.6 — parsea y pregunta por la clave.
+        // 1. JsonNode raiz = new ObjectMapper().readTree(json);  (en try/catch)
+        // 2. return raiz.has(c);
+        // El test ({"a":1}, "a") espera true. OJO: readTree lanza la checked
+        // JsonProcessingException; envuélvela en try/catch (puedes relanzar
+        // IllegalArgumentException si el JSON es inválido). JsonNode.has(campo)
+        // dice si el campo existe sin traer su valor.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contieneCampo");
     }
 
@@ -93,11 +96,11 @@ public final class Ej169JsonAssertions {
      * RETO EXTRA 03: Extrae valor entero del campo.
      */
     public static int obtenerCampoEntero(String json, String c) {
-        // TODO extra: RETO EXTRA 03: Extrae valor entero del campo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.6 — navega al campo y léelo como entero.
+        // JsonNode raiz = new ObjectMapper().readTree(json);   (try/catch)
+        // return raiz.get(c).asInt();
+        // El test ({"a":10}, "a") espera 10. asInt() convierte el nodo numérico
+        // a int; get(c) devuelve el hijo (null si no existe, ojo con NPE).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerCampoEntero");
     }
 
@@ -105,11 +108,10 @@ public final class Ej169JsonAssertions {
      * RETO EXTRA 04: Determina si el JSON es un array.
      */
     public static boolean esArrayJson(String json) {
-        // TODO extra: RETO EXTRA 04: Determina si el JSON es un array.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.6 — parsea y pregunta el tipo del nodo raíz.
+        // return new ObjectMapper().readTree(json).isArray();   (try/catch)
+        // El test ("[1,2]") espera true. isArray() distingue [..] de {..}; un
+        // array conserva el orden (es una lista), un objeto no (reto 6 lo cruza).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esArrayJson");
     }
 
@@ -117,11 +119,10 @@ public final class Ej169JsonAssertions {
      * RETO EXTRA 05: Obtiene el tamaño del array JSON.
      */
     public static int tamanioArrayJson(String json) {
-        // TODO extra: RETO EXTRA 05: Obtiene el tamaño del array JSON.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.6 — una línea: return readTree(json).size();
+        // El test ("[1,2]") espera 2. JsonNode.size() devuelve el nº de
+        // elementos de un array (o de campos si fuera objeto). Recuerda el
+        // try/catch de readTree.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tamanioArrayJson");
     }
 
@@ -129,11 +130,8 @@ public final class Ej169JsonAssertions {
      * RETO EXTRA 06: Determina si el JSON es un objeto.
      */
     public static boolean esObjetoJson(String json) {
-        // TODO extra: RETO EXTRA 06: Determina si el JSON es un objeto.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.6 — una línea: return readTree(json).isObject();
+        // El test ({"a":1}) espera true. Simétrico a esArrayJson (reto 4).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esObjetoJson");
     }
 
@@ -141,11 +139,10 @@ public final class Ej169JsonAssertions {
      * RETO EXTRA 07: Extrae valor booleano del campo.
      */
     public static boolean obtenerCampoBooleano(String json, String c) {
-        // TODO extra: RETO EXTRA 07: Extrae valor booleano del campo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.6 — navega y lee como booleano.
+        // return readTree(json).get(c).asBoolean();   (try/catch)
+        // El test ({"a":true}, "a") espera true. asBoolean() es el primo de
+        // asInt/asText para nodos booleanos.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerCampoBooleano");
     }
 
@@ -153,11 +150,11 @@ public final class Ej169JsonAssertions {
      * RETO EXTRA 08: Formatea el JSON de forma compacta.
      */
     public static String formatoJsonLimpio(String json) {
-        // TODO extra: RETO EXTRA 08: Formatea el JSON de forma compacta.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.6 — parsear y volver a serializar normaliza/compacta.
+        // return readTree(json).toString();   (try/catch)
+        // El test ({"a": 1}) solo exige que el resultado no esté vacío.
+        // toString() de un JsonNode produce JSON compacto (sin los espacios del
+        // original): "{\"a\":1}". Es la forma canónica para comparar.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatoJsonLimpio");
     }
 
@@ -165,11 +162,14 @@ public final class Ej169JsonAssertions {
      * RETO EXTRA 09: Obtiene nombres de todos los campos.
      */
     public static java.util.List<String> obtenerNombresCampos(String json) {
-        // TODO extra: RETO EXTRA 09: Obtiene nombres de todos los campos.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.6 — recoge los nombres de campo en una lista.
+        // 1. JsonNode raiz = readTree(json);   (try/catch)
+        // 2. List<String> nombres = new ArrayList<>();
+        //    raiz.fieldNames().forEachRemaining(nombres::add);
+        //    return nombres;
+        // El test ({"a":1}) espera size()==1. fieldNames() devuelve un
+        // Iterator<String>; forEachRemaining lo vuelca a la lista. (Alternativa
+        // moderna: raiz.properties().stream().map(Map.Entry::getKey).toList().)
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerNombresCampos");
     }
 
@@ -177,11 +177,12 @@ public final class Ej169JsonAssertions {
      * RETO EXTRA 10: Valida si el JSON es sintacticamente correcto.
      */
     public static boolean esJsonValido(String json) {
-        // TODO extra: RETO EXTRA 10: Valida si el JSON es sintacticamente correcto.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.6 — el parseo ES la validación.
+        // try { new ObjectMapper().readTree(json); return true; }
+        // catch (Exception e) { return false; }
+        // El test ("{}") espera true. Aquí NO relances la excepción: el contrato
+        // es devolver boolean. "Si parsea, es válido" — el patrón clásico de
+        // "intentar y capturar" para validar formato.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esJsonValido");
     }
 

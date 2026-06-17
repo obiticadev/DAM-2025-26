@@ -46,11 +46,10 @@ public final class Ej142KeysetPagination {
      * Reto Extra 1: Obtiene el ID de un item de Keyset de forma segura.
      */
     public static Long obtenerId(ItemKeyset142 i) {
-        // TODO extra: Reto Extra 1: Obtiene el ID de un item de Keyset de forma segura.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 15.4 (keyset). El id es el "cursor" por el que avanzas;
+        //   acceso seguro a él.
+        // 1. Una línea: return i == null ? null : i.getId();
+        // OJO: el test espera null (un ItemKeyset142 nuevo no tiene id todavía).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerId");
     }
 
@@ -58,11 +57,10 @@ public final class Ej142KeysetPagination {
      * Reto Extra 2: Obtiene la fecha de creacion de forma segura.
      */
     public static java.time.Instant obtenerCreadoEn(ItemKeyset142 i) {
-        // TODO extra: Reto Extra 2: Obtiene la fecha de creacion de forma segura.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return i == null ? null : i.getCreadoEn();
+        // El test espera null. CULTURA: en keyset real, un timestamp como
+        //   creadoEn suele ser el segundo criterio de cursor (id + fecha) para
+        //   desempatar filas con el mismo instante.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerCreadoEn");
     }
 
@@ -70,11 +68,13 @@ public final class Ej142KeysetPagination {
      * Reto Extra 3: Comprueba si un item es posterior a otro por ID.
      */
     public static boolean esPosteriorId(ItemKeyset142 a, ItemKeyset142 b) {
-        // TODO extra: Reto Extra 3: Comprueba si un item es posterior a otro por ID.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: "posterior" = el id de 'a' es mayor que el de 'b' (la base del
+        //   keyset: WHERE id > cursor).
+        // 1. Defensa: si a, b o sus ids son null → false (no se puede comparar).
+        // 2. return a.getId() > b.getId();
+        // ⚠ OJO: el test pasa dos items SIN id (ambos null) y espera FALSE. Si no
+        //   defiendes el null antes de comparar, te saltará un NPE. Por eso el
+        //   caso null debe devolver false explícitamente.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPosteriorId");
     }
 
@@ -82,11 +82,8 @@ public final class Ej142KeysetPagination {
      * Reto Extra 4: Crea un nuevo item.
      */
     public static ItemKeyset142 crearItem(String nombre) {
-        // TODO extra: Reto Extra 4: Crea un nuevo item.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return new ItemKeyset142(nombre);
+        // El test llama crearItem("Laptop") y comprueba assertNotNull.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearItem");
     }
 
@@ -94,11 +91,8 @@ public final class Ej142KeysetPagination {
      * Reto Extra 5: Comprueba si el item tiene fecha de creacion.
      */
     public static boolean tieneCreadoEn(ItemKeyset142 i) {
-        // TODO extra: Reto Extra 5: Comprueba si el item tiene fecha de creacion.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return i != null && i.getCreadoEn() != null;
+        // OJO: el test espera FALSE (item nuevo, creadoEn aún null).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneCreadoEn");
     }
 
@@ -106,11 +100,8 @@ public final class Ej142KeysetPagination {
      * Reto Extra 6: Comprueba si el item es nuevo (ID nulo).
      */
     public static boolean esNuevo(ItemKeyset142 i) {
-        // TODO extra: Reto Extra 6: Comprueba si el item es nuevo (ID nulo).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return i != null && i.getId() == null;
+        // El test crea el item sin id → true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esNuevo");
     }
 
@@ -118,11 +109,8 @@ public final class Ej142KeysetPagination {
      * Reto Extra 7: Obtiene el nombre de forma segura.
      */
     public static String obtenerNombre(ItemKeyset142 i) {
-        // TODO extra: Reto Extra 7: Obtiene el nombre de forma segura.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return i == null ? null : i.getNombre();
+        // El test crea new ItemKeyset142("Laptop") y espera "Laptop".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerNombre");
     }
 
@@ -130,11 +118,10 @@ public final class Ej142KeysetPagination {
      * Reto Extra 8: Comprueba si el nombre del item contiene una palabra clave.
      */
     public static boolean nombreContiene(ItemKeyset142 i, String keyword) {
-        // TODO extra: Reto Extra 8: Comprueba si el nombre del item contiene una palabra clave.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: comparación "contiene" en minúsculas (como en Ej140/141).
+        // 1. return i.getNombre().toLowerCase().contains(keyword.toLowerCase());
+        // El test: nombre "Laptop", keyword "lap" → "laptop".contains("lap") = true.
+        //   Defiende los nulos antes del contains.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para nombreContiene");
     }
 
@@ -142,11 +129,13 @@ public final class Ej142KeysetPagination {
      * Reto Extra 9: Compara dos items por ID de forma segura.
      */
     public static int compararPorId(ItemKeyset142 a, ItemKeyset142 b) {
-        // TODO extra: Reto Extra 9: Compara dos items por ID de forma segura.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: comparador clásico (-1/0/1) sobre los ids, tolerante a nulls.
+        // 1. Si ambos ids son null → 0 (iguales). (Decide tú qué hacer si solo
+        //    uno es null; el test no lo cubre.)
+        // 2. Cuando haya valores: return Long.compare(a.getId(), b.getId());
+        // ⚠ OJO: el test pasa dos items con id null y espera EXACTAMENTE 0. Sin la
+        //   defensa del null, Long.compare con autounboxing de null da NPE.
+        // PISTA: java.util.Objects.compare o un if previo para el caso ambos null.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para compararPorId");
     }
 
@@ -154,14 +143,36 @@ public final class Ej142KeysetPagination {
      * Reto Extra 10: Retorna representacion estructurada de texto.
      */
     public static String formatearItem(ItemKeyset142 i) {
-        // TODO extra: Reto Extra 10: Retorna representacion estructurada de texto.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: String.format con id y nombre.
+        // PISTA: String.format("ItemKeyset[Id=%s, Nombre=%s]", i.getId(), i.getNombre());
+        // OJO: el test espera EXACTAMENTE "ItemKeyset[Id=null, Nombre=Laptop]".
+        //   %s sobre un id null imprime literalmente "null": justo lo que se pide.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearItem");
     }
 
 
 
+}
+
+/** Item con cursor para los retos extra (POJO, no entidad). id y creadoEn quedan null. */
+class ItemKeyset142 {
+    private Long id;
+    private String nombre;
+    private java.time.Instant creadoEn;
+
+    public ItemKeyset142(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public java.time.Instant getCreadoEn() {
+        return creadoEn;
+    }
 }

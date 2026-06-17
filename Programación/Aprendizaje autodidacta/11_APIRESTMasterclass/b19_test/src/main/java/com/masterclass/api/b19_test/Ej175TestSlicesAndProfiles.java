@@ -52,11 +52,8 @@ public final class Ej175TestSlicesAndProfiles {
      * RETO EXTRA 01: Verifica clave.
      */
     public static boolean contienePropiedad(java.util.Map<String, String> props, String k) {
-        // TODO extra: RETO EXTRA 01: Verifica clave.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.12 — una línea: return props.containsKey(k);
+        // El test ({a:b}, "a") espera true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contienePropiedad");
     }
 
@@ -64,11 +61,8 @@ public final class Ej175TestSlicesAndProfiles {
      * RETO EXTRA 02: Obtiene valor.
      */
     public static String obtenerPropiedad(java.util.Map<String, String> props, String k) {
-        // TODO extra: RETO EXTRA 02: Obtiene valor.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.12 — una línea: return props.get(k);
+        // El test ({a:b}, "a") espera "b". Map.get devuelve null si no existe.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerPropiedad");
     }
 
@@ -76,11 +70,9 @@ public final class Ej175TestSlicesAndProfiles {
      * RETO EXTRA 03: Valida si es perfil test.
      */
     public static boolean esPerfilTest(String perfil) {
-        // TODO extra: RETO EXTRA 03: Valida si es perfil test.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.12 — una línea: return "test".equals(perfil);
+        // El test ("test") espera true. Invoca equals sobre el literal para
+        // evitar NPE si perfil es null.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPerfilTest");
     }
 
@@ -88,11 +80,9 @@ public final class Ej175TestSlicesAndProfiles {
      * RETO EXTRA 04: Formatea clave de perfil.
      */
     public static String obtenerClavePerfil(String perfil, String clave) {
-        // TODO extra: RETO EXTRA 04: Formatea clave de perfil.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.12 — una línea: return perfil + "." + clave;
+        // El test ("test", "url") espera "test.url". Es justo la clave compuesta
+        // que construye resolver() para buscar la sobreescritura del perfil.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerClavePerfil");
     }
 
@@ -100,11 +90,8 @@ public final class Ej175TestSlicesAndProfiles {
      * RETO EXTRA 05: Obtiene total de propiedades.
      */
     public static int obtenerTamanioProps(java.util.Map<String, String> props) {
-        // TODO extra: RETO EXTRA 05: Obtiene total de propiedades.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.12 — una línea: return props.size();
+        // El test ({a:b}) espera 1.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerTamanioProps");
     }
 
@@ -112,11 +99,8 @@ public final class Ej175TestSlicesAndProfiles {
      * RETO EXTRA 06: Valida si esta vacio.
      */
     public static boolean esMapaVacio(java.util.Map<String, String> props) {
-        // TODO extra: RETO EXTRA 06: Valida si esta vacio.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.12 — una línea: return props.isEmpty();
+        // El test (Map.of() vacío) espera true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMapaVacio");
     }
 
@@ -124,11 +108,12 @@ public final class Ej175TestSlicesAndProfiles {
      * RETO EXTRA 07: Resuelve con fallback por defecto.
      */
     public static String resolverConDefault(java.util.Map<String, String> props, String perf, String k, String def) {
-        // TODO extra: RETO EXTRA 07: Resuelve con fallback por defecto.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.12 — reutiliza resolver() y añade un default final.
+        // String v = resolver(props, perf, k);
+        // return v != null ? v : def;
+        // El test ({} vacío, "test", "url", "def") espera "def": como no hay ni
+        // clave de perfil ni base, resolver devuelve null → cae al default.
+        // Es la precedencia perfil > base > default (lo que da @Value con :default).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para resolverConDefault");
     }
 
@@ -136,11 +121,11 @@ public final class Ej175TestSlicesAndProfiles {
      * RETO EXTRA 08: Verifica valor efectivo.
      */
     public static boolean esPropiedadActiva(java.util.Map<String, String> props, String perf, String k, String val) {
-        // TODO extra: RETO EXTRA 08: Verifica valor efectivo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.12 — ¿el valor efectivo resuelto coincide con 'val'?
+        // return val.equals(resolver(props, perf, k));
+        // El test ({test.url:h2}, "test", "url", "h2") espera true: resolver da
+        // "h2" (gana la clave de perfil) y coincide con val. Reutiliza resolver
+        // del ejercicio base; invoca equals sobre val por seguridad ante null.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPropiedadActiva");
     }
 
@@ -148,11 +133,11 @@ public final class Ej175TestSlicesAndProfiles {
      * RETO EXTRA 09: Crea una copia mutable.
      */
     public static java.util.Map<String, String> limpiarPropiedades(java.util.Map<String, String> props) {
-        // TODO extra: RETO EXTRA 09: Crea una copia mutable.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.12 — copia defensiva en un mapa mutable.
+        // return new HashMap<>(props);
+        // El test ({a:b}) espera size()==1. El constructor copia las entradas a
+        // un HashMap nuevo y modificable; así puedes mutar la copia sin tocar el
+        // original (que con Map.of además sería inmutable).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para limpiarPropiedades");
     }
 
@@ -160,11 +145,13 @@ public final class Ej175TestSlicesAndProfiles {
      * RETO EXTRA 10: Combina propiedades.
      */
     public static java.util.Map<String, String> fusionarPropiedades(java.util.Map<String, String> p1, java.util.Map<String, String> p2) {
-        // TODO extra: RETO EXTRA 10: Combina propiedades.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.12 — fusiona dos mapas (p2 sobreescribe a p1).
+        // Map<String, String> r = new HashMap<>(p1);
+        // r.putAll(p2);
+        // return r;
+        // El test ({a:1}, {b:2}) espera size()==2. ESTO es la fusión base+perfil
+        // de Spring: putAll del perfil pisa las claves coincidentes de la base
+        // (precedencia del perfil). Crea un mapa nuevo, no mutes p1.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para fusionarPropiedades");
     }
 

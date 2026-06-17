@@ -47,11 +47,10 @@ public final class Ej167ServiceUnitTest {
      * RETO EXTRA 01: Formatea el saldo de la cuenta.
      */
     public static String formatearSaldo(SaldoRepo167 repo, String c) {
-        // TODO extra: RETO EXTRA 01: Formatea el saldo de la cuenta.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.4 — lee el saldo del colaborador y formatéalo.
+        // return "$" + repo.saldoDe(c);
+        // El test (c -> 100.0) espera "$100.0": el double 100.0 concatenado con
+        // "+" usa Double.toString → "100.0" (con decimal). No es 100 entero.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearSaldo");
     }
 
@@ -59,11 +58,10 @@ public final class Ej167ServiceUnitTest {
      * RETO EXTRA 02: Comprueba si el saldo califica como Premium.
      */
     public static boolean esCuentaPremium(SaldoRepo167 repo, String c) {
-        // TODO extra: RETO EXTRA 02: Comprueba si el saldo califica como Premium.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.4 — regla de negocio: Premium si saldo supera 1000.
+        // return repo.saldoDe(c) > 1000;
+        // El test (c -> 1500.0) espera true. El umbral 1000 es la regla de
+        // negocio; 1500 > 1000 → Premium.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCuentaPremium");
     }
 
@@ -71,11 +69,9 @@ public final class Ej167ServiceUnitTest {
      * RETO EXTRA 03: Comprueba si el saldo es positivo.
      */
     public static boolean esSaldoPositivo(SaldoRepo167 repo, String c) {
-        // TODO extra: RETO EXTRA 03: Comprueba si el saldo es positivo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.4 — una línea: return repo.saldoDe(c) > 0;
+        // El test (c -> 5.0) espera true. "Positivo" es > 0 ESTRICTO (el 0 no
+        // es positivo; compáralo con saldoValido del reto 9, que usa >= 0).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esSaldoPositivo");
     }
 
@@ -83,11 +79,11 @@ public final class Ej167ServiceUnitTest {
      * RETO EXTRA 04: Comprueba si una transferencia es viable.
      */
     public static boolean transferenciaPosible(SaldoRepo167 repo, String o, double imp) {
-        // TODO extra: RETO EXTRA 04: Comprueba si una transferencia es viable.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.4 — viable si el origen tiene saldo suficiente.
+        // return repo.saldoDe(o) >= imp;
+        // El test (c -> 100.0, imp 50.0) espera true. Es la misma comprobación
+        // que hace transferir() antes de lanzar IllegalStateException, pero
+        // devuelta como boolean en vez de excepción.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para transferenciaPosible");
     }
 
@@ -95,11 +91,10 @@ public final class Ej167ServiceUnitTest {
      * RETO EXTRA 05: Calcula el interes anual estimado.
      */
     public static double calcularInteresAnual(SaldoRepo167 repo, String c, double tasa) {
-        // TODO extra: RETO EXTRA 05: Calcula el interes anual estimado.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.4 — interés = saldo · tasa.
+        // return repo.saldoDe(c) * tasa;
+        // El test (c -> 100.0, tasa 0.05) espera 5.0: 100 · 0.05 = 5.0. La tasa
+        // ya viene como fracción (0.05 = 5%), no la dividas entre 100.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularInteresAnual");
     }
 
@@ -107,11 +102,8 @@ public final class Ej167ServiceUnitTest {
      * RETO EXTRA 06: Devuelve el saldo duplicado.
      */
     public static double saldoDuplicado(SaldoRepo167 repo, String c) {
-        // TODO extra: RETO EXTRA 06: Devuelve el saldo duplicado.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.4 — una línea: return repo.saldoDe(c) * 2;
+        // El test (c -> 10.0) espera 20.0.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para saldoDuplicado");
     }
 
@@ -119,11 +111,11 @@ public final class Ej167ServiceUnitTest {
      * RETO EXTRA 07: Calcula la diferencia de saldo entre dos cuentas.
      */
     public static double obtenerDiferenciaSaldos(SaldoRepo167 repo, String c1, String c2) {
-        // TODO extra: RETO EXTRA 07: Calcula la diferencia de saldo entre dos cuentas.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.4 — diferencia ABSOLUTA entre dos saldos.
+        // return Math.abs(repo.saldoDe(c1) - repo.saldoDe(c2));
+        // ⚠ CUIDADO: el test usa c1=10.0, c2=15.0 y espera 5.0. Sin Math.abs,
+        // 10 - 15 = -5.0 y el test fallaría. La palabra clave del enunciado es
+        // "diferencia" → valor absoluto.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerDiferenciaSaldos");
     }
 
@@ -131,11 +123,8 @@ public final class Ej167ServiceUnitTest {
      * RETO EXTRA 08: Suma los saldos de dos cuentas.
      */
     public static double sumarSaldos(SaldoRepo167 repo, String c1, String c2) {
-        // TODO extra: RETO EXTRA 08: Suma los saldos de dos cuentas.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.4 — una línea: return repo.saldoDe(c1) + repo.saldoDe(c2);
+        // El test (c1=10.0, c2=15.0) espera 25.0.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para sumarSaldos");
     }
 
@@ -143,11 +132,10 @@ public final class Ej167ServiceUnitTest {
      * RETO EXTRA 09: Comprueba si el saldo no es negativo.
      */
     public static boolean saldoValido(SaldoRepo167 repo, String c) {
-        // TODO extra: RETO EXTRA 09: Comprueba si el saldo no es negativo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.4 — una línea: return repo.saldoDe(c) >= 0;
+        // ⚠ CUIDADO: el test (c -> 0.0) espera TRUE. "No negativo" incluye el 0,
+        // así que es >= 0 (no > 0). Es la diferencia justa con esSaldoPositivo
+        // del reto 3, que excluye el 0.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para saldoValido");
     }
 
@@ -155,11 +143,12 @@ public final class Ej167ServiceUnitTest {
      * RETO EXTRA 10: Retorna el saldo o lanza si es negativo.
      */
     public static double saldoOExcepcion(SaldoRepo167 repo, String c) {
-        // TODO extra: RETO EXTRA 10: Retorna el saldo o lanza si es negativo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.4 — valida y devuelve, o lanza.
+        // 1. double s = repo.saldoDe(c);
+        // 2. if (s < 0) throw new IllegalArgumentException("saldo negativo");
+        // 3. return s;
+        // El test (c -> -10.0) espera IllegalArgumentException. Reutiliza la idea
+        // de saldoValido (reto 9) pero traduciendo el "no válido" a excepción.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para saldoOExcepcion");
     }
 

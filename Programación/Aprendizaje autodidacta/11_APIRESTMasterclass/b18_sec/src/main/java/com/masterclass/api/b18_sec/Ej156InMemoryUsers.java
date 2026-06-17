@@ -70,11 +70,12 @@ public final class Ej156InMemoryUsers {
      * RETO EXTRA 01: Verifica si el nombre de usuario tiene longitud y caracteres correctos.
      */
     public static boolean esUsernameSeguro(String user) {
-        // TODO extra: RETO EXTRA 01: Verifica si el nombre de usuario tiene longitud y caracteres correctos.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 18.2 (validación de username) — una regex.
+        // 1. Si user es null -> false.
+        // 2. Define la política: letras, dígitos y guion bajo, longitud razonable.
+        // PISTA: return user != null && user.matches("[a-zA-Z0-9_]{3,20}");
+        // OJO: el test pasa "user123" (7 chars, alfanumérico) y espera true. Evita
+        // espacios y símbolos que faciliten inyección o suplantación.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esUsernameSeguro");
     }
 
@@ -82,11 +83,12 @@ public final class Ej156InMemoryUsers {
      * RETO EXTRA 02: Comprueba si el rol forma parte de los del sistema (USER, ADMIN).
      */
     public static boolean esRolSoportado(String rol) {
-        // TODO extra: RETO EXTRA 02: Comprueba si el rol forma parte de los del sistema (USER, ADMIN).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: pertenencia a un conjunto cerrado de roles del sistema.
+        // 1. Si rol es null -> false.
+        // 2. Define el catálogo de roles válidos y comprueba la pertenencia.
+        // PISTA: return Set.of("USER", "ADMIN").contains(rol);
+        // OJO: el test pasa "USER" (sin prefijo ROLE_) y espera true. Decide UN
+        // formato: aquí se trabaja con el rol "pelado" (ver teoría 18.2).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRolSoportado");
     }
 
@@ -94,11 +96,12 @@ public final class Ej156InMemoryUsers {
      * RETO EXTRA 03: Genera la linea de configuracion para usuario en memoria.
      */
     public static String crearEntradaUsuarioMemoria(String u, String encPwd, String rol) {
-        // TODO extra: RETO EXTRA 03: Genera la linea de configuracion para usuario en memoria.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: formatea una entrada estilo properties de usuario en memoria.
+        // 1. Devuelve una cadena que combine usuario, password codificada y rol.
+        // PISTA: return String.format("%s=%s,%s", u, encPwd, rol);
+        //        (recuerda el clásico user.password / user.roles de Spring).
+        // OJO: el test solo exige que el resultado .contains("USER") (el rol que
+        // se pasa); el formato exacto es libre mientras incluya el rol.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearEntradaUsuarioMemoria");
     }
 
@@ -106,11 +109,13 @@ public final class Ej156InMemoryUsers {
      * RETO EXTRA 04: Comprueba que la contraseña en memoria empiece por el prefijo del codificador.
      */
     public static boolean esPasswordEncriptadaValida(String pwd) {
-        // TODO extra: RETO EXTRA 04: Comprueba que la contraseña en memoria empiece por el prefijo del codificador.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 18.3 (DelegatingPasswordEncoder marca el algoritmo con {id}).
+        // 1. Si pwd es null -> false.
+        // 2. Una password "almacenable" lleva el prefijo del codificador entre
+        //    llaves: {bcrypt}, {noop}, {argon2}...
+        // PISTA: return pwd != null && pwd.startsWith("{") && pwd.contains("}");
+        // OJO: el test pasa "{noop}123" y espera true. {noop} = sin cifrar (solo
+        // para demos); en producción jamás uses {noop}.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPasswordEncriptadaValida");
     }
 
@@ -118,11 +123,15 @@ public final class Ej156InMemoryUsers {
      * RETO EXTRA 05: Determina si coincide la credencial de forma segura frente a ataques de temporizacion.
      */
     public static boolean esCredencialCorrecta(String input, String expected) {
-        // TODO extra: RETO EXTRA 05: Determina si coincide la credencial de forma segura frente a ataques de temporizacion.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: comparación resistente a timing attacks (teoría 18.3).
+        // 1. Si input o expected son null -> false.
+        // 2. Compara en tiempo CONSTANTE, sin cortocircuitar en el primer byte
+        //    distinto (un equals normal revela por el tiempo cuántos chars coinciden).
+        // PISTA: java.security.MessageDigest.isEqual(
+        //            input.getBytes(StandardCharsets.UTF_8),
+        //            expected.getBytes(StandardCharsets.UTF_8));
+        // OJO: el test pasa ("1","1") y espera true; un equals normal pasaría el
+        // test, pero el objetivo pedagógico es usar isEqual (constant-time).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCredencialCorrecta");
     }
 
@@ -130,11 +139,13 @@ public final class Ej156InMemoryUsers {
      * RETO EXTRA 06: Verifica si la coleccion contiene el rol ADMIN.
      */
     public static boolean tieneRolAdmin(java.util.List<String> roles) {
-        // TODO extra: RETO EXTRA 06: Verifica si la coleccion contiene el rol ADMIN.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: pertenencia, contemplando ambos formatos de rol.
+        // 1. Si roles es null -> false.
+        // 2. true si la lista contiene "ADMIN" o "ROLE_ADMIN".
+        // PISTA: return roles != null
+        //        && (roles.contains("ADMIN") || roles.contains("ROLE_ADMIN"));
+        // OJO: el test pasa List.of("ADMIN") y espera true. Aceptar ambos formatos
+        // te ahorra bugs cuando una capa usa prefijo y otra no (teoría 18.2).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneRolAdmin");
     }
 
@@ -142,11 +153,15 @@ public final class Ej156InMemoryUsers {
      * RETO EXTRA 07: Determina si el error apunta a fallo de contrasena o usuario no hallado.
      */
     public static boolean esExcepcionDeCredenciales(Throwable t) {
-        // TODO extra: RETO EXTRA 07: Determina si el error apunta a fallo de contrasena o usuario no hallado.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: detectar el fallo de credenciales (tipo + mensaje).
+        // 1. Si t es null -> false.
+        // 2. En Spring sería BadCredentialsException; aquí lo modelamos con una
+        //    excepción cuyo mensaje delata el motivo.
+        // PISTA: t != null && t.getMessage() != null
+        //        && t.getMessage().toLowerCase().contains("credential");
+        // OJO: el test pasa new SecurityException("Bad credentials") y espera true.
+        // Recuerda que NO debes distinguir "usuario no existe" de "clave mala"
+        // de cara al cliente (user enumeration, teoría 18.4).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionDeCredenciales");
     }
 
@@ -154,11 +169,12 @@ public final class Ej156InMemoryUsers {
      * RETO EXTRA 08: Elimina el prefijo del encoder (ej. {bcrypt}).
      */
     public static String limpiarPrefijoCodificador(String raw) {
-        // TODO extra: RETO EXTRA 08: Elimina el prefijo del encoder (ej. {bcrypt}).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: inversa del reto 04 — quita el prefijo {id} inicial.
+        // 1. Si raw es null -> null.
+        // 2. Elimina el bloque {...} del principio si lo hay; si no, devuélvelo igual.
+        // PISTA: return raw == null ? null : raw.replaceFirst("^\\{[^}]+\\}", "");
+        // OJO: el test pasa "{bcrypt}123" y espera EXACTAMENTE "123". Ancla la regex
+        // al inicio (^) para no tocar llaves que aparezcan dentro del hash.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para limpiarPrefijoCodificador");
     }
 
@@ -166,11 +182,12 @@ public final class Ej156InMemoryUsers {
      * RETO EXTRA 09: Genera un nombre a partir del correo.
      */
     public static String generarUsernamePorDefecto(String email) {
-        // TODO extra: RETO EXTRA 09: Genera un nombre a partir del correo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: la parte local del correo (antes de la @).
+        // 1. Si email es null/blank o no tiene "@" -> decide un default (o lánzalo).
+        // 2. Devuelve la subcadena anterior al primer "@".
+        // PISTA: return email.split("@", 2)[0];   // limita a 2 trozos
+        // OJO: el test pasa "ada@b.com" y espera EXACTAMENTE "ada". El split con
+        // límite 2 evita problemas si hubiera más de una @ (no debería en un email).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para generarUsernamePorDefecto");
     }
 
@@ -178,11 +195,12 @@ public final class Ej156InMemoryUsers {
      * RETO EXTRA 10: Determina si la fecha de expiracion de cuenta ya paso.
      */
     public static boolean esCuentaExpirada(java.time.LocalDate exp) {
-        // TODO extra: RETO EXTRA 10: Determina si la fecha de expiracion de cuenta ya paso.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: comparación de fechas con java.time (teoría 1.10).
+        // 1. Si exp es null -> decide (false = "sin caducidad" es razonable).
+        // 2. Está expirada si la fecha es anterior a hoy.
+        // PISTA: return exp != null && exp.isBefore(java.time.LocalDate.now());
+        // OJO: el test pasa LocalDate.now().minusDays(1) y espera true. Usa
+        // isBefore, no compareTo manual; LocalDate es inmutable (no muta now()).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCuentaExpirada");
     }
 

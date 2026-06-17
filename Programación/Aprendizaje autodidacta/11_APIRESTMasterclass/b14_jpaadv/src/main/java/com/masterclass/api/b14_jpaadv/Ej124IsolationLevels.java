@@ -49,11 +49,10 @@ public final class Ej124IsolationLevels {
      * Reto Extra 1: Verifica si el nivel previene dirty reads.
      */
     public static boolean previeneDirtyRead(Nivel n) {
-        // TODO extra: Reto Extra 1: Verifica si el nivel previene dirty reads.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 14.2 (tabla acumulativa). Reutiliza el método base.
+        // 1. Una línea: return previene(n).contains(Fenomeno.DIRTY_READ);
+        // OJO: el test pide true para READ_COMMITTED y false para READ_UNCOMMITTED
+        //      (el único que no previene NADA).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para previeneDirtyRead");
     }
 
@@ -61,11 +60,10 @@ public final class Ej124IsolationLevels {
      * Reto Extra 2: Verifica si el nivel previene non-repeatable reads.
      */
     public static boolean previeneNonRepeatableRead(Nivel n) {
-        // TODO extra: Reto Extra 2: Verifica si el nivel previene non-repeatable reads.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 14.2. Mismo patrón que el reto 1.
+        // 1. Una línea: return previene(n).contains(Fenomeno.NON_REPEATABLE_READ);
+        // OJO: el test pide true para REPEATABLE_READ y false para READ_COMMITTED
+        //      (READ_COMMITTED solo evita DIRTY_READ).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para previeneNonRepeatableRead");
     }
 
@@ -73,11 +71,9 @@ public final class Ej124IsolationLevels {
      * Reto Extra 3: Verifica si el nivel previene phantom reads.
      */
     public static boolean previenePhantomRead(Nivel n) {
-        // TODO extra: Reto Extra 3: Verifica si el nivel previene phantom reads.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 14.2. Solo SERIALIZABLE evita los phantom reads.
+        // 1. Una línea: return previene(n).contains(Fenomeno.PHANTOM_READ);
+        // OJO: el test pide true para SERIALIZABLE y false para REPEATABLE_READ.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para previenePhantomRead");
     }
 
@@ -85,11 +81,12 @@ public final class Ej124IsolationLevels {
      * Reto Extra 4: Comprueba si el nivel previene todos los fenomenos.
      */
     public static boolean previeneTodo(Nivel n) {
-        // TODO extra: Reto Extra 4: Comprueba si el nivel previene todos los fenomenos.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 14.2. "Previene todo" = el set cubre los 3 fenómenos.
+        // 1. Compara el tamaño con el total de fenómenos del enum:
+        //    return previene(n).size() == Fenomeno.values().length;
+        //    (alternativa: previene(n).size() == 3, pero values().length no
+        //     se rompe si algún día añaden un fenómeno).
+        // OJO: el test pide true para SERIALIZABLE y false para REPEATABLE_READ.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para previeneTodo");
     }
 
@@ -97,11 +94,12 @@ public final class Ej124IsolationLevels {
      * Reto Extra 5: Comprueba si a es mas estricto que b.
      */
     public static boolean esMasEstricto(Nivel a, Nivel b) {
-        // TODO extra: Reto Extra 5: Comprueba si a es mas estricto que b.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: el enum Nivel está DECLARADO de menor a mayor aislamiento, así que
+        // ordinal() crece con la estrictez (READ_UNCOMMITTED=0 ... SERIALIZABLE=3).
+        // 1. Una línea: return a.ordinal() > b.ordinal();
+        // PISTA: ordinal() devuelve la posición del valor en la declaración.
+        // OJO: el test pide true para (SERIALIZABLE, REPEATABLE_READ) y false para
+        //      (READ_COMMITTED, SERIALIZABLE). Es estricto >, no >=.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMasEstricto");
     }
 
@@ -109,11 +107,8 @@ public final class Ej124IsolationLevels {
      * Reto Extra 6: Retorna el nombre en texto.
      */
     public static String obtenerNombreNivel(Nivel n) {
-        // TODO extra: Reto Extra 6: Retorna el nombre en texto.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return n.name();
+        // OJO: el test espera "READ_COMMITTED" tal cual; name() lo da gratis.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerNombreNivel");
     }
 
@@ -121,11 +116,8 @@ public final class Ej124IsolationLevels {
      * Reto Extra 7: Retorna el nombre en texto del fenomeno.
      */
     public static String obtenerNombreFenomeno(Fenomeno f) {
-        // TODO extra: Reto Extra 7: Retorna el nombre en texto del fenomeno.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return f.name();
+        // OJO: el test espera "DIRTY_READ". Igual que el reto 6 pero sobre Fenomeno.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerNombreFenomeno");
     }
 
@@ -133,11 +125,9 @@ public final class Ej124IsolationLevels {
      * Reto Extra 8: Comprueba si un nivel es el mas bajo disponible.
      */
     public static boolean esElMasBajo(Nivel n) {
-        // TODO extra: Reto Extra 8: Comprueba si un nivel es el mas bajo disponible.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: el más bajo es el primero declarado, READ_UNCOMMITTED (ordinal 0).
+        // 1. Opciones: return n == Nivel.READ_UNCOMMITTED;  o  return n.ordinal() == 0;
+        // OJO: el test pide true para READ_UNCOMMITTED y false para READ_COMMITTED.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esElMasBajo");
     }
 
@@ -145,11 +135,10 @@ public final class Ej124IsolationLevels {
      * Reto Extra 9: Comprueba si un nivel es el mas estricto disponible.
      */
     public static boolean esElMasAlto(Nivel n) {
-        // TODO extra: Reto Extra 9: Comprueba si un nivel es el mas estricto disponible.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: el más alto es SERIALIZABLE (el último declarado).
+        // 1. Opciones: return n == Nivel.SERIALIZABLE;
+        //    o, sin hardcodear: return n.ordinal() == Nivel.values().length - 1;
+        // OJO: el test pide true para SERIALIZABLE y false para REPEATABLE_READ.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esElMasAlto");
     }
 
@@ -157,11 +146,9 @@ public final class Ej124IsolationLevels {
      * Reto Extra 10: Retorna un identificador estructurado del nivel.
      */
     public static String obtenerIdNivel(Nivel n) {
-        // TODO extra: Reto Extra 10: Retorna un identificador estructurado del nivel.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: prefijo "ISOLATION_" + el nombre del nivel.
+        // 1. Una línea: return "ISOLATION_" + n.name();
+        // OJO: el test espera EXACTAMENTE "ISOLATION_SERIALIZABLE".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerIdNivel");
     }
 

@@ -49,11 +49,8 @@ public final class Ej125OptimisticLocking {
      * Reto Extra 1: Obtiene el precio de un producto.
      */
     public static double obtenerPrecio(ProdVer125 p) {
-        // TODO extra: Reto Extra 1: Obtiene el precio de un producto.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return p.getPrecio();
+        // El getter getPrecio() ya existe en ProdVer125. El test espera 100.0.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerPrecio");
     }
 
@@ -61,11 +58,12 @@ public final class Ej125OptimisticLocking {
      * Reto Extra 2: Obtiene la version de un producto.
      */
     public static long obtenerVersion(ProdVer125 p) {
-        // TODO extra: Reto Extra 2: Obtiene la version de un producto.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 14.3. La versión es 0 al crear (Hibernate la sube en cada UPDATE).
+        // ⚠ CUIDADO: ProdVer125 NO tiene aún getter para 'version'. Añádele:
+        //     public long getVersion() { return version; }
+        //   (los retos 4 y 10 también lo necesitan). NO toques @Version ni la subas a mano.
+        // 1. Una vez añadido el getter: return p.getVersion();
+        // OJO: el test espera 0 en un producto recién creado.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerVersion");
     }
 
@@ -73,11 +71,9 @@ public final class Ej125OptimisticLocking {
      * Reto Extra 3: Comprueba si el precio es mayor que un limite.
      */
     public static boolean precioEsMayor(ProdVer125 p, double limite) {
-        // TODO extra: Reto Extra 3: Comprueba si el precio es mayor que un limite.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return p.getPrecio() > limite;
+        // OJO: el test pide true con limite 50 y false con limite 150 (precio 100).
+        // Es comparación estricta >. Reutiliza obtenerPrecio (reto 1) si prefieres.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para precioEsMayor");
     }
 
@@ -85,11 +81,9 @@ public final class Ej125OptimisticLocking {
      * Reto Extra 4: Comprueba si la version es inicial (0).
      */
     public static boolean esVersionInicial(ProdVer125 p) {
-        // TODO extra: Reto Extra 4: Comprueba si la version es inicial (0).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: usa el getVersion() que añadiste en el reto 2.
+        // 1. Una línea: return p.getVersion() == 0;  (o reutiliza obtenerVersion).
+        // OJO: el test crea un producto nuevo y espera true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esVersionInicial");
     }
 
@@ -97,11 +91,11 @@ public final class Ej125OptimisticLocking {
      * Reto Extra 5: Incrementa el precio en base a un porcentaje.
      */
     public static void incrementarPrecioPorcentaje(ProdVer125 p, double pct) {
-        // TODO extra: Reto Extra 5: Incrementa el precio en base a un porcentaje.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: aplica el porcentaje sobre el precio actual y guárdalo con el setter.
+        // 1. nuevo = precio * (1 + pct/100). Con pct=10 → 100 * 1.10 = 110.
+        // 2. p.setPrecio(p.getPrecio() * (1 + pct / 100));
+        // ⚠ CUIDADO: pct es double, así que pct/100 NO sufre división entera
+        //    (10/100 = 0.1, no 0). El test espera 110.0 exactos.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para incrementarPrecioPorcentaje");
     }
 
@@ -109,11 +103,8 @@ public final class Ej125OptimisticLocking {
      * Reto Extra 6: Crea un nuevo producto.
      */
     public static ProdVer125 crearProducto(double precio) {
-        // TODO extra: Reto Extra 6: Crea un nuevo producto.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return new ProdVer125(precio);
+        // El constructor público recibe el precio. El test solo comprueba que no es null.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearProducto");
     }
 
@@ -121,11 +112,10 @@ public final class Ej125OptimisticLocking {
      * Reto Extra 7: Descuenta un valor del precio.
      */
     public static void aplicarDescuento(ProdVer125 p, double desc) {
-        // TODO extra: Reto Extra 7: Descuenta un valor del precio.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: resta 'desc' (valor absoluto, NO porcentaje) al precio actual.
+        // 1. p.setPrecio(p.getPrecio() - desc);
+        // OJO: el test resta 20 a 100 y espera 80.0 (no confundir con el reto 5,
+        //      que era porcentual).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para aplicarDescuento");
     }
 
@@ -133,11 +123,10 @@ public final class Ej125OptimisticLocking {
      * Reto Extra 8: Comprueba si el producto tiene ID.
      */
     public static boolean tieneId(ProdVer125 p) {
-        // TODO extra: Reto Extra 8: Comprueba si el producto tiene ID.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: el id solo se asigna al persistir (@GeneratedValue). Un producto
+        // recién creado en memoria tiene id null.
+        // 1. Una línea: return p.getId() != null;
+        // OJO: el test crea un producto sin guardar y espera false.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneId");
     }
 
@@ -145,11 +134,9 @@ public final class Ej125OptimisticLocking {
      * Reto Extra 9: Valida si el precio es positivo.
      */
     public static boolean precioEsValido(ProdVer125 p) {
-        // TODO extra: Reto Extra 9: Valida si el precio es positivo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: "válido" = precio estrictamente positivo.
+        // 1. Una línea: return p.getPrecio() > 0;
+        // OJO: el test usa precio 100 y espera true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para precioEsValido");
     }
 
@@ -157,11 +144,10 @@ public final class Ej125OptimisticLocking {
      * Reto Extra 10: Retorna formato de texto del producto.
      */
     public static String formatearProducto(ProdVer125 p) {
-        // TODO extra: Reto Extra 10: Retorna formato de texto del producto.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: usa getPrecio() y el getVersion() del reto 2.
+        // 1. return "Prod[Precio=" + p.getPrecio() + ", Ver=" + p.getVersion() + "]";
+        // OJO: el test espera EXACTAMENTE "Prod[Precio=100.0, Ver=0]". Fíjate en
+        //      que 100.0 lleva el ".0" (es un double) y en los espacios tras la coma.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearProducto");
     }
 

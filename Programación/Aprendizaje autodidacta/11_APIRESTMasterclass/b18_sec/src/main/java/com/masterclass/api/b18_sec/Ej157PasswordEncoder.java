@@ -67,11 +67,12 @@ public final class Ej157PasswordEncoder {
      * RETO EXTRA 01: Comprueba si un hash tiene la estructura clasica de BCrypt ($2a$...).
      */
     public static boolean esFirmaBcryptValida(String hash) {
-        // TODO extra: RETO EXTRA 01: Comprueba si un hash tiene la estructura clasica de BCrypt ($2a$...).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 18.3 (forma de un hash BCrypt: $2a$10$...).
+        // 1. Si hash es null -> false.
+        // 2. Comprueba el patrón: versión ($2a/$2b/$2y), coste de 2 dígitos y resto.
+        // PISTA: return hash != null && hash.matches("\\$2[aby]\\$\\d{2}\\$.+");
+        // OJO: el test pasa "$2a$10$abcdef" y espera true. En regex Java el '$'
+        // literal se escapa como "\\$"; los dos dígitos del coste van con \\d{2}.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFirmaBcryptValida");
     }
 
@@ -79,11 +80,13 @@ public final class Ej157PasswordEncoder {
      * RETO EXTRA 02: Valida requisitos de contrasena fuerte (minimo 8 chars, letras, numeros, especiales).
      */
     public static boolean esPasswordFuerte(String s) {
-        // TODO extra: RETO EXTRA 02: Valida requisitos de contrasena fuerte (minimo 8 chars, letras, numeros, especiales).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: política de contraseña fuerte con regex de "lookaheads".
+        // 1. Si s es null -> false.
+        // 2. Exige >= 8 chars y al menos una letra, un dígito y un especial.
+        // PISTA: s != null && s.matches("(?=.*[A-Za-z])(?=.*\\d)(?=.*[^A-Za-z0-9]).{8,}");
+        //   Cada (?=...) es un lookahead: "en algún punto hay X" sin consumir.
+        // OJO: el test pasa "Pass123!" (8 chars, letra+dígito+'!') y espera true.
+        // Verifica que tu regex no exija un orden concreto de los caracteres.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPasswordFuerte");
     }
 
@@ -91,11 +94,13 @@ public final class Ej157PasswordEncoder {
      * RETO EXTRA 03: Determina si el algoritmo de hash es aceptado.
      */
     public static boolean esFirmaAlgoritmoCorrecto(String prefix) {
-        // TODO extra: RETO EXTRA 03: Determina si el algoritmo de hash es aceptado.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: lista blanca de prefijos {id} aceptados (teoría 18.3).
+        // 1. Si prefix es null -> false.
+        // 2. Acepta solo algoritmos fuertes con su prefijo entre llaves.
+        // PISTA: return Set.of("{bcrypt}", "{argon2}", "{pbkdf2}", "{scrypt}")
+        //        .contains(prefix);
+        // OJO: el test pasa "{bcrypt}" y espera true. {noop} y {MD5} NO deben
+        // estar en la lista (son inseguros): rechazarlos es parte del ejercicio.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFirmaAlgoritmoCorrecto");
     }
 
@@ -103,11 +108,15 @@ public final class Ej157PasswordEncoder {
      * RETO EXTRA 04: Simula comparacion simulando un pequeno delay para mitigar timing attacks.
      */
     public static boolean compararEnSegundoPlano(String raw, String encoded) {
-        // TODO extra: RETO EXTRA 04: Simula comparacion simulando un pequeno delay para mitigar timing attacks.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: comparación constant-time (igual idea que Ej156 reto 05).
+        // 1. Si raw o encoded son null -> false.
+        // 2. Compara byte a byte sin cortocircuitar (constant-time).
+        // PISTA: java.security.MessageDigest.isEqual(
+        //            raw.getBytes(StandardCharsets.UTF_8),
+        //            encoded.getBytes(StandardCharsets.UTF_8));
+        // OJO: el test pasa ("1","1") y espera true. Si añades un Thread.sleep para
+        // "simular delay", captura InterruptedException; pero NO es necesario para
+        // pasar el test: lo importante es la comparación segura.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para compararEnSegundoPlano");
     }
 
@@ -115,11 +124,13 @@ public final class Ej157PasswordEncoder {
      * RETO EXTRA 05: Determina si la excepcion fue por algoritmo de hash corrupto o inexistente.
      */
     public static boolean esExcepcionEncoding(Throwable t) {
-        // TODO extra: RETO EXTRA 05: Determina si la excepcion fue por algoritmo de hash corrupto o inexistente.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: detectar fallo de codificación por el mensaje.
+        // 1. Si t es null o t.getMessage() es null -> false.
+        // 2. true si el mensaje menciona el codificador.
+        // PISTA: t != null && t.getMessage() != null
+        //        && t.getMessage().toLowerCase().contains("encoder");
+        // OJO: el test pasa new IllegalArgumentException("encoder") y espera true.
+        // Compara en minúsculas para no depender de mayúsculas/minúsculas.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionEncoding");
     }
 
@@ -127,11 +138,11 @@ public final class Ej157PasswordEncoder {
      * RETO EXTRA 06: Genera el prefijo Spring Security para el codificador.
      */
     public static String crearPrefijoEstandar(String algo) {
-        // TODO extra: RETO EXTRA 06: Genera el prefijo Spring Security para el codificador.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — envuelve el algoritmo entre llaves.
+        // return "{" + algo + "}";
+        // OJO: el test pasa "bcrypt" y espera EXACTAMENTE "{bcrypt}". Este es el
+        // formato {id} que usa el DelegatingPasswordEncoder para saber con qué
+        // algoritmo verificar cada hash (teoría 18.3).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearPrefijoEstandar");
     }
 
@@ -139,11 +150,13 @@ public final class Ej157PasswordEncoder {
      * RETO EXTRA 07: Verifica si dos hashes corresponden al mismo valor (no deberia por el salt).
      */
     public static boolean esHashDuplicado(String hash1, String hash2) {
-        // TODO extra: RETO EXTRA 07: Verifica si dos hashes corresponden al mismo valor (no deberia por el salt).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: igualdad textual de dos hashes (teoría 18.3).
+        // 1. Si alguno es null -> false.
+        // 2. Devuelve si son la MISMA cadena.
+        // PISTA: return hash1 != null && hash1.equals(hash2);
+        // OJO: el test pasa ("h1","h2") y espera FALSE. Conceptualmente, dos hashes
+        // BCrypt de la misma contraseña casi nunca coinciden (salt aleatorio): que
+        // dos hashes sean idénticos sería sospechoso, no normal.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esHashDuplicado");
     }
 
@@ -151,11 +164,13 @@ public final class Ej157PasswordEncoder {
      * RETO EXTRA 08: Extrae la fuerza del hash BCrypt (el costo logaritmico).
      */
     public static int determinarFuerzaEncoder(String hash) {
-        // TODO extra: RETO EXTRA 08: Extrae la fuerza del hash BCrypt (el costo logaritmico).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: parsear el coste del hash "$2a$10$..." (teoría 18.3).
+        // 1. El hash se parte por "$" en: ["", "2a", "10", "salt+hash"].
+        // 2. El coste es el tercer elemento (índice 2), parseado a int.
+        // PISTA: String[] p = hash.split("\\$"); return Integer.parseInt(p[2]);
+        // OJO: el test pasa "$2a$10$abcdef" y espera 10. Recuerda que split("\\$")
+        // sobre un string que empieza por '$' produce un primer elemento vacío,
+        // por eso el coste cae en el índice 2, no en el 1.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para determinarFuerzaEncoder");
     }
 
@@ -163,11 +178,12 @@ public final class Ej157PasswordEncoder {
      * RETO EXTRA 09: Crea una cadena salt de uso unico.
      */
     public static String generarSaltManual() {
-        // TODO extra: RETO EXTRA 09: Crea una cadena salt de uso unico.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: genera un valor aleatorio único (no determinista).
+        // 1. Usa una fuente de aleatoriedad fuerte, no Math.random.
+        // PISTA: return java.util.UUID.randomUUID().toString();
+        //        (o SecureRandom + Base64 para algo binario).
+        // OJO: el test solo exige assertNotNull. CULTURA: BCrypt ya genera su salt
+        // internamente; generarlo a mano solo se justifica para otros esquemas.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para generarSaltManual");
     }
 
@@ -175,11 +191,10 @@ public final class Ej157PasswordEncoder {
      * RETO EXTRA 10: Determina si la contrasena es nula o vacia.
      */
     public static boolean esPasswordVacia(String s) {
-        // TODO extra: RETO EXTRA 10: Determina si la contrasena es nula o vacia.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — null-safe blank check.
+        // return s == null || s.isBlank();
+        // OJO: el test pasa null y espera true. isBlank() (Java 11+) también cubre
+        // cadenas de solo espacios; isEmpty() NO lo haría.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPasswordVacia");
     }
 

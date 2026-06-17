@@ -47,11 +47,11 @@ public final class Ej123TransactionPropagation {
      * Reto Extra 1: Comprueba si prop requiere una nueva transaccion siempre.
      */
     public static boolean requiereNueva(Propagacion prop) {
-        // TODO extra: Reto Extra 1: Comprueba si prop requiere una nueva transaccion siempre.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 14.1 (tabla de propagaciones).
+        // 1. "Requiere una nueva SIEMPRE" describe exactamente a REQUIRES_NEW.
+        // 2. Una línea: return prop == Propagacion.REQUIRES_NEW;
+        // OJO: el test exige true para REQUIRES_NEW y false para REQUIRED (que
+        //      solo crea si NO hay tx activa; no SIEMPRE). No confundas ambas.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para requiereNueva");
     }
 
@@ -59,11 +59,10 @@ public final class Ej123TransactionPropagation {
      * Reto Extra 2: Comprueba si prop exige una transaccion activa obligatoriamente.
      */
     public static boolean exigeTransaccion(Propagacion prop) {
-        // TODO extra: Reto Extra 2: Comprueba si prop exige una transaccion activa obligatoriamente.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 14.1. "Exige tx activa obligatoriamente" = MANDATORY
+        // (si no hay tx, lanza). NEVER es justo lo contrario (la prohíbe).
+        // 1. Una línea: return prop == Propagacion.MANDATORY;
+        // OJO: el test pide true para MANDATORY y false para NEVER.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para exigeTransaccion");
     }
 
@@ -71,11 +70,10 @@ public final class Ej123TransactionPropagation {
      * Reto Extra 3: Comprueba si prop prohibe tener transaccion activa.
      */
     public static boolean prohibeTransaccion(Propagacion prop) {
-        // TODO extra: Reto Extra 3: Comprueba si prop prohibe tener transaccion activa.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 14.1. "Prohíbe tener tx" = NEVER (lanza si txActiva!=0).
+        // 1. Una línea: return prop == Propagacion.NEVER;
+        // OJO: el test pide true para NEVER y false para REQUIRED.
+        // Es el espejo de exigeTransaccion (reto 2).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para prohibeTransaccion");
     }
 
@@ -83,11 +81,9 @@ public final class Ej123TransactionPropagation {
      * Reto Extra 4: Comprueba si prop soporta transaccion activa si existe.
      */
     public static boolean soportaTransaccion(Propagacion prop) {
-        // TODO extra: Reto Extra 4: Comprueba si prop soporta transaccion activa si existe.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 14.1. "Soporta la tx si existe pero no la crea" = SUPPORTS.
+        // 1. Una línea: return prop == Propagacion.SUPPORTS;
+        // OJO: el test pide true para SUPPORTS y false para REQUIRES_NEW.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para soportaTransaccion");
     }
 
@@ -95,11 +91,11 @@ public final class Ej123TransactionPropagation {
      * Reto Extra 5: Comprueba si prop requiere una transaccion (creandola si no existe).
      */
     public static boolean esRequerida(Propagacion prop) {
-        // TODO extra: Reto Extra 5: Comprueba si prop requiere una transaccion (creandola si no existe).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 14.1. "Requiere tx, creándola si no existe" = REQUIRED
+        // (el comportamiento por defecto de @Transactional).
+        // 1. Una línea: return prop == Propagacion.REQUIRED;
+        // OJO: el test pide true para REQUIRED y false para SUPPORTS (SUPPORTS
+        //      NO crea: si no hay tx, se ejecuta sin ella).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRequerida");
     }
 
@@ -107,11 +103,14 @@ public final class Ej123TransactionPropagation {
      * Reto Extra 6: Valida el estado transaccional.
      */
     public static boolean validarEstado(int txActiva, Propagacion prop) {
-        // TODO extra: Reto Extra 6: Valida el estado transaccional.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 14.1. "Estado válido" = la combinación (txActiva, prop)
+        // NO viola ninguna precondición, es decir, txEfectiva NO lanzaría.
+        // 1. Es inválido solo si: MANDATORY sin tx (txActiva==0), o NEVER con tx
+        //    (txActiva!=0). Todo lo demás es válido.
+        // 2. return !(prop == Propagacion.MANDATORY && txActiva == 0)
+        //         && !(prop == Propagacion.NEVER && txActiva != 0);
+        // OJO: el test pide true para (1, REQUIRED) y false para (0, MANDATORY).
+        // Puedes reutilizar exigeTransaccion (reto 2) y prohibeTransaccion (reto 3).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para validarEstado");
     }
 
@@ -119,11 +118,10 @@ public final class Ej123TransactionPropagation {
      * Reto Extra 7: Obtiene el nombre del tipo de propagacion.
      */
     public static String obtenerNombre(Propagacion prop) {
-        // TODO extra: Reto Extra 7: Obtiene el nombre del tipo de propagacion.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: todo enum tiene name() que devuelve su literal exacto.
+        // 1. Una línea: return prop.name();
+        // OJO: el test espera "REQUIRED" tal cual; name() lo da gratis (no uses
+        //      toString() reimplementado ni concatenes nada).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerNombre");
     }
 
@@ -131,11 +129,14 @@ public final class Ej123TransactionPropagation {
      * Reto Extra 8: Simula si habra rollback en caso de fallo.
      */
     public static boolean provocaraRollback(Propagacion prop) {
-        // TODO extra: Reto Extra 8: Simula si habra rollback en caso de fallo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 14.1. Solo puede haber rollback si HAY una transacción que
+        // confirmar. NEVER se ejecuta SIN transacción, así que un fallo no
+        // provoca rollback (no hay nada que deshacer).
+        // 1. Las que garantizan tx: REQUIRED, REQUIRES_NEW, MANDATORY → true.
+        //    NEVER → false (SUPPORTS depende, pero el test no lo evalúa).
+        // 2. Sencillo: return prop != Propagacion.NEVER && prop != Propagacion.SUPPORTS;
+        //    (o un switch). Reutiliza esRequerida/requiereNueva/exigeTransaccion.
+        // OJO: el test pide true para REQUIRED y false para NEVER.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para provocaraRollback");
     }
 
@@ -143,11 +144,13 @@ public final class Ej123TransactionPropagation {
      * Reto Extra 9: Comprueba si es una propagacion segura.
      */
     public static boolean esSegura(Propagacion prop) {
-        // TODO extra: Reto Extra 9: Comprueba si es una propagacion segura.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 14.1. Llamamos "segura" a la propagación que NUNCA lanza
+        // por sí sola, exista o no tx activa: REQUIRED, REQUIRES_NEW y SUPPORTS
+        // funcionan en ambos estados. MANDATORY y NEVER pueden lanzar.
+        // 1. return prop == Propagacion.REQUIRED || prop == Propagacion.REQUIRES_NEW
+        //         || prop == Propagacion.SUPPORTS;
+        //    (o: prop != MANDATORY && prop != NEVER).
+        // OJO: el test solo comprueba que REQUIRED es segura (true).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esSegura");
     }
 
@@ -155,11 +158,10 @@ public final class Ej123TransactionPropagation {
      * Reto Extra 10: Retorna un identificador simulado.
      */
     public static String obtenerIdSimulado(Propagacion prop) {
-        // TODO extra: Reto Extra 10: Retorna un identificador simulado.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: construye el identificador con el prefijo "PROP_" + el nombre.
+        // 1. Una línea: return "PROP_" + prop.name();
+        // OJO: el test espera EXACTAMENTE "PROP_REQUIRED" (prefijo en mayúsculas,
+        //      guion bajo, sin espacios). Reutiliza obtenerNombre (reto 7) si quieres.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerIdSimulado");
     }
 

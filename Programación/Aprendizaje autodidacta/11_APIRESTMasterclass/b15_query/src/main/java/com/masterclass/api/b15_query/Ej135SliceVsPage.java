@@ -10,8 +10,8 @@ import java.util.List;
  */
 public final class Ej135SliceVsPage {
 
-    /** Slice: contenido + si hay más, SIN total. */
-    public record Slice<T>(List<T> contenido, boolean haySiguiente) {
+    /** Slice: contenido + nº de página y tamaño + si hay más, SIN total. */
+    public record Slice<T>(List<T> contenido, int pagina, int tamano, boolean haySiguiente) {
     }
 
     private final EntityManager em;
@@ -37,7 +37,7 @@ public final class Ej135SliceVsPage {
         // TODO 7: haySiguiente = (lista.size() > tamano).
         // TODO 8: si haySiguiente, recorta la lista a 'tamano' (quita el extra).
         // TODO 9: NO ejecutes ningún COUNT (esa es la ventaja del Slice).
-        // TODO 10: devuelve new Slice(contenido, haySiguiente).
+        // TODO 10: devuelve new Slice<>(contenido, pagina, tamano, haySiguiente).
         return null;
     }
 
@@ -49,11 +49,12 @@ public final class Ej135SliceVsPage {
      * Reto Extra 1: Comprueba si un Slice tiene pagina siguiente de forma logica.
      */
     public static boolean tieneSiguiente(Slice<?> s) {
-        // TODO extra: Reto Extra 1: Comprueba si un Slice tiene pagina siguiente de forma logica.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 15.1. AQUÍ está la diferencia con una Page: el Slice NO
+        //   conoce el total, así que "hay siguiente" es un dato YA precalculado
+        //   (el truco del tamano+1 de slice()). No se calcula con totalPaginas.
+        // 1. Una línea: return s.haySiguiente();
+        // OJO: el test construye el Slice con el flag a true → devuelve ese flag
+        //   tal cual; no intentes deducirlo del tamaño del contenido.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneSiguiente");
     }
 
@@ -61,11 +62,9 @@ public final class Ej135SliceVsPage {
      * Reto Extra 2: Comprueba si un Slice tiene pagina anterior.
      */
     public static boolean tieneAnterior(Slice<?> s) {
-        // TODO extra: Reto Extra 2: Comprueba si un Slice tiene pagina anterior.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return s.pagina() > 0;
+        // El test pasa pagina=1 → true. (Mismo criterio que Ej133.tieneAnterior;
+        //   el Slice SÍ sabe en qué página está, aunque no sepa el total.)
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneAnterior");
     }
 
@@ -73,11 +72,8 @@ public final class Ej135SliceVsPage {
      * Reto Extra 3: Comprueba si es la primera pagina de un Slice.
      */
     public static boolean esPrimera(Slice<?> s) {
-        // TODO extra: Reto Extra 3: Comprueba si es la primera pagina de un Slice.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return s.pagina() == 0;
+        // El test pasa pagina=0 → true (la paginación es 0-based).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPrimera");
     }
 
@@ -85,11 +81,9 @@ public final class Ej135SliceVsPage {
      * Reto Extra 4: Valida los parametros de Slice.
      */
     public static boolean esValida(int pagina, int tamano) {
-        // TODO extra: Reto Extra 4: Valida los parametros de Slice.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: misma regla que Ej133.esValida.
+        // 1. Una línea: return pagina >= 0 && tamano > 0;
+        // El test pasa (0, 10) → true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esValida");
     }
 
@@ -97,11 +91,9 @@ public final class Ej135SliceVsPage {
      * Reto Extra 5: Calcula el offset de forma segura.
      */
     public static int calcularOffset(int pagina, int tamano) {
-        // TODO extra: Reto Extra 5: Calcula el offset de forma segura.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: idéntico a Ej133.calcularOffset.
+        // 1. Una línea: return pagina * tamano;
+        // El test pasa (2, 10) → 20.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularOffset");
     }
 
@@ -109,11 +101,9 @@ public final class Ej135SliceVsPage {
      * Reto Extra 6: Retorna el tamaño del contenido actual.
      */
     public static int tamanoContenido(Slice<?> s) {
-        // TODO extra: Reto Extra 6: Retorna el tamaño del contenido actual.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return s.contenido().size();
+        // OJO: es el tamaño REAL de elementos devueltos (el test pasa 1 elemento),
+        //   no el tamaño de página solicitado (s.tamano()). No los confundas.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tamanoContenido");
     }
 
@@ -121,11 +111,8 @@ public final class Ej135SliceVsPage {
      * Reto Extra 7: Comprueba si el Slice esta vacio.
      */
     public static boolean estaVacio(Slice<?> s) {
-        // TODO extra: Reto Extra 7: Comprueba si el Slice esta vacio.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return s.contenido().isEmpty();
+        // El test construye el Slice con List.of() → true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para estaVacio");
     }
 
@@ -133,11 +120,8 @@ public final class Ej135SliceVsPage {
      * Reto Extra 8: Obtiene el numero de pagina actual.
      */
     public static int numeroPagina(Slice<?> s) {
-        // TODO extra: Reto Extra 8: Obtiene el numero de pagina actual.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return s.pagina();
+        // El test construye el Slice con pagina=3 → 3.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para numeroPagina");
     }
 
@@ -145,11 +129,9 @@ public final class Ej135SliceVsPage {
      * Reto Extra 9: Comprueba si el tamano de pagina es correcto.
      */
     public static boolean tamanoEsCorrecto(Slice<?> s, int esperado) {
-        // TODO extra: Reto Extra 9: Comprueba si el tamano de pagina es correcto.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return s.tamano() == esperado;
+        // OJO: aquí SÍ usas s.tamano() (el tamaño de página configurado, 10 en el
+        //   test), no el size() del contenido. Compara con 'esperado'.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tamanoEsCorrecto");
     }
 
@@ -157,11 +139,11 @@ public final class Ej135SliceVsPage {
      * Reto Extra 10: Retorna representacion estructurada de texto.
      */
     public static String formatearSlice(Slice<?> s) {
-        // TODO extra: Reto Extra 10: Retorna representacion estructurada de texto.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: String.format con la página y el flag haySiguiente.
+        // PISTA: String.format("Slice[Pagina=%d, HasNext=%b]", s.pagina(), s.haySiguiente());
+        // OJO: el test espera EXACTAMENTE "Slice[Pagina=0, HasNext=false]".
+        //   %b imprime "false"/"true" en minúsculas. Respeta "HasNext" en inglés
+        //   con esa capitalización.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearSlice");
     }
 

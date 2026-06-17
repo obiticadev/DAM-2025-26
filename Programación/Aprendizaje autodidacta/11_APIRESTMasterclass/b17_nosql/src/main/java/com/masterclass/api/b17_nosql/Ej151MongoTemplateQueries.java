@@ -70,11 +70,13 @@ public final class Ej151MongoTemplateQueries {
      * RETO EXTRA 01: Determina si la query contiene algun operador de modificacion ($set, $push).
      */
     public static boolean esComandoActualizacionValido(String updateDoc) {
-        // TODO extra: RETO EXTRA 01: Determina si la query contiene algun operador de modificacion ($set, $push).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 17.3 (operadores de actualización: $set, $push, $inc, $unset...).
+        // 1. Si updateDoc es null -> false.
+        // 2. Comprueba que contenga alguno de los operadores de modificación.
+        // PISTA: updateDoc.contains("$set") || updateDoc.contains("$push")
+        //    || updateDoc.contains("$inc") || updateDoc.contains("$unset").
+        // OJO: el test manda {"$set":{}} y espera true.
+        // CULTURA: un Update de Spring (new Update().set(...)) genera estos $.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esComandoActualizacionValido");
     }
 
@@ -82,11 +84,12 @@ public final class Ej151MongoTemplateQueries {
      * RETO EXTRA 02: Determina si es una busqueda directa por identificador primario.
      */
     public static boolean esFiltroDocumentId(String query) {
-        // TODO extra: RETO EXTRA 02: Determina si es una busqueda directa por identificador primario.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: detectar una búsqueda por clave primaria (filtra por "_id").
+        // 1. Si query es null -> false.
+        // 2. Comprueba que el filtro mencione "_id".
+        // PISTA: query.contains("\"_id\"") (o query.contains("_id")).
+        // OJO: el test manda {"_id":1} y espera true.
+        // CULTURA: buscar por _id usa el índice por defecto (O(1) lógico, 17.2).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFiltroDocumentId");
     }
 
@@ -94,11 +97,11 @@ public final class Ej151MongoTemplateQueries {
      * RETO EXTRA 03: Une dos asignaciones BSON en un unico bloque de actualizacion.
      */
     public static String combinarActualizaciones(String u1, String u2) {
-        // TODO extra: RETO EXTRA 03: Une dos asignaciones BSON en un unico bloque de actualizacion.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — concatena las dos actualizaciones separadas por coma.
+        // PISTA: return u1 + "," + u2;
+        // OJO: el test compara EXACTO con "u1,u2" (u1="u1", u2="u2"): una sola
+        //      coma, sin espacios, sin llaves alrededor.
+        // CULTURA: no confundir con combinarFiltrosY del Ej150 (ese sí lleva $and).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para combinarActualizaciones");
     }
 
@@ -106,11 +109,13 @@ public final class Ej151MongoTemplateQueries {
      * RETO EXTRA 04: Determina si la excepcion corresponde a un error de escritura (DuplicateKey, etc).
      */
     public static boolean esExcepcionEscrituraMongo(Throwable t) {
-        // TODO extra: RETO EXTRA 04: Determina si la excepcion corresponde a un error de escritura (DuplicateKey, etc).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: clasificar una excepción de escritura (por mensaje).
+        // 1. Si t es null -> false.
+        // 2. Criterio: el mensaje contiene "write" (o "duplicate"), ignorando case.
+        // PISTA: msg != null && msg.toLowerCase().contains("write");
+        //    mismo patrón que esExcepcionMongo (Ej149 reto 8).
+        // OJO: el test pasa new IllegalArgumentException("write") y espera true.
+        // CULTURA: con el driver real sería DuplicateKeyException (clave única repetida).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionEscrituraMongo");
     }
 
@@ -118,11 +123,13 @@ public final class Ej151MongoTemplateQueries {
      * RETO EXTRA 05: Genera un comando de guardado incremental unificado.
      */
     public static String crearUpsertComando(String filter, String update) {
-        // TODO extra: RETO EXTRA 05: Genera un comando de guardado incremental unificado.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: un upsert junta un filtro y una actualización con upsert:true.
+        // 1. Construye algo como:
+        //    {"q":filter,"u":update,"upsert":true}  (formato de update con upsert).
+        // PISTA: el test SOLO exige que el resultado .contains("f") (filter="f"),
+        //    así que basta con incluir filter y update en la cadena.
+        // OJO: incluye el filter literal; con eso el contains("f") pasa.
+        // CULTURA: upsert = "actualiza si existe, inserta si no" (save del 17.2).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearUpsertComando");
     }
 
@@ -130,11 +137,12 @@ public final class Ej151MongoTemplateQueries {
      * RETO EXTRA 06: Valida que los paquetes de insercion no saturen la red.
      */
     public static boolean esLimiteSeguroEscritura(int bulkSize) {
-        // TODO extra: RETO EXTRA 06: Valida que los paquetes de insercion no saturen la red.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: validar el tamaño de un lote (bulk write) para no saturar la red.
+        // 1. bulkSize debe ser positivo (> 0).
+        // 2. Y no exceder un tope razonable (Mongo recomienda <= 1000 por lote).
+        // PISTA: return bulkSize > 0 && bulkSize <= 1000;
+        // OJO: el test manda 500 y espera true (500 cae dentro de [1, 1000]).
+        // CULTURA: bulkOps agrupa muchas escrituras en un viaje de red (eficiencia).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esLimiteSeguroEscritura");
     }
 
@@ -142,11 +150,15 @@ public final class Ej151MongoTemplateQueries {
      * RETO EXTRA 07: Extrae la cantidad de registros alterados de un log resumido.
      */
     public static int extraerTotalAfectados(String resultSummary) {
-        // TODO extra: RETO EXTRA 07: Extrae la cantidad de registros alterados de un log resumido.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: extraer el número de un resumen tipo "Modified: 5".
+        // 1. Si resultSummary es null o vacío -> devuelve 0.
+        // 2. Quédate solo con los dígitos del final (o tras los dos puntos).
+        // 3. Truco: resultSummary.replaceAll("\\D+", "") deja solo dígitos;
+        //    luego Integer.parseInt sobre el resultado.
+        // PISTA: Integer.parseInt(resultSummary.replaceAll("\\D+", ""));
+        //    (\\D = "no dígito"). Protege con try/catch o comprobando vacío.
+        // OJO: el test manda "Modified: 5" y espera el int 5 (no "5").
+        // CULTURA: un UpdateResult real trae getModifiedCount() ya como número.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerTotalAfectados");
     }
 
@@ -154,11 +166,12 @@ public final class Ej151MongoTemplateQueries {
      * RETO EXTRA 08: Indica si la edicion afectara a multiples registros.
      */
     public static boolean esOperacionMultiDocumento(String updateCommand) {
-        // TODO extra: RETO EXTRA 08: Indica si la edicion afectara a multiples registros.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: detectar "multi:true" en un comando de actualización.
+        // 1. Si updateCommand es null -> false.
+        // 2. Comprueba que contenga "multi:true" (o "multi": true).
+        // PISTA: updateCommand.replace(" ", "").contains("multi:true").
+        // OJO: el test manda "multi:true" y espera true.
+        // CULTURA: por defecto updateOne afecta a UNO; multi:true = updateMany.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esOperacionMultiDocumento");
     }
 
@@ -166,11 +179,12 @@ public final class Ej151MongoTemplateQueries {
      * RETO EXTRA 09: Indica si la edicion afectara a multiples registros.
      */
     public static boolean esMulti(String config) {
-        // TODO extra: RETO EXTRA 09: Indica si la edicion afectara a multiples registros.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: versión mínima del reto 8 (solo busca la palabra "multi").
+        // 1. Si config es null -> false.
+        // 2. Devuelve config.contains("multi").
+        // PISTA: return config != null && config.contains("multi");
+        // OJO: el test manda "multi" (a secas) y espera true; reutiliza la idea
+        //      de esOperacionMultiDocumento pero sin exigir ":true".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMulti");
     }
 
@@ -178,11 +192,13 @@ public final class Ej151MongoTemplateQueries {
      * RETO EXTRA 10: Determina si hay una transaccion abierta en la sesion.
      */
     public static boolean esTransaccionActiva(String sessionState) {
-        // TODO extra: RETO EXTRA 10: Determina si hay una transaccion abierta en la sesion.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una sesión está en transacción si su estado es "ACTIVE".
+        // 1. Si sessionState es null -> false.
+        // 2. Compara ignorando mayúsculas con "ACTIVE".
+        // PISTA: return "ACTIVE".equalsIgnoreCase(sessionState);
+        // OJO: el test manda "ACTIVE" y espera true. Usa equalsIgnoreCase para
+        //      no caer si llega "active".
+        // CULTURA: Mongo soporta transacciones multi-documento desde 4.0.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esTransaccionActiva");
     }
 
@@ -190,11 +206,12 @@ public final class Ej151MongoTemplateQueries {
      * RETO EXTRA 11: Indica si el id fue dejado a cargo del driver de Mongo.
      */
     public static boolean esIdAutogenerado(String idField) {
-        // TODO extra: RETO EXTRA 11: Indica si el id fue dejado a cargo del driver de Mongo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 17.1 (si no das id, el driver lo autogenera).
+        // 1. El id está "autogenerado" precisamente cuando NO lo aportaste:
+        //    idField es null o vacío.
+        // PISTA: return idField == null || idField.isBlank();
+        // OJO: el test pasa null y espera true (id ausente -> lo genera Mongo).
+        // CULTURA: por eso al serializar omitías "_id" cuando era null (Ej149).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esIdAutogenerado");
     }
 

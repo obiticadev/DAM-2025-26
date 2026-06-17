@@ -43,11 +43,8 @@ public final class Ej128Auditing {
      * Reto Extra 1: Obtiene el texto de un documento de forma segura.
      */
     public static String obtenerTexto(DocAud128 d) {
-        // TODO extra: Reto Extra 1: Obtiene el texto de un documento de forma segura.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return d.getTexto();
+        // (getTexto() ya existe en DocAud128.) El test espera "hola".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerTexto");
     }
 
@@ -55,11 +52,10 @@ public final class Ej128Auditing {
      * Reto Extra 2: Comprueba si tiene fecha de creacion asignada.
      */
     public static boolean tieneCreadoEn(DocAud128 d) {
-        // TODO extra: Reto Extra 2: Comprueba si tiene fecha de creacion asignada.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 14.6. creadoEn solo se rellena en @PrePersist (al insertar).
+        // Un documento en memoria, sin persistir, lo tiene null.
+        // 1. Una línea: return d.getCreadoEn() != null;
+        // OJO: el test crea el doc sin guardarlo y espera false.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneCreadoEn");
     }
 
@@ -67,11 +63,10 @@ public final class Ej128Auditing {
      * Reto Extra 3: Comprueba si tiene fecha de actualizacion asignada.
      */
     public static boolean tieneActualizadoEn(DocAud128 d) {
-        // TODO extra: Reto Extra 3: Comprueba si tiene fecha de actualizacion asignada.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 14.6. actualizadoEn solo se rellena en @PreUpdate (tras un
+        // UPDATE). Recién creado, e incluso recién insertado, es null.
+        // 1. Una línea: return d.getActualizadoEn() != null;
+        // OJO: el test espera false en un doc sin modificar.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneActualizadoEn");
     }
 
@@ -79,11 +74,8 @@ public final class Ej128Auditing {
      * Reto Extra 4: Crea un nuevo documento auditable.
      */
     public static DocAud128 crearDocumento(String texto) {
-        // TODO extra: Reto Extra 4: Crea un nuevo documento auditable.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return new DocAud128(texto);
+        // El test solo comprueba que no es null.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearDocumento");
     }
 
@@ -91,11 +83,12 @@ public final class Ej128Auditing {
      * Reto Extra 5: Comprueba si el documento ha sido editado (creadoEn != actualizadoEn).
      */
     public static boolean haSidoEditado(DocAud128 d) {
-        // TODO extra: Reto Extra 5: Comprueba si el documento ha sido editado (creadoEn != actualizadoEn).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: "editado" = las dos fechas difieren. Compáralas con seguridad ante
+        // nulls usando java.util.Objects.equals (NO uses != entre objetos: compara
+        // referencias, no contenido).
+        // 1. return !java.util.Objects.equals(d.getCreadoEn(), d.getActualizadoEn());
+        // OJO: en un doc nuevo ambas son null → Objects.equals(null,null)=true →
+        //      "no editado" → false. Es justo lo que espera el test.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para haSidoEditado");
     }
 
@@ -103,11 +96,8 @@ public final class Ej128Auditing {
      * Reto Extra 6: Actualiza el texto de un documento de forma manual.
      */
     public static void actualizarTexto(DocAud128 d, String nuevoTexto) {
-        // TODO extra: Reto Extra 6: Actualiza el texto de un documento de forma manual.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — d.setTexto(nuevoTexto);
+        // El test cambia "hola" por "mundo" y comprueba getTexto()=="mundo".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para actualizarTexto");
     }
 
@@ -115,11 +105,8 @@ public final class Ej128Auditing {
      * Reto Extra 7: Obtiene el ID del documento.
      */
     public static Long obtenerId(DocAud128 d) {
-        // TODO extra: Reto Extra 7: Obtiene el ID del documento.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return d.getId();
+        // El test usa un doc sin persistir y espera null (id @GeneratedValue).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerId");
     }
 
@@ -127,11 +114,9 @@ public final class Ej128Auditing {
      * Reto Extra 8: Comprueba si el texto contiene una palabra.
      */
     public static boolean contienePalabra(DocAud128 d, String palabra) {
-        // TODO extra: Reto Extra 8: Comprueba si el texto contiene una palabra.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return d.getTexto().contains(palabra);
+        // OJO: el test pide true para "mundo" y false para "casa" sobre "hola mundo".
+        // contains distingue mayúsculas/minúsculas (búsqueda exacta de subcadena).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contienePalabra");
     }
 
@@ -139,11 +124,9 @@ public final class Ej128Auditing {
      * Reto Extra 9: Comprueba si el documento es nuevo (ID nulo).
      */
     public static boolean esNuevo(DocAud128 d) {
-        // TODO extra: Reto Extra 9: Comprueba si el documento es nuevo (ID nulo).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: "nuevo" = aún sin persistir = id null. Es el espejo del reto 7.
+        // 1. Una línea: return d.getId() == null;
+        // OJO: el test espera true en un doc recién creado.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esNuevo");
     }
 
@@ -151,11 +134,10 @@ public final class Ej128Auditing {
      * Reto Extra 10: Retorna formato de auditoria del documento.
      */
     public static String formatearAuditoria(DocAud128 d) {
-        // TODO extra: Reto Extra 10: Retorna formato de auditoria del documento.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: usa getId() y getCreadoEn().
+        // 1. return "Doc[Id=" + d.getId() + ", Creado=" + d.getCreadoEn() + "]";
+        // OJO: el test usa un doc nuevo y espera EXACTAMENTE "Doc[Id=null, Creado=null]"
+        //      (concatenar un null da el literal "null"; respeta el espacio tras la coma).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearAuditoria");
     }
 
@@ -200,6 +182,10 @@ class DocAud128 {
 
     public Instant getActualizadoEn() {
         return actualizadoEn;
+    }
+
+    public String getTexto() {
+        return texto;
     }
 
     public void setTexto(String t) {

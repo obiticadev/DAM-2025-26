@@ -46,11 +46,11 @@ public final class Ej166MockitoMocks {
      * RETO EXTRA 01: Obtiene longitud del nombre.
      */
     public static int longitudNombre(RepositorioStub166 repo, int id) {
-        // TODO extra: RETO EXTRA 01: Obtiene longitud del nombre.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.3 — consume el stub y deriva de su respuesta.
+        // 1. Pide el nombre al doble: repo.buscarNombre(id).
+        // 2. Devuelve su longitud: return repo.buscarNombre(id).length();
+        // El test pasa el stub id -> "Ada" y espera 3. Igual que en saludar,
+        // el método no sabe que el repo es un doble: solo usa su contrato.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para longitudNombre");
     }
 
@@ -58,11 +58,8 @@ public final class Ej166MockitoMocks {
      * RETO EXTRA 02: Obtiene el nombre en mayusculas.
      */
     public static String nombreEnMayusculas(RepositorioStub166 repo, int id) {
-        // TODO extra: RETO EXTRA 02: Obtiene el nombre en mayusculas.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.3 — una línea: return repo.buscarNombre(id).toUpperCase();
+        // El test (id -> "Ada") espera "ADA".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para nombreEnMayusculas");
     }
 
@@ -70,11 +67,12 @@ public final class Ej166MockitoMocks {
      * RETO EXTRA 03: Determina si el nombre es valido.
      */
     public static boolean nombreValido(RepositorioStub166 repo, int id) {
-        // TODO extra: RETO EXTRA 03: Determina si el nombre es valido.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.3 — "válido" = el stub devolvió algo usable.
+        // 1. Lee el nombre: String n = repo.buscarNombre(id);
+        // 2. Es válido si no es null y no está en blanco:
+        //       return n != null && !n.isBlank();
+        // El test (id -> "Ada") espera true. El orden importa: comprueba null
+        // ANTES de isBlank(), o n.isBlank() lanzaría NPE si n fuera null.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para nombreValido");
     }
 
@@ -82,11 +80,11 @@ public final class Ej166MockitoMocks {
      * RETO EXTRA 04: Saluda al usuario con un sufijo.
      */
     public static String saludoConSufijo(RepositorioStub166 repo, int id, String suf) {
-        // TODO extra: RETO EXTRA 04: Saluda al usuario con un sufijo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.3 — compón el saludo con el sufijo.
+        // return "Hola " + repo.buscarNombre(id) + suf;
+        // ⚠ CUIDADO con el formato EXACTO: el test espera "Hola Ada!" — es
+        // "Hola " (con espacio, SIN coma) + nombre + sufijo. No reutilices el
+        // "Hola, " (con coma) del método saludar: aquí la coma rompería el test.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para saludoConSufijo");
     }
 
@@ -94,11 +92,9 @@ public final class Ej166MockitoMocks {
      * RETO EXTRA 05: Comprueba si el nombre contiene una subcadena.
      */
     public static boolean contieneSubcadena(RepositorioStub166 repo, int id, String sub) {
-        // TODO extra: RETO EXTRA 05: Comprueba si el nombre contiene una subcadena.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.3 — una línea: return repo.buscarNombre(id).contains(sub);
+        // El test ("Ada", "Ad") espera true. String.contains es sensible a
+        // mayúsculas: "Ad" sí está en "Ada", "ad" no.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contieneSubcadena");
     }
 
@@ -106,11 +102,11 @@ public final class Ej166MockitoMocks {
      * RETO EXTRA 06: Determina si el usuario es un invitado.
      */
     public static boolean esInvitado(RepositorioStub166 repo, int id) {
-        // TODO extra: RETO EXTRA 06: Determina si el usuario es un invitado.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.3 — es invitado si el nombre devuelto es "invitado".
+        // return "invitado".equalsIgnoreCase(repo.buscarNombre(id));
+        // El test (id -> "invitado") espera true. PISTA: invoca equals SOBRE el
+        // literal "invitado" (no sobre el resultado del repo): así, si el repo
+        // devuelve null, no hay NPE — "invitado".equals(null) es false, no error.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esInvitado");
     }
 
@@ -118,11 +114,10 @@ public final class Ej166MockitoMocks {
      * RETO EXTRA 07: Devuelve el nombre invertido.
      */
     public static String saludoInverso(RepositorioStub166 repo, int id) {
-        // TODO extra: RETO EXTRA 07: Devuelve el nombre invertido.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.3 — invierte la cadena con StringBuilder.
+        // return new StringBuilder(repo.buscarNombre(id)).reverse().toString();
+        // El test ("Ada") espera "adA" (mayúsculas/minúsculas se conservan, solo
+        // cambia el orden). PISTA: StringBuilder.reverse() invierte in situ.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para saludoInverso");
     }
 
@@ -130,11 +125,9 @@ public final class Ej166MockitoMocks {
      * RETO EXTRA 08: Concatena el ID y el nombre.
      */
     public static String concatenarIdYNombre(RepositorioStub166 repo, int id) {
-        // TODO extra: RETO EXTRA 08: Concatena el ID y el nombre.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.3 — formato "id:nombre".
+        // return id + ":" + repo.buscarNombre(id);
+        // El test (id=1, "Ada") espera "1:Ada". El separador es ":" sin espacios.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para concatenarIdYNombre");
     }
 
@@ -142,11 +135,11 @@ public final class Ej166MockitoMocks {
      * RETO EXTRA 09: Comprueba si el nombre es largo.
      */
     public static boolean nombreLargo(RepositorioStub166 repo, int id) {
-        // TODO extra: RETO EXTRA 09: Comprueba si el nombre es largo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.3 — "largo" = más de 3 caracteres.
+        // return repo.buscarNombre(id).length() > 3;
+        // ⚠ CUIDADO con el umbral: el test (id -> "Ada") espera FALSE, y "Ada"
+        // tiene 3 letras. Por tanto el corte es > 3 ESTRICTO (3 no es largo).
+        // Si pusieras >= 3, el test fallaría.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para nombreLargo");
     }
 
@@ -154,11 +147,13 @@ public final class Ej166MockitoMocks {
      * RETO EXTRA 10: Busca el nombre o lanza excepcion.
      */
     public static String buscarOError(RepositorioStub166 repo, int id) {
-        // TODO extra: RETO EXTRA 10: Busca el nombre o lanza excepcion.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.3 + patrón "si no está → error" (19.4).
+        // 1. Lee el nombre: String n = repo.buscarNombre(id);
+        // 2. Si es null -> lanza: if (n == null) throw new IllegalArgumentException("no existe");
+        // 3. Si no, devuélvelo: return n;
+        // El test pasa el stub id -> null y espera IllegalArgumentException.
+        // CULTURA: este es el "findById().orElseThrow()" que verás en Spring,
+        // donde la excepción se convierte luego en un 404.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para buscarOError");
     }
 

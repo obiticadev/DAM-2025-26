@@ -47,11 +47,9 @@ public final class Ej180CustomHealthMetrics {
      * RETO EXTRA 01: Valida total >= 0.
      */
     public static boolean esTotalValido(long t) {
-        // TODO extra: RETO EXTRA 01: Valida total >= 0.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — total no negativo (teoría 20.4, validaciones).
+        // PISTA: return t >= 0;
+        // OJO: el test manda 0 y espera true (cero es válido).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esTotalValido");
     }
 
@@ -59,11 +57,10 @@ public final class Ej180CustomHealthMetrics {
      * RETO EXTRA 02: Valida errores.
      */
     public static boolean esErroresValido(long e, long t) {
-        // TODO extra: RETO EXTRA 02: Valida errores.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: errores válidos = no negativos y no mayores que el total.
+        // PISTA: return e >= 0 && e <= t;
+        // OJO: el test manda (5,10) -> true. No olvides el límite superior: no
+        // puede haber más errores que peticiones totales.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esErroresValido");
     }
 
@@ -71,11 +68,9 @@ public final class Ej180CustomHealthMetrics {
      * RETO EXTRA 03: Valida umbral.
      */
     public static boolean esUmbralValido(double u) {
-        // TODO extra: RETO EXTRA 03: Valida umbral.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: umbral es una tasa, debe caer en [0,1] (ambos inclusive).
+        // PISTA: return u >= 0 && u <= 1;
+        // OJO: el test manda 0.5 -> true; 2.0 sería inválido (no es una tasa).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esUmbralValido");
     }
 
@@ -83,11 +78,13 @@ public final class Ej180CustomHealthMetrics {
      * RETO EXTRA 04: Calcula tasa real.
      */
     public static double calcularTasaError(long t, long e) {
-        // TODO extra: RETO EXTRA 04: Calcula tasa real.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: tasa = errores/total con división segura (teoría 20.4).
+        // OJO al orden de parámetros: la firma es (long t, long e) -> t es total, e errores.
+        // 1. Si t == 0 -> 0.0 (evita dividir por cero).
+        // 2. Si no, e / (double) t.
+        // PISTA: return t == 0 ? 0.0 : (double) e / t;
+        // ⚠ CUIDADO: el cast a double ANTES de dividir; "e / t" con dos long da 0.
+        // El test manda (10, 5) y espera 0.5.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularTasaError");
     }
 
@@ -95,11 +92,10 @@ public final class Ej180CustomHealthMetrics {
      * RETO EXTRA 05: Formatea con 4 decimales.
      */
     public static String formatearTasa(double tasa) {
-        // TODO extra: RETO EXTRA 05: Formatea con 4 decimales.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — formato con 4 decimales y punto decimal (teoría 20.4).
+        // PISTA: return String.format(java.util.Locale.ROOT, "%.4f", tasa);
+        // ⚠ CUIDADO: SIN Locale.ROOT, en España saldría "0,5000" (coma) y el test
+        // espera EXACTAMENTE "0.5000". Este es el error nº 5 del bloque.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearTasa");
     }
 
@@ -107,11 +103,10 @@ public final class Ej180CustomHealthMetrics {
      * RETO EXTRA 06: Calcula status.
      */
     public static String determinarStatus(double tasa, double umbral) {
-        // TODO extra: RETO EXTRA 06: Calcula status.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: status según umbral (teoría 20.4: DOWN si tasa SUPERA el umbral).
+        // PISTA: return tasa > umbral ? "DOWN" : "UP";
+        // OJO: estricto mayor (>). El límite exacto (tasa == umbral) es UP.
+        // El test manda (0.2, 0.1) -> "DOWN".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para determinarStatus");
     }
 
@@ -119,11 +114,9 @@ public final class Ej180CustomHealthMetrics {
      * RETO EXTRA 07: Valida si es UP.
      */
     public static boolean esStatusUp(String status) {
-        // TODO extra: RETO EXTRA 07: Valida si es UP.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — comparación segura contra null.
+        // PISTA: return "UP".equals(status);
+        // (Pon el literal a la izquierda para no petar con status null.)
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esStatusUp");
     }
 
@@ -131,11 +124,8 @@ public final class Ej180CustomHealthMetrics {
      * RETO EXTRA 08: Valida si es DOWN.
      */
     public static boolean esStatusDown(String status) {
-        // TODO extra: RETO EXTRA 08: Valida si es DOWN.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: espejo de esStatusUp contra "DOWN".
+        // PISTA: return "DOWN".equals(status);
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esStatusDown");
     }
 
@@ -143,11 +133,9 @@ public final class Ej180CustomHealthMetrics {
      * RETO EXTRA 09: Extrae tasa del mapa.
      */
     public static String obtenerTasaDelMapa(java.util.Map<String, String> m) {
-        // TODO extra: RETO EXTRA 09: Extrae tasa del mapa.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — lee la clave "errorRate" del mapa que devuelve salud().
+        // PISTA: return m.get("errorRate");
+        // El test manda {errorRate=0.0500} y espera "0.0500".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerTasaDelMapa");
     }
 
@@ -155,11 +143,9 @@ public final class Ej180CustomHealthMetrics {
      * RETO EXTRA 10: Extrae status del mapa.
      */
     public static String obtenerStatusDelMapa(java.util.Map<String, String> m) {
-        // TODO extra: RETO EXTRA 10: Extrae status del mapa.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: espejo del reto 09 con la clave "status".
+        // PISTA: return m.get("status");
+        // El test manda {status=UP} y espera "UP".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerStatusDelMapa");
     }
 

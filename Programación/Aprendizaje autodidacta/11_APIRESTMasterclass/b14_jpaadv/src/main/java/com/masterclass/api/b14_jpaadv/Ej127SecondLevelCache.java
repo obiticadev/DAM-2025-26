@@ -75,11 +75,9 @@ public class Ej127SecondLevelCache<K, V> {
      * Reto Extra 1: Obtiene el numero de hits de forma segura.
      */
     public int obtenerHits() {
-        // TODO extra: Reto Extra 1: Obtiene el numero de hits de forma segura.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return hits;
+        // (es el mismo valor que el método hits() ya existente). El test, recién
+        // construida la caché, espera 0.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerHits");
     }
 
@@ -87,11 +85,8 @@ public class Ej127SecondLevelCache<K, V> {
      * Reto Extra 2: Obtiene el numero de misses de forma segura.
      */
     public int obtenerMisses() {
-        // TODO extra: Reto Extra 2: Obtiene el numero de misses de forma segura.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return misses;
+        // Igual que el reto 1 pero con el otro contador. El test espera 0.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerMisses");
     }
 
@@ -99,11 +94,9 @@ public class Ej127SecondLevelCache<K, V> {
      * Reto Extra 3: Limpia completamente la cache.
      */
     public void limpiarCache() {
-        // TODO extra: Reto Extra 3: Limpia completamente la cache.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: vacía el Map interno — cache.clear();
+        // OJO: igual que invalidate, NO toca los contadores hits/misses. El test
+        //      hace get(1), limpiarCache() y luego espera cacheEstaVacia()==true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para limpiarCache");
     }
 
@@ -111,11 +104,8 @@ public class Ej127SecondLevelCache<K, V> {
      * Reto Extra 4: Comprueba si la cache esta vacia.
      */
     public boolean cacheEstaVacia() {
-        // TODO extra: Reto Extra 4: Comprueba si la cache esta vacia.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return cache.isEmpty();
+        // El test, recién construida, espera true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para cacheEstaVacia");
     }
 
@@ -123,11 +113,8 @@ public class Ej127SecondLevelCache<K, V> {
      * Reto Extra 5: Comprueba el tamano actual de la cache.
      */
     public int tamanoCache() {
-        // TODO extra: Reto Extra 5: Comprueba el tamano actual de la cache.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return cache.size();
+        // El test, recién construida, espera 0.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tamanoCache");
     }
 
@@ -135,11 +122,8 @@ public class Ej127SecondLevelCache<K, V> {
      * Reto Extra 6: Comprueba si una clave existe en la cache fisica.
      */
     public boolean contieneClave(K key) {
-        // TODO extra: Reto Extra 6: Comprueba si una clave existe en la cache fisica.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return cache.containsKey(key);
+        // El test hace get(1) (que cachea) y luego espera contieneClave(1)==true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contieneClave");
     }
 
@@ -147,11 +131,10 @@ public class Ej127SecondLevelCache<K, V> {
      * Reto Extra 7: Precalienta la cache con un mapa de entradas.
      */
     public void precalentar(Map<K, V> entradas) {
-        // TODO extra: Reto Extra 7: Precalienta la cache con un mapa de entradas.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: vuelca todas las entradas en la caché de golpe — cache.putAll(entradas);
+        // CULTURA: "precalentar" (cache warming) es cargar datos frecuentes al
+        // arrancar para que las primeras peticiones ya sean hits.
+        // OJO: el test precalienta {1:"v1"} y luego espera obtenerSilencioso(1)=="v1".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para precalentar");
     }
 
@@ -159,11 +142,11 @@ public class Ej127SecondLevelCache<K, V> {
      * Reto Extra 8: Obtiene un valor sin contar como hit ni miss.
      */
     public V obtenerSilencioso(K key) {
-        // TODO extra: Reto Extra 8: Obtiene un valor sin contar como hit ni miss.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: lee del Map SIN tocar contadores ni cargar de BD.
+        // 1. Una línea: return cache.get(key);
+        // OJO: NO uses loaderBD aquí. Si la clave no está, cache.get devuelve null
+        //      (el test sobre caché vacía espera null; tras precalentar, espera "v1").
+        //      Contrasta con get(): aquel sí cuenta hit/miss y carga en miss.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerSilencioso");
     }
 
@@ -171,11 +154,10 @@ public class Ej127SecondLevelCache<K, V> {
      * Reto Extra 9: Invalida multiples claves a la vez.
      */
     public void invalidarLote(Iterable<K> keys) {
-        // TODO extra: Reto Extra 9: Invalida multiples claves a la vez.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: recorre las claves y quita cada una (reutiliza invalidate o cache.remove).
+        // 1. for (K k : keys) invalidate(k);   // o cache.remove(k);
+        // OJO: el test cachea 1 y 2, invalida ambas y espera cacheEstaVacia()==true.
+        // PISTA: Iterable<K> se recorre con for-each directamente.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para invalidarLote");
     }
 
@@ -183,11 +165,9 @@ public class Ej127SecondLevelCache<K, V> {
      * Reto Extra 10: Retorna ratio de hits como porcentaje [0, 100].
      */
     public double hitRatioPorcentaje() {
-        // TODO extra: Reto Extra 10: Retorna ratio de hits como porcentaje [0, 100].
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: reutiliza hitRatio() (que ya maneja la división por cero) y escálalo.
+        // 1. Una línea: return hitRatio() * 100;
+        // OJO: caché sin accesos → hitRatio() es 0.0 → 0.0%. El test lo espera.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para hitRatioPorcentaje");
     }
 

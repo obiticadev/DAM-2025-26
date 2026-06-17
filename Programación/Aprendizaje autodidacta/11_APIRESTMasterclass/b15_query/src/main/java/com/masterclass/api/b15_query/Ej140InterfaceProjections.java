@@ -48,11 +48,9 @@ public final class Ej140InterfaceProjections {
      * Reto Extra 1: Obtiene el nombre del producto de forma segura.
      */
     public static String obtenerNombre(Prod140 p) {
-        // TODO extra: Reto Extra 1: Obtiene el nombre del producto de forma segura.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 15.1 (proyecciones). Acceso seguro a un campo.
+        // 1. Una línea: return p == null ? null : p.getNombre();
+        // El test crea new Prod140("Laptop", "Tech", 100) y espera "Laptop".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerNombre");
     }
 
@@ -60,11 +58,8 @@ public final class Ej140InterfaceProjections {
      * Reto Extra 2: Obtiene la categoria del producto.
      */
     public static String obtenerCategoria(Prod140 p) {
-        // TODO extra: Reto Extra 2: Obtiene la categoria del producto.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return p == null ? null : p.getCategoria();
+        // El test espera "Tech".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerCategoria");
     }
 
@@ -72,11 +67,8 @@ public final class Ej140InterfaceProjections {
      * Reto Extra 3: Comprueba si el precio es valido.
      */
     public static boolean esPrecioValido(Prod140 p) {
-        // TODO extra: Reto Extra 3: Comprueba si el precio es valido.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return p != null && p.getPrecio() > 0;
+        // El test crea el producto con precio 100.0 → true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPrecioValido");
     }
 
@@ -84,11 +76,8 @@ public final class Ej140InterfaceProjections {
      * Reto Extra 4: Crea un nuevo producto.
      */
     public static Prod140 crearProducto(String nombre, String categoria, double precio) {
-        // TODO extra: Reto Extra 4: Crea un nuevo producto.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return new Prod140(nombre, categoria, precio);
+        // El test llama crearProducto("PC", "Tech", 200.0) y comprueba assertNotNull.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearProducto");
     }
 
@@ -96,11 +85,9 @@ public final class Ej140InterfaceProjections {
      * Reto Extra 5: Comprueba si un producto tiene ID asignado.
      */
     public static boolean tieneId(Prod140 p) {
-        // TODO extra: Reto Extra 5: Comprueba si un producto tiene ID asignado.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return p != null && p.getId() != null;
+        // OJO: el test espera FALSE (un producto recién creado no tiene id).
+        //   Es el complemento de esNuevo (reto 8).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneId");
     }
 
@@ -108,11 +95,8 @@ public final class Ej140InterfaceProjections {
      * Reto Extra 6: Obtiene el ID del producto de forma segura.
      */
     public static Long obtenerId(Prod140 p) {
-        // TODO extra: Reto Extra 6: Obtiene el ID del producto de forma segura.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return p == null ? null : p.getId();
+        // El test espera null (producto sin persistir).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerId");
     }
 
@@ -120,11 +104,8 @@ public final class Ej140InterfaceProjections {
      * Reto Extra 7: Normaliza el texto.
      */
     public static String normalizarTexto(String s) {
-        // TODO extra: Reto Extra 7: Normaliza el texto.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return s == null ? null : s.trim().toLowerCase();
+        // El test pasa "  Laptop  " y espera "laptop".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para normalizarTexto");
     }
 
@@ -132,11 +113,8 @@ public final class Ej140InterfaceProjections {
      * Reto Extra 8: Comprueba si el producto es nuevo.
      */
     public static boolean esNuevo(Prod140 p) {
-        // TODO extra: Reto Extra 8: Comprueba si el producto es nuevo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return p != null && p.getId() == null;
+        // El test crea el producto sin id → true (complemento de tieneId, reto 5).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esNuevo");
     }
 
@@ -144,11 +122,11 @@ public final class Ej140InterfaceProjections {
      * Reto Extra 9: Comprueba si la categoria contiene una palabra clave.
      */
     public static boolean categoriaContiene(Prod140 p, String keyword) {
-        // TODO extra: Reto Extra 9: Comprueba si la categoria contiene una palabra clave.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: comparación "contiene" sin importar mayúsculas.
+        // 1. Defensa: p, su categoría y keyword no nulos.
+        // 2. return p.getCategoria().toLowerCase().contains(keyword.toLowerCase());
+        // OJO: el test pasa categoría "Tech" y keyword "ch" → "tech".contains("ch")
+        //   es true. Por eso normalizas ambos a minúsculas antes de contains.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para categoriaContiene");
     }
 
@@ -156,16 +134,44 @@ public final class Ej140InterfaceProjections {
      * Reto Extra 10: Retorna representacion estructurada de texto.
      */
     public static String formatearProducto(Prod140 p) {
-        // TODO extra: Reto Extra 10: Retorna representacion estructurada de texto.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: String.format con nombre y categoría.
+        // PISTA: String.format("Prod[Nombre=%s, Cat=%s]", p.getNombre(), p.getCategoria());
+        // OJO: el test espera EXACTAMENTE "Prod[Nombre=Laptop, Cat=Tech]".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearProducto");
     }
 
 
 
+}
+
+/** Producto para los retos extra (POJO, no entidad). El id queda null. */
+class Prod140 {
+    private Long id;
+    private String nombre;
+    private String categoria;
+    private double precio;
+
+    public Prod140(String nombre, String categoria, double precio) {
+        this.nombre = nombre;
+        this.categoria = categoria;
+        this.precio = precio;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
 }
 
 @Entity

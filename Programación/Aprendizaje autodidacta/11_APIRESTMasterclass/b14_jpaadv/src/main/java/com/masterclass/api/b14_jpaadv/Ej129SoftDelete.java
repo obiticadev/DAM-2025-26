@@ -60,11 +60,11 @@ public final class Ej129SoftDelete {
      * Reto Extra 1: Obtiene el nombre del cliente de forma segura.
      */
     public static String obtenerNombre(ClienteSD129 c) {
-        // TODO extra: Reto Extra 1: Obtiene el nombre del cliente de forma segura.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: ⚠ CUIDADO: ClienteSD129 NO tiene getter para 'nombre'. Añádele:
+        //     public String getNombre() { return nombre; }
+        //   (el reto 8 también lo necesita).
+        // 1. Una vez añadido: return c.getNombre();
+        // OJO: el test espera "Ana".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerNombre");
     }
 
@@ -72,11 +72,9 @@ public final class Ej129SoftDelete {
      * Reto Extra 2: Comprueba si el cliente esta marcado como borrado.
      */
     public static boolean estaBorrado(ClienteSD129 c) {
-        // TODO extra: Reto Extra 2: Comprueba si el cliente esta marcado como borrado.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return c.isBorrado();
+        // (isBorrado() ya existe.) El test crea un cliente nuevo (borrado=false) y
+        // espera false.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para estaBorrado");
     }
 
@@ -84,11 +82,8 @@ public final class Ej129SoftDelete {
      * Reto Extra 3: Crea un nuevo cliente activo.
      */
     public static ClienteSD129 crearCliente(String nombre) {
-        // TODO extra: Reto Extra 3: Crea un nuevo cliente activo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return new ClienteSD129(nombre);
+        // El campo borrado arranca en false (activo). El test solo comprueba no-null.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearCliente");
     }
 
@@ -96,11 +91,9 @@ public final class Ej129SoftDelete {
      * Reto Extra 4: Marca un cliente como borrado (soft delete manual).
      */
     public static void borrarClienteManual(ClienteSD129 c) {
-        // TODO extra: Reto Extra 4: Marca un cliente como borrado (soft delete manual).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 14.7. Soft delete = marcar el flag, NO em.remove.
+        // 1. Una línea: c.setBorrado(true);
+        // El test luego comprueba c.isBorrado()==true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para borrarClienteManual");
     }
 
@@ -108,11 +101,11 @@ public final class Ej129SoftDelete {
      * Reto Extra 5: Restaura un cliente borrado logicamente.
      */
     public static void restaurarCliente(ClienteSD129 c) {
-        // TODO extra: Reto Extra 5: Restaura un cliente borrado logicamente.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: restaurar = lo contrario de borrar (poner el flag a false).
+        // 1. Una línea: c.setBorrado(false);
+        // OJO: el test marca borrado=true, llama a restaurar y espera isBorrado()==false.
+        // CULTURA: poder "des-borrar" es justo la ventaja del soft delete sobre el
+        // DELETE físico (papelera de reciclaje).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para restaurarCliente");
     }
 
@@ -120,11 +113,8 @@ public final class Ej129SoftDelete {
      * Reto Extra 6: Obtiene el ID del cliente de forma segura.
      */
     public static Long obtenerId(ClienteSD129 c) {
-        // TODO extra: Reto Extra 6: Obtiene el ID del cliente de forma segura.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return c.getId();
+        // (getId() ya existe.) El test usa un cliente sin persistir y espera null.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerId");
     }
 
@@ -132,11 +122,9 @@ public final class Ej129SoftDelete {
      * Reto Extra 7: Comprueba si el cliente es nuevo (ID nulo).
      */
     public static boolean esNuevo(ClienteSD129 c) {
-        // TODO extra: Reto Extra 7: Comprueba si el cliente es nuevo (ID nulo).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: "nuevo" = id null. Espejo del reto 6.
+        // 1. Una línea: return c.getId() == null;
+        // El test espera true en un cliente recién creado.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esNuevo");
     }
 
@@ -144,11 +132,9 @@ public final class Ej129SoftDelete {
      * Reto Extra 8: Comprueba si el nombre del cliente contiene una palabra.
      */
     public static boolean nombreContiene(ClienteSD129 c, String palabra) {
-        // TODO extra: Reto Extra 8: Comprueba si el nombre del cliente contiene una palabra.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: usa el getNombre() que añadiste en el reto 1.
+        // 1. Una línea: return c.getNombre().contains(palabra);
+        // OJO: el test pide true para "Lopez" y false para "Marta" sobre "Ana Lopez".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para nombreContiene");
     }
 
@@ -156,11 +142,9 @@ public final class Ej129SoftDelete {
      * Reto Extra 9: Comprueba si el cliente esta activo (no borrado).
      */
     public static boolean estaActivo(ClienteSD129 c) {
-        // TODO extra: Reto Extra 9: Comprueba si el cliente esta activo (no borrado).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: "activo" = NO borrado. Es la negación de estaBorrado (reto 2).
+        // 1. Una línea: return !c.isBorrado();
+        // El test, con un cliente nuevo, espera true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para estaActivo");
     }
 
@@ -168,11 +152,10 @@ public final class Ej129SoftDelete {
      * Reto Extra 10: Retorna formato del cliente.
      */
     public static String formatearCliente(ClienteSD129 c) {
-        // TODO extra: Reto Extra 10: Retorna formato del cliente.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: usa getId() y el estado activo (!isBorrado, reto 9).
+        // 1. return "Cliente[Id=" + c.getId() + ", Activo=" + !c.isBorrado() + "]";
+        // OJO: el test usa un cliente nuevo y espera "Cliente[Id=null, Activo=true]".
+        //      Es "Activo", no "Borrado": invierte el flag.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearCliente");
     }
 

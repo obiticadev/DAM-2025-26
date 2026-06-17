@@ -68,11 +68,12 @@ public final class Ej160JwtValidationFilter {
      * RETO EXTRA 01: Verifica presencia de prefijo 'Bearer '.
      */
     public static boolean esHeaderBearerValido(String authHeader) {
-        // TODO extra: RETO EXTRA 01: Verifica presencia de prefijo 'Bearer '.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 18.6 (el header de portador empieza por "Bearer ").
+        // 1. Si authHeader es null -> false.
+        // 2. Comprueba el prefijo EXACTO "Bearer " (con espacio).
+        // PISTA: return authHeader != null && authHeader.startsWith("Bearer ");
+        // OJO: el test pasa "Bearer token123" y espera true. Es la versión "solo
+        // comprobar" de extraerBearer; no aceptes "Basic" ni "bearer" en minúscula.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esHeaderBearerValido");
     }
 
@@ -80,11 +81,13 @@ public final class Ej160JwtValidationFilter {
      * RETO EXTRA 02: Extrae el token eliminando el prefijo Bearer.
      */
     public static String extraerTokenDeHeader(String authHeader) {
-        // TODO extra: RETO EXTRA 02: Extrae el token eliminando el prefijo Bearer.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: quitar el prefijo "Bearer " y devolver el token.
+        // 1. Si no es un header Bearer válido (reto 01) -> devuelve null.
+        // 2. Recorta los 7 caracteres de "Bearer " y aplica trim.
+        // PISTA: return authHeader.substring("Bearer ".length()).trim();
+        // OJO: el test pasa "Bearer token123" y espera EXACTAMENTE "token123".
+        // "Bearer " mide 7 chars; usar .length() en vez del número evita errores.
+        // Reutiliza esHeaderBearerValido del reto 01 para la comprobación previa.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerTokenDeHeader");
     }
 
@@ -92,11 +95,12 @@ public final class Ej160JwtValidationFilter {
      * RETO EXTRA 03: Determina si el error es de tipo token caducado (ExpiredJwtException).
      */
     public static boolean esExcepcionJwtExpirado(Throwable t) {
-        // TODO extra: RETO EXTRA 03: Determina si el error es de tipo token caducado (ExpiredJwtException).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: detectar token caducado por el mensaje.
+        // 1. Si t o t.getMessage() son null -> false.
+        // 2. En jjwt sería ExpiredJwtException; aquí va por mensaje.
+        // PISTA: t != null && t.getMessage() != null
+        //        && t.getMessage().toLowerCase().contains("expired");
+        // OJO: el test pasa IllegalArgumentException("expired") y espera true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionJwtExpirado");
     }
 
@@ -104,11 +108,14 @@ public final class Ej160JwtValidationFilter {
      * RETO EXTRA 04: Determina si el error apunta a token corrupto (MalformedJwtException).
      */
     public static boolean esExcepcionJwtMalformado(Throwable t) {
-        // TODO extra: RETO EXTRA 04: Determina si el error apunta a token corrupto (MalformedJwtException).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: gemelo del reto 03, pero para token corrupto.
+        // 1. Si t o t.getMessage() son null -> false.
+        // 2. En jjwt sería MalformedJwtException; aquí va por mensaje.
+        // PISTA: t != null && t.getMessage() != null
+        //        && t.getMessage().toLowerCase().contains("malformed");
+        // OJO: el test pasa IllegalArgumentException("malformed") y espera true.
+        // Caducado (03) y malformado (04) son fallos distintos: ambos -> 401, pero
+        // conviene loguearlos separados para diagnosticar.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionJwtMalformado");
     }
 
@@ -116,11 +123,12 @@ public final class Ej160JwtValidationFilter {
      * RETO EXTRA 05: Genera el String de registro en el contexto de seguridad.
      */
     public static String crearContextoAutenticacion(String user, String roles) {
-        // TODO extra: RETO EXTRA 05: Genera el String de registro en el contexto de seguridad.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: representar la autenticación que el filtro pone en el SecurityContext.
+        // 1. Combina user y roles en una cadena descriptiva.
+        // PISTA: return String.format("Authentication(user=%s, roles=[%s])", user, roles);
+        // OJO: el test pasa ("u","USER") y solo exige .contains("USER"); formato libre.
+        // CULTURA: en Spring esto es new UsernamePasswordAuthenticationToken(user,
+        // null, authorities) -> SecurityContextHolder; aquí solo lo simulas.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearContextoAutenticacion");
     }
 
@@ -128,11 +136,14 @@ public final class Ej160JwtValidationFilter {
      * RETO EXTRA 06: Indica si la ruta se salta el filtro de validacion.
      */
     public static boolean esRutaOmitidaFiltro(String path) {
-        // TODO extra: RETO EXTRA 06: Indica si la ruta se salta el filtro de validacion.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: rutas que el filtro JWT ignora (estáticos, públicas).
+        // 1. Si path es null -> false.
+        // 2. true si es un recurso estático o público que no necesita token.
+        // PISTA: List.of("/assets/", "/static/", "/public/", "/auth/")
+        //        .stream().anyMatch(path::startsWith)
+        //        || path.endsWith(".js") || path.endsWith(".css");
+        // OJO: el test pasa "/assets/index.js" y espera true. Es el shouldNotFilter
+        // del OncePerRequestFilter: ahorrar trabajo en rutas que no se protegen.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRutaOmitidaFiltro");
     }
 
@@ -140,11 +151,13 @@ public final class Ej160JwtValidationFilter {
      * RETO EXTRA 07: Verifica si el token fue revocado y esta en la lista negra.
      */
     public static boolean esTokenNegro(String token, java.util.List<String> blacklist) {
-        // TODO extra: RETO EXTRA 07: Verifica si el token fue revocado y esta en la lista negra.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: pertenencia a la lista de tokens revocados.
+        // 1. Si token o blacklist son null -> false.
+        // 2. true si la blacklist contiene el token.
+        // PISTA: return blacklist != null && blacklist.contains(token);
+        // OJO: el test pasa ("tok", List.of("tok")) y espera true. CULTURA: un JWT
+        // es stateless y no se puede "revocar" solo, por eso una blacklist (en
+        // Redis, p.ej.) es el truco para invalidar tokens antes de su exp.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esTokenNegro");
     }
 
@@ -152,11 +165,15 @@ public final class Ej160JwtValidationFilter {
      * RETO EXTRA 08: Obtiene el valor de un claim arbitrario.
      */
     public static String extraerJwtClaim(String payload, String claim) {
-        // TODO extra: RETO EXTRA 08: Obtiene el valor de un claim arbitrario.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: extraer un claim por nombre (regex parametrizada, como Ej159-06).
+        // 1. Si payload o claim son null -> null.
+        // 2. Construye la regex con el nombre del claim e intenta capturar su valor.
+        // PISTA: var m = java.util.regex.Pattern
+        //        .compile("\"" + claim + "\"\\s*:\\s*\"([^\"]+)\"").matcher(payload);
+        //        return m.find() ? m.group(1) : null;
+        // OJO: el test pasa ({"k":"val"}, "k") y espera EXACTAMENTE "val". Si el
+        // nombre del claim pudiera traer caracteres especiales de regex, usa
+        // Pattern.quote(claim) (aquí "k" es seguro).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerJwtClaim");
     }
 
@@ -164,11 +181,11 @@ public final class Ej160JwtValidationFilter {
      * RETO EXTRA 09: Determina si el filtro fallo por caida de infraestructura interna.
      */
     public static boolean esFalloServicioFiltro(Throwable t) {
-        // TODO extra: RETO EXTRA 09: Determina si el filtro fallo por caida de infraestructura interna.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: igual que Ej158-10 — fallo de infraestructura = I/O.
+        // 1. Si t es null -> false.
+        // PISTA: return t instanceof java.io.IOException;
+        // OJO: el test pasa new IOException() y espera true. Un IOException en el
+        // filtro es un 500 (problema del servidor), no un 401 (token inválido).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFalloServicioFiltro");
     }
 
@@ -176,11 +193,14 @@ public final class Ej160JwtValidationFilter {
      * RETO EXTRA 10: Determina si el algoritmo de firma del token es fuerte (e.g. HS512 o RS256).
      */
     public static boolean esFirmaAlgoritmoSeguro(String headerJson) {
-        // TODO extra: RETO EXTRA 10: Determina si el algoritmo de firma del token es fuerte (e.g. HS512 o RS256).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: aceptar solo algoritmos de firma fuertes (anti "alg:none").
+        // 1. Si headerJson es null -> false.
+        // 2. true si menciona un algoritmo aceptado (HS256/HS384/HS512/RS256...).
+        // PISTA: Stream.of("HS256","HS384","HS512","RS256")
+        //        .anyMatch(headerJson::contains);
+        // OJO: el test pasa {"alg":"HS512"} y espera true. CUIDADO: el ataque
+        // clásico de JWT es forzar "alg":"none" para saltarse la firma; esta
+        // lista blanca lo bloquea (teoría 18.5/18.6).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFirmaAlgoritmoSeguro");
     }
 

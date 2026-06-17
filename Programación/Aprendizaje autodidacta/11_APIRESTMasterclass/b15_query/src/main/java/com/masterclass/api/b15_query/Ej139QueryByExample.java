@@ -60,11 +60,9 @@ public final class Ej139QueryByExample {
      * Reto Extra 1: Obtiene el nombre de un producto de forma segura.
      */
     public static String obtenerNombre(Prod139 p) {
-        // TODO extra: Reto Extra 1: Obtiene el nombre de un producto de forma segura.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 15.2 (QBE). Acceso seguro a un campo del "probe".
+        // 1. Una línea: return p == null ? null : p.getNombre();
+        // El test crea new Prod139("Laptop", "Tech", 100) y espera "Laptop".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerNombre");
     }
 
@@ -72,11 +70,8 @@ public final class Ej139QueryByExample {
      * Reto Extra 2: Obtiene la categoria de forma segura.
      */
     public static String obtenerCategoria(Prod139 p) {
-        // TODO extra: Reto Extra 2: Obtiene la categoria de forma segura.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return p == null ? null : p.getCategoria();
+        // El test espera "Tech".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerCategoria");
     }
 
@@ -84,11 +79,10 @@ public final class Ej139QueryByExample {
      * Reto Extra 3: Comprueba si el producto tiene campos asignados para Example.
      */
     public static boolean tieneCamposDeEjemplo(Prod139 p) {
-        // TODO extra: Reto Extra 3: Comprueba si el producto tiene campos asignados para Example.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: en QBE un probe sirve si tiene ALGÚN campo no nulo por el que
+        //   filtrar (igual que condicionesDe descarta los null).
+        // 1. Una línea: return p != null && (p.getNombre() != null || p.getCategoria() != null);
+        // El test pasa un producto con nombre y categoría → true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneCamposDeEjemplo");
     }
 
@@ -96,11 +90,10 @@ public final class Ej139QueryByExample {
      * Reto Extra 4: Crea un nuevo producto de ejemplo.
      */
     public static Prod139 crearEjemplo(String nombre, String categoria) {
-        // TODO extra: Reto Extra 4: Crea un nuevo producto de ejemplo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: construye el probe con el constructor de Prod139 (nombre, categoria, precio).
+        // 1. Una línea: return new Prod139(nombre, categoria, 0);
+        //    (el precio no se usa como filtro aquí, 0 vale).
+        // El test solo comprueba assertNotNull sobre el resultado.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearEjemplo");
     }
 
@@ -108,11 +101,8 @@ public final class Ej139QueryByExample {
      * Reto Extra 5: Comprueba si el precio de ejemplo esta asignado (mayor que 0).
      */
     public static boolean tienePrecioAsignado(Prod139 p) {
-        // TODO extra: Reto Extra 5: Comprueba si el precio de ejemplo esta asignado (mayor que 0).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return p != null && p.getPrecio() > 0;
+        // El test crea el producto con precio 100.0 → true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tienePrecioAsignado");
     }
 
@@ -120,11 +110,9 @@ public final class Ej139QueryByExample {
      * Reto Extra 6: Obtiene el ID del producto de ejemplo.
      */
     public static Long obtenerId(Prod139 p) {
-        // TODO extra: Reto Extra 6: Obtiene el ID del producto de ejemplo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return p == null ? null : p.getId();
+        // OJO: el test espera null. Un Prod139 recién creado no tiene id asignado
+        //   (sería la BD quien lo pusiera al persistir).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerId");
     }
 
@@ -132,11 +120,8 @@ public final class Ej139QueryByExample {
      * Reto Extra 7: Normaliza el texto de los campos.
      */
     public static String normalizarTexto(String s) {
-        // TODO extra: Reto Extra 7: Normaliza el texto de los campos.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return s == null ? null : s.trim().toLowerCase();
+        // El test pasa "  Laptop  " y espera "laptop".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para normalizarTexto");
     }
 
@@ -144,11 +129,9 @@ public final class Ej139QueryByExample {
      * Reto Extra 8: Comprueba si el ejemplo es nuevo (ID nulo).
      */
     public static boolean esNuevo(Prod139 p) {
-        // TODO extra: Reto Extra 8: Comprueba si el ejemplo es nuevo (ID nulo).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return p != null && p.getId() == null;
+        // OJO: "nuevo" = sin id (aún no persistido). El test crea el producto sin
+        //   id → true. Es el mismo criterio que usa JPA para decidir persist vs merge.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esNuevo");
     }
 
@@ -156,11 +139,9 @@ public final class Ej139QueryByExample {
      * Reto Extra 9: Valida el producto de ejemplo.
      */
     public static boolean esValido(Prod139 p) {
-        // TODO extra: Reto Extra 9: Valida el producto de ejemplo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: válido = existe y tiene al menos nombre. Reutiliza obtenerNombre.
+        // 1. Una línea: return p != null && p.getNombre() != null && !p.getNombre().isBlank();
+        // El test pasa un producto con nombre "Laptop" → true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esValido");
     }
 
@@ -168,14 +149,42 @@ public final class Ej139QueryByExample {
      * Reto Extra 10: Retorna formato del ejemplo.
      */
     public static String formatearEjemplo(Prod139 p) {
-        // TODO extra: Reto Extra 10: Retorna formato del ejemplo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: String.format con nombre y categoría.
+        // PISTA: String.format("Example[Nombre=%s, Cat=%s]", p.getNombre(), p.getCategoria());
+        // OJO: el test espera EXACTAMENTE "Example[Nombre=Laptop, Cat=Tech]".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearEjemplo");
     }
 
 
 
+}
+
+/** Producto-ejemplo para los retos extra (POJO, no entidad). El id queda null. */
+class Prod139 {
+    private Long id;
+    private String nombre;
+    private String categoria;
+    private double precio;
+
+    public Prod139(String nombre, String categoria, double precio) {
+        this.nombre = nombre;
+        this.categoria = categoria;
+        this.precio = precio;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
 }

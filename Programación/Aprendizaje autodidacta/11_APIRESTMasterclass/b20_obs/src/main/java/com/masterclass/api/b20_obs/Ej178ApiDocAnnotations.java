@@ -47,11 +47,10 @@ public final class Ej178ApiDocAnnotations {
      * RETO EXTRA 01: Valida campo requerido.
      */
     public static boolean esRequerido(AnnotationMeta178 anot) {
-        // TODO extra: RETO EXTRA 01: Valida campo requerido.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — accesor del campo boolean del record.
+        // return anot.required();
+        // (Defensa opcional: si anot es null -> IllegalArgumentException.)
+        // El test manda required=true y espera true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRequerido");
     }
 
@@ -59,11 +58,10 @@ public final class Ej178ApiDocAnnotations {
      * RETO EXTRA 02: Obtiene tipo original.
      */
     public static String obtenerTipoJava(AnnotationMeta178 anot) {
-        // TODO extra: RETO EXTRA 02: Obtiene tipo original.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — accesor javaType() (el tipo Java SIN traducir a OpenAPI).
+        // return anot.javaType();
+        // OJO: el test manda javaType="String" y espera "String" tal cual; NO lo
+        // conviertas a "string" (esa traducción es de resolver(), no de aquí).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerTipoJava");
     }
 
@@ -71,11 +69,9 @@ public final class Ej178ApiDocAnnotations {
      * RETO EXTRA 03: Obtiene summary.
      */
     public static String obtenerSummary(AnnotationMeta178 anot) {
-        // TODO extra: RETO EXTRA 03: Obtiene summary.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — accesor del record.
+        // return anot.summary();
+        // El test manda summary="a" y espera "a".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerSummary");
     }
 
@@ -83,11 +79,10 @@ public final class Ej178ApiDocAnnotations {
      * RETO EXTRA 04: Obtiene descripcion.
      */
     public static String obtenerDescription(AnnotationMeta178 anot) {
-        // TODO extra: RETO EXTRA 04: Obtiene descripcion.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — accesor del record.
+        // return anot.description();
+        // OJO: aquí devuelves description() crudo, SIN la precedencia summary>description
+        // (esa lógica vive en resolver()). El test manda description="b" y espera "b".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerDescription");
     }
 
@@ -95,11 +90,10 @@ public final class Ej178ApiDocAnnotations {
      * RETO EXTRA 05: Verifica summary.
      */
     public static boolean tieneSummary(AnnotationMeta178 anot) {
-        // TODO extra: RETO EXTRA 05: Verifica summary.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: "tiene summary" = summary presente y no en blanco (teoría 20.2:
+        // usa isBlank, no == null, para cubrir " ").
+        // PISTA: return anot != null && anot.summary() != null && !anot.summary().isBlank();
+        // El test manda summary="a" (true).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneSummary");
     }
 
@@ -107,11 +101,9 @@ public final class Ej178ApiDocAnnotations {
      * RETO EXTRA 06: Verifica descripcion.
      */
     public static boolean tieneDescription(AnnotationMeta178 anot) {
-        // TODO extra: RETO EXTRA 06: Verifica descripcion.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: espejo de tieneSummary pero sobre description(). Reutiliza el patrón.
+        // PISTA: return anot != null && anot.description() != null && !anot.description().isBlank();
+        // El test manda description="b" (true).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tieneDescription");
     }
 
@@ -119,11 +111,9 @@ public final class Ej178ApiDocAnnotations {
      * RETO EXTRA 07: Crea anotacion simulada.
      */
     public static AnnotationMeta178 crearAnotacion(String s, String d, String t, boolean r) {
-        // TODO extra: RETO EXTRA 07: Crea anotacion simulada.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — factoría del record (orden: summary, description, javaType, required).
+        // return new AnnotationMeta178(s, d, t, r);
+        // El test solo comprueba assertNotNull.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearAnotacion");
     }
 
@@ -131,11 +121,15 @@ public final class Ej178ApiDocAnnotations {
      * RETO EXTRA 08: Valida si es tipo Objeto.
      */
     public static boolean esObjetoType(String t) {
-        // TODO extra: RETO EXTRA 08: Valida si es tipo Objeto.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 20.2 (tabla tipo Java -> tipo OpenAPI). "object" es el
+        // cajón de sastre: todo lo que NO es string/integer/boolean.
+        // 1. Si t es null -> false.
+        // 2. Comprueba que NO esté en el conjunto de tipos primitivos/conocidos.
+        // PISTA: Set.of("String","Integer","Long","int","long","Boolean","boolean")
+        //        .contains(t) == false  → es object.
+        //        return t != null && !conocidos.contains(t);
+        // OJO: el test manda "User" (un tipo de dominio) y espera true.
+        // Reutiliza la idea de esEnteroType (reto 9) para el conjunto.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esObjetoType");
     }
 
@@ -143,11 +137,10 @@ public final class Ej178ApiDocAnnotations {
      * RETO EXTRA 09: Valida si es tipo Entero.
      */
     public static boolean esEnteroType(String t) {
-        // TODO extra: RETO EXTRA 09: Valida si es tipo Entero.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 20.2 — los tipos Java que mapean a "integer".
+        // PISTA: return Set.of("Integer","Long","int","long").contains(t);
+        // OJO: el test manda "int" (minúscula, primitivo) y espera true; cubre
+        // tanto wrappers (Integer/Long) como primitivos (int/long).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esEnteroType");
     }
 
@@ -155,11 +148,11 @@ public final class Ej178ApiDocAnnotations {
      * RETO EXTRA 10: Texto representativo.
      */
     public static String formatearRequerido(AnnotationMeta178 anot) {
-        // TODO extra: RETO EXTRA 10: Texto representativo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: texto según el flag required.
+        // PISTA: return anot.required() ? "required" : "optional";
+        // OJO: el test manda required=true y espera EXACTAMENTE "required"
+        // (sin paréntesis ni espacios; el " (required)" con paréntesis es solo
+        // para el schema en resolver(), no aquí).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearRequerido");
     }
 

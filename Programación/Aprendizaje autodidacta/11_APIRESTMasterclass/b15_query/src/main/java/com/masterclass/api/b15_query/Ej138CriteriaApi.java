@@ -44,11 +44,9 @@ public final class Ej138CriteriaApi {
      * Reto Extra 1: Comprueba si un filtro es nulo o vacio.
      */
     public static boolean esFiltroVacio(String f) {
-        // TODO extra: Reto Extra 1: Comprueba si un filtro es nulo o vacio.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 15.3 (Criteria type-safe). Mismo helper que en Ej136/137.
+        // 1. Una línea: return f == null || f.isBlank();
+        // El test pide true para " ", false para "Ropa".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esFiltroVacio");
     }
 
@@ -56,11 +54,8 @@ public final class Ej138CriteriaApi {
      * Reto Extra 2: Comprueba si un valor es positivo.
      */
     public static boolean esPrecioValido(Double precio) {
-        // TODO extra: Reto Extra 2: Comprueba si un valor es positivo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return precio != null && precio > 0;
+        // El test pide true para 10.0, false para -5.0.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPrecioValido");
     }
 
@@ -68,11 +63,8 @@ public final class Ej138CriteriaApi {
      * Reto Extra 3: Retorna expresion LIKE normalizada.
      */
     public static String formatearLike(String f) {
-        // TODO extra: Reto Extra 3: Retorna expresion LIKE normalizada.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: igual que en Ej136/137 — return "%" + f.trim().toLowerCase() + "%";
+        // El test pasa "Ropa" y espera "%ropa%".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearLike");
     }
 
@@ -80,11 +72,8 @@ public final class Ej138CriteriaApi {
      * Reto Extra 4: Comprueba si la categoria esta vacia.
      */
     public static boolean esCategoriaVacia(String cat) {
-        // TODO extra: Reto Extra 4: Comprueba si la categoria esta vacia.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: reutiliza esFiltroVacio — return esFiltroVacio(cat);
+        // El test pide true para " ".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCategoriaVacia");
     }
 
@@ -92,11 +81,8 @@ public final class Ej138CriteriaApi {
      * Reto Extra 5: Comprueba si el ID es valido (no nulo).
      */
     public static boolean esIdValido(Long id) {
-        // TODO extra: Reto Extra 5: Comprueba si el ID es valido (no nulo).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return id != null;
+        // El test pide true para 1L, false para null.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esIdValido");
     }
 
@@ -104,11 +90,11 @@ public final class Ej138CriteriaApi {
      * Reto Extra 6: Comprueba si la lista de ordenacion es segura.
      */
     public static boolean esOrdenacionValida(String campo) {
-        // TODO extra: Reto Extra 6: Comprueba si la lista de ordenacion es segura.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: misma idea de whitelist que Ej134, pero aquí no hay constante:
+        //   defínela en línea.
+        // 1. Una línea: return java.util.Set.of("id", "nombre", "precio").contains(campo);
+        // OJO: el test pide true para "nombre" y false para "password". La lista
+        //   blanca es la única defensa contra inyección al ordenar por Criteria.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esOrdenacionValida");
     }
 
@@ -116,11 +102,8 @@ public final class Ej138CriteriaApi {
      * Reto Extra 7: Normaliza el nombre de un campo.
      */
     public static String normalizarCampo(String c) {
-        // TODO extra: Reto Extra 7: Normaliza el nombre de un campo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return c == null ? null : c.trim().toLowerCase();
+        // El test pasa "  Nombre  " y espera "nombre" (trim + minúsculas).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para normalizarCampo");
     }
 
@@ -128,11 +111,8 @@ public final class Ej138CriteriaApi {
      * Reto Extra 8: Comprueba si se debe filtrar por precio.
      */
     public static boolean debeFiltrarPrecio(Double precio) {
-        // TODO extra: Reto Extra 8: Comprueba si se debe filtrar por precio.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return precio != null;
+        // El test pasa 10.0 y espera true (basta con que el filtro esté presente).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para debeFiltrarPrecio");
     }
 
@@ -140,11 +120,9 @@ public final class Ej138CriteriaApi {
      * Reto Extra 9: Compara de forma logica dos precios.
      */
     public static boolean rangoPreciosValido(Double min, Double max) {
-        // TODO extra: Reto Extra 9: Compara de forma logica dos precios.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: igual que preciosCoherentes de Ej137.
+        // 1. Una línea: return min == null || max == null || min <= max;
+        // El test pide true para (10.0, 20.0) y false para (20.0, 10.0).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para rangoPreciosValido");
     }
 
@@ -152,11 +130,9 @@ public final class Ej138CriteriaApi {
      * Reto Extra 10: Retorna formato de criteria.
      */
     public static String formatearCriteria(String cat, Double maxPrecio) {
-        // TODO extra: Reto Extra 10: Retorna formato de criteria.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: String.format con dos huecos.
+        // PISTA: String.format("Criteria[Cat=%s, MaxPrecio=%s]", cat, maxPrecio);
+        // OJO: el test espera EXACTAMENTE "Criteria[Cat=Ropa, MaxPrecio=10.0]".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearCriteria");
     }
 

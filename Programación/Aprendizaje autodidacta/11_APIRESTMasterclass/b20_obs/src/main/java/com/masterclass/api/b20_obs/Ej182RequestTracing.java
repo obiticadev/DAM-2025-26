@@ -45,11 +45,9 @@ public final class Ej182RequestTracing {
      * RETO EXTRA 01: Valida salto >= 0.
      */
     public static boolean esSaltoValido(int s) {
-        // TODO extra: RETO EXTRA 01: Valida salto >= 0.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — el salto es un índice no negativo (teoría 20.6).
+        // PISTA: return s >= 0;
+        // El test manda 1 -> true. (0 también sería válido: es el origen.)
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esSaltoValido");
     }
 
@@ -57,11 +55,9 @@ public final class Ej182RequestTracing {
      * RETO EXTRA 02: Valida traceId no nulo/blanco.
      */
     public static boolean esTraceIdValido(String id) {
-        // TODO extra: RETO EXTRA 02: Valida traceId no nulo/blanco.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: la invariante de oro (teoría 20.6): un traceId nunca null ni blanco.
+        // PISTA: return id != null && !id.isBlank();
+        // OJO: usa isBlank (cubre " "), no isEmpty. El test manda "123" -> true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esTraceIdValido");
     }
 
@@ -69,11 +65,9 @@ public final class Ej182RequestTracing {
      * RETO EXTRA 03: Crea contexto.
      */
     public static TraceContext182 crearTraceContext(String t, String s, boolean r) {
-        // TODO extra: RETO EXTRA 03: Crea contexto.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — factoría del record (orden: traceId, spanId, raiz).
+        // return new TraceContext182(t, s, r);
+        // El test solo comprueba assertNotNull.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearTraceContext");
     }
 
@@ -81,11 +75,9 @@ public final class Ej182RequestTracing {
      * RETO EXTRA 04: Obtiene traceId.
      */
     public static String obtenerTraceId(TraceContext182 ctx) {
-        // TODO extra: RETO EXTRA 04: Obtiene traceId.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — accesor del record.
+        // return ctx.traceId();
+        // El test manda TraceContext182("a","b",true) y espera "a".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerTraceId");
     }
 
@@ -93,11 +85,9 @@ public final class Ej182RequestTracing {
      * RETO EXTRA 05: Obtiene spanId.
      */
     public static String obtenerSpanId(TraceContext182 ctx) {
-        // TODO extra: RETO EXTRA 05: Obtiene spanId.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — accesor del record.
+        // return ctx.spanId();
+        // El test espera "b".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerSpanId");
     }
 
@@ -105,11 +95,9 @@ public final class Ej182RequestTracing {
      * RETO EXTRA 06: Verifica si es raiz.
      */
     public static boolean esRaiz(TraceContext182 ctx) {
-        // TODO extra: RETO EXTRA 06: Verifica si es raiz.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — accesor del boolean del record.
+        // return ctx.raiz();
+        // El test manda raiz=true y espera true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRaiz");
     }
 
@@ -117,11 +105,11 @@ public final class Ej182RequestTracing {
      * RETO EXTRA 07: Genera un traceId UUID sin guiones.
      */
     public static String generarTraceIdAleatorio() {
-        // TODO extra: RETO EXTRA 07: Genera un traceId UUID sin guiones.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — UUID sin guiones (teoría 20.6, el mismo que usa
+        // propagar() en el origen).
+        // return java.util.UUID.randomUUID().toString().replace("-", "");
+        // OJO: un UUID tiene 36 chars con 4 guiones; al quitarlos quedan 32.
+        // El test comprueba exactamente length()==32.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para generarTraceIdAleatorio");
     }
 
@@ -129,11 +117,10 @@ public final class Ej182RequestTracing {
      * RETO EXTRA 08: Obtiene una derivacion del spanId.
      */
     public static String obtenerDobleSalto(TraceContext182 ctx, int s) {
-        // TODO extra: RETO EXTRA 08: Obtiene una derivacion del spanId.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: deriva un spanId con el salto DUPLICADO -> traceId + ":" + (s*2).
+        // PISTA: return ctx.traceId() + ":" + (s * 2);
+        // OJO: el test manda traceId="a" y s=2, y espera "a:4" (NO "a:2"): el
+        // salto se multiplica por 2. Mismo formato traceId+":"+n que el spanId base.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerDobleSalto");
     }
 
@@ -141,11 +128,11 @@ public final class Ej182RequestTracing {
      * RETO EXTRA 09: Verifica si los contextos comparten traceId.
      */
     public static boolean esMismoTraceId(TraceContext182 c1, TraceContext182 c2) {
-        // TODO extra: RETO EXTRA 09: Verifica si los contextos comparten traceId.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: dos contextos están en la MISMA traza si comparten traceId
+        // (aunque su spanId difiera: teoría 20.6).
+        // PISTA: return java.util.Objects.equals(c1.traceId(), c2.traceId());
+        // OJO: el test manda dos ctx con traceId="a" pero spanId distinto ("b"/"c")
+        // y raiz distinta -> true. Compara SOLO traceId, no el contexto entero.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMismoTraceId");
     }
 
@@ -153,11 +140,10 @@ public final class Ej182RequestTracing {
      * RETO EXTRA 10: Formatea el flujo.
      */
     public static String formatearTrazado(TraceContext182 ctx) {
-        // TODO extra: RETO EXTRA 10: Formatea el flujo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: representación legible "traceId->spanId".
+        // PISTA: return ctx.traceId() + "->" + ctx.spanId();
+        // OJO: el separador es la flecha EXACTA "->" (sin espacios). El test manda
+        // ("a","b",true) y espera "a->b".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearTrazado");
     }
 

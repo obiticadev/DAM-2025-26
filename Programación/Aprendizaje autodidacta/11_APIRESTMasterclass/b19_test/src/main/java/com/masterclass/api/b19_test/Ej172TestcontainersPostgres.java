@@ -67,11 +67,13 @@ public final class Ej172TestcontainersPostgres {
      * RETO EXTRA 01: Extrae el host de la URL JDBC.
      */
     public static String obtenerHostJdbc(String url) {
-        // TODO extra: RETO EXTRA 01: Extrae el host de la URL JDBC.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.9 — operación inversa a jdbcUrl: parsea la URL.
+        // 1. Quita el esquema fijo:
+        //       String resto = url.substring("jdbc:postgresql://".length()); // "localhost:5432/db"
+        // 2. El host es lo que va antes del primer ":":
+        //       return resto.split(":")[0];
+        // El test ("jdbc:postgresql://localhost:5432/db") espera "localhost".
+        // PISTA: reutiliza este "resto" mentalmente en los retos 2 y 3.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerHostJdbc");
     }
 
@@ -79,11 +81,12 @@ public final class Ej172TestcontainersPostgres {
      * RETO EXTRA 02: Extrae el puerto de la URL JDBC.
      */
     public static int obtenerPuertoJdbc(String url) {
-        // TODO extra: RETO EXTRA 02: Extrae el puerto de la URL JDBC.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.9 — el puerto está entre el ":" y el "/".
+        // String resto = url.substring("jdbc:postgresql://".length()); // "localhost:5432/db"
+        // String puerto = resto.split(":")[1].split("/")[0];           // "5432"
+        // return Integer.parseInt(puerto);
+        // El test espera 5432 (int). OJO: hay que parsear a int (Integer.parseInt);
+        // el split deja un String, y el test compara con un entero.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerPuertoJdbc");
     }
 
@@ -91,11 +94,11 @@ public final class Ej172TestcontainersPostgres {
      * RETO EXTRA 03: Extrae la BD de la URL JDBC.
      */
     public static String obtenerBaseDatosJdbc(String url) {
-        // TODO extra: RETO EXTRA 03: Extrae la BD de la URL JDBC.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.9 — la BD es lo que va tras el último "/".
+        // return url.substring(url.lastIndexOf('/') + 1);
+        // El test ("...localhost:5432/db") espera "db". PISTA: lastIndexOf('/')
+        // localiza la última barra; +1 salta sobre ella hasta el inicio del
+        // nombre de BD.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerBaseDatosJdbc");
     }
 
@@ -103,11 +106,10 @@ public final class Ej172TestcontainersPostgres {
      * RETO EXTRA 04: Comprueba si es host local.
      */
     public static boolean esHostLocal(String host) {
-        // TODO extra: RETO EXTRA 04: Comprueba si es host local.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.9 — local = "localhost" o la IP de loopback.
+        // return "localhost".equals(host) || "127.0.0.1".equals(host);
+        // El test ("localhost") espera true. Cubre las dos formas de referirse a
+        // la propia máquina (Testcontainers mapea sus puertos a localhost).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esHostLocal");
     }
 
@@ -115,11 +117,10 @@ public final class Ej172TestcontainersPostgres {
      * RETO EXTRA 05: Valida el rango del puerto.
      */
     public static boolean esPuertoValido(int port) {
-        // TODO extra: RETO EXTRA 05: Valida el rango del puerto.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.9 — rango TCP válido [1, 65535].
+        // return port >= 1 && port <= 65535;
+        // El test (8080) espera true. Es la misma validación que jdbcUrl aplica
+        // al puerto antes de construir la URL.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPuertoValido");
     }
 
@@ -127,11 +128,10 @@ public final class Ej172TestcontainersPostgres {
      * RETO EXTRA 06: Extrae el tag de una imagen.
      */
     public static String extraerTagImagen(String img) {
-        // TODO extra: RETO EXTRA 06: Extrae el tag de una imagen.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.9 — el tag va tras el ":".
+        // return img.split(":")[1];
+        // El test ("postgres:16") espera "16". (Una imagen sin ":" no tendría
+        // índice [1]; aquí el test siempre da una con tag, por reproducibilidad.)
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerTagImagen");
     }
 
@@ -139,11 +139,10 @@ public final class Ej172TestcontainersPostgres {
      * RETO EXTRA 07: Valida si es imagen Postgres.
      */
     public static boolean esImagenPostgres(String img) {
-        // TODO extra: RETO EXTRA 07: Valida si es imagen Postgres.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.9 — familia Postgres = empieza por "postgres:".
+        // return img.startsWith("postgres:");
+        // El test ("postgres:16") espera true. Es la primera comprobación de
+        // imagenValida (familia correcta); con el ":" exiges que tenga tag.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esImagenPostgres");
     }
 
@@ -151,11 +150,11 @@ public final class Ej172TestcontainersPostgres {
      * RETO EXTRA 08: Comprueba si es variante Alpine.
      */
     public static boolean esImagenAlpine(String img) {
-        // TODO extra: RETO EXTRA 08: Comprueba si es variante Alpine.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.9 — Alpine = el tag termina en "-alpine".
+        // return img.endsWith("-alpine");
+        // El test ("postgres:16-alpine") espera true. CULTURA: las variantes
+        // -alpine usan una distro mínima → imágenes mucho más ligeras, ideales
+        // para tests rápidos en CI.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esImagenAlpine");
     }
 
@@ -163,11 +162,10 @@ public final class Ej172TestcontainersPostgres {
      * RETO EXTRA 09: Construye URL minima sin BD.
      */
     public static String construirUrlMinima(String host, int port) {
-        // TODO extra: RETO EXTRA 09: Construye URL minima sin BD.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.9 — como jdbcUrl pero SIN la parte "/baseDatos".
+        // return "jdbc:postgresql://" + host + ":" + port;
+        // El test ("localhost", 5432) espera "jdbc:postgresql://localhost:5432".
+        // OJO: no añadas "/" al final; el test compara la cadena exacta.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para construirUrlMinima");
     }
 
@@ -175,11 +173,10 @@ public final class Ej172TestcontainersPostgres {
      * RETO EXTRA 10: Formatea comando de ejecucion docker.
      */
     public static String formatearDockerCommand(String img) {
-        // TODO extra: RETO EXTRA 10: Formatea comando de ejecucion docker.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 19.9 — una línea: return "docker run -d " + img;
+        // El test ("postgres:16") espera "docker run -d postgres:16" (un solo
+        // espacio antes de la imagen). -d = modo detached (en segundo plano),
+        // como haría Testcontainers por debajo.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearDockerCommand");
     }
 

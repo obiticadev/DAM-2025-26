@@ -46,11 +46,10 @@ public final class Ej130InheritanceStrategies {
      * Reto Extra 1: Obtiene el importe de un pago de forma segura.
      */
     public static double obtenerImporte(Pago130 p) {
-        // TODO extra: Reto Extra 1: Obtiene el importe de un pago de forma segura.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: getImporte() vive en la clase base Pago130, así que sirve para
+        // cualquier subtipo (polimorfismo).
+        // 1. Una línea: return p.getImporte();
+        // El test espera 100.0.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerImporte");
     }
 
@@ -58,11 +57,10 @@ public final class Ej130InheritanceStrategies {
      * Reto Extra 2: Comprueba si un pago es con tarjeta.
      */
     public static boolean esPagoTarjeta(Pago130 p) {
-        // TODO extra: Reto Extra 2: Comprueba si un pago es con tarjeta.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: comprueba el subtipo concreto con instanceof.
+        // 1. Una línea: return p instanceof PagoTarjeta130;
+        // El test pasa un PagoTarjeta130 y espera true.
+        // CULTURA: esto es el equivalente en Java al TYPE(p) de JPQL (teoría 14.8).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPagoTarjeta");
     }
 
@@ -70,11 +68,9 @@ public final class Ej130InheritanceStrategies {
      * Reto Extra 3: Comprueba si un pago es por transferencia.
      */
     public static boolean esPagoTransferencia(Pago130 p) {
-        // TODO extra: Reto Extra 3: Comprueba si un pago es por transferencia.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: espejo del reto 2 con el otro subtipo.
+        // 1. Una línea: return p instanceof PagoTransferencia130;
+        // El test pasa un PagoTransferencia130 y espera true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPagoTransferencia");
     }
 
@@ -82,11 +78,8 @@ public final class Ej130InheritanceStrategies {
      * Reto Extra 4: Crea un pago con tarjeta.
      */
     public static PagoTarjeta130 crearPagoTarjeta(double imp, String pan) {
-        // TODO extra: Reto Extra 4: Crea un pago con tarjeta.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return new PagoTarjeta130(imp, pan);
+        // El constructor recibe (importe, pan). El test solo comprueba no-null.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearPagoTarjeta");
     }
 
@@ -94,11 +87,8 @@ public final class Ej130InheritanceStrategies {
      * Reto Extra 5: Crea un pago por transferencia.
      */
     public static PagoTransferencia130 crearPagoTransferencia(double imp, String iban) {
-        // TODO extra: Reto Extra 5: Crea un pago por transferencia.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return new PagoTransferencia130(imp, iban);
+        // El constructor recibe (importe, iban). El test solo comprueba no-null.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearPagoTransferencia");
     }
 
@@ -106,11 +96,8 @@ public final class Ej130InheritanceStrategies {
      * Reto Extra 6: Comprueba si el importe del pago supera un limite.
      */
     public static boolean importeSupera(Pago130 p, double limite) {
-        // TODO extra: Reto Extra 6: Comprueba si el importe del pago supera un limite.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return p.getImporte() > limite;
+        // OJO: comparación estricta >. El test pide true con importe 100 y limite 50.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para importeSupera");
     }
 
@@ -118,11 +105,9 @@ public final class Ej130InheritanceStrategies {
      * Reto Extra 7: Obtiene el ID del pago.
      */
     public static Long obtenerId(Pago130 p) {
-        // TODO extra: Reto Extra 7: Obtiene el ID del pago.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: getId() está en la base Pago130.
+        // 1. Una línea: return p.getId();
+        // El test usa un pago sin persistir y espera null.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerId");
     }
 
@@ -130,11 +115,13 @@ public final class Ej130InheritanceStrategies {
      * Reto Extra 8: Obtiene el PAN de un pago con tarjeta si aplica.
      */
     public static String obtenerPan(Pago130 p) {
-        // TODO extra: Reto Extra 8: Obtiene el PAN de un pago con tarjeta si aplica.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: el PAN solo existe en PagoTarjeta130 (no en la base). Usa
+        // instanceof con binding para comprobar el tipo Y castear en un paso.
+        // ⚠ CUIDADO: PagoTarjeta130 NO tiene getter para 'pan'. Añádele:
+        //     public String getPan() { return pan; }
+        // 1. if (p instanceof PagoTarjeta130 t) return t.getPan();
+        // 2. return null;   // "si aplica": si no es tarjeta, no hay PAN.
+        // OJO: el test pasa una tarjeta con "1234" y espera "1234".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerPan");
     }
 
@@ -142,11 +129,12 @@ public final class Ej130InheritanceStrategies {
      * Reto Extra 9: Obtiene el IBAN de un pago con transferencia si aplica.
      */
     public static String obtenerIban(Pago130 p) {
-        // TODO extra: Reto Extra 9: Obtiene el IBAN de un pago con transferencia si aplica.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: espejo del reto 8 con PagoTransferencia130.
+        // ⚠ CUIDADO: PagoTransferencia130 NO tiene getter para 'iban'. Añádele:
+        //     public String getIban() { return iban; }
+        // 1. if (p instanceof PagoTransferencia130 t) return t.getIban();
+        // 2. return null;
+        // OJO: el test pasa una transferencia con "ES12" y espera "ES12".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerIban");
     }
 
@@ -154,11 +142,13 @@ public final class Ej130InheritanceStrategies {
      * Reto Extra 10: Retorna formato del pago.
      */
     public static String formatearPago(Pago130 p) {
-        // TODO extra: Reto Extra 10: Retorna formato del pago.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: el "Tipo" es el valor del discriminador: "TARJETA" o "TRANSFER"
+        // (los mismos de @DiscriminatorValue). Derívalo del subtipo.
+        // 1. String tipo = (p instanceof PagoTarjeta130) ? "TARJETA" : "TRANSFER";
+        //    (o reutiliza esPagoTarjeta del reto 2).
+        // 2. return "Pago[Tipo=" + tipo + ", Importe=" + p.getImporte() + "]";
+        // OJO: el test pasa una tarjeta de 100 y espera EXACTAMENTE
+        //      "Pago[Tipo=TARJETA, Importe=100.0]" (Importe es double → ".0").
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearPago");
     }
 
