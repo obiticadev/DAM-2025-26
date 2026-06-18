@@ -160,6 +160,10 @@ Vocabulario esencial:
 - **Operaciones terminales** (disparan la ejecución): `collect`, `toList()`,
   `count`, `sum`, `anyMatch`, `findFirst`, `forEach`, `reduce`.
 - Un stream **se consume una sola vez**: si necesitas dos pasadas, crea dos streams.
+- Trampa silenciosa: `Stream.toList()` (Java 16+) devuelve una lista
+  **inmodificable**. Si luego haces `.add(...)` salta `UnsupportedOperationException`.
+  Si necesitas mutarla, envuélvela: `new ArrayList<>(stream.toList())`. El viejo
+  `collect(Collectors.toList())` sí da una lista mutable, pero sin garantía de tipo.
 
 Los cuatro patrones que cubren el 80 % de la lógica de servicio:
 
@@ -206,6 +210,13 @@ Map<Boolean, List<Pedido>> caros = pedidos.stream()
 // joining: concatena con separador
 String csv = clientes.stream().collect(Collectors.joining(", "));
 ```
+
+> Dos trampas de `Collectors` que aparecen en cuanto pasas de los ejemplos:
+> `groupingBy` devuelve un `HashMap` (orden no garantizado); si necesitas
+> preservar el orden de inserción usa la sobrecarga
+> `groupingBy(clave, LinkedHashMap::new, downstream)`. Y `toMap` **lanza**
+> `IllegalStateException` ante claves duplicadas: pásale una función de fusión
+> como tercer argumento (`toMap(k, v, (a, b) -> a)`) si pueden repetirse.
 
 Y `flatMap`, la operación que aplana estructuras anidadas
 (`List<Pedido>` donde cada pedido tiene `List<Linea>` → stream de TODAS las líneas):
@@ -491,6 +502,12 @@ precio.thenCombine(stock, (p, s) -> new Ficha(p, s))
 `supplyAsync` = lanza; `thenApply` = transforma; `thenCombine` = junta dos;
 `join`/`get` = espera. Con eso cubres este bloque; PSP profundiza en 2º.
 
+> Detalle que sorprende: `ConcurrentHashMap` **no admite claves ni valores
+> `null`** (lanza `NullPointerException`), al contrario que `HashMap`. Es
+> deliberado: en un mapa concurrente, `get` devolviendo `null` sería ambiguo
+> ("no está" vs "está pero vale null"). Si necesitas representar ausencia, usa un
+> valor centinela o un `Optional` como valor.
+
 > **Lo practicas en `Ej021ConcurrencyBasics`**: contadores atómicos, mapas
 > concurrentes y composición de CompletableFuture.
 
@@ -547,6 +564,9 @@ Decisión de diseño que te pedirán argumentar: para **entidades** con identida
 | 8 | Modificar la lista original dentro del stream | Streams derivan, no mutan |
 | 9 | `Optional` como tipo de campo o parámetro | Solo como tipo de RETORNO |
 | 10 | switch sobre sealed con `default` | Sin default: que el compilador vigile la exhaustividad |
+| 11 | `.add()` sobre el resultado de `Stream.toList()` | Es inmodificable: `new ArrayList<>(...)` si vas a mutarla |
+| 12 | `Collectors.toMap` con claves repetidas (`IllegalStateException`) | Pasa función de fusión: `toMap(k, v, (a,b)->a)` |
+| 13 | `null` como clave/valor en `ConcurrentHashMap` | No lo admite: usa centinela o `Optional` como valor |
 
 ## Chuleta final del bloque
 

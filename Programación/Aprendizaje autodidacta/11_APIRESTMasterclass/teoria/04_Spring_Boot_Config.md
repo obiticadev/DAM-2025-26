@@ -69,7 +69,7 @@ clave:
 | `getProperty("clave", "default")` | valor o el default que le pasas |
 | `getProperty("clave", Integer.class)` | valor convertido al tipo pedido |
 | `containsProperty("clave")` | `true`/`false` sin devolver el valor |
-| `getProperty("clave", List.class)` | una propiedad `a,b,c` la parte en lista |
+| `getProperty("clave", List.class)` | una propiedad `a,b,c` la parte en lista (recorta espacios: `a, b` → `["a","b"]`) |
 
 `@Value` es azúcar sobre esto: por debajo resuelve la expresión contra el
 `Environment`. Incluso admite anidación (`${app.env:${app.default-env:prod}}`):
@@ -121,16 +121,27 @@ nombre del campo. `external-service-url`, `externalServiceUrl` y
 | Uso típico | un flag puntual | la config de un módulo |
 
 Spring Boot convierte tipos por ti: `"5s"` → `Duration.ofSeconds(5)`,
-`"a,b,c"` → `List<String>`, `"8080"` → `int`. Esa conversión la pide
-`@EnableConfigurationProperties(MisProps.class)` (o `@ConfigurationPropertiesScan`)
-para registrar la clase como bean enlazable. A bajo nivel, la herramienta que
-hace el enlace programático es el `Binder`:
+`"a,b,c"` → `List<String>`, `"8080"` → `int`. Cuidado con `Duration`: el formato
+que entiende Spring es `5s`/`10m`/`2h` (lo parsea `DurationStyle`), NO el ISO-8601
+`PT5S` que exige `java.time.Duration.parse`. Si mezclas formatos, casca al enlazar.
+
+Esa conversión la pide `@EnableConfigurationProperties(MisProps.class)` (o
+`@ConfigurationPropertiesScan`) para registrar la clase como bean enlazable. A
+bajo nivel, la herramienta que hace el enlace programático es el `Binder`:
 
 ```java
 Binder.get(environment)
       .bind("app.seguridad", SeguridadProps.class)
       .orElseThrow();
 ```
+
+**Trampa del constructor binding**: cuando enlazas a un `record` o a una clase
+inmutable (un solo constructor con argumentos), el `Binder` empareja cada
+propiedad con el **nombre del parámetro** del constructor. Pero el compilador de
+Java BORRA los nombres de parámetro por defecto (`arg0`, `arg1`…), así que el
+binding falla en silencio (campos a `null`/`0`) salvo que compiles con la opción
+`-parameters`. El `pom` del módulo la activa por eso; si tu binding del `Binder`
+te devuelve un objeto con todo vacío, sospecha de esto antes que de la propiedad.
 
 > **Lo practicas en `Ej040ConfigurationProperties`**: enlazas un `Map` plano a
 > un `record`/POJO validando y dando defaults; en los retos subes a binding
@@ -170,7 +181,12 @@ class NonProdService { }
 class CloudDevService { }
 ```
 
-La sintaxis de expresión: `!x` (no x), `x & y` (ambos), `x | y` (alguno).
+La sintaxis de expresión: `!x` (no x), `x & y` (ambos), `x | y` (alguno). Puedes
+combinarlas con paréntesis: `@Profile("dev & !prod")` (dev pero no prod). Cuidado
+con un error clásico: en `@Profile({"dev", "cloud"})` (o `@Profile("dev,cloud")`)
+la coma es un **OR** (basta uno de los dos); si quieres "los dos a la vez" tienes
+que usar `&` explícito. No puedes mezclar la coma con los operadores en la misma
+cadena: o usas coma (OR simple) o usas la expresión con `& | !`.
 
 Para consultar perfiles en runtime tienes el `Environment`:
 
@@ -200,14 +216,26 @@ precedencia: lo más específico/externo gana.
 
 ```mermaid
 flowchart TD
-    A["Argumentos de línea de comandos (--app.x=...)"] -->|mayor prioridad| R[Valor efectivo]
+    A["Argumentos CLI (--app.x=...)"] -->|mayor prioridad| R[Valor efectivo]
+    P["Propiedades de sistema JVM (-Dapp.x=...)"] --> R
     B["Variables de entorno (APP_X)"] --> R
     C["application-PERFIL.yml"] --> R
     D["application.yml"] -->|menor prioridad| R
 ```
 
-La regla que implementarás: **env > yml > default**. Y un detalle que confunde a
-todo el mundo: la MISMA propiedad se escribe distinto según la fuente.
+La regla que implementarás en el ejercicio es la versión simplificada
+**env > yml > default**, pero la cadena real de Spring Boot tiene más eslabones.
+De mayor a menor prioridad, los que más te importan: argumentos CLI
+(`--app.x=...`) > propiedades de sistema de la JVM (`-Dapp.x=...`) > variables de
+entorno (`APP_X`) > `application-{perfil}.yml` > `application.yml`. La idea es
+siempre la misma: **lo más externo y específico gana**, para poder ajustar un
+único valor desde fuera sin tocar el resto. Ojo a una consecuencia: un
+`application-prod.yml` PISA al `application.yml` base, pero no lo reemplaza
+entero: se superpone clave a clave (las que el perfil no define siguen viniendo
+del base).
+
+Y un detalle que confunde a todo el mundo: la MISMA propiedad se escribe distinto
+según la fuente.
 
 | Fuente | Formato de la clave | Ejemplo |
 |---|---|---|
@@ -219,6 +247,15 @@ La traducción yml→entorno es mecánica: puntos y guiones → `_`, todo a
 mayúsculas. `spring.datasource.connection-timeout` → `SPRING_DATASOURCE_CONNECTION_TIMEOUT`.
 Spring hace esto para poder leer config de entornos donde solo existen variables
 de entorno (contenedores, Kubernetes, Heroku…).
+
+**Nunca metas secretos en `application.properties`/`application.yml` versionado.**
+La contraseña de BD, el `jwt-secret`, las API keys… NO van al repositorio: ese
+fichero es la imagen, que sale para dev y prod por igual y queda en el historial
+de git para siempre. Déjalos como `${DB_PASSWORD}` (sin default) y aporta el
+valor real por variable de entorno en cada despliegue. Si una clave es
+obligatoria y falta, mejor que la app falle al arrancar a que use un default
+inseguro. Esto es justo el sentido de la precedencia: el secreto vive en el
+entorno, no en el código.
 
 Por dentro, el `Environment` mantiene una lista ordenada de `PropertySource`
 (cada fichero, las env vars, los args… son una fuente). El primero que tenga la
@@ -321,6 +358,11 @@ Patrones del bloque:
   termine con un código de salida concreto (útil en jobs/batch).
 - **Parseo `--clave=valor`**: quita el `--`, parte por el PRIMER `=`
   (`split("=", 2)`); sin `=`, el valor es `""`.
+- **Excepción en un runner**: si un runner peta, Spring Boot aborta el arranque.
+  Cuando envuelvas su excepción para relanzarla (p. ej. convertir una `Exception`
+  checked en `RuntimeException`), pásala como SEGUNDO argumento del constructor
+  para conservar la causa: `new RuntimeException("fallo en el runner", e)`. Si la
+  tragas o pierdes la `e`, te quedas sin el stack trace original.
 
 > **Lo practicas en `Ej044CommandLineRunner`**: implementas un runner idempotente
 > que parsea `--clave=valor`; en los retos creas `CommandLineRunner`/
@@ -343,6 +385,10 @@ Patrones del bloque:
 | 8 | Runner de seed que corre en cada `run()` | Idempotencia: flag + `return` temprano |
 | 9 | `split("=")` en `--k=v=x` parte de más | `split("=", 2)`: clave y resto íntegro |
 | 10 | `Integer.parseInt` sin envolver el `NumberFormatException` | Captúralo y relánzalo como `IllegalArgumentException` con causa |
+| 11 | `Binder` enlaza un record y deja todo a `null`/`0` | El constructor binding necesita compilar con `-parameters`; sin él, los nombres son `arg0…` y no casan |
+| 12 | Usar `Duration.parse("5s")` para enlazar duraciones | `java.time.Duration` quiere ISO `PT5S`; Spring usa `5s`/`10m` (`DurationStyle`) |
+| 13 | Meter `jwt-secret`/password en `application.yml` versionado | Los secretos van por variable de entorno (`${DB_PASSWORD}` sin default), nunca al repo |
+| 14 | Envolver la excepción de un runner perdiendo la causa | Pásala como 2.º arg: `new RuntimeException(msg, e)` para conservar el stack original |
 
 ## Chuleta final del bloque
 
@@ -351,10 +397,12 @@ ${clave:default}  = config externa GANA · default solo si falta · sin ${} → 
 @Value            = un valor suelto · azúcar sobre Environment.getProperty
 Environment       = getProperty(k) | getProperty(k,def) | getProperty(k,T.class) | containsProperty
 @ConfigurationProperties(prefix) = bloque tipado · relaxed binding (kebab=camel=SNAKE)
-Binder.get(env).bind(prefix, Tipo.class) = enlace programático
-@Profile          = "dev" · "!prod" · "dev & cloud" · coma = OR
+Binder.get(env).bind(prefix, Tipo.class) = enlace programático · record ⇒ compila con -parameters
+Duration          = "5s"/"10m" (DurationStyle) · NO el ISO "PT5S" de Duration.parse
+@Profile          = "dev" · "!prod" · "dev & cloud" · "dev & !prod" · coma = OR
 perfiles          = getActiveProfiles() vacío ⇒ getDefaultProfiles()
-precedencia       = args > env(APP_X) > application-perfil.yml > application.yml
+precedencia       = args > -Dsystem > env(APP_X) > application-perfil.yml > application.yml
+secretos          = fuera del repo · ${DB_PASSWORD} sin default · por variable de entorno
 PropertySource    = addFirst (gana) · addLast (fallback) · remove(nombre)
 autoconfig        = OnClass(presente) & OnMissingBean(ausente) → activar
 runners           = CommandLineRunner(String...) · ApplicationRunner(ApplicationArguments) · @Order
@@ -379,3 +427,7 @@ arranque          = idempotente (flag) · split("=",2) · ExitCodeGenerator.getE
    garantizas que un runner de seed corra una sola vez? *(4.6)*
 8. ¿Por qué `split("=")` es peligroso al parsear `--clave=valor` y qué usarías?
    *(4.6)*
+9. ¿Dónde colocarías el `jwt-secret` de producción y por qué NO en
+   `application.yml`? *(4.4)*
+10. El `Binder` enlaza un `record` y te devuelve todos los campos vacíos. ¿Cuál
+    es la causa más probable y cómo se arregla? *(4.2)*

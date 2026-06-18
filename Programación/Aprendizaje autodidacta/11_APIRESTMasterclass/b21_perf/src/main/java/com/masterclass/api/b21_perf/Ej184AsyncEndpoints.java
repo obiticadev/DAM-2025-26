@@ -72,11 +72,10 @@ public final class Ej184AsyncEndpoints {
      * RETO EXTRA 01: Valida si contiene null.
      */
     public static boolean esEntradaNula(java.util.List<Integer> list) {
-        // TODO extra: RETO EXTRA 01: Valida si contiene null.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return list.contains(null);
+        // El test: Arrays.asList(1, null) → true. Es exactamente la comprobación
+        // del TODO 3 de sumarEnParalelo: una entrada null reventaría tarea.apply.
+        // PISTA alternativa: list.stream().anyMatch(java.util.Objects::isNull).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esEntradaNula");
     }
 
@@ -84,11 +83,10 @@ public final class Ej184AsyncEndpoints {
      * RETO EXTRA 02: Crea un future asincrono.
      */
     public static java.util.concurrent.CompletableFuture<String> crearFuture(java.util.function.Supplier<String> sup) {
-        // TODO extra: RETO EXTRA 02: Crea un future asincrono.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return CompletableFuture.supplyAsync(sup);
+        // El test solo exige notNull. supplyAsync lanza el Supplier en el
+        // ForkJoinPool.commonPool() y devuelve el future sin bloquear: es el
+        // "empieza a calcular" de la tabla de 21.2 y la base de sumarEnParalelo.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearFuture");
     }
 
@@ -96,11 +94,11 @@ public final class Ej184AsyncEndpoints {
      * RETO EXTRA 03: Obtiene resultado bloqueando.
      */
     public static String obtenerResultadoFuture(java.util.concurrent.CompletableFuture<String> fut) {
-        // TODO extra: RETO EXTRA 03: Obtiene resultado bloqueando.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return fut.join();
+        // El test: completedFuture("a") → "a". join() bloquea hasta tener el
+        // valor (aquí ya está). Prefiere join() a get(): get() obliga a manejar
+        // checked exceptions (InterruptedException/ExecutionException); join()
+        // las envuelve en CompletionException (unchecked), como en 21.2.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerResultadoFuture");
     }
 
@@ -108,11 +106,11 @@ public final class Ej184AsyncEndpoints {
      * RETO EXTRA 04: Crea un future completado.
      */
     public static java.util.concurrent.CompletableFuture<String> futureCompletadoCon(String v) {
-        // TODO extra: RETO EXTRA 04: Crea un future completado.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return CompletableFuture.completedFuture(v);
+        // El test exige .isDone() == true: completedFuture nace YA terminado,
+        // sin lanzar nada en otro hilo. Útil para devolver un valor inmediato
+        // por una interfaz que pide CompletableFuture (p. ej. un mock o un
+        // atajo cuando ya tienes el dato cacheado).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para futureCompletadoCon");
     }
 
@@ -120,11 +118,11 @@ public final class Ej184AsyncEndpoints {
      * RETO EXTRA 05: Combina dos futures asincronos.
      */
     public static java.util.concurrent.CompletableFuture<String> combinarDos(java.util.concurrent.CompletableFuture<String> f1, java.util.concurrent.CompletableFuture<String> f2) {
-        // TODO extra: RETO EXTRA 05: Combina dos futures asincronos.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return f1.thenCombine(f2, (a, b) -> a + b);
+        // El test: completedFuture("a") + completedFuture("b") → join() == "ab".
+        // thenCombine espera a que AMBOS terminen y aplica la BiFunction a los
+        // dos resultados (21.2). Es el patrón "precio + stock → ficha": dos
+        // llamadas en paralelo que se juntan. Devuelve OTRO future (no bloquea).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para combinarDos");
     }
 
@@ -132,11 +130,11 @@ public final class Ej184AsyncEndpoints {
      * RETO EXTRA 06: Obtiene valor de inmediato o un default.
      */
     public static String ejecutarRapido(java.util.concurrent.CompletableFuture<String> fut) {
-        // TODO extra: RETO EXTRA 06: Obtiene valor de inmediato o un default.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return fut.getNow("default");
+        // OJO al test: pasa un new CompletableFuture<>() SIN completar nunca, y
+        // espera "default". getNow NO bloquea: si el future aún no terminó,
+        // devuelve el valor por defecto al instante. Con join() aquí te
+        // colgarías para siempre. Es el patrón "responde ya con lo que haya".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para ejecutarRapido");
     }
 
@@ -144,11 +142,11 @@ public final class Ej184AsyncEndpoints {
      * RETO EXTRA 07: Espera al mas rapido.
      */
     public static java.util.concurrent.CompletableFuture<Object> esperarCualquiera(java.util.concurrent.CompletableFuture<String> f1, java.util.concurrent.CompletableFuture<String> f2) {
-        // TODO extra: RETO EXTRA 07: Espera al mas rapido.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return CompletableFuture.anyOf(f1, f2);
+        // El test solo exige notNull. anyOf completa con el PRIMERO que termine
+        // (21.2): el patrón "consulta a dos réplicas, quédate con la más rápida".
+        // OJO al tipo: anyOf devuelve CompletableFuture<Object> (no <String>),
+        // por eso la firma del método usa Object: no sabe cuál de los dos ganó.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esperarCualquiera");
     }
 
@@ -156,11 +154,11 @@ public final class Ej184AsyncEndpoints {
      * RETO EXTRA 08: Transforma asincronamente el resultado.
      */
     public static java.util.concurrent.CompletableFuture<Integer> mapearResultado(java.util.concurrent.CompletableFuture<Integer> fut) {
-        // TODO extra: RETO EXTRA 08: Transforma asincronamente el resultado.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return fut.thenApply(x -> x * 2);
+        // El test: completedFuture(2) → join() == 4. thenApply es el "map" de
+        // los futures (21.2): transforma el resultado SIN bloquear y devuelve un
+        // nuevo CompletableFuture<Integer>. Es lo mismo que hace encadenar() con
+        // String, aquí con Integer.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para mapearResultado");
     }
 
@@ -168,11 +166,11 @@ public final class Ej184AsyncEndpoints {
      * RETO EXTRA 09: Provee fallback si falla el future.
      */
     public static java.util.concurrent.CompletableFuture<String> excepcionControlada(java.util.concurrent.CompletableFuture<String> fut) {
-        // TODO extra: RETO EXTRA 09: Provee fallback si falla el future.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return fut.exceptionally(ex -> "error");
+        // El test: failedFuture(new RuntimeException()) → join() == "error".
+        // exceptionally es el "plan B" de los futures (21.2): si el future falló,
+        // recibe la excepción y produce un valor de recuperación; si tuvo éxito,
+        // se ignora. Conecta con los reintentos/circuit breaker de 21.4.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para excepcionControlada");
     }
 
@@ -180,11 +178,10 @@ public final class Ej184AsyncEndpoints {
      * RETO EXTRA 10: Crea una lista limpia de futures.
      */
     public static java.util.List<java.util.concurrent.CompletableFuture<String>> crearListaFutures() {
-        // TODO extra: RETO EXTRA 10: Crea una lista limpia de futures.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return new java.util.ArrayList<>();
+        // El test solo exige notNull. Es la lista mutable donde sumarEnParalelo
+        // acumula los futures antes de pasarlos a allOf(...). Devuelve un
+        // ArrayList vacío (no null): a una lista vacía puedes ir añadiéndole.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearListaFutures");
     }
 

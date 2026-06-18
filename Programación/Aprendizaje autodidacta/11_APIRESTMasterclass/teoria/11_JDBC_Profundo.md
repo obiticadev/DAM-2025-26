@@ -85,6 +85,11 @@ Dos detalles que separan al que entiende de JDBC del que lo copia:
    las 3 AM. (Más sobre relanzar con causa en 11.5.)
 2. **No cierres a mano dentro de un try-with-resources.** El recurso lo hace; un
    doble `close()` es ruido en el mejor caso y un bug en el peor.
+3. **El orden de cierre es el inverso al de apertura.** Si declaras varios
+   recursos en el mismo `try` (`Connection`, luego `PreparedStatement`, luego
+   `ResultSet`), Java los cierra de abajo arriba: primero el `ResultSet`, después
+   el `PreparedStatement` y por último la `Connection`. Es justo lo que quieres:
+   nunca cierras la conexión mientras un `ResultSet` aún cuelga de ella.
 
 > **Lo practicas en `Ej093ConnectionDriverManager`**: abrir, validar (`isValid`)
 > y cerrar con try-with-resources, dejando que `SQLException` se propague.

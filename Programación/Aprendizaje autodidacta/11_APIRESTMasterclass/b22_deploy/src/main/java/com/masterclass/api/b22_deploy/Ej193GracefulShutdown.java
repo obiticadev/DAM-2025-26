@@ -27,11 +27,12 @@ public final class Ej193GracefulShutdown {
      * @return true si es exactamente 'graceful'
      */
     public static boolean esShutdownGracefulActivo(String shutdownVal) {
-        // TODO extra: RETO EXTRA 01: Comprueba si el valor de la propiedad server.shutdown indica un cierre ordenado (graceful).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 22.5 (server.shutdown: graceful).
+        // 1. null -> false.
+        // 2. Tras trim e ignorando mayúsc/minúsc, debe ser "graceful".
+        // PISTA: return shutdownVal != null && shutdownVal.trim().equalsIgnoreCase("graceful");
+        // OJO: el test acepta "  GRACEFUL  " (espacios + mayúsculas); rechaza
+        //      "immediate".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esShutdownGracefulActivo");
     }
 
@@ -43,11 +44,16 @@ public final class Ej193GracefulShutdown {
      * @return los segundos correspondientes, o -1 si no es válido
      */
     public static int parsearSegundosTimeout(String timeoutVal) {
-        // TODO extra: RETO EXTRA 02: Parsea el timeout de apagado de Spring Boot en segundos.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 22.5 (timeout-per-shutdown-phase tipo "30s"/"2m").
+        // 1. null -> -1.
+        // 2. Si termina en 's': los segundos son el número previo.
+        //    Si termina en 'm': minutos -> multiplica por 60.
+        //    Si es un número pelado (sin sufijo): trátalo como segundos.
+        //    Cualquier otra cosa -> -1.
+        // PISTA: mira el último carácter; substring(0, len-1) para el número;
+        //        Integer.parseInt en try/catch -> "abc" da -1.
+        // OJO: el test pide 30 para "30s", 120 para "2m" (¡x60!), 15 para "15"
+        //      (sin sufijo) y -1 para "abc".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para parsearSegundosTimeout");
     }
 
@@ -58,11 +64,13 @@ public final class Ej193GracefulShutdown {
      * @return true si está en formato exec (JSON array)
      */
     public static boolean esEntrypointFormaExec(String entrypoint) {
-        // TODO extra: RETO EXTRA 03: Comprueba si el ENTRYPOINT de Docker está en exec form para que se propaguen las señales del sistema.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 22.5 (exec form = array JSON; propaga SIGTERM a la JVM).
+        // 1. null -> false.
+        // 2. Tras trim, debe empezar por '[' (array JSON).
+        // PISTA: return entrypoint != null && entrypoint.trim().startsWith("[");
+        // OJO: aquí el test pasa SOLO el array ("[\"java\", \"-jar\"]") sin la
+        //      palabra ENTRYPOINT delante -> NO exijas que empiece por "ENTRYPOINT"
+        //      (a diferencia del reto 09 de Ej189). "java -jar" da false.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esEntrypointFormaExec");
     }
 
@@ -73,11 +81,9 @@ public final class Ej193GracefulShutdown {
      * @return true si todavía hay peticiones activas
      */
     public static boolean detectarHilosActivosTomcat(int hilosActivos) {
-        // TODO extra: RETO EXTRA 04: Informa si hay hilos remanentes de Tomcat en procesamiento activo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 22.5 (durante el drenado aún quedan peticiones en vuelo).
+        // PISTA: return hilosActivos > 0;
+        // OJO: true para 5, false para 0.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para detectarHilosActivosTomcat");
     }
 
@@ -88,11 +94,13 @@ public final class Ej193GracefulShutdown {
      * @return true si se completó la simulación
      */
     public static boolean simularEndpointPeticionLenta(int delayMs) {
-        // TODO extra: RETO EXTRA 05: Simula la recepción de una petición que tarda un tiempo determinado.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 22.5. Simula una petición lenta; un delay negativo es inválido.
+        // 1. Si delayMs < 0 -> false (no se puede tardar tiempo negativo).
+        // 2. En otro caso devuelve true (simulación completada).
+        // PISTA: return delayMs >= 0;
+        //        (puedes hacer un Thread.sleep(delayMs) dentro de try/catch para
+        //        emular la espera, pero el test solo mira el booleano de retorno).
+        // OJO: true para 10, false para -10.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para simularEndpointPeticionLenta");
     }
 
@@ -103,11 +111,10 @@ public final class Ej193GracefulShutdown {
      * @return 503 si está apagándose, 200 en caso contrario
      */
     public static int obtenerCodigoRespuesta(boolean estaCerrando) {
-        // TODO extra: RETO EXTRA 06: Retorna el código de respuesta HTTP correspondiente en base al estado de cierre del servidor.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 22.5 (al apagarse, la API responde 503 a peticiones nuevas).
+        // PISTA: return estaCerrando ? 503 : 200;
+        // OJO: 503 si está cerrando, 200 si no. 503 = Service Unavailable, la
+        //      señal que los balanceadores entienden como "no me mandes tráfico".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerCodigoRespuesta");
     }
 
@@ -118,11 +125,11 @@ public final class Ej193GracefulShutdown {
      * @return true si es 'CLOSED'
      */
     public static boolean esHikariPoolCerradoCorrectamente(String poolState) {
-        // TODO extra: RETO EXTRA 07: Comprueba si el estado final del pool de conexiones HikariCP está cerrado correctamente.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 22.5 (en el cierre ordenado, HikariCP debe quedar CLOSED).
+        // 1. null -> false.
+        // 2. Estado correcto si es exactamente "CLOSED".
+        // PISTA: return "CLOSED".equals(poolState);
+        // OJO: comparación exacta (mayúsculas); "ACTIVE" da false.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esHikariPoolCerradoCorrectamente");
     }
 
@@ -134,11 +141,9 @@ public final class Ej193GracefulShutdown {
      * @return diferencia de tiempo en milisegundos
      */
     public static long calcularTiempoTranscurridoMs(long inicioMs, long finMs) {
-        // TODO extra: RETO EXTRA 08: Calcula los milisegundos transcurridos en una operación.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 22.5. Diferencia de timestamps.
+        // PISTA: return finMs - inicioMs;
+        // OJO: el test espera 500 para (1000, 1500).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularTiempoTranscurridoMs");
     }
 
@@ -149,11 +154,10 @@ public final class Ej193GracefulShutdown {
      * @return true si está configurado (no es null ni vacío)
      */
     public static boolean esPreStopHookConfigurado(String preStopCmd) {
-        // TODO extra: RETO EXTRA 09: Verifica si un preStop hook de Kubernetes está definido para dar tiempo al proxy.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 22.5 (preStop hook tipo "sleep 15" da margen al proxy).
+        // 1. Está configurado si NO es null y NO está en blanco.
+        // PISTA: return preStopCmd != null && !preStopCmd.isBlank();
+        // OJO: true para "sleep 15", false para null.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPreStopHookConfigurado");
     }
 
@@ -165,11 +169,12 @@ public final class Ej193GracefulShutdown {
      * @return el log estructurado
      */
     public static String generarLogShutdown(String fase, String estado) {
-        // TODO extra: RETO EXTRA 10: Genera un mensaje de log estructurado para el proceso de apagado.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 22.5. Log estructurado del apagado.
+        // 1. Formato EXACTO: "[SHUTDOWN] [<FASE EN MAYÚSCULAS>] - <estado>".
+        // PISTA: return "[SHUTDOWN] [" + fase.toUpperCase() + "] - " + estado;
+        // OJO/CUIDADO: la FASE va en MAYÚSCULAS ("tomcat" -> "TOMCAT") pero el
+        //      ESTADO se deja TAL CUAL ("active" sigue en minúsculas). El test
+        //      compara con equals "[SHUTDOWN] [TOMCAT] - active".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para generarLogShutdown");
     }
 

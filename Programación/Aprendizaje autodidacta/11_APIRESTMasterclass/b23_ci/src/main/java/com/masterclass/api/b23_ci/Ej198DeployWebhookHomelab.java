@@ -27,11 +27,15 @@ public final class Ej198DeployWebhookHomelab {
      * @return true si comienza por 'sha256='
      */
     public static boolean esWebhookHeaderValido(String firmaHeader) {
-        // TODO extra: RETO EXTRA 01: Comprueba si la cabecera de firma de seguridad enviada por GitHub tiene la nomenclatura correcta.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 23.4 (cabecera X-Hub-Signature-256: sha256=...).
+        // 1. Null-check.
+        // 2. Normaliza la cadena (quita espacios y pásala a minúsculas) y comprueba
+        //    que empiece por "sha256=".
+        // PISTA: return firmaHeader != null
+        //            && firmaHeader.trim().toLowerCase().startsWith("sha256=");
+        // OJO/CUIDADO: el test exige aceptar " SHA256=abcdef " (con espacios y en
+        //   MAYÚSCULAS) → por eso trim() + toLowerCase(). Rechaza "sha1=..." (algoritmo
+        //   viejo) y null. Usa esto como puerta previa a validarPayloadFirma (reto 02).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esWebhookHeaderValido");
     }
 
@@ -44,11 +48,15 @@ public final class Ej198DeployWebhookHomelab {
      * @return true si la firma es válida (simulación lógica)
      */
     public static boolean validarPayloadFirma(String payload, String firma, String secreto) {
-        // TODO extra: RETO EXTRA 02: Simula la validación de la firma HMAC SHA256 de un payload recibido.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 23.4 (HMAC SHA-256, aquí SIMULADO).
+        // 1. No calculas el HMAC real: basta con exigir que las tres piezas estén
+        //    presentes y no vacías (payload, firma y secreto).
+        // PISTA: return payload != null && !payload.isEmpty()
+        //            && firma != null && !firma.isEmpty()
+        //            && secreto != null && !secreto.isEmpty();
+        // OJO: el test manda payload="" → false, y firma=null → false. Cualquier
+        //   pieza ausente o vacía invalida la firma. (En producción aquí compararías
+        //   con Mac.getInstance("HmacSHA256"), pero eso es de PSP/seguridad de b18.)
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para validarPayloadFirma");
     }
 
@@ -61,11 +69,17 @@ public final class Ej198DeployWebhookHomelab {
      * @return payload JSON en formato cadena
      */
     public static String generarPayloadWebhook(String repositorio, String tag, String actor) {
-        // TODO extra: RETO EXTRA 03: Genera la estructura JSON simplificada que se enviará en el webhook de notificación.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 23.4 (payload JSON del webhook) — construcción de String.
+        // 1. Caso límite primero: si repositorio es null devuelve "{}" (JSON vacío).
+        // 2. Si hay datos, monta el JSON con tres claves: repository, tag, actor.
+        // PISTA: usa comillas escapadas \" dentro del String:
+        //   return "{\"repository\":\"" + repositorio + "\",\"tag\":\"" + tag
+        //        + "\",\"actor\":\"" + actor + "\"}";
+        // OJO: el test usa contains, así que el orden/espacios no importan, pero CADA
+        //   par debe salir literal: "repository":"api-server", "tag":"v2.0.0",
+        //   "actor":"github-user". Con repositorio null el test espera exactamente "{}".
+        // CULTURA: aquí montas JSON a mano por didáctica; en una API real serializas
+        //   con Jackson (ObjectMapper), como viste en b02/b07.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para generarPayloadWebhook");
     }
 
@@ -76,11 +90,14 @@ public final class Ej198DeployWebhookHomelab {
      * @return true si es un docker pull
      */
     public static boolean esComandoDockerPull(String comando) {
-        // TODO extra: RETO EXTRA 04: Comprueba si el comando shell recibido corresponde a un comando de descarga de imagen Docker.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 23.4 (el servidor hace docker pull).
+        // 1. Null-check.
+        // 2. Normaliza (trim + minúsculas) y comprueba que empiece por "docker pull".
+        // PISTA: return comando != null
+        //            && comando.trim().toLowerCase().startsWith("docker pull");
+        // OJO/CUIDADO: el test acepta "  DOCKER PULL my-app:v1  " (mayúsculas y
+        //   espacios) → trim()+toLowerCase(). Rechaza "docker run -d app" (otro
+        //   comando) y null. startsWith, no contains (que daría positivos raros).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esComandoDockerPull");
     }
 
@@ -92,11 +109,15 @@ public final class Ej198DeployWebhookHomelab {
      * @return la versión, o 'latest' si no especifica tag explícito
      */
     public static String extraerVersionDeImagen(String imagenCompleta) {
-        // TODO extra: RETO EXTRA 05: Extrae la etiqueta de versión (tag) de una ruta completa de imagen de contenedor.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 23.4 (parsear imagen:tag) — partir por el último ':'.
+        // 1. Si imagenCompleta es null → devuelve "" (cadena vacía).
+        // 2. Busca el último ':'. Si no hay → no tiene tag explícito → "latest".
+        // 3. Si lo hay → devuelve lo que viene DESPUÉS del último ':'.
+        // PISTA: int i = imagenCompleta.lastIndexOf(':');
+        //        return (i < 0) ? "latest" : imagenCompleta.substring(i + 1);
+        // OJO: "ghcr.io/usuario/app:v1.2.3" → "v1.2.3"; "ghcr.io/usuario/app" → "latest";
+        //   null → "". CUIDADO con la asimetría: null devuelve "" pero "sin tag"
+        //   devuelve "latest" — NO son el mismo caso.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerVersionDeImagen");
     }
 
@@ -107,11 +128,16 @@ public final class Ej198DeployWebhookHomelab {
      * @return true si indica el cierre ordenado
      */
     public static boolean esZeroDowntimeLog(String logLinea) {
-        // TODO extra: RETO EXTRA 06: Analiza si una línea de log de ejecución de la API contiene confirmación de Graceful Shutdown.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 23.4 (zero-downtime = cierre ordenado en el log).
+        // 1. Null-check.
+        // 2. Normaliza a minúsculas y mira si menciona el cierre ordenado: contiene
+        //    "graceful shutdown" o "stopped".
+        // PISTA: String l = logLinea.toLowerCase();
+        //        return l.contains("graceful shutdown") || l.contains("stopped");
+        // OJO: el test acepta "Graceful shutdown completed..." y "Tomcat stopped."
+        //   (de ahí las DOS subcadenas), y rechaza "Application started on port 8080"
+        //   (eso es arranque, no parada) y null. toLowerCase para no depender de
+        //   mayúsculas.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esZeroDowntimeLog");
     }
 
@@ -123,11 +149,15 @@ public final class Ej198DeployWebhookHomelab {
      * @return el comando formateado de docker compose
      */
     public static String generarComandoRollback(String imagen, String versionAnterior) {
-        // TODO extra: RETO EXTRA 07: Genera el comando de rollback en Docker Compose para volver a la versión estable previa.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 23.4 (rollback con docker compose) — formateo de String.
+        // 1. Si imagen es null → devuelve "" (cadena vacía).
+        // 2. Si no → "docker compose up -d --force-recreate <imagen>:<versionAnterior>".
+        // PISTA: return imagen == null ? ""
+        //            : "docker compose up -d --force-recreate " + imagen + ":" + versionAnterior;
+        // OJO/CUIDADO: equals exacto en el test →
+        //   "docker compose up -d --force-recreate my-app:v1.0.0". Respeta el flag
+        //   --force-recreate (fuerza recrear el contenedor) y el ':' entre imagen y
+        //   versión. Mismo patrón "null → cadena vacía" que extraerVersionDeImagen.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para generarComandoRollback");
     }
 
@@ -139,11 +169,15 @@ public final class Ej198DeployWebhookHomelab {
      * @return la URL del endpoint de sendMessage
      */
     public static String construirUrlTelegramNotificacion(String botToken, String chatId) {
-        // TODO extra: RETO EXTRA 08: Construye la URL de la API de Telegram para enviar mensajes de notificación del bot.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 23.4 (notificar por la API de Telegram) — formateo URL.
+        // 1. Si botToken es null → devuelve "".
+        // 2. Si no → monta el endpoint sendMessage con el token y el chat_id.
+        // PISTA: return botToken == null ? ""
+        //            : "https://api.telegram.org/bot" + botToken + "/sendMessage?chat_id=" + chatId;
+        // OJO/CUIDADO: equals exacto →
+        //   "https://api.telegram.org/bot123456:ABC/sendMessage?chat_id=987654".
+        //   El token va pegado a "bot" (sin separador): ".../bot" + token. No metas
+        //   espacios ni '/' extra.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para construirUrlTelegramNotificacion");
     }
 
@@ -156,11 +190,13 @@ public final class Ej198DeployWebhookHomelab {
      * @return true si es auténtico y fresco
      */
     public static boolean esWebhookPayloadAutentico(boolean firmaValida, long antiguedadSegundos) {
-        // TODO extra: RETO EXTRA 09: Comprueba si el webhook es fresco y auténtico analizando el timestamp de generación.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 23.4 (frescura anti-replay, ventana de 5 min).
+        // 1. Auténtico = firma válida Y antigüedad dentro de [0, 300] segundos.
+        // PISTA: return firmaValida && antiguedadSegundos >= 0 && antiguedadSegundos <= 300;
+        // OJO/CUIDADO: el test cubre los cuatro casos:
+        //   (true,150)→true; (false,150)→false (firma mala); (true,301)→false (más
+        //   de 5 min, posible replay); (true,-5)→false (antigüedad negativa, dato
+        //   corrupto). Son tres condiciones AND, no olvides el límite inferior 0.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esWebhookPayloadAutentico");
     }
 
@@ -173,11 +209,15 @@ public final class Ej198DeployWebhookHomelab {
      * @return mensaje formateado en Markdown
      */
     public static String generarMensajeNotificacion(String proyecto, String tag, boolean exito) {
-        // TODO extra: RETO EXTRA 10: Genera un mensaje elegante en formato Markdown para notificaciones de despliegue.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 23.4 (notificación de despliegue en Markdown).
+        // 1. Si proyecto es null → devuelve "".
+        // 2. El estado cambia con 'exito': "🚀 EXITO" o un fallo (p. ej. "❌ FALLO").
+        // 3. Monta un mensaje que CONTENGA proyecto, tag y el estado.
+        // PISTA: String estado = exito ? "🚀 EXITO" : "❌ FALLO";
+        //        return "Despliegue de " + proyecto + " (" + tag + "): " + estado;
+        // OJO: el test usa contains, así que tienes libertad de formato, PERO el
+        //   literal del éxito debe ser EXACTAMENTE "🚀 EXITO" (con el emoji y sin
+        //   tilde en "EXITO"). Con proyecto null el test espera "".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para generarMensajeNotificacion");
     }
 

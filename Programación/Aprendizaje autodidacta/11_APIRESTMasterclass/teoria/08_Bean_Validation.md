@@ -277,6 +277,28 @@ flowchart LR
 > obligatoriedad la añade otra anotación (`@NotNull`/`@NotBlank`). Así separas
 > "está presente" de "tiene buen formato" y puedes combinarlas a voluntad.
 
+### Mensaje dinámico desde el `isValid`
+
+El `message` de la anotación es estático. Si quieres un mensaje que dependa del
+valor (p. ej. "el slug 'Hola Mundo' contiene espacios"), lo construyes dentro del
+validador con el `ConstraintValidatorContext`: desactivas el mensaje por defecto y
+añades uno propio.
+
+```java
+public boolean isValid(String value, ConstraintValidatorContext ctx) {
+    if (value == null) return true;
+    if (value.matches("[a-z0-9]+(-[a-z0-9]+)*")) return true;
+    ctx.disableDefaultConstraintViolation();               // quita el message por defecto
+    ctx.buildConstraintViolationWithTemplate("'" + value + "' no es un slug")
+       .addConstraintViolation();                          // registra el tuyo
+    return false;
+}
+```
+
+Si NO llamas a `disableDefaultConstraintViolation()`, acabas con **dos**
+violaciones: la del `message` por defecto y la tuya. Para los ejercicios de este
+bloque basta el `message` estático; esto es el recurso para casos reales.
+
 > **Lo practicas en `Ej073CustomConstraint`**: implementar `isValid` de un
 > `@Slug` (vacío→false, sin guion inicial/final, solo `[a-z0-9-]`) y anotar el DTO
 > con `@Slug` + `@NotBlank`.
@@ -342,6 +364,27 @@ importante:
 | `{id}` de ruta | > 0 | `@Positive` |
 | `page` | ≥ 0 | `@Min(0)` |
 | `size` | 1..100 | `@Min(1)` `@Max(100)` |
+
+### Dos excepciones distintas según dónde valides (Spring)
+
+Esto confunde a todo el mundo la primera vez. En Spring, **dónde** pones la
+constraint decide qué excepción se lanza y, por tanto, qué `@ExceptionHandler`
+la captura:
+
+| Dónde validas | Anotación que dispara | Excepción | Código |
+|---|---|---|---|
+| `@RequestBody` (el DTO del body) | `@Valid` sobre el parámetro | `MethodArgumentNotValidException` | 400 |
+| `@PathVariable` / `@RequestParam` | `@Validated` sobre la **clase** del controller | `ConstraintViolationException` | 400 (si lo manejas) |
+
+> **`@Valid` (Jakarta) vs `@Validated` (Spring).** `@Valid` es el estándar
+> Jakarta y dispara la cascada del body. `@Validated` es de Spring: activa la
+> validación de **parámetros sueltos** a nivel de clase y, además, es la única que
+> acepta **grupos** (`@Validated(OnCreate.class)`, sección 8.4) — `@Valid` no los
+> admite. Por eso para validar por grupos en un controller usas `@Validated`.
+
+> Trampa: sin `@Validated` sobre la clase, las constraints en `@PathVariable`/
+> `@RequestParam` **se ignoran en silencio** (no hay quien las dispare). Si validas
+> el body, basta `@Valid` sobre el parámetro y no necesitas `@Validated`.
 
 > **Lo practicas en `Ej075ValidatePathAndParams`**: `validarId` (lanza con
 > `id <= 0`, mensaje `"id debe ser positivo"`) y `validarPaginacion` (lanza fuera

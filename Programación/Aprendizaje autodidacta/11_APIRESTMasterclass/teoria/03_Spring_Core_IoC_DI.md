@@ -158,6 +158,14 @@ Por qué constructor y no `@Autowired` en el campo:
 | **Testeable sin Spring** | en un test haces `new ServicioPedidos(mock)`; no necesitas contenedor |
 | **Dependencias explícitas** | si el constructor pide 7 cosas, la clase hace demasiado: el diseño "huele" a la vista |
 | **Fail-fast** | sin la dependencia, ni se construye; nada de NPE a las 3 AM |
+| **Ciclos al arrancar** | una dependencia circular por constructor revienta el arranque; por campo se "esconde" hasta que falla en runtime |
+
+Esa última fila es sutil pero importante: con inyección **por campo** (`@Autowired`
+sobre el atributo), Spring puede construir A medio vacío, construir B y rellenarlos
+después, así que un ciclo A↔B *no rompe el arranque*… y te explota más tarde de forma
+opaca. Con inyección **por constructor** el ciclo es imposible de resolver (ninguno se
+construye primero), por lo que Spring **falla al arrancar** con un mensaje claro: te
+obliga a arreglar el diseño antes de desplegar, que es justo lo que quieres.
 
 Desde Spring 4.3, si la clase tiene **un solo constructor**, `@Autowired` es opcional:
 Spring lo usa automáticamente. Patrones que aparecen en los retos:
@@ -172,9 +180,14 @@ Spring lo usa automáticamente. Patrones que aparecen en los retos:
   comportamiento sin modificarla (`"[" + delegado.plantilla() + "]"`).
 
 La **dependencia circular por constructor** (A necesita B y B necesita A) es
-irresoluble: ninguno puede construirse primero. Spring la detecta y falla al arrancar;
-con reflexión la detectas mirando si los tipos de parámetro del constructor de A
-incluyen B y viceversa.
+irresoluble: ninguno puede construirse primero. Spring la detecta y falla al arrancar
+con una `BeanCurrentlyInCreationException` (envuelta en
+`UnsatisfiedDependencyException`) y un mensaje del estilo *"The dependencies of some of
+the beans in the application context form a cycle"*. La salida correcta **no** es
+parchearlo con `@Lazy` ni activando `spring.main.allow-circular-references`: es
+**romper el ciclo** rediseñando (extraer una tercera clase, o invertir una de las
+dependencias con un evento). Con reflexión lo detectas mirando si los tipos de
+parámetro del constructor de A incluyen B y viceversa (justo lo que harás en el reto).
 
 > **Lo practicas en `Ej031ConstructorInjection`**: inyectas una dependencia, validas
 > que no sea null, y montas variantes (múltiples repos, opcional con fallback,
@@ -201,6 +214,18 @@ ServicioAlertas(@Qualifier("sms") Notificador n) { ... }   // fuerzo el SMS
 
 - **`@Primary`** marca el candidato preferente: se inyecta cuando no especificas nada.
 - **`@Qualifier("x")`** selecciona explícitamente por nombre/etiqueta y gana al primary.
+
+La regla de precedencia es: **`@Qualifier` (lo más específico) > `@Primary` > nombre del
+bean**. Dos trampas que castigan los tests:
+
+- Marcar **dos** beans del mismo tipo con `@Primary` vuelve a dar
+  `NoUniqueBeanDefinitionException`: `@Primary` solo desempata si hay **uno** primario.
+  Por eso el reto de "reemplazar primary en caliente" quita primero el flag al antiguo
+  antes de ponérselo al nuevo.
+- El **valor** de `@Qualifier("smsSpecial")` no es el nombre del bean: pedir
+  `ctx.getBean("smsSpecial")` falla porque el bean se llama `…MiNotificadorSms`. Para
+  resolver por qualifier usas `BeanFactoryAnnotationUtils.qualifiedBeanOfType(...)`, no
+  `getBean(nombre)`.
 
 Resolución programática (lo que practicas en los retos, simulando lo que Spring hace
 internamente):
@@ -235,6 +260,16 @@ El **scope** decide cuántas instancias del bean existen:
 | `singleton` (por defecto) | UNA por contenedor | servicios, repos: sin estado mutable compartido |
 | `prototype` | una NUEVA en cada `getBean`/inyección | beans con estado por uso |
 | `request` / `session` | una por petición/sesión HTTP | bloque web (b05) |
+
+**Singleton es el scope por defecto, y eso tiene una consecuencia de concurrencia que
+no debes olvidar.** Como hay *una sola* instancia compartida por todo el contenedor,
+muchas peticiones HTTP (cada una en su hilo) la usan **a la vez**. Por eso un bean
+singleton debe ser **sin estado mutable**: si guardas un `private int contador` o un
+`private String usuarioActual` como campo de un `@Service`, dos peticiones concurrentes
+se pisan los datos (condición de carrera, fugas de información entre usuarios). El
+estado por petición va en variables locales del método, no en campos del singleton. El
+"singleton de Spring" es **uno por contenedor**, no el patrón Singleton clásico (uno
+por JVM): dos contextos distintos tienen su propia instancia.
 
 ```java
 @Component                       // singleton implícito
@@ -531,7 +566,10 @@ invocaciones y devuelve el resultado intacto) para que veas la idea sin el tejid
 | 7 | Esperar `@PreDestroy` en un prototype | Spring no destruye prototypes: no se llama |
 | 8 | `@Around` que no devuelve el resultado de `proceed()` | Devuélvelo (y relanza la excepción); si no, "comes" el valor |
 | 9 | Esperar que AOP intercepte una llamada `this.metodo()` interna | El proxy solo intercepta llamadas externas; la auto-invocación lo salta |
-| 10 | Dependencia circular por constructor | Rediseña (rompe el ciclo); Spring no puede construir ni A ni B |
+| 10 | Dependencia circular por constructor | Rediseña (rompe el ciclo); Spring falla al arrancar con `BeanCurrentlyInCreationException`. No lo parchees con `@Lazy`/`allow-circular-references` |
+| 11 | Guardar estado mutable en un campo de un `@Service` singleton | Una instancia compartida entre hilos: condición de carrera. El estado por petición va en variables locales |
+| 12 | Marcar **dos** beans del mismo tipo con `@Primary` | Sigue habiendo ambigüedad (`NoUniqueBeanDefinitionException`): solo puede haber un primario |
+| 13 | `ctx.getBean("smsSpecial")` esperando resolver por `@Qualifier` | El valor del qualifier no es el nombre del bean; usa `qualifiedBeanOfType(...)` |
 
 ## Chuleta final del bloque
 
@@ -542,7 +580,8 @@ DI           = dependencias por CONSTRUCTOR (final, testeable, fail-fast)
 contexto     = register → refresh → getBean → close (AutoCloseable)
 nombre bean  = clase con inicial minúscula (anidada: Externa.Interna)
 @Qualifier   = elige por nombre · @Primary = elegido por defecto
-scope        = singleton (1, por defecto) · prototype (N, nuevo cada vez)
+scope        = singleton (1, por defecto, COMPARTIDO entre hilos → sin estado mutable) · prototype (N, nuevo cada vez)
+@Qualifier>@Primary>nombre · doble @Primary = ambigüedad otra vez
 prototype↺   = ObjectFactory.getObject() / scoped proxy para refrescar
 ciclo vida   = @PostConstruct → afterPropertiesSet → init-method ; @PreDestroy al cerrar
 @Configuration = proxy CGLIB: metodoBean() devuelve el singleton (lite = sin proxy)
@@ -562,9 +601,10 @@ AOP          = @Aspect + advice (Before/AfterReturning/AfterThrowing/Around) + p
 3. Da tres razones por las que la inyección por constructor es preferible a la de
    campo. *(3.3)*
 4. Hay dos `Notificador`. ¿Qué pasa si pides `getBean(Notificador.class)` sin más?
-   ¿Cómo lo resuelves? *(3.4)*
+   ¿Cómo lo resuelves? ¿Y si marcas los **dos** con `@Primary`? *(3.4)*
 5. ¿Por qué un prototype inyectado por constructor en un singleton "pierde" su
-   novedad, y cómo lo arreglas? *(3.5)*
+   novedad, y cómo lo arreglas? ¿Por qué un `@Service` singleton **no** debe tener un
+   campo mutable como `private int contador`? *(3.5)*
 6. ¿En qué orden se ejecutan `@PostConstruct`, `afterPropertiesSet()` y el init-method
    de un `@Bean`? ¿Qué hace un `BeanPostProcessor`? *(3.6)*
 7. ¿Qué diferencia hay entre una clase `@Bean` con y sin `@Configuration` al llamar un

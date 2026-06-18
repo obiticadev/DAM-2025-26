@@ -69,11 +69,10 @@ public final class Ej188NPlusOneAndQueryTuning {
      * RETO EXTRA 01: Valida lista.
      */
     public static boolean esListaValida(java.util.List<Long> ids) {
-        // TODO extra: RETO EXTRA 01: Valida lista.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return ids != null;
+        // OJO al test: pasa List.of() (lista VACÍA) y espera true. Una lista
+        // vacía es válida (significa 0 padres → 1 sola consulta, 21.6); solo el
+        // null es inválido. No confundas "vacía" con "no válida".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esListaValida");
     }
 
@@ -81,11 +80,10 @@ public final class Ej188NPlusOneAndQueryTuning {
      * RETO EXTRA 02: Comprueba nulos.
      */
     public static boolean contieneIdNulo(java.util.List<Long> ids) {
-        // TODO extra: RETO EXTRA 02: Comprueba nulos.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return ids.contains(null);
+        // El test: Arrays.asList(1L, null) → true. Es el TODO 2 de
+        // consultasNaive(): un id null no podría usarse en una consulta. PISTA
+        // alternativa: ids.stream().anyMatch(java.util.Objects::isNull).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contieneIdNulo");
     }
 
@@ -93,11 +91,10 @@ public final class Ej188NPlusOneAndQueryTuning {
      * RETO EXTRA 03: Valida tamaño de lote.
      */
     public static boolean esLoteValido(int lote) {
-        // TODO extra: RETO EXTRA 03: Valida tamaño de lote.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return lote > 0;
+        // El test: 2 → true. El tamaño de lote debe ser estrictamente positivo
+        // (con 0 dividirías por cero al calcular el número de lotes). Es el
+        // TODO 3 de consultasOptimizadas() (21.6).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esLoteValido");
     }
 
@@ -105,11 +102,10 @@ public final class Ej188NPlusOneAndQueryTuning {
      * RETO EXTRA 04: Cantidad total de ids.
      */
     public static int cantidadIds(java.util.List<Long> ids) {
-        // TODO extra: RETO EXTRA 04: Cantidad total de ids.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return ids.size();
+        // El test: List.of(1L,2L,3L) → 3. Es la N del problema "N+1" (21.6): el
+        // número de padres que determina cuántas consultas extra dispara el
+        // acceso naive.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para cantidadIds");
     }
 
@@ -117,11 +113,12 @@ public final class Ej188NPlusOneAndQueryTuning {
      * RETO EXTRA 05: Calcula bloques de carga.
      */
     public static int calcularLotesEnteros(int n, int lote) {
-        // TODO extra: RETO EXTRA 05: Calcula bloques de carga.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return (n + lote - 1) / lote;
+        // El test: (5, 2) → 3 (lotes de [2,2,1]). Es el TECHO de n/lote con
+        // enteros, el corazón de consultasOptimizadas() (21.6). CUIDADO: NO uses
+        // n/lote (daría 2, perderías el último lote incompleto) ni Math.ceil (es
+        // coma flotante y obliga a casts). El truco (n+lote-1)/lote redondea
+        // hacia arriba con división entera pura.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularLotesEnteros");
     }
 
@@ -129,11 +126,10 @@ public final class Ej188NPlusOneAndQueryTuning {
      * RETO EXTRA 06: Valida si el lote cubre todo.
      */
     public static boolean esOptimo(int n, int lote) {
-        // TODO extra: RETO EXTRA 06: Valida si el lote cubre todo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return lote >= n;
+        // El test: (5, 5) → true. "Cubre todo" = un solo lote basta para cargar
+        // todos los hijos (total = 2 consultas, el TODO 9 de
+        // consultasOptimizadas, 21.6). Si lote >= n, calcularLotesEnteros da 1.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esOptimo");
     }
 
@@ -141,11 +137,10 @@ public final class Ej188NPlusOneAndQueryTuning {
      * RETO EXTRA 07: Calcula diferencia.
      */
     public static int diferenciaConsultas(int naive, int opt) {
-        // TODO extra: RETO EXTRA 07: Calcula diferencia.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return naive - opt;
+        // El test: (6, 3) → 3. Cuántas consultas te AHORRA el batch frente al
+        // acceso ingenuo: la métrica que pondrías en el PR para justificar la
+        // optimización (21.6).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para diferenciaConsultas");
     }
 
@@ -153,11 +148,10 @@ public final class Ej188NPlusOneAndQueryTuning {
      * RETO EXTRA 08: Comprueba si es mejor.
      */
     public static boolean esMasEficiente(int naive, int opt) {
-        // TODO extra: RETO EXTRA 08: Comprueba si es mejor.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return opt < naive;
+        // El test: (6, 3) → true. El método optimizado es mejor si hace MENOS
+        // consultas que el naive. CUIDADO con el orden de los parámetros: 'opt'
+        // debe ser el menor para devolver true; comparas opt < naive, no al revés.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMasEficiente");
     }
 
@@ -165,11 +159,10 @@ public final class Ej188NPlusOneAndQueryTuning {
      * RETO EXTRA 09: Obtiene id de posicion.
      */
     public static Long obtenerIdUnico(java.util.List<Long> ids, int idx) {
-        // TODO extra: RETO EXTRA 09: Obtiene id de posicion.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return ids.get(idx);
+        // El test: (List.of(1L,2L), 1) → 2L (índices desde 0: posición 1 es el
+        // segundo). get(idx) accede por posición; en un caso real validarías que
+        // idx esté en rango, pero el test solo prueba un índice válido.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerIdUnico");
     }
 
@@ -177,11 +170,10 @@ public final class Ej188NPlusOneAndQueryTuning {
      * RETO EXTRA 10: Crea lista limpia.
      */
     public static java.util.List<Long> crearListaIds() {
-        // TODO extra: RETO EXTRA 10: Crea lista limpia.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return new java.util.ArrayList<>();
+        // El test solo exige notNull. Devuelve una lista vacía MUTABLE (a la que
+        // luego añadir ids), no null. PISTA: si quisieras una lista inmutable
+        // sería List.of(), pero a esa no podrías añadirle nada.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearListaIds");
     }
 

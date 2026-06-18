@@ -30,6 +30,14 @@ HTTP es un protocolo **petición–respuesta**, **sin estado** (stateless) y **t
 (en HTTP/1.1). El cliente manda una *request*, el servidor devuelve una *response*.
 Cada intercambio es independiente: el servidor no recuerda el anterior.
 
+Matiz de versión que conviene tener claro desde el principio: lo de "textual" es
+exclusivo de HTTP/1.x. **HTTP/2 y HTTP/3 son binarios y multiplexados**: empaquetan
+los mensajes en *frames* binarios y permiten varias peticiones simultáneas sobre una
+sola conexión (sin el bloqueo *head-of-line* de 1.1). La **semántica** (métodos,
+códigos, headers) es idéntica; cambia solo cómo se serializa por el cable. Por eso
+todo lo de este bloque sigue valiendo, pero no podrías leer un HTTP/2 con un editor
+de texto como harás con HTTP/1.1 en `Ej001`.
+
 ```mermaid
 sequenceDiagram
     participant C as Cliente
@@ -113,6 +121,14 @@ El servidor necesita saber dónde acaba el body. Hay dos mecanismos:
   variable (streaming, tamaño desconocido a priori). Es incompatible con
   `Content-Length`: si aparecen ambas, gana chunked.
 
+Esa "incompatibilidad" no es un detalle académico: es la raíz del **request
+smuggling**. Si una petición llega con `Content-Length` *y* `Transfer-Encoding`
+(o con **dos `Content-Length` distintos**), y el proxy de delante y el servidor de
+detrás eligen un mecanismo distinto para delimitar el body, uno ve una petición y el
+otro ve dos. El atacante "cuela" una petición oculta en el body de otra. Por eso la
+RFC 9112 obliga a **rechazar (400) toda petición ambigua** en lugar de adivinar: ante
+cabeceras de longitud contradictorias, un servidor serio no intenta ser listo, corta.
+
 > **Lo practicas en `Ej001HttpRequestParser`**: parsear método, ruta, headers y
 > body de una petición cruda. Los retos extra cubren CRLF, validación de verbos,
 > versión del protocolo, query string, headers case-insensitive, `Connection:
@@ -187,6 +203,10 @@ Los que usarás a diario diseñando APIs (apréndete ESTOS, el resto se consulta
 Matices que diferencian a un junior de alguien que sabe HTTP:
 
 - **401 vs 403**: 401 = "identifícate"; 403 = "te identifico perfectamente, y no".
+  Detalle del estándar que casi nadie respeta: un **401 obliga a incluir la cabecera
+  `WWW-Authenticate`** indicando *cómo* autenticarse (`WWW-Authenticate: Bearer` o
+  `Basic realm="..."`). Es la diferencia semántica real con el 403: el 401 te dice
+  qué esquema usar para reintentar; el 403 no, porque reintentar no va a servirte.
 - **400 vs 422**: 400 = no entiendo lo que mandas (sintaxis); 422 = lo entiendo
   pero viola reglas de negocio. Muchas APIs lo colapsan todo en 400; ambas
   decisiones son defendibles, pero sé consistente.
@@ -281,6 +301,14 @@ Mini-catálogo por dirección:
 Confusión clásica: **`Accept` habla del futuro** ("quiero que ME respondas en
 JSON"), **`Content-Type` habla del presente** ("esto que TE mando es JSON"). Un
 POST puede llevar ambas y con valores distintos.
+
+Una cabecera de seguridad que verás siempre en producción: **`Strict-Transport-Security`**
+(HSTS). La manda el servidor en la respuesta (`Strict-Transport-Security: max-age=31536000`)
+y obliga al navegador a usar **solo HTTPS** con ese dominio durante el tiempo indicado,
+aunque el usuario teclee `http://`. El porqué: un `Authorization: Bearer <token>` o un
+`Basic <base64>` viajando por HTTP plano es texto legible para cualquiera en la red;
+HTTPS lo cifra y HSTS impide la degradación a HTTP. Regla mínima: **ninguna API que
+maneje credenciales debería aceptar tráfico HTTP sin cifrar.**
 
 > **Lo practicas en `Ej005HeadersToolkit`**: parsear, normalizar y consultar
 > headers respetando case-insensitivity y valores con `:`.
@@ -478,6 +506,8 @@ con ETag cada vez), `no-store` (ni se te ocurra guardar esto: datos sensibles).
 | 8 | "DELETE no es idempotente porque la 2ª vez da 404" | Idempotencia = mismo ESTADO del servidor, no misma respuesta |
 | 9 | Confundir `Accept` (lo que quiero recibir) con `Content-Type` (lo que mando) | Futuro vs presente |
 | 10 | Leer el body ignorando `Content-Length` | Corta al tamaño declarado: lo extra no es tuyo |
+| 11 | "Adivinar" el body si llegan dos `Content-Length` o CL + chunked | Petición ambigua = 400; no inventes (request smuggling) |
+| 12 | Responder 401 sin cabecera `WWW-Authenticate` | El 401 debe decir cómo autenticarse; si no, usa 403 |
 
 ## Chuleta final del bloque
 
@@ -491,8 +521,10 @@ Con body:      POST PUT PATCH
 
 2xx éxito · 3xx redirección · 4xx culpa del cliente · 5xx culpa del servidor
 201 → Location · 204/304 → sin body · 401 quién eres · 403 no puedes
+401 → lleva WWW-Authenticate · HTTP/2 = binario y multiplexado
 Accept = quiero recibir · Content-Type = te estoy mandando
 ETag/If-None-Match → 304 = usa tu copia
+CL + chunked o doble CL = petición ambigua → 400 (request smuggling)
 ```
 
 ## Autoevaluación (responde sin mirar; si fallas 2+, relee la sección)

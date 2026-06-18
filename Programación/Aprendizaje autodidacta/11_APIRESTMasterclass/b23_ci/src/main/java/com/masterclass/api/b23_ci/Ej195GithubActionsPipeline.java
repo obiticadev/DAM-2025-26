@@ -28,11 +28,12 @@ public final class Ej195GithubActionsPipeline {
      * @return true si reacciona a un push en main
      */
     public static boolean esTriggerPushMain(String evento, String rama) {
-        // TODO extra: RETO EXTRA 01: Comprueba si el pipeline reacciona a un evento de push sobre la rama especificada.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 23.1 (el bloque `on:` de un workflow).
+        // 1. Es el "AND" más simple: solo es trigger válido si AMBAS cosas se cumplen.
+        // 2. Devuelve true solo cuando evento es "push" Y rama es "main".
+        // PISTA: return "push".equals(evento) && "main".equals(rama);
+        // OJO: el test manda ("push","feature-branch")=false y ("pull_request","main")=false:
+        //   un solo fallo de los dos ya invalida el trigger. Usa equals (no ==).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esTriggerPushMain");
     }
 
@@ -43,11 +44,14 @@ public final class Ej195GithubActionsPipeline {
      * @return true si es una de las recomendadas
      */
     public static boolean esUbuntuRunnerValido(String runner) {
-        // TODO extra: RETO EXTRA 02: Valida que la imagen del sistema operativo del runner sea una recomendada y actualizada de Ubuntu.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 23.1 (`runs-on`, el runner).
+        // 1. Defiéndete del null primero (si runner es null, devuelve false).
+        // 2. Acepta cualquier etiqueta que sea de la familia Ubuntu.
+        // PISTA: return runner != null && runner.startsWith("ubuntu");
+        // OJO: el test acepta tanto "ubuntu-latest" como "ubuntu-22.04" (versión
+        //   fijada), por eso startsWith y NO equals exacto. "windows-latest" → false.
+        // CULTURA: fijar la versión ("ubuntu-22.04") da builds reproducibles;
+        //   "latest" es cómodo pero puede cambiar bajo tus pies sin avisar.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esUbuntuRunnerValido");
     }
 
@@ -58,11 +62,15 @@ public final class Ej195GithubActionsPipeline {
      * @return true si usa actions/checkout con versión v3 o v4
      */
     public static boolean esCheckoutActionValida(String accion) {
-        // TODO extra: RETO EXTRA 03: Comprueba si se invoca la acción oficial de checkout con una versión reciente.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 23.1 (versionar las actions con @vN).
+        // 1. Null-check de entrada.
+        // 2. Acepta SOLO la action oficial de checkout en versión v3 o v4.
+        // PISTA: una opción legible es comprobar dos cadenas exactas:
+        //   accion.equals("actions/checkout@v4") || accion.equals("actions/checkout@v3").
+        // OJO: el test rechaza "actions/checkout@v2" (versión antigua). No basta
+        //   con que empiece por "actions/checkout@"; la versión importa.
+        // CULTURA: clavar @v2/@v3/@v4 (y no @main) es seguridad de la cadena de
+        //   suministro: una action que cambia sola podría inyectar código.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCheckoutActionValida");
     }
 
@@ -74,11 +82,14 @@ public final class Ej195GithubActionsPipeline {
      * @return true si es correcta
      */
     public static boolean esJdkTemurinConfigured(String distribucion, String version) {
-        // TODO extra: RETO EXTRA 04: Valida que se esté instalando la distribución Temurin de Eclipse y una versión JDK moderna (17 o 21).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 23.1 (setup-java: distribution + java-version).
+        // 1. Null-check de ambos parámetros.
+        // 2. Comprueba DOS condiciones a la vez: distribución "temurin" y versión
+        //    moderna (el javadoc dice 17 o 21).
+        // PISTA: return "temurin".equals(distribucion)
+        //            && ("17".equals(version) || "21".equals(version));
+        // OJO: el test castiga ("zulu","21")=false (otra distro) y ("temurin","8")=false
+        //   (Java 8 ya no es "moderno"). version llega como String, compárala como String.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esJdkTemurinConfigured");
     }
 
@@ -90,11 +101,13 @@ public final class Ej195GithubActionsPipeline {
      * @return true si contiene hashFiles y runner.os
      */
     public static boolean validarCacheKey(String clave) {
-        // TODO extra: RETO EXTRA 05: Comprueba si la clave de cache de dependencias tiene un formato dinámico seguro.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 23.1 (cache key dinámica).
+        // 1. Null-check.
+        // 2. Una clave segura mezcla el SO y un hash de los pom.xml, así que debe
+        //    contener AMBAS subcadenas: "hashFiles" y "runner.os".
+        // PISTA: return clave != null && clave.contains("hashFiles") && clave.contains("runner.os");
+        // OJO: el test acepta "maven-${{ runner.os }}-${{ hashFiles('**/pom.xml') }}"
+        //   y rechaza "maven-cache" (clave fija que nunca se refresca al cambiar deps).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para validarCacheKey");
     }
 
@@ -105,11 +118,14 @@ public final class Ej195GithubActionsPipeline {
      * @return el comando de Maven completo en modo batch
      */
     public static String generarComandoMavenVerify(boolean saltarTests) {
-        // TODO extra: RETO EXTRA 06: Genera el comando Maven correspondiente de empaquetado y verificación respetando la bandera dada.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 23.1 (el comando canónico mvn -B clean verify).
+        // 1. Parte de la base "mvn -B clean verify".
+        // 2. Si saltarTests es true, añádele al final " -DskipTests=true".
+        // PISTA: String base = "mvn -B clean verify";
+        //        return saltarTests ? base + " -DskipTests=true" : base;
+        // OJO/CUIDADO: el test compara con equals EXACTO. La forma con saltar es
+        //   "mvn -B clean verify -DskipTests=true" (con "=true", no solo -DskipTests).
+        //   Cualquier espacio o flag de más rompe el assertEquals.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para generarComandoMavenVerify");
     }
 
@@ -120,11 +136,15 @@ public final class Ej195GithubActionsPipeline {
      * @return la ruta relativa del reporte XML
      */
     public static String parsearRutaReporteSurefire(String modulo) {
-        // TODO extra: RETO EXTRA 07: Construye la ruta al reporte generado por Surefire de un módulo dado.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 23.1 (Surefire genera target/surefire-reports).
+        // 1. Si modulo es null (o vacío), devuelve la ruta sin prefijo:
+        //    "target/surefire-reports".
+        // 2. Si hay módulo, antepónlo: modulo + "/target/surefire-reports".
+        // PISTA: return (modulo == null || modulo.isBlank())
+        //            ? "target/surefire-reports"
+        //            : modulo + "/target/surefire-reports";
+        // OJO/CUIDADO: con null el test espera "target/surefire-reports", NO
+        //   "null/target/surefire-reports". No concatenes el null a ciegas.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para parsearRutaReporteSurefire");
     }
 
@@ -135,11 +155,10 @@ public final class Ej195GithubActionsPipeline {
      * @return true si es "success"
      */
     public static boolean esJobTerminadoExitosamente(String status) {
-        // TODO extra: RETO EXTRA 08: Evalúa si un job terminó en estado exitoso en base a su log de salida.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea —
+        // return "success".equals(status);
+        // OJO: el test pasa "success"→true y "failed"→false. Usa equals (no ==)
+        //   para que un null no reviente con NPE y caiga limpiamente a false.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esJobTerminadoExitosamente");
     }
 
@@ -150,11 +169,13 @@ public final class Ej195GithubActionsPipeline {
      * @return true si apunta a target
      */
     public static boolean esRutaArtifactValida(String ruta) {
-        // TODO extra: RETO EXTRA 09: Comprueba si una ruta de publicación de artefactos es válida en el proyecto.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 23.1 (artefactos = lo que cuelga en target/).
+        // 1. Null-check.
+        // 2. Un artefacto publicable vive bajo target/; basta con que la ruta
+        //    contenga "target".
+        // PISTA: return ruta != null && ruta.contains("target");
+        // OJO: el test acepta "**/target/surefire-reports/*.xml" y rechaza
+        //   "src/main/resources" (eso es código fuente, no un artefacto generado).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRutaArtifactValida");
     }
 
@@ -166,11 +187,15 @@ public final class Ej195GithubActionsPipeline {
      * @return true si tiene la estructura mínima
      */
     public static boolean validarEstructuraYmlBasica(String yml) {
-        // TODO extra: RETO EXTRA 10: Valida la estructura básica mínima de un archivo de flujo de GitHub Actions.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 23.1 (anatomía de un workflow: on/jobs/steps).
+        // 1. Null-check.
+        // 2. Un workflow mínimo tiene las tres claves; comprueba que contenga
+        //    "on:", "jobs:" y "steps:" a la vez.
+        // PISTA: return yml != null && yml.contains("on:")
+        //            && yml.contains("jobs:") && yml.contains("steps:");
+        // OJO: en el test válido el YAML trae "on: push" (que contiene "on:") y el
+        //   inválido es solo "name: CI". Reutiliza esta idea de "validar por claves
+        //   presentes" para esJobDependenciaConfigurada en Ej196.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para validarEstructuraYmlBasica");
     }
 

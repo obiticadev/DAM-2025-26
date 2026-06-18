@@ -80,7 +80,15 @@ Tres herramientas que ya asoman en este ejercicio y verás todo el bloque:
   (cuando es SIEMPRE el mismo). Para un código que depende de la lógica, usa
   `ResponseEntity` (5.5).
 - **`produces` / `consumes`** restringen el `Content-Type` de salida y de entrada
-  respectivamente (negociación de contenido).
+  respectivamente (negociación de contenido). Si el cliente manda un cuerpo con un
+  `Content-Type` que `consumes` no acepta, Spring responde **415 Unsupported Media
+  Type** sin entrar siquiera al método; si pide en `Accept` algo que `produces` no
+  cubre, responde **406 Not Acceptable**.
+
+> ⚠ Un `String` devuelto por defecto sale como `text/plain`. Si construyes el JSON
+> a mano (un `String` con `{...}`) DEBES poner `produces = APPLICATION_JSON_VALUE`,
+> o el cliente lo recibirá como texto plano y un test con `jsonPath` fallará. Spring
+> NO re-serializa un `String`: lo manda tal cual.
 
 > **Lo practicas en `Ej045HelloController`**: primer endpoint GET, lectura de
 > cabeceras, serialización JSON, `@ResponseStatus`, rutas múltiples, `produces`/
@@ -185,6 +193,12 @@ public ResponseEntity<ItemOut> crear(@RequestBody ItemIn entrada) {
 }
 ```
 
+> ⚠ **Solo puede haber UN `@RequestBody` por método.** Un cuerpo HTTP es un único
+> flujo de bytes que Jackson lee una vez; dos `@RequestBody` no tienen sentido. Si
+> necesitas "varios objetos", anídalos en un solo DTO. En cambio, `@RequestBody` SÍ
+> se combina con `@PathVariable`, `@RequestParam` y `@RequestHeader` (vienen de la
+> ruta, la query y las cabeceras, no del cuerpo).
+
 El contrato de un POST de creación bien hecho:
 
 - **201 Created**, no 200. La operación creó algo nuevo.
@@ -240,7 +254,10 @@ Los atajos del builder que más usarás:
 | `ResponseEntity.notFound().build()` | 404 | recurso ausente |
 | `ResponseEntity.badRequest().body(b)` | 400 | entrada inválida |
 
-`build()` cierra el builder SIN cuerpo; `body(x)` lo cierra CON cuerpo. El genérico
+`build()` cierra el builder SIN cuerpo; `body(x)` lo cierra CON cuerpo. Por eso un
+204 (que por definición NO lleva body) se tipa como `ResponseEntity<Void>` y se
+cierra con `noContent().build()`: el tipo `Void` documenta a quien lee el código
+que no hay cuerpo, y `build()` lo garantiza. El genérico
 `ResponseEntity<?>` permite que distintas ramas devuelvan tipos distintos (un DTO
 de error o un String). Con `ResponseEntity` controlas también `Cache-Control`,
 `Content-Disposition` (descargas), `ETag`/`If-None-Match` (caché condicional →
@@ -265,8 +282,12 @@ public ItemDto reemplazar(@PathVariable long id, @RequestBody ItemBody cuerpo) {
 ```
 
 La propiedad clave: **PUT es idempotente**. Repetir la misma petición N veces deja
-el sistema en el mismo estado (a diferencia de POST, que crearía N recursos). De
-ahí nacen patrones de robustez que practica el ejercicio:
+el sistema en el mismo estado (a diferencia de POST, que crearía N recursos). Ojo:
+idempotente NO significa "seguro" (GET sí es *safe*: no muta nada) ni que la
+respuesta sea idéntica cada vez (el segundo PUT podría dar 200 y el primero 201 en
+un upsert); idempotencia es sobre el **estado del servidor**, no sobre el código de
+respuesta. PATCH, en cambio, no se garantiza idempotente (un PATCH tipo `{"saldo":
+"+10"}` acumularía). De ahí nacen patrones de robustez que practica el ejercicio:
 
 - **Bloqueo optimista** (`version`): si la versión del cliente ≠ la actual →
   **412 Precondition Failed** (alguien la cambió antes). Es lo que automatiza
@@ -311,6 +332,12 @@ Dos formas de modelar "campo no enviado":
 
 Al recibir un `Map<String,Object>` te toca **validar los tipos a mano** (Jackson
 no sabe que `"activo"` debe ser boolean) y proteger campos de solo lectura (el id).
+
+> ⚠ Cuidado con los castes desde un `Map<String,Object>`: Jackson mete los enteros
+> JSON como `Integer` (o `Long`), los decimales como `Double` y los objetos como
+> `Map`. Un `(Boolean) cambios.get("activo")` cuando llega un número lanza
+> `ClassCastException` → 500. Comprueba con `instanceof` antes de castear, o
+> devuelve 400 si el tipo no es el esperado.
 El ejercicio también simula JSON Patch (RFC 6902): una lista de operaciones
 `{op, path, value}` que aplicas en orden.
 
@@ -448,6 +475,9 @@ Tres ideas que castiga el ejercicio:
 | 8 | Capturar la excepción en el endpoint y devolver 200 | Déjala volar al `@ExceptionHandler`/`@RestControllerAdvice` |
 | 9 | Handler genérico `RuntimeException` "se come" los específicos | Spring elige el más concreto; ordénalos por especificidad mental |
 | 10 | Estado de controlador en `HashMap`/`int++` | Singleton concurrente: `ConcurrentHashMap` + `AtomicLong`/`AtomicInteger` |
+| 11 | Devolver JSON como `String` sin `produces` | Un `String` sale como `text/plain`; pon `produces = APPLICATION_JSON_VALUE` o `jsonPath` falla |
+| 12 | Dos `@RequestBody` en un método | El cuerpo se lee una vez; usa UN DTO que anide todo |
+| 13 | Castear directo desde `Map<String,Object>` en PATCH | Jackson da `Integer`/`Double`/`Map`; comprueba con `instanceof` antes de castear o lanzas `ClassCastException` (500) |
 
 ## Chuleta final del bloque
 
@@ -462,7 +492,8 @@ Tres ideas que castiga el ejercicio:
 produces/consumes Content-Type de salida / de entrada
 ResponseEntity    status + headers + body a medida   .ok .created .noContent .notFound .badRequest
 Códigos           GET 200 · POST 201+Location · PUT 200/204 · DELETE 204 · ausente 404
-                  400 malformado · 409 conflicto · 412 precondición · 415 media · 422 negocio
+                  400 malformado · 409 conflicto · 412 precondición · 422 negocio
+                  415 Content-Type no aceptado (consumes) · 406 Accept no servible (produces)
 @ExceptionHandler local · @RestControllerAdvice global (el más específico gana)
 Estado            ConcurrentHashMap + AtomicLong (el controller es singleton)
 ```

@@ -49,9 +49,11 @@ Accept: text/html, application/json;q=0.9, application/*;q=0.8, */*;q=0.1
 
 - Se separa por **comas** en *media-ranges*.
 - Cada uno puede llevar un **q-value** (`;q=0.9`): la "calidad" o preferencia,
-  de 0 a 1. **Si falta, q = 1.0** (máxima preferencia).
+  de 0 a 1. **Si falta, q = 1.0** (máxima preferencia). Un `q=0` significa lo
+  contrario: "este formato **no** lo quiero" (lo excluye explícitamente).
 - Hay **comodines**: `*/*` (cualquier cosa), `application/*` (cualquier subtipo
-  de application).
+  de application). La preferencia se ordena de más específico a menos: un tipo
+  exacto gana a `application/*`, que a su vez gana a `*/*`.
 
 Reglas de resolución que implementas en el ejercicio base:
 
@@ -81,6 +83,14 @@ flowchart TD
 En Spring esto lo hace un `HttpMessageConverter` por ti (uno para JSON con
 Jackson, otro para XML…), pero entender el algoritmo es lo que te permite
 depurar un `406` inesperado o exponer formatos a medida (`vnd.empresa.v2+json`).
+
+**Caché y negociación: la cabecera `Vary`.** Si la misma URL puede responder en
+JSON o en XML según el `Accept`, una caché intermedia que solo se fije en la URL
+serviría la representación equivocada. Por eso, cuando negocias, debes añadir
+`Vary: Accept` a la respuesta: le dices a la caché que la respuesta **depende**
+de esa cabecera. La misma idea aplica a `Vary: Accept-Encoding` (gzip vs sin
+comprimir) y `Vary: Origin` en CORS. Olvidarlo es una fuente clásica de bugs de
+"a unos usuarios les llega XML y a otros JSON".
 
 > **Lo practicas en `Ej055ContentNegotiation`**: resolver el MediaType de salida
 > a partir de `Accept` y `produces`, con comodines, q-values, charset y tipos
@@ -112,6 +122,25 @@ manda primero una petición **preflight** `OPTIONS` preguntando "¿puedo?". Una
 petición es preflight si su método es `OPTIONS` **y** trae
 `Access-Control-Request-Method`.
 
+¿Qué es "simple" (y por tanto NO dispara preflight)? Solo:
+
+- **Método** entre `GET`, `HEAD` o `POST`.
+- **Cabeceras** entre `Accept`, `Accept-Language`, `Content-Language` y
+  `Content-Type` — pero `Content-Type` **solo** si vale `text/plain`,
+  `multipart/form-data` o `application/x-www-form-urlencoded`.
+
+La consecuencia que sorprende a todo el mundo: **un `POST` con
+`Content-Type: application/json` NO es simple** (el JSON no está en esa lista
+blanca), así que tu llamada `fetch` con `body: JSON.stringify(...)` dispara un
+`OPTIONS` previo. Ese OPTIONS "fantasma" que ves en la pestaña Red del navegador
+es justo esto, y es la causa nº 1 de errores CORS al hacer POST de JSON.
+
+Detalle importante del preflight: la petición `OPTIONS` **nunca** lleva cookies
+ni el cuerpo; solo pregunta. El navegador valida la respuesta del preflight
+contra las cabeceras `Access-Control-Request-Method` /
+`Access-Control-Request-Headers` que envió, y solo si pasa lanza la petición
+real (que ya sí lleva credenciales si procede).
+
 Las cabeceras CORS clave:
 
 | Cabecera (respuesta) | Significado |
@@ -125,7 +154,16 @@ Las cabeceras CORS clave:
 
 La trampa de seguridad nº 1: **`Allow-Origin: *` y `Allow-Credentials: true` son
 incompatibles**. Si permites credenciales, tienes que devolver el origen
-concreto (eco), nunca el comodín. Lo practicas literalmente en un reto.
+concreto (eco), nunca el comodín. Lo practicas literalmente en un reto. Y cuando
+haces eco del origen, recuerda el `Vary: Origin` de antes: si no, una caché
+podría servirle a un origen las cabeceras CORS calculadas para otro.
+
+Dos detalles que castigan los retos: el `Access-Control-Max-Age` se **acota** a
+un rango razonable (p.ej. `[60, 1800]`) y, en el ejercicio, un valor **no
+numérico cae al máximo** (`1800`), no al mínimo — es la decisión defensiva
+"ante la duda, cachea lo permitido". Además, el valor de `Origin` que entra debe
+**sanearse** antes de devolverlo en una cabecera: si trae `\r`/`\n` lo rechazas,
+porque reflejarlo crudo abre la puerta a *header injection* (CRLF).
 
 En Spring lo configuras una vez con `WebMvcConfigurer`:
 
@@ -218,7 +256,16 @@ el estándar **RFC 5987** obliga a codificarlo:
 
 Para escribir un MIME correcto según la extensión usas un mapeo
 (`csv → text/csv`, `pdf → application/pdf`, desconocido →
-`application/octet-stream`, el "no sé qué es, descárgalo en bruto").
+`application/octet-stream`, el "no sé qué es, descárgalo en bruto"). Ese
+`application/octet-stream` por defecto no es relleno: es la opción **segura**,
+porque obliga al navegador a tratar el fichero como binario opaco en vez de
+intentar interpretarlo (un MIME adivinado mal puede acabar ejecutando contenido).
+
+Si el nombre del fichero a servir lo elige el cliente, vuelve el riesgo de
+*directory traversal* de 6.3: hay que sanear el nombre **y** confinar la lectura
+a un directorio base (*sandboxing*), comprobando que la ruta resuelta sigue
+dentro de él. Servir `../../etc/passwd` por una descarga es el mismo agujero,
+solo que de lectura.
 
 > **Lo practicas en `Ej058FileDownload`**: construir la respuesta de descarga,
 > sanear el nombre, RFC 5987, mapeo extensión→MIME, GZIP, ETags y *sandboxing*
@@ -301,18 +348,36 @@ Vocabulario del bloque:
 
 | Concepto | Qué es |
 |---|---|
-| ETag **fuerte** | `"abc"` — coincidencia byte a byte |
-| ETag **débil** | `W/"abc"` — "semánticamente equivalente" |
+| ETag **fuerte** | `"abc"` — coincidencia **byte a byte** |
+| ETag **débil** | `W/"abc"` — "semánticamente equivalente" (mismo contenido lógico aunque difieran los bytes) |
 | `If-None-Match` | en GET: "dame solo si cambió" → 304 si igual |
 | `If-Match` | en PUT/DELETE: "modifica solo si sigue igual" → 412 si no |
 | `Cache-Control` | política: `public, max-age=3600, must-revalidate`, `no-store` |
 | `Last-Modified` / `If-Modified-Since` | misma idea con **fechas** RFC 1123 |
 
+¿Cuándo fuerte y cuándo débil? El **fuerte** garantiza identidad byte a byte:
+úsalo cuando el cliente vaya a hacer *range requests* (descargas parciales), que
+exigen bytes idénticos. El **débil** basta cuando dos respuestas son
+"equivalentes" aunque no idénticas — el caso típico es que una vaya comprimida
+con gzip y la otra no: el contenido lógico es el mismo, pero los bytes difieren,
+así que un ETag fuerte sería incorrecto. Por eso muchos servidores marcan como
+débiles los ETags de respuestas comprimidas. Convertir fuerte→débil es **anteponer
+`W/`**, y debe ser *idempotente*: si ya empieza por `W/`, no lo dupliques.
+
+`If-None-Match` admite además el comodín `*` (casa con "cualquier versión que
+exista") y una **lista** separada por comas (`"a", "b"` — ojo al espacio tras la
+coma, hay que hacer `trim`). Y la regla defensiva del ejercicio: si te falta uno
+de los dos valores que comparas (ETag actual o cabecera), no puedes garantizar la
+condición, así que el resultado es **falso** (no asumas coincidencia con `null`).
+
 Las fechas HTTP usan el formato RFC 1123 (`Wed, 21 Oct 2015 07:28:00 GMT`):
-`DateTimeFormatter.RFC_1123_DATE_TIME` las parsea y formatea. El `412 Precondition
-Failed` (con `If-Match`) es la base del **control de concurrencia optimista**:
-evita que dos clientes pisen el mismo recurso sin enterarse (lo retomarás en JPA,
-bloque 14, con `@Version`).
+`DateTimeFormatter.RFC_1123_DATE_TIME` las parsea y formatea. Cuidado al
+formatear un `Instant` "pelado": no tiene zona, así que lanza
+`UnsupportedTemporalTypeException` — antes hay que anclarlo a una zona
+(`.atZone(ZoneOffset.UTC)` o `ZoneId.of("GMT")`). El `412 Precondition Failed`
+(con `If-Match`) es la base del **control de concurrencia optimista**: evita que
+dos clientes pisen el mismo recurso sin enterarse (lo retomarás en JPA, bloque
+14, con `@Version`).
 
 > **Lo practicas en `Ej060HttpCacheEtag`**: el flujo 200/304, ETags fuertes y
 > débiles (SHA-256), `If-Match`/`If-None-Match` con múltiples valores, fechas
@@ -346,8 +411,13 @@ En el ejercicio base resuelves la versión con **precedencia**: la cabecera
 Una versión no numérica o `< 1` es un `IllegalArgumentException`.
 
 Para extraer `/v2/` de una ruta de forma robusta usa una expresión regular
-(`/v(\\d+)/` o `/v(\\d+)(/|$)`): así `/api/av2/users` **no** cuela como versión
-(la `a` delante rompe el patrón). El versionado semántico (SemVer
+**anclada entre barras** (`/v(\\d+)/` o `/v(\\d+)(/|$)`): así `/api/av2/users`
+**no** cuela como versión (la `a` delante rompe el patrón) y `/api/v/users`
+(sin número) tampoco. Un `contains("v2")` dejaría pasar ambos falsos positivos.
+
+Cuando jubilas una versión vieja no la apagas de golpe: la marcas como
+*deprecated* avisando con cabeceras de respuesta (`Deprecation: true`, `Sunset:
+<fecha>` con la fecha de retirada) para que los clientes tengan tiempo de migrar. El versionado semántico (SemVer
 `MAJOR.MINOR.PATCH`, p.ej. `1.4.2`) y los rangos de compatibilidad (`^1.0.0` =
 `>=1.0.0 <2.0.0`) son el modelo que usan Maven y npm para decidir qué
 actualizaciones son seguras.
@@ -372,7 +442,15 @@ flowchart LR
 |---|---|---|
 | Nivel | Servlet (antes de Spring MVC) | Spring MVC |
 | Conoce el handler | No | **Sí** (`HandlerMethod`) |
+| Ve excepciones del controller | No (Spring ya las gestionó) | Sí (en `afterCompletion`) |
+| Puede envolver request/response | **Sí** (`chain.doFilter` con *wrappers*) | No |
 | Uso típico | CORS, compresión, logging crudo | auth por endpoint, métricas, ETag |
+
+El filtro envuelve a TODO Spring MVC (incluida la gestión de excepciones y el
+`@ControllerAdvice`), por eso es el sitio para cosas que deben pasar pase lo que
+pase y para *envolver* el cuerpo (cachear el body para loggearlo, comprimir). El
+interceptor vive **dentro** de MVC: ya sabe qué método Java se va a ejecutar, lo
+que te permite decisiones por endpoint (auth según anotaciones del handler).
 
 Un `HandlerInterceptor` tiene tres ganchos:
 
@@ -393,10 +471,17 @@ public class TimingInterceptor implements HandlerInterceptor {
 ```
 
 - `preHandle` corre **antes** del controller; devolver `false` aborta la
-  petición (lo usas para un 401 por API key inválida).
-- `postHandle` corre tras el controller (si no hubo excepción).
-- `afterCompletion` corre **siempre** (haya error o no): el sitio para métricas
-  y limpieza. Aquí solo *observas* `ex`, nunca relanzas.
+  petición (lo usas para un 401 por API key inválida). Importante: si cortas con
+  `false`, eres tú quien debe escribir el estado/respuesta — y no se llamará a
+  `postHandle`, pero **sí** a `afterCompletion`.
+- `postHandle` corre tras el controller **solo si no hubo excepción** (y antes de
+  renderizar la vista). No lo uses para métricas de tiempo: una petición que
+  falla nunca pasa por aquí, y perderías justo los casos que quieres medir.
+- `afterCompletion` corre **siempre** (haya error o no): por eso es el sitio para
+  métricas y limpieza. Aquí solo *observas* `ex`, nunca relanzas.
+
+Por eso el timing va en `preHandle` (guardas el inicio) + `afterCompletion`
+(calculas la duración): así mides también las peticiones que acaban en error.
 
 El truco para pasar datos entre `preHandle` y `afterCompletion` es
 `request.setAttribute(...)` / `getAttribute(...)` (igual que el timing de
@@ -425,18 +510,26 @@ controller de Spring: puedes inspeccionar qué método Java va a ejecutarse.
 | 10 | Relanzar la excepción en `afterCompletion` | Ahí solo observas/registras; nunca relanzas |
 | 11 | `split(":")` en Basic Auth | Usa `split(":", 2)`: el password puede llevar `:` |
 | 12 | Leer `getBytes()` dos veces | El stream se consume una vez; guárdalo en `byte[]` |
+| 13 | Negociar formato sin `Vary: Accept` | Una caché serviría JSON donde tocaba XML (y viceversa) |
+| 14 | Creer que un POST de JSON no hace preflight | `application/json` no es "simple" → dispara `OPTIONS` |
+| 15 | Listar mal los métodos CORS "simples" | Son **GET, HEAD y POST** (PUT/DELETE/PATCH no) |
+| 16 | `Max-Age` inválido → tirar al mínimo | En el reto el inválido cae al **máximo** (defensivo) |
+| 17 | ETag fuerte en respuesta gzip | gzip cambia los bytes → debería ser **débil** (`W/`) |
+| 18 | Duplicar `W/` al convertir a débil | La conversión a débil es **idempotente** |
+| 19 | Medir tiempos en `postHandle` | Se salta si hay excepción; usa `afterCompletion` |
+| 20 | Reflejar `Origin` con `\r`/`\n` sin sanear | *Header injection* (CRLF); rechaza el valor |
 
 ## Chuleta final del bloque
 
 ```
-Negociación  Accept (q-value, def 1.0) vs produces · null/blank=*/* · sin match="" (406)
-CORS         Allow-Origin/Methods/Headers · preflight=OPTIONS+ACRM · *≠credentials
+Negociación  Accept (q-value, def 1.0; q=0 excluye) vs produces · null/blank=*/* · sin match="" (406) · Vary: Accept
+CORS         Allow-Origin/Methods/Headers · preflight=OPTIONS+ACRM · *≠credentials · simples=GET/HEAD/POST · JSON→preflight
 Upload       MultipartFile: isEmpty/getOriginalFilename/getSize/getBytes · saneo traversal
-Download     ResponseEntity<byte[]> + Content-Disposition attachment|inline · RFC5987 filename*
+Download     ResponseEntity<byte[]> + Content-Disposition attachment|inline · RFC5987 filename* · default octet-stream
 Headers      @RequestHeader(required=false) · Basic=base64(user:pass) · Bearer · XFF[0]
-ETag/Caché   ETag "hash" → If-None-Match → 304 .build() · If-Match→412 · Cache-Control
-Versionado   header pisa ruta · default 1 · regex /v(\d+)/ · SemVer M.m.p · ^1.0.0
-Interceptor  preHandle(false corta)/postHandle/afterCompletion(siempre) · setAttribute
+ETag/Caché   fuerte="h" (byte) vs débil W/"h" (gzip) · If-None-Match→304 .build() · If-Match→412 · Cache-Control
+Versionado   header pisa ruta · default 1 · regex anclada /v(\d+)/ · SemVer M.m.p · ^1.0.0 · Deprecation/Sunset
+Interceptor  preHandle(false corta)/postHandle(no si error)/afterCompletion(siempre) · timing en pre+after · setAttribute
 ```
 
 ## Autoevaluación (responde sin mirar; si fallas 2+, relee la sección)
@@ -453,4 +546,8 @@ Interceptor  preHandle(false corta)/postHandle/afterCompletion(siempre) · setAt
 7. ¿Por qué `/api/av2/users` no debe interpretarse como versión 2? ¿Qué
    herramienta lo evita? *(6.7)*
 8. ¿En cuál de los tres ganchos del interceptor pondrías las métricas de tiempo
-   y por qué? *(6.8)*
+   y por qué NO en `postHandle`? *(6.8)*
+9. ¿Por qué un `POST` con `Content-Type: application/json` provoca un preflight
+   `OPTIONS` y un `POST` de un formulario clásico no? *(6.2)*
+10. ¿Por qué un ETag de una respuesta comprimida con gzip debería ser débil
+    (`W/`) y no fuerte? *(6.6)*

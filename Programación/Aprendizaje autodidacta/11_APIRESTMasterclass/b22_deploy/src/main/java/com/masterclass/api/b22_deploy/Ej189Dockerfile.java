@@ -80,11 +80,14 @@ public final class Ej189Dockerfile {
      * @return true si tiene formato 'nombre:tag', false en caso contrario
      */
     public static boolean validarImagenBase(String imagen) {
-        // TODO extra: RETO EXTRA 01: Valida que una imagen base de Docker tenga un formato correcto con tag.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 22.1 (una imagen es "nombre:tag"; sin tag es no-determinista).
+        // 1. null -> false.
+        // 2. Debe tener formato "nombre:tag": parte por los dos puntos y exige
+        //    que AMBAS partes existan y NO estén vacías.
+        // PISTA: int i = imagen.indexOf(':'); válido si i > 0 && i < imagen.length()-1.
+        //        (o imagen.split(":") con length==2 y ninguna parte blank).
+        // OJO: el test exige false para "maven" (sin ':') y para "maven:" (tag
+        //      vacío); true solo para "maven:3.9-eclipse-temurin-21".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para validarImagenBase");
     }
 
@@ -95,11 +98,13 @@ public final class Ej189Dockerfile {
      * @return el número de puerto, o -1 si no es válido
      */
     public static int parsearPuerto(String lineaExpose) {
-        // TODO extra: RETO EXTRA 02: Parsea el puerto de una directiva EXPOSE.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 22.1 (EXPOSE documenta el puerto).
+        // 1. null -> -1.
+        // 2. trim() la línea (el test manda "  EXPOSE 80  " con espacios sobrantes).
+        // 3. Si NO empieza por "EXPOSE" -> -1 ("RUN apt-get update" debe dar -1).
+        // 4. Toma lo que sigue a EXPOSE y conviértelo a int; si no es número -> -1.
+        // PISTA: String[] p = linea.trim().split("\\s+"); p[0].equals("EXPOSE").
+        //        Envuelve Integer.parseInt(p[1]) en try/catch (NumberFormatException -> -1).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para parsearPuerto");
     }
 
@@ -110,11 +115,16 @@ public final class Ej189Dockerfile {
      * @return lista de nombres de stages encontrados
      */
     public static List<String> extraerStageNames(List<String> lineas) {
-        // TODO extra: RETO EXTRA 03: Extrae los nombres de los stages (alias) definidos con 'AS' en el Dockerfile.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 22.1 ("FROM imagen AS alias" nombra un stage).
+        // 1. null -> lista vacía (List.of()).
+        // 2. Recorre las líneas; quédate con las que contienen " AS " (un FROM
+        //    con alias). El alias es la PALABRA que sigue al AS.
+        // 3. Devuelve los alias EN ORDEN de aparición.
+        // PISTA: split("\\s+") y coge el token siguiente al que sea "AS"
+        //        (ignorando mayúsc/minúsc con equalsIgnoreCase). O un stream
+        //        .filter(...).map(...).toList().
+        // OJO: el test espera exactamente ["build","runtime"] de dos FROM con AS;
+        //      "WORKDIR /app" (sin AS) no aporta nada.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerStageNames");
     }
 
@@ -126,11 +136,13 @@ public final class Ej189Dockerfile {
      * @return el número de ocurrencias
      */
     public static long contarInstrucciones(List<String> lineas, String instruccion) {
-        // TODO extra: RETO EXTRA 04: Cuenta la frecuencia de una determinada instrucción en el Dockerfile.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 22.1. Devuelve un long (cuenta de ocurrencias).
+        // 1. Si lineas o instruccion son null -> 0.
+        // 2. Cuenta las líneas cuya instrucción (primer token) sea la pedida.
+        // PISTA: lineas.stream().filter(l -> l.trim().startsWith(instruccion + " "))
+        //        .count();  (o l.trim().split("\\s+")[0].equals(instruccion)).
+        // OJO: el test pide 2 para "RUN", 1 para "COPY", 0 para "EXPOSE" (que no
+        //      aparece) -> contar lo ausente debe dar 0, no fallar.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarInstrucciones");
     }
 
@@ -141,11 +153,14 @@ public final class Ej189Dockerfile {
      * @return lista de líneas que contienen comandos sospechosos
      */
     public static List<String> detectarInstruccionesSospechosas(List<String> lineas) {
-        // TODO extra: RETO EXTRA 05: Detecta comandos potencialmente inseguros o desaconsejados en las líneas RUN.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 22.1 (principio de menor privilegio).
+        // 1. null -> lista vacía.
+        // 2. Devuelve las líneas que contengan un comando sospechoso. Para este
+        //    test bastan dos marcadores: "sudo" y "chmod 777".
+        // PISTA: .filter(l -> l.contains("sudo") || l.contains("chmod 777")).toList();
+        // OJO: el test espera 2 resultados y comprueba que el primero contiene
+        //      "sudo" y el segundo "chmod 777" -> respeta el ORDEN de las líneas.
+        //      "RUN apt-get update" (limpio) NO debe colarse.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para detectarInstruccionesSospechosas");
     }
 
@@ -158,11 +173,12 @@ public final class Ej189Dockerfile {
      * @return la directiva COPY generada
      */
     public static String generarDirectivaCopy(String fromStage, String origen, String destino) {
-        // TODO extra: RETO EXTRA 06: Genera una directiva COPY optimizada y segura indicando el origen.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 22.1 (COPY --from=stage reaprovecha el artefacto del builder).
+        // 1. Si fromStage, origen o destino son null/blank -> IllegalArgumentException.
+        // 2. Formato EXACTO: "COPY --from=" + fromStage + " " + origen + " " + destino.
+        // PISTA: return "COPY --from=%s %s %s".formatted(fromStage, origen, destino);
+        // OJO: el test compara con equals "COPY --from=build /app/target/app.jar app.jar"
+        //      y exige IllegalArgumentException cuando fromStage es null.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para generarDirectivaCopy");
     }
 
@@ -173,11 +189,14 @@ public final class Ej189Dockerfile {
      * @return true si es seguro, false de lo contrario
      */
     public static boolean esUsuarioSeguro(String lineaUser) {
-        // TODO extra: RETO EXTRA 07: Verifica si un usuario configurado en la directiva USER es seguro (no root/0).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 22.1 (correr como root es el antipatrón nº 2 del bloque).
+        // 1. null -> false.
+        // 2. Debe ser una línea USER: si NO empieza por "USER" -> false
+        //    ("RUN adduser" debe dar false aunque mencione un usuario).
+        // 3. Extrae el usuario (segundo token). Es seguro si NO es "root" ni "0".
+        // PISTA: String[] p = lineaUser.trim().split("\\s+");
+        //        p[0].equals("USER") && !p[1].equals("root") && !p[1].equals("0").
+        // OJO: el test exige false tanto para "USER root" como para "USER 0".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esUsuarioSeguro");
     }
 
@@ -189,11 +208,12 @@ public final class Ej189Dockerfile {
      * @return la línea del Dockerfile formateada
      */
     public static String formatearEtiqueta(String clave, String valor) {
-        // TODO extra: RETO EXTRA 08: Formatea una etiqueta metadata (LABEL) en formato estándar.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 22.1 (LABEL añade metadatos a la imagen).
+        // 1. Si clave o valor son null/blank -> IllegalArgumentException
+        //    (el test manda clave " " con un espacio: usa isBlank(), no isEmpty()).
+        // 2. Formato: LABEL clave="valor" (el valor SIEMPRE entre comillas dobles).
+        // PISTA: return "LABEL " + clave + "=\"" + valor + "\"";
+        // OJO: el test compara con equals LABEL version="1.0.0".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearEtiqueta");
     }
 
@@ -204,11 +224,17 @@ public final class Ej189Dockerfile {
      * @return true si está en forma exec, false de lo contrario
      */
     public static boolean esExecFormEntrypoint(String linea) {
-        // TODO extra: RETO EXTRA 09: Valida si una línea de comando (ENTRYPOINT/CMD) está en la forma 'exec' (JSON array).
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 22.5 (exec form = array JSON; propaga SIGTERM a la JVM).
+        // 1. null -> false.
+        // 2. Debe ser una línea ENTRYPOINT cuyo argumento empiece por '['.
+        // 3. Comprueba dos cosas: que empieza por "ENTRYPOINT" y que tras él hay
+        //    un '[' (forma exec). Lo más simple: tras quitar "ENTRYPOINT" y
+        //    trim, el resto empieza por '['.
+        // PISTA: linea.trim().startsWith("ENTRYPOINT")
+        //        && linea.substring(linea.indexOf("ENTRYPOINT")+10).trim().startsWith("[").
+        // OJO: el test pide false para "RUN [\"java\"]" (es array pero NO es
+        //      ENTRYPOINT) y para "ENTRYPOINT java -jar app.jar" (no es array).
+        //      Hermano del reto 03 de Ej193 (esEntrypointFormaExec).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExecFormEntrypoint");
     }
 
@@ -219,11 +245,13 @@ public final class Ej189Dockerfile {
      * @return el Dockerfile optimizado y compacto
      */
     public static List<String> simplificarDockerfile(List<String> lineas) {
-        // TODO extra: RETO EXTRA 10: Simplifica un Dockerfile eliminando comentarios y líneas en blanco para optimizar lectura.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 22.1. Filtra fuera comentarios y líneas en blanco.
+        // 1. null -> lista vacía.
+        // 2. Descarta: líneas en blanco (tras trim) y comentarios (trim empieza por '#').
+        // PISTA: lineas.stream()
+        //        .filter(l -> !l.isBlank() && !l.trim().startsWith("#")).toList();
+        // OJO: la línea "   " (solo espacios) cuenta como blanca -> usa isBlank()
+        //      sobre el trim. El test espera exactamente ["FROM base","RUN echo hello"].
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para simplificarDockerfile");
     }
 

@@ -183,6 +183,28 @@ nulos, importe) va ANTES de tocar ningún saldo. Así, si lanzas la excepción, 
 has modificado nada: ése es el "rollback" simulado. La suma total de saldos debe
 permanecer constante (lo que sale de uno entra en el otro).
 
+Ojo a un cambio de modelo respecto a 10.1: allí `Cuenta` era un `record`
+inmutable y "modificar" el saldo creaba una cuenta nueva. Aquí, en cambio, la
+`Cuenta` es **mutable** (`origen.saldo -= importe`): la transacción muta el
+estado in situ. Es deliberado —simula filas de BD que cambian dentro de la
+transacción—, pero refuerza la regla: con estado mutable, validar antes de mutar
+es lo único que te da el "todo o nada". Si mutaras a medias y luego fallaras,
+no habría record nuevo que descartar: el daño ya estaría hecho.
+
+En Spring real **no** simulas el rollback a mano: `@Transactional` lo hace por
+ti, pero con una regla que sorprende — por defecto solo revierte ante
+`RuntimeException` y `Error`, **no** ante excepciones *checked*. Si quieres que
+una `IOException` (checked) también revierta, debes pedirlo explícitamente con
+`@Transactional(rollbackFor = IOException.class)`. Por eso las excepciones de
+dominio del bloque 9 suelen extender `RuntimeException`: para que el rollback
+sea automático.
+
+Y el clásico que te morderá en el bloque 12: `@Transactional` funciona vía un
+**proxy** de Spring. Si un método **llama a otro de la misma clase** anotado con
+`@Transactional`, esa llamada interna NO pasa por el proxy y **la anotación se
+ignora** (no abre transacción). Es la trampa del *self-invocation*: la solución
+es mover el método transaccional a otro bean e inyectarlo.
+
 > **Lo practicas en `Ej088ServiceTransactional`**: una transferencia atómica que,
 > si no hay fondos, lanza `SaldoInsuficienteException` **sin alterar los saldos**.
 

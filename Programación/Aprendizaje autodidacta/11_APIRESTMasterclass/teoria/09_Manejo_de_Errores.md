@@ -68,6 +68,14 @@ Las claves que vas a tocar en el ejercicio:
   `@ExceptionHandler` dentro de un `@Controller` aplica a TODOS los métodos de
   ese controller. La versión global (clase aparte) es solo el siguiente paso.
 
+Cuando hay varios `@ExceptionHandler`, Spring elige el del tipo **más
+específico** que case con la excepción lanzada: si tienes un handler para
+`RecursoNoEncontrado` y otro para `RuntimeException`, una `RecursoNoEncontrado`
+va al primero (no al genérico). No es el orden de declaración el que decide,
+sino la proximidad en la jerarquía de herencia. Por eso conviene tener un
+handler "cajón de sastre" (`Exception.class` → 500 genérico) como última red:
+captura lo que no previste sin que nada se escape como stack trace.
+
 ```mermaid
 sequenceDiagram
     participant C as Cliente
@@ -130,6 +138,22 @@ Dos matices que evalúan los tests:
 `type: about:blank` es el valor por defecto del RFC y significa "no hay más
 documentación que el `title`". En producción lo sustituyes por una URL real a tu
 catálogo de errores (`https://api.tuapp.com/errors/not-found`).
+
+Dos detalles de producción que conviene grabar:
+
+- El `Content-Type` de una respuesta `ProblemDetail` no es `application/json`
+  sino **`application/problem+json`** (lo fija Spring solo). Ese sufijo `+json`
+  es lo que avisa a un cliente que entiende el RFC de que el cuerpo es un error
+  estándar, no un JSON cualquiera. (Lo tocas en `Ej079`, reto extra 02.)
+- El RFC 7807 fue **sustituido por el RFC 9457** (2023), que es retrocompatible:
+  mismos cinco campos, pero formaliza que un problema puede llevar varios
+  errores (campo `errors`) y aclara la semántica de `type`. La clase
+  `ProblemDetail` de Spring vale para ambos; verás citados los dos números.
+- Nunca metas el **stack trace** ni el mensaje técnico crudo en `detail`: eso es
+  una fuga de información (rutas de clase, versiones, SQL). El `detail` describe
+  el problema en términos del cliente ("Usuario 7 no existe"); el rastro técnico
+  va al **log** con su `traceId` (sección 9.6). Lo practicas filtrando campos
+  sensibles en `Ej078`, reto extra 05.
 
 > **Lo practicas en `Ej078ProblemDetail`**: poblar un `ProblemDetail` conforme al
 > RFC 7807, derivar el title del status y añadir propiedades extra.

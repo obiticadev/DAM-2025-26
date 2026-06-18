@@ -71,11 +71,10 @@ public final class Ej187TimeoutsAndBulkhead {
      * RETO EXTRA 01: Valida inicio.
      */
     public static boolean esInicioValido(long in) {
-        // TODO extra: RETO EXTRA 01: Valida inicio.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return in >= 0;
+        // El test: 0 → true. Un instante de inicio en ms no puede ser negativo
+        // (0 es válido: arranque del reloj). Es el TODO 1 de dentroDeTimeout()
+        // (21.5).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esInicioValido");
     }
 
@@ -83,11 +82,9 @@ public final class Ej187TimeoutsAndBulkhead {
      * RETO EXTRA 02: Valida duracion.
      */
     public static boolean esDuracionValida(long dur) {
-        // TODO extra: RETO EXTRA 02: Valida duracion.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return dur >= 0;
+        // El test: 10 → true. Una duración de 0 es válida (operación instantánea);
+        // negativa no tiene sentido. Es el TODO 2 de dentroDeTimeout() (21.5).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esDuracionValida");
     }
 
@@ -95,11 +92,10 @@ public final class Ej187TimeoutsAndBulkhead {
      * RETO EXTRA 03: Valida timeout.
      */
     public static boolean esTimeoutValido(long to) {
-        // TODO extra: RETO EXTRA 03: Valida timeout.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return to > 0;
+        // El test: 100 → true. CUIDADO: aquí es ESTRICTO (> 0), a diferencia de
+        // inicio y duración (>= 0). Un timeout de 0 ms no daría tiempo a nada;
+        // por eso dentroDeTimeout() lanza excepción con timeoutMs <= 0 (21.5).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esTimeoutValido");
     }
 
@@ -107,11 +103,9 @@ public final class Ej187TimeoutsAndBulkhead {
      * RETO EXTRA 04: Calcula final de ejecucion.
      */
     public static long calcularFinMs(long in, long dur) {
-        // TODO extra: RETO EXTRA 04: Calcula final de ejecucion.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return in + dur;
+        // El test: (100, 50) → 150. Es el TODO 4 de dentroDeTimeout(): el
+        // instante en que la operación TERMINARÍA (inicio + duración).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularFinMs");
     }
 
@@ -119,11 +113,10 @@ public final class Ej187TimeoutsAndBulkhead {
      * RETO EXTRA 05: Calcula instante limite.
      */
     public static long calcularDeadlineMs(long in, long to) {
-        // TODO extra: RETO EXTRA 05: Calcula instante limite.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return in + to;
+        // El test: (100, 100) → 200. Es el TODO 5 de dentroDeTimeout(): el límite
+        // DURO (inicio + timeout). La operación cumple si calcularFinMs <=
+        // calcularDeadlineMs (21.5). Mismo patrón que calcularFinMs, otro sumando.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularDeadlineMs");
     }
 
@@ -131,11 +124,10 @@ public final class Ej187TimeoutsAndBulkhead {
      * RETO EXTRA 06: Valida bulkhead.
      */
     public static boolean esEstadoValido(long[] est) {
-        // TODO extra: RETO EXTRA 06: Valida bulkhead.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return est != null && est.length == 1;
+        // El test: new long[]{0} → true. OJO: aquí el estado del bulkhead es de
+        // UN elemento (permisos en uso), no dos como el token-bucket de 21.3.
+        // Es el TODO 1 de adquirir() (21.5). null antes de length (cortocircuito).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esEstadoValido");
     }
 
@@ -143,11 +135,9 @@ public final class Ej187TimeoutsAndBulkhead {
      * RETO EXTRA 07: Obtiene en uso.
      */
     public static long obtenerPermisosEnUso(long[] est) {
-        // TODO extra: RETO EXTRA 07: Obtiene en uso.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return est[0];
+        // El test: new long[]{2} → 2. est[0] son los permisos ocupados ahora
+        // mismo. Comparado con maxPermisos te dice si hay hueco (21.5).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerPermisosEnUso");
     }
 
@@ -155,11 +145,10 @@ public final class Ej187TimeoutsAndBulkhead {
      * RETO EXTRA 08: Libera un permiso.
      */
     public static long[] liberarPermiso(long[] est) {
-        // TODO extra: RETO EXTRA 08: Libera un permiso.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: in-place — est[0] = Math.max(est[0] - 1, 0); return est;
+        // El test: new long[]{2} → [0] == 1. Es la operación inversa de
+        // adquirir(): cuando una tarea termina, devuelve su permiso al bulkhead
+        // (21.5). El clamp a 0 evita permisos negativos si liberas de más.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para liberarPermiso");
     }
 
@@ -167,11 +156,11 @@ public final class Ej187TimeoutsAndBulkhead {
      * RETO EXTRA 09: Comprueba saturacion.
      */
     public static boolean esSaturado(long[] est, long max) {
-        // TODO extra: RETO EXTRA 09: Comprueba saturacion.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return est[0] >= max;
+        // El test: (new long[]{5}, 5) → true. Saturado = no quedan permisos
+        // libres (en uso >= capacidad). Es la condición que hace que adquirir()
+        // rechace en fail-fast (21.5). Uso >= y no == por defensa: nunca debería
+        // pasar de max, pero si pasara, sigue contando como saturado.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esSaturado");
     }
 
@@ -179,11 +168,10 @@ public final class Ej187TimeoutsAndBulkhead {
      * RETO EXTRA 10: Crea estado inicial.
      */
     public static long[] inicializarEstado(long perm) {
-        // TODO extra: RETO EXTRA 10: Crea estado inicial.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return new long[]{perm};
+        // El test comprueba que [0] sea 'perm'. Fabrica el estado del bulkhead
+        // (array de 1: permisos en uso). Lo normal es arrancar con 0 en uso,
+        // pero aquí se parametriza para poder testear cualquier valor inicial.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para inicializarEstado");
     }
 

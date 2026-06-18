@@ -130,6 +130,13 @@ huecos pero con más viajes a la BD).
 Detalle clave: con id generado, **antes de persistir el id es `null`**; tras
 `persist`+flush ya está poblado. Eso es lo que comprueba el ejercicio.
 
+Por qué `IDENTITY` "impide el batch": el id solo existe **después** de ejecutar
+el `INSERT`, así que Hibernate no puede acumular varios inserts y mandarlos
+juntos — necesita el id de vuelta de cada fila antes de seguir, y eso le obliga a
+ir uno a uno. `SEQUENCE` y `TABLE` piden el id **antes** del insert, así que sí
+permiten agrupar inserts en lotes (`batch_size`). Por eso en motores serios se
+prefiere `SEQUENCE` aunque `IDENTITY` parezca más cómodo.
+
 > **Lo practicas en `Ej104IdGenerationStrategies`**: persistir dos entidades sin
 > id y verificar que la BD les asigna ids distintos; leer la estrategia y el
 > `sequenceName`/`allocationSize` por reflexión.

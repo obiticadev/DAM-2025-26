@@ -77,7 +77,12 @@ Cada paquete de `src/` referencia su `.md` homónimo en `teoria/`.
 | XXIII | CI/CD y calidad | 195–198 | 4 |
 | XXIV | Boss Final (multi-parte) | 199–200 | 2 |
 | XXV | Plantillas y PDF (Thymeleaf) | 201–206 | 6 |
-| | **TOTAL** | | **206** |
+| XXVII | Concurrencia y multihilo (PSP RA2) | 215–226 | 12 |
+| | **TOTAL** | | **218** |
+
+> **Bloques de ampliación 2º DAM (ver `ROADMAP_2DAM.md`):** cierran los huecos del BOE
+> en Acceso a Datos y PSP que la ruta REST no toca. `b27_concur` (215–226) es el primero
+> construido. Pendientes: `b26_io`, `b28_proc`, `b29_sockets`, `b30_crypto`, `b31_oodb` (opcional).
 
 ---
 
@@ -393,6 +398,22 @@ Cada paquete de `src/` referencia su `.md` homónimo en `teoria/`.
 | 205 | `b25_thymeleaf/Ej205_Internacionalizacion.java` | I18n de facturas multi-idioma |
 | 206 | `b25_thymeleaf/Ej206_HtmlToPdfGenerator.java` | Transición HTML renderizado a binario PDF |
 
+### Bloque XXVII · Concurrencia y multihilo — PSP RA2 (215–226)
+| # | Archivo | Concepto clave |
+|---|---|---|
+| 215 | `b27_concur/Ej215ThreadRunnable.java` | `Thread` vs `Runnable`, `start`/`run`, `join` |
+| 216 | `b27_concur/Ej216ThreadStates.java` | Estados del hilo, `sleep`, interrupción |
+| 217 | `b27_concur/Ej217RaceConditionSynchronized.java` | Condición de carrera y `synchronized` |
+| 218 | `b27_concur/Ej218WaitNotify.java` | `wait`/`notify`: productor-consumidor |
+| 219 | `b27_concur/Ej219ExecutorService.java` | `ExecutorService`, pools, `shutdown` |
+| 220 | `b27_concur/Ej220CallableFuture.java` | `Callable`, `Future`, `get`/`cancel`/timeout |
+| 221 | `b27_concur/Ej221Locks.java` | `ReentrantLock`, `tryLock`, `ReadWriteLock`, `Condition` |
+| 222 | `b27_concur/Ej222Semaphores.java` | `Semaphore`, `CountDownLatch`, `CyclicBarrier` |
+| 223 | `b27_concur/Ej223AtomicAndConcurrentCollections.java` | Atómicos y colecciones concurrentes |
+| 224 | `b27_concur/Ej224DeadlockLivelock.java` | Deadlock: provocar, evitar, detectar |
+| 225 | `b27_concur/Ej225CompletableFutureAdvanced.java` | `CompletableFuture` (composición async) |
+| 226 | `b27_concur/Ej226ThreadPriorityAndContext.java` | Prioridades, `ThreadLocal`, daemon, contexto |
+
 ---
 
 ## 5. Progreso
@@ -423,3 +444,4 @@ Cada paquete de `src/` referencia su `.md` homónimo en `teoria/`.
 - [x] B23 · CI/CD y calidad (195–198) ✅ compila
 - [x] B24 · Boss Final (199–200) ✅ compila
 - [x] B25 · Plantillas y PDF Thymeleaf (201–206) ✅ compila
+- [x] B27 · Concurrencia y multihilo · PSP RA2 (215–226) ✅ compila, tests en rojo (a implementar)

@@ -74,11 +74,11 @@ public final class Ej186RetryAndCircuitBreaker {
      * RETO EXTRA 01: Valida estados validos del breaker.
      */
     public static boolean esEstadoValido(String estado) {
-        // TODO extra: RETO EXTRA 01: Valida estados validos del breaker.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea —
+        // return "CLOSED".equals(estado) || "OPEN".equals(estado) || "HALF_OPEN".equals(estado);
+        // El test: "CLOSED" → true. Son los 3 estados del breaker (21.4). PISTA:
+        // pon el literal primero ("CLOSED".equals(estado)) para que un 'estado'
+        // null devuelva false sin NPE. Es el TODO 2 de transicion() como método.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esEstadoValido");
     }
 
@@ -86,11 +86,10 @@ public final class Ej186RetryAndCircuitBreaker {
      * RETO EXTRA 02: Valida umbral positivo.
      */
     public static boolean esUmbralValido(int u) {
-        // TODO extra: RETO EXTRA 02: Valida umbral positivo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return u > 0;
+        // El test: 3 → true. El umbral de fallos que abre el circuito debe ser
+        // estrictamente positivo (con 0 abriría sin un solo fallo). Es el TODO 1
+        // de transicion() (21.4).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esUmbralValido");
     }
 
@@ -98,11 +97,10 @@ public final class Ej186RetryAndCircuitBreaker {
      * RETO EXTRA 03: Valida maximo de intentos.
      */
     public static boolean esMaxIntentosValido(int max) {
-        // TODO extra: RETO EXTRA 03: Valida maximo de intentos.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return max >= 1;
+        // El test: 3 → true. CUIDADO con el límite: el mínimo es 1, no 0 (hay que
+        // intentar al menos una vez; con 0 intentos no se ejecutaría nada). Es el
+        // TODO 2 de conReintentos(), donde maxIntentos < 1 lanza excepción (21.4).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMaxIntentosValido");
     }
 
@@ -110,11 +108,11 @@ public final class Ej186RetryAndCircuitBreaker {
      * RETO EXTRA 04: Crea un contador limpio.
      */
     public static int[] inicializarContador() {
-        // TODO extra: RETO EXTRA 04: Crea un contador limpio.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return new int[1];
+        // El test exige [0] == 0. Un new int[1] arranca con su único elemento a
+        // 0 por defecto (no hace falta inicializarlo a mano). Es el contador de
+        // intentos que conReintentos() incrementa; el truco del int[] de un
+        // elemento es poder mutarlo "por referencia" dentro de una lambda.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para inicializarContador");
     }
 
@@ -122,11 +120,11 @@ public final class Ej186RetryAndCircuitBreaker {
      * RETO EXTRA 05: Valida tamaño de contador.
      */
     public static boolean esContadorValido(int[] c) {
-        // TODO extra: RETO EXTRA 05: Valida tamaño de contador.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return c != null && c.length == 1;
+        // El test: new int[]{0} → true. El contador SIEMPRE es de un elemento
+        // (es una "celda mutable", no un array de datos). Es el TODO 3 de
+        // conReintentos(). PISTA: comprueba null ANTES de c.length para no
+        // provocar NPE (cortocircuito de &&).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esContadorValido");
     }
 
@@ -134,11 +132,10 @@ public final class Ej186RetryAndCircuitBreaker {
      * RETO EXTRA 06: Incrementa el contador in-place.
      */
     public static int[] incrementarContador(int[] c) {
-        // TODO extra: RETO EXTRA 06: Incrementa el contador in-place.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: dos pasos — c[0]++; return c;
+        // El test: new int[]{0} → [0] == 1. "in-place" significa modificar el
+        // MISMO array (no crear otro) y devolverlo. Es justo lo que hace el
+        // TODO 5 de conReintentos() en cada vuelta del bucle (21.4).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para incrementarContador");
     }
 
@@ -146,11 +143,12 @@ public final class Ej186RetryAndCircuitBreaker {
      * RETO EXTRA 07: Ejecuta retornando fallback ante error.
      */
     public static String ejecutarAccionSegura(java.util.function.Supplier<String> a) {
-        // TODO extra: RETO EXTRA 07: Ejecuta retornando fallback ante error.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: try/catch —
+        //   try { return a.get(); } catch (RuntimeException e) { return "fallback"; }
+        // El test pasa un Supplier que lanza y espera EXACTAMENTE "fallback".
+        // Es la versión síncrona del exceptionally() de los futures (21.2) y la
+        // base del circuit breaker: si la llamada peta, devuelve un valor seguro
+        // en vez de propagar el error.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para ejecutarAccionSegura");
     }
 
@@ -158,11 +156,9 @@ public final class Ej186RetryAndCircuitBreaker {
      * RETO EXTRA 08: Comprueba CLOSED.
      */
     public static boolean esEstadoCerrado(String estado) {
-        // TODO extra: RETO EXTRA 08: Comprueba CLOSED.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return "CLOSED".equals(estado);
+        // El test: "CLOSED" → true. Literal primero para que null dé false sin
+        // NPE. CLOSED = circuito sano, pasan las llamadas (21.4).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esEstadoCerrado");
     }
 
@@ -170,11 +166,9 @@ public final class Ej186RetryAndCircuitBreaker {
      * RETO EXTRA 09: Comprueba OPEN.
      */
     public static boolean esEstadoAbierto(String estado) {
-        // TODO extra: RETO EXTRA 09: Comprueba OPEN.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return "OPEN".equals(estado);
+        // El test: "OPEN" → true. OPEN = circuito cortado, no se llama al
+        // servicio caído (21.4). Trío con esEstadoCerrado / esEstadoSemiAbierto.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esEstadoAbierto");
     }
 
@@ -182,11 +176,9 @@ public final class Ej186RetryAndCircuitBreaker {
      * RETO EXTRA 10: Comprueba HALF_OPEN.
      */
     public static boolean esEstadoSemiAbierto(String estado) {
-        // TODO extra: RETO EXTRA 10: Comprueba HALF_OPEN.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea — return "HALF_OPEN".equals(estado);
+        // El test: "HALF_OPEN" → true. HALF_OPEN = estado de sonda: deja pasar
+        // una llamada de prueba; si va bien → CLOSED, si falla → OPEN (21.4).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esEstadoSemiAbierto");
     }
 

@@ -39,7 +39,7 @@ flowchart LR
     C --> IN
 ```
 
-Tres razones, todas de seguridad o estabilidad:
+Cuatro razones, todas de seguridad o estabilidad:
 
 1. **Ocultas datos sensibles.** La entidad `UsuarioEntity` tiene `passwordHash`;
    el `UsuarioResponse` solo tiene `id` y `email`. Si devolvieras la entidad,
@@ -48,6 +48,18 @@ Tres razones, todas de seguridad o estabilidad:
    tabla; el DTO no debe romper a los clientes móviles que ya están en producción.
 3. **Cada DTO tiene un trabajo.** El RequestDto **valida y normaliza** lo que
    entra; el ResponseDto **formatea** lo que sale. No son la misma clase.
+4. **Evitas el *mass assignment* (sobre-escritura masiva).** Si bindeas el JSON
+   del cliente directo a la `@Entity`, un atacante puede colar campos que tú nunca
+   pensabas exponer: `{"email":"x","rol":"ADMIN","saldo":99999}`. El RequestDto
+   actúa de **lista blanca**: solo existen en él los campos que el cliente PUEDE
+   tocar, así que `rol` o `saldo` simplemente se ignoran al deserializar.
+
+Y dos trampas extra que solo aparecen con la entidad JPA real (las verás en b12+):
+serializar una `@Entity` con relaciones **lazy** revienta con
+`LazyInitializationException` o dispara consultas N+1 al recorrer el grafo fuera
+de la sesión; y una entidad con referencias bidireccionales (`Pedido↔Linea`)
+provoca **recursión infinita** al serializar a JSON. El DTO plano corta los dos
+problemas de raíz.
 
 El patrón de los dos sentidos del mapeo:
 
@@ -134,6 +146,14 @@ Para dinero, recuerda del bloque 1: redondea con `BigDecimal` y
 En proyectos grandes nadie escribe mappers a mano: usan **MapStruct**, que
 **genera el código en tiempo de compilación** a partir de una interfaz anotada.
 Es rápido (no usa reflexión) y *type-safe* (si un campo no casa, no compila).
+
+El detalle clave del "en compilación": MapStruct es un *annotation processor*. Al
+construir el proyecto te escribe una clase `ClienteMapperImpl` en
+`target/generated-sources/` con `get`/`set` planos, **el mismo código aburrido que
+escribirías tú**. Por eso no hay magia en runtime ni coste de reflexión: si el
+build falla con "Unmapped target property", es MapStruct avisándote en compilación
+de un campo que olvidaste mapear — un error que con un mapper de reflexión no
+verías hasta producción.
 
 ```java
 @Mapper(componentModel = "spring")
@@ -251,6 +271,15 @@ La trampa mortal: tratar `Optional.empty()` como "poner a null". `empty` =
 "no tocar". Si el cliente quiere borrar un campo, eso se modela como
 `Optional.of(valorVacío)`, no como ausencia.
 
+> ⚠ El agujero del mundo real: Jackson NO distingue solo. Para un JSON, tanto
+> `{}` (campo ausente) como `{"email": null}` (campo a null) **deserializan a
+> `Optional.empty()`** si lo dejas a su aire — y ahí pierdes justo la diferencia
+> que el PATCH necesita. En este bloque lo modelas a mano con `Optional`, pero en
+> Spring real para distinguir "ausente" de "null explícito" se usa
+> **`JsonNullable<T>`** (de la librería `jackson-databind-nullable`): tres
+> estados, no dos — *undefined* (no vino), *null* (vino y vale null) y *present*
+> (vino con valor). Es la herramienta canónica del PATCH semánticamente correcto.
+
 > **Lo practicas en `Ej067PartialUpdateDto`**: `aplicar` con `orElse`, y retos de
 > detectar parche vacío/completo, contar campos, combinar dos parches y construir
 > PatchDto desde valores nullable con `Optional.ofNullable`.
@@ -297,14 +326,16 @@ recoge TODOS los teléfonos de TODOS los clientes en un solo stream.
 
 | # | Error | Antídoto |
 |---|---|---|
-| 1 | Devolver la `@Entity` directamente | Siempre un ResponseDto; oculta lo sensible |
+| 1 | Devolver la `@Entity` directamente | Siempre un ResponseDto; oculta lo sensible, evita lazy/N+1 y recursión |
 | 2 | Incluir `passwordHash` en la respuesta | El ResponseDto solo lleva `id` y `email` |
+| 2b | Bindear el JSON directo a la `@Entity` (*mass assignment*) | RequestDto como lista blanca: `rol`/`saldo` ni existen en él |
 | 3 | Duplicar la lógica de conversión en `toDtoList` | `stream().map(::toDto)`: reutiliza el mapper |
 | 4 | Calcular dinero con `double` y mostrarlo | Redondea con `BigDecimal` + `RoundingMode.HALF_UP` |
 | 5 | Reescribir el mapeo base en vez de componerlo | `mapper().andThen(post)` |
 | 6 | Ensamblar sin validar coherencia entre fuentes | `allMatch(l -> l.pedidoId().equals(id))` |
 | 7 | `null` de líneas tratado como error | Pedido sin líneas es válido: `null` → `List.of()` |
 | 8 | Tratar `Optional.empty()` como "poner a null" | `empty` = "no tocar"; `orElse(actual)` |
+| 8b | Creer que Jackson separa "campo ausente" de "campo null" | No lo hace solo: usa `JsonNullable<T>` para los 3 estados |
 | 9 | NPE al mapear un anidado nulo | Comprueba cada nivel: dirección nula → DTO nulo |
 | 10 | Mutar la entidad/DTO original | Records son inmutables: crea uno nuevo siempre |
 
@@ -312,6 +343,8 @@ recoge TODOS los teléfonos de TODOS los clientes en un solo stream.
 
 ```
 DTO            = contrato público; @Entity = interna. NUNCA serialices la entidad.
+RequestDto     = lista blanca contra mass assignment (rol/saldo NO existen ahí)
+MapStruct      = annotation processor: genera get/set en compilación, sin reflexión
 toEntity       = valida + normaliza lo que ENTRA (hash, trim, lowercase)
 toResponse     = recorta lo que SALE (sin password ni flags internos)
 toDtoList      = entidades.stream().map(::toDto).toList()   (reutiliza, no dupliques)
@@ -334,3 +367,6 @@ flatMap        = aplana List<Cliente>·List<Telefono> en un stream de teléfonos
 7. ¿Por qué el PatchDto es la excepción a "Optional nunca como campo"? *(7.5)*
 8. Al mapear un `Cliente` con `direccion == null`, ¿qué debe valer la dirección
    del DTO y por qué no salta un NPE? *(7.6)*
+9. ¿Qué es el *mass assignment* y cómo lo frena un RequestDto bien diseñado? *(7.1)*
+10. En un PATCH real, ¿por qué `Optional` con Jackson no basta para separar "campo
+    ausente" de "campo a null", y qué tipo lo resuelve? *(7.5)*

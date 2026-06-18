@@ -27,11 +27,10 @@ public final class Ej197StaticAnalysisGate {
      * @return true si es jacoco-maven-plugin
      */
     public static boolean esPluginJacoco(String artifactId) {
-        // TODO extra: RETO EXTRA 01: Comprueba si el identificador del plugin corresponde al de JaCoCo.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: una línea —
+        // return "jacoco-maven-plugin".equals(artifactId);
+        // OJO: el test pasa "jacoco-maven-plugin"→true y "maven-compiler-plugin"→false.
+        //   equals exacto; null cae a false sin NPE.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPluginJacoco");
     }
 
@@ -43,11 +42,17 @@ public final class Ej197StaticAnalysisGate {
      * @return true si supera o iguala el umbral
      */
     public static boolean esCoberturaSuficiente(double real, double umbral) {
-        // TODO extra: RETO EXTRA 02: Evalúa si el porcentaje de cobertura real supera el umbral configurado.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 23.3 (umbral de cobertura de JaCoCo).
+        // 1. VALIDA RANGO primero: real y umbral son porcentajes, deben estar en
+        //    [0,100]. Si alguno se sale, lanza IllegalArgumentException.
+        // 2. Si el rango es válido, la cobertura "es suficiente" cuando real >= umbral.
+        // PISTA:
+        //   if (real < 0 || real > 100 || umbral < 0 || umbral > 100)
+        //       throw new IllegalArgumentException("porcentaje fuera de rango");
+        //   return real >= umbral;
+        // OJO/CUIDADO: el test exige assertThrows con (120, 80): la validación de
+        //   rango va ANTES de comparar. Y 85.5 vs 80 → true (mayor estricto vale),
+        //   75 vs 80 → false. Usa >= (igualar el umbral también pasa).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCoberturaSuficiente");
     }
 
@@ -72,11 +77,17 @@ public final class Ej197StaticAnalysisGate {
      * @return "A" si no hay bugs y pocos smells, "B" intermedio, "F" si hay fallos críticos
      */
     public static String obtenerClasificacionQualityGate(int bugs, int codeSmells) {
-        // TODO extra: RETO EXTRA 04: Retorna la clasificación de calidad según métricas de bugs y code smells.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 23.3 (clasificación del Quality Gate por letras).
+        // 1. Sin bugs = nota máxima: si bugs == 0 → "A".
+        // 2. Pocos bugs (controlados) = nota intermedia → "B".
+        // 3. Muchos bugs = crítico → "F".
+        // PISTA:
+        //   if (bugs == 0) return "A";
+        //   if (bugs <= 2) return "B";
+        //   return "F";
+        // OJO: el test manda (0,3)→"A", (1,10)→"B" y (5,50)→"F". Aquí el factor que
+        //   decide es el nº de bugs; los code smells acompañan pero no cambian estos
+        //   tres casos. Devuelve la letra como String exacto ("A", no "a").
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerClasificacionQualityGate");
     }
 
@@ -88,11 +99,14 @@ public final class Ej197StaticAnalysisGate {
      * @return true si tiene una vulnerabilidad registrada
      */
     public static boolean esDependenciaVulnerable(String libreria, String cveId) {
-        // TODO extra: RETO EXTRA 05: Evalúa si una dependencia del proyecto se considera vulnerable según su identificador CVE.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 23.3 (un CVE = vulnerabilidad pública registrada).
+        // 1. Null-check del cveId.
+        // 2. Es vulnerable si su identificador tiene formato CVE real, es decir
+        //    empieza por "CVE-".
+        // PISTA: return cveId != null && cveId.startsWith("CVE-");
+        // OJO: el test acepta ("log4j","CVE-2021-44228")→true (Log4Shell, el CVE
+        //   más famoso) y rechaza ("spring-core","none")→false ("none" no es un CVE).
+        //   El nombre de la librería no decide; manda el cveId.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esDependenciaVulnerable");
     }
 
@@ -104,11 +118,14 @@ public final class Ej197StaticAnalysisGate {
      * @return true si está activa
      */
     public static boolean esReglaLinterActiva(String ruleKey, boolean activa) {
-        // TODO extra: RETO EXTRA 06: Verifica si una regla de Checkstyle de linter se encuentra habilitada de forma activa.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 23.3 (Checkstyle: reglas activas/inactivas).
+        // 1. Una regla solo cuenta como activa si tiene una clave válida Y el flag
+        //    'activa' es true.
+        // PISTA: return ruleKey != null && !ruleKey.isBlank() && activa;
+        // OJO: el test usa la misma ruleKey "AvoidStarImport" y solo cambia el flag:
+        //   true→true, false→false. El resultado lo decide 'activa'.
+        // CULTURA: AvoidStarImport prohíbe los imports con comodín (import java.util.*);
+        //   forzar imports explícitos hace los diffs y las dependencias más claras.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esReglaLinterActiva");
     }
 
@@ -120,11 +137,14 @@ public final class Ej197StaticAnalysisGate {
      * @return true si el build falla debido al gate
      */
     public static boolean esRupturaBuild(boolean gateEstricto, double cobertura) {
-        // TODO extra: RETO EXTRA 07: Comprueba si el pipeline debe romper el build ante fallas de calidad.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 23.3 (el gate rompe el build si no se cumple el umbral).
+        // 1. El build solo se rompe si el gate es estricto Y la cobertura no llega
+        //    al umbral del bloque (80).
+        // PISTA: return gateEstricto && cobertura < 80.0;
+        // OJO: el test manda (true,75)→true (estricto y por debajo), (false,75)→false
+        //   (gate no obligatorio, no rompe aunque haya poca cobertura) y (true,85)→false
+        //   (estricto pero supera el umbral). El umbral de referencia es 80, igual
+        //   que el <minimum>0.80</minimum> de la teoría.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRupturaBuild");
     }
 
@@ -136,11 +156,12 @@ public final class Ej197StaticAnalysisGate {
      * @return la URL del dashboard del proyecto
      */
     public static String formatearUrlSonarProject(String organizacion, String projectKey) {
-        // TODO extra: RETO EXTRA 08: Construye la URL del proyecto en la plataforma de SonarCloud.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 23.3 (dashboard de SonarCloud).
+        // 1. Construye la URL con el patrón de Sonar: el id es "<org>_<projectKey>".
+        // PISTA: return "https://sonarcloud.io/dashboard?id=" + organizacion + "_" + projectKey;
+        // OJO/CUIDADO: el test compara con equals exacto
+        //   "https://sonarcloud.io/dashboard?id=myorg_myproject". El separador entre
+        //   organización y projectKey es un guion BAJO "_", no "/" ni "-".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearUrlSonarProject");
     }
 
@@ -151,11 +172,12 @@ public final class Ej197StaticAnalysisGate {
      * @return true si el archivo tiene extensión xml y no es nulo
      */
     public static boolean esArchivoReporteXmlValido(String rutaArchivo) {
-        // TODO extra: RETO EXTRA 09: Verifica si un archivo de reporte XML generado por Jacoco es válido para procesamiento.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 23.3 (jacoco.xml = reporte procesable; jacoco.exec = binario).
+        // 1. Null-check.
+        // 2. Es procesable solo si termina en ".xml".
+        // PISTA: return rutaArchivo != null && rutaArchivo.endsWith(".xml");
+        // OJO: el test acepta "jacoco.xml"→true y rechaza "jacoco.exec"→false (el
+        //   .exec son datos crudos, no el reporte XML que se lee). Usa endsWith.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esArchivoReporteXmlValido");
     }
 
@@ -167,11 +189,11 @@ public final class Ej197StaticAnalysisGate {
      * @return true si es una rama altamente segura
      */
     public static boolean esRamaPrincipalProtegida(boolean requiereLinearHistory, boolean requiereQualityGateVerde) {
-        // TODO extra: RETO EXTRA 10: Comprueba si las reglas de protección de la rama principal (main) están configuradas de forma estricta.
-        // 1. Validar exhaustivamente todos los parámetros de entrada y precondiciones del método.
-        // 2. Diseñar e implementar el algoritmo principal resolviendo cada regla de negocio paso a paso.
-        // 3. Asegurar una cobertura completa de casos límite, valores nulos, vacíos o fuera de rango.
-        // 4. Retornar el resultado final procesado de forma limpia y eficiente, sin simplificaciones triviales.
+        // GUÍA: teoría 23.3 (branch protection: AMBAS condiciones).
+        // 1. Una rama es "altamente segura" solo si exige las dos cosas a la vez.
+        // PISTA: return requiereLinearHistory && requiereQualityGateVerde;
+        // OJO: el test pasa (true,true)→true y (true,false)→false. Es un AND puro:
+        //   con que falte una condición, la rama no se considera protegida.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRamaPrincipalProtegida");
     }
 

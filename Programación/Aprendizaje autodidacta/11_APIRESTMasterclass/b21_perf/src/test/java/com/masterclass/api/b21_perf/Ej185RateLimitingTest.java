@@ -85,6 +85,7 @@ class Ej185RateLimitingTest {
     @Test
     void testRetoExtra10_inicializarEstado() {
         // Crea array de estado inicializado.
+        long tok = 2, inst = 0;
         assertEquals(tok, Ej185RateLimiting.inicializarEstado(tok, inst)[0]);
     }
 

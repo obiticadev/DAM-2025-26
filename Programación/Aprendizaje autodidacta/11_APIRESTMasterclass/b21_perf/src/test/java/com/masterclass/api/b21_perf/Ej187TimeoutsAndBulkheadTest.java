@@ -85,6 +85,7 @@ class Ej187TimeoutsAndBulkheadTest {
     @Test
     void testRetoExtra10_inicializarEstado() {
         // Crea estado inicial.
+        long perm = 3;
         assertEquals(perm, Ej187TimeoutsAndBulkhead.inicializarEstado(perm)[0]);
     }
 
