@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.masterclass</groupId>
+        <artifactId>api-rest-masterclass</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>b31_oodb</artifactId>
+    <name>Module - b31_oodb</name>
+
+    <!--
+        BD objeto-relacionales / OO y procedimientos almacenados (AD RA4 + RA2.k).
+        RA arcaico del BOE: se aborda de forma didáctica y honesta sobre H2 (ya usado en
+        b11/b12). H2 permite "procedimientos/funciones almacenados" registrando métodos Java
+        como alias (CREATE ALIAS ... FOR "clase.metodo"), tipos objeto-relacionales ARRAY,
+        y transacciones. La clase de apoyo ProcsAlmacenados expone los métodos que los
+        ejercicios/tests registran como alias. spring-boot-starter-test (parent) trae JUnit 5.
+    -->
+    <dependencies>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+        </dependency>
+    </dependencies>
+</project>

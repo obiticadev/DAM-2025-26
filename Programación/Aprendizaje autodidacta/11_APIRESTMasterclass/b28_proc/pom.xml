@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.masterclass</groupId>
+        <artifactId>api-rest-masterclass</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>b28_proc</artifactId>
+    <name>Module - b28_proc</name>
+
+    <!--
+        Multiproceso e IPC (PSP RA1). Solo JDK puro: java.lang.ProcessBuilder/Process
+        y los streams de java.io sobre stdin/stdout/stderr del proceso.
+        spring-boot-starter-test (heredado del parent) trae JUnit 5. Para que los tests
+        sean DETERMINISTAS y PORTABLES (Windows/*nix), los ejercicios no lanzan comandos del
+        SO sino un proceso Java hijo conocido (clase ProcesoHijo de este mismo módulo),
+        usando el mismo java + classpath que ejecuta los tests.
+    -->
+    <dependencies>
+    </dependencies>
+</project>

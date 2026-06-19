@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.masterclass</groupId>
+        <artifactId>api-rest-masterclass</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>b26_io</artifactId>
+    <name>Module - b26_io</name>
+
+    <!--
+        I/O de ficheros de bajo nivel y NIO.2 (AD RA1). Solo JDK puro:
+        java.io (InputStream/OutputStream, Reader/Writer, RandomAccessFile, ObjectStream)
+        y java.nio.file (Path, Files, FileChannel, ByteBuffer).
+        spring-boot-starter-test (heredado del parent) trae JUnit 5. Los tests usan
+        ficheros/directorios temporales (Files.createTempFile/createTempDirectory) y los borran.
+    -->
+    <dependencies>
+    </dependencies>
+</project>

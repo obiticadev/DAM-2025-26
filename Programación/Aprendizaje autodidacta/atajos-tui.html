@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GNU Readline & Terminal Cheatsheet</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 100vw;
+      height: 100vh;
+      background-color: #f3f4f6;
+      display: grid;
+      place-items: center;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow: hidden;
+    }
+
+    /* Contenedor estricto 16:9 que escala con la pantalla sin scroll */
+    .cheatsheet-container {
+      width: 96vw;
+      height: 54vw;
+      max-height: 96vh;
+      max-width: 170.66vh;
+      background-color: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+      border: 1px solid #e5e7eb;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2% 2.5%;
+    }
+
+    /* Cabecera */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 2px solid #f3f4f6;
+      padding-bottom: 1%;
+    }
+
+    .header-text h1 {
+      font-size: calc(0.9rem + 0.9vw);
+      font-weight: 700;
+      color: #1f2937;
+      letter-spacing: -0.5px;
+    }
+
+    .header-text p {
+      font-size: calc(0.5rem + 0.28vw);
+      color: #4b5563;
+      margin-top: 2px;
+    }
+
+    .header-badge {
+      font-size: calc(0.45rem + 0.25vw);
+      background-color: #f3f4f6;
+      color: #374151;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-weight: 600;
+      border: 1px solid #e5e7eb;
+    }
+
+    /* Cuadrícula de 4 columnas */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2%;
+      flex-grow: 1;
+      margin: 1.5% 0;
+    }
+
+    /* Columnas temáticas estilo pastel */
+    .col {
+      border-radius: 10px;
+      padding: 5% 6%;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid transparent;
+    }
+
+    .col-movimiento {
+      background-color: #f0f7ff;
+      /* Azul pastel */
+      border-color: #e0f2fe;
+    }
+
+    .col-movimiento h2 {
+      color: #1e40af;
+    }
+
+    .col-edicion {
+      background-color: #fef2f2;
+      /* Rojo/Rosa pastel */
+      border-color: #fee2e2;
+    }
+
+    .col-edicion h2 {
+      color: #9b1c1c;
+    }
+
+    .col-copiado {
+      background-color: #faf5ff;
+      /* Púrpura pastel */
+      border-color: #f3e8ff;
+    }
+
+    .col-copiado h2 {
+      color: #6b21a8;
+    }
+
+    .col-historial {
+      background-color: #f0fdf4;
+      /* Verde pastel */
+      border-color: #dcfce7;
+    }
+
+    .col-historial h2 {
+      color: #166534;
+    }
+
+    .col h2 {
+      font-size: calc(0.55rem + 0.4vw);
+      font-weight: 700;
+      margin-bottom: 8%;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    /* Lista de atajos */
+    .shortcut-list {
+      display: flex;
+      flex-direction: column;
+      gap: calc(0.3vh + 0.3vw);
+    }
+
+    .shortcut-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: calc(0.2vh + 0.15vw);
+      border-bottom: 1px dashed rgba(0, 0, 0, 0.04);
+    }
+
+    .shortcut-row:last-child {
+      border-bottom: none;
+    }
+
+    .keys {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      flex-shrink: 0;
+    }
+
+    kbd {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: calc(0.5rem + 0.25vw);
+      font-weight: 700;
+      background-color: #ffffff;
+      color: #1f2937;
+      padding: 1.5px 5px;
+      border-radius: 4px;
+      border: 1px solid #d1d5db;
+      box-shadow: 0 1.5px 0 #cbd5e1;
+    }
+
+    .plus {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: calc(0.45rem + 0.15vw);
+      color: #9ca3af;
+      font-weight: 600;
+    }
+
+    .desc {
+      font-size: calc(0.48rem + 0.28vw);
+      color: #374151;
+      text-align: right;
+      font-weight: 500;
+      padding-left: 6px;
+    }
+
+    /* Pie de página */
+    .footer {
+      border-top: 1px solid #f3f4f6;
+      padding-top: 1%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: calc(0.42rem + 0.22vw);
+      color: #6b7280;
+    }
+
+    .footer span strong {
+      color: #1f2937;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="cheatsheet-container">
+
+    <!-- Cabecera -->
+    <header class="header">
+      <div class="header-text">
+        <h1>GNU Readline & Terminal Cheatsheet</h1>
+        <p>Atajos de teclado universales para edición de texto en consolas Linux/macOS, Yazi y herramientas TUI</p>
+      </div>
+      <div class="header-badge">Modo Emacs</div>
+    </header>
+
+    <!-- Grid de 4 Columnas -->
+    <main class="grid">
+
+      <!-- Columna 1: Movimiento y Navegación -->
+      <section class="col col-movimiento">
+        <h2>Movimiento</h2>
+        <div class="shortcut-list">
+          <div class="shortcut-row">
+            <span class="keys"><kbd>Ctrl</kbd><span class="plus">+</span><kbd>A</kbd></span>
+            <span class="desc">Ir al inicio de línea</span>
+          </div>
+          <div class="shortcut-row">
+            <span class="keys"><kbd>Ctrl</kbd><span class="plus">+</span><kbd>E</kbd></span>
+            <span class="desc">Ir al final de línea</span>
+          </div>
+          <div class="shortcut-row">
+            <span class="keys"><kbd>Ctrl</kbd><span class="plus">+</span><kbd>F</kbd></span>
+            <span class="desc">Un carácter adelante</span>
+          </div>
+          <div class="shortcut-row">
+            <span class="keys"><kbd>Ctrl</kbd><span class="plus">+</span><kbd>B</kbd></span>
+            <span class="desc">Un carácter atrás</span>
+          </div>
+          <div class="shortcut-row">
+            <span class="keys"><kbd>Alt</kbd><span class="plus">+</span><kbd>F</kbd></span>
+            <span class="desc">Una palabra adelante</span>
+          </div>
+          <div class="shortcut-row">
+            <span class="keys"><kbd>Alt</kbd><span class="plus">+</span><kbd>B</kbd></span>
+            <span class="desc">Una palabra atrás</span>
+          </div>
+          <div class="shortcut-row">
+            <span class="keys"><kbd>Ctrl</kbd><span class="plus">+</span><kbd>XX</kbd></span>
+            <span class="desc">Saltar cursor inicio ⇆ actual</span>
+          </div>
+          <div class="shortcut-row">
+            <span class="keys"><kbd>Alt</kbd><span class="plus">+</span><kbd>&lt;</kbd></span>
+            <span class="desc">Primer comando historial</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Columna 2: Borrado y Edición -->
+      <section class="col col-edicion">
+        <h2>Borrado y Edición</h2>
+        <div class="shortcut-list">
+          <div class="shortcut-row">
+            <span class="keys"><kbd>Ctrl</kbd><span class="plus">+</span><kbd>U</kbd></span>
+            <span class="desc">Borrar cursor a la izquierda</span>
+          </div>
+          <div class="shortcut-row">
+            <span class="keys"><kbd>Ctrl</kbd><span class="plus">+</span><kbd>K</kbd></span>
+            <span class="desc">Borrar cursor a la derecha</span>
+          </div>
+          <div class="shortcut-row">
+            <span class="keys"><kbd>Ctrl</kbd><span class="plus">+</span><kbd>W</kbd></span>
+            <span class="desc">Cortar palabra anterior (espacio)</span>
+          </div>
+          <div class="shortcut-row">
+            <span class="keys"><kbd>Alt</kbd><span class="plus">+</span><kbd>Del</kbd></span>
+            <span class="desc">Cortar palabra anterior (estricto)</span>
+          </div>
+          <div class="shortcut-row">
+            <span class="keys"><kbd>Alt</kbd><span class="plus">+</span><kbd>D</kbd></span>
+            <span class="desc">Cortar palabra siguiente</span>
+          </div>
+          <div class="shortcut-row">
+            <span class="keys"><kbd>Ctrl</kbd><span class="plus">+</span><kbd>D</kbd></span>
+            <span class="desc">Borrar carácter bajo cursor</span>
+          </div>
+          <div class="shortcut-row">
+            <span class="keys"><kbd>Alt</kbd><span class="plus">+</span><kbd>\</kbd></span>
+            <span class="desc">Eliminar espacios del cursor</span>
+          </div>
+          <div class="shortcut-row">
+            <span class="keys"><kbd>Ctrl</kbd><span class="plus">+</span><kbd>_</kbd></span>
+            <span class="desc">Deshacer último cambio (Undo)</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Columna 3: Cambio y Pegado -->
+      <section class="col col-copiado">
+        <h2>Pegar y Modificar</h2>
+        <div class="shortcut-list">
+          <div class="shortcut-row">
+            <span class="keys"><kbd>Ctrl</kbd><span class="plus">+</span><kbd>Y</kbd></span>
+            <span class="desc">Pegar último corte (Yank)</span>
+          </div>
+          <div class="shortcut-row">
+            <span class="keys"><kbd>Alt</kbd><span class="plus">+</span><kbd>Y</kbd></span>
+            <span class="desc">Rotar historial de cortes</span>
+          </div>
+          <div class="shortcut-row">
+            <span class="keys"><kbd>Alt</kbd><span class="plus">+</span><kbd>U</kbd></span>
+            <span class="desc">Palabra a MAYÚSCULAS</span>
+          </div>
+          <div class="shortcut-row">
+            <span class="keys"><kbd>Alt</kbd><span class="plus">+</span><kbd>L</kbd></span>
+            <span class="desc">Palabra a minúsculas</span>
+          </div>
+          <div class="shortcut-row">
+            <span class="keys"><kbd>Alt</kbd><span class="plus">+</span><kbd>C</kbd></span>
+            <span class="desc">Capitalizar palabra</span>
+          </div>
+          <div class="shortcut-row">
+            <span class="keys"><kbd>Ctrl</kbd><span class="plus">+</span><kbd>T</kbd></span>
+            <span class="desc">Intercambiar letras</span>
+          </div>
+          <div class="shortcut-row">
+            <span class="keys"><kbd>Alt</kbd><span class="plus">+</span><kbd>T</kbd></span>
+            <span class="desc">Intercambiar palabras</span>
+          </div>
+          <div class="shortcut-row">
+            <span class="keys"><kbd>Alt</kbd><span class="plus">+</span><kbd>R</kbd></span>
+            <span class="desc">Deshacer todo (restaurar línea)</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Columna 4: Historial y Avanzado -->
+      <section class="col col-historial">
+        <h2>Historial y Avanzado</h2>
+        <div class="shortcut-list">
+          <div class="shortcut-row">
+            <span class="keys"><kbd>Ctrl</kbd><span class="plus">+</span><kbd>R</kbd></span>
+            <span class="desc">Búsqueda en historial</span>
+          </div>
+          <div class="shortcut-row">
+            <span class="keys"><kbd>Ctrl</kbd><span class="plus">+</span><kbd>G</kbd></span>
+            <span class="desc">Salir de la búsqueda</span>
+          </div>
+          <div class="shortcut-row">
+            <span class="keys"><kbd>Alt</kbd><span class="plus">+</span><kbd>.</kbd></span>
+            <span class="desc">Insertar último argumento previo</span>
+          </div>
+          <div class="shortcut-row">
+            <span class="keys"><kbd>C-A</kbd><span class="plus">+</span><kbd>Y</kbd></span>
+            <span class="desc">Insertar primer argumento previo</span>
+          </div>
+          <div class="shortcut-row">
+            <span class="keys"><kbd>Ctrl</kbd><span class="plus">+</span><kbd>L</kbd></span>
+            <span class="desc">Limpiar pantalla</span>
+          </div>
+          <div class="shortcut-row">
+            <span class="keys"><kbd>Ctrl</kbd><span class="plus">+</span><kbd>C</kbd></span>
+            <span class="desc">Cancelar / Limpiar línea</span>
+          </div>
+          <div class="shortcut-row">
+            <span class="keys"><kbd>C-X</kbd><span class="plus">+</span><kbd>C-E</kbd></span>
+            <span class="desc">Abrir en editor de texto completo</span>
+          </div>
+          <div class="shortcut-row">
+            <span class="keys"><kbd>Ctrl</kbd><span class="plus">+</span><kbd>V</kbd></span>
+            <span class="desc">Insertar carácter literal (p. ej. TAB)</span>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Pie de página -->
+    <footer class="footer">
+      <span>Tip: Puedes borrar una línea completa pulsando <strong>Ctrl+U</strong> y luego <strong>Ctrl+K</strong>
+        consecutivamente.</span>
+      <span>Tip Avanzado: Abre tu línea con <strong>Ctrl+X, Ctrl+E</strong> para editarla usando Vim/Nano y transformar
+        mayúsculas fácilmente.</span>
+    </footer>
+
+  </div>
+
+</body>
+
+</html>

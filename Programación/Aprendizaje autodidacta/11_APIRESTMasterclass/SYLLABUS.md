@@ -77,12 +77,19 @@ Cada paquete de `src/` referencia su `.md` homónimo en `teoria/`.
 | XXIII | CI/CD y calidad | 195–198 | 4 |
 | XXIV | Boss Final (multi-parte) | 199–200 | 2 |
 | XXV | Plantillas y PDF (Thymeleaf) | 201–206 | 6 |
+| XXVI | I/O de ficheros y NIO.2 (AD RA1) | 207–214 | 8 |
 | XXVII | Concurrencia y multihilo (PSP RA2) | 215–226 | 12 |
-| | **TOTAL** | | **218** |
+| XXVIII | Multiproceso e IPC (PSP RA1) | 227–232 | 6 |
+| XXIX | Sockets y programación en red (PSP RA3) | 233–240 | 8 |
+| XXX | Criptografía y programación segura (PSP RA5) | 241–248 | 8 |
+| XXXI | BD objeto-relacionales/OO y procedimientos (AD RA4 + RA2) | 249–254 | 6 |
+| | **TOTAL** | | **254** |
 
 > **Bloques de ampliación 2º DAM (ver `ROADMAP_2DAM.md`):** cierran los huecos del BOE
-> en Acceso a Datos y PSP que la ruta REST no toca. `b27_concur` (215–226) es el primero
-> construido. Pendientes: `b26_io`, `b28_proc`, `b29_sockets`, `b30_crypto`, `b31_oodb` (opcional).
+> en Acceso a Datos y PSP que la ruta REST no toca. Construidos: `b26_io` (207–214),
+> `b27_concur` (215–226), `b28_proc` (227–232), `b29_sockets` (233–240), `b30_crypto`
+> (241–248) y `b31_oodb` (249–254, cierra AD·RA4 + RA2.k). Ampliación completa.
+> Nota: `b26_io` lleva 12 retos extra por ejercicio (el resto, 10).
 
 ---
 
@@ -398,6 +405,18 @@ Cada paquete de `src/` referencia su `.md` homónimo en `teoria/`.
 | 205 | `b25_thymeleaf/Ej205_Internacionalizacion.java` | I18n de facturas multi-idioma |
 | 206 | `b25_thymeleaf/Ej206_HtmlToPdfGenerator.java` | Transición HTML renderizado a binario PDF |
 
+### Bloque XXVI · I/O de ficheros y NIO.2 — AD RA1 (207–214)
+| # | Archivo | Concepto clave |
+|---|---|---|
+| 207 | `b26_io/Ej207ByteStreams.java` | `InputStream`/`OutputStream`, copia con buffer, EOF |
+| 208 | `b26_io/Ej208CharStreams.java` | `Reader`/`Writer`, encodings (`Charset`), mojibake |
+| 209 | `b26_io/Ej209RandomAccessFile.java` | Acceso aleatorio: `seek`, registros de tamaño fijo |
+| 210 | `b26_io/Ej210ObjectSerialization.java` | `Serializable`, `transient`, grafos de objetos |
+| 211 | `b26_io/Ej211Nio2PathFiles.java` | `Path`/`Files`: crear, copiar, mover, borrar |
+| 212 | `b26_io/Ej212Nio2ReadWriteWalk.java` | `readAllLines`, `walk`/`find`/`list`, atributos |
+| 213 | `b26_io/Ej213TempFilesAndChannels.java` | Temporales, `FileChannel`/`ByteBuffer`, `flip` |
+| 214 | `b26_io/Ej214FormatConversion.java` | Conversión texto↔binario, properties↔CSV, Base64/hex |
+
 ### Bloque XXVII · Concurrencia y multihilo — PSP RA2 (215–226)
 | # | Archivo | Concepto clave |
 |---|---|---|
@@ -413,6 +432,52 @@ Cada paquete de `src/` referencia su `.md` homónimo en `teoria/`.
 | 224 | `b27_concur/Ej224DeadlockLivelock.java` | Deadlock: provocar, evitar, detectar |
 | 225 | `b27_concur/Ej225CompletableFutureAdvanced.java` | `CompletableFuture` (composición async) |
 | 226 | `b27_concur/Ej226ThreadPriorityAndContext.java` | Prioridades, `ThreadLocal`, daemon, contexto |
+
+### Bloque XXVIII · Multiproceso e IPC — PSP RA1 (227–232)
+| # | Archivo | Concepto clave |
+|---|---|---|
+| 227 | `b28_proc/Ej227ProcessBuilderBasics.java` | `ProcessBuilder`, `start`/`waitFor`, exit code, PID |
+| 228 | `b28_proc/Ej228ProcessIO.java` | Redirección de stdin/stdout/stderr, leer salida |
+| 229 | `b28_proc/Ej229ProcessPipesIPC.java` | IPC por pipes: escribir al stdin, leer stdout |
+| 230 | `b28_proc/Ej230ProcessTimeoutAndDestroy.java` | `waitFor(timeout)`, `destroy`/`destroyForcibly` |
+| 231 | `b28_proc/Ej231ParallelProcesses.java` | Procesos en paralelo, recoger códigos de salida |
+| 232 | `b28_proc/Ej232ProcessEnvAndDir.java` | `environment()`, directorio de trabajo, `inheritIO` |
+
+(Apoyo: `b28_proc/ProcesoHijo.java` — proceso Java hijo determinista usado por los tests.)
+
+### Bloque XXIX · Sockets y programación en red — PSP RA3 (233–240)
+| # | Archivo | Concepto clave |
+|---|---|---|
+| 233 | `b29_sockets/Ej233TcpEchoServer.java` | `ServerSocket`/`Socket`, eco TCP, streams del socket |
+| 234 | `b29_sockets/Ej234TcpClient.java` | Cliente TCP, `setSoTimeout`, `ConnectException` |
+| 235 | `b29_sockets/Ej235MultiClientThreadedServer.java` | Servidor multicliente: un hilo por conexión |
+| 236 | `b29_sockets/Ej236ApplicationProtocol.java` | Protocolo de aplicación propio (mini key-value) |
+| 237 | `b29_sockets/Ej237UdpDatagrams.java` | UDP: `DatagramSocket`/`DatagramPacket`, sin conexión |
+| 238 | `b29_sockets/Ej238ObjectOverSocket.java` | Objetos serializados por socket (`ObjectStream`) |
+| 239 | `b29_sockets/Ej239ServerWithThreadPool.java` | Servidor con `ExecutorService` (límite de conexiones) |
+| 240 | `b29_sockets/Ej240GracefulShutdownAndTimeouts.java` | Cierre ordenado, timeouts, desconexiones |
+
+### Bloque XXX · Criptografía y programación segura — PSP RA5 (241–248)
+| # | Archivo | Concepto clave |
+|---|---|---|
+| 241 | `b30_crypto/Ej241Hashing.java` | `MessageDigest` (SHA-256), integridad, efecto avalancha |
+| 242 | `b30_crypto/Ej242PasswordHashingSalt.java` | Salt + PBKDF2 (hashing lento), contraste con BCrypt |
+| 243 | `b30_crypto/Ej243SymmetricAes.java` | Cifrado simétrico AES (GCM/CBC/ECB, IV) |
+| 244 | `b30_crypto/Ej244AsymmetricRsa.java` | Cifrado asimétrico RSA, pública/privada |
+| 245 | `b30_crypto/Ej245DigitalSignature.java` | Firma digital (`Signature`), no repudio, ECDSA |
+| 246 | `b30_crypto/Ej246HmacAndSecureRandom.java` | HMAC (integridad con clave), `SecureRandom`, tokens |
+| 247 | `b30_crypto/Ej247KeyStore.java` | `KeyStore` PKCS12/JCEKS: custodia de claves y certificados |
+| 248 | `b30_crypto/Ej248TlsSecureChannel.java` | Canal seguro TLS (`SSLSocket`), cifrado híbrido |
+
+### Bloque XXXI · BD objeto-relacionales/OO y procedimientos — AD RA4 + RA2.k (249–254)
+| # | Archivo | Concepto clave |
+|---|---|---|
+| 249 | `b31_oodb/Ej249CallableStatement.java` | `CallableStatement`, escape JDBC, parámetros IN/OUT |
+| 250 | `b31_oodb/Ej250StoredFunctionResult.java` | Funciones almacenadas: escalar y de tabla (`ResultSet`) |
+| 251 | `b31_oodb/Ej251ObjectRelationalTypes.java` | Tipos objeto-relacionales `ARRAY` (`java.sql.Array`) |
+| 252 | `b31_oodb/Ej252PersistObjectGraph.java` | Persistir/rehidratar un grafo de objetos (desfase O-R) |
+| 253 | `b31_oodb/Ej253OqlStyleQueries.java` | Consultas estilo OQL (navegar objetos ≙ JOIN) |
+| 254 | `b31_oodb/Ej254TransactionsOnObjects.java` | Transacciones sobre objetos: commit/rollback, savepoints |
 
 ---
 
@@ -444,4 +509,9 @@ Cada paquete de `src/` referencia su `.md` homónimo en `teoria/`.
 - [x] B23 · CI/CD y calidad (195–198) ✅ compila
 - [x] B24 · Boss Final (199–200) ✅ compila
 - [x] B25 · Plantillas y PDF Thymeleaf (201–206) ✅ compila
+- [x] B26 · I/O de ficheros y NIO.2 · AD RA1 (207–214) ✅ compila, tests en rojo (a implementar) · 12 retos/ejercicio
 - [x] B27 · Concurrencia y multihilo · PSP RA2 (215–226) ✅ compila, tests en rojo (a implementar)
+- [x] B28 · Multiproceso e IPC · PSP RA1 (227–232) ✅ compila, tests en rojo (a implementar)
+- [x] B29 · Sockets y programación en red · PSP RA3 (233–240) ✅ compila, tests en rojo (a implementar)
+- [x] B30 · Criptografía y programación segura · PSP RA5 (241–248) ✅ compila, tests en rojo (a implementar)
+- [x] B31 · BD objeto-relacionales/OO y procedimientos · AD RA4+RA2.k (249–254) ✅ compila, tests en rojo (a implementar)

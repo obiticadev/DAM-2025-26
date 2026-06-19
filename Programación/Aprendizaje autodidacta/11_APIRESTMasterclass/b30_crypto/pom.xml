@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.masterclass</groupId>
+        <artifactId>api-rest-masterclass</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>b30_crypto</artifactId>
+    <name>Module - b30_crypto</name>
+
+    <!--
+        Criptografía y programación segura (PSP RA5). Solo JDK puro:
+        java.security (MessageDigest, Signature, KeyPairGenerator, KeyStore, SecureRandom)
+        y javax.crypto (Cipher, Mac, SecretKeyFactory, KeyGenerator) + javax.net.ssl (TLS).
+        spring-boot-starter-test (heredado del parent) trae JUnit 5.
+        En src/main/resources hay un keystore y truststore autofirmados (CN=localhost,
+        clave "changeit") generados con keytool, para los ejercicios de KeyStore y TLS.
+    -->
+    <dependencies>
+    </dependencies>
+</project>

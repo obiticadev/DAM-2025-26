@@ -221,6 +221,7 @@ public final class Ej001HttpRequestParser {
      *         tiene el formato correcto
      */
     public static String extraerVersionHttp(String raw) {
+        // POST /usuarios HTTP/1.1
         // GUÍA: teoría 0.2 (línea de petición = MÉTODO RUTA VERSIÓN).
         // 1. null o vacía → "".
         // 2. Reutiliza extraerPrimeraLineaCompleta(raw): ya resuelve \r\n y \n.
@@ -228,7 +229,20 @@ public final class Ej001HttpRequestParser {
         // inválido → "" (el test "GET /" espera "").
         // 4. El tercer token es la versión; devuélvelo tal cual ("HTTP/1.1").
         // PISTA: split(" ") vale, pero split("\\s+") tolera espacios dobles.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para extraerVersionHttp");
+        if (raw == null || raw.isEmpty()) {
+            return "";
+        }
+        String firstLine = extraerPrimeraLineaCompleta(raw).trim();
+        String[] arrayWords = firstLine.split("\\s+");
+        if (arrayWords.length != 3) {
+            return "";
+        }
+        for (int i = 0; i < arrayWords.length; i++) {
+            if (arrayWords[i].startsWith("HTTP")) {
+                return arrayWords[i];
+            }
+        }
+        return "";
     }
 
     /**
