@@ -175,8 +175,11 @@ public final class Ej001HttpRequestParser {
         } else {
             primeraLinea = raw;
         }
+        if (primeraLinea.endsWith("\r")) {
+            primeraLinea = primeraLinea.substring(0, primeraLinea.length() - 1);
+        }
 
-        return primeraLinea.trim();
+        return primeraLinea;
     }
 
     /**
@@ -200,16 +203,15 @@ public final class Ej001HttpRequestParser {
         // no interpreta regex. Para regex existe matches(). Repasa el error común
         // nº5 de la teoría y los tests de retoExtra03 (ahora mismo fallan).
 
-        if (raw == null || raw.isEmpty()) {
-            return false;
-        }
-        if (raw.contains("\n")) {
-            String primeraLinea = raw.split("\n")[0];
-            if (primeraLinea.startsWith("(GET|POST|PUT|DELETE|PATCH|OPTIONS|HEAD)\\s+.*")) {
-                return true;
-            }
-        }
-        return false;
+        if (raw == null || raw.isEmpty()) return false;
+        
+        String primeraLinea = extraerPrimeraLineaCompleta(raw);
+        String[] tokens = primeraLinea.split("\\s+");
+
+        if (tokens.length == 0) return false;
+        
+        String verbo = tokens[0].toUpperCase();
+        return java.util.Set.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS", "HEAD").contains(verbo);
     }
 
     /**
@@ -260,7 +262,16 @@ public final class Ej001HttpRequestParser {
         // OJO con el test: "GET http://google.com/ HTTP/1.1" debe dar false aunque
         // la URL contenga '/': lo que importa es el PRIMER carácter de la ruta.
         // PISTA: protege el acceso tokens[1] comprobando antes tokens.length >= 2.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para validarRutaAbsoluta");
+        if (raw == null || raw.isEmpty()) {
+            return false;
+        }
+        String[] firstLine = extraerPrimeraLineaCompleta(raw).trim().split(" ");
+        if (firstLine.length >= 2) {
+            if (firstLine[1].startsWith("/")) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
