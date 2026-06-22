@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.masterclass</groupId>
+        <artifactId>api-rest-masterclass</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>b38_fxreports</artifactId>
+    <name>Module - b38_fxreports</name>
+
+    <!--
+        JavaFX: informes, PDF e impresión (Desarrollo de Interfaces · RA4).
+        Séptimo bloque del módulo DI. El alumno ya sabe pintar una UI y mostrar datos en tablas
+        (b35) y gráficos (b37). Aquí aprende a CONVERTIR esos datos en un DOCUMENTO imprimible: un
+        informe profesional (factura, listado) generado con JasperReports y exportado a PDF, más la
+        impresión directa de un nodo JavaFX con `PrinterJob`.
+
+        Filosofía del addendum §1.6 del roadmap (igual que b36/b37):
+          - El método CORE es SIEMPRE lógica pura y headless: el MODELO de datos del informe
+            (registros, campos, totales), la MATEMÁTICA de subtotales/agrupaciones, la detección de
+            formato por *magic number* (%PDF, PK.. de un ZIP/XLSX), el cálculo de ESCALA y nº de
+            páginas al imprimir y la construcción de un CSV. Todo se prueba con JUnit puro (números,
+            bytes, cadenas) SIN abrir ventana ni motor de informes.
+          - El main de cada ejercicio es un Playground de consola que demuestra los core; el
+            Playground visual (PlaygroundInformes, `extends Application`) muestra una TableView con
+            las facturas y un botón "Imprimir / Exportar" que usa PrinterJob.
+
+        SOBRE JASPERREPORTS (importante, leer la teoría 38, sección "Antes de empezar"):
+          Para mantener el módulo compilando OFFLINE y los tests deterministas (rojo->verde sin
+          descargar un motor de 40 MB), los cores NO importan clases de JasperReports: trabajan con
+          la LÓGICA pura del informe (el mismo patrón que b25 usó para HTML->PDF). El código real de
+          JasperReports (`JasperCompileManager`, `JRBeanCollectionDataSource`, `JasperFillManager`,
+          `JasperExportManager`) se enseña en la teoría y en las GUÍAS, y para EJECUTARLO de verdad
+          el alumno descomenta la dependencia de abajo y compila las plantillas .jrxml de resources.
+    -->
+    <properties>
+        <javafx.version>21.0.4</javafx.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+
+        <!--
+            MOTOR DE INFORMES (descomenta para ejecutar el código real de JasperReports que muestra
+            la teoría 38). Pesa ~40 MB con sus dependencias: por eso viene desactivado y los cores y
+            tests del bloque NO lo necesitan (son lógica pura). Cuando lo actives, podrás compilar
+            los .jrxml de src/main/resources y llamar a JasperFillManager.fillReport(...).
+        -->
+        <!--
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>6.21.3</version>
+        </dependency>
+        -->
+
+        <!-- Test headless: inicializa el toolkit JavaFX sin pantalla real (uniformidad con b32-b37). -->
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-junit5</artifactId>
+            <version>4.0.18</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>openjfx-monocle</artifactId>
+            <version>21.0.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Permite `mvn -pl b38_fxreports javafx:run` para lanzar el Playground visual. -->
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.8</version>
+                <configuration>
+                    <mainClass>com.masterclass.api.b38_fxreports.PlaygroundInformes</mainClass>
+                </configuration>
+            </plugin>
+            <!-- Tests JavaFX en modo headless (Monocle): no requieren pantalla. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <argLine>-Djava.awt.headless=true -Dtestfx.robot=glass -Dtestfx.headless=true -Dglass.platform=Monocle -Dmonocle.platform=Headless -Dprism.order=sw</argLine>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,28 @@
+/*
+ * tema-claro.css · Tema CLARO (Ej289).
+ *
+ * Define COLORES NOMBRADOS ("looked-up colors") sobre .root y el resto de reglas los REFERENCIAN
+ * por nombre. Cambiar de tema = cambiar esta hoja por tema-oscuro.css: como las reglas usan los
+ * nombres (-color-fondo, -color-texto...) y no valores fijos, toda la UI se repinta sola.
+ *
+ * Un "looked-up color" es el equivalente JavaFX a una "custom property"/variable de CSS web:
+ * se declara una vez y se reutiliza; derive()/ladder() permiten generar variantes.
+ */
+.root {
+    -color-fondo: #ffffff;
+    -color-texto: #1c1c1c;
+    -color-acento: #2d6cdf;
+    -color-borde: #cccccc;
+
+    -fx-background-color: -color-fondo;
+}
+
+.label {
+    -fx-text-fill: -color-texto;
+}
+
+.boton-primario {
+    -fx-background-color: -color-acento;
+    /* derive aclara/oscurece un color un porcentaje: aquí el borde es el acento un 20% más oscuro. */
+    -fx-border-color: derive(-color-acento, -20%);
+}

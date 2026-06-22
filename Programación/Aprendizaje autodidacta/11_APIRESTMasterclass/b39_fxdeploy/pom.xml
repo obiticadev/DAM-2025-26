@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.masterclass</groupId>
+        <artifactId>api-rest-masterclass</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>b39_fxdeploy</artifactId>
+    <name>Module - b39_fxdeploy</name>
+
+    <!--
+        JavaFX: documentación, ayuda y distribución (Desarrollo de Interfaces · RA5/RA6).
+        OCTAVO y ÚLTIMO bloque del módulo DI. El alumno ya sabe construir una app JavaFX completa
+        (escena, controles, FXML, datos, estilo, componentes, informes). Aquí aprende lo que falta
+        para que esa app SALGA de su ordenador y la use otra persona: documentarla (Javadoc, manifest),
+        darle ayuda integrada ("Acerca de", manual, enlaces), persistir las preferencias del usuario
+        (`Preferences`), empaquetarla como runtime mínimo (`jlink`) e instalador nativo (`jpackage`),
+        y versionarla para poder publicar actualizaciones.
+
+        Filosofía del addendum §1.6 del roadmap (igual que b32-b38):
+          - El método CORE es SIEMPRE lógica pura y headless: parsear un MANIFEST.MF, construir el
+            texto de "Acerca de", leer/escribir preferencias en un nodo TEMPORAL, parsear un
+            module-info.java, construir los comandos de jlink/jpackage como cadenas, y comparar
+            versiones semánticas. Todo se prueba con JUnit puro (Map, String, int) SIN abrir ventana.
+          - El main de cada ejercicio es un Playground de consola que demuestra los core; el
+            Playground visual (PlaygroundDistribucion, `extends Application`) muestra un diálogo
+            "Acerca de", un menú de Ayuda con Hyperlink y un panel de preferencias persistentes.
+
+        EJERCICIOS "GUION" (308/309): jlink y jpackage son HERRAMIENTAS de línea de comandos (no
+        APIs Java). Igual que se hizo con Docker/CI en b22/b23, su core testeable NO ejecuta la
+        herramienta: parsea el module-info y CONSTRUYE los comandos como cadenas (assertables), y el
+        comando real para ejecutarlos a mano se documenta en la teoría 39 y en un README del bloque.
+        Esto es honesto: el toolchain nativo (WiX, dpkg, ...) no encaja en el Maven/JUnit del proyecto.
+    -->
+    <properties>
+        <javafx.version>21.0.4</javafx.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+
+        <!-- Test headless: inicializa el toolkit JavaFX sin pantalla real (uniformidad con b32-b38).
+             Los cores de b39 son lógica pura y NO necesitan toolkit; se incluye por coherencia y por
+             si el alumno añade un smoke test de UI al Playground. -->
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-junit5</artifactId>
+            <version>4.0.18</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>openjfx-monocle</artifactId>
+            <version>21.0.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Permite `mvn -pl b39_fxdeploy javafx:run` para lanzar el Playground visual. -->
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.8</version>
+                <configuration>
+                    <mainClass>com.masterclass.api.b39_fxdeploy.PlaygroundDistribucion</mainClass>
+                </configuration>
+            </plugin>
+            <!-- Tests JavaFX en modo headless (Monocle): no requieren pantalla. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <argLine>-Djava.awt.headless=true -Dtestfx.robot=glass -Dtestfx.headless=true -Dglass.platform=Monocle -Dmonocle.platform=Headless -Dprism.order=sw</argLine>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

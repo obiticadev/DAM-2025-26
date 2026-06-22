@@ -64,6 +64,10 @@
         <module>b33_fxcontrols</module>
         <module>b34_fxfxml</module>
         <module>b35_fxdata</module>
+        <module>b36_fxstyle</module>
+        <module>b37_fxcustom</module>
+        <module>b38_fxreports</module>
+        <module>b39_fxdeploy</module>
     </modules>
 
     <dependencyManagement>

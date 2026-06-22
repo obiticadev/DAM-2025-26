@@ -87,7 +87,11 @@ Cada paquete de `src/` referencia su `.md` homónimo en `teoria/`.
 | XXXIII | Controles, Properties y Binding observable (DI RA1/RA2) | 263–270 | 8 |
 | XXXIV | FXML, Scene Builder, MVC/MVVM y eventos (DI RA1) | 271–278 | 8 |
 | XXXV | Datos observables, tablas y asincronía (DI RA2/RA4) | 279–286 | 8 |
-| | **TOTAL** | | **286** |
+| XXXVI | CSS, usabilidad, accesibilidad e i18n (DI RA3) | 287–292 | 6 |
+| XXXVII | Componentes personalizados, Canvas y gráficos (DI RA2) | 293–298 | 6 |
+| XXXVIII | Informes, PDF e impresión (DI RA4) | 299–304 | 6 |
+| XXXIX | Documentación, ayuda y distribución (DI RA5/RA6) | 305–310 | 6 |
+| | **TOTAL** | | **310** |
 
 > **Bloques de ampliación 2º DAM (ver `ROADMAP_BUILD_MASTERCLASS.md`):** cierran los huecos del BOE
 > en Acceso a Datos y PSP que la ruta REST no toca. Construidos: `b26_io` (207–214),
@@ -97,8 +101,21 @@ Cada paquete de `src/` referencia su `.md` homónimo en `teoria/`.
 > `b33_fxcontrols` (263–270, DI·RA1/RA2: controles + Properties + binding observable) y
 > `b34_fxfxml` (271–278, DI·RA1: FXML/Scene Builder, MVC/MVVM y eventos) y
 > `b35_fxdata` (279–286, DI·RA2/RA4: colecciones observables, `TableView`/`ListView`,
-> `Task`/`Service` y consumo de la API REST de b05 sin congelar la UI).
-> Nota: `b26_io` lleva 12 retos extra por ejercicio (el resto, 10).
+> `Task`/`Service` y consumo de la API REST de b05 sin congelar la UI) y
+> `b36_fxstyle` (287–292, DI·RA3: CSS y selectores, pseudo-clases y temas claro/oscuro,
+> accesibilidad WCAG e internacionalización con `ResourceBundle`/`Locale`) y
+> `b37_fxcustom` (293–298, DI·RA2: componentes propios por composición y por `Control`+`Skin`,
+> dibujo en `Canvas`/`GraphicsContext`, *hit testing* del ratón, gráficos `LineChart`/`BarChart`/
+> `PieChart` y formas/colores/efectos) y
+> `b38_fxreports` (299–304, DI·RA4: informes con JasperReports —modelo de datos, compilar/rellenar/
+> exportar a PDF, parámetros y agrupaciones con subtotales, subinformes y gráficos embebidos—,
+> impresión de un nodo con `PrinterJob` y exportación a PDF/XLSX/CSV con detección por *magic number*) y
+> `b39_fxdeploy` (305–310, DI·RA5/RA6: documentación —Javadoc y metadatos del `MANIFEST.MF`—, ayuda
+> integrada —"Acerca de", manual, `Hyperlink`—, persistencia de ajustes con `Preferences`,
+> modularización + `jlink` y empaquetado nativo con `jpackage`, y versionado semántico con
+> comprobación de actualizaciones). **Con b39 el módulo DI (0487) queda cubierto al completo.**
+> Nota: `b26_io` lleva 12 retos extra por ejercicio (el resto, 10); `b36_fxstyle`, `b37_fxcustom`,
+> `b38_fxreports` y `b39_fxdeploy` llevan 6 ejercicios cada uno.
 
 ---
 
@@ -545,6 +562,64 @@ Cada paquete de `src/` referencia su `.md` homónimo en `teoria/`.
 
 (Apoyo: `b35_fxdata` (main) `ClienteFx` (bean observable) y `ClienteDto` (record JSON); (test) `IniciadorFx.java` — toolkit headless (Monocle) y los tests de red levantan un servidor HTTP local en puerto efímero.)
 
+### Bloque XXXVI · CSS, usabilidad, accesibilidad e i18n — DI RA3 (287–292)
+
+| # | Archivo | Conceptos |
+|---|---------|-----------|
+| 287 | `b36_fxstyle/Ej287CssStylesheets.java` | Hoja `.css`, selectores por tipo/clase/id, `getStyleClass`, descendiente vs multiclase, estilo inline (`setStyle`), añadir/quitar/alternar clase, especificidad (id 100 > clase 10 > tipo 1), estado→clase |
+| 288 | `b36_fxstyle/Ej288PseudoClassesStates.java` | Pseudo-clases (`:hover`/`:focused`/`:pressed`/`:disabled`), `selectorConPseudo`, `PseudoClass` propia (`getPseudoClass`+`pseudoClassStateChanged`), `:not`, encadenado, precedencia de estados, máquina de estados |
+| 289 | `b36_fxstyle/Ej289ThemingAndVariables.java` | Temas claro/oscuro, `alternarTema`, hoja por tema, *looked-up colors*, `derive`/`linear-gradient`, ciclo de 3 temas, clase del `.root`, orden de hojas en la cascada, paleta como diccionario |
+| 290 | `b36_fxstyle/Ej290AccessibilityA11y.java` | Orden de foco (fila/columna), mnemónicos (`_Guardar`→`Alt+G`, `__` literal), `accessibleText`/rol, atajo `Shortcut+`, contraste WCAG (AA 4.5 / AAA 7), Tab salta deshabilitados |
+| 291 | `b36_fxstyle/Ej291UsabilityFeedback.java` | Mensajes de error orientados al usuario, estado de botón (cargando/deshabilitado/activo), `disableProperty().bind`, tooltips, plural, truncado, resumen de errores, mensaje accionable (RFC 7807 / b09) |
+| 292 | `b36_fxstyle/Ej292Internationalization.java` | `ResourceBundle`/`Locale.forLanguageTag`, `getString`/`containsKey`+fallback, `MessageFormat` (`{0}`), `NumberFormat`/`Currency` por región, nombre de mes, toggle de idioma, traducir pantalla; conecta con i18n de b25 |
+
+(Apoyo: `b36_fxstyle` (main) `PlaygroundEstilo` (`Application` que aplica CSS y alterna tema/idioma en caliente); recursos `css/app.css`, `css/tema-claro.css`, `css/tema-oscuro.css` e `i18n/mensajes{,_es,_en}.properties`. Los tests son lógica pura: NO necesitan toolkit JavaFX.)
+
+---
+
+### Bloque XXXVII · Componentes personalizados, Canvas y gráficos — DI RA2 (293–298)
+
+| # | Archivo | Conceptos |
+|---|---------|-----------|
+| 293 | `b37_fxcustom/Ej293CustomControlCompose.java` | Componente compuesto (`extends VBox`) con API propia: etiqueta con asterisco de obligatorio, estado del campo (vacío/corto/válido), contador, recorte, clase→estado, normalizar, mensaje de error, id accesible, progreso y resumen de errores de un formulario |
+| 294 | `b37_fxcustom/Ej294SkinnableControl.java` | `Control`+`Skin` (MVC del control): valor acotado a `[min,max]`, estrellas llenas, fracción del rango, ángulo de aguja (270°), color por zona, marcas equidistantes, pseudo-estado (b36), serializar estado (b02) |
+| 295 | `b37_fxcustom/Ej295CanvasDrawing.java` | `Canvas`/`GraphicsContext`: vértices de polígono regular, rotación de un punto, centro/medio/distancia (`Math.hypot`), punto en circunferencia, bounding box, traslación, área (shoelace), estrella de dos radios |
+| 296 | `b37_fxcustom/Ej296CanvasInteractive.java` | *Hit testing*: dentro de rectángulo/círculo (dist²≤r²), rango 1D, línea con tolerancia, snap a rejilla, clamp de arrastre, colisión AABB (b41), ray casting de polígono, z-order, escena→canvas, selección por lazo |
+| 297 | `b37_fxcustom/Ej297ChartsBuiltIn.java` | `LineChart`/`BarChart`/`PieChart`: serie X/Y (X desde 1), porcentajes de tarta, máximo/media, acumulado, normalizar 0..100, agrupar por categoría (`merge`), rango del eje, tendencia, top N, apilado (b38) |
+| 298 | `b37_fxcustom/Ej298ShapesAndEffects.java` | `Shape`/`Color`/`Paint`/`Effect`: mezclar colores, a/desde hex (`%02X`), aclarar/oscurecer acotado, luminancia (0.299/0.587/0.114), texto legible (b36), rgba, interpolar degradado, radio de sombra, paleta derivada |
+
+(Apoyo: `b37_fxcustom` (main) `PlaygroundComponentes` (`Application` que dibuja en un `Canvas`, monta un `BarChart` y muestra el control compuesto). Los cores son lógica pura headless (geometría, estado, datos, color): NO necesitan toolkit JavaFX.)
+
+---
+
+### Bloque XXXVIII · Informes, PDF e impresión — DI RA4 (299–304)
+
+| # | Archivo | Conceptos |
+|---|---------|-----------|
+| 299 | `b38_fxreports/Ej299ReportDataModel.java` | Modelo de datos del informe (`JRBeanCollectionDataSource`): nº de registros, total con IVA, campos `$F{}`, cliente, gran total, filtrar/proyectar, factura mayor (`Optional`), total por cliente (`merge`/GROUP BY), base imponible, validar, fila detalle, ordenar por total |
+| 300 | `b38_fxreports/Ej300JasperFillExport.java` | Pipeline `.jrxml`→compile→`.jasper`→fill→export: cabecera `%PDF-` (magic number), `esPdf`, nombre compilado, extensión, contenido no vacío, versión del PDF, tamaño KB, ruta en classpath, `empiezaPor` genérico, round-trip de bytes, resumen de export |
+| 301 | `b38_fxreports/Ej301ReportParamsAndGroups.java` | Parámetros `$P{}` con valor por defecto y agrupaciones: subtotal por grupo (`merge`), gran total, título, nº de grupos, líneas/subtotal de un grupo, recuento y media por grupo, grupo mayor (`Optional`), % sobre total, parámetro entero, línea de resumen |
+| 302 | `b38_fxreports/Ej302SubreportsAndCharts.java` | Subinformes (maestro-detalle) y gráfico embebido: líneas de un pedido, total por pedido, ventas por mes, nº de pedidos, total/nº de líneas, mes pico (`Optional`), pedido mayor, media por pedido, % por mes, ranking de meses, productos distintos, acumulado (b37) |
+| 303 | `b38_fxreports/Ej303JavaFxPrinting.java` | `PrinterJob` de JavaFX: escala para caber (sin agrandar), páginas necesarias (`ceil`), área imprimible, cabe sin escalar, orientación, % de escala, centrar, mm↔puntos (72/25.4), dimensión escalada, margen deducido, paginar tabla, rango de página (= Pageable b12) |
+| 304 | `b38_fxreports/Ej304ExportFormats.java` | Exportar PDF/XLSX/CSV y detectar por *magic number*: firmas (`%PDF-`, `PK..`), detectar formato, construir CSV, extensión/MIME, binario vs texto, escapar celda (RFC 4180), fila/cabecera CSV, contar columnas, formatos disponibles, nombre de salida, validar firma vs formato (b18) |
+
+(Apoyo: `b38_fxreports` (main) `PlaygroundInformes` (`Application` con una `TableView` de facturas y un botón que usa `PrinterJob`). Los cores son lógica pura headless (modelo de datos, totales, bytes/magic numbers, geometría de impresión, CSV): NO necesitan toolkit JavaFX ni el motor JasperReports —el código real de Jasper se enseña en `teoria/38_Informes_PDF.md` y se activa descomentando la dependencia del `pom.xml`.)
+
+---
+
+### Bloque XXXIX · Documentación, ayuda y distribución — DI RA5/RA6 (305–310)
+
+| # | Archivo | Conceptos |
+|---|---------|-----------|
+| 305 | `b39_fxdeploy/Ej305JavadocAndManifest.java` | Javadoc y metadatos del `MANIFEST.MF`: parsear pares `Clave: Valor`, leer atributo, `Implementation-Version` con respaldo, título/vendor/`Main-Class`, ¿existe atributo?, nº de atributos, construir línea, `Class-Path` (split por espacios), cobertura de Javadoc (% entero), nombre del jar, validar SemVer (b39 Ej310) |
+| 306 | `b39_fxdeploy/Ej306IntegratedHelp.java` | Ayuda integrada: texto "Acerca de" (record `AcercaDe`), URL válida (http/https), línea de copyright, título de ventana, URL de docs por versión (barra final), email simple, secciones del manual, búsqueda sin mayúsculas, atajo, índice numerado (desde 1), ancla/slug, copyright desactualizado, "Acerca de" completo |
+| 307 | `b39_fxdeploy/Ej307UserPreferences.java` | `Preferences` API (nodo temporal en test): guardar/leer/borrar texto, int/boolean/double, clave válida (`MAX_KEY_LENGTH` 80), existe clave, listar claves ordenadas, limpiar nodo (`clear`/`BackingStoreException`), ruta absoluta del nodo (registro/`.userPrefs`) |
+| 308 | `b39_fxdeploy/Ej308ModularJlink.java` | **Guion**: parsear `module-info.java` (nombre, `requires`, `exports`), nº de requires/exports, ¿requiere módulo?, `requires transitive`, nombre de módulo válido (sin guiones), `--add-modules` (comas), comando `jlink`, módulo automático (`-`/`_`→`.`), módulo JDK (`java.`/`jdk.`), módulos de terceros (b22) |
+| 309 | `b39_fxdeploy/Ej309JpackageInstaller.java` | **Guion**: tipo de instalador por SO (msi/deb/dmg/app-image), extensión (app-image = carpeta), comando `jpackage`, icono por SO (`.ico`/`.png`/`.icns`), nombre de app válido, `--app-version` (reutiliza Ej305), `--vendor` con comillas, nombre del paquete, herramienta externa (WiX), `--input`, nº de tipos por SO, tipo válido en SO, comando completo |
+| 310 | `b39_fxdeploy/Ej310VersioningAndUpdate.java` | Versionado semántico: comparar versiones (cifra a cifra, NO texto), `hayActualizacion`, validar SemVer, parsear a `int[]`, MAJOR, incrementar patch/minor/major (con reinicios), formato `v`/quitar `v`, última de una lista, ¿pre-release? (`-beta`), tipo de cambio (major/minor/patch/ninguno) |
+
+(Apoyo: `b39_fxdeploy` (main) `PlaygroundDistribucion` (`Application` con diálogo "Acerca de", `Hyperlink` a la doc, `CheckBox` de modo oscuro persistido con `Preferences` y aviso de actualización SemVer) y `README.md` con los comandos reales de `jlink`/`jpackage`. Los cores son lógica pura headless (parsear manifest/module-info, construir comandos como cadenas, comparar SemVer, `Preferences` en nodo temporal): NO necesitan toolkit JavaFX. `Ej308`/`Ej309` son **"guion"**: construyen y validan comandos de terminal; ejecutar `jlink`/`jpackage` de verdad se documenta en `teoria/39_Distribucion_Instaladores.md` y el README. **Con b39 el módulo DI (0487) queda cubierto al completo.**)
+
 ---
 
 ## 5. Progreso
@@ -585,3 +660,7 @@ Cada paquete de `src/` referencia su `.md` homónimo en `teoria/`.
 - [x] B33 · Controles, Properties y Binding observable · DI RA1/RA2 (263–270) ✅ compila, tests en rojo (a implementar) · 96 tests headless (Monocle)
 - [x] B34 · FXML, Scene Builder, MVC/MVVM y eventos · DI RA1 (271–278) ✅ compila, tests en rojo (a implementar) · 96 tests headless (Monocle)
 - [x] B35 · Datos observables, tablas y asincronía · DI RA2/RA4 (279–286) ✅ compila, tests en rojo (a implementar) · 96 tests headless (Monocle) + servidor HTTP local en los tests de red
+- [x] B36 · CSS, usabilidad, accesibilidad e i18n · DI RA3 (287–292) ✅ compila, tests en rojo (a implementar) · 72 tests de lógica pura (sin toolkit) + recursos CSS/i18n
+- [x] B37 · Componentes personalizados, Canvas y gráficos · DI RA2 (293–298) ✅ compila, tests en rojo (a implementar) · 72 tests de lógica pura (geometría/estado/datos/color, sin toolkit) + Playground con Canvas y BarChart
+- [x] B38 · Informes, PDF e impresión · DI RA4 (299–304) ✅ compila, tests en rojo (a implementar) · 78 tests de lógica pura (modelo de datos, totales, magic numbers, geometría de impresión, CSV; sin toolkit ni motor Jasper) + Playground con TableView y PrinterJob
+- [x] B39 · Documentación, ayuda y distribución · DI RA5/RA6 (305–310) ✅ compila, tests en rojo (a implementar) · 78 tests de lógica pura (parsear manifest/module-info, `Preferences` en nodo temporal, comandos jlink/jpackage como cadenas, SemVer; sin toolkit) + Playground con "Acerca de"/Hyperlink/preferencias. **Cierra el módulo DI (0487).** `Ej308`/`Ej309` son "guion" (comandos de terminal en el README)

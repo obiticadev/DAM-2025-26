@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Plantilla de ejemplo del bloque 38 (Ej300/Ej301). NO la usa ningún test: los cores son lógica
+    pura. Está aquí para que, cuando descomentes la dependencia de JasperReports en el pom.xml,
+    puedas compilarla y rellenarla con el dataset de Ej299 siguiendo la teoría 38 (secciones 2 y 3).
+
+    Demuestra: un parámetro $P{titulo} (sección 3), los campos $F{...} del FacturaDto (sección 1),
+    un campo calculado total = base + iva, una variable de acumulación $V{granTotal} en la banda
+    summary (sección 3) y bandas title / columnHeader / detail / summary.
+
+    Cómo usarla (código real, ver teoría 38.2):
+        JasperReport jr = JasperCompileManager.compileReport(
+                getClass().getResourceAsStream("/reports/factura.jrxml"));
+        Map<String,Object> params = Map.of("titulo", "Facturas del trimestre");
+        JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(listaDeFacturas);
+        JasperPrint print = JasperFillManager.fillReport(jr, params, ds);
+        byte[] pdf = JasperExportManager.exportReportToPdf(print);
+-->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports
+                                  http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="factura" pageWidth="595" pageHeight="842" columnWidth="555"
+              leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+
+    <!-- $P{titulo}: parámetro externo con valor por defecto (sección 3). -->
+    <parameter name="titulo" class="java.lang.String">
+        <defaultValueExpression><![CDATA["Informe de facturas"]]></defaultValueExpression>
+    </parameter>
+
+    <!-- $F{...}: campos leídos del FacturaDto (sección 1). El nombre debe coincidir EXACTAMENTE. -->
+    <field name="numero" class="java.lang.String"/>
+    <field name="cliente" class="java.lang.String"/>
+    <field name="base" class="java.lang.Double"/>
+    <field name="iva" class="java.lang.Double"/>
+
+    <!-- $V{granTotal}: variable de acumulación sobre el total calculado (sección 3). -->
+    <variable name="granTotal" class="java.lang.Double" calculation="Sum">
+        <variableExpression><![CDATA[$F{base} + $F{iva}]]></variableExpression>
+    </variable>
+
+    <title>
+        <band height="40">
+            <textField>
+                <reportElement x="0" y="0" width="555" height="30"/>
+                <textElement textAlignment="Center">
+                    <font size="18" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{titulo}]]></textFieldExpression>
+            </textField>
+        </band>
+    </title>
+
+    <columnHeader>
+        <band height="20">
+            <staticText><reportElement x="0" y="0" width="100" height="20"/><text><![CDATA[Nº]]></text></staticText>
+            <staticText><reportElement x="100" y="0" width="215" height="20"/><text><![CDATA[Cliente]]></text></staticText>
+            <staticText><reportElement x="315" y="0" width="80" height="20"/><text><![CDATA[Base]]></text></staticText>
+            <staticText><reportElement x="395" y="0" width="80" height="20"/><text><![CDATA[IVA]]></text></staticText>
+            <staticText><reportElement x="475" y="0" width="80" height="20"/><text><![CDATA[Total]]></text></staticText>
+        </band>
+    </columnHeader>
+
+    <detail>
+        <band height="18">
+            <textField><reportElement x="0" y="0" width="100" height="18"/>
+                <textFieldExpression><![CDATA[$F{numero}]]></textFieldExpression></textField>
+            <textField><reportElement x="100" y="0" width="215" height="18"/>
+                <textFieldExpression><![CDATA[$F{cliente}]]></textFieldExpression></textField>
+            <textField pattern="#,##0.00"><reportElement x="315" y="0" width="80" height="18"/>
+                <textFieldExpression><![CDATA[$F{base}]]></textFieldExpression></textField>
+            <textField pattern="#,##0.00"><reportElement x="395" y="0" width="80" height="18"/>
+                <textFieldExpression><![CDATA[$F{iva}]]></textFieldExpression></textField>
+            <!-- Campo calculado: total = base + iva (sección 1). -->
+            <textField pattern="#,##0.00"><reportElement x="475" y="0" width="80" height="18"/>
+                <textFieldExpression><![CDATA[$F{base} + $F{iva}]]></textFieldExpression></textField>
+        </band>
+    </detail>
+
+    <summary>
+        <band height="30">
+            <staticText><reportElement x="315" y="6" width="160" height="20"/>
+                <textElement textAlignment="Right"><font isBold="true"/></textElement>
+                <text><![CDATA[Gran total:]]></text></staticText>
+            <textField pattern="#,##0.00"><reportElement x="475" y="6" width="80" height="20"/>
+                <textElement><font isBold="true"/></textElement>
+                <textFieldExpression><![CDATA[$V{granTotal}]]></textFieldExpression></textField>
+        </band>
+    </summary>
+
+</jasperReport>

@@ -1,0 +1,24 @@
+/*
+ * tema-oscuro.css · Tema OSCURO (Ej289).
+ *
+ * MISMAS reglas que tema-claro.css pero con otros valores de los colores nombrados. La gracia:
+ * el resto de la app NO cambia ni una línea; solo se intercambia esta hoja. Eso es posible porque
+ * todo referencia -color-fondo / -color-texto / -color-acento en vez de poner "#fff" a pelo.
+ */
+.root {
+    -color-fondo: #1e1e1e;
+    -color-texto: #f0f0f0;
+    -color-acento: #5a9bff;
+    -color-borde: #444444;
+
+    -fx-background-color: -color-fondo;
+}
+
+.label {
+    -fx-text-fill: -color-texto;
+}
+
+.boton-primario {
+    -fx-background-color: -color-acento;
+    -fx-border-color: derive(-color-acento, -20%);
+}

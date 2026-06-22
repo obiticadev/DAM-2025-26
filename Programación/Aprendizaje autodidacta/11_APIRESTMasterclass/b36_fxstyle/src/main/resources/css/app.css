@@ -1,0 +1,46 @@
+/*
+ * app.css · Hoja de estilo base de la aplicación (Ej287-Ej291).
+ *
+ * Demuestra los tres tipos de selector de JavaFX:
+ *   - Por TIPO:  .button         (el nombre del control, en minúscula y con guiones)
+ *   - Por CLASE: .boton-primario (lo que añades con getStyleClass().add("boton-primario"))
+ *   - Por ID:    #boton-guardar  (lo que pones con setId("boton-guardar"))
+ *
+ * Recuerda: en JavaFX TODAS las propiedades empiezan por "-fx-" y NO existen px (se usan números
+ * "puntos"); los colores y fuentes se nombran como en CSS web pero el modelo de cascada es propio.
+ */
+
+/* Selector por TIPO: afecta a TODOS los botones de la escena. */
+.button {
+    -fx-padding: 8 16 8 16;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+/* Selector por CLASE: solo a los nodos con styleClass "boton-primario". */
+.boton-primario {
+    -fx-background-color: #2d6cdf;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* Pseudo-clase :hover -> estado "el ratón está encima" (Ej288). */
+.boton-primario:hover {
+    -fx-background-color: #1f55b8;
+}
+
+/* Pseudo-clase :disabled -> el control está deshabilitado (Ej291). */
+.button:disabled {
+    -fx-opacity: 0.4;
+}
+
+/* Clase de feedback de error para un campo (Ej291). */
+.campo-error {
+    -fx-border-color: #d63b3b;
+    -fx-border-width: 2;
+}
+
+/* Selector por ID: solo al nodo con id "boton-guardar". */
+#boton-guardar {
+    -fx-font-size: 14;
+}

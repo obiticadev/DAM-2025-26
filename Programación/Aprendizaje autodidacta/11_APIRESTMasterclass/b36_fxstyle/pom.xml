@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.masterclass</groupId>
+        <artifactId>api-rest-masterclass</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>b36_fxstyle</artifactId>
+    <name>Module - b36_fxstyle</name>
+
+    <!--
+        JavaFX: CSS, usabilidad, accesibilidad e internacionalización (Desarrollo de Interfaces · RA3).
+        Quinto bloque del módulo DI. Aquí la aplicación deja de "verse cruda": se le da un ASPECTO
+        profesional con hojas de estilo `.css`, se hace USABLE (mensajes claros, estados de carga,
+        tooltips) y ACCESIBLE (foco por teclado, atajos, lectores de pantalla, contraste WCAG), y se
+        traduce a varios idiomas con `ResourceBundle`/`Locale` (toca también RA6).
+
+        Filosofía del addendum §1.6 del roadmap:
+          - El método CORE es LÓGICA DE PRESENTACIÓN PURA y headless: dado un estado del modelo,
+            qué clase CSS le corresponde; qué pseudo-clases están activas; qué hoja de tema aplicar;
+            cuál es el orden de foco correcto; qué mnemónico (Alt+X) tiene un texto; qué dice un
+            mensaje de error; qué texto traducido toca según el Locale. Todo se prueba con JUnit
+            puro (cadenas, listas, ResourceBundle) SIN abrir ventana.
+          - El main de cada ejercicio es un Playground de consola que demuestra los core; el
+            Playground visual de verdad (PlaygroundEstilo, `extends Application`) aplica las hojas
+            de estilo y los textos reales en una ventana.
+
+        Dependencias del bloque: JavaFX 21 (controles, para el Playground visual) y la API estándar
+        del JDK (`java.util.ResourceBundle`, `java.text.MessageFormat`, `java.util.Locale`). Para
+        los smoke headless de UI, TestFX + Monocle (igual que b32-b35), aunque la mayoría de los
+        tests de este bloque son lógica pura y no necesitan toolkit.
+    -->
+    <properties>
+        <javafx.version>21.0.4</javafx.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+
+        <!-- Test headless: inicializa el toolkit JavaFX sin pantalla real (uniformidad con b32-b35). -->
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-junit5</artifactId>
+            <version>4.0.18</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>openjfx-monocle</artifactId>
+            <version>21.0.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Permite `mvn -pl b36_fxstyle javafx:run` para lanzar el Playground visual. -->
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.8</version>
+                <configuration>
+                    <mainClass>com.masterclass.api.b36_fxstyle.PlaygroundEstilo</mainClass>
+                </configuration>
+            </plugin>
+            <!-- Tests JavaFX en modo headless (Monocle): no requieren pantalla. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <argLine>-Djava.awt.headless=true -Dtestfx.robot=glass -Dtestfx.headless=true -Dglass.platform=Monocle -Dmonocle.platform=Headless -Dprism.order=sw</argLine>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
