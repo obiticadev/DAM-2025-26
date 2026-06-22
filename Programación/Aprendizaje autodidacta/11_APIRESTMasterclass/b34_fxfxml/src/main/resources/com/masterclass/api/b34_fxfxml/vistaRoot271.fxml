@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+
+<!--
+  Patrón fx:root (reto avanzado del ejercicio 271).
+  En vez de fijar el nodo raíz en el FXML, declaramos fx:root: el VBox raíz lo aporta el código
+  ANTES de cargar, con loader.setRoot(unVBox). Es el patrón de los "componentes personalizados":
+  una clase que ES un control reutilizable y se autocarga su propio FXML.
+  Aquí no hay fx:controller: el controlador también se inyecta con loader.setController(...).
+-->
+<fx:root type="javafx.scene.layout.VBox"
+         xmlns="http://javafx.com/javafx"
+         xmlns:fx="http://javafx.com/fxml"
+         spacing="6.0">
+    <children>
+        <Label text="Soy un fx:root: el VBox lo puso el código, no el FXML."/>
+    </children>
+</fx:root>

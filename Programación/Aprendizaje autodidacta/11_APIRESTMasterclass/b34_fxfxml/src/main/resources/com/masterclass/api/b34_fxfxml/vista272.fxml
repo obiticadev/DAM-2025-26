@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+
+<!--
+  Vista del ejercicio 272: inyección de controlador completa.
+  - fx:id en usuario / saludo / aceptar  -> inyectados en los campos @FXML del Controlador272.
+  - onAction="#alAceptar"                -> al pulsar el botón se llama al método @FXML del controlador.
+  La vista NO contiene lógica: solo declara QUÉ hay y a QUÉ método se conecta cada evento.
+-->
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.masterclass.api.b34_fxfxml.Controlador272"
+      spacing="8.0" prefWidth="320.0" prefHeight="160.0">
+    <children>
+        <Label text="Tu nombre:"/>
+        <TextField fx:id="usuario" promptText="escribe aquí"/>
+        <Button fx:id="aceptar" text="Saludar" onAction="#alAceptar"/>
+        <Label fx:id="saludo"/>
+    </children>
+</VBox>

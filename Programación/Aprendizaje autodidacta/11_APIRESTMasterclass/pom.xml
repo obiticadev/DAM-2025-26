@@ -29,6 +29,41 @@
 
     <modules>
         <module>b00_http</module>
+        <module>b01_java</module>
+        <module>b02_json</module>
+        <module>b03_core</module>
+        <module>b04_boot</module>
+        <module>b05_web</module>
+        <module>b06_webadv</module>
+        <module>b07_dto</module>
+        <module>b08_valid</module>
+        <module>b09_err</module>
+        <module>b10_arch</module>
+        <module>b11_jdbc</module>
+        <module>b12_jpa</module>
+        <module>b13_rel</module>
+        <module>b14_jpaadv</module>
+        <module>b15_query</module>
+        <module>b16_xml</module>
+        <module>b17_nosql</module>
+        <module>b18_sec</module>
+        <module>b19_test</module>
+        <module>b20_obs</module>
+        <module>b21_perf</module>
+        <module>b22_deploy</module>
+        <module>b23_ci</module>
+        <module>b24_boss</module>
+        <module>b25_thymeleaf</module>
+        <module>b26_io</module>
+        <module>b27_concur</module>
+        <module>b28_proc</module>
+        <module>b29_sockets</module>
+        <module>b30_crypto</module>
+        <module>b31_oodb</module>
+        <module>b32_fxbase</module>
+        <module>b33_fxcontrols</module>
+        <module>b34_fxfxml</module>
+        <module>b35_fxdata</module>
     </modules>
 
     <dependencyManagement>

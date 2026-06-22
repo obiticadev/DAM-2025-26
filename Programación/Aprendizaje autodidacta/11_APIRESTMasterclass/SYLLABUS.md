@@ -83,12 +83,21 @@ Cada paquete de `src/` referencia su `.md` homónimo en `teoria/`.
 | XXIX | Sockets y programación en red (PSP RA3) | 233–240 | 8 |
 | XXX | Criptografía y programación segura (PSP RA5) | 241–248 | 8 |
 | XXXI | BD objeto-relacionales/OO y procedimientos (AD RA4 + RA2) | 249–254 | 6 |
-| | **TOTAL** | | **254** |
+| XXXII | JavaFX: aplicación, escena y layouts (DI RA1) | 255–262 | 8 |
+| XXXIII | Controles, Properties y Binding observable (DI RA1/RA2) | 263–270 | 8 |
+| XXXIV | FXML, Scene Builder, MVC/MVVM y eventos (DI RA1) | 271–278 | 8 |
+| XXXV | Datos observables, tablas y asincronía (DI RA2/RA4) | 279–286 | 8 |
+| | **TOTAL** | | **286** |
 
-> **Bloques de ampliación 2º DAM (ver `ROADMAP_2DAM.md`):** cierran los huecos del BOE
+> **Bloques de ampliación 2º DAM (ver `ROADMAP_BUILD_MASTERCLASS.md`):** cierran los huecos del BOE
 > en Acceso a Datos y PSP que la ruta REST no toca. Construidos: `b26_io` (207–214),
 > `b27_concur` (215–226), `b28_proc` (227–232), `b29_sockets` (233–240), `b30_crypto`
-> (241–248) y `b31_oodb` (249–254, cierra AD·RA4 + RA2.k). Ampliación completa.
+> (241–248) y `b31_oodb` (249–254, cierra AD·RA4 + RA2.k). En marcha el módulo de
+> **Desarrollo de Interfaces (DI)** con JavaFX: `b32_fxbase` (255–262, DI·RA1),
+> `b33_fxcontrols` (263–270, DI·RA1/RA2: controles + Properties + binding observable) y
+> `b34_fxfxml` (271–278, DI·RA1: FXML/Scene Builder, MVC/MVVM y eventos) y
+> `b35_fxdata` (279–286, DI·RA2/RA4: colecciones observables, `TableView`/`ListView`,
+> `Task`/`Service` y consumo de la API REST de b05 sin congelar la UI).
 > Nota: `b26_io` lleva 12 retos extra por ejercicio (el resto, 10).
 
 ---
@@ -479,6 +488,63 @@ Cada paquete de `src/` referencia su `.md` homónimo en `teoria/`.
 | 253 | `b31_oodb/Ej253OqlStyleQueries.java` | Consultas estilo OQL (navegar objetos ≙ JOIN) |
 | 254 | `b31_oodb/Ej254TransactionsOnObjects.java` | Transacciones sobre objetos: commit/rollback, savepoints |
 
+### Bloque XXXII · JavaFX: aplicación, escena y layouts — DI RA1 (255–262)
+| # | Archivo | Concepto clave |
+|---|---|---|
+| 255 | `b32_fxbase/Ej255AppLifecycle.java` | `Application`, `init`/`start`/`stop`, `Stage`, `launch`, construir la raíz |
+| 256 | `b32_fxbase/Ej256SceneGraph.java` | Árbol de nodos: `Parent`/`Node`, recorrer/buscar por id, `visible`/`managed`, z-order |
+| 257 | `b32_fxbase/Ej257StageWindow.java` | `Stage`: título, tamaño, posición, modalidad, ventanas en cascada |
+| 258 | `b32_fxbase/Ej258LayoutBoxes.java` | `VBox`/`HBox`: spacing, padding, `setMargin`, `Priority.ALWAYS`, alignment |
+| 259 | `b32_fxbase/Ej259BorderGridPane.java` | `BorderPane` (5 zonas) y `GridPane` (filas/columnas, colspan) |
+| 260 | `b32_fxbase/Ej260StackAnchorFlow.java` | `StackPane`, `AnchorPane`, `FlowPane`, `TilePane` |
+| 261 | `b32_fxbase/Ej261SizingAndBounds.java` | min/pref/max size, `Insets`, bounds, resizable |
+| 262 | `b32_fxbase/Ej262SceneSwitching.java` | Cambiar de escena/vista, raíz dinámica, mini-router de navegación |
+
+(Apoyo: `b32_fxbase` (test) `IniciadorFx.java` — arranca el toolkit JavaFX headless (Monocle) una vez.)
+
+### Bloque XXXIII · Controles, Properties y Binding observable — DI RA1/RA2 (263–270)
+| # | Archivo | Concepto clave |
+|---|---|---|
+| 263 | `b33_fxcontrols/Ej263BasicControls.java` | `Label`, `Button`, `TextField`, `PasswordField`, `CheckBox`, `RadioButton`/`ToggleGroup`, `TextInputControl` |
+| 264 | `b33_fxcontrols/Ej264ChoiceComboPicker.java` | `ChoiceBox`, `ComboBox` (editable), `DatePicker`, `Spinner`, `Slider` |
+| 265 | `b33_fxcontrols/Ej265PropertiesBasics.java` | `StringProperty`/`IntegerProperty`, `get`/`set`, `ChangeListener` vs `InvalidationListener`, patrón JavaFX bean |
+| 266 | `b33_fxcontrols/Ej266UnidirectionalBinding.java` | `bind()`, operadores fluent, recálculo automático, property enlazada = solo lectura |
+| 267 | `b33_fxcontrols/Ej267BidirectionalBinding.java` | `bindBidirectional`, sincronizar dos controles, enlace con `StringConverter` |
+| 268 | `b33_fxcontrols/Ej268BindingsExpressions.java` | `Bindings.when/concat/createStringBinding/format/size/valueAt` (fluent) |
+| 269 | `b33_fxcontrols/Ej269Converters.java` | `StringConverter`, conversores de fábrica, enchufar a control, parseo seguro |
+| 270 | `b33_fxcontrols/Ej270FormValidationLive.java` | Validación reactiva: `botonHabilitado` bindeado al estado del form (ViewModel, 100% testeable sin UI) |
+
+(Apoyo: `b33_fxcontrols` (test) `IniciadorFx.java` — arranca el toolkit JavaFX headless (Monocle) una vez.)
+
+### Bloque XXXIV · FXML, Scene Builder, MVC/MVVM y eventos — DI RA1 (271–278)
+| # | Archivo | Concepto clave |
+|---|---|---|
+| 271 | `b34_fxfxml/Ej271FxmlLoaderBasics.java` | `FXMLLoader`, cargar `.fxml` del classpath, `fx:controller`, `fx:root`, `controllerFactory` |
+| 272 | `b34_fxfxml/Ej272ControllerInjection.java` | `@FXML` campos/métodos, `fx:id`, `initialize()`, `lookup("#id")`, inyección del controlador |
+| 273 | `b34_fxfxml/Ej273EventHandlers.java` | `onAction`, `EventHandler`, `ActionEvent`, lambdas, `fire()`, `setOnAction` vs `addEventHandler` |
+| 274 | `b34_fxfxml/Ej274MouseKeyboardEvents.java` | `MouseEvent`/`KeyEvent`, filtros vs handlers, captura/objetivo/burbuja, `consume()`, atajos |
+| 275 | `b34_fxfxml/Ej275MvcSeparation.java` | MVC: dónde vive cada cosa (Vista/Controlador/Modelo), alta de cliente, record inmutable |
+| 276 | `b34_fxfxml/Ej276MvvmViewModel.java` | MVVM: ViewModel `bindeado` (estado + comandos + validez), vista pasiva (100% testeable sin UI) |
+| 277 | `b34_fxfxml/Ej277MultiViewNavigation.java` | Router multi-vista FXML, historial (pila), contexto compartido, maestro-detalle |
+| 278 | `b34_fxfxml/Ej278DialogsAndAlerts.java` | `Alert`/`Dialog`/`ChoiceDialog`, `showAndWait`, `ButtonType`, decisión abstraída tras interfaz |
+
+(Apoyo: `b34_fxfxml` (main) `Controlador271`/`Controlador272` y FXML en `resources/.../b34_fxfxml/`; (test) `IniciadorFx.java` — arranca el toolkit headless (Monocle) y reenvía fallos del FX thread.)
+
+### Bloque XXXV · Datos observables, tablas y asincronía — DI RA2/RA4 (279–286)
+
+| # | Archivo | Conceptos |
+|---|---------|-----------|
+| 279 | `b35_fxdata/Ej279ObservableCollections.java` | `ObservableList`, `FXCollections`, `ListChangeListener` (`wasAdded`/`wasRemoved`/`wasUpdated`), `unmodifiableObservableList`, `sort`/`reverse`, `FilteredList`/`SortedList`, extractor |
+| 280 | `b35_fxdata/Ej280ListViewCellFactory.java` | `ListView`, `cellFactory`, `ListCell.updateItem(item, empty)`, render/clase por estado, `SelectionMode.MULTIPLE`, placeholder, items vivos |
+| 281 | `b35_fxdata/Ej281TableViewColumns.java` | `TableView`, `TableColumn`, `cellValueFactory` (`PropertyValueFactory` vs lambda), `getCellObservableValue`, columna calculada, `CONSTRAINED_RESIZE_POLICY`, `sortOrder` |
+| 282 | `b35_fxdata/Ej282TableEditSortFilter.java` | Cadena `ObservableList`→`FilteredList`→`SortedList`, `setPredicate`, `comparatorProperty().bind`, edición *in-cell* (`TextFieldTableCell`, `setOnEditCommit`), extractor + filtro vivo |
+| 283 | `b35_fxdata/Ej283TaskBackground.java` | `Task<V>`: `call()`, `updateProgress`/`updateMessage`, `Task` es `Future`+`Runnable` (`get()` determinista), progreso monótono, `cancel()`, reintentos |
+| 284 | `b35_fxdata/Ej284ServiceAndBindProgress.java` | `Service<V>`: `createTask()`, `start`/`restart`/`reset`, `Worker.State`, `ProgressBar.progressProperty().bind(...)`, indeterminado, `setOnFailed` |
+| 285 | `b35_fxdata/Ej285PlatformRunLater.java` | Regla del FX App Thread, `Platform.isFxApplicationThread()`, `Platform.runLater` (FIFO), crear `Stage` fuera del hilo FX → `IllegalStateException`, patrón fondo→UI |
+| 286 | `b35_fxdata/Ej286ConsumeRestApi.java` | Cliente REST: `HttpClient` (JDK) GET a la API (b05), parseo Jackson (`TypeReference`), `Task<List<ClienteDto>>`, éxito/timeout/paginación/manejo de error HTTP, poblar `TableView` |
+
+(Apoyo: `b35_fxdata` (main) `ClienteFx` (bean observable) y `ClienteDto` (record JSON); (test) `IniciadorFx.java` — toolkit headless (Monocle) y los tests de red levantan un servidor HTTP local en puerto efímero.)
+
 ---
 
 ## 5. Progreso
@@ -515,3 +581,7 @@ Cada paquete de `src/` referencia su `.md` homónimo en `teoria/`.
 - [x] B29 · Sockets y programación en red · PSP RA3 (233–240) ✅ compila, tests en rojo (a implementar)
 - [x] B30 · Criptografía y programación segura · PSP RA5 (241–248) ✅ compila, tests en rojo (a implementar)
 - [x] B31 · BD objeto-relacionales/OO y procedimientos · AD RA4+RA2.k (249–254) ✅ compila, tests en rojo (a implementar)
+- [x] B32 · JavaFX: aplicación, escena y layouts · DI RA1 (255–262) ✅ compila, tests en rojo (a implementar) · 96 tests headless (Monocle)
+- [x] B33 · Controles, Properties y Binding observable · DI RA1/RA2 (263–270) ✅ compila, tests en rojo (a implementar) · 96 tests headless (Monocle)
+- [x] B34 · FXML, Scene Builder, MVC/MVVM y eventos · DI RA1 (271–278) ✅ compila, tests en rojo (a implementar) · 96 tests headless (Monocle)
+- [x] B35 · Datos observables, tablas y asincronía · DI RA2/RA4 (279–286) ✅ compila, tests en rojo (a implementar) · 96 tests headless (Monocle) + servidor HTTP local en los tests de red

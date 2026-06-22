@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.masterclass</groupId>
+        <artifactId>api-rest-masterclass</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>b33_fxcontrols</artifactId>
+    <name>Module - b33_fxcontrols</name>
+
+    <!--
+        JavaFX: controles estándar, Properties y binding observable (Desarrollo de Interfaces · RA1/RA2).
+        Segundo bloque del módulo DI. Es el bloque que más diferencia a JavaFX de Swing: el
+        MODELO REACTIVO (Property/ObservableValue, bind/bindBidirectional, Bindings).
+        Filosofía del addendum §1.6 del roadmap:
+          - El método CORE es lógica pura headless: configurar controles y leer su estado,
+            registrar notificaciones de una Property, calcular un binding, convertir texto<->objeto,
+            o el estado de un ViewModel de validación. Todo se prueba con JUnit puro sin abrir ventana.
+          - El main/Playground de cada ejercicio extiende Application y hace launch():
+            es el escaparate visual que el alumno ejecuta con Run.
+        spring-boot-starter-test (del parent) ya trae JUnit 5. Aquí añadimos JavaFX 21 y,
+        para los smoke headless de UI, TestFX + Monocle.
+    -->
+    <properties>
+        <javafx.version>21.0.4</javafx.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+
+        <!-- Test headless: inicializa el toolkit JavaFX sin pantalla real. -->
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-junit5</artifactId>
+            <version>4.0.18</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>openjfx-monocle</artifactId>
+            <version>21.0.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Permite `mvn -pl b33_fxcontrols javafx:run` para lanzar un Playground. -->
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.8</version>
+                <configuration>
+                    <mainClass>com.masterclass.api.b33_fxcontrols.Ej270FormValidationLive</mainClass>
+                </configuration>
+            </plugin>
+            <!-- Tests JavaFX en modo headless (Monocle): no requieren pantalla. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <argLine>-Djava.awt.headless=true -Dtestfx.robot=glass -Dtestfx.headless=true -Dglass.platform=Monocle -Dmonocle.platform=Headless -Dprism.order=sw</argLine>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

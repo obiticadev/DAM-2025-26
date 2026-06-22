@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<!--
+  Vista declarativa mínima del ejercicio 271.
+  - El nodo raíz es un VBox (esto es lo que devuelve FXMLLoader.load()).
+  - fx:controller asocia esta vista con la clase Controlador271 (la lógica).
+  - fx:id="titulo" hace que el FXMLLoader inyecte este Label en el campo @FXML 'titulo'.
+  Esto es exactamente lo que genera Scene Builder al arrastrar componentes.
+-->
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.masterclass.api.b34_fxfxml.Controlador271"
+      spacing="10.0" prefWidth="320.0" prefHeight="120.0">
+    <children>
+        <Label fx:id="titulo" text="(sin inicializar)"/>
+        <Label text="Cargada de forma declarativa, no en Java."/>
+    </children>
+</VBox>

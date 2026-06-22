@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.masterclass</groupId>
+        <artifactId>api-rest-masterclass</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>b35_fxdata</artifactId>
+    <name>Module - b35_fxdata</name>
+
+    <!--
+        JavaFX: datos observables, tablas y asincronía (Desarrollo de Interfaces · RA2/RA4).
+        Cuarto bloque del módulo DI. Aquí el cliente de escritorio deja de ser una pantalla
+        estática: muestra COLECCIONES de datos (ListView/TableView) enlazadas a un modelo
+        observable, y las carga SIN CONGELAR la interfaz (concurrencia JavaFX: Task/Service).
+        El ejercicio estrella (286) conecta el cliente JavaFX con la API REST del propio proyecto.
+
+        Filosofía del addendum §1.6 del roadmap:
+          - El método CORE es lógica pura headless: filtrar/ordenar colecciones observables,
+            extraer el valor de una celda, calcular el modelo de una fila, un Task cuyo call()
+            calcula y reporta progreso, parsear el JSON de la API... Todo se prueba con JUnit
+            puro (un Task se ejecuta y se consulta su getValue() SIN abrir ventana).
+          - El main/Playground de cada ejercicio extiende Application y hace launch():
+            es el escaparate visual que el alumno ejecuta con Run.
+
+        Dependencias del bloque: JavaFX 21 (controles), java.net.http (cliente HTTP, ya en el
+        JDK -> sin dependencia) y Jackson (spring-boot-starter-json del parent) para parsear el
+        JSON de la API. Para los smoke headless de UI, TestFX + Monocle.
+    -->
+    <properties>
+        <javafx.version>21.0.4</javafx.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+
+        <!-- Parseo del JSON de la API (Ej286). La versión la gestiona el parent spring-boot. -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-json</artifactId>
+        </dependency>
+
+        <!-- Test headless: inicializa el toolkit JavaFX sin pantalla real. -->
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-junit5</artifactId>
+            <version>4.0.18</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>openjfx-monocle</artifactId>
+            <version>21.0.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Permite `mvn -pl b35_fxdata javafx:run` para lanzar un Playground. -->
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.8</version>
+                <configuration>
+                    <mainClass>com.masterclass.api.b35_fxdata.Ej286ConsumeRestApi</mainClass>
+                </configuration>
+            </plugin>
+            <!-- Tests JavaFX en modo headless (Monocle): no requieren pantalla. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <argLine>-Djava.awt.headless=true -Dtestfx.robot=glass -Dtestfx.headless=true -Dglass.platform=Monocle -Dmonocle.platform=Headless -Dprism.order=sw</argLine>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
