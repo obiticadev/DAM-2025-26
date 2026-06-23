@@ -203,13 +203,15 @@ public final class Ej001HttpRequestParser {
         // no interpreta regex. Para regex existe matches(). Repasa el error común
         // nº5 de la teoría y los tests de retoExtra03 (ahora mismo fallan).
 
-        if (raw == null || raw.isEmpty()) return false;
-        
+        if (raw == null || raw.isEmpty())
+            return false;
+
         String primeraLinea = extraerPrimeraLineaCompleta(raw);
         String[] tokens = primeraLinea.split("\\s+");
 
-        if (tokens.length == 0) return false;
-        
+        if (tokens.length == 0)
+            return false;
+
         String verbo = tokens[0].toUpperCase();
         return java.util.Set.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS", "HEAD").contains(verbo);
     }

@@ -91,7 +91,9 @@ Cada paquete de `src/` referencia su `.md` homónimo en `teoria/`.
 | XXXVII | Componentes personalizados, Canvas y gráficos (DI RA2) | 293–298 | 6 |
 | XXXVIII | Informes, PDF e impresión (DI RA4) | 299–304 | 6 |
 | XXXIX | Documentación, ayuda y distribución (DI RA5/RA6) | 305–310 | 6 |
-| | **TOTAL** | | **310** |
+| XL | Multimedia: imagen, audio y vídeo (PMDM RA1/RA2) | 311–318 | 8 |
+| XLI | Animación, *game loop* y juego 2D (PMDM RA2/RA5) | 319–324 | 6 |
+| | **TOTAL** | | **324** |
 
 > **Bloques de ampliación 2º DAM (ver `ROADMAP_BUILD_MASTERCLASS.md`):** cierran los huecos del BOE
 > en Acceso a Datos y PSP que la ruta REST no toca. Construidos: `b26_io` (207–214),
@@ -114,8 +116,21 @@ Cada paquete de `src/` referencia su `.md` homónimo en `teoria/`.
 > integrada —"Acerca de", manual, `Hyperlink`—, persistencia de ajustes con `Preferences`,
 > modularización + `jlink` y empaquetado nativo con `jpackage`, y versionado semántico con
 > comprobación de actualizaciones). **Con b39 el módulo DI (0487) queda cubierto al completo.**
+>
+> **Programación Multimedia y Dispositivos Móviles (PMDM):** `b40_media` (311–318, PMDM·RA1/RA2:
+> multimedia con Java/JavaFX —procesamiento de imagen por píxel (escala de grises, brillo, umbral,
+> convolución), transformaciones geométricas (recortar/rotar/escalar/miniaturas), la máquina de
+> estados del `MediaPlayer` para audio (seek, playlist, muestras/dB), ajuste de vídeo con
+> `MediaView` (letterbox/cover), `snapshot` de un nodo a imagen y formatos/metadatos/compresión—).
+> Frontera con b26_io: leer/escribir bytes ya se sabe; aquí lo nuevo es procesar el CONTENIDO.
+> `b41_anim` (319–324, PMDM·RA2/RA5: animación y juego 2D —interpolación/easing de transiciones y
+> `Timeline`, el *game loop* con `AnimationTimer`/`deltaTime`/fps y el patrón de paso fijo, física de
+> sprites (posición/velocidad, clamp/rebote/wrap-around, gravedad/fricción), colisiones AABB y de
+> círculos con respuesta y lado de impacto, entrada de teclado por `Set` de teclas + máquina de
+> estados del juego, y un mini-juego 2D integrador tipo Breakout/Pong—). Enlaza con b37 (Canvas) y
+> b27 (bucle y tiempo).
 > Nota: `b26_io` lleva 12 retos extra por ejercicio (el resto, 10); `b36_fxstyle`, `b37_fxcustom`,
-> `b38_fxreports` y `b39_fxdeploy` llevan 6 ejercicios cada uno.
+> `b38_fxreports`, `b39_fxdeploy` y `b41_anim` llevan 6 ejercicios cada uno.
 
 ---
 
@@ -620,6 +635,32 @@ Cada paquete de `src/` referencia su `.md` homónimo en `teoria/`.
 
 (Apoyo: `b39_fxdeploy` (main) `PlaygroundDistribucion` (`Application` con diálogo "Acerca de", `Hyperlink` a la doc, `CheckBox` de modo oscuro persistido con `Preferences` y aviso de actualización SemVer) y `README.md` con los comandos reales de `jlink`/`jpackage`. Los cores son lógica pura headless (parsear manifest/module-info, construir comandos como cadenas, comparar SemVer, `Preferences` en nodo temporal): NO necesitan toolkit JavaFX. `Ej308`/`Ej309` son **"guion"**: construyen y validan comandos de terminal; ejecutar `jlink`/`jpackage` de verdad se documenta en `teoria/39_Distribucion_Instaladores.md` y el README. **Con b39 el módulo DI (0487) queda cubierto al completo.**)
 
+### Bloque XL · Multimedia: imagen, audio y vídeo — PMDM RA1/RA2 (311–318)
+| # | Archivo | Conceptos |
+|---|---------|-----------|
+| 311 | `b40_media/Ej311ImageLoadSave.java` | Formatos y píxel ARGB: detectar formato por *magic number* (PNG/JPEG/GIF/BMP), empaquetar ARGB (`0xAARRGGBB`), canales alfa/rojo/verde/azul (`>>>`/`&`), total de píxeles (`long`), extensión y MIME por formato, ¿soporta transparencia?, tamaño sin comprimir (4 B/píxel), forzar opaco (máscara OR) |
+| 312 | `b40_media/Ej312ImageFilters.java` | Filtros por píxel: escala de grises por luminancia (`0.299R+0.587G+0.114B`), brillo con clamp, negativo, umbral binario, `clamp` 0..255, histograma (`int[256]`), valor medio, contraste (respecto a 128), sepia (conserva alfa), gris-promedio, gamma (`pow`), convolución 3×3 (kernel, borde replicado) |
+| 313 | `b40_media/Ej313ImageTransform.java` | Transformaciones geométricas sobre `int[][]`: recortar (submatriz), rotar 90° horario/antihorario, voltear H/V, transponer, rotar 180°, dimensiones de miniatura (un factor, sin deformar), recorte cuadrado central, escalar por vecino más cercano, incrustar (marca de agua), dimensiones tras rotación (EXIF) |
+| 314 | `b40_media/Ej314AudioPlayback.java` | Máquina de estados del `MediaPlayer` (READY/PLAYING/PAUSED/STOPPED, acción inválida = sin cambio), volumen `clamp` [0,1], formatear tiempo "m:ss", % progreso, ¿reproduciendo?/¿puede pausar?, cambiar/mostrar volumen, validar `rate` (0,8], estado al terminar (`onEndOfMedia`), tiempo restante, validar estado |
+| 315 | `b40_media/Ej315AudioControl.java` | Control avanzado: siguiente/anterior pista (con repetir), `clampSeek` [0,duración], duración total, índice válido, tiempo acumulado, pista en un segundo dado, normalizar muestra (pico), mezclar a mono, ganancia→dB (`20·log10`, 0→-∞), duración formateada, orden aleatorio determinista (Fisher-Yates + semilla) |
+| 316 | `b40_media/Ej316VideoMediaView.java` | Ajuste de vídeo (`MediaView`): escalar para caber (contain=`min`), ¿apaisado?, relación de aspecto, escalar para rellenar (cover=`max`), barra letterbox, ¿cabe sin escalar?, centrar, ¿16:9? (epsilon), escalar a ancho/alto, % de escala, recorte en cover (object-fit) |
+| 317 | `b40_media/Ej317NodeSnapshot.java` | `snapshot` de un nodo: dimensión en píxeles (`ceil(ancho·escala)`), índice lineal row-major (`fila·ancho+col`), bytes, coord↔índice, región dentro del nodo, escala para resolución, color↔hex (`#RRGGBB`), alpha compositing "over" (`fg·α+bg·(1−α)`), escalar manteniendo proporción, baldosas (`ceil`), mm→puntos (b38) |
+| 318 | `b40_media/Ej318FormatMetadata.java` | Formatos/metadatos/compresión: ratio de compresión (`double`), detectar audio/vídeo por *magic number* (MP3 `ID3`/WAV `RIFF`/OGG/MP4 `ftyp`), % de ahorro, extensión/MIME (MP3=`audio/mpeg`), ¿audio?/¿vídeo?, bitrate kbps, tamaño estimado, duración desde muestras, fotogramas (`fps·s`, b41), tamaño legible (`Locale.US`) |
+
+(Apoyo: `b40_media` (main) `PlaygroundMultimedia` (`Application` que genera una imagen en código, le aplica grises + brillo del core sobre un `Canvas`/`WritableImage` con un `Slider`, y demuestra la máquina de estados del reproductor con botones). Los cores son **lógica pura headless** (aritmética de píxeles sobre `int[][]`, empaquetado ARGB, máquinas de estado, geometría de letterbox, ratios de compresión, magic numbers): NO necesitan toolkit JavaFX ni códecs. La reproducción real de audio/vídeo (`MediaPlayer`/`MediaView`, `javafx-media`) y el guardado con `ImageIO`/`SwingFXUtils` se enseñan en `teoria/40_Multimedia.md` y se ejecutan con `mvn -pl b40_media javafx:run`. **Frontera con b26_io:** leer/escribir bytes ya está dominado; b40 procesa el CONTENIDO.)
+
+### Bloque XLI · Animación, *game loop* y juego 2D — PMDM RA2/RA5 (319–324)
+| # | Archivo | Conceptos |
+|---|---------|-----------|
+| 319 | `b41_anim/Ej319TimelineTransitions.java` | Interpolación de animaciones: lerp (`desde+(hasta-desde)·t`, `t` recortado), valor en instante (tiempo→fracción), opacidad de fade, progreso en %, duración con retardo/ciclos, lerp entero (píxeles), easing ease-in (`t²`)/ease-out (`t·(2-t)`), yo-yo de `autoReverse`, fotograma de sprite-sheet, lerp de canal de color, *inverse lerp* (scrubbing) |
+| 320 | `b41_anim/Ej320AnimationTimerLoop.java` | Game loop: `deltaSegundos` (nanos→s, primer frame=0), fps (`round(1/dt)`), nanos→ms, frames en un tiempo, recorte de `dt` (anti-tunneling), patrón de paso fijo (acumular, contar pasos, resto, alpha de interpolación), fps promedio, tiempo de partida, presupuesto de frame (`1000/fps`) |
+| 321 | `b41_anim/Ej321SpriteAndMovement.java` | Física de sprites: `nuevaPosicion` (`pos+vel·dt`), clamp a pantalla, rebote en borde, módulo del vector (`hypot`), velocidad diagonal (`v/√2`), perseguir objetivo sin pasarse, distancia, dentro de pantalla, wrap-around (doble módulo), gravedad, fricción, velocidad terminal, ángulo (`atan2` en grados) |
+| 322 | `b41_anim/Ej322CollisionDetection.java` | Colisiones: AABB (solape X∧Y), círculos (dist²≤(r1+r2)²), punto en rect/círculo, profundidad de solape, centro, respuesta de rebote, distancia entre centros, rect–círculo (punto más cercano/clamp), contención total, lado de colisión por penetración mínima, choque con pared lateral |
+| 323 | `b41_anim/Ej323InputGameState.java` | Entrada y estado: máquina de estados (MENU/JUGANDO/PAUSA/FIN, transición inválida = sin cambio), eje horizontal/vertical (teclas que se cancelan), ¿pausado?/¿activo?/¿puede pausar?, toggle pausa, estado válido, WASD→dirección, aplicar eje a posición, contar teclas pulsadas, vector de movimiento 2D |
+| 324 | `b41_anim/Ej324MiniGame2D.java` | Mini-juego integrador (Breakout/Pong): rebote en pared anti-pegajoso, ¿golpea la pala?, ¿ganador? (objetivo), puntuar, vidas con suelo 0, game over, velocidad por nivel, clamp de la pala, efecto del rebote en `[-1,1]`, ladrillos restantes/nivel completado, índice de rejilla (`fila·cols+col`), siguiente nivel con tope |
+
+(Apoyo: `b41_anim` (main) `PlaygroundJuego` (`Application` con un `AnimationTimer` real sobre un `Canvas`: una pelota se mueve con la física del core, rebota en las paredes y se controla con flechas/WASD moviendo una pala). Los cores son **lógica pura headless** (interpolación, `deltaTime`/fps, integración `pos+vel·dt`, colisiones AABB/círculo, máquina de estados del juego, lógica del mini-juego): NO necesitan toolkit JavaFX ni arrancar el bucle. El game loop real (`AnimationTimer.handle(now)`, `Set` de teclas pulsadas) se enseña en `teoria/41_Animacion_Juegos.md` y se ejecuta con `mvn -pl b41_anim javafx:run`. Enlaza con b37 (Canvas) y b27 (bucle y tiempo). 6 ejercicios × (2–3 cores + 10 retos).)
+
 ---
 
 ## 5. Progreso
@@ -664,3 +705,5 @@ Cada paquete de `src/` referencia su `.md` homónimo en `teoria/`.
 - [x] B37 · Componentes personalizados, Canvas y gráficos · DI RA2 (293–298) ✅ compila, tests en rojo (a implementar) · 72 tests de lógica pura (geometría/estado/datos/color, sin toolkit) + Playground con Canvas y BarChart
 - [x] B38 · Informes, PDF e impresión · DI RA4 (299–304) ✅ compila, tests en rojo (a implementar) · 78 tests de lógica pura (modelo de datos, totales, magic numbers, geometría de impresión, CSV; sin toolkit ni motor Jasper) + Playground con TableView y PrinterJob
 - [x] B39 · Documentación, ayuda y distribución · DI RA5/RA6 (305–310) ✅ compila, tests en rojo (a implementar) · 78 tests de lógica pura (parsear manifest/module-info, `Preferences` en nodo temporal, comandos jlink/jpackage como cadenas, SemVer; sin toolkit) + Playground con "Acerca de"/Hyperlink/preferencias. **Cierra el módulo DI (0487).** `Ej308`/`Ej309` son "guion" (comandos de terminal en el README)
+- [x] B40 · Multimedia: imagen, audio y vídeo · PMDM RA1/RA2 (311–318) ✅ compila, tests en rojo (a implementar) · 96 tests de lógica pura (aritmética de píxeles sobre `int[][]`, ARGB, máquina de estados del `MediaPlayer`, geometría de letterbox, magic numbers, compresión; sin toolkit ni códecs) + Playground con filtros sobre `Canvas`/`Slider` y la máquina de estados. **Primer bloque de PMDM.** Frontera con b26_io (leer bytes ya sabido; aquí se procesa el contenido)
+- [x] B41 · Animación, *game loop* y juego 2D · PMDM RA2/RA5 (319–324) ✅ compila, tests en rojo (a implementar) · 74 tests de lógica pura (interpolación/easing, `deltaTime`/fps y paso fijo, física `pos+vel·dt` con clamp/rebote/wrap, colisiones AABB/círculo/rect–círculo, máquina de estados del juego, lógica del mini-juego; sin toolkit ni `AnimationTimer`) + `PlaygroundJuego` con game loop real sobre `Canvas` (pelota+pala controlable). Enlaza con b37 (Canvas) y b27 (bucle/tiempo). 6 ejercicios × (2–3 cores + 10 retos)

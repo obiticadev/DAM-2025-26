@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.masterclass</groupId>
+        <artifactId>api-rest-masterclass</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>b40_media</artifactId>
+    <name>Module - b40_media</name>
+
+    <!--
+        Multimedia: imagen, audio y vídeo en Java/JavaFX (PMDM · RA1/RA2).
+        Noveno bloque de la fase JavaFX. El alumno ya sabe pintar una UI (b32-b37) y leer/escribir
+        bytes y ficheros (b26_io: InputStream/OutputStream, NIO.2). AQUÍ NO se re-enseña a leer un
+        fichero: eso ya está en b26. Lo nuevo es QUÉ HACES con el contenido una vez cargado: procesar
+        los PÍXELES de una imagen (filtros, transformaciones), manejar la MÁQUINA DE ESTADOS de un
+        reproductor de audio/vídeo y entender los FORMATOS multimedia (PNG/JPEG, MP3/WAV/MP4).
+
+        Filosofía del addendum §1.6 del roadmap (igual que b32-b39):
+          - El método CORE es SIEMPRE lógica pura y headless: matemática de píxeles sobre arrays
+            (int[][]), empaquetado ARGB, detección de formato por *magic number*, la máquina de
+            estados del MediaPlayer (READY/PLAYING/PAUSED/STOPPED), la geometría de ajuste de vídeo
+            (letterbox) y el cálculo de ratios de compresión. TODO se prueba con JUnit puro (números,
+            arrays, bytes, cadenas) SIN abrir ventana ni cargar codecs reales.
+          - El main de cada ejercicio es un Playground de consola que demuestra los core; el
+            Playground visual (PlaygroundMultimedia, `extends Application`) carga una imagen, le
+            aplica los filtros del core y reproduce audio/vídeo con MediaPlayer/MediaView.
+
+        SOBRE javafx-media (importante, leer teoria/40_Multimedia.md, sección "Antes de empezar"):
+          La reproducción real de audio/vídeo necesita `javafx-media` y códecs nativos del sistema.
+          Para mantener los tests deterministas y compilando OFFLINE, los cores NO importan clases
+          de Media/MediaPlayer: modelan la LÓGICA (máquina de estados, playlist, ajuste). El código
+          real de MediaPlayer/MediaView se enseña en la teoría y en las GUÍAS, y para EJECUTARLO de
+          verdad el alumno usa el Playground visual con `mvn -pl b40_media javafx:run`.
+    -->
+    <properties>
+        <javafx.version>21.0.4</javafx.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+        <!-- Reproducción de audio/vídeo (Media/MediaPlayer/MediaView). Necesita códecs nativos. -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-media</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+        <!-- SwingFXUtils: puente Image (JavaFX) <-> BufferedImage (AWT/ImageIO) para guardar PNG/JPG. -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-swing</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+
+        <!-- Test headless: inicializa el toolkit JavaFX sin pantalla real (uniformidad con b32-b39). -->
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-junit5</artifactId>
+            <version>4.0.18</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>openjfx-monocle</artifactId>
+            <version>21.0.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Permite `mvn -pl b40_media javafx:run` para lanzar el Playground visual. -->
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.8</version>
+                <configuration>
+                    <mainClass>com.masterclass.api.b40_media.PlaygroundMultimedia</mainClass>
+                </configuration>
+            </plugin>
+            <!-- Tests JavaFX en modo headless (Monocle): no requieren pantalla. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <argLine>-Djava.awt.headless=true -Dtestfx.robot=glass -Dtestfx.headless=true -Dglass.platform=Monocle -Dmonocle.platform=Headless -Dprism.order=sw</argLine>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

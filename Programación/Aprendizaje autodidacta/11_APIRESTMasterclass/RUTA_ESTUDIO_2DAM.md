@@ -37,9 +37,8 @@ sockets, acceso a datos). Esta ruta **reordena** los bloques por módulo y por u
 El flujo está en [README_GUIA_TERMINAL.md](README_GUIA_TERMINAL.md). Resumen operativo:
 
 1. **Activa solo el bloque** que estudias (rendimiento del IDE):
-   ```powershell
-   .\bloque.ps1 b27        # Windows
-   ./bloque.sh b27         # Linux (casa/clase)
+   ```bash
+   python bloque.py b27    # Windows / Linux (mismo comando)
    ```
 2. **Lee la teoría primero**: `teoria/NN_*.md` (tiene diagramas Mermaid).
 3. Abre el ejercicio, lee el Javadoc y los `// TODO 1..10:`.
@@ -49,7 +48,7 @@ El flujo está en [README_GUIA_TERMINAL.md](README_GUIA_TERMINAL.md). Resumen op
    mvn test -Dtest=Ej215ThreadRunnableTest
    ```
 6. Marca el checkbox en [SYLLABUS.md](SYLLABUS.md).
-7. Antes de cualquier commit o `mvn test` global: `.\bloque.ps1 todos`.
+7. Antes de cualquier commit o `mvn test` global: `python bloque.py todos`.
 
 > **Regla de oro:** un ejercicio está hecho **solo cuando el test está en verde**.
 > Los tests nacen en rojo a propósito. Si llevas 3 días leyendo y sin escribir código,

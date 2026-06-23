@@ -11,29 +11,21 @@ el código de los `// TODO:`; los tests dicen cuándo está bien.
 
 ## 1. Rendimiento en VS Code: trabaja con UN bloque activo
 
-El proyecto tiene 26 módulos Maven con Spring Boot. Si VS Code los importa todos,
+El proyecto tiene 41 módulos Maven con Spring Boot. Si VS Code los importa todos,
 el autocompletado de Java se arrastra. Solución: activa solo el bloque que estés
-estudiando. Hay dos scripts equivalentes según el sistema:
-
-**Windows (trabajo)** — PowerShell:
-
-```powershell
-.\bloque.ps1 b00        # activa solo b00_http
-.\bloque.ps1 b04 b05    # puedes activar varios
-.\bloque.ps1            # muestra qué bloques están activos
-.\bloque.ps1 todos      # restaura los 26 (SIEMPRE antes de commit o mvn test global)
-```
-
-**CachyOS (casa) / Fedora (clase)** — bash, mismos argumentos:
+estudiando. Se controla con un único script de Python (multiplataforma):
 
 ```bash
-./bloque.sh b00         # (la primera vez: chmod +x bloque.sh)
-./bloque.sh todos
+python bloque.py b00        # activa solo b00_http
+python bloque.py b04 b05    # puedes activar varios
+python bloque.py            # muestra qué bloques están activos
+python bloque.py todos      # restaura todos (SIEMPRE antes de commit o mvn test global)
 ```
 
-Ambos hacen lo mismo: reescriben la lista `<modules>` del `pom.xml` raíz para que
-el language server solo importe los bloques activos. No borran nada; las demás
-carpetas simplemente dejan de indexarse.
+Funciona igual en Windows, CachyOS y Fedora (solo necesitas `python` en el PATH).
+Reescribe la lista `<modules>` del `pom.xml` raíz para que el language server solo
+importe los bloques activos, autodetectando cualquier carpeta `bNN_*` con `pom.xml`.
+No borra nada; las demás carpetas simplemente dejan de indexarse.
 
 Tras ejecutarlo: `Ctrl+Shift+P` → **Java: Reload Projects**. Si las sugerencias
 siguen raras, usa **Java: Clean Java Language Server Workspace** (reinicia el índice).

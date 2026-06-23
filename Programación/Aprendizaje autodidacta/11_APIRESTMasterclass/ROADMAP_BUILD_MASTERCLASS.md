@@ -95,8 +95,8 @@ de la skill `mejorar-bloque`.**
 ### 1.4 Alta como módulo Maven
 - Carpeta `bNN_nombre/` con su `pom.xml` propio (copiar el de un bloque hermano; cambiar
   `artifactId` y añadir dependencias del bloque). `src/main` y `src/test` espejo.
-- **No** hace falta tocar `bloque.ps1`/`bloque.sh`: detectan cualquier carpeta `^b\d{2}_` con `pom.xml`.
-- Añadir el módulo a `<modules>` del `pom.xml` raíz solo al compilar todo (`.\bloque.ps1 todos`).
+- **No** hace falta declarar nada a mano: `bloque.py` autodetecta cualquier carpeta `^b\d{2}_` con `pom.xml`.
+- Añadir el módulo a `<modules>` del `pom.xml` raíz solo al compilar todo (`python bloque.py todos`).
 - Registrar el bloque en `SYLLABUS.md` (tabla de rangos + tabla detallada + checklist).
 
 ### 1.5 Estilo
@@ -603,11 +603,11 @@ Con b32–b43 la masterclass cubre **los 5 módulos técnicos de 2º DAM** y el 
 
 ## 4. Verificación al construir cada bloque
 
-1. `.\bloque.ps1 bNN` → `mvn -pl bNN_nombre test` compila y deja los tests **en rojo**
+1. `python bloque.py bNN` → `mvn -pl bNN_nombre test` compila y deja los tests **en rojo**
    (centinela / `UnsupportedOperationException`); tras implementar, en **verde**.
 2. Para bloques JavaFX: los tests de lógica (core/ViewModel) pasan **headless**; los *smoke* de UI
    corren con Monocle (`-Dtestfx.headless=true`). Ningún test depende de una pantalla real.
-3. `bloque.ps1` (sin args) lista el nuevo bloque como detectado automáticamente.
+3. `python bloque.py` (sin args) lista el nuevo bloque como detectado automáticamente.
 4. Cada bloque cumple la anatomía §1: 2–3 core con 10 TODOs + 10 retos extra con GUÍA + test
    espejo + teoría con Mermaid.
 

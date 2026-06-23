@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.masterclass</groupId>
+        <artifactId>api-rest-masterclass</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>b41_anim</artifactId>
+    <name>Module - b41_anim</name>
+
+    <!--
+        Animación, game loop y juego 2D (PMDM · RA2/RA5).
+        Décimo bloque de la fase JavaFX y segundo de PMDM. El alumno ya sabe pintar con Canvas
+        (b37_fxcustom) y procesar imágenes (b40_media), y desde b27_concur conoce el concepto de
+        un bucle que avanza en el tiempo. AQUÍ junta las dos cosas: el GAME LOOP (input -> update ->
+        render a 60 fps) y la FÍSICA 2D (posición, velocidad, colisiones) que da vida a un juego.
+
+        Filosofía del addendum §1.6 del roadmap (igual que b32-b40):
+          - El método CORE es SIEMPRE lógica pura y headless: interpolación de animaciones, cálculo
+            de deltaTime/fps, integración posición = pos + vel·dt, colisiones AABB/círculo, máquina
+            de estados del juego (MENU/JUGANDO/PAUSA/FIN) y la lógica del mini-juego. TODO se prueba
+            con JUnit puro (números, booleanos, arrays) SIN abrir ventana ni arrancar un AnimationTimer.
+          - El main de cada ejercicio es un Playground de consola que demuestra los core; el
+            Playground visual (PlaygroundJuego, extends Application) monta un AnimationTimer real
+            sobre un Canvas y usa los core para mover y rebotar un sprite.
+
+        SOBRE AnimationTimer/Timeline (leer teoria/41_Animacion_Juegos.md, "Antes de empezar"):
+          AnimationTimer.handle(now) se ejecuta una vez por frame en el hilo de JavaFX y recibe el
+          tiempo en NANOSEGUNDOS. Para mantener los tests deterministas, los cores NO crean un
+          AnimationTimer ni un Timeline: modelan la MATEMÁTICA (deltaTime, interpolación, física).
+          El AnimationTimer real solo aparece en el Playground, que se ejecuta con
+          `mvn -pl b41_anim javafx:run`.
+    -->
+    <properties>
+        <javafx.version>21.0.4</javafx.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+
+        <!-- Test headless: inicializa el toolkit JavaFX sin pantalla real (uniformidad con b32-b40). -->
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-junit5</artifactId>
+            <version>4.0.18</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>openjfx-monocle</artifactId>
+            <version>21.0.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Permite `mvn -pl b41_anim javafx:run` para lanzar el Playground del juego. -->
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.8</version>
+                <configuration>
+                    <mainClass>com.masterclass.api.b41_anim.PlaygroundJuego</mainClass>
+                </configuration>
+            </plugin>
+            <!-- Tests JavaFX en modo headless (Monocle): no requieren pantalla. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <argLine>-Djava.awt.headless=true -Dtestfx.robot=glass -Dtestfx.headless=true -Dglass.platform=Monocle -Dmonocle.platform=Headless -Dprism.order=sw</argLine>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

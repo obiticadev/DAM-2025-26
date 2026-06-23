@@ -28,9 +28,11 @@ Esta skill fusiona *crear* + *mejorar* en una sola pasada.
 - Lee también `SYLLABUS.md` (índice) y, si el bloque es de UI/JavaFX, el **§1.6 (addendum JavaFX)**
   del roadmap.
 
-> **Herramientas del repo:** `mvn` puede no estar en el PATH. Compila con `.\bloque.ps1 bNN` +
-> Maven, o localiza el binario. `bloque.ps1`/`bloque.sh` detectan solas cualquier carpeta
-> `^b\d{2}_` con `pom.xml`; **no** las edites.
+> **Herramientas del repo:** `mvn` puede no estar en el PATH. Activa el módulo con
+> `python bloque.py bNN` y luego compila con Maven, o localiza el binario. `bloque.py` autodetecta
+> cualquier carpeta `^b\d{2}_` con `pom.xml` y reescribe los `<modules>` del `pom.xml` raíz; **no**
+> necesitas declarar nada a mano: en cuanto creas la carpeta del bloque con su `pom.xml`, `bloque.py`
+> ya lo reconoce.
 
 ---
 
@@ -323,8 +325,9 @@ estudiarse sin abrir otra fuente y dejarle resolver casos que los ejercicios NO 
    - `src/main/java/com/masterclass/api/bNN_nombre/` con las clases de ejercicio.
    - `src/test/java/com/masterclass/api/bNN_nombre/` con los tests espejo.
    - `src/main/resources/...` si el bloque necesita FXML/`.jrxml`/`.properties`/datos.
-2. **No** edites `bloque.ps1`/`bloque.sh` (autodetectan). Para compilar TODO, el módulo debe estar
-   en `<modules>` del `pom.xml` raíz: usa `.\bloque.ps1 todos` para regenerar esa lista.
+2. **No** hay que declarar el módulo a mano: `bloque.py` lo autodetecta en cuanto existe la carpeta
+   con su `pom.xml`. Para compilar TODO, el módulo debe estar en `<modules>` del `pom.xml` raíz: usa
+   `python bloque.py todos` para regenerar esa lista (o `python bloque.py bNN` para activar solo este).
 3. **Registra el bloque en `SYLLABUS.md`:** añade fila(s) en la tabla de rangos (§3), la tabla
    detallada de ejercicios (§4) y el checklist de progreso (§5).
 4. Si procede, añade el bloque a la ruta de estudio `RUTA_ESTUDIO_2DAM.md`.
@@ -337,13 +340,13 @@ Compila y comprueba que **los tests nacen en rojo limpio** (fallo por centinela/
 error de compilación):
 
 ```
-.\bloque.ps1 bNN
+python bloque.py bNN
 mvn -pl bNN_nombre test    # o el binario de mvn si no está en PATH
 ```
 
 El bloque está **terminado** cuando se cumple TODO esto:
 
-- [ ] Carpeta + `pom.xml` + `src/{main,test}` espejo creados; `bloque.ps1` lista el bloque.
+- [ ] Carpeta + `pom.xml` + `src/{main,test}` espejo creados; `python bloque.py` lista el bloque.
 - [ ] `mvn -pl bNN_nombre test-compile` **compila sin errores**.
 - [ ] Cada ejercicio: clase `final` + ctor privado + métodos `static`, javadoc con ref a teoría.
 - [ ] Cada ejercicio: **2–3 core con EXACTAMENTE 10 TODOs** + `main` + **10 retos** con nombre
@@ -360,4 +363,4 @@ El bloque está **terminado** cuando se cumple TODO esto:
 - [ ] Castellano y UTF-8 en todo, comentarios incluidos. Nombres de método en español.
 
 > Cuando termines, informa al usuario: qué ejercicios creaste, cuántos tests quedan en rojo, y
-> recuérdale ejecutar `.\bloque.ps1 todos` antes de un `mvn test` global o un commit.
+> recuérdale ejecutar `python bloque.py todos` antes de un `mvn test` global o un commit.
