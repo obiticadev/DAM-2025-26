@@ -93,7 +93,12 @@ Cada paquete de `src/` referencia su `.md` homónimo en `teoria/`.
 | XXXIX | Documentación, ayuda y distribución (DI RA5/RA6) | 305–310 | 6 |
 | XL | Multimedia: imagen, audio y vídeo (PMDM RA1/RA2) | 311–318 | 8 |
 | XLI | Animación, *game loop* y juego 2D (PMDM RA2/RA5) | 319–324 | 6 |
-| | **TOTAL** | | **324** |
+| XLII | Desarrollo móvil / Android (PMDM RA3/RA4/RA6) | 325–330 | 6 |
+| XLIII | Integración ERP/CRM, ETL e inteligencia de negocio (SGE RA4/RA5/RA6) | 331–336 | 6 |
+| XLIV | Interfaces naturales: voz, gestos, cuerpo, RA y ML (DI RA2) | 337–344 | 8 |
+| XLV | JavaFX 3D y arquitectura de motores de juego (PMDM RA4/RA5) | 345–350 | 6 |
+| XLVI | Componentes de acceso a datos · modelo JavaBean (AD RA6) | 351–356 | 6 |
+| | **TOTAL** | | **356** |
 
 > **Bloques de ampliación 2º DAM (ver `ROADMAP_BUILD_MASTERCLASS.md`):** cierran los huecos del BOE
 > en Acceso a Datos y PSP que la ruta REST no toca. Construidos: `b26_io` (207–214),
@@ -129,6 +134,18 @@ Cada paquete de `src/` referencia su `.md` homónimo en `teoria/`.
 > círculos con respuesta y lado de impacto, entrada de teclado por `Set` de teclas + máquina de
 > estados del juego, y un mini-juego 2D integrador tipo Breakout/Pong—). Enlaza con b37 (Canvas) y
 > b27 (bucle y tiempo).
+> **Sistemas de Gestión Empresarial (SGE):** `b43_erp` (331–336, SGE·RA4/RA5/RA6: integración con
+> un ERP/CRM —Odoo— en su vertiente Java, la única programable del módulo). Cubre el modelo de datos
+> del ERP (modelos/módulos, maestro vs. transaccional, orden de carga), la migración por fichero
+> (CSV/XML con round-trip y escape), el cliente de su API (construir/parsear JSON-RPC con Jackson,
+> domain y paginación, sin red en los tests), el **ETL** (mapear/transformar/validar con descarte de
+> filas inmapeables), la **inteligencia de negocio** (KPIs con `groupingBy`/`summingDouble`: ventas
+> por mes, top de clientes, ticket medio, conversión) y la **sincronización idempotente** (plan
+> altas/modificaciones/sin-cambios por clave de negocio + upsert, huella de contenido, backoff,
+> lotes y conciliación). Frontera honesta con b16/b06: parsear CSV/XML y el HTTP ya están dados;
+> lo nuevo es el **flujo de integración**. Parametrizar Odoo (RA1–RA3) se hace en la herramienta
+> (Python), no en Java. La práctica real se hace contra el **MCP de Odoo** del entorno.
+> **Con b43 quedan cubiertos los CINCO módulos técnicos de 2º DAM.**
 > Nota: `b26_io` lleva 12 retos extra por ejercicio (el resto, 10); `b36_fxstyle`, `b37_fxcustom`,
 > `b38_fxreports`, `b39_fxdeploy` y `b41_anim` llevan 6 ejercicios cada uno.
 
@@ -661,6 +678,129 @@ Cada paquete de `src/` referencia su `.md` homónimo en `teoria/`.
 
 (Apoyo: `b41_anim` (main) `PlaygroundJuego` (`Application` con un `AnimationTimer` real sobre un `Canvas`: una pelota se mueve con la física del core, rebota en las paredes y se controla con flechas/WASD moviendo una pala). Los cores son **lógica pura headless** (interpolación, `deltaTime`/fps, integración `pos+vel·dt`, colisiones AABB/círculo, máquina de estados del juego, lógica del mini-juego): NO necesitan toolkit JavaFX ni arrancar el bucle. El game loop real (`AnimationTimer.handle(now)`, `Set` de teclas pulsadas) se enseña en `teoria/41_Animacion_Juegos.md` y se ejecuta con `mvn -pl b41_anim javafx:run`. Enlaza con b37 (Canvas) y b27 (bucle y tiempo). 6 ejercicios × (2–3 cores + 10 retos).)
 
+### Bloque XLII · Desarrollo móvil / Android — PMDM RA3/RA4/RA6 (325–330)
+
+| # | Archivo | Concepto clave |
+|---|---|---|
+| 325 | `b42_mobile/Ej325MobileEnvOverview.java` | **Guion** entorno/SDK: validar `minSdk≤targetSdk≤compileSdk` (todos ≥1), clasificar fichero (manifest/gradle/recurso/código), `applicationId` válido (dominio invertido), ruta de recurso (`res/tipo/nombre`), nombre de AVD (`Pixel_6_API_33`), versión Android por API, carpeta de densidad (`drawable-xhdpi`), contar por categoría, permiso completo (`android.permission.*`, idempotente), build type (debug/release), recurso `-land`, comando Gradle (`./gradlew …`, b04) |
+| 326 | `b42_mobile/Ej326ActivityLifecycle.java` | Ciclo de vida `Activity` como máquina de estados: `siguienteEstado` (callback inválido = sin cambio), `estadoTrasCallbacks` (fold desde NUEVA), ¿visible? (INICIADA/REANUDADA/PAUSADA) vs ¿interactuable? (solo REANUDADA), ¿terminal?, callback de entrada (inverso), secuencia de arranque/cierre, transición válida, contar transiciones válidas, ¿liberar recursos? (onPause/onStop/onDestroy), callbacks de rotación (destruir+recrear, b32 `Stage`) |
+| 327 | `b42_mobile/Ej327LayoutsAndViews.java` | Layouts Android↔JavaFX (`LinearLayout`→`VBox`/`HBox`, `FrameLayout`→`StackPane`, `ConstraintLayout`→`AnchorPane`, `GridLayout`→`GridPane`), `dp→px` (`dpi/160`)/`px→dp`, `sp→px` (escala de fuente), ¿contenedor?, contar vistas, `findViewById` como lookup en `Map` (b34 `lookup("#id")`), orientación, ¿cabe?, ancho por `layout_weight`, id `@+id/`/`@id/` válido, gravedad opuesta |
+| 328 | `b42_mobile/Ej328EventsAndIntents.java` | Navegación por `Intent` y back stack: `navegar` (push inmutable), `extraComoTexto` (`getStringExtra`, null seguro), cima/¿vacía?/contar, `ponerExtra` (mapa nuevo), acción implícita (`ACTION_VIEW/SEND/DIAL`), `RESULT_OK==-1`/`RESULT_CANCELED==0`, `requestCode` en `[0,65535]`, `volverAtras` (pop, no vacía la última), URI `tel:`, parámetro de deep link (≈ query params de b05) |
+| 329 | `b42_mobile/Ej329SensorsModel.java` | Sensores y filtrado: `filtrarLecturaSensor` (media móvil de ventana), `magnitud` (`√(x²+y²+z²)`), media, ¿supera umbral? (valor absoluto), filtro de paso bajo (`α·act+(1-α)·ant`), aceleración lineal (`mag-9.81`), ¿en reposo?, lectura válida, normalizar `[0,1]` (satura), contar picos (máximos locales = pasos), grados→radianes, eje dominante de la gravedad |
+| 330 | `b42_mobile/Ej330PublishDistribution.java` | **Guion** firma/publicación: `versionName` SemVer (b39), `siguienteVersionCode` (monótono; `IllegalState` en overflow), incrementar patch, nombre de artefacto, formato `apk`/`aab` + extensión, alias válido, comando `apksigner` (firma = b30 cripto), ¿release lista? (firmada∧minificada∧¬debuggable), tamaño legible (`Locale.US`), categoría de store, `./gradlew bundleRelease` |
+
+(Apoyo: `b42_mobile` es **JDK puro, sin app Android real** (Android usa Gradle/Kotlin/emulador, fuera de este Maven). Los cores son **lógica pura testeable**: máquina de estados del ciclo de vida (`Ej326`), conversión dp/sp y mapa de layouts (`Ej327`), modelo de back stack/extras (`Ej328`) y filtrado de sensores sobre `double[]` (`Ej329`). `Ej325` (entorno/SDK) y `Ej330` (firma/publicación) son **"guion"**: validan configuraciones y construyen comandos como cadenas, como los "guion" de b22 (Dockerfile) y b39 (jlink/jpackage). Todo el modelo y los comandos reales se enseñan en `teoria/42_Movil_Android.md`. Enlaza con b32/b34 (ciclo de vida/eventos), b05 (routing/URLs), b30 (firma) y b39 (SemVer). **Cierra la parte programable en Java de PMDM (0488).** 6 ejercicios × (2 cores + 10 retos).)
+
+---
+
+### Bloque XLIII · Integración ERP/CRM, ETL e inteligencia de negocio — SGE RA4/RA5/RA6 (331–336)
+
+| # | Archivo | Concepto clave |
+|---|---|---|
+| 331 | `b43_erp/Ej331ErpConcepts.java` | **Guion + glosario**: modelo de datos del ERP. `areaDeModelo` (res.partner→CRM, sale.order→Ventas…), maestro vs. transaccional, validar nombre de modelo, glosario (ERP/CRM/ETL/SKU/BI), dependencias entre módulos, orden de carga (FK topológico, b13), ruta REST del modelo, `_id`/`_ids`→many2one/one2many, flujo order-to-cash |
+| 332 | `b43_erp/Ej332CsvXmlImportExport.java` | Migración de maestros: `importar/exportarClientesCsv` con round-trip estable (`split(";",-1)`), cabecera válida, conteo, email, **escape/desescape XML** (orden de `&`), serializar cliente y lista a XML, extraer etiqueta, **deduplicar** por id (Set), detectar formato. Frontera con b16 |
+| 333 | `b43_erp/Ej333ErpApiClient.java` | Cliente API Odoo **JSON-RPC** con Jackson (b02), sin red: `construirLlamada`/`contarRegistrosRespuesta` (`-1`≠`0`), código HTTP, URL endpoint, `tieneError`/mensaje, uid, **domain** `[["c","=",v]]` (≙ WHERE/Specification b15), paginación `{limit,offset}` (≙ Pageable b15), lista de ids, leer campo, `execute_kw` completo. Real vía **MCP de Odoo** |
+| 334 | `b43_erp/Ej334DataMappingEtl.java` | **ETL**: `mapearCliente` (trim/mayúsculas/defaults) + `validarMaestro` (List de errores). Normalizar texto/país/teléfono, valor por defecto, mapear catálogo, **fecha dd/MM/yyyy→ISO** (sin pasar por int), truncar, fila completa, contar válidos, `mapearLista` con descarte de filas inmapeables (dead-letter, b09) |
+| 335 | `b43_erp/Ej335BiAggregations.java` | **BI/KPIs** con Streams (b01) ≙ GROUP BY (b15): `ventasPorMes` (`groupingBy`+`summingDouble`), `topNClientes`, total, ticket medio (÷0→0), total por categoría, pedido mayor (`Optional`), conteo por cliente, mes pico, crecimiento %, acumulado, ventas entre fechas (compareTo ISO), tasa de conversión (×100.0 antes de dividir) |
+| 336 | `b43_erp/Ej336IntegrationSync.java` | **Sincronización idempotente**: `planificarSync` (altas/modificaciones/sin-cambios por idExterno) + `aplicarUpsert` (set≠add, test de idempotencia). Clasificar acción, indexar, **huella de contenido** (`Objects.hash` sin id, b30), detectar cambios, ids a eliminar, **backoff** acotado (b21), lotes (b11/b14), **conciliación** (doubles con tolerancia), fusión PATCH parcial (b07), resumen del plan (b20) |
+
+(Apoyo: `b43_erp` define los modelos compartidos `ClienteErp` (≈`res.partner`), `PedidoErp`
+(≈`sale.order`) y `SyncPlan` (resultado de la comparación). Todos los cores son **lógica pura JDK +
+Jackson, sin red ni base de datos**: deterministas y testeables. `Ej331`/`Ej333` tienen vertiente
+**"guion"** —modelan conocimiento del ERP y construyen/validan peticiones JSON como cadenas, igual
+que los "guion" de b22/b39/b42—; la práctica contra una instancia Odoo real se hace a mano con el
+**MCP de Odoo** del entorno. Parametrizar Odoo (SGE RA1–RA3) NO es Java y queda fuera. Enlaza con
+b16 (CSV/XML), b06 (HTTP), b15 (agregaciones), b02 (Jackson), b30 (hash) y b07 (PATCH).
+**Cierra SGE (0489) en su vertiente programable y con él los 5 módulos técnicos de 2º DAM.**
+6 ejercicios × (2 cores + 10 retos).)
+
+---
+
+### Bloque XLIV · Interfaces naturales: voz, gestos, cuerpo, RA y ML — DI RA2 (337–344)
+
+> **Bloque de cierre BOE 2023 (ver `ROADMAP_CIERRE_BOE2023.md`).** Cubre el RA2 de Desarrollo de
+> Interfaces (interfaces NATURALES), el único RA de DI que ningún bloque tocaba.
+
+| # | Archivo | Concepto clave |
+|---|---|---|
+| 337 | `b44_nui/Ej337NuiOverview.java` | **Guion + modelo**: tipos de interfaz natural y pipeline percepción→intención→acción. `clasificarModalidad` (palabras clave → `enum Modalidad{VOZ,GESTO,CUERPO,RA,ML}`), `pipelineDe` (5 etapas). Retos: latencia, modalidad de respaldo, accesibilidad (NUI = apoyo, no sustituto, b36), multimodal, consentimiento biométrico (RGPD, b30), wake word, confidence gating, i18n del comando, manos libres, etiqueta accesible |
+| 338 | `b44_nui/Ej338VoiceCommandGrammar.java` | Gramática de voz: frase → `Intencion(accion, slots)`. `interpretarComando` (verbo→acción + slot tras artículo), `accionDeVerbo`. Retos: sinónimos, stop words, comando compuesto, idioma, corregir typo (Levenshtein), slot por defecto, gramática como tabla de datos, prioridad, comando contextual, dispara evento de UI (b34) |
+| 339 | `b44_nui/Ej339SpeechToIntent.java` | Transcripción → acción con confianza y fuzzy match. `aAccionUi` (descarta bajo umbral → `Optional<AccionUi>`), `mejorCoincidencia` (Levenshtein). Retos: rechazo, historial, confirmación de acciones destructivas, distancia de edición, umbral adaptativo, número hablado, normalización fonética, WER, n-best, registrar sin datos sensibles (b30) |
+| 340 | `b44_nui/Ej340GestureStateMachine.java` | Clasificar gesto por trayectoria (`enum Gesto`) y máquina de estados táctil (IDLE→PRESSED→DRAG→RELEASED, inválida→IDLE). Retos: flick, longitud de trazo, hold, doble tap, ángulo (`atan2`), zona muerta, cancelación, punteros (pinch), suavizado, velocidad media (b41) |
+| 341 | `b44_nui/Ej341BodyKeypointsGeometry.java` | Geometría de keypoints: `anguloArticulacion` (producto escalar, recorta coseno a [-1,1]), `distanciaArticulaciones` (keypoint ausente → -1). Retos: simetría, centro de masa, contar repeticiones (histéresis), caída, jitter, confianza, oclusión, normalizar por altura, parecido de posturas, esqueleto como grafo (b40) |
+| 342 | `b44_nui/Ej342MotionDetection.java` | Detección de movimiento: `fraccionMovimiento` (diferencia de frames `int[][]`, valida dimensiones → -1), `mediaMovil` (suavizado). Retos: diferencia absoluta, umbral, contar activos, binarizar, detectar, frame skipping, ajuste por iluminación, ROI, umbral adaptativo, alarma sostenida (b40/b27) |
+| 343 | `b44_nui/Ej343ARMarkerMath.java` | Realidad aumentada: `proyectar` (división perspectiva `x'=f·x/z`, z=0 → null), `multiplicarMatrizVector` (3×3). Retos: normalizar homogéneas, error de reproyección, matriz singular (det=0), rotar Z, grados↔radianes, escalar mundo, centro de marcador, dentro del marcador, ID por patrón de bits, anclar objeto (b45) |
+| 344 | `b44_nui/Ej344MlForUiPipeline.java` | **Guion + modelo**: ML para UI. `normalizarFeatures` (min-max + clamp), `predecir` (logístico: sigmoide(features·pesos+sesgo)≥0.5). Retos: producto punto, sigmoide, clamp, one-hot, precision, recall, matriz de confusión, exactitud, actualizar peso (gradiente), exportar pesos (b46) |
+
+(Apoyo: `b44_nui` define el `record Punto` compartido (Ej340/341/343). Todos los cores son **lógica
+pura JDK** (strings, geometría, aritmética sobre arreglos): deterministas y testeables, sin toolkit
+gráfico ni motores externos; el "Playground" de cada ejercicio es su `main()` de consola.
+**Frontera honesta** (como b42/b43): los motores reales —Vosk/Whisper (voz), MediaPipe/OpenCV
+(cuerpo/movimiento), ARCore/Vuforia (RA), Weka/DL4J (ML)— viven FUERA del Maven y su integración es
+**"guion"**. Lo construido es la lógica transferible de tu aplicación: gramática voz→intención,
+clasificación de gestos, geometría de keypoints, matemática de proyección AR y pipeline de
+inferencia ML. Enlaza con b40 (imagen), b33/b34 (eventos y acciones de UI), b36 (accesibilidad),
+b30 (privacidad/cifrado), b45 (matemática 3D) y b46 (serializar el modelo). **Primer bloque de
+cierre BOE 2023; abre el RA2 de DI que estaba sin tocar.** 8 ejercicios × (2 cores + 10 retos).)
+
+---
+
+### Bloque XLV · JavaFX 3D y arquitectura de motores de juego — PMDM RA4/RA5 (345–350)
+
+> **Bloque de cierre BOE 2023 (ver `ROADMAP_CIERRE_BOE2023.md`).** Cubre la parte 3D de los RA4 y
+> RA5 de Programación Multimedia y Dispositivos Móviles —escenas, materiales, cámaras e iluminación
+> y "componentes de un motor de juegos"—, lo que `b41_anim` (solo 2D) dejó abierto.
+
+| # | Archivo | Concepto clave |
+|---|---|---|
+| 345 | `b45_juego3d/Ej345Vector3DMath.java` | Vectores 3D: `productoVectorial` (cruz), `normalizar` (magnitud 0 → vector cero), `distancia`. Retos: producto escalar, magnitud, sumar, escalar, ángulo entre vectores (coseno recortado), proyección, reflexión sobre normal (b41), lerp (t recortado), triple producto, coplanaridad |
+| 346 | `b45_juego3d/Ej346Transforms3D.java` | Matrices 4×4: `componer` (producto de transformaciones), `aplicar` (matriz·punto homogéneo). Retos: identidad, traslación, escala, rotación X/Y/Z, multiplicar, esIdentidad, transpuesta, componer T·R·S (orden no conmuta) |
+| 347 | `b45_juego3d/Ej347PerspectiveCameraScene.java` | Cámara en perspectiva: `posicionEnPantalla` (división por z + viewport, z≤0 → null), `dentroDelFrustum` (near/far). Retos: aspecto, focal desde FOV, near clipping, profundidad normalizada (z-buffer), NDC→viewport, cámara orbital (esféricas), tamaño aparente, culling, luz puntual (inverso del cuadrado), iluminación difusa Lambert. Playground con `PerspectiveCamera`/`PhongMaterial`/`PointLight` |
+| 348 | `b45_juego3d/Ej348Collision3DAABB.java` | Colisiones 3D: `colisionanAABB3D` (solape en X∧Y∧Z), `colisionEsfera` (d²<(r1+r2)²). Retos: punto en caja, volumen, centro, solape de eje, distancia², esfera–caja (clamp), contención, penetración, raycast (slabs), rebote con normal (b41) |
+| 349 | `b45_juego3d/Ej349GameEngineArchitecture.java` | **Núcleo conceptual**: mini-ECS (Entity-Component-System). `tick` (sistema de movimiento `pos+=vel·dt`), `entidadesCon` (consulta por componente). `Mundo`/`Posicion`/`Velocidad`/`Salud`. Retos: contar, consulta multi-componente, prefab, gravedad, integrar, orden de sistemas, paso fijo (b41), restante, serializar mundo (b46), tabla de motores reales (Unity/Godot/Unreal/jMonkey, RA4) |
+| 350 | `b45_juego3d/Ej350MiniGame3D.java` | Mini-juego 3D integrador: `mover` (pos+dir·vel·dt), `puntuarSiRecoge` (colisión de esfera). Retos: distancia, dentro del mundo, clamp, cámara en 3.ª persona, nivel por puntos, vidas, game over, spawn cíclico, gravedad de salto, IA de persecución (b41). Playground `PlaygroundMiniGame3D` con escena 3D jugable |
+
+(Apoyo: `b45_juego3d` define los records compartidos `Camara` (Ej347) y `Caja` (AABB, Ej348). Todos
+los cores son **lógica pura JDK** (vectores/matrices/colisiones/ECS sobre arreglos y records):
+deterministas y testeables, sin abrir ventana. Los Playground visuales (`Playground3D` y
+`PlaygroundMiniGame3D`, `extends Application`) montan una escena 3D **real** con `PerspectiveCamera`,
+`Box`/`Sphere`, `PhongMaterial` y `PointLight` (`mvn -pl b45_juego3d javafx:run`). **Frontera con
+b41**: game loop, sprites y colisiones 2D ya estaban; aquí se SUBE a 3D y se formaliza la
+arquitectura de motor (scene graph + ECS). Enlaza con b41 (2D→3D), b37 (Canvas/gráficos), b27
+(bucle/tiempo), b44 (matemática de proyección compartida) y b46 (serializar el mundo). **Cierra la
+parte 3D de PMDM, pendiente desde b41.** 6 ejercicios × (2–3 cores + 10 retos).)
+
+---
+
+### Bloque XLVI · Componentes de acceso a datos · modelo JavaBean — AD RA6 (351–356)
+
+> **Bloque de cierre BOE 2023 (ver `ROADMAP_CIERRE_BOE2023.md`).** Cubre el ÚNICO RA de Acceso a
+> Datos sin practicar: programar **componentes de acceso a datos** según el modelo JavaBean
+> —propiedades, eventos (`PropertyChangeListener`), persistencia/serialización, empaquetado (JAR) e
+> integración—. No re-enseña el acceso a datos (JDBC b11, ORM b12–b15, ficheros b16/b26, OO/OR b31,
+> Mongo b17 ya están): lo nuevo es el **patrón de componente** que los envuelve para que otro "lo
+> enchufe y lo escuche".
+
+| # | Archivo | Concepto clave |
+|---|---|---|
+| 351 | `b46_datacomp/Ej351BeanProperties.java` | **JavaBean**: descubrir propiedades por reflexión (`propiedadesDe`, getter/setter/`is` emparejados) y `leerPropiedad`. Retos: nombre↔getter (camelCase), validar getter, propiedad de solo lectura, contar, tipo de propiedad, copiar entre beans, herencia de propiedades, convención JavaBean, `java.beans.Introspector` (que SÍ trae las read-only). Enlaza con b01 (records vs beans) y b07 (DTOs) |
+| 352 | `b46_datacomp/Ej352PropertyChangeEvents.java` | **Eventos**: `PropertyChangeSupport` (propiedad *bound*) — `notificarCambio` (no dispara si no cambia), `contarNotificaciones`. Retos: fire manual, varios listeners, orden, *veto* (`VetoableChangeSupport`/`PropertyVetoException`, *constrained*), escuchar una propiedad, quitar listener, evento indexado, debounce por igualdad, notificar entre hilos (latch, b27), valor final (binding → b33) |
+| 353 | `b46_datacomp/Ej353ComponentSerialization.java` | **Persistencia**: `serializar`/`deserializar` (round-trip), `transient` para secretos, `serialVersionUID`. Retos: ¿serializable?, tamaño, password no viaja (b30), round-trip, leer UID, GZIP comprimir/descomprimir, a fichero (b26), clon profundo, reconectar transient (≈ conexión JDBC b11) |
+| 354 | `b46_datacomp/Ej354DataAccessComponent.java` | **NÚCLEO**: un componente DAO como JavaBean con propiedades (`url`/`usuario`/`tamanoPagina`), eventos (`cargaCompletada`/`error`) y CRUD (`buscar`/`guardar`/`borrar`) contra un *store* inyectable (fake, sin BD). Retos cubren los CINCO sabores del CE (sobre JDBC b11, ORM b12, Mongo b17), health check, lote, config externa (b04), ciclo de conexión, resumen (b10) |
+| 355 | `b46_datacomp/Ej355ComponentPackaging.java` | **Empaquetado (guion + core)**: `Manifest` — `leerMetadatos`/`validarManifiesto`. Retos: versión, vendor por defecto, `Automatic-Module-Name`, SemVer (validar/comparar/incrementar/compatibilidad binaria), SPI (`META-INF/services`), `module-info requires` (b39) |
+| 356 | `b46_datacomp/Ej356ComponentIntegration.java` | **Integración**: `integrar` (configurar + suscribir) y `usar` (ejecutar y recoger por evento) un `ComponenteDao`. Retos: inyección por constructor (b03), factoría, config desde `Properties` (b04), coordinar varios, ciclo de vida, *mock* (b19), propagar error por evento, descubrir por `ServiceLoader`, integración extremo a extremo (b24) |
+
+(Apoyo: `b46_datacomp` define los beans/records compartidos `PersonaBean`/`EmpleadoBean` (Ej351),
+`ConfiguracionComponente` serializable (Ej353), `Cliente` (Ej354) y el contrato `ComponenteDao` con
+su implementación `ComponenteEco` + recurso `META-INF/services` (Ej356). **Excepción consciente** a
+"todo static": un componente es un objeto con estado, así que Ej354 y los beans de apoyo son
+JavaBeans instanciables. Sin dependencias propias: todo es JDK puro (`Introspector`,
+`PropertyChangeSupport`, `ObjectOutputStream`, `Manifest`, `ServiceLoader`); los tests usan un store
+fake, sin tocar ninguna BD. **Frontera**: no re-enseña el acceso a datos, sino el patrón de
+componente que lo envuelve. Enlaza con b11/b12/b17 (el acceso que envuelve), b03 (IoC), b33
+(Properties como evolución del bean *bound*) y b39 (empaquetado). **Cierra AD·RA6, el último RA de
+Acceso a Datos.** 6 ejercicios × (2–3 cores + 10 retos).)
+
 ---
 
 ## 5. Progreso
@@ -707,3 +847,8 @@ Cada paquete de `src/` referencia su `.md` homónimo en `teoria/`.
 - [x] B39 · Documentación, ayuda y distribución · DI RA5/RA6 (305–310) ✅ compila, tests en rojo (a implementar) · 78 tests de lógica pura (parsear manifest/module-info, `Preferences` en nodo temporal, comandos jlink/jpackage como cadenas, SemVer; sin toolkit) + Playground con "Acerca de"/Hyperlink/preferencias. **Cierra el módulo DI (0487).** `Ej308`/`Ej309` son "guion" (comandos de terminal en el README)
 - [x] B40 · Multimedia: imagen, audio y vídeo · PMDM RA1/RA2 (311–318) ✅ compila, tests en rojo (a implementar) · 96 tests de lógica pura (aritmética de píxeles sobre `int[][]`, ARGB, máquina de estados del `MediaPlayer`, geometría de letterbox, magic numbers, compresión; sin toolkit ni códecs) + Playground con filtros sobre `Canvas`/`Slider` y la máquina de estados. **Primer bloque de PMDM.** Frontera con b26_io (leer bytes ya sabido; aquí se procesa el contenido)
 - [x] B41 · Animación, *game loop* y juego 2D · PMDM RA2/RA5 (319–324) ✅ compila, tests en rojo (a implementar) · 74 tests de lógica pura (interpolación/easing, `deltaTime`/fps y paso fijo, física `pos+vel·dt` con clamp/rebote/wrap, colisiones AABB/círculo/rect–círculo, máquina de estados del juego, lógica del mini-juego; sin toolkit ni `AnimationTimer`) + `PlaygroundJuego` con game loop real sobre `Canvas` (pelota+pala controlable). Enlaza con b37 (Canvas) y b27 (bucle/tiempo). 6 ejercicios × (2–3 cores + 10 retos)
+- [x] B42 · Desarrollo móvil / Android · PMDM RA3/RA4/RA6 (325–330) ✅ compila, tests en rojo (a implementar) · 72 tests de lógica pura JDK (máquina de estados del ciclo de vida de `Activity`, conversión dp/sp y mapa layouts Android↔JavaFX, modelo de `Intent`/back stack/extras, filtrado de sensores —media móvil/paso bajo/umbral/magnitud— sobre `double[]`; sin app Android, sin Gradle, sin emulador). `Ej325` (entorno/SDK) y `Ej330` (firma/publicación) son **"guion"** (validan config y comandos como cadenas, como b22/b39). Enlaza con b32/b34 (lifecycle/eventos), b05 (URLs), b30 (firma) y b39 (SemVer). **Cierra la parte programable en Java de PMDM (0488).** 6 ejercicios × (2 cores + 10 retos)
+- [x] B43 · Integración ERP/CRM, ETL e inteligencia de negocio · SGE RA4/RA5/RA6 (331–336) ✅ compila, tests en rojo (a implementar) · 73 tests de lógica pura JDK + Jackson (modelo del ERP y "guion" de conceptos, import/export CSV-XML con round-trip y escape, cliente JSON-RPC de Odoo construido/parseado con Jackson sin red, ETL de mapeo/validación con descarte de filas, KPIs de BI con `groupingBy`/`summingDouble`, sincronización idempotente con upsert/huella/backoff/conciliación). Modelos compartidos `ClienteErp`/`PedidoErp`/`SyncPlan`. `Ej331`/`Ej333` con vertiente **"guion"**; práctica real contra el **MCP de Odoo**. Enlaza con b16 (CSV/XML), b06 (HTTP), b15 (agregaciones), b02 (Jackson), b30 (hash) y b07 (PATCH). **Cierra SGE (0489) y, con él, los 5 módulos técnicos de 2º DAM.**
+- [x] B44 · Interfaces naturales: voz, gestos, cuerpo, RA y ML · DI RA2 (337–344) ✅ compila, tests en rojo (a implementar) · 96 tests de lógica pura JDK (clasificación de modalidad y pipeline NUI, gramática voz→`Intencion`, transcripción→acción con confianza y Levenshtein, clasificación de gestos + máquina de estados táctil, geometría de keypoints del cuerpo —ángulo por producto escalar—, detección de movimiento por diferencia de frames `int[][]` + media móvil, matemática de realidad aumentada —proyección perspectiva y matriz·vector—, pipeline de ML logístico con métricas precision/recall/confusión; sin toolkit gráfico ni motores externos). `record Punto` compartido. **Frontera honesta** (como b42/b43): motores reales (Vosk/MediaPipe/ARCore/Weka) en **"guion"**. Enlaza con b40 (imagen), b33/b34 (eventos/acciones UI), b36 (a11y), b30 (privacidad), b45 (3D) y b46 (serializar modelo). **Primer bloque de cierre BOE 2023; abre el RA2 de DI que estaba sin tocar.** 8 ejercicios × (2 cores + 10 retos)
+- [x] B45 · JavaFX 3D y arquitectura de motores de juego · PMDM RA4/RA5 (345–350) ✅ compila, tests en rojo (a implementar) · 73 tests de lógica pura JDK (vectores 3D —cruz/normalizar/dot/ángulo/proyección/reflexión/lerp/triple producto—, matrices 4×4 de transformación y su composición T·R·S, proyección perspectiva y frustum de la cámara, colisiones AABB/esfera/raycast en tres ejes, un mini-ECS con sistema de movimiento y consultas por componente, y la lógica de un mini-juego 3D —mover/recoger/perseguir—; sin abrir ventana). Records compartidos `Camara`/`Caja`; `Playground3D`/`PlaygroundMiniGame3D` montan escena 3D real (`PerspectiveCamera`/`PhongMaterial`/`PointLight`). **Frontera con b41**: 2D ya estaba, aquí se sube a 3D + arquitectura de motor (scene graph/ECS). Enlaza con b41 (2D→3D), b37 (Canvas), b27 (bucle), b44 (proyección) y b46 (serializar). **Cierra la parte 3D de PMDM.** 6 ejercicios × (2–3 cores + 10 retos)
+- [x] B46 · Componentes de acceso a datos · modelo JavaBean · AD RA6 (351–356) ✅ compila, tests en rojo (a implementar) · 73 tests de lógica pura JDK (introspección de propiedades JavaBean por reflexión e `Introspector`, eventos `PropertyChangeSupport`/*bound* y *vetoable*/*constrained* con notificación entre hilos por latch, serialización round-trip con `transient`/`serialVersionUID`/GZIP/fichero, el **componente DAO** como JavaBean con propiedades+eventos+CRUD contra un store fake, lectura/validación de `Manifest` con SemVer y SPI, e integración del componente —inyección, factoría, `ServiceLoader`, mock, propagación de error por evento—). Beans de apoyo `PersonaBean`/`EmpleadoBean`/`ConfiguracionComponente`/`Cliente` y contrato `ComponenteDao`+`ComponenteEco`. Sin dependencias propias: `java.beans`/`Serializable`/`Manifest`/`ServiceLoader` del JDK; store en memoria, sin BD. **No re-enseña** el acceso a datos (b11/b12/b17), sino el **patrón de componente** que lo envuelve. Enlaza con b11/b12/b17 (acceso que envuelve), b03 (IoC), b33 (Properties) y b39 (empaquetado). **Cierra AD·RA6, el último RA de Acceso a Datos.** 6 ejercicios × (2–3 cores + 10 retos)

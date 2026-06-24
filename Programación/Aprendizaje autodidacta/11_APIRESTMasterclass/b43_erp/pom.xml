@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.masterclass</groupId>
+        <artifactId>api-rest-masterclass</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>b43_erp</artifactId>
+    <name>Module - b43_erp</name>
+
+    <!--
+        SGE · Integración, ETL e inteligencia de negocio (SGE RA4 + RA5 + RA6).
+        Módulo "honesto": parametrizar un ERP (Odoo) se hace en la herramienta (Python),
+        pero DESARROLLAR componentes, INTEGRAR sistemas y MIGRAR/explotar datos sí es Java.
+        Eso es lo que cubre este bloque, reutilizando b16 (CSV/XML), b06 (HTTP) y b15 (agregaciones).
+
+        Dependencias: solo Jackson (parsear/serializar JSON del JSON-RPC de Odoo). El cliente
+        HTTP es java.net.http del JDK (no necesita dependencia). spring-boot-starter-test (parent)
+        aporta JUnit 5. Sin red en los tests: el cliente real se prueba a mano contra el MCP de Odoo.
+    -->
+    <dependencies>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+    </dependencies>
+</project>

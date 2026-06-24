@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.masterclass</groupId>
+        <artifactId>api-rest-masterclass</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>b44_nui</artifactId>
+    <name>Module - b44_nui</name>
+
+    <!--
+        Interfaces NATURALES de usuario (Desarrollo de Interfaces · 0488 · RA2). Cierra el RA de DI
+        que ningún bloque tocaba: ML para UI, reconocimiento de voz, detección de movimiento y de
+        partes del cuerpo, y realidad aumentada.
+
+        FRONTERA HONESTA (va también en teoria/44_Interfaces_Naturales.md):
+          Los motores reales viven FUERA de este Maven:
+            - voz   -> Vosk / CMU Sphinx
+            - cuerpo/movimiento -> MediaPipe / OpenCV
+            - realidad aumentada -> ARCore / Vuforia
+            - ML para UI -> Weka / Deeplearning4j
+          Aquí se construye la LÓGICA TRANSFERIBLE Y TESTEABLE en Java puro: la gramática que
+          convierte voz en intención, la clasificación de un gesto por su trayectoria, la geometría
+          de los keypoints del cuerpo, la matemática de proyección de un marcador de RA y el pipeline
+          features->predicción. La integración con el motor concreto queda en "guion", mismo criterio
+          honesto que b42_mobile (Android) y b43_erp (Odoo).
+
+        Todo es JDK puro: sin dependencias propias. JUnit 5 llega heredado del parent
+        (spring-boot-starter-test). Por eso <dependencies> va vacío, como en b30_crypto y b42_mobile.
+        Los cores son lógica pura (strings, geometría, aritmética): los tests NO necesitan toolkit
+        gráfico. El "Playground" de cada ejercicio es su main() de consola.
+    -->
+    <dependencies>
+    </dependencies>
+</project>

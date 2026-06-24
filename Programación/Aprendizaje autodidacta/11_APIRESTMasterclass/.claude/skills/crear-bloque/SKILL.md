@@ -18,13 +18,18 @@ Esta skill fusiona *crear* + *mejorar* en una sola pasada.
 ## 0. Entrada y de dónde sacar la especificación
 
 - **Argumento:** un identificador de bloque, p.ej. `b32` o `32`. Normalízalo a `bNN` (dos dígitos).
-- **La especificación de QUÉ ejercicios lleva el bloque está en `ROADMAP_BUILD_MASTERCLASS.md`**
-  (raíz del proyecto). Busca la sección `## BNN · bNN_nombre — …`. De ahí sacas:
+- **La especificación de QUÉ ejercicios lleva el bloque está en un roadmap.** Busca la sección
+  `## BNN · bNN_nombre — …` (o `## §BNN · …` / `### §BNN · …`) **en este orden de prioridad**:
+  1. `ROADMAP_BUILD_MASTERCLASS.md` (raíz del proyecto) — fuente histórica de b00–b43.
+  2. `ROADMAP_CIERRE_BOE2023.md` (raíz del proyecto) — **plan de cierre BOE 2023, fuente de los
+     bloques b44–b47** (interfaces naturales, JavaFX 3D, componentes de datos, estrategia de
+     pruebas). Sus secciones construibles están en su **§6 (`§B44`–`§B47`)**.
+  Usa la **primera** que contenga la sección del bloque pedido. De cualquiera de las dos sacas:
   - nombre de carpeta (`bNN_nombre`), tema, módulo·RA, rango de ejercicios, dependencias `pom.xml`,
     nombre del archivo de teoría, **tabla de ejercicios** (`# | Archivo | Concepto clave`) y el
     bloque **"Detalle por ejercicio"** (métodos core y temática de retos).
-- Si el bloque NO está en el roadmap, **pregunta al usuario** por la lista de ejercicios antes de
-  inventar nada.
+- Si el bloque NO está en **ninguno** de los dos roadmaps, **pregunta al usuario** por la lista de
+  ejercicios antes de inventar nada.
 - Lee también `SYLLABUS.md` (índice) y, si el bloque es de UI/JavaFX, el **§1.6 (addendum JavaFX)**
   del roadmap.
 

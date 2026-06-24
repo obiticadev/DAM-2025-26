@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.masterclass</groupId>
+        <artifactId>api-rest-masterclass</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>b45_juego3d</artifactId>
+    <name>Module - b45_juego3d</name>
+
+    <!--
+        JavaFX 3D y arquitectura de motores de juego (Programación Multimedia y Dispositivos
+        Móviles · 0489 · RA4/RA5). Cierra el hueco 3D que b41_anim (solo 2D) dejó abierto: ambos RA
+        citan literalmente "2D Y 3D", "escenas", "materiales", "cámaras e iluminación" y "componentes
+        de un motor de juegos".
+
+        FRONTERA CON b41 (no se re-enseña): game loop, sprites, colisiones AABB 2D y entrada por
+        teclado ya están en b41. b45 SUBE A 3D: vectores y transformaciones en tres ejes, cámara en
+        perspectiva, mallas y materiales, y formaliza la ARQUITECTURA DE MOTOR (scene graph 3D + ECS)
+        que en b41 estaba implícita.
+
+        Filosofía del addendum §1.6 del roadmap (igual que b32-b41):
+          - El método CORE es SIEMPRE lógica pura y headless: matemática de vectores y matrices 3D,
+            proyección perspectiva, colisiones AABB/esfera en tres ejes, un mini-ECS y la lógica de
+            actualización del mini-juego. TODO se prueba con JUnit puro (números, booleanos, arrays)
+            SIN abrir ventana ni arrancar JavaFX.
+          - Los Playground visuales (Playground3D y PlaygroundMiniGame3D, extends Application) montan
+            una escena 3D REAL con PerspectiveCamera, Box/Sphere, PhongMaterial y PointLight, y usan
+            los core para girar, proyectar y colisionar. Se ejecutan con `mvn -pl b45_juego3d javafx:run`.
+
+        JavaFX trae API 3D real en javafx-controls (javafx.scene.PerspectiveCamera,
+        javafx.scene.shape.{Box,Sphere,MeshView}, PhongMaterial, PointLight): construible y, lo
+        esencial, testeable, porque la matemática 3D es lógica pura.
+    -->
+    <properties>
+        <javafx.version>21.0.4</javafx.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+
+        <!-- Test headless: inicializa el toolkit JavaFX sin pantalla real (uniformidad con b32-b41). -->
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-junit5</artifactId>
+            <version>4.0.18</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>openjfx-monocle</artifactId>
+            <version>21.0.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Permite `mvn -pl b45_juego3d javafx:run` para lanzar la escena 3D del Playground. -->
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.8</version>
+                <configuration>
+                    <mainClass>com.masterclass.api.b45_juego3d.Playground3D</mainClass>
+                </configuration>
+            </plugin>
+            <!-- Tests JavaFX en modo headless (Monocle): no requieren pantalla (no usados por los
+                 cores, que son lógica pura, pero se dejan por uniformidad con los bloques JavaFX). -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <argLine>-Djava.awt.headless=true -Dtestfx.robot=glass -Dtestfx.headless=true -Dglass.platform=Monocle -Dmonocle.platform=Headless -Dprism.order=sw</argLine>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

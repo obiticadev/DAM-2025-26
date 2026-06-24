@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.masterclass</groupId>
+        <artifactId>api-rest-masterclass</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>b42_mobile</artifactId>
+    <name>Module - b42_mobile</name>
+
+    <!--
+        Desarrollo móvil / Android (PMDM · RA3/RA4/RA6). Tercer y último bloque de PMDM.
+
+        AVISO HONESTO (va también en teoria/42_Movil_Android.md):
+          Android se construye con Gradle (no Maven), en Kotlin/Java, y se prueba en un emulador
+          (AVD) o dispositivo real. NADA de eso vive dentro de este proyecto Maven. Por eso este
+          bloque NO compila una app Android: cubre lo TRANSFERIBLE y TESTEABLE en Java puro:
+            - la MÁQUINA DE ESTADOS del ciclo de vida de una Activity (Ej326),
+            - el mapa conceptual layouts Android <-> JavaFX y las unidades dp/sp (Ej327),
+            - el modelo de navegación por Intent y el back stack (Ej328),
+            - el FILTRADO de lecturas de sensores: media móvil, paso bajo, umbral (Ej329),
+          y dos ejercicios "guion" (Ej325 entorno/SDK, Ej330 firma/publicación) cuyos cores
+          construyen y validan configuraciones y comandos como CADENAS, igual que los "guion" de
+          b22_deploy (Dockerfile) y b39_fxdeploy (jlink/jpackage).
+
+        Todo es JDK puro: sin dependencias propias. JUnit 5 llega heredado del parent
+        (spring-boot-starter-test). Por eso <dependencies> va vacío, como en b30_crypto.
+    -->
+    <dependencies>
+    </dependencies>
+</project>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.masterclass</groupId>
+        <artifactId>api-rest-masterclass</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>b46_datacomp</artifactId>
+    <name>Module - b46_datacomp</name>
+
+    <!--
+        Componentes de acceso a datos · modelo JavaBean (Acceso a Datos · 0486 · RA6).
+        Es el ÚNICO RA de AD sin practicar: no enseña acceso a datos (JDBC b11, ORM b12-b15,
+        ficheros b16/b26, OO/OR b31, Mongo b17 ya están), sino el PATRÓN DE COMPONENTE que
+        los envuelve: propiedad observable + evento + serialización + empaquetado + integración.
+
+        FRONTERA (no se re-enseña): la mecánica del acceso a datos. Lo nuevo es entregar un
+        componente reutilizable que cualquiera "enchufa y escucha".
+
+        Dependencias: NINGUNA propia. Todo se apoya en el JDK puro (java.beans.Introspector,
+        java.beans.PropertyChangeSupport, java.io.ObjectOutputStream, java.util.jar.Manifest,
+        java.util.ServiceLoader). El parent aporta spring-boot-starter-test (JUnit 5) en test.
+        Los tests NO tocan ninguna BD real: el componente DAO se prueba contra un store en
+        memoria inyectable (fake). Los retos que hablan de JDBC/ORM/Mongo modelan el contrato
+        como cadenas/mapas, sin arrastrar el driver (eso ya se practicó en su bloque).
+    -->
+</project>
