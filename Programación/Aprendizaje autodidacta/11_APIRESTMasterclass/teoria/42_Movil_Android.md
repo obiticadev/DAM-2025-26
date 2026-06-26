@@ -580,3 +580,196 @@ publicar       = .aab (bundleRelease) > .apk ; tamaño con Locale.US (punto)
 13. ¿En qué se diferencian `versionCode` y `versionName` y qué regla cumple cada uno? *(6.1)*
 14. ¿Por qué firmar un APK es un problema de criptografía y con qué bloque enlaza? *(6.2)*
 15. ¿Qué tres condiciones debe cumplir una build para considerarse una *release* lista? *(6.3)*
+
+---
+
+# Apéndice T1 · Proyecto compañero Android — la app real (deploy + permisos con práctica)
+
+> **Por qué este apéndice.** El bloque b42 modela en Java puro lo transferible del módulo (ciclo de
+> vida, layouts, intents, sensores, firma) y deja en **"guion"** lo que no cabe en un módulo Maven:
+> **construir, instalar y desplegar una app Android de verdad**. Eso cierra los dos criterios que el
+> modelo mental no puede practicar solo: **PMDM·RA2 CE(h)** —empaquetar y desplegar en un dispositivo
+> real— y **CE(j)** —permisos en ejecución—. Este apéndice es el **guion paso a paso** de un proyecto
+> **fuera de este Maven** (Android Studio + Gradle) que consume la **API REST de b05**. No es un
+> bloque de ejercicios con tests: es una práctica guiada de taller. Hazla una vez, de principio a fin,
+> y tendrás el módulo PMDM cerrado también en su vertiente "herramienta".
+
+## T1.0 · Qué vas a construir
+
+Una app mínima pero **completa de extremo a extremo**: lista de tareas que lee y crea contra tu API
+REST de b05.
+
+```mermaid
+flowchart LR
+  subgraph APP["App Android (Gradle, fuera de Maven)"]
+    LA[ListaActivity\nRecyclerView] -->|click| DA[DetalleActivity]
+    LA -->|"+"| NA[NuevaTareaActivity]
+    LA -. Retrofit .-> NET
+    NA -. POST .-> NET
+    P[(SharedPreferences\nbaseUrl + token)]
+    LA --> P
+  end
+  NET[["HttpURLConnection / Retrofit"]] -->|HTTP| API[("API REST b05\n/api/tareas")]
+```
+
+Alcance deliberadamente pequeño (cierra los CE sin convertirse en un TFG): **1 pantalla lista +
+1 detalle + 1 alta**, **una llamada GET y una POST**, **persistencia** de la config, **un permiso**
+en ejecución (INTERNET es de instalación; pedimos uno *runtime* real, p. ej. notificaciones o
+cámara) y **firma + APK** instalado en un dispositivo.
+
+## T1.1 · Requisitos y arranque (RA1 con práctica)
+
+| Necesitas | Cómo |
+|---|---|
+| **Android Studio** (incluye el SDK y Gradle) | descarga oficial; en el primer arranque instala el *SDK Platform* y *Build-Tools* |
+| **Un dispositivo** | un móvil físico con **Depuración USB** activada (Ajustes → Opciones de desarrollador) **o** un **AVD** (emulador) creado desde el Device Manager |
+| **Tu API de b05 corriendo** | `mvn -pl b05_web spring-boot:run`; anota la **IP de tu PC en la LAN** (no `localhost`: el móvil no es tu PC) |
+
+> **La trampa nº 1 del taller:** desde el móvil, `localhost` es el **propio móvil**, no tu portátil.
+> Usa la IP LAN de tu PC (`ipconfig` → algo como `192.168.1.40`) y arranca la API escuchando en
+> `0.0.0.0`. Para el emulador, el host es la IP especial **`10.0.2.2`**.
+
+Crea el proyecto: **New Project → Empty Views Activity**, lenguaje **Java** (o Kotlin si lo prefieres;
+el guion vale igual), `minSdk = 24`. Esto te da el `applicationId`, el `versionCode/versionName` y el
+`build.gradle` que en b42 modelaste como cadenas: ahora son reales.
+
+## T1.2 · Permisos: instalación vs ejecución (RA2 · CE j)
+
+Dos tipos, y confundirlos es el error clásico:
+
+```xml
+<!-- AndroidManifest.xml -->
+<uses-permission android:name="android.permission.INTERNET"/>            <!-- normal: se concede al instalar -->
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS"/> <!-- peligroso: hay que PEDIRLO en runtime (API 33+) -->
+```
+
+- **Normal** (INTERNET): basta declararlo; el sistema lo concede solo.
+- **Peligroso** (notificaciones, cámara, ubicación): además de declararlo, hay que **solicitarlo en
+  ejecución** y **gestionar la respuesta**. Ese flujo es justo el CE(j):
+
+```java
+private final ActivityResultLauncher<String> pedirPermiso =
+    registerForActivityResult(new ActivityResultContracts.RequestPermission(), concedido -> {
+        if (concedido) mostrarNotificacion();
+        else Toast.makeText(this, "Sin permiso no hay aviso", Toast.LENGTH_SHORT).show();
+    });
+
+private void asegurarPermiso() {
+    if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+            == PackageManager.PERMISSION_GRANTED) {
+        mostrarNotificacion();
+    } else {
+        pedirPermiso.launch(Manifest.permission.POST_NOTIFICATIONS); // ← diálogo del sistema
+    }
+}
+```
+
+> **Puente con b42 (Ej328):** `ActivityResultLauncher` es la versión moderna de `startActivityForResult`
+> + `onActivityResult` que modelaste con *request codes*. El patrón "lanza → recibe resultado" es el
+> mismo; aquí el "resultado" es *concedido / denegado*.
+
+## T1.3 · La llamada de red (RA2 · CE e) — sin congelar la UI
+
+Red en el hilo principal = `NetworkOnMainThreadException` (Android te lo prohíbe por diseño). Dos vías:
+
+**Vía A — `HttpURLConnection` + un hilo** (cero dependencias, enlaza con b27/b29):
+
+```java
+new Thread(() -> {
+    try {
+        HttpURLConnection c = (HttpURLConnection) new URL(baseUrl + "/api/tareas").openConnection();
+        c.setRequestProperty("Accept", "application/json");
+        String json = new String(c.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
+        List<Tarea> tareas = parse(json);                 // Jackson/Gson (b02)
+        runOnUiThread(() -> adapter.set(tareas));          // ← volver al hilo de UI para pintar
+    } catch (IOException e) { runOnUiThread(() -> mostrarError(e)); }
+}).start();
+```
+
+**Vía B — Retrofit** (lo estándar en la industria; añade `retrofit` + `converter-gson` al
+`build.gradle`):
+
+```java
+public interface TareaApi {
+    @GET("api/tareas") Call<List<Tarea>> listar();
+    @POST("api/tareas") Call<Tarea> crear(@Body Tarea nueva);   // 201 Created (b05 Ej048)
+}
+```
+
+> **Puente con b35 (DI·RA2/RA4):** es exactamente el problema del "no congelar la UI" que resolviste
+> con `Task`/`Service` en JavaFX. Aquí `runOnUiThread` (o `enqueue` de Retrofit) hace el papel de
+> `Platform.runLater`. Mismo principio: **red en hilo de fondo, pintado en hilo de UI**.
+
+`RecyclerView` es el `ListView`/`TableView` de Android: un `Adapter` mapea cada `Tarea` a una fila
+(es el `cellFactory` de b35). La navegación lista→detalle es un **`Intent` explícito** con la id como
+*extra* (b42 Ej328).
+
+## T1.4 · Persistencia de la config (RA2 · CE f)
+
+La `baseUrl` y el token no se hardcodean: se guardan. Para un par clave-valor, `SharedPreferences`
+(para datos estructurados serios, **Room**, el "JPA de Android"):
+
+```java
+SharedPreferences sp = getSharedPreferences("config", MODE_PRIVATE);
+sp.edit().putString("baseUrl", url).apply();          // escribir
+String url = sp.getString("baseUrl", "http://10.0.2.2:8080"); // leer con defecto
+```
+
+> **Puente con b39 (DI·RA6):** es el mismo `Preferences` de Java SE que usaste para el modo oscuro.
+> Clave-valor persistido por la plataforma. Para entidades con relaciones, **Room** = `@Entity` +
+> `@Dao` + consultas: literalmente JPA (b12) con otra anotación.
+
+## T1.5 · Firma y APK (RA2 · CE h) — aquí el guion de b42 se vuelve real
+
+En b42 (Ej330) construiste estos comandos **como cadenas**. Ahora los ejecutas:
+
+```bash
+# 1) Generar tu keystore una sola vez (tu identidad criptográfica, b30)
+keytool -genkeypair -v -keystore mi-release.jks -keyalg RSA -keysize 2048 \
+        -validity 10000 -alias miapp
+
+# 2) Build firmado (Android Studio: Build → Generate Signed Bundle/APK, o por línea de comandos)
+./gradlew assembleRelease     # genera app-release.apk firmado
+# (para Play Store sería ./gradlew bundleRelease → .aab)
+
+# 3) Instalar en el dispositivo conectado (deploy real)
+adb devices                   # confirma que el móvil/emulador aparece
+adb install app/build/outputs/apk/release/app-release.apk
+```
+
+Si `adb install` termina con `Success` y la app abre en el móvil y **trae la lista desde tu API**,
+acabas de cerrar **CE(h) con práctica real**, no con modelo mental.
+
+> **Checklist de release lista** (b42 Ej330 `esReleaseListo`, ahora verificado de verdad): el APK va
+> **firmado** (paso 1–2), **minificado/ofuscado** (`minifyEnabled true` en `build.gradle`) y
+> **`debuggable false`**. Y `versionCode` mayor que la subida anterior si vas a Play.
+
+## T1.6 · Definición de "hecho" del taller
+
+Marca cada casilla; cuando estén todas, PMDM queda cerrado también en su vertiente práctica:
+
+- [ ] La app **lista** tareas reales traídas de la API de b05 (GET en hilo de fondo, pintado en UI).
+- [ ] **Crea** una tarea (POST → 201) desde la pantalla de alta.
+- [ ] **Navega** lista → detalle pasando la id por `Intent`.
+- [ ] **Persiste** la `baseUrl` con `SharedPreferences` (sobrevive a cerrar la app).
+- [ ] **Pide un permiso peligroso en ejecución** y gestiona concedido/denegado (CE j).
+- [ ] Genera un **APK firmado** y lo **instala con `adb`** en un dispositivo (CE h).
+- [ ] (Opcional, nota alta) Room en vez de SharedPreferences; modo offline con caché local.
+
+## T1.7 · Errores comunes del taller
+
+| # | Error | Antídoto |
+|---|---|---|
+| 1 | Usar `localhost` desde el móvil | IP LAN del PC; emulador = `10.0.2.2` |
+| 2 | `NetworkOnMainThreadException` | red SIEMPRE en hilo de fondo (`Thread`/`enqueue`), nunca en UI |
+| 3 | Pintar la UI desde el hilo de red | volver con `runOnUiThread`/`Platform.runLater` (b35) |
+| 4 | Declarar un permiso peligroso y no pedirlo | `checkSelfPermission` + `RequestPermission` (CE j) |
+| 5 | `cleartext traffic` bloqueado (HTTP plano API 28+) | usar HTTPS, o `usesCleartextTraffic` solo en debug |
+| 6 | Instalar un APK debug "para producción" | release = firmado + minificado + `debuggable false` (b42 Ej330) |
+| 7 | `adb` no ve el móvil | activar Depuración USB y aceptar la huella RSA del PC |
+| 8 | Subir un `versionCode` repetido a Play | incrementarlo en cada subida (b42 Ej330 reto 1) |
+
+> **Cierre.** Con este taller, **PMDM (0489)** pasa de "Java pleno + móvil guion" a **práctica real de
+> deploy y permisos**. No hay tests automáticos: la prueba es la app corriendo en tu mano y la lista
+> llegando desde tu propia API. Eso es la integración de todo el curso —REST (b05), hilos (b27),
+> seguridad/firma (b30), preferencias (b39)— en un dispositivo físico.

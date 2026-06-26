@@ -98,7 +98,8 @@ Cada paquete de `src/` referencia su `.md` homónimo en `teoria/`.
 | XLIV | Interfaces naturales: voz, gestos, cuerpo, RA y ML (DI RA2) | 337–344 | 8 |
 | XLV | JavaFX 3D y arquitectura de motores de juego (PMDM RA4/RA5) | 345–350 | 6 |
 | XLVI | Componentes de acceso a datos · modelo JavaBean (AD RA6) | 351–356 | 6 |
-| | **TOTAL** | | **356** |
+| XLVII | Estrategia de pruebas: regresión, volumen/estrés, recursos y seguridad (DI RA8) | 357–362 | 6 |
+| | **TOTAL** | | **362** |
 
 > **Bloques de ampliación 2º DAM (ver `ROADMAP_BUILD_MASTERCLASS.md`):** cierran los huecos del BOE
 > en Acceso a Datos y PSP que la ruta REST no toca. Construidos: `b26_io` (207–214),
@@ -120,7 +121,7 @@ Cada paquete de `src/` referencia su `.md` homónimo en `teoria/`.
 > `b39_fxdeploy` (305–310, DI·RA5/RA6: documentación —Javadoc y metadatos del `MANIFEST.MF`—, ayuda
 > integrada —"Acerca de", manual, `Hyperlink`—, persistencia de ajustes con `Preferences`,
 > modularización + `jlink` y empaquetado nativo con `jpackage`, y versionado semántico con
-> comprobación de actualizaciones). **Con b39 el módulo DI (0487) queda cubierto al completo.**
+> comprobación de actualizaciones). **Con b39 el módulo DI (0488) queda cubierto al completo.**
 >
 > **Programación Multimedia y Dispositivos Móviles (PMDM):** `b40_media` (311–318, PMDM·RA1/RA2:
 > multimedia con Java/JavaFX —procesamiento de imagen por píxel (escala de grises, brillo, umbral,
@@ -650,7 +651,7 @@ Cada paquete de `src/` referencia su `.md` homónimo en `teoria/`.
 | 309 | `b39_fxdeploy/Ej309JpackageInstaller.java` | **Guion**: tipo de instalador por SO (msi/deb/dmg/app-image), extensión (app-image = carpeta), comando `jpackage`, icono por SO (`.ico`/`.png`/`.icns`), nombre de app válido, `--app-version` (reutiliza Ej305), `--vendor` con comillas, nombre del paquete, herramienta externa (WiX), `--input`, nº de tipos por SO, tipo válido en SO, comando completo |
 | 310 | `b39_fxdeploy/Ej310VersioningAndUpdate.java` | Versionado semántico: comparar versiones (cifra a cifra, NO texto), `hayActualizacion`, validar SemVer, parsear a `int[]`, MAJOR, incrementar patch/minor/major (con reinicios), formato `v`/quitar `v`, última de una lista, ¿pre-release? (`-beta`), tipo de cambio (major/minor/patch/ninguno) |
 
-(Apoyo: `b39_fxdeploy` (main) `PlaygroundDistribucion` (`Application` con diálogo "Acerca de", `Hyperlink` a la doc, `CheckBox` de modo oscuro persistido con `Preferences` y aviso de actualización SemVer) y `README.md` con los comandos reales de `jlink`/`jpackage`. Los cores son lógica pura headless (parsear manifest/module-info, construir comandos como cadenas, comparar SemVer, `Preferences` en nodo temporal): NO necesitan toolkit JavaFX. `Ej308`/`Ej309` son **"guion"**: construyen y validan comandos de terminal; ejecutar `jlink`/`jpackage` de verdad se documenta en `teoria/39_Distribucion_Instaladores.md` y el README. **Con b39 el módulo DI (0487) queda cubierto al completo.**)
+(Apoyo: `b39_fxdeploy` (main) `PlaygroundDistribucion` (`Application` con diálogo "Acerca de", `Hyperlink` a la doc, `CheckBox` de modo oscuro persistido con `Preferences` y aviso de actualización SemVer) y `README.md` con los comandos reales de `jlink`/`jpackage`. Los cores son lógica pura headless (parsear manifest/module-info, construir comandos como cadenas, comparar SemVer, `Preferences` en nodo temporal): NO necesitan toolkit JavaFX. `Ej308`/`Ej309` son **"guion"**: construyen y validan comandos de terminal; ejecutar `jlink`/`jpackage` de verdad se documenta en `teoria/39_Distribucion_Instaladores.md` y el README. **Con b39 el módulo DI (0488) queda cubierto al completo.**)
 
 ### Bloque XL · Multimedia: imagen, audio y vídeo — PMDM RA1/RA2 (311–318)
 | # | Archivo | Conceptos |
@@ -689,7 +690,7 @@ Cada paquete de `src/` referencia su `.md` homónimo en `teoria/`.
 | 329 | `b42_mobile/Ej329SensorsModel.java` | Sensores y filtrado: `filtrarLecturaSensor` (media móvil de ventana), `magnitud` (`√(x²+y²+z²)`), media, ¿supera umbral? (valor absoluto), filtro de paso bajo (`α·act+(1-α)·ant`), aceleración lineal (`mag-9.81`), ¿en reposo?, lectura válida, normalizar `[0,1]` (satura), contar picos (máximos locales = pasos), grados→radianes, eje dominante de la gravedad |
 | 330 | `b42_mobile/Ej330PublishDistribution.java` | **Guion** firma/publicación: `versionName` SemVer (b39), `siguienteVersionCode` (monótono; `IllegalState` en overflow), incrementar patch, nombre de artefacto, formato `apk`/`aab` + extensión, alias válido, comando `apksigner` (firma = b30 cripto), ¿release lista? (firmada∧minificada∧¬debuggable), tamaño legible (`Locale.US`), categoría de store, `./gradlew bundleRelease` |
 
-(Apoyo: `b42_mobile` es **JDK puro, sin app Android real** (Android usa Gradle/Kotlin/emulador, fuera de este Maven). Los cores son **lógica pura testeable**: máquina de estados del ciclo de vida (`Ej326`), conversión dp/sp y mapa de layouts (`Ej327`), modelo de back stack/extras (`Ej328`) y filtrado de sensores sobre `double[]` (`Ej329`). `Ej325` (entorno/SDK) y `Ej330` (firma/publicación) son **"guion"**: validan configuraciones y construyen comandos como cadenas, como los "guion" de b22 (Dockerfile) y b39 (jlink/jpackage). Todo el modelo y los comandos reales se enseñan en `teoria/42_Movil_Android.md`. Enlaza con b32/b34 (ciclo de vida/eventos), b05 (routing/URLs), b30 (firma) y b39 (SemVer). **Cierra la parte programable en Java de PMDM (0488).** 6 ejercicios × (2 cores + 10 retos).)
+(Apoyo: `b42_mobile` es **JDK puro, sin app Android real** (Android usa Gradle/Kotlin/emulador, fuera de este Maven). Los cores son **lógica pura testeable**: máquina de estados del ciclo de vida (`Ej326`), conversión dp/sp y mapa de layouts (`Ej327`), modelo de back stack/extras (`Ej328`) y filtrado de sensores sobre `double[]` (`Ej329`). `Ej325` (entorno/SDK) y `Ej330` (firma/publicación) son **"guion"**: validan configuraciones y construyen comandos como cadenas, como los "guion" de b22 (Dockerfile) y b39 (jlink/jpackage). Todo el modelo y los comandos reales se enseñan en `teoria/42_Movil_Android.md`. Enlaza con b32/b34 (ciclo de vida/eventos), b05 (routing/URLs), b30 (firma) y b39 (SemVer). **Cierra la parte programable en Java de PMDM (0489).** 6 ejercicios × (2 cores + 10 retos).)
 
 ---
 
@@ -711,7 +712,7 @@ Jackson, sin red ni base de datos**: deterministas y testeables. `Ej331`/`Ej333`
 que los "guion" de b22/b39/b42—; la práctica contra una instancia Odoo real se hace a mano con el
 **MCP de Odoo** del entorno. Parametrizar Odoo (SGE RA1–RA3) NO es Java y queda fuera. Enlaza con
 b16 (CSV/XML), b06 (HTTP), b15 (agregaciones), b02 (Jackson), b30 (hash) y b07 (PATCH).
-**Cierra SGE (0489) en su vertiente programable y con él los 5 módulos técnicos de 2º DAM.**
+**Cierra SGE (0491) en su vertiente programable y con él los 5 módulos técnicos de 2º DAM.**
 6 ejercicios × (2 cores + 10 retos).)
 
 ---
@@ -803,6 +804,32 @@ Acceso a Datos.** 6 ejercicios × (2–3 cores + 10 retos).)
 
 ---
 
+### Bloque XLVII · Estrategia de pruebas — DI RA8 (357–362)
+
+> **Bloque de cierre BOE 2023 (ver `ROADMAP_CIERRE_BOE2023.md` §B47).** Cubre el RA8
+> de Desarrollo de Interfaces (0488): **diseñar y ejecutar pruebas** como estrategia —plan de
+> pruebas, regresión con línea base, volumen/carga, estrés/percentiles, recursos y seguridad— y
+> **documentar** los resultados. **No re-enseña** la mecánica del test (JUnit5, Mockito, MockMvc,
+> Testcontainers ya están en b19); lo nuevo es el **nivel de estrategia**: qué probar, cuánto
+> es suficiente y cuándo parar.
+
+| # | Archivo | Concepto clave |
+|---|---|---|
+| 357 | `b47_pruebas/Ej357TestStrategyPlan.java` | Plan de pruebas: niveles, pirámide, cobertura objetivo, criterio de salida |
+| 358 | `b47_pruebas/Ej358RegressionBaseline.java` | Regresión: línea base, comparar con tolerancia, detectar desviación (*golden master*) |
+| 359 | `b47_pruebas/Ej359LoadVolumeTest.java` | Volumen/carga: medir *throughput* con warmup, generar carga simulada |
+| 360 | `b47_pruebas/Ej360StressLatency.java` | Estrés: percentiles p50/p95/p99, punto de saturación |
+| 361 | `b47_pruebas/Ej361ResourceUsageTest.java` | Uso de recursos: memoria/hilos con `Runtime`/`ThreadMXBean`, fugas, presupuesto |
+| 362 | `b47_pruebas/Ej362SecuritySmokeChecklist.java` | Seguridad: checklist OWASP básico, *smoke* automatizado |
+
+(Sin dependencias propias: JDK puro. Toda la carga es simulada con `Runnable`/`Supplier`;
+los tests de recursos usan `Runtime` y `ThreadMXBean` del JDK estándar, sin agente externo.
+Enlaza con b19 (la mecánica del test), b21 (rendimiento/resiliencia), b18 (seguridad) y b23
+(quality gate en CI). **Con b47 la masterclass b00–b47 queda cerrada al 100 % del BOE 2023.**
+6 ejercicios × (2–3 cores + 10 retos).)
+
+---
+
 ## 5. Progreso
 
 - [x] B0 · Fundamentos HTTP/Web (001–010) ✅ compila, tests en rojo (a implementar)
@@ -844,11 +871,12 @@ Acceso a Datos.** 6 ejercicios × (2–3 cores + 10 retos).)
 - [x] B36 · CSS, usabilidad, accesibilidad e i18n · DI RA3 (287–292) ✅ compila, tests en rojo (a implementar) · 72 tests de lógica pura (sin toolkit) + recursos CSS/i18n
 - [x] B37 · Componentes personalizados, Canvas y gráficos · DI RA2 (293–298) ✅ compila, tests en rojo (a implementar) · 72 tests de lógica pura (geometría/estado/datos/color, sin toolkit) + Playground con Canvas y BarChart
 - [x] B38 · Informes, PDF e impresión · DI RA4 (299–304) ✅ compila, tests en rojo (a implementar) · 78 tests de lógica pura (modelo de datos, totales, magic numbers, geometría de impresión, CSV; sin toolkit ni motor Jasper) + Playground con TableView y PrinterJob
-- [x] B39 · Documentación, ayuda y distribución · DI RA5/RA6 (305–310) ✅ compila, tests en rojo (a implementar) · 78 tests de lógica pura (parsear manifest/module-info, `Preferences` en nodo temporal, comandos jlink/jpackage como cadenas, SemVer; sin toolkit) + Playground con "Acerca de"/Hyperlink/preferencias. **Cierra el módulo DI (0487).** `Ej308`/`Ej309` son "guion" (comandos de terminal en el README)
+- [x] B39 · Documentación, ayuda y distribución · DI RA5/RA6 (305–310) ✅ compila, tests en rojo (a implementar) · 78 tests de lógica pura (parsear manifest/module-info, `Preferences` en nodo temporal, comandos jlink/jpackage como cadenas, SemVer; sin toolkit) + Playground con "Acerca de"/Hyperlink/preferencias. **Cierra el módulo DI (0488).** `Ej308`/`Ej309` son "guion" (comandos de terminal en el README)
 - [x] B40 · Multimedia: imagen, audio y vídeo · PMDM RA1/RA2 (311–318) ✅ compila, tests en rojo (a implementar) · 96 tests de lógica pura (aritmética de píxeles sobre `int[][]`, ARGB, máquina de estados del `MediaPlayer`, geometría de letterbox, magic numbers, compresión; sin toolkit ni códecs) + Playground con filtros sobre `Canvas`/`Slider` y la máquina de estados. **Primer bloque de PMDM.** Frontera con b26_io (leer bytes ya sabido; aquí se procesa el contenido)
 - [x] B41 · Animación, *game loop* y juego 2D · PMDM RA2/RA5 (319–324) ✅ compila, tests en rojo (a implementar) · 74 tests de lógica pura (interpolación/easing, `deltaTime`/fps y paso fijo, física `pos+vel·dt` con clamp/rebote/wrap, colisiones AABB/círculo/rect–círculo, máquina de estados del juego, lógica del mini-juego; sin toolkit ni `AnimationTimer`) + `PlaygroundJuego` con game loop real sobre `Canvas` (pelota+pala controlable). Enlaza con b37 (Canvas) y b27 (bucle/tiempo). 6 ejercicios × (2–3 cores + 10 retos)
-- [x] B42 · Desarrollo móvil / Android · PMDM RA3/RA4/RA6 (325–330) ✅ compila, tests en rojo (a implementar) · 72 tests de lógica pura JDK (máquina de estados del ciclo de vida de `Activity`, conversión dp/sp y mapa layouts Android↔JavaFX, modelo de `Intent`/back stack/extras, filtrado de sensores —media móvil/paso bajo/umbral/magnitud— sobre `double[]`; sin app Android, sin Gradle, sin emulador). `Ej325` (entorno/SDK) y `Ej330` (firma/publicación) son **"guion"** (validan config y comandos como cadenas, como b22/b39). Enlaza con b32/b34 (lifecycle/eventos), b05 (URLs), b30 (firma) y b39 (SemVer). **Cierra la parte programable en Java de PMDM (0488).** 6 ejercicios × (2 cores + 10 retos)
-- [x] B43 · Integración ERP/CRM, ETL e inteligencia de negocio · SGE RA4/RA5/RA6 (331–336) ✅ compila, tests en rojo (a implementar) · 73 tests de lógica pura JDK + Jackson (modelo del ERP y "guion" de conceptos, import/export CSV-XML con round-trip y escape, cliente JSON-RPC de Odoo construido/parseado con Jackson sin red, ETL de mapeo/validación con descarte de filas, KPIs de BI con `groupingBy`/`summingDouble`, sincronización idempotente con upsert/huella/backoff/conciliación). Modelos compartidos `ClienteErp`/`PedidoErp`/`SyncPlan`. `Ej331`/`Ej333` con vertiente **"guion"**; práctica real contra el **MCP de Odoo**. Enlaza con b16 (CSV/XML), b06 (HTTP), b15 (agregaciones), b02 (Jackson), b30 (hash) y b07 (PATCH). **Cierra SGE (0489) y, con él, los 5 módulos técnicos de 2º DAM.**
+- [x] B42 · Desarrollo móvil / Android · PMDM RA3/RA4/RA6 (325–330) ✅ compila, tests en rojo (a implementar) · 72 tests de lógica pura JDK (máquina de estados del ciclo de vida de `Activity`, conversión dp/sp y mapa layouts Android↔JavaFX, modelo de `Intent`/back stack/extras, filtrado de sensores —media móvil/paso bajo/umbral/magnitud— sobre `double[]`; sin app Android, sin Gradle, sin emulador). `Ej325` (entorno/SDK) y `Ej330` (firma/publicación) son **"guion"** (validan config y comandos como cadenas, como b22/b39). Enlaza con b32/b34 (lifecycle/eventos), b05 (URLs), b30 (firma) y b39 (SemVer). **Cierra la parte programable en Java de PMDM (0489).** 6 ejercicios × (2 cores + 10 retos)
+- [x] B43 · Integración ERP/CRM, ETL e inteligencia de negocio · SGE RA4/RA5/RA6 (331–336) ✅ compila, tests en rojo (a implementar) · 73 tests de lógica pura JDK + Jackson (modelo del ERP y "guion" de conceptos, import/export CSV-XML con round-trip y escape, cliente JSON-RPC de Odoo construido/parseado con Jackson sin red, ETL de mapeo/validación con descarte de filas, KPIs de BI con `groupingBy`/`summingDouble`, sincronización idempotente con upsert/huella/backoff/conciliación). Modelos compartidos `ClienteErp`/`PedidoErp`/`SyncPlan`. `Ej331`/`Ej333` con vertiente **"guion"**; práctica real contra el **MCP de Odoo**. Enlaza con b16 (CSV/XML), b06 (HTTP), b15 (agregaciones), b02 (Jackson), b30 (hash) y b07 (PATCH). **Cierra SGE (0491) y, con él, los 5 módulos técnicos de 2º DAM.**
 - [x] B44 · Interfaces naturales: voz, gestos, cuerpo, RA y ML · DI RA2 (337–344) ✅ compila, tests en rojo (a implementar) · 96 tests de lógica pura JDK (clasificación de modalidad y pipeline NUI, gramática voz→`Intencion`, transcripción→acción con confianza y Levenshtein, clasificación de gestos + máquina de estados táctil, geometría de keypoints del cuerpo —ángulo por producto escalar—, detección de movimiento por diferencia de frames `int[][]` + media móvil, matemática de realidad aumentada —proyección perspectiva y matriz·vector—, pipeline de ML logístico con métricas precision/recall/confusión; sin toolkit gráfico ni motores externos). `record Punto` compartido. **Frontera honesta** (como b42/b43): motores reales (Vosk/MediaPipe/ARCore/Weka) en **"guion"**. Enlaza con b40 (imagen), b33/b34 (eventos/acciones UI), b36 (a11y), b30 (privacidad), b45 (3D) y b46 (serializar modelo). **Primer bloque de cierre BOE 2023; abre el RA2 de DI que estaba sin tocar.** 8 ejercicios × (2 cores + 10 retos)
 - [x] B45 · JavaFX 3D y arquitectura de motores de juego · PMDM RA4/RA5 (345–350) ✅ compila, tests en rojo (a implementar) · 73 tests de lógica pura JDK (vectores 3D —cruz/normalizar/dot/ángulo/proyección/reflexión/lerp/triple producto—, matrices 4×4 de transformación y su composición T·R·S, proyección perspectiva y frustum de la cámara, colisiones AABB/esfera/raycast en tres ejes, un mini-ECS con sistema de movimiento y consultas por componente, y la lógica de un mini-juego 3D —mover/recoger/perseguir—; sin abrir ventana). Records compartidos `Camara`/`Caja`; `Playground3D`/`PlaygroundMiniGame3D` montan escena 3D real (`PerspectiveCamera`/`PhongMaterial`/`PointLight`). **Frontera con b41**: 2D ya estaba, aquí se sube a 3D + arquitectura de motor (scene graph/ECS). Enlaza con b41 (2D→3D), b37 (Canvas), b27 (bucle), b44 (proyección) y b46 (serializar). **Cierra la parte 3D de PMDM.** 6 ejercicios × (2–3 cores + 10 retos)
 - [x] B46 · Componentes de acceso a datos · modelo JavaBean · AD RA6 (351–356) ✅ compila, tests en rojo (a implementar) · 73 tests de lógica pura JDK (introspección de propiedades JavaBean por reflexión e `Introspector`, eventos `PropertyChangeSupport`/*bound* y *vetoable*/*constrained* con notificación entre hilos por latch, serialización round-trip con `transient`/`serialVersionUID`/GZIP/fichero, el **componente DAO** como JavaBean con propiedades+eventos+CRUD contra un store fake, lectura/validación de `Manifest` con SemVer y SPI, e integración del componente —inyección, factoría, `ServiceLoader`, mock, propagación de error por evento—). Beans de apoyo `PersonaBean`/`EmpleadoBean`/`ConfiguracionComponente`/`Cliente` y contrato `ComponenteDao`+`ComponenteEco`. Sin dependencias propias: `java.beans`/`Serializable`/`Manifest`/`ServiceLoader` del JDK; store en memoria, sin BD. **No re-enseña** el acceso a datos (b11/b12/b17), sino el **patrón de componente** que lo envuelve. Enlaza con b11/b12/b17 (acceso que envuelve), b03 (IoC), b33 (Properties) y b39 (empaquetado). **Cierra AD·RA6, el último RA de Acceso a Datos.** 6 ejercicios × (2–3 cores + 10 retos)
+- [x] B47 · Estrategia de pruebas · DI RA8 (357–362) ✅ compila, tests en rojo (a implementar) · 72 tests de lógica pura JDK (plan de pruebas con niveles/riesgo/criterio de salida, regresión con línea base y tolerancias numéricas/textuales/golden master, throughput con warmup y anti dead-code elimination, percentiles p50/p95/p99 y punto de saturación, presupuesto de memoria/hilos con `Runtime`/`ThreadMXBean`, checklist OWASP: HTTPS/HSTS/CSP/CORS/rate-limit/contraseñas/secretos). Sin dependencias propias: JDK puro; toda la carga es simulada con `Runnable`/`Supplier`, sin red real. Enlaza con b19 (la mecánica del test), b21 (rendimiento/resiliencia), b18 (seguridad) y b23 (quality gate en CI). **Cierra DI·RA8 y, con él, la masterclass b00–b47 al 100 % del BOE 2023.** 6 ejercicios × (2–3 cores + 10 retos)

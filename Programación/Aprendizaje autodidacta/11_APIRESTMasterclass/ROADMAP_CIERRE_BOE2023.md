@@ -813,24 +813,29 @@ gate en CI).
 > Estas tres tareas **no** las construye `crear-bloque` (no son bloques de ejercicios). Son
 > correcciones/ampliaciones manuales para que **literalmente nada** quede sin trazar.
 
-- **T0 · Corregir códigos de módulo y notas falsas.** En `SYLLABUS.md` y
-  `ROADMAP_BUILD_MASTERCLASS.md`: DI **0488** (no 0487), PMDM **0489** (no 0488), SGE **0491** (no
-  0489). Borrar la afirmación *"el BOE solo redacta 0486 y 0490"* (redacta los diez) y **retirar la
-  recomendación de XSD/XQuery para AD·RA5** (el RA5 de 2023 es Mongo, ya cubierto por b17). Es la
-  más rápida y la de mayor valor de rigor.
+- **T0 · Corregir códigos de módulo y notas falsas. ✅ HECHO (2026-06-26).** En `SYLLABUS.md`,
+  `ROADMAP_BUILD_MASTERCLASS.md` y `RUTA_ESTUDIO_2DAM.md`: DI **0488** (no 0487), PMDM **0489** (no
+  0488/0485), SGE **0491** (no 0489/0488), EIE **0494**. Reescrita la afirmación *"el BOE solo
+  redacta 0486 y 0490"* (redacta los diez) y **retirada la recomendación de XSD/XQuery para AD·RA5**
+  (el RA5 de 2023 es Mongo, ya cubierto por b17): las propuestas obsoletas `b44_xmldb` y `b45_bossdi`
+  quedan marcadas como RETIRADAS en el ROADMAP_BUILD, y su tabla de cobertura actualizada a 8/8 RA en
+  DI y al 3D de PMDM.
 
-- **T1 · Proyecto compañero Android (PMDM·RA1/RA2 deploy real).** Una app Android mínima **fuera de
-  este Maven** (Android Studio / Gradle) que consuma la API REST de b05: 1 `Activity` +
-  `RecyclerView`, navegación por `Intent`, una llamada `Retrofit`/`HttpURLConnection`, persistencia
-  con `Room`/`SharedPreferences`, permisos y **firma + generación del APK**. Documentar en un
-  apéndice de `teoria/42_Movil_Android.md` (pasos + capturas). Con el modelo mental de b42 ya
-  interiorizado, son pocas horas y cierra los CE de deploy real (h) y permisos (j) **con práctica**.
+- **T1 · Proyecto compañero Android (PMDM·RA1/RA2 deploy real). ✅ HECHO (2026-06-26, guion).**
+  Apéndice **`Apéndice T1`** añadido al final de `teoria/42_Movil_Android.md`: guion paso a paso de
+  una app Android mínima **fuera de este Maven** (Android Studio / Gradle) que consume la API REST de
+  b05 —`RecyclerView`, navegación por `Intent`, llamada `Retrofit`/`HttpURLConnection` en hilo de
+  fondo, persistencia con `SharedPreferences`/`Room`, **permiso peligroso en runtime** (CE j) y
+  **firma + `adb install` del APK** (CE h)— con su "definición de hecho", errores comunes y puentes a
+  b05/b27/b30/b35/b39. Queda como **guion de taller** (no bloque con tests), por la frontera Gradle/AVD.
 
-- **T2 · Guion de implantación de Odoo (SGE·RA1–RA3).** Ampliar `teoria/43_SGE_Integracion.md` con
-  un recorrido explícito —usando el **MCP de Odoo** disponible en el entorno— de: instalar/verificar
-  el sistema (RA1), implantar módulos (RA2), y generar formularios/informes/exportaciones dentro de
-  la herramienta (RA3). Es trabajo de **herramienta, no Java**; se documenta como guion con pasos y
-  capturas, igual que Docker (b22) o CI (b23).
+- **T2 · Guion de implantación de Odoo (SGE·RA1–RA3). ✅ HECHO (2026-06-26, guion).** Apéndice
+  **`Apéndice T2`** añadido al final de `teoria/43_SGE_Integracion.md`: recorrido explícito —contra el
+  **MCP de Odoo** del entorno o un Odoo en Docker (b22)— de **instalar/verificar** el sistema con su
+  PostgreSQL y un checklist (RA1), **implantar y parametrizar** módulos (Ventas/CRM) cargando los
+  maestros vía el CSV que genera el propio código de b43 (RA2), y **explotar** los datos con *Agrupar
+  por*/*Pivot*/exportación CSV-XLSX e informe PDF QWeb (RA3), con el puente RA3↔RA4/RA5 (la herramienta
+  explora, el código automatiza). Trabajo de **herramienta, no Java**; documentado como guion.
 
 ---
 

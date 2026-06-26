@@ -1,5 +1,16 @@
 # ROADMAP DE CONSTRUCCIÓN · Masterclass 2º DAM — proyecto finalizado + ampliaciones de excelencia
 
+> ⚠️ **DOCUMENTO SUPERADO EN SU AUDITORÍA (corrección 2026-06-26).** El veredicto de cobertura de
+> este fichero se hizo contra el plan **RD 450/2010** y subestima los huecos reales (daba DI, PMDM y
+> SGE por "completos" cuando faltaban DI·RA2, DI·RA8, AD·RA6 y el 3D de PMDM). La auditoría
+> **autoritativa**, punto por punto contra el `BOE-A-2023-13221` (RD 405/2023), vive en
+> **`ROADMAP_CIERRE_BOE2023.md`**, que ya está **ejecutada**: los cuatro cierres se construyeron como
+> `b44_nui` (DI·RA2), `b45_juego3d` (PMDM·RA4/RA5 3D), `b46_datacomp` (AD·RA6) y `b47_pruebas`
+> (DI·RA8). Por tanto, en este documento: las **propuestas Ampliación A (`b44_xmldb` XSD/XQuery)** y
+> **Ampliación C (`b45_bossdi`)** quedan **RETIRADAS** (XSD/XQuery respondía al AD·RA5 de 2010; el
+> AD·RA5 de 2023 es **BD documental = MongoDB**, ya cubierto por **b17**), y los **códigos de módulo**
+> correctos son: AD **0486**, DI **0488**, PMDM **0489**, PSP **0490**, SGE **0491**.
+>
 > **Qué es este archivo (revisión 2026-06-24).** La masterclass `11_APIRESTMasterclass` está
 > **terminada**: cubre **los cinco módulos técnicos de 2º DAM** con **b00–b43 (336 ejercicios)**.
 > Este documento ya no es "lo que falta por construir para aprobar" —no falta nada—, sino:
@@ -35,25 +46,27 @@ los cinco. Lo que sigue en §3 son **tres profundizaciones opcionales de excelen
 
 | Módulo 2º DAM | RA clave | ¿Cubierto? | Dónde | Profundidad |
 |---|---|---|---|---|
-| **0486 AD** | RA1 ficheros/XML · RA2 conectores · RA3 ORM · RA4 OO/Mongo · RA5 XML nativo · componentes | ✅ Sí | b11–b17, **b26**, **b31** | Alta. *Único matiz:* AD·RA5 "BD **nativas XML** + **XSD/DTD** + **XQuery**" se toca de pasada en b16 (JAXB/Jackson/DOM/SAX/XPath, sin XSD ni XQuery). → **Ampliación A (§3.1)**. |
+| **0486 AD** | RA1 ficheros · RA2 conectores · RA3 ORM · RA4 OO/OR · RA5 BD documental (Mongo) · RA6 componentes | ✅ Sí | b11–b17, **b26**, **b31**, **b46** | Completa. AD·RA5 en el BOE 2023 es **BD documental nativa = MongoDB** (no XML): cubierto por **b17**. AD·RA6 (componentes JavaBean) cerrado por **b46**. *(La antigua "Ampliación A" XSD/XQuery respondía al AD·RA5 de 2010 y queda retirada.)* |
 | **0490 PSP** | RA1 multiproceso · RA2 multihilo · RA3 sockets · RA4 servicios red · RA5 prog. segura | ✅ Sí | b18, **b27**–**b30** + toda la API REST | **Completa y sobrada.** El módulo mejor cubierto. |
-| **0487 DI** | RA1 GUI · RA2 componentes · RA3 usabilidad/a11y · RA4 informes · RA5 docs · RA6 distribución/i18n | ✅ Sí | **b32–b39** (JavaFX) | **Completa.** Las 6 RA construidas. Mejora opcional: un capstone integrador end-to-end. → **Ampliación C (§3.3)**. |
-| **0488 PMDM** | RA1/RA2 multimedia · RA5 juegos · RA3/RA4/RA6 móvil | 🟡 Java completo + móvil "guion" | **b40–b42** | Multimedia y juego 2D: **completos**. Móvil (b42): **modelo mental + "guion"**, no una app Android real (Gradle/AVD no caben en Maven). Limitación **asumida y avisada**. → **Ampliación B (§3.2)**. |
-| **0489 SGE** | RA4 componentes ERP · RA5 BI/DW · RA6 integración/ETL | ✅ Sí (vertiente Java) | **b43** | **Construido (2026-06-24).** Integración/ETL/BI con Odoo (JSON-RPC, CSV/XML, KPIs, sync idempotente). Parametrizar Odoo (RA1–RA3) no es Java y queda fuera, como avisa la teoría. |
+| **0488 DI** | **8 RA**: RA1 GUI · RA2 **interfaces naturales** · RA3 componentes · RA4 informes · RA5 docs · RA6 ayuda · RA7 distribución · RA8 **pruebas** | ✅ Sí | **b32–b39** (JavaFX) + **b44** (RA2) + **b47** (RA8) | **Completa (8/8).** El BOE 2023 define 8 RA; RA2 (naturales) cerrado por **b44_nui** y RA8 (estrategia de pruebas) por **b47_pruebas**. |
+| **0489 PMDM** | RA1/RA2 móvil · RA3 multimedia · RA4/RA5 juegos 2D **y 3D** | ✅ Java completo (3D con b45) + móvil "guion" | **b40–b42** + **b45** | Multimedia, juego 2D y **3D + arquitectura de motor** (**b45_juego3d**): completos. Móvil (b42): **modelo mental + "guion"**, no una app Android real (Gradle/AVD no caben en Maven). → **Ampliación B (§3.2)**. |
+| **0491 SGE** | RA1–RA3 herramienta · RA4 adaptación · RA5 componentes ERP | ✅ Sí (vertiente Java) | **b43** | **Construido (2026-06-24).** Integración/ETL/BI con Odoo (JSON-RPC, CSV/XML, KPIs, sync idempotente). Parametrizar Odoo (RA1–RA3) no es Java y queda fuera, como avisa la teoría. |
 | 0491 EIE · 0492 Proyecto · 0493 FCT | — | n/a | b24 / proyecto entero | Fuera de alcance de programación / cubierto indirectamente. |
 
-## Las 3 ampliaciones pendientes (opcionales, por valor)
+## Las ampliaciones (estado tras el cierre BOE 2023)
 
-| # | Ampliación | Módulo·RA | Qué cierra | Forma | Prioridad |
-|---|---|---|---|---|---|
-| **A** | `b44_xmldb` · BD nativas XML, XSD/DTD, XPath/XQuery, XSLT | AD·RA5 | El único micro-hueco de AD | Bloque Maven (6 ej, 337–342) | **Media-alta** |
-| **B** | *Companion Android* · app real que consume la API REST | PMDM·RA3/RA4/RA6 | El "asterisco" de PMDM móvil | Proyecto Android Studio aparte (guiado) | **Alta** (la de más valor formativo) |
-| **C** | `b45_bossdi` · "Boss Final de Interfaces" (capstone DI) | DI·RA1–RA6 | Consolida DI en un entregable de portfolio | Bloque Maven (2 ej, 343–344) | Media |
+> ⚠️ Esta tabla se redactó con el mapeo 2010. Tras la auditoría del `ROADMAP_CIERRE_BOE2023.md`, las
+> propuestas **A** y **C** quedan **RETIRADAS** y sustituidas por los bloques realmente construidos.
 
-> **Conclusión:** para **aprobar y sacar buena nota en los 5 módulos técnicos, el proyecto ya está
-> completo.** Las 3 ampliaciones son escalones de maestría. Si solo se hace una, que sea la **B**
-> (Android real), porque es el único punto donde el proyecto sustituye práctica real por modelo
-> mental; las otras dos pulen matices ya cubiertos.
+| # | Ampliación | Módulo·RA | Estado |
+|---|---|---|---|
+| ~~**A** · `b44_xmldb` (XSD/DTD, XPath/XQuery, XSLT)~~ | ~~AD·RA5~~ | ❌ **Retirada.** Respondía al AD·RA5 de **2010** (BD nativas XML). El AD·RA5 de **2023** es **BD documental = MongoDB**, ya cubierto por **b17**. El hueco real de AD era **RA6 (componentes)**, cerrado por **b46_datacomp**. |
+| **B** · *Companion Android* · app real que consume la API REST | PMDM·RA1/RA2 (deploy real) | 🟡 **Pendiente (guion, no bloque).** = **Tarea T1** del cierre: app Android fuera de Maven. El modelo Java vive en **b42**. |
+| ~~**C** · `b45_bossdi` (capstone DI)~~ | ~~DI·capstone~~ | ❌ **Retirada/reasignada.** El identificador `b45` se usó para **b45_juego3d** (PMDM 3D). Los huecos reales de DI eran **RA2** (→ **b44_nui**) y **RA8** (→ **b47_pruebas**), ya construidos. |
+
+> **Conclusión:** los cierres construibles del BOE 2023 están **hechos** (`b44`–`b47`). Solo queda
+> como **guion documental** la Tarea **T1** (app Android real) y la **T2** (implantación de Odoo);
+> ninguna es un RA sin cubrir, sino la vertiente de herramienta que se documenta, no se programa.
 
 ```mermaid
 flowchart LR
@@ -85,16 +98,17 @@ amplió hasta cubrir el BOE de 2º DAM. Estado **actual** (todo construido):
 |---|---|---|---|
 | **0486 Acceso a Datos (AD)** | JDBC / JPA / Mongo / ficheros | ✅ **Completo** | b11–b17, b26, b31 |
 | **0490 Prog. Servicios y Procesos (PSP)** | Hilos / procesos / sockets / cripto / REST | ✅ **Completo** | b18, b27–b30 + toda la API |
-| **0487 Desarrollo de Interfaces (DI)** | **JavaFX** | ✅ **Completo** | b32–b39 |
-| **0488 Prog. Multimedia y Móvil (PMDM)** | JavaFX Media / Canvas / Android | ✅ **Java completo + móvil guion** | b40–b42 |
-| **0489 Sistemas de Gestión Empresarial (SGE)** | Integración ERP/CRM (Odoo) | ✅ **Completo** (vertiente Java) | b43 |
-| 0491 Empresa e Iniciativa Emprendedora | (no es de programación) | ⛔ Fuera de alcance | — |
+| **0488 Desarrollo de Interfaces (DI)** | **JavaFX** | ✅ **Completo (8/8 RA)** | b32–b39 + b44 + b47 |
+| **0489 Prog. Multimedia y Móvil (PMDM)** | JavaFX Media / Canvas / 3D / Android | ✅ **Java completo + móvil guion** | b40–b42 + b45 |
+| **0491 Sistemas de Gestión Empresarial (SGE)** | Integración ERP/CRM (Odoo) | ✅ **Completo** (vertiente Java) | b43 |
+| 0494 Empresa e Iniciativa Emprendedora | (no es de programación) | ⛔ Fuera de alcance | — |
 | 0492 Proyecto / 0493 FCT | El proyecto entero sirve de base | ✅ Indirecto | b24 Boss Final |
 
-> **Nota de honestidad sobre el BOE.** El PDF del repo (`BOE-A-2023-13221`) solo redacta los
-> módulos **0486** y **0490** (es una modificación parcial del título). Las RA de DI, PMDM y SGE
-> provienen del currículo del título DAM (RD 450/2010 y desarrollos autonómicos); se mapean
-> fielmente, pero si tu comunidad numera las RA distinto, ajusta el mapeo manteniendo los criterios.
+> **Nota de honestidad sobre el BOE (corregida 2026-06-26).** El PDF del repo (`BOE-A-2023-13221`,
+> RD 405/2023) **redacta los diez módulos profesionales** del título DAM, **incluidos DI, PMDM y
+> SGE** con sus RA. La afirmación anterior de que "solo redacta 0486 y 0490" era **inexacta** (venía
+> de comparar contra el plan de 2010). El mapeo RA→bloque autoritativo, contrastado punto por punto
+> contra ese BOE, está en **`ROADMAP_CIERRE_BOE2023.md`**.
 
 ---
 
@@ -200,7 +214,12 @@ Mermaid. Detalle exhaustivo por ejercicio en [SYLLABUS.md](SYLLABUS.md) §4.
 
 ---
 
-## 3.1 · Ampliación A — `b44_xmldb`: BD nativas XML, XSD/DTD, XPath/XQuery y XSLT (AD·RA5)
+## 3.1 · Ampliación A — `b44_xmldb`: BD nativas XML, XSD/DTD, XPath/XQuery y XSLT (AD·RA5) · ❌ RETIRADA
+
+> ⚠️ **NO CONSTRUIR.** Esta especificación responde al **AD·RA5 del plan 2010** ("BD nativas XML").
+> En el **BOE 2023** el AD·RA5 es **BD documental nativa (MongoDB)**, ya cubierto por **b17_nosql**, y
+> el identificador `b44` se usó para **b44_nui** (DI·RA2). El hueco real de AD era **RA6
+> (componentes)**, cerrado por **b46_datacomp**. Se conserva el texto siguiente solo como histórico.
 
 **Por qué.** Es el **único punto del temario de AD** que el proyecto roza en vez de practicar. b16
 cubre XML como ficheros (JAXB, Jackson-XML, DOM/SAX, XPath de lectura), pero la RA5 de AD habla

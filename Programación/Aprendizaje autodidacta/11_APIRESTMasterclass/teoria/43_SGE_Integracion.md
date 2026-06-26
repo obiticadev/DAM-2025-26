@@ -524,3 +524,150 @@ fusionar           = parche no vacío gana (PATCH parcial b07)
 12. ¿Por qué la huella de contenido (`hashContenido`) excluye el `idExterno`? *(6)*
 13. ¿Por qué nunca comparas dos importes `double` con `==` al conciliar? *(6)*
 14. ¿Qué parte de SGE cubre este bloque y cuál se hace en la propia herramienta Odoo? *(aviso honesto)*
+
+---
+
+# Apéndice T2 · Guion de implantación de Odoo (SGE·RA1–RA3, vertiente herramienta)
+
+> **Por qué este apéndice.** El cuerpo de b43 cubre la parte **Java** de SGE (RA4/RA5/RA6:
+> componentes, ETL, BI, sincronización). Pero el módulo tiene tres RA que **no son programación**:
+> **RA1** (identificar ERP-CRM y verificar su configuración), **RA2** (implantar el sistema y sus
+> módulos) y **RA3** (gestionar, consultar y explotar la información dentro de la herramienta). Eso se
+> hace **administrando una instancia de Odoo**, no escribiendo Java —por eso el aviso honesto del
+> inicio dice que el bloque no te enseña a parametrizar Odoo—. Este apéndice es ese recorrido en
+> formato **"guion"**, idéntico en filosofía a Docker (b22) o `jpackage` (b39): pasos, decisiones y
+> modelo mental para que, frente a un Odoo vivo, sepas qué hacer. La práctica real se hace contra el
+> **MCP de Odoo del entorno** (cuando esté disponible) o contra una instancia local con Docker.
+
+## T2.0 · Mapa: qué RA cierra cada paso
+
+```mermaid
+flowchart TB
+  subgraph H["Herramienta (este apéndice · guion)"]
+    RA1["RA1 · Identificar y verificar\ninstalar / comparar / comprobar config"]
+    RA2["RA2 · Implantar\nactivar módulos / parametrizar"]
+    RA3["RA3 · Explotar\nvistas / informes / exportar"]
+  end
+  subgraph J["Java (cuerpo de b43 · con tests)"]
+    RA4["RA4/RA6 · Integrar\nAPI JSON-RPC, ETL, sync"]
+    RA5["RA5 · BI\nKPIs con groupingBy"]
+  end
+  RA1 --> RA2 --> RA3 --> RA4 --> RA5
+```
+
+La regla mental: **RA1–RA3 se hacen *dentro* de Odoo (clic, configuración); RA4–RA6 se hacen *contra*
+Odoo (código).** Este apéndice es la mitad izquierda.
+
+## T2.1 · RA1 · Identificar el ERP y verificar la configuración
+
+**Comparar antes de elegir** (CE de RA1). No hay "el mejor ERP", hay el adecuado a la empresa:
+
+| ERP-CRM | Licencia | Stack | Cuándo |
+|---|---|---|---|
+| **Odoo** (Community) | LGPLv3 (gratis) / Enterprise (pago) | Python + PostgreSQL | PYME, modular, personalizable; el de referencia en DAM |
+| **SAP Business One** | Propietaria (pago alto) | propietario | mediana/gran empresa |
+| **Dynamics 365** | Propietaria (suscripción) | .NET + SQL Server | empresas en ecosistema Microsoft |
+| **Dolibarr** | GPL (gratis) | PHP + MySQL | micro-PYME, sencillez |
+
+**Verificar la base** (CE: SO y SGBD adecuados): Odoo necesita **PostgreSQL** (no MySQL) y corre sobre
+Linux en producción. La forma reproducible de levantar uno para practicar —y enlaza con b22— es Docker:
+
+```yaml
+# docker-compose.yml de práctica (RA1: instalar y verificar)
+services:
+  db:
+    image: postgres:16
+    environment: { POSTGRES_USER: odoo, POSTGRES_PASSWORD: odoo, POSTGRES_DB: postgres }
+  odoo:
+    image: odoo:17
+    depends_on: [db]
+    ports: ["8069:8069"]
+    environment: { HOST: db, USER: odoo, PASSWORD: odoo }
+```
+
+```bash
+docker compose up -d          # levanta Odoo + PostgreSQL (b22)
+# Verificar (RA1): abrir http://localhost:8069, crear la BD, comprobar versión y conexión a la db
+```
+
+> **Checklist de verificación (RA1):** (1) la BD se crea sin error → conexión a PostgreSQL OK; (2)
+> `Ajustes → Acerca de` muestra la versión esperada; (3) el log del contenedor no tiene `ERROR`; (4)
+> puedes iniciar sesión como administrador. Si las cuatro pasan, el sistema está **verificado**.
+
+## T2.2 · RA2 · Implantar el sistema: activar y parametrizar módulos
+
+En Odoo, **cada área funcional es un módulo** (lo que en b43 §1 llamaste "módulo de negocio"):
+Ventas, Compras, Inventario, Contabilidad, CRM. Implantar = **activar los que la empresa usa** y
+**configurarlos**, no instalar todo.
+
+```mermaid
+flowchart LR
+  A[Ajustes\nActivar modo desarrollador] --> B[Aplicaciones]
+  B --> C{Instalar módulo}
+  C -->|Ventas| D[Configurar:\nimpuestos, tarifas, almacenes]
+  C -->|CRM| E[Configurar:\netapas del embudo]
+  D --> F[Datos maestros:\nproductos, clientes]
+  E --> F
+```
+
+Pasos del recorrido (RA2):
+
+1. **Activar el modo desarrollador** (`Ajustes → Activar modo desarrollador`): desbloquea la
+   configuración técnica (campos, vistas, acciones).
+2. **Instalar el módulo** desde *Aplicaciones* (p. ej. *Ventas*). Odoo crea sus modelos, vistas y
+   menús automáticamente —es la contrapartida "herramienta" de lo que en Java sería crear entidades.
+3. **Parametrizar**: impuestos (IVA), divisa, almacenes, métodos de pago, secuencias de numeración de
+   pedidos/facturas. Aquí se decide cómo trabaja la empresa.
+4. **Cargar los datos maestros** (RA2 + enlaza con b43 §2): productos y clientes. Se puede a mano o
+   **importando el CSV/XML** que tu ETL de Java (Ej332/Ej334) genera. *Aquí los dos mundos se tocan:*
+   el fichero que produces con código se sube por `Importar` en la vista de lista.
+
+> **Instalación adaptada (CE de RA2):** una implantación "estándar" activa módulos con su config por
+> defecto; una "adaptada" ajusta flujos, campos y permisos al proceso real de la empresa. Documenta
+> **qué** cambiaste y **por qué** —ese documento es el entregable del RA2, no el clic en sí.
+
+## T2.3 · RA3 · Explotar la información: vistas, informes y exportación
+
+Con datos dentro, el RA3 es **sacarles partido sin programar**:
+
+| Tarea (CE de RA3) | En Odoo se hace con | Equivalente Java que ya sabes |
+|---|---|---|
+| Consultar/filtrar | **Filtros y Agrupar por** en la vista de lista | `WHERE` / `GROUP BY` (b15), *domain* (b43 §3) |
+| Vista de análisis | **Pivot** y **Gráfico** (barras/líneas/tarta) | tus KPIs de Ej335 (b43 §5) |
+| Informe imprimible | Plantillas **QWeb → PDF** | JasperReports de b38 (DI·RA5) |
+| **Exportar datos** | botón **Exportar** → CSV/XLSX | tu export de Ej332 (b43 §2) |
+| Automatizar extracción | **Acciones planificadas** (cron de Odoo) | un `@Scheduled` / job (concepto b21) |
+
+Recorrido (RA3):
+
+1. En *Ventas → Pedidos*, **Agrupar por** cliente y mes: obtienes ventas por cliente/periodo **sin
+   una sola línea de SQL**. Es, visualmente, el `groupingBy` de Ej335.
+2. **Pivot**: arrastra "mes" a filas y "total" a valores → la tabla dinámica que en Java montaste con
+   `Collectors.summingDouble`. Mismo resultado, otra vía.
+3. **Exportar** ese pivot a XLSX para un informe, o imprime el pedido como **PDF** (plantilla QWeb).
+4. **Acción planificada**: programa una extracción nocturna (p. ej. volcar pedidos del día a un CSV)
+   → es la "automatización de extracciones" del CE, y el fichero resultante es justo lo que tu
+   **integración Java** (b43 §4/§6) consume aguas abajo.
+
+> **El puente clave RA3 ↔ RA4/RA5:** lo que Odoo te da por la interfaz (filtrar, agrupar, exportar)
+> es lo que tu código de b43 hace **programáticamente y sin intervención humana**. Saber las dos vías
+> es lo que distingue al integrador: usas la herramienta para explorar y validar, y el código para
+> **automatizar y conciliar** a escala. Por eso este apéndice y el cuerpo del bloque son dos mitades
+> del mismo módulo.
+
+## T2.4 · Definición de "hecho" del guion
+
+- [ ] Sabes **comparar** al menos tres ERP-CRM por licencia, stack y caso de uso (RA1).
+- [ ] Has **levantado y verificado** una instancia de Odoo (Docker o MCP del entorno) con su
+  PostgreSQL (RA1).
+- [ ] Has **instalado y parametrizado** un módulo (Ventas/CRM) y cargado datos maestros, idealmente
+  **importando el CSV que genera tu código de b43** (RA2).
+- [ ] Has **explotado** los datos con *Agrupar por*/*Pivot*, exportado a CSV/XLSX e impreso un PDF
+  (RA3).
+- [ ] Tienes claro **qué se hace en la herramienta (RA1–RA3) y qué en código (RA4–RA6)**, y por qué
+  el fichero de export es la frontera entre ambos.
+
+> **Cierre de SGE.** Con el cuerpo de b43 (Java: integración/ETL/BI/sync) **más** este guion de
+> implantación (herramienta: instalar/parametrizar/explotar), el módulo **SGE (0491)** queda trazado
+> de RA1 a RA6: la mitad programable con práctica testeable, la mitad de herramienta con un recorrido
+> documentado y honesto. Ni un RA sin cubrir, ni un asterisco oculto.

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.masterclass</groupId>
+        <artifactId>api-rest-masterclass</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>b47_pruebas</artifactId>
+    <name>Module - b47_pruebas</name>
+
+    <!--
+        Estrategia de pruebas · Desarrollo de Interfaces (0488 · RA8).
+        Cubre el nivel ESTRATEGIA de pruebas: qué probar, en qué orden, cómo medir
+        regresión, carga y recursos, y cómo documentarlo — el artefacto "plan de pruebas".
+
+        FRONTERA (no se re-enseña): JUnit5, Mockito, MockMvc, @DataJpaTest, Testcontainers,
+        parametrizados y cobertura ya están en b19. b47 aporta el nivel de planificación,
+        regresión con línea base, volumen/estrés, y uso de recursos.
+
+        Dependencias: JDK puro + JUnit 5 (aportado por el parent). Todos los tests son
+        deterministas, sin red real ni proceso externo: la "carga" se simula con Runnable.
+        JMH (microbenchmark avanzado) aparece en reto guion, sin dependencia Maven.
+    -->
+</project>

@@ -20,15 +20,18 @@ sockets, acceso a datos). Esta ruta **reordena** los bloques por módulo y por u
 
 | Módulo de 2º DAM | ¿Lo cubre esta masterclass? | Bloques |
 |---|---|---|
-| **0486 Acceso a Datos (AD)** | ✅ **Sí, a fondo** | b11, b12, b13, b14, b15, b16, b17, b26, b31 |
-| **0490 Programación de Servicios y Procesos (PSP)** | ✅ **Sí, a fondo** | b18, b27, b28, b29, b30 + toda la API REST |
-| 0487 Desarrollo de Interfaces (DI) | ⚠️ Solo plantillas/PDF | b25 (Thymeleaf) — el resto es GUI escritorio, fuera |
-| 0485 Programación Multimedia y Móvil (PMDM) | ❌ No | — |
-| 0488 Sistemas de Gestión Empresarial (SGE) | ❌ No | — |
+| **0486 Acceso a Datos (AD)** | ✅ **Sí, a fondo (6/6 RA)** | b11, b12, b13, b14, b15, b16, b17, b26, b31, b46 |
+| **0490 Programación de Servicios y Procesos (PSP)** | ✅ **Sí, a fondo (5/5 RA)** | b18, b27, b28, b29, b30 + toda la API REST |
+| **0488 Desarrollo de Interfaces (DI)** | ✅ **Sí (8/8 RA)** | b32–b39 (JavaFX) + b44 (naturales) + b47 (pruebas); b25 (Thymeleaf) de apoyo |
+| **0489 Programación Multimedia y Móvil (PMDM)** | ✅ **Java completo + móvil guion** | b40 (media), b41 (2D), b45 (3D), b42 (móvil, guion) |
+| **0491 Sistemas de Gestión Empresarial (SGE)** | ✅ **Sí (vertiente Java)** | b43 (ERP/CRM Odoo: ETL, BI, sync) |
 | 0492 Proyecto / 0493 FCT | ✅ Indirecto (te da un proyecto entero) | b24 Boss Final |
 
-> **Conclusión:** con esta masterclass adelantas, sobre todo, **Acceso a Datos** y **PSP**,
-> que son los dos módulos más técnicos y donde más gente se atasca. DI/PMDM/SGE van por otro lado.
+> **Conclusión (actualizada 2026-06-26):** la masterclass cubre **los cinco módulos técnicos de 2º
+> DAM** a nivel de RA frente al BOE 2023 (b00–b47, 362 ejercicios). Acceso a Datos y PSP siguen
+> siendo los más a fondo, pero DI, PMDM y SGE **ya están construidos** (antes esta nota decía que
+> "iban por otro lado": era cierto en una versión temprana del proyecto, ya no). Detalle RA→bloque
+> en `ROADMAP_CIERRE_BOE2023.md`.
 
 ---
 
@@ -228,7 +231,7 @@ capas limpias y tests. Estás por encima de la media de 2º DAM.
 | Bloque | Ejercicios | Tema | Cuándo |
 |---|---|---|---|
 | **b24_boss** | 199–200 | **Boss Final**: API corporativa completa que integra TODO | Cuando termines FASE 3 |
-| **b25_thymeleaf** | 201–206 | Plantillas + generación de PDF (roza DI·0487) | Cuando quieras |
+| **b25_thymeleaf** | 201–206 | Plantillas + generación de PDF (roza DI·0488) | Cuando quieras |
 | **b22_deploy** | 189–194 | Docker, Compose, despliegue | Antes de la FCT |
 | **b23_ci** | 195–198 | CI/CD, GitHub Actions, calidad | Antes de la FCT |
 
@@ -279,7 +282,7 @@ Con esos 8 bloques llegas a 2º habiendo tocado lo esencial de los dos módulos 
 | b29 | PSP 0490 | RA3 (sockets) | 2 |
 | b30, b18 | PSP 0490 | RA5 (seguridad/cripto) | 2 |
 | b00–b10, b19–b23 | (extra REST / Proyecto / FCT) | RA4 servicios red | 3–4 |
-| b25 | roza DI 0487 | — | 4 |
+| b25 | roza DI 0488 | — | 4 |
 
 ---
 
