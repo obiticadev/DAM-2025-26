@@ -3,9 +3,11 @@ package com.masterclass.api.b01_java;
 /**
  * Ejercicio 011 · Records como DTO inmutable.
  *
- * <p>Teoría: {@code teoria/01_Java_Moderno_para_APIs.md} (sección 1.1).
+ * <p>
+ * Teoría: {@code teoria/01_Java_Moderno_para_APIs.md} (sección 1.1).
  *
- * <p>Los componentes del record son su <em>contrato</em> (firma), por eso vienen
+ * <p>
+ * Los componentes del record son su <em>contrato</em> (firma), por eso vienen
  * declarados. Lo que debes implementar es la validación y la copia inmutable.
  */
 public final class Ej011Records {
@@ -16,13 +18,21 @@ public final class Ej011Records {
         /**
          * Constructor compacto de validación.
          *
-         * @throws IllegalArgumentException si el precio es negativo o el nombre está vacío
+         * @throws IllegalArgumentException si el precio es negativo o el nombre está
+         *                                  vacío
          */
         public ProductoDto {
-            // TODO 1: si precio < 0, lanza IllegalArgumentException (un precio no puede ser negativo).
+            // TODO 1: si precio < 0, lanza IllegalArgumentException (un precio no puede ser
+            // negativo).
             // TODO 2: si nombre es null, lanza IllegalArgumentException.
-            // TODO 3: si nombre está en blanco (solo espacios), lanza IllegalArgumentException.
+            // TODO 3: si nombre está en blanco (solo espacios), lanza
+            // IllegalArgumentException.
             // TODO 4: opcional defensivo: normaliza 'nombre' con trim antes de asignarlo.
+            if (precio < 0 || nombre == null || nombre.isBlank()) {
+                throw new IllegalArgumentException();
+            }
+            nombre = nombre.trim();
+
         }
 
         /**
@@ -37,7 +47,9 @@ public final class Ej011Records {
             // TODO 7: NO mutes este record (son inmutables): crea uno nuevo.
             // TODO 8: conserva id y nombre originales en la copia.
             // TODO 9: devuelve la nueva instancia.
-            return null;
+            double factorMultiplicador = 1 + porcentaje / 100;
+            double newPrice = precio * factorMultiplicador;
+            return new ProductoDto(id, nombre, newPrice);
         }
 
         /**
@@ -45,6 +57,9 @@ public final class Ej011Records {
          */
         public boolean esCaro() {
             // TODO 10: devuelve si el precio es mayor o igual a 100.
+            if (precio > 100) {
+                return true;
+            }
             return false;
         }
     }
@@ -56,16 +71,18 @@ public final class Ej011Records {
 
     /**
      * RETO EXTRA 1: Validación defensiva de DTOs.
-     * Comprobar la integridad de un objeto ProductoDto de forma externa a su constructor.
+     * Comprobar la integridad de un objeto ProductoDto de forma externa a su
+     * constructor.
      *
      * @param p DTO de producto a validar
-     * @return true si el producto no es nulo, tiene un ID mayor a cero, precio >= 0 y nombre no nulo ni vacío
+     * @return true si el producto no es nulo, tiene un ID mayor a cero, precio >= 0
+     *         y nombre no nulo ni vacío
      */
     public static boolean esValido(ProductoDto p) {
         // GUÍA: teoría 1.1.
         // Devuelve true SOLO si se cumplen las 4 condiciones a la vez:
-        //   p != null  &&  p.id() != null && p.id() > 0  &&
-        //   p.precio() >= 0  &&  p.nombre() != null && !p.nombre().isBlank()
+        // p != null && p.id() != null && p.id() > 0 &&
+        // p.precio() >= 0 && p.nombre() != null && !p.nombre().isBlank()
         // ORDEN IMPORTA: comprueba p != null PRIMERO (el && cortocircuita y
         // evita el NPE de las siguientes). El test pasa null y un id -1.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esValido");
@@ -75,9 +92,10 @@ public final class Ej011Records {
      * RETO EXTRA 2: Copia inmutable con descuento.
      * En REST, los cambios de precios a menudo se reflejan aplicando promociones.
      *
-     * @param p DTO original
+     * @param p   DTO original
      * @param pct porcentaje de descuento (ej. 10.0 para un 10%)
-     * @return nuevo ProductoDto con el precio reducido, conservando el resto de campos intactos
+     * @return nuevo ProductoDto con el precio reducido, conservando el resto de
+     *         campos intactos
      */
     public static ProductoDto conDescuento(ProductoDto p, double pct) {
         // GUÍA: el patrón "wither" (teoría 1.1, punto 3) — gemelo de conIva pero
@@ -91,19 +109,21 @@ public final class Ej011Records {
 
     /**
      * RETO EXTRA 3: Serialización manual simple a formato JSON.
-     * Comprender cómo se transforman los campos de un Record en un cuerpo de respuesta JSON.
+     * Comprender cómo se transforman los campos de un Record en un cuerpo de
+     * respuesta JSON.
      *
      * @param p producto
-     * @return String JSON formateado (ej. {"id":1,"nombre":"Teclado","precio":100.0})
+     * @return String JSON formateado (ej.
+     *         {"id":1,"nombre":"Teclado","precio":100.0})
      */
     public static String aJsonSimple(ProductoDto p) {
         // GUÍA: harás esto UNA vez a mano para entender qué hace Jackson (b02).
         // 1. p null → "{}" o "null" (decide).
         // 2. Formato exacto: {"id":1,"nombre":"Teclado","precio":100.0}
-        //    - números SIN comillas, strings CON comillas
-        //    - sin espacios tras los ':'
+        // - números SIN comillas, strings CON comillas
+        // - sin espacios tras los ':'
         // PISTA: String.format("{\"id\":%d,\"nombre\":\"%s\",\"precio\":%s}",
-        //                      p.id(), p.nombre(), p.precio())
+        // p.id(), p.nombre(), p.precio())
         // (%s para el double conserva el "100.0" que espera el test).
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para aJsonSimple");
     }
@@ -113,7 +133,7 @@ public final class Ej011Records {
      * En REST, al crear un recurso el cliente no envía ID (es generado por la DB).
      *
      * @param descripcion descripción del servicio
-     * @param precioHora costo por hora
+     * @param precioHora  costo por hora
      * @return un ProductoDto con ID null que represente este servicio
      */
     public static ProductoDto crearServicioDto(String descripcion, double precioHora) {
@@ -126,7 +146,8 @@ public final class Ej011Records {
 
     /**
      * RETO EXTRA 5: Comparación de equivalencia semántica de DTOs.
-     * Dos DTOs de producto se consideran semánticamente equivalentes si tienen el mismo nombre (insensible a mayúsculas) y precio.
+     * Dos DTOs de producto se consideran semánticamente equivalentes si tienen el
+     * mismo nombre (insensible a mayúsculas) y precio.
      *
      * @param p1 primer producto
      * @param p2 segundo producto
@@ -144,7 +165,8 @@ public final class Ej011Records {
 
     /**
      * RETO EXTRA 6: Normalización de copias DTO.
-     * Garantizar que un producto de origen tenga un ID autogenerado válido (si venía nulo o <= 0) en su copia.
+     * Garantizar que un producto de origen tenga un ID autogenerado válido (si
+     * venía nulo o <= 0) en su copia.
      *
      * @param p producto original
      * @return una copia normalizada con ID corregido a 999 si no era válido (> 0)
@@ -152,7 +174,7 @@ public final class Ej011Records {
     public static ProductoDto normalizarId(ProductoDto p) {
         // GUÍA:
         // 1. Si el id ES válido (no null y > 0) → devuelve p tal cual (no copies
-        //    sin necesidad).
+        // sin necesidad).
         // 2. Si no → new ProductoDto(999L, p.nombre(), p.precio()).
         // Test: id -5 → copia con id 999.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para normalizarId");
@@ -160,7 +182,8 @@ public final class Ej011Records {
 
     /**
      * RETO EXTRA 7: Verificación de importes redondeados.
-     * En APIs de facturación, evitamos importes con centavos sucios (ej. 10.3333333).
+     * En APIs de facturación, evitamos importes con centavos sucios (ej.
+     * 10.3333333).
      *
      * @param p producto
      * @return true si el precio tiene como máximo 2 decimales
@@ -168,8 +191,8 @@ public final class Ej011Records {
     public static boolean esPrecioRedondeado(ProductoDto p) {
         // GUÍA: "¿tiene como mucho 2 decimales?" sin pelearte con el double:
         // TÉCNICA A (numérica): multiplica por 100 y comprueba si el resultado
-        //   es "prácticamente entero": Math.abs(x - Math.round(x)) < 1e-9
-        //   (la tolerancia absorbe el error de coma flotante de 10.25 * 100).
+        // es "prácticamente entero": Math.abs(x - Math.round(x)) < 1e-9
+        // (la tolerancia absorbe el error de coma flotante de 10.25 * 100).
         // TÉCNICA B (exacta): BigDecimal.valueOf(p.precio()).scale() <= 2.
         // Tests: 10.25 → true; 10.3333 → false.
         // CULTURA: por estos líos el dinero en producción se maneja con
@@ -188,9 +211,9 @@ public final class Ej011Records {
         // 1. null o en blanco → IllegalArgumentException.
         // 2. split(",") → deben salir exactamente 3 partes; si no, excepción.
         // 3. Parsea: Long.parseLong(partes[0].trim()),
-        //    partes[1].trim(), Double.parseDouble(partes[2].trim()).
+        // partes[1].trim(), Double.parseDouble(partes[2].trim()).
         // 4. Devuelve el ProductoDto — el constructor compacto que escribiste
-        //    arriba valida gratis (¡por eso se valida EN el record!).
+        // arriba valida gratis (¡por eso se valida EN el record!).
         // OJO: el nombre puede llevar espacios internos ("Teclado Mecanico"):
         // no hagas split por espacio, solo por coma.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearDesdeValores");
@@ -212,7 +235,7 @@ public final class Ej011Records {
     /**
      * RETO EXTRA 10: Copia DTO combinando costo logístico (Envío).
      *
-     * @param p producto original
+     * @param p          producto original
      * @param costoEnvio costo del envío
      * @return ProductoDto copia con el costo de envío sumado al precio del producto
      */

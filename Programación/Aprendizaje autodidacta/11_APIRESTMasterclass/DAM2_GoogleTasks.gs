@@ -29,7 +29,7 @@
 // ----------------------------- AJUSTES -----------------------------
 const NOMBRE_LISTA  = 'DAM2';
 const PONER_FECHAS  = true;   // las tareas con fecha aparecen en la rejilla de Calendar
-const DIAS_ESTUDIO  = 6;      // reparte los ejercicios de cada semana en Lun..Sab
+const DIAS_ESTUDIO  = 7;      // en cuántos días repartir cada semana (7 = todos, sin descanso)
 
 // Emoji por prioridad (P0 núcleo obligatorio AD/PSP, P1 cobertura RA, P2 maestría)
 const EMOJI = { P0: '🟥', P1: '🟦', P2: '🟩' };
@@ -246,14 +246,16 @@ function crearChecklistDAM2() {
   const semanasRev = plan.slice().reverse();
   for (const semana of semanasRev) {
     const items = semana.items;
-    const perDay = Math.max(1, Math.ceil(items.length / DIAS_ESTUDIO));
     for (let i = items.length - 1; i >= 0; i--) {
       const it = items[i];
       const titulo = tituloTarea(it);
       if (existentes[titulo]) { saltadas++; continue; }
       const tarea = { title: titulo, notes: notasTarea(it, semana) };
       if (PONER_FECHAS) {
-        const offset = Math.min(DIAS_ESTUDIO - 1, Math.floor(i / perDay));
+        // reparto uniforme: el ej. i de n cae en el día floor(i*DIAS/n) de la semana,
+        // así se usan TODOS los días (incluido el último) sin apelotonar al principio.
+        const offset = Math.min(DIAS_ESTUDIO - 1,
+                                Math.floor(i * DIAS_ESTUDIO / items.length));
         tarea.due = fechaRFC3339(semana.inicio, offset);
       }
       insertarConReintento(tarea, lista.id);
