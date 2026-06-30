@@ -104,13 +104,9 @@ public final class Ej018SealedPatternMatching {
      * @return true si es permitida directamente
      */
     public static boolean esClaseSelladaPermitida(Class<?> superClase, Class<?> subClase) {
-        // GUÍA: el "sealed" existe también en runtime, vía reflexión:
-        // 1. null en cualquiera → false.
-        // 2. Si !superClase.isSealed() → false.
-        // 3. superClase.getPermittedSubclasses() devuelve Class<?>[]: recorre
-        //    y comprueba si alguno equals(subClase).
-        // PISTA: Arrays.asList(superClase.getPermittedSubclasses()).contains(subClase)
-        // Tests: (Forma, Circulo) ✔; (Forma, String) ✘.
+        // GUÍA: sealed también se puede inspeccionar en runtime. Primero descarta
+        // argumentos nulos y clases que no sean selladas; después revisa la lista
+        // de subtipos permitidos directamente por esa jerarquía.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esClaseSelladaPermitida");
     }
 
@@ -122,14 +118,9 @@ public final class Ej018SealedPatternMatching {
      * @return tipo de forma formateado en mayúsculas
      */
     public static String clasificarFormaGeometrica(Forma forma) {
-        // GUÍA: el mismo switch de patrones que aHttpStatus, sobre Forma:
-        // return switch (forma) {
-        //     case Circulo c    -> "CÍRCULO";
-        //     case Rectangulo r -> "RECTÁNGULO";
-        //     case Triangulo t  -> "TRIÁNGULO";
-        // };
-        // SIN default — Forma es sealed con 3 permits, el switch es exhaustivo.
-        // Cuidado con las tildes: los tests las exigen exactas.
+        // GUÍA: clasifica según el subtipo concreto de Forma. Al ser una jerarquía
+        // sellada, puedes cubrir todos los casos conocidos sin inventar una rama
+        // genérica. Respeta las tildes de los textos esperados.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para clasificarFormaGeometrica");
     }
 
@@ -141,15 +132,9 @@ public final class Ej018SealedPatternMatching {
      * @return área calculada
      */
     public static double calcularAreaConPatternMatching(Forma forma) {
-        // GUÍA: usa RECORD PATTERNS — destructura dentro del case (teoría 1.8):
-        // return switch (forma) {
-        //     case Circulo(double radio)                 -> Math.PI * radio * radio;
-        //     case Rectangulo(double ancho, double alto) -> ancho * alto;
-        //     case Triangulo(double base, double altura) -> base * altura / 2;
-        // };
-        // Los componentes saltan directos a variables, sin c.radio(). Compara
-        // con la versión "case Circulo c -> ... c.radio()": ambas valen;
-        // el record pattern brilla cuando hay varios campos.
+        // GUÍA: cada subtipo tiene dimensiones distintas y, por tanto, una fórmula
+        // distinta. Usa el patrón para acceder a los datos correctos de cada record
+        // y no mezcles campos de figuras diferentes.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularAreaConPatternMatching");
     }
 
@@ -161,15 +146,9 @@ public final class Ej018SealedPatternMatching {
      * @return nombre del usuario
      */
     public static String obtenerNombreDeUsuarioPorRol(UsuarioRol rol) {
-        // GUÍA: los tres roles tienen "nombre", pero la interfaz UsuarioRol NO
-        // lo declara → no puedes llamar rol.nombre() directamente. El switch
-        // de patrones resuelve el acceso por subtipo:
-        //     case Admin a   -> a.nombre();
-        //     case Gestor g  -> g.nombre();
-        //     case Cliente c -> c.nombre();
-        // REFLEXIÓN DE DISEÑO: ¿habría sido mejor declarar String nombre() en
-        // la interfaz sellada? Sí, probablemente — este reto te hace sentir el
-        // costo de no hacerlo.
+        // GUÍA: todos los records tienen nombre, pero la interfaz común no lo
+        // expone. Debes tratar cada rol por su subtipo para llegar al dato. Este
+        // reto también muestra el coste de no poner operaciones comunes en la interfaz.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerNombreDeUsuarioPorRol");
     }
 
@@ -182,15 +161,9 @@ public final class Ej018SealedPatternMatching {
      * @return true si tiene privilegios de administrador
      */
     public static boolean esRolAdministrador(UsuarioRol rol) {
-        // GUÍA: tu primera GUARDA (when) en un switch:
-        // return switch (rol) {
-        //     case Admin a when a.nivelSeguridad() >= 3 -> true;
-        //     default -> false;
-        // };
-        // El "when" añade una condición AL PATRÓN: solo entra si es Admin Y
-        // nivel >= 3. Un Admin de nivel 2 cae al default. (Aquí sí hay default
-        // porque no cubres todos los subtipos con casos propios.)
-        // ALTERNATIVA con instanceof: rol instanceof Admin a && a.nivelSeguridad() >= 3.
+        // GUÍA: no basta con que el rol sea Admin; también debe superar el nivel
+        // mínimo de seguridad. El resto de roles, y los admin con nivel bajo,
+        // no tienen privilegios. Piensa en una guarda sobre el caso especial.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRolAdministrador");
     }
 
@@ -202,10 +175,9 @@ public final class Ej018SealedPatternMatching {
      * @return true si es sellado
      */
     public static boolean esJerarquiaSelladaCompleta(Class<?> clazz) {
-        // GUÍA: una línea — return clazz != null && clazz.isSealed();
-        // (String.class da false: String es final, no sealed — parecidos
-        // pero no iguales: final = sin subclases; sealed = subclases en
-        // lista cerrada.)
+        // GUÍA: comprueba la propiedad sealed del tipo recibido y protege el caso
+        // null. No confundas final con sealed: final impide herencia; sealed limita
+        // la herencia a una lista cerrada.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esJerarquiaSelladaCompleta");
     }
 
@@ -217,11 +189,9 @@ public final class Ej018SealedPatternMatching {
      * @return representación textual descriptiva
      */
     public static String formatearRespuestaApi(RespuestaApi res) {
-        // GUÍA: switch de patrones; formato EXACTO de los tests
-        // ("Código 200: {payload}" / "Código 400: {mensaje}"):
-        //     case ExitoApi e -> "Código " + e.codigo() + ": " + e.jsonPayload();
-        //     case ErrorApi err -> "Código " + err.codigo() + ": " + err.mensajeError();
-        // Sin default: RespuestaApi es sealed con exactamente esos dos permits.
+        // GUÍA: el formato empieza por el código y después muestra el contenido
+        // relevante según el subtipo: payload en respuestas correctas, mensaje en
+        // respuestas de error. La jerarquía solo permite esos dos caminos.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearRespuestaApi");
     }
 
@@ -233,14 +203,9 @@ public final class Ej018SealedPatternMatching {
      * @return Optional con el mensaje de error si aplica, o vacío
      */
     public static java.util.Optional<String> obtenerDetalleError(RespuestaApi res) {
-        // GUÍA: pattern matching + Optional, dos secciones en una:
-        // if (res instanceof ErrorApi err) {
-        //     return Optional.of(err.mensajeError());
-        // }
-        // return Optional.empty();
-        // El instanceof con binding comprueba el tipo Y te da la variable
-        // casteada en un paso (teoría 1.8). Y el retorno Optional grita en la
-        // firma "puede no haber error" (teoría 1.2).
+        // GUÍA: solo ErrorApi contiene detalle de error. Si la respuesta es de
+        // éxito, o no hay respuesta, el Optional debe expresar ausencia. No uses
+        // null para representar "no había error".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerDetalleError");
     }
 
@@ -257,17 +222,9 @@ public final class Ej018SealedPatternMatching {
      * @return clasificación detallada
      */
     public static String evaluarEstadoConGuardias(Forma forma) {
-        // GUÍA: combina record patterns + guardas. El Javadoc ya es la spec:
-        // return switch (forma) {
-        //     case Circulo(double r) when r > 10.0       -> "Círculo Grande";
-        //     case Circulo c                             -> "Círculo Pequeño";
-        //     case Rectangulo(double w, double h) when w == h -> "Cuadrado";
-        //     case Rectangulo r                          -> "Rectángulo Estándar";
-        //     case Triangulo t                           -> "Triángulo";
-        // };
-        // EL ORDEN ES LEY: el caso CON guarda va ANTES que el caso general del
-        // mismo tipo; si los inviertes, el general "se traga" todo y el
-        // compilador marca el guardado como inalcanzable.
+        // GUÍA: el Javadoc es la especificación de clasificación. Los casos más
+        // concretos deben evaluarse antes que los generales; si no, una rama amplia
+        // puede capturar una figura antes de aplicar su condición especial.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para evaluarEstadoConGuardias");
     }
 
@@ -280,14 +237,9 @@ public final class Ej018SealedPatternMatching {
      * @return nueva instancia de Forma escalada
      */
     public static Forma reconstruirFormaEscalada(Forma forma, double factor) {
-        // GUÍA: el broche: switch que DESTRUYE y RECONSTRUYE (records inmutables):
-        // return switch (forma) {
-        //     case Circulo(double r)              -> new Circulo(r * factor);
-        //     case Rectangulo(double w, double h) -> new Rectangulo(w * factor, h * factor);
-        //     case Triangulo(double b, double a)  -> new Triangulo(b * factor, a * factor);
-        // };
-        // Patrón funcional puro: entrada inmutable → nueva instancia
-        // transformada. Es el "wither" de Ej011 generalizado a una jerarquía.
+        // GUÍA: los records son inmutables, así que escalar significa crear otra
+        // figura del mismo subtipo con sus dimensiones multiplicadas. Mantén la
+        // forma original intacta.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para reconstruirFormaEscalada");
     }
 

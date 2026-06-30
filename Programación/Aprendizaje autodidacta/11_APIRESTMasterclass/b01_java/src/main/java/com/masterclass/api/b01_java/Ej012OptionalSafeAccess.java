@@ -86,11 +86,9 @@ public final class Ej012OptionalSafeAccess {
      * @return Optional con la longitud de la cadena, o vacío
      */
     public static Optional<Integer> obtenerLargoSiPresente(Optional<String> opt) {
-        // GUÍA: teoría 1.2 — map en estado puro.
-        // Una línea: return opt.map(String::length);
-        // map transforma SI hay valor y propaga el empty si no: exactamente lo
-        // que piden los dos tests. Nada de isPresent()/get().
-        // (Defensa opcional: si opt fuera null → Optional.empty().)
+        // GUÍA: si el Optional contiene texto, transforma ese contenido en su longitud.
+        // Si está vacío, la ausencia debe llegar intacta al resultado. Evita tratar
+        // el caso vacío con null o con get() sin comprobar presencia.
         throw new UnsupportedOperationException(
                 "TODO: Implementar la lógica del reto extra para obtenerLargoSiPresente");
     }
@@ -104,15 +102,9 @@ public final class Ej012OptionalSafeAccess {
      * @return Optional con el primer valor String presente, o vacío
      */
     public static Optional<String> obtenerPrimeroValido(List<Optional<String>> optList) {
-        // GUÍA: combinar Stream + Optional (teoría 1.2 y 1.4).
-        // 1. null → Optional.empty().
-        // 2. Camino elegante: optList.stream()
-        // .flatMap(Optional::stream) // descarta vacíos y desenvuelve
-        // .findFirst();
-        // Optional::stream convierte cada Optional en un stream de 0 o 1
-        // elementos; flatMap los aplana → quedan solo los valores presentes.
-        // ALTERNATIVA legible: .filter(Optional::isPresent).map(Optional::get)
-        // .findFirst() — válida, pero conoce la primera.
+        // GUÍA: hay dos niveles de ausencia: la lista puede no existir y cada
+        // posición puede ser un Optional vacío. El resultado debe ser el primer
+        // valor real en orden de aparición, no el primer contenedor.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerPrimeroValido");
     }
 
@@ -126,10 +118,9 @@ public final class Ej012OptionalSafeAccess {
      * @return Optional filtrado
      */
     public static Optional<String> filtrarPorLongitud(Optional<String> opt, int minLen) {
-        // GUÍA: una línea — return opt.filter(s -> s.length() >= minLen);
-        // filter mantiene el valor si cumple y devuelve empty si no (o si ya
-        // estaba vacío). OJO: aquí es >= (los tests: "Java" con minLen 3 pasa,
-        // con minLen 5 no), a diferencia del > estricto de primeroLargo.
+        // GUÍA: aquí no transformas la cadena, solo decides si se conserva.
+        // El mínimo es inclusivo: una longitud exactamente igual a minLen es válida.
+        // Si el Optional ya estaba vacío, debe seguir vacío.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para filtrarPorLongitud");
     }
 
@@ -143,12 +134,9 @@ public final class Ej012OptionalSafeAccess {
      * @return El valor contenido o el resultado del proveedor
      */
     public static String obtenerConLazyFallback(Optional<String> opt, Supplier<String> s) {
-        // GUÍA: una línea — return opt.orElseGet(s);
-        // EL MATIZ QUE EVALÚA EL TEST: con orElse(s.get()) el supplier se
-        // ejecutaría SIEMPRE (los argumentos se evalúan antes de llamar);
-        // con orElseGet(s) solo se ejecuta si el Optional está vacío. El test
-        // cuenta las invocaciones y exige 0 cuando hay valor. Es la pregunta
-        // de entrevista clásica sobre Optional (teoría 1.2, tabla).
+        // GUÍA: el proveedor representa trabajo que solo debe hacerse si falta
+        // el valor principal. El test puede detectar si ejecutas el fallback aunque
+        // no haga falta, así que piensa en evaluación perezosa.
         throw new UnsupportedOperationException(
                 "TODO: Implementar la lógica del reto extra para obtenerConLazyFallback");
     }
@@ -164,12 +152,9 @@ public final class Ej012OptionalSafeAccess {
      *                                  ausente"
      */
     public static String lanzarExcepcionPersonalizada(Optional<String> opt) {
-        // GUÍA: una línea —
-        // return opt.orElseThrow(() -> new IllegalArgumentException("Valor requerido
-        // ausente"));
-        // El mensaje debe ser EXACTO (el test lo compara con equals).
-        // Este es el patrón "si no está → 404" de la teoría 1.2: en Spring la
-        // excepción será NotFoundException y un handler la convertirá en HTTP.
+        // GUÍA: si hay valor, devuélvelo tal cual. Si no lo hay, expresa el fallo
+        // con una excepción de negocio y respeta exactamente el mensaje indicado
+        // en el contrato del método.
         throw new UnsupportedOperationException(
                 "TODO: Implementar la lógica del reto extra para lanzarExcepcionPersonalizada");
     }
@@ -185,16 +170,9 @@ public final class Ej012OptionalSafeAccess {
      * @return Lista con el elemento transformado si existía y era válido
      */
     public static List<String> convertirAStreamYFiltrar(Optional<String> opt) {
-        // GUÍA: descifra los tests antes de codificar:
-        // Optional.of("hello") → ["HELLO"] (estaba en minúsculas → pasa)
-        // Optional.of("HELLO") → [] (NO estaba en minúsculas → fuera)
-        // Optional.empty() → []
-        // Es decir: conserva solo si s.equals(s.toLowerCase()), y devuelve la
-        // versión en MAYÚSCULAS.
-        // Pipeline: opt.stream() // 0 o 1 elementos
-        // .filter(s -> s.equals(s.toLowerCase()))
-        // .map(String::toUpperCase)
-        // .toList();
+        // GUÍA: un Optional presente puede convertirse en una secuencia de un solo
+        // elemento, y uno vacío en una secuencia sin elementos. A partir de ahí,
+        // acepta solo cadenas escritas en minúsculas y devuelve su versión en mayúsculas.
         throw new UnsupportedOperationException(
                 "TODO: Implementar la lógica del reto extra para convertirAStreamYFiltrar");
     }
@@ -209,11 +187,9 @@ public final class Ej012OptionalSafeAccess {
      * @param siNoEsta Acción a ejecutar si el valor está vacío
      */
     public static void ejecutarAccionCondicional(Optional<String> opt, Consumer<String> siEsta, Runnable siNoEsta) {
-        // GUÍA: una línea — opt.ifPresentOrElse(siEsta, siNoEsta);
-        // (Java 9+). El método YA existe en Optional con esta firma exacta:
-        // Consumer para el valor, Runnable para el caso vacío. Fíjate en que
-        // este método devuelve void: es para EFECTOS (log, métricas), no para
-        // transformar — para transformar siempre map/orElse.
+        // GUÍA: este método trata efectos, no transformaciones. Si hay valor,
+        // debe ejecutarse la acción que lo consume; si no hay valor, la alternativa
+        // sin argumentos. No devuelvas nada ni fabriques valores intermedios.
         throw new UnsupportedOperationException(
                 "TODO: Implementar la lógica del reto extra para ejecutarAccionCondicional");
     }
@@ -227,13 +203,9 @@ public final class Ej012OptionalSafeAccess {
      * @return Optional aplanado
      */
     public static Optional<String> mapearConFlatMap(Optional<Optional<String>> opt) {
-        // GUÍA: una línea — return opt.flatMap(inner -> inner);
-        // (o el equivalente: opt.flatMap(Function.identity())).
-        // POR QUÉ: con map obtendrías Optional<Optional<String>> otra vez;
-        // flatMap espera que la función devuelva YA un Optional y no lo
-        // re-envuelve. Es la diferencia map/flatMap de la teoría 1.2 destilada
-        // al caso mínimo. Los Optional<Optional<...>> reales aparecen al
-        // encadenar dos búsquedas: usuario → su dirección → su ciudad.
+        // GUÍA: el objetivo es quitar un nivel de envoltorio. Si el Optional
+        // externo está vacío, no hay resultado; si contiene otro Optional, el
+        // resultado final debe tener exactamente el estado del Optional interno.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para mapearConFlatMap");
     }
 
@@ -249,12 +221,9 @@ public final class Ej012OptionalSafeAccess {
      * @return Optional con el valor normalizado o vacío
      */
     public static Optional<String> reemplazarPorVacioSiInvalido(Optional<String> opt) {
-        // GUÍA: la cadena completa map → filter → map, el patrón estrella de 1.2:
-        // return opt.map(String::trim) // limpia espacios
-        // .filter(s -> !s.isEmpty()) // si quedó vacío → empty
-        // .map(String::toUpperCase); // normaliza
-        // Sigue los tests: " hello " → "HELLO"; " " → empty; empty → empty.
-        // Date cuenta de que NO hay ni un if: el Optional propaga el vacío solo.
+        // GUÍA: respeta el orden de la normalización: primero limpia espacios,
+        // después descarta el texto si queda vacío y solo al final transforma el
+        // valor válido. Una cadena en blanco debe convertirse en ausencia.
         throw new UnsupportedOperationException(
                 "TODO: Implementar la lógica del reto extra para reemplazarPorVacioSiInvalido");
     }
@@ -268,11 +237,9 @@ public final class Ej012OptionalSafeAccess {
      * @return El primer Optional con valor presente
      */
     public static Optional<String> obtenerPrimeroDeVarios(Optional<String> opt1, Optional<String> opt2) {
-        // GUÍA: una línea — return opt1.or(() -> opt2);
-        // Optional.or (Java 9+) recibe un Supplier<Optional<T>>: si opt1 tiene
-        // valor, gana; si no, evalúa el supplier. Es el "plan B" declarativo:
-        // buscar en caché .or(buscar en BD) .or(valor por defecto).
-        // No confundir con orElse (devuelve T) — or devuelve OTRO Optional.
+        // GUÍA: opt1 tiene prioridad. Solo si opt1 no contiene valor debes mirar
+        // opt2. La idea es encadenar alternativas sin convertir ausencia en null
+        // ni evaluar el fallback antes de saber si hace falta.
         throw new UnsupportedOperationException(
                 "TODO: Implementar la lógica del reto extra para obtenerPrimeroDeVarios");
     }

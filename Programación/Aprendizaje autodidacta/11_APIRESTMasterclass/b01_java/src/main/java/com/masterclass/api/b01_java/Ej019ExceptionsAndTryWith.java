@@ -116,15 +116,9 @@ public final class Ej019ExceptionsAndTryWith {
      * @param recurso recurso liberable
      */
     public static void cerrarRecursoSeguro(AutoCloseable recurso) {
-        // GUÍA: el "close quietly" clásico:
-        // if (recurso == null) return;
-        // try { recurso.close(); }
-        // catch (Exception e) { /* registrado/ignorado a propósito */ }
-        // El test pasa un RecursoFragil que EXPLOTA al cerrar y exige que no
-        // se propague. Único sitio legítimo para un catch casi-vacío: limpieza
-        // final donde ya no puedes hacer nada mejor. Deja el comentario
-        // explicando que es deliberado — un catch vacío sin comentario es
-        // el error común nº7.
+        // GUÍA: este método es limpieza defensiva. Si no hay recurso, no hay nada
+        // que cerrar; si el cierre falla, el fallo no debe escapar. Si decides
+        // ignorarlo, que sea una decisión consciente y documentada.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para cerrarRecursoSeguro");
     }
 
@@ -138,15 +132,9 @@ public final class Ej019ExceptionsAndTryWith {
      * @throws ErrorNegocioException si la operación falla
      */
     public static String procesarConTryWithResources(RecursoFragil recurso, boolean lanzarAlOperar) throws ErrorNegocioException {
-        // GUÍA:
-        // try (recurso) {                          // Java 9+: variable ya efectiva-final
-        //     return recurso.operar(lanzarAlOperar);
-        // } catch (Exception e) { ... }            // ojo: close() declara throws Exception
-        // El truco del test: cuando operar() LANZA, el recurso DEBE quedar
-        // cerrado igualmente (rFalla.cerrado == true) — eso es exactamente lo
-        // que garantiza try-with-resources y lo que un try normal olvidaría.
-        // Deja pasar la ErrorNegocioException (está en el throws); si close()
-        // lanzara otra cosa, decide cómo tratarla.
+        // GUÍA: el recurso debe cerrarse tanto si la operación funciona como si
+        // falla. Deja que el error de negocio conserve su significado y piensa
+        // aparte qué hacer con posibles errores del cierre.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para procesarConTryWithResources");
     }
 
@@ -158,11 +146,9 @@ public final class Ej019ExceptionsAndTryWith {
      * @param causa   excepción original causante
      */
     public static void lanzarConCausaOriginal(String mensaje, Throwable causa) {
-        // GUÍA: una línea — throw new ErrorSistemaException(mensaje, causa);
-        // (el constructor de dos argumentos ya existe arriba).
-        // ESTA ES la regla 3 de la teoría 1.9: al envolver, pasa SIEMPRE la
-        // causa. El test verifica ex.getCause() == causa: sin ella, el stack
-        // trace real desaparece y depurar se vuelve arqueología.
+        // GUÍA: al envolver una excepción, no pierdas la causa original. El mensaje
+        // explica el contexto nuevo, pero la causa conserva el stack trace útil
+        // para depurar.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para lanzarConCausaOriginal");
     }
 
@@ -173,12 +159,9 @@ public final class Ej019ExceptionsAndTryWith {
      * @param accion tarea a ejecutar
      */
     public static void ejecutarAccionIgnorandoExcepcion(Runnable accion) {
-        // GUÍA:
-        // try { accion.run(); } catch (RuntimeException e) { /* deliberado */ }
-        // CASO DE USO legítimo: tareas secundarias cuyo fallo no debe tumbar
-        // la principal (enviar una métrica, un log remoto, un email de aviso).
-        // PERO que el nombre del método lo diga a gritos, como aquí: tragarse
-        // excepciones en silencio sin avisar en la firma es deuda técnica.
+        // GUÍA: ejecuta una acción secundaria cuyo fallo no debe tumbar el flujo
+        // principal. Este patrón solo es aceptable cuando el nombre del método
+        // deja claro que el error se ignora deliberadamente.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para ejecutarAccionIgnorandoExcepcion");
     }
 
@@ -192,19 +175,9 @@ public final class Ej019ExceptionsAndTryWith {
      * @return mensaje de la excepción suprimida, o vacío si no hay ninguna
      */
     public static String detectarExcepcionSuprimida(RecursoFragil recurso) {
-        // GUÍA: el rincón menos conocido de try-with-resources.
-        // ESCENARIO: operar(true) lanza ErrorNegocioException Y close() lanza
-        // IllegalStateException. ¿Cuál gana? La del try; la de close() no se
-        // pierde: queda ADJUNTA como "suppressed".
-        // try (recurso) {
-        //     recurso.operar(true);                    // lanza
-        // } catch (Exception e) {
-        //     Throwable[] sup = e.getSuppressed();     // aquí está la de close()
-        //     return sup.length > 0 ? sup[0].getMessage() : "";
-        // }
-        // return "";
-        // El test espera "Fallo catastrófico al cerrar". Antes de Java 7 esa
-        // excepción se PERDÍA de verdad — por eso existe este mecanismo.
+        // GUÍA: cuando fallan a la vez la operación y el cierre, la excepción del
+        // cierre no desaparece: queda como suprimida. Ejecuta el escenario indicado,
+        // captura el fallo principal y revisa si trae errores suprimidos.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para detectarExcepcionSuprimida");
     }
 
@@ -216,16 +189,9 @@ public final class Ej019ExceptionsAndTryWith {
      * @return true si es o contiene un error de negocio
      */
     public static boolean esExcepcionDeNegocio(Throwable t) {
-        // GUÍA: recorre la CADENA de causas (cada excepción puede envolver otra):
-        // Versión iterativa:
-        //   while (t != null) {
-        //       if (t instanceof ErrorNegocioException) return true;
-        //       t = t.getCause();
-        //   }
-        //   return false;
-        // Versión recursiva: ¿es? → true; ¿causa null? → false; si no,
-        // esExcepcionDeNegocio(t.getCause()). Elige una y entiende la otra.
-        // En el b09, tu @ExceptionHandler hará exactamente este "desempaquetado".
+        // GUÍA: inspecciona la excepción recibida y después sus causas, una a una,
+        // hasta llegar al final de la cadena. Si en cualquier punto aparece una
+        // excepción de negocio, la respuesta debe ser true.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esExcepcionDeNegocio");
     }
 
@@ -238,14 +204,9 @@ public final class Ej019ExceptionsAndTryWith {
      * @return mensaje formateado amigable
      */
     public static String obtenerMensajeDeErrorFormateado(Throwable t) {
-        // GUÍA: dos pasos:
-        // 1. Baja hasta la CAUSA RAÍZ: while (t.getCause() != null) t = t.getCause();
-        // 2. Formatea: el mensaje si lo hay, el nombre de clase si no:
-        //    String msg = t.getMessage() != null ? t.getMessage()
-        //                                        : t.getClass().getSimpleName();
-        //    return "Error: " + msg;
-        // Test: RuntimeException("Error nivel 1", NPE("Valor nulo inesperado"))
-        // → "Error: Valor nulo inesperado" (la raíz, no el envoltorio).
+        // GUÍA: baja hasta la causa raíz y usa esa información para el mensaje
+        // público. Si la raíz no tiene mensaje, usa una descripción basada en su
+        // tipo. El prefijo del contrato debe mantenerse.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerMensajeDeErrorFormateado");
     }
 
@@ -259,17 +220,9 @@ public final class Ej019ExceptionsAndTryWith {
      * @return el resultado de la acción
      */
     public static String ejecutarConReintentos(java.util.concurrent.Callable<String> accion, int maxReintentos) {
-        // GUÍA: el bucle de retry (versión casera de lo que Resilience4j hará en b21):
-        // Exception ultima = null;
-        // for (int intento = 0; intento < maxReintentos; intento++) {
-        //     try { return accion.call(); }
-        //     catch (Exception e) { ultima = e; }
-        // }
-        // throw new RuntimeException("Agotados los reintentos", ultima);
-        // El test: falla 2 veces, funciona a la 3ª, con maxReintentos=3 →
-        // debe devolver "conectado" tras exactamente 3 invocaciones. Cuadra
-        // tu condición de bucle con eso. Y la causa en el throw final: regla 3.
-        // (Callable.call() declara throws Exception — por eso el catch amplio.)
+        // GUÍA: intenta la acción varias veces hasta que funcione o se agoten los
+        // intentos permitidos. Guarda el último fallo para poder envolverlo si no
+        // hay éxito. Cuadra bien si maxReintentos significa intentos totales o adicionales.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para ejecutarConReintentos");
     }
 
@@ -282,13 +235,9 @@ public final class Ej019ExceptionsAndTryWith {
      * @return true si la causa raíz coincide con el tipo especificado
      */
     public static boolean esCausaRaiz(Class<? extends Throwable> tipoEx, Throwable ex) {
-        // GUÍA: reutiliza la técnica del reto 7 (bajar a la raíz) y compara el tipo:
-        // 1. ex null → false.
-        // 2. while (ex.getCause() != null) ex = ex.getCause();
-        // 3. return tipoEx.isInstance(ex);
-        // tipoEx.isInstance(obj) es el "instanceof dinámico": el tipo llega
-        // como PARÁMETRO (Class<? extends Throwable>) — instanceof literal no
-        // sirve porque exige el tipo en tiempo de compilación.
+        // GUÍA: primero localiza la causa raíz y luego compara su tipo con el
+        // Class recibido. Como el tipo llega en una variable, necesitas una
+        // comprobación dinámica, no un instanceof escrito con una clase fija.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esCausaRaiz");
     }
 
@@ -302,14 +251,9 @@ public final class Ej019ExceptionsAndTryWith {
      * @throws Exception si ocurre algún error
      */
     public static String procesarRecursosMultiples(RecursoFragil r1, RecursoFragil r2) throws Exception {
-        // GUÍA: varios recursos en UN try, separados por ';':
-        // try (r1; r2) {
-        //     return r1.operar(false) + "+" + r2.operar(false);
-        // }
-        // DETALLE DE ORO: se cierran en orden INVERSO (r2 primero, luego r1) —
-        // como una pila. Piensa por qué: si r2 dependiera de r1 (un Reader
-        // sobre un Stream), cerrar r1 primero rompería el cierre de r2.
-        // El throws Exception de la firma deja propagar lo que surja.
+        // GUÍA: usa ambos recursos dentro de la misma zona de uso garantizado.
+        // El cierre debe producirse automáticamente y en orden inverso al de apertura,
+        // como una pila. La firma permite propagar errores reales.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para procesarRecursosMultiples");
     }
 

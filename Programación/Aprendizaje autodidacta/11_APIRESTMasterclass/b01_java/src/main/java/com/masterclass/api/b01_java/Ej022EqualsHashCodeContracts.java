@@ -78,12 +78,9 @@ public final class Ej022EqualsHashCodeContracts {
      * @return true si se cumple la simetría (ambos se consideran iguales o ambos diferentes)
      */
     public static boolean esSimetrico(Object a, Object b) {
-        // GUÍA: simetría = a.equals(b) y b.equals(a) dan LO MISMO.
-        // Con Objects.equals esquivas los null que mete el test:
-        // return Objects.equals(a, b) == Objects.equals(b, a);
-        // (Objects.equals(null, x) devuelve false sin NPE; (null, null) → true.)
-        // CULTURA: la simetría se rompe de verdad cuando una subclase
-        // sobreescribe equals y la superclase no — el bug clásico de herencia.
+        // GUÍA: compara la decisión en ambos sentidos. La simetría se cumple si
+        // preguntar "a contra b" y "b contra a" da una respuesta coherente, incluso
+        // cuando alguno de los valores sea null.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esSimetrico");
     }
 
@@ -97,13 +94,9 @@ public final class Ej022EqualsHashCodeContracts {
      * @return true si se cumple la transitividad (si a es igual a b y b es igual a c, entonces a es igual a c; en otro caso, true)
      */
     public static boolean esTransitivo(Object a, Object b, Object c) {
-        // GUÍA: transitividad como IMPLICACIÓN lógica:
-        // "si (a==b Y b==c) entonces a==c" — y una implicación con premisa
-        // falsa es VERDADERA (por eso el test con null da true: a≠null corta
-        // la premisa).
-        // boolean ab = Objects.equals(a, b), bc = Objects.equals(b, c);
-        // return !(ab && bc) || Objects.equals(a, c);
-        // (Recuerda de lógica: p → q  ≡  ¬p ∨ q.)
+        // GUÍA: trátalo como una implicación lógica. Solo hay problema si a y b
+        // son iguales, b y c también, pero a y c dejan de serlo. Si la premisa no
+        // se cumple, la transitividad no queda violada.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esTransitivo");
     }
 
@@ -115,16 +108,9 @@ public final class Ej022EqualsHashCodeContracts {
      * @return true si múltiples llamadas consecutivas a hashCode() retornan exactamente el mismo valor
      */
     public static boolean esConsistenteHashCode(Object a) {
-        // GUÍA:
-        // 1. a null → false (el test lo exige).
-        // 2. Llama a.hashCode() varias veces (2-3 bastan) y comprueba que
-        //    todas devuelven el mismo valor:
-        //    int h = a.hashCode();
-        //    return h == a.hashCode() && h == a.hashCode();
-        // POR QUÉ EXISTE: si hashCode dependiera de un campo MUTABLE y alguien
-        // lo cambia con el objeto dentro de un HashSet, el objeto queda
-        // "perdido" en el cajón equivocado. Por eso: hashCode sobre campos
-        // inmutables (el id), nunca sobre estado que cambia.
+        // GUÍA: un objeto no nulo debe devolver el mismo hash mientras no cambie
+        // su estado relevante. Llama varias veces y comprueba estabilidad. Este
+        // contrato se rompe fácilmente si el hash depende de campos mutables.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esConsistenteHashCode");
     }
 
@@ -137,13 +123,9 @@ public final class Ej022EqualsHashCodeContracts {
      * @return true si los objetos cumplen el contrato de correspondencia hash
      */
     public static boolean verificarContratoEqualsYHashCode(Object a, Object b) {
-        // GUÍA: LA regla del bloque (teoría 1.12), como implicación:
-        // "si a.equals(b) entonces mismo hashCode" — otra vez p → q:
-        // return !Objects.equals(a, b) || a.hashCode() == b.hashCode();
-        // Fíjate en el 2º test: dos artículos DISTINTOS también "cumplen" el
-        // contrato (premisa falsa → implicación verdadera). El contrato NO
-        // exige lo inverso: hashCodes iguales con objetos distintos es una
-        // colisión legal (reto 7).
+        // GUÍA: la regla solo exige una dirección: si dos objetos son iguales,
+        // sus hashCode deben coincidir. Dos objetos distintos pueden compartir hash
+        // por colisión y aun así cumplir el contrato.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para verificarContratoEqualsYHashCode");
     }
 
@@ -155,12 +137,9 @@ public final class Ej022EqualsHashCodeContracts {
      * @return true si a.equals(null) devuelve false sin lanzar excepciones
      */
     public static boolean esEqualsNuloSeguro(Object a) {
-        // GUÍA: el contrato exige que x.equals(null) sea false SIN explotar:
-        // 1. a null → false (no hay objeto que probar).
-        // 2. try { return !a.equals(null); }
-        //    catch (RuntimeException e) { return false; }
-        // El try/catch es el punto: un equals que lanza NPE al recibir null
-        // está ROTO, y este método lo detecta en vez de propagarlo.
+        // GUÍA: si no hay objeto, no puedes comprobar su equals. Si lo hay, llamar
+        // a equals con null debe responder false y no lanzar excepción. Un equals
+        // que explota ante null incumple el contrato.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esEqualsNuloSeguro");
     }
 
@@ -174,12 +153,9 @@ public final class Ej022EqualsHashCodeContracts {
      * @return cadena con el formato "NombreClase{id=..., descripcion='...'}"
      */
     public static String formatearToStringElegante(String nombreClase, Object id, String descripcion) {
-        // GUÍA: formato EXACTO del test:
-        //   "Articulo{id=123, descripcion='Tornillo de acero'}"
-        // — el id SIN comillas, la descripción CON comillas simples:
-        // return nombreClase + "{id=" + id + ", descripcion='" + descripcion + "'}";
-        // Es el formato del toString que generan los IDEs y Lombok: legible
-        // en logs y consistente. Los records ya traen el suyo gratis.
+        // GUÍA: respeta el formato textual del contrato: nombre de clase, llaves,
+        // id sin comillas y descripción entre comillas simples. El objetivo es una
+        // salida estable para logs y depuración.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatearToStringElegante");
     }
 
@@ -192,13 +168,9 @@ public final class Ej022EqualsHashCodeContracts {
      * @return true si existe colisión de hash (no son iguales por equals pero comparten hashCode)
      */
     public static boolean verificarColisionHash(Object a, Object b) {
-        // GUÍA: colisión = NO equals pero SÍ mismo hash:
-        // return !Objects.equals(a, b) && a.hashCode() == b.hashCode();
-        // (protege los null antes si quieres ser fino).
-        // El test usa la pareja famosa "Aa"/"BB": ambas hashean a 2112. Las
-        // colisiones son LEGALES (hay infinitos strings y solo 2^32 ints);
-        // un HashMap las resuelve con equals dentro del cajón. Lo ilegal es
-        // lo contrario: equals true con hashes distintos.
+        // GUÍA: una colisión ocurre cuando dos objetos no son iguales pero caen
+        // en el mismo hash. Es legal y las tablas hash saben resolverlo con equals.
+        // Protege los null antes de consultar hashCode.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para verificarColisionHash");
     }
 
@@ -210,11 +182,9 @@ public final class Ej022EqualsHashCodeContracts {
      * @return true si el objeto se reconoce como igual a sí mismo de forma reflexiva
      */
     public static boolean esIdentidadConsistente(Object a) {
-        // GUÍA: una línea — return a != null && a.equals(a);
-        // Reflexividad: todo objeto es igual a sí mismo. Parece imposible de
-        // romper… hasta que alguien escribe un equals con campos double y NaN
-        // (NaN != NaN). Por eso el "if (o == this) return true" del TODO 1
-        // de arriba no es solo un atajo de rendimiento: blinda la reflexividad.
+        // GUÍA: la reflexividad dice que un objeto debe reconocerse igual a sí
+        // mismo. Un null no es un objeto sobre el que probar equals. Este caso
+        // justifica el atajo habitual de comparar primero contra this.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esIdentidadConsistente");
     }
 
@@ -226,11 +196,9 @@ public final class Ej022EqualsHashCodeContracts {
      * @return valor hash unificado
      */
     public static int calcularHashCombinado(Object... campos) {
-        // GUÍA: una línea — return Objects.hash(campos);
-        // El test compara contra Objects.hash("A1", 100) directamente: tu
-        // varargs Object... ya ES el array que hash espera. Objects.hash
-        // tolera nulls y combina con la fórmula 31*h + x. Para UN solo campo,
-        // Objects.hashCode(campo) evita crear el array (micro-detalle).
+        // GUÍA: combina todos los campos recibidos en un único hash estable y
+        // tolerante a nulls. El orden de los campos forma parte del resultado:
+        // cambiarlo cambia la identidad calculada.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularHashCombinado");
     }
 
@@ -243,13 +211,9 @@ public final class Ej022EqualsHashCodeContracts {
      * @return true si el objeto no es nulo y su clase coincide exactamente con la esperada (usando getClass())
      */
     public static boolean esInstanciaCompatible(Object actual, Class<?> claseEsperada) {
-        // GUÍA: una línea —
-        // return actual != null && actual.getClass() == claseEsperada;
-        // EL DEBATE DE DISEÑO que cierra el bloque: en equals puedes comparar
-        // tipos con instanceof (acepta subclases → flexible) o con getClass()
-        // (clase EXACTA → estricto, lo que pide este reto). JPA/Hibernate usa
-        // proxies que son SUBCLASES de tu entidad: con getClass() un proxy
-        // jamás sería igual a su entidad real. Guarda esta perla para b12.
+        // GUÍA: este reto pide compatibilidad estricta, no "es subtipo de".
+        // Compara la clase real del objeto con la clase esperada y protege valores
+        // nulos. Más adelante verás por qué esto importa con proxies de JPA.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esInstanciaCompatible");
     }
 

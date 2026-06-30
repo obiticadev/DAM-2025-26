@@ -75,11 +75,9 @@ public final class Ej017FunctionalInterfaces {
      * @return predicado combinado (AND)
      */
     public static <T> Predicate<T> combinarPredicadosAND(Predicate<T> p1, Predicate<T> p2) {
-        // GUÍA: teoría 1.7 (composición) — una línea: return p1.and(p2);
-        // Predicate YA trae and() como default method. Entiende qué devuelve:
-        // no un boolean, sino un NUEVO Predicate que, al hacer test(x),
-        // evalúa p1.test(x) && p2.test(x) (con cortocircuito incluido).
-        // Devolver funciones que combinan funciones: eso es composición.
+        // GUÍA: no calcules un boolean ahora; devuelve una nueva condición.
+        // Esa condición solo debe aprobar un valor cuando las dos condiciones
+        // originales lo aprueban también.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para combinarPredicadosAND");
     }
 
@@ -93,9 +91,8 @@ public final class Ej017FunctionalInterfaces {
      * @return predicado combinado (OR)
      */
     public static <T> Predicate<T> combinarPredicadosOR(Predicate<T> p1, Predicate<T> p2) {
-        // GUÍA: una línea — return p1.or(p2);
-        // Repasa la tabla de verdad con los tests: 6 (>5 y par) ✔, 4 (par) ✔,
-        // 7 (>5) ✔, 3 (ni una ni otra) ✘.
+        // GUÍA: la condición combinada debe aceptar un valor si al menos una de
+        // las dos condiciones lo acepta. Repasa la tabla de verdad antes de codificar.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para combinarPredicadosOR");
     }
 
@@ -108,10 +105,9 @@ public final class Ej017FunctionalInterfaces {
      * @return predicado negado
      */
     public static <T> Predicate<T> negarPredicado(Predicate<T> p) {
-        // GUÍA: una línea — return p.negate();
-        // ÚSALO LUEGO en streams: .filter(Predicate.not(String::isBlank)) es
-        // la forma idiomática de "filtra los NO vacíos" — Predicate.not es la
-        // versión estática de este mismo negate.
+        // GUÍA: devuelve una condición que invierta el resultado del predicado
+        // original para cualquier valor recibido. Esta idea se usa mucho para
+        // expresar filtros negativos de forma legible.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para negarPredicado");
     }
 
@@ -127,12 +123,9 @@ public final class Ej017FunctionalInterfaces {
      * @return función compuesta A -> C
      */
     public static <A, B, C> Function<A, C> componerFunciones(Function<A, B> f1, Function<B, C> f2) {
-        // GUÍA: una línea — return f1.andThen(f2);
-        // SIGUE LOS TIPOS: f1 es A→B, f2 es B→C, el resultado A→C. Con el test:
-        // 5 → (n*2) → 10 → ("res: "+n) → "res: 10".
-        // OJO con el espejo: f1.andThen(f2) = "f1 primero"; f1.compose(f2) =
-        // "f2 primero". Confundirlos compila y falla en runtime: dibuja la
-        // flecha de tipos cuando dudes.
+        // GUÍA: sigue las flechas de tipos: la primera función produce justo lo
+        // que la segunda necesita recibir. El orden es parte del contrato; si lo
+        // inviertes, los tipos o el resultado dejarán de cuadrar.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para componerFunciones");
     }
 
@@ -144,14 +137,9 @@ public final class Ej017FunctionalInterfaces {
      * @return tiempo total transcurrido en milisegundos
      */
     public static long ejecutarYMedirTiempo(Runnable tarea) {
-        // GUÍA: el patrón "cronómetro envolvente":
-        // long inicio = System.nanoTime();   // nanoTime, NO currentTimeMillis
-        // tarea.run();
-        // return (System.nanoTime() - inicio) / 1_000_000;  // ns → ms
-        // ¿Por qué nanoTime? currentTimeMillis es la HORA del sistema (puede
-        // saltar por NTP); nanoTime es un cronómetro monotónico, lo correcto
-        // para medir duraciones. Este envoltorio es la semilla de los
-        // interceptores de métricas que verás en b20.
+        // GUÍA: mide duración, no hora de calendario. Toma una marca antes de
+        // ejecutar la tarea y otra después, y convierte la diferencia a milisegundos.
+        // Para medir intervalos, prefiere un reloj monotónico.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para ejecutarYMedirTiempo");
     }
 
@@ -164,10 +152,9 @@ public final class Ej017FunctionalInterfaces {
      * @param <T>        tipo de los elementos
      */
     public static <T> void consumirLista(List<T> lista, Consumer<T> consumidor) {
-        // GUÍA: una línea — lista.forEach(consumidor);
-        // El test pasa dest::add como Consumer: una referencia a método de
-        // instancia sobre un objeto concreto (tercer tipo de :: de la teoría
-        // 1.7). Defensa: lista null → no hagas nada.
+        // GUÍA: el Consumer representa una acción sobre cada elemento, no una
+        // transformación con resultado. Aplica la acción en orden y decide si una
+        // lista null debe ignorarse de forma segura.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para consumirLista");
     }
 
@@ -180,11 +167,8 @@ public final class Ej017FunctionalInterfaces {
      * @return instancia de tipo T
      */
     public static <T> T crearConSupplier(Supplier<T> creador) {
-        // GUÍA: una línea — return creador.get();
-        // Parece trivial, pero la idea es grande: quien LLAMA decide CÓMO se
-        // construye el objeto, y la construcción se DIFIERE hasta este get().
-        // Spring usa Suppliers así para crear beans perezosos, y tú ya lo
-        // usaste sin saberlo en orElseGet (Ej012 reto 4).
+        // GUÍA: el Supplier encapsula una creación diferida. Tu método debe pedir
+        // el valor en el momento adecuado y devolverlo sin conocer cómo se fabrica.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearConSupplier");
     }
 
@@ -198,10 +182,9 @@ public final class Ej017FunctionalInterfaces {
      * @return consumidor compuesto
      */
     public static <T> Consumer<T> encadenarConsumidores(Consumer<T> c1, Consumer<T> c2) {
-        // GUÍA: una línea — return c1.andThen(c2);
-        // Consumer también compone: el combinado ejecuta c1 y LUEGO c2 con el
-        // mismo argumento. El test verifica el ORDEN exacto (c1 antes que c2).
-        // Caso real: consumer de log + consumer de métricas encadenados.
+        // GUÍA: devuelve una acción compuesta. Cuando reciba un valor, debe ejecutar
+        // primero la primera acción y después la segunda con ese mismo valor.
+        // El orden observable importa.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para encadenarConsumidores");
     }
 
@@ -217,11 +200,9 @@ public final class Ej017FunctionalInterfaces {
      * @return lista resultante con elementos filtrados y transformados
      */
     public static <T, R> List<R> filtrarYTransformar(List<T> lista, Predicate<T> p, Function<T, R> f) {
-        // GUÍA: junta tus transformar() y filtrar() de arriba en un pipeline:
-        // return lista.stream().filter(p).map(f).toList();
-        // ORDEN: filtra ANTES de transformar (transformar lo que vas a
-        // descartar es trabajo tirado). Acabas de escribir la firma genérica
-        // del 80% de los métodos de servicio de una API (teoría 1.3).
+        // GUÍA: combina una selección y una transformación. Filtrar antes evita
+        // transformar elementos que no van a formar parte del resultado. Mantén
+        // el orden de los elementos supervivientes.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para filtrarYTransformar");
     }
 
@@ -235,13 +216,9 @@ public final class Ej017FunctionalInterfaces {
      * @return el resultado de principal, o el resultado de fallback ante errores de principal
      */
     public static <T> T obtenerSeguroConSupplier(Supplier<T> principal, Supplier<T> fallback) {
-        // GUÍA: tu seguroOrElse de arriba, con fallback PEREZOSO:
-        // try { return principal.get(); }
-        // catch (RuntimeException e) { return fallback.get(); }
-        // Diferencia clave con seguroOrElse(s, valorFijo): aquí el plan B
-        // también se calcula bajo demanda. Es el esqueleto del patrón
-        // "circuit breaker con fallback" que verás en resiliencia (b21):
-        // intenta el servicio, y si falla, sirve la caché.
+        // GUÍA: intenta obtener el valor principal. Solo si esa obtención falla
+        // debe ejecutarse el proveedor de respaldo. El fallback también es perezoso:
+        // no lo calcules antes de saber si hará falta.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerSeguroConSupplier");
     }
 

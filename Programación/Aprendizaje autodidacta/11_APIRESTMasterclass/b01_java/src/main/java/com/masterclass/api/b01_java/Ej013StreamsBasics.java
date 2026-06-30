@@ -67,10 +67,9 @@ public final class Ej013StreamsBasics {
      * @return lista de mayores de edad
      */
     public static List<Integer> filtrarMayoresDeEdad(List<Integer> edades) {
-        // GUÍA: teoría 1.3, patrón 1 (filtrar).
-        // edades.stream().filter(e -> e >= 18).toList();
-        // OJO al test: 18 SÍ entra (>= , no >). Defensa: si edades es null,
-        // devuelve List.of().
+        // GUÍA: conserva solo las edades que cumplen el límite legal indicado.
+        // El 18 entra; no lo trates como menor. Si decides proteger listas null,
+        // devuelve una lista vacía en vez de propagar un fallo accidental.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para filtrarMayoresDeEdad");
     }
 
@@ -82,13 +81,9 @@ public final class Ej013StreamsBasics {
      * @return lista de palabras en mayúsculas filtradas
      */
     public static List<String> convertirAMayusculas(List<String> palabras) {
-        // GUÍA: filtra ANTES de mapear (si mapeas un null → NPE):
-        // palabras.stream()
-        //         .filter(p -> p != null && !p.isBlank())  // fuera nulls y vacíos
-        //         .map(String::toUpperCase)
-        //         .toList();
-        // El test mete null y "" en la lista a propósito (con Arrays.asList,
-        // porque List.of no admite nulls — detalle que conviene saber).
+        // GUÍA: separa el problema en dos decisiones: qué entradas son válidas
+        // y cómo se transforma cada una. El orden importa porque un null no puede
+        // convertirse a mayúsculas. Recuerda que una lista de prueba sí puede traer nulls.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para convertirAMayusculas");
     }
 
@@ -100,11 +95,9 @@ public final class Ej013StreamsBasics {
      * @return suma de los cuadrados
      */
     public static int calcularSumaCuadrados(List<Integer> numeros) {
-        // GUÍA: map + reducción numérica (teoría 1.3, patrón 2):
-        // numeros.stream().mapToInt(n -> n * n).sum();
-        // mapToInt produce un IntStream, que trae sum() gratis (y para lista
-        // vacía devuelve 0, como exige el test). Sin mapToInt tendrías que usar
-        // reduce(0, Integer::sum) — también vale, compara ambas.
+        // GUÍA: cada número aporta su cuadrado al total. Puedes pensarlo como
+        // una transformación numérica seguida de una reducción. Para una lista
+        // vacía, el total natural debe ser cero.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularSumaCuadrados");
     }
 
@@ -116,9 +109,9 @@ public final class Ej013StreamsBasics {
      * @return cantidad de cadenas vacías
      */
     public static long contarCadenasVacias(List<String> cadenas) {
-        // GUÍA: cadenas.stream().filter(String::isBlank).count();
-        // isBlank() cubre "" Y "   " (solo espacios), justo los dos casos del
-        // test. count() devuelve long — fíjate en el tipo de retorno del método.
+        // GUÍA: cuenta cadenas que no tienen contenido visible. No es lo mismo
+        // una cadena vacía que una cadena con espacios, pero ambas deben tratarse
+        // como vacías para este reto. Fíjate en que el retorno es long.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarCadenasVacias");
     }
 
@@ -130,10 +123,9 @@ public final class Ej013StreamsBasics {
      * @return cadena con el formato especificado
      */
     public static String unirConComas(List<String> cadenas) {
-        // GUÍA: joining tiene una sobrecarga con (separador, prefijo, sufijo):
-        // cadenas.stream().collect(Collectors.joining(", ", "[", "]"));
-        // Con lista vacía produce "[]" solo — exactamente el segundo test.
-        // No concatenes los corchetes a mano: esta sobrecarga existe para eso.
+        // GUÍA: el formato tiene tres partes: prefijo, separador entre elementos
+        // y sufijo. Comprueba mentalmente el caso de lista vacía: no debe aparecer
+        // una coma sobrante ni espacios internos innecesarios.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para unirConComas");
     }
 
@@ -145,11 +137,9 @@ public final class Ej013StreamsBasics {
      * @return lista sin duplicados y ordenada
      */
     public static List<String> obtenerElementosUnicos(List<String> lista) {
-        // GUÍA: dos intermedias encadenadas:
-        // lista.stream().distinct().sorted().toList();
-        // distinct() usa equals (dedup), sorted() sin argumentos usa el orden
-        // natural (alfabético en String). El orden distinct→sorted o
-        // sorted→distinct da igual aquí; piensa por qué.
+        // GUÍA: necesitas eliminar repeticiones y después presentar un orden
+        // estable y predecible. Para String, el orden natural es alfabético.
+        // Piensa si el orden original debe influir en el resultado final.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerElementosUnicos");
     }
 
@@ -163,11 +153,9 @@ public final class Ej013StreamsBasics {
      * @return sublista paginada
      */
     public static List<String> limitarYDescartar(List<String> lista, int skip, int limit) {
-        // GUÍA: lista.stream().skip(skip).limit(limit).toList();
-        // ESTO ES LA PAGINACIÓN: ?page=2&size=10 de una API es skip(20).limit(10).
-        // Cuando llegues a Pageable en Spring Data (b12) será esta misma idea.
-        // skip/limit toleran pasarse del tamaño (segundo test: limit 5 sobre 2
-        // elementos → devuelve los 2, sin excepción).
+        // GUÍA: este es el núcleo de la paginación: descartar una cantidad inicial
+        // y quedarse con una ventana de tamaño máximo. Si la ventana pide más
+        // elementos de los disponibles, devuelve simplemente los que existan.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para limitarYDescartar");
     }
 
@@ -180,11 +168,9 @@ public final class Ej013StreamsBasics {
      * @return true si alguna coincide, false de lo contrario
      */
     public static boolean algunoEmpiezaCon(List<String> palabras, String prefijo) {
-        // GUÍA: insensible a mayúsculas → normaliza AMBOS lados a minúsculas:
-        // String pref = prefijo.toLowerCase();
-        // return palabras.stream().anyMatch(p -> p.toLowerCase().startsWith(pref));
-        // El test busca "sp" y debe encontrar "Spring". anyMatch cortocircuita:
-        // en cuanto encuentra uno, deja de recorrer.
+        // GUÍA: la comparación no debe depender de mayúsculas o minúsculas, así
+        // que ambos lados deben evaluarse con el mismo criterio. Basta con que
+        // una palabra cumpla; no necesitas recorrer lógicamente más tras encontrarla.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para algunoEmpiezaCon");
     }
 
@@ -196,11 +182,9 @@ public final class Ej013StreamsBasics {
      * @return true si todos son positivos o si la lista está vacía, false de lo contrario
      */
     public static boolean todosSonPositivos(List<Integer> numeros) {
-        // GUÍA: numeros.stream().allMatch(n -> n > 0);
-        // DETALLE LÓGICO que comprueba el test: allMatch sobre lista VACÍA da
-        // true ("verdad vacua": no hay ningún elemento que incumpla). Es el
-        // comportamiento matemático correcto del cuantificador universal, y
-        // sorprende la primera vez. anyMatch sobre vacía da false, simétricamente.
+        // GUÍA: esta es una condición universal: ningún elemento puede incumplirla.
+        // La lista vacía se considera válida porque no contiene contraejemplos,
+        // una idea lógica conocida como verdad vacua.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para todosSonPositivos");
     }
 
@@ -212,12 +196,9 @@ public final class Ej013StreamsBasics {
      * @return Optional con el máximo, o vacío si la lista no contiene números
      */
     public static Optional<Integer> obtenerMaximo(List<Integer> numeros) {
-        // GUÍA: numeros.stream().max(Integer::compare);
-        // max necesita un Comparator (también vale Comparator.naturalOrder())
-        // y devuelve Optional<Integer> — vacío si la lista lo está. Fíjate:
-        // streams y Optional se diseñaron juntos; toda reducción que puede
-        // "no tener respuesta" (max, min, findFirst, reduce sin identidad)
-        // devuelve Optional en vez de null. Eso ata las secciones 1.2 y 1.3.
+        // GUÍA: buscar un máximo requiere comparar elementos entre sí. Si no hay
+        // elementos, no existe respuesta válida; por eso el contrato usa Optional
+        // en vez de devolver null o un número inventado.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerMaximo");
     }
 

@@ -87,10 +87,9 @@ public class Ej015GenericsRepository<T, ID> {
      * @return Optional con el primer elemento
      */
     public static <E> Optional<E> obtenerPrimero(E[] elementos) {
-        // GUÍA: tu primer MÉTODO genérico (el <E> vive en el método, teoría 1.5).
-        // if (elementos == null || elementos.length == 0) return Optional.empty();
-        // return Optional.ofNullable(elementos[0]);
-        // (ofNullable y no of: el primer elemento podría ser null.)
+        // GUÍA: el método debe funcionar con cualquier tipo E. Antes de leer la
+        // primera posición, asegúrate de que el array existe y tiene elementos.
+        // Incluso el primer elemento podría ser null, así que representa ausencia con Optional.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerPrimero");
     }
 
@@ -105,13 +104,9 @@ public class Ej015GenericsRepository<T, ID> {
      * @throws IllegalArgumentException si los índices están fuera de rango o el array es nulo
      */
     public static <E> void intercambiarPosiciones(E[] array, int i, int j) {
-        // GUÍA:
-        // 1. array null, o i/j fuera de [0, length) → IllegalArgumentException
-        //    (el test prueba null y el índice -1).
-        // 2. El intercambio clásico con temporal:
-        //    E tmp = array[i]; array[i] = array[j]; array[j] = tmp;
-        // Fíjate: el método es void y MUTA el array (los arrays no tienen
-        // versión inmutable; por eso en el resto del bloque preferimos List).
+        // GUÍA: valida el array y ambos índices antes de modificar nada. El método
+        // no devuelve una copia: cambia el array recibido, así que el intercambio
+        // debe preservar los dos valores sin perder ninguno por el camino.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para intercambiarPosiciones");
     }
 
@@ -126,10 +121,9 @@ public class Ej015GenericsRepository<T, ID> {
      * @return Optional con el valor o vacío
      */
     public static <K, V> Optional<V> buscarPorIdEnMapa(Map<K, V> mapa, K id) {
-        // GUÍA: una línea — return Optional.ofNullable(mapa.get(id));
-        // Es EXACTAMENTE tu findById de arriba, generalizado a dos parámetros
-        // de tipo <K, V>. map.get devuelve null si no está; ofNullable lo
-        // convierte en empty. (Defensa: mapa null → empty.)
+        // GUÍA: generaliza la idea de findById: una clave puede tener valor o no.
+        // La ausencia de clave, un valor null o un mapa null deben expresarse de
+        // forma segura mediante el Optional de retorno.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para buscarPorIdEnMapa");
     }
 
@@ -143,11 +137,9 @@ public class Ej015GenericsRepository<T, ID> {
      * @return lista con los elementos filtrados
      */
     public static <E> List<E> filtrarElementosGenericos(List<E> lista, Predicate<E> filtro) {
-        // GUÍA: genéricos + funcional, juntos:
-        // return lista.stream().filter(filtro).toList();
-        // El Predicate<E> entra como parámetro: acabas de escribir tu propio
-        // "filter" reutilizable para CUALQUIER tipo. Así están implementadas
-        // las tripas de la Streams API.
+        // GUÍA: el tipo E no importa; quien decide si un elemento pasa es el
+        // Predicate recibido. Tu método solo debe aplicar esa regla manteniendo
+        // los elementos que la cumplen.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para filtrarElementosGenericos");
     }
 
@@ -162,12 +154,9 @@ public class Ej015GenericsRepository<T, ID> {
      * @return mapa resultante
      */
     public static <K, V> Map<K, V> convertirListaAMapa(List<V> lista, Function<V, K> keyExtractor) {
-        // GUÍA:
-        // return lista.stream().collect(Collectors.toMap(keyExtractor, v -> v));
-        // (o un bucle con map.put(keyExtractor.apply(v), v) — compáralos).
-        // ¿Te suena? Es la idea del constructor del repositorio de arriba:
-        // una Function<V,K> que extrae la clave. Recuerda de Ej014 reto 8 que
-        // toMap explota con claves duplicadas; aquí los tests no las traen.
+        // GUÍA: cada valor debe aportar su propia clave mediante la función recibida.
+        // Es la misma idea que el repositorio: no sabe qué es una entidad, solo
+        // sabe cómo obtener su identificador. Piensa qué pasaría con claves duplicadas.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para convertirListaAMapa");
     }
 
@@ -181,12 +170,9 @@ public class Ej015GenericsRepository<T, ID> {
      * @return true si es mayor, false de lo contrario
      */
     public static <E extends Comparable<E>> boolean esMayorQue(E actual, E limite) {
-        // GUÍA: una línea — return actual.compareTo(limite) > 0;
-        // LA CLAVE ES LA FIRMA: <E extends Comparable<E>> (tipo acotado, teoría
-        // 1.5). Sin esa cota, actual no tendría compareTo. Gracias a ella el
-        // mismo método compara Integers ("10 > 5") y Strings ("apple" <
-        // "banana", orden alfabético) — los dos casos del test.
-        // compareTo: negativo = menor, 0 = igual, positivo = mayor.
+        // GUÍA: la firma garantiza que E sabe compararse con otro E. Interpreta
+        // el resultado de esa comparación: negativo, cero o positivo no significan
+        // lo mismo. El método debe servir tanto para números como para textos.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esMayorQue");
     }
 
@@ -211,10 +197,9 @@ public class Ej015GenericsRepository<T, ID> {
      * @return nueva Tupla instanciada
      */
     public static <K, V> Tupla<K, V> crearTupla(K clave, V valor) {
-        // GUÍA: una línea — return new Tupla<>(clave, valor);
-        // El diamante <> infiere K y V de los argumentos. Estos métodos
-        // "factory" estáticos son idiomáticos (Map.entry, List.of hacen lo
-        // mismo): leen mejor que el new y permiten cachear/validar.
+        // GUÍA: crea un par inmutable con los dos valores recibidos. La gracia del
+        // método genérico es que los tipos K y V se deducen desde los argumentos,
+        // sin que el llamador tenga que repetirlos.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearTupla");
     }
 
@@ -228,10 +213,9 @@ public class Ej015GenericsRepository<T, ID> {
      * @return el elemento o su valor por defecto
      */
     public static <E> E obtenerValorConDefecto(E valor, E valorPorDefecto) {
-        // GUÍA: una línea — return valor != null ? valor : valorPorDefecto;
-        // (Equivale a Objects.requireNonNullElse(valor, valorPorDefecto),
-        // que existe en el JDK justamente para esto — úsalo y ya conoces
-        // una utilidad más de java.util.Objects.)
+        // GUÍA: si el valor principal existe, debe ganar. Si no existe, usa el
+        // valor de respaldo sin perder el tipo genérico. Este patrón aparece en
+        // APIs donde null significa "no configurado".
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerValorConDefecto");
     }
 
@@ -245,11 +229,9 @@ public class Ej015GenericsRepository<T, ID> {
      * @return cantidad de ocurrencias
      */
     public static <E> long contarOcurrenciasGenerico(E[] array, E elemento) {
-        // GUÍA:
-        // 1. array null → 0.
-        // 2. Arrays.stream(array).filter(e -> Objects.equals(e, elemento)).count();
-        // Objects.equals y no e.equals(elemento): tolera nulls en ambos lados
-        // sin NPE. Memoriza ese helper: es la forma segura de comparar SIEMPRE.
+        // GUÍA: recorre el array contando coincidencias con el elemento buscado.
+        // La comparación debe ser segura aunque el array o alguno de sus valores
+        // sea null. Si no hay array, no hay ocurrencias.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarOcurrenciasGenerico");
     }
 
@@ -262,14 +244,9 @@ public class Ej015GenericsRepository<T, ID> {
      * @return nueva lista revertida
      */
     public static <E> List<E> revertirListaGenerica(List<E> lista) {
-        // GUÍA: el test exige que la ORIGINAL no cambie → copia primero:
-        // List<E> copia = new ArrayList<>(lista);
-        // Collections.reverse(copia);     // reverse muta, por eso la copia
-        // return copia;
-        // ALTERNATIVA Java 21: lista.reversed() devuelve una vista invertida
-        // sin tocar la original (SequencedCollection). Ambas pasan el test.
-        // TRAMPA evitada: Collections.reverse(lista) directo lanzaría
-        // UnsupportedOperationException — List.of es inmutable.
+        // GUÍA: devuelve una lista nueva, no una vista que sorprenda ni la misma
+        // lista mutada. Muchas listas de pruebas son inmutables, así que piensa
+        // primero en una copia y luego en invertir el orden de esa copia.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para revertirListaGenerica");
     }
 

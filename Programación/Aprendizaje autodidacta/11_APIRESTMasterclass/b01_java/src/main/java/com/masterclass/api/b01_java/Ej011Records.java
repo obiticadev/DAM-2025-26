@@ -79,12 +79,10 @@ public final class Ej011Records {
      *         y nombre no nulo ni vacío
      */
     public static boolean esValido(ProductoDto p) {
-        // GUÍA: teoría 1.1.
-        // Devuelve true SOLO si se cumplen las 4 condiciones a la vez:
-        // p != null && p.id() != null && p.id() > 0 &&
-        // p.precio() >= 0 && p.nombre() != null && !p.nombre().isBlank()
-        // ORDEN IMPORTA: comprueba p != null PRIMERO (el && cortocircuita y
-        // evita el NPE de las siguientes). El test pasa null y un id -1.
+        // GUÍA: valida desde fuera lo mismo que esperarías de un DTO recibido por API.
+        // Todas las condiciones deben cumplirse a la vez y el orden de comprobación
+        // importa para no leer campos de un objeto nulo. Piensa en null, id inválido,
+        // precio negativo y nombre vacío como casos independientes.
         if (p != null && p.id() != null && p.id() > 0 && p.precio() >= 0 && p.nombre() != null
                 && !p.nombre().isBlank()) {
             return true;
@@ -102,12 +100,9 @@ public final class Ej011Records {
      *         campos intactos
      */
     public static ProductoDto conDescuento(ProductoDto p, double pct) {
-        // GUÍA: el patrón "wither" (teoría 1.1, punto 3) — gemelo de conIva pero
-        // restando:
-        // 1. p null → decide: null o IllegalArgumentException (documéntalo).
-        // 2. nuevoPrecio = p.precio() * (1 - pct / 100).
-        // 3. new ProductoDto(p.id(), p.nombre(), nuevoPrecio) — NUNCA mutes p.
-        // Test: 100.0 con 10% → 90.0, mismo id.
+        // GUÍA: aplica la misma idea de copia inmutable que en conIva, pero el
+        // cambio de precio va en sentido contrario. Conserva identidad y nombre,
+        // y decide explícitamente qué hacer si no recibes producto.
         if (p == null) {
             throw new IllegalArgumentException();
         }
@@ -126,14 +121,9 @@ public final class Ej011Records {
      *         {"id":1,"nombre":"Teclado","precio":100.0})
      */
     public static String aJsonSimple(ProductoDto p) {
-        // GUÍA: harás esto UNA vez a mano para entender qué hace Jackson (b02).
-        // 1. p null → "{}" o "null" (decide).
-        // 2. Formato exacto: {"id":1,"nombre":"Teclado","precio":100.0}
-        // - números SIN comillas, strings CON comillas
-        // - sin espacios tras los ':'
-        // PISTA: String.format("{\"id\":%d,\"nombre\":\"%s\",\"precio\":%s}",
-        // p.id(), p.nombre(), p.precio())
-        // (%s para el double conserva el "100.0" que espera el test).
+        // GUÍA: construye una representación JSON mínima respetando el contrato
+        // textual del Javadoc. Fíjate en qué campos son numéricos y cuál es texto:
+        // las comillas no se aplican igual a todos. Define también el caso null.
         if (p == null) {
             return "{}";
         }
@@ -150,10 +140,9 @@ public final class Ej011Records {
      * @return un ProductoDto con ID null que represente este servicio
      */
     public static ProductoDto crearServicioDto(String descripcion, double precioHora) {
-        // GUÍA: una línea — new ProductoDto(null, descripcion, precioHora).
-        // EL CONCEPTO: en un POST de creación el cliente NO manda id (lo genera
-        // la BD). Por eso id es Long (objeto, admite null) y no long (primitivo).
-        // Esta distinción Long/long te perseguirá en JPA (b12): apréndela ya.
+        // GUÍA: modela un DTO de creación: aún no existe identificador porque lo
+        // generará el servidor o la base de datos. La descripción y el precio sí
+        // forman parte de la petición y deben pasar por las reglas del record.
         return new ProductoDto(null, descripcion, precioHora);
     }
 
@@ -167,11 +156,9 @@ public final class Ej011Records {
      * @return true si son semánticamente equivalentes
      */
     public static boolean esEquivalente(ProductoDto p1, ProductoDto p2) {
-        // GUÍA: el equals del record compara TODOS los campos (id incluido);
-        // aquí quieres una igualdad DISTINTA: solo nombre (ignorando mayúsculas)
-        // y precio. Por eso es un método aparte y no el equals.
-        // 1. Ambos null → true o false (decide); uno solo null → false.
-        // El test: ids distintos (1 vs 2) y "Teclado" vs "TECLADO" → true.
+        // GUÍA: no uses el equals del record: ese compara todos los componentes,
+        // incluido el id. Aquí la equivalencia es de negocio: nombre comparable
+        // sin distinguir mayúsculas y mismo precio. Trata los null de forma coherente.
         if (p1 == null && p2 == null) {
             return true;
         }
@@ -193,11 +180,9 @@ public final class Ej011Records {
      * @return una copia normalizada con ID corregido a 999 si no era válido (> 0)
      */
     public static ProductoDto normalizarId(ProductoDto p) {
-        // GUÍA:
-        // 1. Si el id ES válido (no null y > 0) → devuelve p tal cual (no copies
-        // sin necesidad).
-        // 2. Si no → new ProductoDto(999L, p.nombre(), p.precio()).
-        // Test: id -5 → copia con id 999.
+        // GUÍA: si el identificador ya es válido, no hay nada que normalizar.
+        // Si falta o no sirve, crea una copia con el identificador de reserva
+        // indicado por el contrato y conserva el resto de datos.
         if (p.id() != null && p.id() > 0) {
             return p;
         }
@@ -213,14 +198,10 @@ public final class Ej011Records {
      * @return true si el precio tiene como máximo 2 decimales
      */
     public static boolean esPrecioRedondeado(ProductoDto p) {
-        // GUÍA: "¿tiene como mucho 2 decimales?" sin pelearte con el double:
-        // TÉCNICA A (numérica): multiplica por 100 y comprueba si el resultado
-        // es "prácticamente entero": Math.abs(x - Math.round(x)) < 1e-9
-        // (la tolerancia absorbe el error de coma flotante de 10.25 * 100).
-        // TÉCNICA B (exacta): BigDecimal.valueOf(p.precio()).scale() <= 2.
-        // Tests: 10.25 → true; 10.3333 → false.
-        // CULTURA: por estos líos el dinero en producción se maneja con
-        // BigDecimal o céntimos enteros, nunca con double.
+        // GUÍA: comprueba si el precio puede representarse con céntimos limpios.
+        // Con double tendrás pequeños errores de coma flotante, así que piensa
+        // en una comparación tolerante o en una representación decimal exacta.
+        // En producción, dinero real suele modelarse con BigDecimal o céntimos enteros.
         return Math.abs(p.precio() * 100 - (Math.round(p.precio() * 100))) < 1e-9;
     }
 
@@ -231,15 +212,10 @@ public final class Ej011Records {
      * @return ProductoDto parseado
      */
     public static ProductoDto crearDesdeValores(String csv) {
-        // GUÍA:
-        // 1. null o en blanco → IllegalArgumentException.
-        // 2. split(",") → deben salir exactamente 3 partes; si no, excepción.
-        // 3. Parsea: Long.parseLong(partes[0].trim()),
-        // partes[1].trim(), Double.parseDouble(partes[2].trim()).
-        // 4. Devuelve el ProductoDto — el constructor compacto que escribiste
-        // arriba valida gratis (¡por eso se valida EN el record!).
-        // OJO: el nombre puede llevar espacios internos ("Teclado Mecanico"):
-        // no hagas split por espacio, solo por coma.
+        // GUÍA: trata la cadena como una fila con tres columnas obligatorias.
+        // Valida que exista contenido, separa por el delimitador correcto y limpia
+        // espacios externos de cada campo. El constructor del record debe seguir
+        // siendo quien aplique las reglas finales de validez.
         if (csv == null || csv.isEmpty()) {
             throw new IllegalArgumentException();
         }
@@ -255,9 +231,9 @@ public final class Ej011Records {
      * @return String formateado como "Nombre - $Precio"
      */
     public static String formatoEtiqueta(ProductoDto p) {
-        // GUÍA: una línea — p.nombre() + " - $" + p.precio()
-        // (el test espera exactamente "Teclado - $100.0": la concatenación de
-        // un double produce ese "100.0"). Protege p null si quieres nota alta.
+        // GUÍA: el resultado es una etiqueta legible para UI o logs, no JSON.
+        // Respeta el separador y el símbolo monetario indicados en el contrato.
+        // Decide cómo responder ante un producto null antes de acceder a sus campos.
         if (p == null) {
             throw new IllegalArgumentException();
         }
@@ -272,11 +248,9 @@ public final class Ej011Records {
      * @return ProductoDto copia con el costo de envío sumado al precio del producto
      */
     public static ProductoDto reconstruirConEnvio(ProductoDto p, double costoEnvio) {
-        // GUÍA: otro wither, esta vez sumando:
-        // new ProductoDto(p.id(), p.nombre(), p.precio() + costoEnvio).
-        // BONUS defensivo: ¿qué haces si costoEnvio es negativo? ¿Y si la suma
-        // hiciera el precio negativo (el constructor compacto lanzará)? Piensa
-        // la respuesta antes de que te la dé un stack trace.
+        // GUÍA: crea una copia con el coste logístico incorporado al precio.
+        // No cambies id ni nombre. Antes de sumar, piensa qué significa un coste
+        // de envío negativo y si debe aceptarse como dato válido.
 
         if (p == null || costoEnvio < 0 || p.precio() < 0) {
             throw new IllegalArgumentException();

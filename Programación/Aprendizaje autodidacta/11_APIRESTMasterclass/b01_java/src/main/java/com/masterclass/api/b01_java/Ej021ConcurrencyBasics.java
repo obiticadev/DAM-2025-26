@@ -71,13 +71,9 @@ public final class Ej021ConcurrencyBasics {
      * @return instancia de Thread iniciada
      */
     public static Thread ejecutarEnHiloSeparado(Runnable tarea) {
-        // GUÍA: la base de todo, antes de las abstracciones:
-        // Thread t = new Thread(tarea);
-        // t.start();          // start, NO run: run() ejecutaría en ESTE hilo
-        // return t;
-        // El test hace t.join(2000): espera a que termine. En código real ya
-        // casi nunca creas Threads a mano (pools y CompletableFuture lo hacen
-        // mejor), pero tienes que saber qué hay debajo.
+        // GUÍA: crea un hilo para la tarea y arráncalo de verdad. No confundas
+        // ejecutar el Runnable en el hilo actual con iniciar un hilo nuevo. Devuelve
+        // la instancia para que el llamador pueda esperarla.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para ejecutarEnHiloSeparado");
     }
 
@@ -90,12 +86,9 @@ public final class Ej021ConcurrencyBasics {
      * @return valor resuelto
      */
     public static <T> T obtenerResultadoAsincrono(CompletableFuture<T> futuro) {
-        // GUÍA: una línea — return futuro.join();
-        // join() vs get(): hacen lo mismo (bloquear hasta el resultado), pero
-        // get() lanza excepciones CHECKED (te obliga a try/catch) y join()
-        // lanza unchecked. Por eso en pipelines se prefiere join().
-        // REGLA DE ORO: bloquear solo en el BORDE (el test, el main); dentro
-        // de la cadena asíncrona, nunca — para eso están thenApply y compañía.
+        // GUÍA: aquí sí quieres bloquear hasta tener el resultado, porque el
+        // contrato devuelve un valor ya resuelto. En código real, bloquea solo en
+        // los bordes; dentro de una cadena asíncrona se compone sin esperar.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerResultadoAsincrono");
     }
 
@@ -113,10 +106,9 @@ public final class Ej021ConcurrencyBasics {
      */
     public static <A, B, R> CompletableFuture<R> combinarDosResultadosAsincronos(
             CompletableFuture<A> futA, CompletableFuture<B> futB, BiFunction<A, B, R> combinador) {
-        // GUÍA: una línea — return futA.thenCombine(futB, combinador);
-        // Es tu sumar() de arriba GENERALIZADO: el combinador llega como
-        // parámetro BiFunction<A,B,R>. Caso real de la teoría 1.11: pedir
-        // precio y stock EN PARALELO y fusionarlos cuando ambos lleguen.
+        // GUÍA: no resuelvas un futuro antes que el otro. La combinación debe
+        // esperar a que ambos estén disponibles y aplicar entonces la BiFunction
+        // recibida para producir el resultado final.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para combinarDosResultadosAsincronos");
     }
 
@@ -131,13 +123,9 @@ public final class Ej021ConcurrencyBasics {
      * @return futuro protegido contra tiempos de espera excesivos
      */
     public static <T> CompletableFuture<T> ejecutarConTimeout(CompletableFuture<T> futuro, long ms, T valorPorDefecto) {
-        // GUÍA: una línea (Java 9+) —
-        // return futuro.completeOnTimeout(valorPorDefecto, ms, TimeUnit.MILLISECONDS);
-        // El test crea un future que NUNCA completa: a los 100 ms debe
-        // resolverse solo con "defecto". Pariente: orTimeout(ms, unit), que en
-        // vez de un valor por defecto completa con TimeoutException.
-        // POR QUÉ IMPORTA: una API sin timeouts es una API que algún día se
-        // queda colgada esperando a un servicio caído (más en b21).
+        // GUÍA: protege un futuro que podría no terminar nunca. Tras el tiempo
+        // máximo, debe completarse con el valor de contingencia en vez de dejar
+        // bloqueado al consumidor indefinidamente.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para ejecutarConTimeout");
     }
 
@@ -151,11 +139,8 @@ public final class Ej021ConcurrencyBasics {
      * @return futuro tolerante a fallos
      */
     public static <T> CompletableFuture<T> recuperarAnteErrorAsincrono(CompletableFuture<T> futuro, T fallback) {
-        // GUÍA: una línea — return futuro.exceptionally(ex -> fallback);
-        // exceptionally es el "catch" del mundo asíncrono: si el future
-        // completó bien, pasa de largo; si completó con excepción, la
-        // intercepta y la sustituye por el fallback. Es el mismo patrón
-        // try/catch-con-fallback de Ej017 reto 10, en versión no bloqueante.
+        // GUÍA: si el futuro termina bien, conserva su valor. Si termina con error,
+        // transforma ese fallo en un valor de recuperación sin bloquear el hilo actual.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para recuperarAnteErrorAsincrono");
     }
 
@@ -168,15 +153,9 @@ public final class Ej021ConcurrencyBasics {
      * @return ExecutorService configurado
      */
     public static ExecutorService ejecutarEnPoolAcotado(Runnable tarea, int nHilos) {
-        // GUÍA: el ciclo de vida completo de un pool:
-        // ExecutorService pool = Executors.newFixedThreadPool(nHilos);  // crear
-        // pool.submit(tarea);                                           // encargar
-        // pool.shutdown();        // apagado ORDENADO: termina lo encolado y cierra
-        // return pool;
-        // shutdown() no mata nada: deja de aceptar tareas nuevas y termina las
-        // pendientes (shutdownNow() sí interrumpe). Olvidar el shutdown deja
-        // hilos vivos que impiden que la JVM muera — fuga clásica.
-        // CULTURA: Tomcat atiende tus peticiones HTTP con un pool como este.
+        // GUÍA: crea un pool con tamaño limitado, encarga la tarea y solicita un
+        // apagado ordenado. Apagar ordenadamente no mata tareas en curso; evita
+        // dejar hilos vivos sin control.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para ejecutarEnPoolAcotado");
     }
 
@@ -187,11 +166,9 @@ public final class Ej021ConcurrencyBasics {
      * @param futuros lista de futuros
      */
     public static void esperarQueTerminenTodos(List<CompletableFuture<?>> futuros) {
-        // GUÍA: la barrera allOf, que ya usaste en esperarTodos():
-        // CompletableFuture.allOf(futuros.toArray(new CompletableFuture[0])).join();
-        // allOf recibe VARARGS (por eso el toArray) y devuelve un
-        // CompletableFuture<Void> que completa cuando TODOS terminan; el
-        // join() final es la espera. Su gemelo anyOf espera AL PRIMERO.
+        // GUÍA: construye una barrera: el método no debe continuar hasta que todos
+        // los futuros hayan terminado. El orden de finalización no importa, solo
+        // que no quede ninguno pendiente.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esperarQueTerminenTodos");
     }
 
@@ -205,12 +182,8 @@ public final class Ej021ConcurrencyBasics {
      * @return futuro completado con el resultado del ganador
      */
     public static <T> CompletableFuture<T> ejecutarPrimeroQueTermine(CompletableFuture<T> fut1, CompletableFuture<T> fut2) {
-        // GUÍA: una línea — return fut1.applyToEither(fut2, valor -> valor);
-        // applyToEither resuelve con el PRIMERO que complete y aplica la
-        // función al ganador (aquí, identidad). El test deja fut1 colgado
-        // para siempre: debe ganar fut2 ("ganador") sin esperar a fut1.
-        // CASO REAL: consultar dos réplicas del mismo servicio y quedarte
-        // con la respuesta más rápida ("hedged requests").
+        // GUÍA: compón una carrera entre dos futuros y conserva el valor del que
+        // termine primero. No esperes al perdedor; podría no completarse nunca.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para ejecutarPrimeroQueTermine");
     }
 
@@ -225,11 +198,9 @@ public final class Ej021ConcurrencyBasics {
      * @return futuro con el valor transformado
      */
     public static <T, R> CompletableFuture<R> mapearResultadoAsincrono(CompletableFuture<T> futuro, Function<T, R> mapeador) {
-        // GUÍA: una línea — return futuro.thenApply(mapeador);
-        // thenApply ES el map de los futures (como Optional.map y Stream.map):
-        // transforma el resultado CUANDO llegue, sin bloquear a nadie.
-        // ¿Ves el patrón? Optional, Stream y CompletableFuture comparten el
-        // mismo vocabulario mental: map / flatMap / filtros / fallbacks.
+        // GUÍA: transforma el valor cuando llegue, sin bloquear ahora para obtenerlo.
+        // Es la misma idea mental que map en Optional o Stream, aplicada al mundo
+        // asíncrono.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para mapearResultadoAsincrono");
     }
 
@@ -245,13 +216,9 @@ public final class Ej021ConcurrencyBasics {
      */
     public static <T, R> CompletableFuture<R> encadenarFuturosAsincronos(
             CompletableFuture<T> futuro, Function<T, CompletableFuture<R>> mapeadorFuturo) {
-        // GUÍA: una línea — return futuro.thenCompose(mapeadorFuturo);
-        // thenCompose ES el flatMap de los futures: la función ya devuelve un
-        // CompletableFuture y NO quieres un CompletableFuture<CompletableFuture<R>>.
-        // thenApply : thenCompose :: map : flatMap — la misma distinción de
-        // Ej012 reto 8. CASO REAL: buscarUsuario(id).thenCompose(u ->
-        // buscarPedidos(u)) — la 2ª llamada DEPENDE del resultado de la 1ª
-        // (secuencial), a diferencia de thenCombine (paralelo).
+        // GUÍA: la segunda operación asíncrona depende del resultado de la primera.
+        // Como el mapeador ya devuelve otro futuro, la composición debe aplanar
+        // esa dependencia para no acabar con un futuro anidado.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para encadenarFuturosAsincronos");
     }
 
