@@ -57,7 +57,7 @@ public final class Ej011Records {
          */
         public boolean esCaro() {
             // TODO 10: devuelve si el precio es mayor o igual a 100.
-            if (precio > 100) {
+            if (precio >= 100) {
                 return true;
             }
             return false;
@@ -85,7 +85,11 @@ public final class Ej011Records {
         // p.precio() >= 0 && p.nombre() != null && !p.nombre().isBlank()
         // ORDEN IMPORTA: comprueba p != null PRIMERO (el && cortocircuita y
         // evita el NPE de las siguientes). El test pasa null y un id -1.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esValido");
+        if (p != null && p.id() != null && p.id() > 0 && p.precio() >= 0 && p.nombre() != null
+                && !p.nombre().isBlank()) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -104,7 +108,12 @@ public final class Ej011Records {
         // 2. nuevoPrecio = p.precio() * (1 - pct / 100).
         // 3. new ProductoDto(p.id(), p.nombre(), nuevoPrecio) — NUNCA mutes p.
         // Test: 100.0 con 10% → 90.0, mismo id.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para conDescuento");
+        if (p == null) {
+            throw new IllegalArgumentException();
+        }
+        double promotion = 1 - pct / 100;
+        double newPrice = p.precio() * promotion;
+        return new ProductoDto(p.id(), p.nombre(), newPrice);
     }
 
     /**
@@ -125,7 +134,11 @@ public final class Ej011Records {
         // PISTA: String.format("{\"id\":%d,\"nombre\":\"%s\",\"precio\":%s}",
         // p.id(), p.nombre(), p.precio())
         // (%s para el double conserva el "100.0" que espera el test).
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para aJsonSimple");
+        if (p == null) {
+            return "{}";
+        }
+        return String.format("{\n\t\"id\":%d,\n\t\"nombre\":\"%s\",\n\t\"precio\":%s\n}", p.id(), p.nombre(),
+                p.precio());
     }
 
     /**
@@ -141,7 +154,7 @@ public final class Ej011Records {
         // EL CONCEPTO: en un POST de creación el cliente NO manda id (lo genera
         // la BD). Por eso id es Long (objeto, admite null) y no long (primitivo).
         // Esta distinción Long/long te perseguirá en JPA (b12): apréndela ya.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearServicioDto");
+        return new ProductoDto(null, descripcion, precioHora);
     }
 
     /**
@@ -158,9 +171,17 @@ public final class Ej011Records {
         // aquí quieres una igualdad DISTINTA: solo nombre (ignorando mayúsculas)
         // y precio. Por eso es un método aparte y no el equals.
         // 1. Ambos null → true o false (decide); uno solo null → false.
-        // 2. p1.nombre().equalsIgnoreCase(p2.nombre()) && p1.precio() == p2.precio()
         // El test: ids distintos (1 vs 2) y "Teclado" vs "TECLADO" → true.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esEquivalente");
+        if (p1 == null && p2 == null) {
+            return true;
+        }
+        if ((p1 == null && p2 != null) || (p1 != null && p2 == null)) {
+            return false;
+        }
+        if (p1.nombre().equalsIgnoreCase(p2.nombre()) && p1.precio() == p2.precio()) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -177,7 +198,10 @@ public final class Ej011Records {
         // sin necesidad).
         // 2. Si no → new ProductoDto(999L, p.nombre(), p.precio()).
         // Test: id -5 → copia con id 999.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para normalizarId");
+        if (p.id() != null && p.id() > 0) {
+            return p;
+        }
+        return new ProductoDto(999L, p.nombre(), p.precio());
     }
 
     /**
@@ -197,7 +221,7 @@ public final class Ej011Records {
         // Tests: 10.25 → true; 10.3333 → false.
         // CULTURA: por estos líos el dinero en producción se maneja con
         // BigDecimal o céntimos enteros, nunca con double.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esPrecioRedondeado");
+        return Math.abs(p.precio() * 100 - (Math.round(p.precio() * 100))) < 1e-9;
     }
 
     /**
@@ -216,7 +240,12 @@ public final class Ej011Records {
         // arriba valida gratis (¡por eso se valida EN el record!).
         // OJO: el nombre puede llevar espacios internos ("Teclado Mecanico"):
         // no hagas split por espacio, solo por coma.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearDesdeValores");
+        if (csv == null || csv.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
+        String[] campos = csv.split(",");
+        return new ProductoDto(Long.parseLong(campos[0].trim()), campos[1].trim(),
+                Double.parseDouble(campos[2].trim()));
     }
 
     /**
@@ -229,7 +258,10 @@ public final class Ej011Records {
         // GUÍA: una línea — p.nombre() + " - $" + p.precio()
         // (el test espera exactamente "Teclado - $100.0": la concatenación de
         // un double produce ese "100.0"). Protege p null si quieres nota alta.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para formatoEtiqueta");
+        if (p == null) {
+            throw new IllegalArgumentException();
+        }
+        return String.format("%s - $%.1f", p.nombre(), p.precio());
     }
 
     /**
@@ -245,7 +277,11 @@ public final class Ej011Records {
         // BONUS defensivo: ¿qué haces si costoEnvio es negativo? ¿Y si la suma
         // hiciera el precio negativo (el constructor compacto lanzará)? Piensa
         // la respuesta antes de que te la dé un stack trace.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para reconstruirConEnvio");
+
+        if (p == null || costoEnvio < 0 || p.precio() < 0) {
+            throw new IllegalArgumentException();
+        }
+        return new ProductoDto(p.id(), p.nombre(), p.precio() + costoEnvio);
     }
 
 }

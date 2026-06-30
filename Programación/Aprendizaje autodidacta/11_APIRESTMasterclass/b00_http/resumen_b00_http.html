@@ -1,0 +1,1155 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bloque 00 - Fundamentos HTTP y Web</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f8fb;
+      --surface: #ffffff;
+      --surface-2: #eef2f7;
+      --text: #172033;
+      --muted: #637083;
+      --line: #d9e0ea;
+      --accent: #0f766e;
+      --accent-2: #2563eb;
+      --accent-3: #b45309;
+      --accent-4: #7c3aed;
+      --accent-5: #db2777;
+      --accent-6: #0891b2;
+      --danger: #b91c1c;
+      --ok: #15803d;
+      --soft-a: #e0f2fe;
+      --soft-b: #ecfdf5;
+      --soft-c: #fff7ed;
+      --soft-d: #f5f3ff;
+      --soft-e: #fdf2f8;
+      --shadow: 0 18px 50px rgba(23, 32, 51, .08);
+      --radius: 8px;
+      --code: #111827;
+      --code-bg: #edf2f7;
+    }
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #0d1117;
+      --surface: #151b23;
+      --surface-2: #1f2937;
+      --text: #e7edf5;
+      --muted: #9ba8b8;
+      --line: #303a49;
+      --accent: #2dd4bf;
+      --accent-2: #60a5fa;
+      --accent-3: #fbbf24;
+      --accent-4: #a78bfa;
+      --accent-5: #f472b6;
+      --accent-6: #22d3ee;
+      --danger: #fb7185;
+      --ok: #4ade80;
+      --soft-a: #0b2a3a;
+      --soft-b: #0d2f27;
+      --soft-c: #34230a;
+      --soft-d: #251846;
+      --soft-e: #3a1428;
+      --shadow: 0 18px 50px rgba(0, 0, 0, .28);
+      --code: #f8fafc;
+      --code-bg: #0b1220;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scrollbar-color: var(--accent) var(--surface-2); scrollbar-width: thin; }
+    *::-webkit-scrollbar { width: 12px; height: 12px; }
+    *::-webkit-scrollbar-track { background: var(--surface-2); }
+    *::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, var(--accent), var(--accent-4));
+      border: 3px solid var(--surface-2);
+      border-radius: 999px;
+    }
+    *::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, var(--accent-2), var(--accent-5)); }
+    body {
+      margin: 0;
+      min-width: 320px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+    ::selection { background: color-mix(in srgb, var(--accent-5) 28%, transparent); color: var(--text); }
+    button, input { font: inherit; }
+    .shell { min-height: 100vh; display: grid; grid-template-columns: 286px minmax(0, 1fr); transition: grid-template-columns .22s ease; }
+    .shell.sidebar-hidden { grid-template-columns: 0 minmax(0, 1fr); }
+    aside {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 22px;
+      border-right: 1px solid var(--line);
+      background: color-mix(in srgb, var(--surface) 92%, transparent);
+      backdrop-filter: blur(16px);
+      overflow: auto;
+      transition: transform .22s ease, opacity .22s ease, padding .22s ease;
+    }
+    .shell.sidebar-hidden aside { transform: translateX(-100%); opacity: 0; pointer-events: none; padding-left: 0; padding-right: 0; }
+    main { min-width: 0; }
+    .sidebar-toggle {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 20;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 10px 13px;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+    }
+    .sidebar-toggle:hover { border-color: var(--accent); }
+    .brand { display: grid; gap: 4px; margin-bottom: 18px; }
+    .eyebrow { color: var(--accent); font-weight: 800; font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; }
+    h1, h2, h3 { line-height: 1.12; letter-spacing: 0; }
+    h1 { margin: 0; font-size: clamp(2.2rem, 5vw, 5.2rem); max-width: 980px; }
+    h2 { margin: 0 0 16px; font-size: clamp(1.7rem, 3vw, 2.7rem); }
+    h3 { margin: 0 0 10px; font-size: 1.12rem; }
+    p { margin: 0 0 14px; color: var(--muted); }
+    strong { color: var(--text); }
+    code, pre { font-family: "JetBrains Mono", "Cascadia Code", Consolas, monospace; }
+    code { color: var(--code); background: var(--code-bg); padding: .1rem .32rem; border-radius: 5px; }
+    pre code { background: transparent; padding: 0; border-radius: 0; color: inherit; }
+    .tok-keyword { color: #7c3aed; font-weight: 800; }
+    .tok-type { color: #0f766e; font-weight: 800; }
+    .tok-fn { color: #2563eb; font-weight: 800; }
+    .tok-name { color: #b45309; }
+    .tok-string { color: #15803d; }
+    .tok-number { color: #db2777; }
+    .tok-comment { color: #64748b; font-style: italic; }
+    .tok-annotation { color: #0891b2; font-weight: 800; }
+    .tok-http-method { color: #7c3aed; font-weight: 900; }
+    .tok-http-status { color: #15803d; font-weight: 900; }
+    [data-theme="dark"] .tok-keyword { color: #c4b5fd; }
+    [data-theme="dark"] .tok-type { color: #5eead4; }
+    [data-theme="dark"] .tok-fn { color: #93c5fd; }
+    [data-theme="dark"] .tok-name { color: #fbbf24; }
+    [data-theme="dark"] .tok-string { color: #86efac; }
+    [data-theme="dark"] .tok-number { color: #f9a8d4; }
+    [data-theme="dark"] .tok-comment { color: #94a3b8; }
+    [data-theme="dark"] .tok-annotation { color: #67e8f9; }
+    pre { margin: 0; overflow: auto; padding: 16px; background: var(--code-bg); color: var(--code); border: 1px solid var(--line); border-radius: var(--radius); line-height: 1.45; position: relative; max-width: 100%; }
+    .hero {
+      min-height: 88vh;
+      display: grid;
+      align-content: center;
+      padding: 68px clamp(22px, 5vw, 72px) 44px;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(120deg, color-mix(in srgb, var(--accent) 14%, transparent), transparent 40%),
+        linear-gradient(30deg, color-mix(in srgb, var(--accent-2) 12%, transparent), transparent 42%),
+        linear-gradient(160deg, color-mix(in srgb, var(--accent-5) 10%, transparent), transparent 58%);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(color-mix(in srgb, var(--line) 52%, transparent) 1px, transparent 1px),
+        linear-gradient(90deg, color-mix(in srgb, var(--line) 52%, transparent) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+      opacity: .38;
+    }
+    .hero > * { position: relative; }
+    .hero p { max-width: 760px; font-size: 1.12rem; }
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 30px;
+      max-width: 920px;
+    }
+    .metric {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 13px;
+      background: color-mix(in srgb, var(--surface) 76%, transparent);
+      backdrop-filter: blur(10px);
+    }
+    .metric b { display: block; font-size: 1.28rem; color: var(--text); }
+    .metric span { color: var(--muted); font-size: .86rem; }
+    .toolbar { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 24px; }
+    .btn {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 7px;
+      padding: 10px 12px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 1px 0 rgba(0,0,0,.04);
+    }
+    .btn:hover { border-color: var(--accent); }
+    .progress {
+      height: 8px;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      overflow: hidden;
+      width: min(420px, 100%);
+    }
+    .progress span { display: block; height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+    nav { display: grid; gap: 4px; margin-top: 16px; }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      padding: 8px 10px;
+      border-radius: 6px;
+      border: 1px solid transparent;
+    }
+    nav a:hover, nav a.active { color: var(--text); background: var(--surface-2); border-color: var(--line); }
+    .search { width: 100%; border: 1px solid var(--line); border-radius: 7px; padding: 10px 11px; background: var(--surface); color: var(--text); }
+    section { padding: 64px clamp(22px, 5vw, 72px); border-bottom: 1px solid var(--line); }
+    .section-head { max-width: 960px; margin-bottom: 24px; }
+    .grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 16px; }
+    .card {
+      grid-column: span 4;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+    .card:nth-child(5n+1) { border-top: 4px solid var(--accent); }
+    .card:nth-child(5n+2) { border-top: 4px solid var(--accent-2); }
+    .card:nth-child(5n+3) { border-top: 4px solid var(--accent-3); }
+    .card:nth-child(5n+4) { border-top: 4px solid var(--accent-4); }
+    .card:nth-child(5n+5) { border-top: 4px solid var(--accent-5); }
+    .wide { grid-column: span 8; }
+    .full { grid-column: 1 / -1; }
+    .mini { grid-column: span 3; }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: .8rem;
+      margin: 0 6px 6px 0;
+      background: var(--surface-2);
+    }
+    .color-band {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      height: 8px;
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      margin: 14px 0 22px;
+    }
+    .color-band span:nth-child(1) { background: var(--accent); }
+    .color-band span:nth-child(2) { background: var(--accent-2); }
+    .color-band span:nth-child(3) { background: var(--accent-3); }
+    .color-band span:nth-child(4) { background: var(--accent-4); }
+    .color-band span:nth-child(5) { background: var(--accent-5); }
+    .color-band span:nth-child(6) { background: var(--accent-6); }
+    table { width: 100%; border-collapse: collapse; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+    th, td { text-align: left; padding: 11px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { color: var(--text); background: var(--surface-2); font-size: .88rem; }
+    tr:last-child td { border-bottom: 0; }
+    .status { font-weight: 800; }
+    .s2 { color: var(--ok); }
+    .s3 { color: var(--accent-2); }
+    .s4 { color: var(--accent-3); }
+    .s5 { color: var(--danger); }
+    .flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; align-items: stretch; }
+    .node { border: 1px solid var(--line); background: var(--surface); border-radius: var(--radius); padding: 14px; min-height: 92px; position: relative; }
+    .node:not(:last-child)::after { content: "->"; position: absolute; right: -18px; top: 36px; color: var(--muted); font-weight: 800; }
+    .http-demo { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .exercise { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: start; padding: 14px 0; border-bottom: 1px solid var(--line); }
+    .exercise:last-child { border-bottom: 0; }
+    .num { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 7px; background: var(--surface-2); color: var(--accent); font-weight: 900; }
+    .pill { border: 1px solid var(--line); border-radius: 999px; padding: 4px 9px; color: var(--muted); font-size: .82rem; white-space: nowrap; }
+    .flash { cursor: pointer; transition: transform .15s ease, border-color .15s ease; }
+    .flash:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .flash .answer { display: none; margin-top: 12px; color: var(--text); }
+    .flash.open .answer { display: block; }
+    .hidden { display: none !important; }
+    .kbd { border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 5px; padding: 1px 5px; background: var(--surface); color: var(--muted); }
+    .print-only { display: none; }
+    .pdf-cover, .pdf-toc, .print-page-footer { display: none; }
+    .example-card { grid-column: span 6; display: grid; gap: 12px; }
+    .example-meta { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+    .meta-box { border: 1px solid var(--line); border-radius: var(--radius); padding: 10px; background: var(--surface-2); }
+    .meta-box b { display: block; color: var(--text); margin-bottom: 4px; }
+    .sample-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .terminal { background: #07111f; color: #d1fae5; border-color: #123047; }
+    .terminal code { background: transparent; color: inherit; padding: 0; }
+    .callout {
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--accent-3);
+      border-radius: var(--radius);
+      padding: 14px;
+      background: linear-gradient(90deg, color-mix(in srgb, var(--accent-3) 12%, transparent), transparent);
+    }
+    .study-path { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; counter-reset: step; }
+    .study-step {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px;
+      background: var(--surface);
+      position: relative;
+      min-height: 150px;
+    }
+    .study-step::before {
+      counter-increment: step;
+      content: counter(step);
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--accent);
+      color: white;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+    .decision-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .decision {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px;
+      background: linear-gradient(135deg, var(--surface), color-mix(in srgb, var(--soft-a) 45%, var(--surface)));
+    }
+    .decision:nth-child(2) { background: linear-gradient(135deg, var(--surface), color-mix(in srgb, var(--soft-b) 45%, var(--surface))); }
+    .decision:nth-child(3) { background: linear-gradient(135deg, var(--surface), color-mix(in srgb, var(--soft-c) 45%, var(--surface))); }
+    .decision:nth-child(4) { background: linear-gradient(135deg, var(--surface), color-mix(in srgb, var(--soft-d) 45%, var(--surface))); }
+    @media (max-width: 980px) {
+      .shell { grid-template-columns: 1fr; }
+      .shell.sidebar-hidden { grid-template-columns: 1fr; }
+      .shell.sidebar-hidden aside { display: none; }
+      aside { position: relative; height: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+      .card, .wide, .mini { grid-column: 1 / -1; }
+      .http-demo, .flow, .sample-grid, .example-meta, .hero-metrics, .study-path, .decision-grid { grid-template-columns: 1fr; }
+      .node:not(:last-child)::after { display: none; }
+      .hero { min-height: auto; }
+    }
+    @media (min-width: 981px) and (max-width: 1220px) {
+      .card { grid-column: span 6; }
+      .full, .wide { grid-column: 1 / -1; }
+      .mini { grid-column: span 6; }
+      .hero-metrics, .study-path { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 720px) {
+      .sidebar-toggle { right: max(12px, env(safe-area-inset-right)); bottom: max(12px, env(safe-area-inset-bottom)); }
+      aside {
+        position: fixed;
+        z-index: 18;
+        inset: auto max(12px, env(safe-area-inset-right)) calc(64px + env(safe-area-inset-bottom)) auto;
+        width: min(88vw, 360px);
+        max-height: min(72dvh, 620px);
+        height: auto;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        box-shadow: 0 24px 70px rgba(0,0,0,.26);
+      }
+      .shell.sidebar-hidden aside { display: block; transform: translateY(14px) scale(.98); opacity: 0; pointer-events: none; }
+      section { padding: 42px 16px; }
+      .hero { padding: 58px 16px 34px; }
+      h1 { font-size: clamp(2rem, 12vw, 3.3rem); }
+      .toolbar { align-items: stretch; }
+      .btn { flex: 1 1 140px; justify-content: center; }
+      .exercise { grid-template-columns: auto 1fr; }
+      .exercise .pill { grid-column: 2; justify-self: start; }
+      table { display: block; overflow-x: auto; white-space: nowrap; }
+      th, td { white-space: normal; min-width: 140px; }
+      pre { font-size: .82rem; }
+    }
+    @media print {
+      @page {
+        margin: 20mm 12mm 18mm;
+        size: A4;
+        @bottom-center {
+          content: "Pagina " counter(page) " de " counter(pages);
+          font-family: Inter, Arial, sans-serif;
+          font-size: 9pt;
+          color: #555;
+        }
+      }
+      * { box-shadow: none !important; text-shadow: none !important; }
+      html, body { background: #fff !important; color: #111 !important; font-size: 10.5pt; line-height: 1.42; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      aside, .toolbar, .search, .sidebar-toggle, .print-page-footer { display: none !important; }
+      .shell { display: block; }
+      .pdf-cover, .pdf-toc { display: block !important; border: 0 !important; }
+      .pdf-cover {
+        min-height: 247mm;
+        padding: 18mm 14mm !important;
+        page-break-after: always;
+        break-after: page;
+        background:
+          linear-gradient(135deg, rgba(15, 118, 110, .16), rgba(37, 99, 235, .08) 45%, rgba(219, 39, 119, .12)),
+          #fff !important;
+      }
+      .pdf-cover-inner {
+        min-height: 210mm;
+        border: 2px solid #172033;
+        border-radius: 8px;
+        padding: 18mm;
+        display: grid;
+        align-content: center;
+        gap: 9mm;
+        background: rgba(255,255,255,.82);
+      }
+      .pdf-cover h1 { font-size: 38pt; line-height: 1.02; margin: 0; }
+      .pdf-cover p { font-size: 13pt; max-width: 150mm; color: #222 !important; }
+      .pdf-cover-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4mm; }
+      .pdf-cover-grid div { border: 1px solid #999; border-top: 5px solid #0f766e; border-radius: 6px; padding: 5mm; background: #fff; }
+      .pdf-cover-grid div:nth-child(2) { border-top-color: #2563eb; }
+      .pdf-cover-grid div:nth-child(3) { border-top-color: #b45309; }
+      .pdf-cover-grid div:nth-child(4) { border-top-color: #db2777; }
+      .pdf-cover-grid b { display: block; font-size: 19pt; }
+      .pdf-cover-grid span { color: #333; font-size: 9pt; }
+      .pdf-toc {
+        min-height: 247mm;
+        padding: 16mm 12mm !important;
+        page-break-after: always;
+        break-after: page;
+        background: #fff !important;
+      }
+      .pdf-toc h2 { font-size: 26pt; border-bottom: 2px solid #111; padding-bottom: 4mm; }
+      .pdf-toc ol { columns: 2; column-gap: 12mm; padding-left: 7mm; margin-top: 10mm; }
+      .pdf-toc li { break-inside: avoid; margin: 0 0 4mm; padding-left: 2mm; }
+      .pdf-toc a { color: #111 !important; text-decoration: none; }
+      .hero { display: none !important; }
+      section { padding: 8mm 0; border-bottom: 1px solid #bbb; break-before: auto; }
+      section[id] { scroll-margin: 0; }
+      h1 { font-size: 28pt; }
+      h2 { font-size: 18pt; margin-top: 0; break-after: avoid; page-break-after: avoid; }
+      h3 { font-size: 12pt; }
+      p { color: #222 !important; }
+      .grid, .http-demo, .flow, .sample-grid, .example-meta, .hero-metrics, .study-path, .decision-grid { display: block; }
+      .card, .node, .stage, .meta-box, .callout {
+        display: block;
+        margin: 0 0 4mm;
+        padding: 4mm;
+        border: 1px solid #bbb;
+        background: #fff !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+      .example-card, .exercise, .study-step, .decision, .metric { break-inside: avoid; page-break-inside: avoid; }
+      #exerciseList { break-inside: auto !important; page-break-inside: auto !important; }
+      .exercise {
+        display: grid !important;
+        grid-template-columns: 12mm minmax(0, 1fr) !important;
+        gap: 3mm !important;
+        align-items: start;
+        padding: 4mm 0 !important;
+      }
+      .exercise .pill { display: none !important; }
+      .exercise p, .exercise strong { overflow-wrap: anywhere; word-break: normal; }
+      .num { width: 9mm; height: 9mm; font-size: 8pt; }
+      .flash .answer { display: block !important; }
+      table { page-break-inside: auto; border-color: #999; }
+      thead { display: table-header-group; }
+      tfoot { display: table-footer-group; }
+      tr { page-break-inside: avoid; page-break-after: auto; }
+      th, td { border-color: #bbb; padding: 6px 7px; }
+      pre {
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+        overflow: visible;
+        background: #f5f5f5 !important;
+        color: #111 !important;
+        border: 1px solid #aaa;
+        page-break-inside: auto;
+        break-inside: auto;
+      }
+      code { background: #f0f0f0 !important; color: #111 !important; }
+      pre code { background: transparent !important; }
+      .tok-keyword, .tok-type, .tok-fn, .tok-name, .tok-string, .tok-number, .tok-comment, .tok-annotation, .tok-http-method, .tok-http-status {
+        color: #111 !important;
+        font-weight: inherit;
+        font-style: inherit;
+      }
+      a { color: #111 !important; text-decoration: none; }
+      .print-only { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <button class="sidebar-toggle" id="sidebarBtn" type="button" title="Mostrar u ocultar indice">Indice</button>
+  <div class="print-page-footer print-only"></div>
+  <div class="shell">
+    <aside>
+      <div class="brand">
+        <span class="eyebrow">Masterclass API REST</span>
+        <strong>Bloque 00</strong>
+        <span style="color:var(--muted)">Fundamentos HTTP y Web</span>
+      </div>
+      <input class="search" id="search" placeholder="Filtrar secciones, ejercicios...">
+      <nav id="toc"></nav>
+    </aside>
+    <main>
+      <section class="pdf-cover print-only" aria-label="Portada PDF">
+        <div class="pdf-cover-inner">
+          <span class="eyebrow">Masterclass API REST</span>
+          <h1>Bloque 00<br>Fundamentos HTTP y Web</h1>
+          <p>Resumen teorico, ejemplos guiados, criterios de dominio, ejercicios oficiales y ampliaciones para estudiar HTTP como base real de una API REST.</p>
+          <div class="pdf-cover-grid">
+            <div><b>10</b><span>ejercicios oficiales</span></div>
+            <div><b>10</b><span>ejemplos con salida</span></div>
+            <div><b>13</b><span>secciones de estudio</span></div>
+            <div><b>HTTP</b><span>request, response, REST y cache</span></div>
+          </div>
+        </div>
+      </section>
+      <section class="pdf-toc print-only" aria-label="Indice PDF">
+        <span class="eyebrow">Indice del documento</span>
+        <h2>Contenido</h2>
+        <p>Usa este indice como ruta de lectura: fundamentos primero, decisiones despues, ejercicios y repaso al final.</p>
+        <ol id="printToc"></ol>
+      </section>
+      <header class="hero" id="inicio">
+        <span class="eyebrow">Resumen expandido</span>
+        <h1>HTTP antes de Spring: la gramatica real de una API REST</h1>
+        <p>Una API no empieza en un controlador, empieza en una peticion con metodo, ruta, cabeceras, cuerpo y una respuesta coherente. Este fichero concentra la teoria del bloque, la conecta con los ejercicios y anade retos frecuentes y menos frecuentes para cubrir el contenido con margen.</p>
+        <div class="toolbar">
+          <button class="btn" id="themeBtn" title="Cambiar tema">Tema</button>
+          <button class="btn" id="expandBtn" title="Mostrar respuestas de repaso">Repaso</button>
+          <button class="btn" id="pdfBtn" title="Imprimir o guardar como PDF">PDF limpio</button>
+          <div class="progress" aria-label="Progreso de lectura"><span id="bar"></span></div>
+        </div>
+        <div class="hero-metrics" aria-label="Resumen del contenido">
+          <div class="metric"><b>10</b><span>ejercicios oficiales conectados</span></div>
+          <div class="metric"><b>10</b><span>ejemplos con salida esperada</span></div>
+          <div class="metric"><b>4</b><span>capas: mensaje, semantica, REST, cache</span></div>
+          <div class="metric"><b>PDF</b><span>maquetado para estudiar sin la interfaz</span></div>
+        </div>
+      </header>
+
+      <section id="mapa" data-title="Mapa del bloque">
+        <div class="section-head">
+          <h2>Mapa mental del bloque</h2>
+          <p>El bloque 00 forma el suelo: parsear mensajes, elegir codigos, respetar verbos, entender cabeceras, negociar formatos, disenar recursos y aprovechar cache sin romper la naturaleza stateless.</p>
+          <div class="color-band" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        </div>
+        <div class="grid">
+          <article class="card"><h3>Mensaje</h3><p>Request y response son texto estructurado: primera linea, headers, linea en blanco y body. Si dominas esa forma, entiendes cualquier herramienta.</p><span class="tag">Ej001</span><span class="tag">Ej002</span></article>
+          <article class="card"><h3>Semantica</h3><p>Metodos, seguridad, idempotencia y codigos no son decoracion: permiten reintentos, cache, proxies, clientes genericos y errores legibles.</p><span class="tag">Ej003</span><span class="tag">Ej004</span></article>
+          <article class="card"><h3>Metadatos</h3><p>Headers como Accept, Content-Type, Authorization, ETag, Cache-Control o Location explican el contrato invisible de cada intercambio.</p><span class="tag">Ej005</span><span class="tag">Ej006</span></article>
+          <article class="card"><h3>Direccionamiento</h3><p>URLs, query strings y percent-encoding convierten rutas humanas en identificadores precisos que el servidor puede interpretar.</p><span class="tag">Ej007</span></article>
+          <article class="card"><h3>REST</h3><p>REST modela sustantivos, no acciones. La URI nombra el recurso; el verbo expresa la operacion; el status code expresa el resultado.</p><span class="tag">Ej008</span><span class="tag">Ej009</span></article>
+          <article class="card"><h3>Escala</h3><p>Statelessness y cache hacen que una API pueda crecer, balancear carga y ahorrar ancho de banda sin esconder estado en el servidor.</p><span class="tag">Ej010</span></article>
+        </div>
+      </section>
+
+      <section id="dominio" data-title="Ruta de dominio">
+        <div class="section-head">
+          <h2>Ruta de dominio HTTP</h2>
+          <p>La forma mas rentable de estudiar este bloque es pasar de lo mecanico a lo arquitectonico: primero lees mensajes, luego decides semantica, despues modelas recursos y por ultimo optimizas el intercambio.</p>
+        </div>
+        <div class="grid">
+          <div class="study-path">
+            <article class="study-step"><h3>Leer el cable</h3><p>Reconoce start-line, headers, body, CRLF, Content-Length y limites del mensaje sin depender de herramientas visuales.</p></article>
+            <article class="study-step"><h3>Nombrar la intencion</h3><p>Elige metodo y status por significado, no por costumbre. Aqui se gana consistencia.</p></article>
+            <article class="study-step"><h3>Disenar recursos</h3><p>Convierte acciones de negocio en sustantivos, colecciones, elementos, filtros y subrecursos.</p></article>
+            <article class="study-step"><h3>Reducir friccion</h3><p>Usa cache, negociacion, statelessness y cabeceras para hacer la API mas barata y escalable.</p></article>
+          </div>
+          <article class="card wide">
+            <h3>Matriz de decisiones rapidas</h3>
+            <div class="decision-grid">
+              <div class="decision"><strong>No entiendo la request</strong><p>Usa 400. Ejemplos: JSON roto, query ilegible, Content-Length ambiguo.</p></div>
+              <div class="decision"><strong>Entiendo, pero no cumple negocio</strong><p>Usa 422 o 409 segun sea validacion o conflicto con estado existente.</p></div>
+              <div class="decision"><strong>El cliente ya tiene copia</strong><p>Usa ETag + If-None-Match y responde 304 sin body si coincide.</p></div>
+              <div class="decision"><strong>La accion no es CRUD puro</strong><p>Modelala como subrecurso: <code>POST /pedidos/7/cancelacion</code>.</p></div>
+            </div>
+          </article>
+          <article class="card">
+            <h3>Senales de dominio</h3>
+            <p>Puedes explicar por que DELETE es idempotente, por que 401 necesita <code>WWW-Authenticate</code>, por que 204 no lleva body y por que <code>Accept</code> no es <code>Content-Type</code>.</p>
+          </article>
+          <article class="card">
+            <h3>Cuando volver atras</h3>
+            <p>Si dudas entre 400/422/409, si tus rutas tienen verbos, o si un test depende de mayusculas exactas en headers, vuelve a esta seccion antes de seguir.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="http" data-title="HTTP en bruto">
+        <div class="section-head">
+          <h2>1. HTTP en bruto</h2>
+          <p>HTTP es un protocolo peticion-respuesta. En HTTP/1.1 se puede leer como texto; en HTTP/2 y HTTP/3 viaja en frames binarios, pero la semantica de metodos, codigos y cabeceras sigue siendo la misma.</p>
+        </div>
+        <div class="http-demo">
+          <pre><code>GET /usuarios/42?expand=roles HTTP/1.1
+Host: api.demo.local
+Accept: application/json
+Authorization: Bearer eyJ...
+
+</code></pre>
+          <pre><code>HTTP/1.1 200 OK
+Content-Type: application/json
+ETag: "u42-v3"
+Cache-Control: no-cache
+
+{"id":42,"nombre":"Ana","roles":["ADMIN"]}</code></pre>
+        </div>
+        <div class="grid" style="margin-top:16px">
+          <article class="card"><h3>CRLF y LF</h3><p>El estandar usa <code>\r\n</code>, pero un parser didactico robusto tolera <code>\n</code>. La tecnica practica es separar por salto de linea y limpiar el <code>\r</code> residual.</p></article>
+          <article class="card"><h3>Linea en blanco</h3><p>Es la frontera entre metadatos y cuerpo. Antes: metodo/ruta/version y headers. Despues: body.</p></article>
+          <article class="card"><h3>Body seguro</h3><p><code>Content-Length</code> delimita bytes exactos. Si aparecen longitudes contradictorias, no se adivina: se rechaza con 400.</p></article>
+        </div>
+      </section>
+
+      <section id="request-response" data-title="Request y response">
+        <div class="section-head">
+          <h2>2. Anatomia de request y response</h2>
+          <p>La peticion pregunta o manda una intencion; la respuesta comunica resultado, metadatos y opcionalmente una representacion.</p>
+        </div>
+        <div class="grid">
+          <article class="card wide">
+            <h3>Request</h3>
+            <table>
+              <thead><tr><th>Parte</th><th>Funcion</th><th>Trampa habitual</th></tr></thead>
+              <tbody>
+                <tr><td>Metodo</td><td><code>GET</code>, <code>POST</code>, <code>PUT</code>...</td><td>Inventar verbos en la URL: <code>/crearUsuario</code>.</td></tr>
+                <tr><td>Ruta</td><td>Identifica recurso y puede incluir query.</td><td>Decodificar <code>%26</code> antes de separar por <code>&amp;</code>.</td></tr>
+                <tr><td>Version</td><td><code>HTTP/1.1</code>, <code>HTTP/2</code>.</td><td>Parsear asumiendo una unica version.</td></tr>
+                <tr><td>Headers</td><td>Metadatos case-insensitive.</td><td>Cortar por todos los dos puntos.</td></tr>
+                <tr><td>Body</td><td>Datos enviados al servidor.</td><td>Ignorar <code>Content-Length</code>.</td></tr>
+              </tbody>
+            </table>
+          </article>
+          <article class="card">
+            <h3>Response</h3>
+            <p>La primera linea cambia: version, codigo y frase. La frase es para humanos y en HTTP/2 desaparece, asi que las maquinas deben mirar el numero.</p>
+            <p><strong>Reglas de oro:</strong> 201 suele llevar <code>Location</code>; 204 y 304 no llevan body; si mandas JSON, declara <code>Content-Type: application/json</code>.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="status" data-title="Codigos de estado">
+        <div class="section-head">
+          <h2>3. Codigos de estado</h2>
+          <p>El primer digito cuenta la historia: 2xx exito, 3xx redireccion/cache, 4xx problema del cliente, 5xx problema del servidor.</p>
+        </div>
+        <div class="grid">
+          <article class="card full">
+            <table>
+              <thead><tr><th>Codigo</th><th>Nombre</th><th>Uso correcto</th><th>Matiz fino</th></tr></thead>
+              <tbody>
+                <tr><td class="status s2">200</td><td>OK</td><td>Lectura o actualizacion con cuerpo.</td><td>No lo uses para esconder errores.</td></tr>
+                <tr><td class="status s2">201</td><td>Created</td><td>Recurso creado.</td><td>Anade <code>Location</code>.</td></tr>
+                <tr><td class="status s2">204</td><td>No Content</td><td>Exito sin representacion.</td><td>Nunca body.</td></tr>
+                <tr><td class="status s3">304</td><td>Not Modified</td><td>Cache valida.</td><td>Nunca body; el cliente reutiliza copia.</td></tr>
+                <tr><td class="status s4">400</td><td>Bad Request</td><td>Sintaxis ilegible o request malformada.</td><td>JSON roto, parametro no parseable, CL ambiguo.</td></tr>
+                <tr><td class="status s4">401</td><td>Unauthorized</td><td>Falta autenticacion o no vale.</td><td>Debe indicar <code>WWW-Authenticate</code>.</td></tr>
+                <tr><td class="status s4">403</td><td>Forbidden</td><td>Se quien eres, pero no puedes.</td><td>Reintentar igual no ayuda.</td></tr>
+                <tr><td class="status s4">404</td><td>Not Found</td><td>Recurso inexistente.</td><td>A veces se usa para no filtrar existencia.</td></tr>
+                <tr><td class="status s4">409</td><td>Conflict</td><td>Choca con el estado actual.</td><td>Email duplicado, version obsoleta.</td></tr>
+                <tr><td class="status s4">422</td><td>Unprocessable Entity</td><td>Sintaxis valida, negocio invalido.</td><td>Si tu API usa 400 para todo, se consistente.</td></tr>
+                <tr><td class="status s4">429</td><td>Too Many Requests</td><td>Rate limiting.</td><td>Acompana con <code>Retry-After</code> si puedes.</td></tr>
+                <tr><td class="status s5">500</td><td>Internal Server Error</td><td>Bug o excepcion no controlada.</td><td>No expongas trazas al cliente.</td></tr>
+                <tr><td class="status s5">503</td><td>Service Unavailable</td><td>Sobrecarga o mantenimiento.</td><td>Puede ser temporal.</td></tr>
+              </tbody>
+            </table>
+          </article>
+        </div>
+      </section>
+
+      <section id="metodos" data-title="Metodos HTTP">
+        <div class="section-head">
+          <h2>4. Metodos, seguridad e idempotencia</h2>
+          <p>La propiedad clave no es si devuelve lo mismo, sino si deja el servidor en el mismo estado al repetir la operacion.</p>
+        </div>
+        <div class="grid">
+          <article class="card full">
+            <table>
+              <thead><tr><th>Metodo</th><th>Intencion</th><th>Seguro</th><th>Idempotente</th><th>Body tipico</th></tr></thead>
+              <tbody>
+                <tr><td><code>GET</code></td><td>Leer recurso.</td><td>Si</td><td>Si</td><td>No</td></tr>
+                <tr><td><code>HEAD</code></td><td>Leer solo headers.</td><td>Si</td><td>Si</td><td>No</td></tr>
+                <tr><td><code>OPTIONS</code></td><td>Descubrir operaciones/CORS.</td><td>Si</td><td>Si</td><td>No</td></tr>
+                <tr><td><code>POST</code></td><td>Crear o ejecutar accion no idempotente.</td><td>No</td><td>No</td><td>Si</td></tr>
+                <tr><td><code>PUT</code></td><td>Reemplazar recurso completo.</td><td>No</td><td>Si</td><td>Si</td></tr>
+                <tr><td><code>PATCH</code></td><td>Modificar parcialmente.</td><td>No</td><td>Normalmente no</td><td>Si</td></tr>
+                <tr><td><code>DELETE</code></td><td>Eliminar.</td><td>No</td><td>Si</td><td>No</td></tr>
+              </tbody>
+            </table>
+          </article>
+          <article class="card"><h3>Seguro</h3><p>No modifica estado. Un GET que borra datos rompe navegadores, crawlers, caches y cualquier herramienta que precargue enlaces.</p></article>
+          <article class="card"><h3>Idempotente</h3><p>Un DELETE puede devolver 204 la primera vez y 404 la segunda, pero el estado final sigue siendo "recurso borrado".</p></article>
+          <article class="card"><h3>Reintentos</h3><p>PUT y DELETE pueden reintentarse mejor que POST. Por eso pasarelas y clientes miran la semantica antes de repetir.</p></article>
+        </div>
+      </section>
+
+      <section id="headers" data-title="Headers y negociacion">
+        <div class="section-head">
+          <h2>5. Headers y negociacion de contenido</h2>
+          <p>Los headers son el contrato lateral de HTTP. Indican formato, cache, credenciales, longitud, localizacion, preferencias y seguridad.</p>
+        </div>
+        <div class="grid">
+          <article class="card wide">
+            <h3>Catalogo esencial</h3>
+            <table>
+              <thead><tr><th>Header</th><th>Direccion</th><th>Idea</th></tr></thead>
+              <tbody>
+                <tr><td><code>Host</code></td><td>Request</td><td>Dominio destino, obligatorio en HTTP/1.1.</td></tr>
+                <tr><td><code>Accept</code></td><td>Request</td><td>Lo que quiero recibir.</td></tr>
+                <tr><td><code>Content-Type</code></td><td>Ambas</td><td>Lo que estoy enviando.</td></tr>
+                <tr><td><code>Authorization</code></td><td>Request</td><td>Credenciales: Bearer, Basic...</td></tr>
+                <tr><td><code>Location</code></td><td>Response</td><td>URI del recurso creado o redireccion.</td></tr>
+                <tr><td><code>ETag</code></td><td>Response</td><td>Huella/version del recurso.</td></tr>
+                <tr><td><code>If-None-Match</code></td><td>Request</td><td>Revalidacion de cache.</td></tr>
+                <tr><td><code>Strict-Transport-Security</code></td><td>Response</td><td>Fuerza HTTPS en navegadores.</td></tr>
+              </tbody>
+            </table>
+          </article>
+          <article class="card">
+            <h3>Reglas de parsing</h3>
+            <p>Los nombres son case-insensitive; los valores conservan su caso. Se corta por el primer <code>:</code>, porque <code>Host: localhost:8080</code> es valido.</p>
+            <p><code>Accept</code> mira al futuro; <code>Content-Type</code> describe el presente.</p>
+          </article>
+          <article class="card full">
+            <h3>Accept con q</h3>
+            <pre><code>Accept: application/json, application/xml;q=0.8, */*;q=0.1</code></pre>
+            <p style="margin-top:12px">Se elige el formato soportado con mayor calidad. Si ninguno encaja, la respuesta correcta es <code>406 Not Acceptable</code>. Los parametros como <code>charset=utf-8</code> no cambian el tipo base al comparar.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="urls" data-title="URLs y query">
+        <div class="section-head">
+          <h2>6. URLs, query strings y percent-encoding</h2>
+          <p>La URL no es solo texto bonito. Cada parte tiene responsabilidad y algunas ni siquiera llegan al servidor.</p>
+        </div>
+        <div class="grid">
+          <article class="card full">
+            <pre><code>https://api.tienda.com:443/v1/productos?categoria=libros&amp;tag=java&amp;tag=http#detalle
+└─ esquema             └ host ┘ puerto └ path ┘ └──── query string ────┘ fragmento</code></pre>
+          </article>
+          <article class="card"><h3>Path</h3><p>Identifica recursos y jerarquia: <code>/usuarios/42/pedidos</code>. No debe almacenar filtros variables.</p></article>
+          <article class="card"><h3>Query</h3><p>Filtros, orden, paginacion, busqueda y banderas: <code>?page=2&amp;sort=precio</code>. Una clave puede repetirse.</p></article>
+          <article class="card"><h3>Fragmento</h3><p><code>#detalle</code> se queda en el navegador. El servidor no lo ve, asi que no lo uses para logica backend.</p></article>
+          <article class="card"><h3>Percent-encoding</h3><p>Separa primero por <code>&amp;</code> y <code>=</code>, decodifica despues. Si decodificas antes, <code>%26</code> se convierte en un separador falso.</p></article>
+          <article class="card"><h3>Valores vacios</h3><p><code>?debug</code> puede significar bandera presente; <code>?q=</code> clave con valor vacio. Decide y documenta.</p></article>
+          <article class="card"><h3>Mas alla del bloque</h3><p>Normaliza barras, evita IDs sensibles predecibles cuando importe, y no metas estado de sesion en query.</p></article>
+        </div>
+      </section>
+
+      <section id="rest" data-title="REST y Richardson">
+        <div class="section-head">
+          <h2>7. Modelado REST y madurez de Richardson</h2>
+          <p>REST no es "usar JSON". Es nombrar recursos con URIs, aplicar metodos HTTP con semantica y devolver codigos adecuados.</p>
+        </div>
+        <div class="grid">
+          <article class="card full">
+            <table>
+              <thead><tr><th>Operacion</th><th>Ruta REST</th><th>Exito</th><th>Fallo habitual</th></tr></thead>
+              <tbody>
+                <tr><td>Listar</td><td><code>GET /productos</code></td><td>200 + array</td><td>Normalmente no 404 por lista vacia.</td></tr>
+                <tr><td>Detalle</td><td><code>GET /productos/{id}</code></td><td>200</td><td>404</td></tr>
+                <tr><td>Crear</td><td><code>POST /productos</code></td><td>201 + Location</td><td>400/422</td></tr>
+                <tr><td>Reemplazar</td><td><code>PUT /productos/{id}</code></td><td>200 o 204</td><td>404/409</td></tr>
+                <tr><td>Parcial</td><td><code>PATCH /productos/{id}</code></td><td>200</td><td>404/409/422</td></tr>
+                <tr><td>Borrar</td><td><code>DELETE /productos/{id}</code></td><td>204</td><td>404</td></tr>
+              </tbody>
+            </table>
+          </article>
+          <article class="card full">
+            <div class="flow">
+              <div class="node"><strong>Nivel 0</strong><p>RPC: un endpoint y acciones en body.</p></div>
+              <div class="node"><strong>Nivel 1</strong><p>Recursos con URI, pero semantica pobre.</p></div>
+              <div class="node"><strong>Nivel 2</strong><p>Verbos + status codes. Objetivo realista.</p></div>
+              <div class="node"><strong>Nivel 3</strong><p>HATEOAS: respuestas con enlaces de navegacion.</p></div>
+              <div class="node"><strong>Produccion</strong><p>Consistencia, versionado, errores y documentacion.</p></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="cache" data-title="Stateless y cache">
+        <div class="section-head">
+          <h2>8. Statelessness y cache HTTP</h2>
+          <p>Stateless significa que cada request trae todo lo necesario. La cache evita repetir trabajo cuando el recurso no cambio.</p>
+        </div>
+        <div class="grid">
+          <article class="card wide">
+            <h3>ETag / If-None-Match</h3>
+            <pre><code>Cliente -> GET /libros/1
+Servidor -> 200 OK
+            ETag: "v3"
+            body completo
+
+Cliente -> GET /libros/1
+           If-None-Match: "v3"
+Servidor -> 304 Not Modified
+            sin body</code></pre>
+          </article>
+          <article class="card">
+            <h3>Cache-Control</h3>
+            <p><code>max-age=3600</code> permite usar copia una hora. <code>no-cache</code> obliga a revalidar. <code>no-store</code> prohibe guardar, util para datos sensibles.</p>
+          </article>
+          <article class="card"><h3>Escalado</h3><p>Si el servidor no guarda sesion, cualquier replica puede atender cualquier request. El token viaja en cada llamada.</p></article>
+          <article class="card"><h3>Sesion vs token</h3><p>Una cookie de sesion puede ser stateful si apunta a memoria del servidor. Un JWT suele encajar mejor con stateless, aunque no sustituye buen diseno de seguridad.</p></article>
+          <article class="card"><h3>304</h3><p>El 304 no trae body. Su mensaje real es: "tu copia sigue vigente".</p></article>
+        </div>
+      </section>
+
+      <section id="ejercicios" data-title="Ejercicios y retos">
+        <div class="section-head">
+          <h2>9. Ejercicios del bloque y ampliaciones</h2>
+          <p>No son soluciones; son mapas de lo que debes saber demostrar al resolver cada ejercicio y retos adicionales para cubrir el bloque con creces.</p>
+        </div>
+        <div class="grid">
+          <article class="card full" id="exerciseList"></article>
+          <article class="card full">
+            <h3>Retos extra populares y no tan populares</h3>
+            <table>
+              <thead><tr><th>Reto</th><th>Por que importa</th><th>Pista teorica</th></tr></thead>
+              <tbody>
+                <tr><td>Request smuggling por CL/TE</td><td>Seguridad real en proxies.</td><td>Rechazar ambiguedad, no adivinar.</td></tr>
+                <tr><td>HEAD coherente con GET</td><td>Herramientas usan HEAD para metadatos.</td><td>Mismos headers relevantes, sin body.</td></tr>
+                <tr><td>OPTIONS y CORS preflight</td><td>Navegadores preguntan antes de ciertas llamadas.</td><td><code>Allow</code>, <code>Access-Control-*</code>.</td></tr>
+                <tr><td>Vary: Accept</td><td>Cache con negociacion de contenido.</td><td>La respuesta depende de <code>Accept</code>.</td></tr>
+                <tr><td>Weak vs strong ETag</td><td>Cache semantica vs byte a byte.</td><td><code>W/"..."</code> permite equivalencia debil.</td></tr>
+                <tr><td>Idempotency-Key en POST</td><td>Pagos y pedidos evitan duplicados.</td><td>POST no es idempotente por defecto, pero puede hacerse seguro con clave.</td></tr>
+                <tr><td>Content-Disposition</td><td>Descargas con nombre de archivo.</td><td>Header de respuesta, cuidado con caracteres.</td></tr>
+                <tr><td>410 Gone</td><td>Recurso existio y fue retirado.</td><td>Diferente de 404 cuando quieres comunicar retirada permanente.</td></tr>
+                <tr><td>415 Unsupported Media Type</td><td>El cliente envia formato que no aceptas.</td><td>Complemento de 406: entrada vs salida.</td></tr>
+                <tr><td>202 Accepted</td><td>Procesamiento asincrono.</td><td>La operacion fue aceptada, no terminada.</td></tr>
+              </tbody>
+            </table>
+          </article>
+        </div>
+      </section>
+
+      <section id="ejemplos" data-title="Ejemplos guiados">
+        <div class="section-head">
+          <h2>10. Ejemplos guiados por ejercicio</h2>
+          <p>Cada caso muestra el problema que resuelve el concepto, una muestra de codigo o intercambio HTTP, una salida esperada y la mejora frente a la forma ingenua anterior.</p>
+        </div>
+        <div class="grid" id="examplesList"></div>
+      </section>
+
+      <section id="repaso" data-title="Repaso activo">
+        <div class="section-head">
+          <h2>11. Repaso activo</h2>
+          <p>Haz clic en cada tarjeta para comprobar la idea. Este bloque se aprende cuando puedes justificar decisiones, no cuando memorizas tablas.</p>
+        </div>
+        <div class="grid" id="flashcards"></div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const exercises = [
+      ["Ej001HttpRequestParser", "Parsear request cruda", "Metodo, ruta, version, headers, body, CRLF/LF, Content-Length y validaciones."],
+      ["Ej002HttpResponseBuilder", "Construir respuesta HTTP", "Linea de estado, headers correctos, 201 con Location, 204/304 sin body."],
+      ["Ej003StatusCodeResolver", "Elegir status code", "Familias, 400 vs 422, 401 vs 403, 409, 429, 500/503."],
+      ["Ej004HttpMethodsSemantics", "Semantica de verbos", "Safe, idempotente, reintentos, PUT vs PATCH, DELETE repetido."],
+      ["Ej005HeadersToolkit", "Trabajar con headers", "Case-insensitive, valores con dos puntos, normalizacion, catalogo basico."],
+      ["Ej006ContentTypeNegotiation", "Negociar formatos", "Accept, q-values, comodines, 406, media types con parametros."],
+      ["Ej007UrlAndQueryParser", "Parsear URL/query", "Path, query repetida, valor vacio, fragmento, percent-encoding correcto."],
+      ["Ej008RestResourceModeler", "Modelar recursos", "Sustantivos plurales, coleccion vs elemento, filtros en query, codigos por CRUD."],
+      ["Ej009RestMaturityRichardson", "Clasificar madurez REST", "Niveles 0-3, verbos, recursos, status codes, HATEOAS."],
+      ["Ej010StatelessAndCache", "Stateless y cache", "Token por request, ETag, If-None-Match, Cache-Control, 200 vs 304."]
+    ];
+    const flashcards = [
+      ["Por que DELETE es idempotente aunque la segunda llamada de 404?", "Porque idempotencia habla del estado final del servidor. Tras una o varias llamadas, el recurso queda borrado."],
+      ["Que diferencia hay entre Accept y Content-Type?", "Accept indica lo que el cliente quiere recibir. Content-Type describe el formato del body que se esta enviando."],
+      ["Cuando usarias 415 y cuando 406?", "415 si el cliente envia un formato de entrada no soportado. 406 si pide una salida que no puedes producir."],
+      ["Por que cortar headers con split(':') puede fallar?", "Porque el valor puede contener dos puntos, por ejemplo Host: localhost:8080. Se corta por el primer dos puntos."],
+      ["Que debe llevar un 401 bien formado?", "Una cabecera WWW-Authenticate que indique el esquema para autenticarse."],
+      ["Por que no se decodifica la query antes de separarla?", "Porque un caracter escapado como %26 podria convertirse en & y crear separadores falsos."],
+      ["Que significa stateless en una API?", "Cada request trae todo lo necesario para procesarse; el servidor no depende de memoria de sesion entre llamadas."],
+      ["Que representa ETag?", "Una huella o version del recurso que permite revalidar cache con If-None-Match."]
+    ];
+    const guidedExamples = [
+      {
+        title: "Ej001 - Parser de request HTTP",
+        problem: "Antes se leia toda la peticion como texto plano y se buscaban trozos con contains, lo que rompe con CRLF, headers con dos puntos o body con saltos.",
+        remedy: "Separar start-line, headers y body por la linea en blanco; cortar cada header solo por el primer dos puntos.",
+        efficiency: "Menos casos especiales y menos falsos positivos: el parser trabaja por estructura, no por coincidencias sueltas.",
+        code: `GET /productos?tag=java&tag=http HTTP/1.1
+Host: localhost:8080
+Accept: application/json
+
+`,
+        output: `method = GET
+path = /productos
+query.tag = [java, http]
+header.host = localhost:8080
+body.length = 0`
+      },
+      {
+        title: "Ej002 - Builder de response",
+        problem: "Antes se devolvian strings sin Content-Type, sin Location en creaciones o con body en codigos que no lo permiten.",
+        remedy: "Construir la respuesta desde reglas: status-line, headers obligatorios y body solo cuando el codigo lo admite.",
+        efficiency: "La API se vuelve predecible para clientes, caches y tests; cada status tiene una forma coherente.",
+        code: `HTTP/1.1 201 Created
+Location: /usuarios/43
+Content-Type: application/json
+Content-Length: 24
+
+{"id":43,"nombre":"Ana"}`,
+        output: `status = 201 Created
+createdResource = /usuarios/43
+bodyAllowed = true
+clientNextStep = GET /usuarios/43`
+      },
+      {
+        title: "Ej003 - Resolver codigos de estado",
+        problem: "Antes todo terminaba en 200 o 500, ocultando si fallo el cliente, la validacion, el permiso o el servidor.",
+        remedy: "Elegir el codigo por familia y escenario: 400 sintaxis, 401 identidad, 403 permiso, 404 ausencia, 409 conflicto.",
+        efficiency: "Reduce ambiguedad: el cliente sabe si corregir datos, autenticarse, reintentar o mostrar error.",
+        code: `escenario("email duplicado al crear usuario") -> 409
+escenario("JSON mal formado") -> 400
+escenario("token ausente") -> 401
+escenario("sin permiso") -> 403`,
+        output: `409 Conflict
+400 Bad Request
+401 Unauthorized + WWW-Authenticate
+403 Forbidden`
+      },
+      {
+        title: "Ej004 - Verbos e idempotencia",
+        problem: "Antes se usaba POST para todo, haciendo peligrosos los reintentos tras cortes de red.",
+        remedy: "Usar GET para leer, PUT para reemplazar, PATCH para cambios parciales, DELETE para borrar y POST para crear/acciones.",
+        efficiency: "Los reintentos son mas seguros: PUT y DELETE pueden repetirse sin duplicar el recurso.",
+        code: `PUT /usuarios/42
+{"nombre":"Ana","email":"ana@demo.test"}
+
+PUT /usuarios/42
+{"nombre":"Ana","email":"ana@demo.test"}`,
+        output: `primer intento -> 200 OK
+segundo intento -> 200 OK
+estado final -> un unico usuario 42 con esos datos`
+      },
+      {
+        title: "Ej005 - Toolkit de headers",
+        problem: "Antes se comparaban cabeceras respetando mayusculas y se partia por todos los dos puntos.",
+        remedy: "Normalizar nombres para buscar y conservar valores; partir con limite 2.",
+        efficiency: "Funciona igual con Content-Type, content-type o CONTENT-TYPE, y no rompe localhost:8080.",
+        code: `Host: localhost:8080
+content-type: application/json
+X-Trace: api:checkout:42`,
+        output: `host -> localhost:8080
+Content-Type -> application/json
+X-Trace -> api:checkout:42`
+      },
+      {
+        title: "Ej006 - Negociacion de contenido",
+        problem: "Antes el servidor respondia JSON siempre, aunque el cliente pidiera XML o CSV.",
+        remedy: "Leer Accept, ordenar por q y elegir la representacion soportada con mayor prioridad.",
+        efficiency: "Un endpoint puede servir varias representaciones sin duplicar rutas.",
+        code: `Accept: text/csv;q=0.9, application/json;q=0.8, */*;q=0.1
+Soportados: application/json, text/csv`,
+        output: `elegido = text/csv
+Content-Type = text/csv
+status = 200 OK`
+      },
+      {
+        title: "Ej007 - URL y query string",
+        problem: "Antes se decodificaba toda la query antes de separarla, creando separadores falsos con %26.",
+        remedy: "Separar por & y = primero; decodificar despues cada clave y valor.",
+        efficiency: "Soporta filtros reales: repetidos, valores vacios, espacios, acentos y caracteres reservados.",
+        code: `/buscar?q=java%20http&tag=api&tag=rest&literal=a%26b`,
+        output: `path = /buscar
+q = java http
+tag = [api, rest]
+literal = a&b`
+      },
+      {
+        title: "Ej008 - Modelado de recursos REST",
+        problem: "Antes las URLs eran acciones: /crearUsuario, /borrarPedido, /listarPedidosDeUsuario.",
+        remedy: "Nombrar recursos con sustantivos y dejar la accion al verbo HTTP.",
+        efficiency: "Menos endpoints, mas consistencia y documentacion mas facil.",
+        code: `POST   /usuarios
+GET    /usuarios/42
+GET    /usuarios/42/pedidos?page=3
+DELETE /pedidos/7`,
+        output: `crear usuario -> 201 + Location
+detalle usuario -> 200 o 404
+pedidos paginados -> 200 + array
+borrado -> 204`
+      },
+      {
+        title: "Ej009 - Richardson y HATEOAS",
+        problem: "Antes todo era RPC por un unico endpoint y el cliente tenia que conocer acciones internas.",
+        remedy: "Subir de nivel: recursos, verbos, codigos y, si encaja, enlaces de estado.",
+        efficiency: "El cliente descubre transiciones validas sin inventar URLs para acciones no disponibles.",
+        code: `{
+  "id": 7,
+  "estado": "PENDIENTE",
+  "_links": {
+    "self": "/pedidos/7",
+    "cancelar": "/pedidos/7/cancelacion"
+  }
+}`,
+        output: `nivel = 3
+accion visible = cancelar
+accion oculta = pagar, si no aplica al estado actual`
+      },
+      {
+        title: "Ej010 - Stateless y cache",
+        problem: "Antes el servidor recalculaba y reenviaba el mismo recurso aunque el cliente ya tuviera una copia valida.",
+        remedy: "Enviar ETag y responder 304 cuando If-None-Match coincide.",
+        efficiency: "Ahorra ancho de banda y CPU; stateless permite que cualquier replica responda.",
+        code: `GET /libros/1
+If-None-Match: "libro-1-v3"`,
+        output: `etag actual = "libro-1-v3"
+status = 304 Not Modified
+body = <vacio>`
+      }
+    ];
+
+    const escapeHtml = value => String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;");
+
+    const toc = document.querySelector("#toc");
+    const documentSections = [...document.querySelectorAll("main section[data-title]")];
+    documentSections.forEach(section => {
+      const a = document.createElement("a");
+      a.href = "#" + section.id;
+      a.textContent = section.dataset.title;
+      toc.appendChild(a);
+    });
+    const printToc = document.querySelector("#printToc");
+    if (printToc) {
+      printToc.innerHTML = documentSections.map(section =>
+        `<li><a href="#${section.id}">${escapeHtml(section.dataset.title)}</a></li>`
+      ).join("");
+    }
+
+    const list = document.querySelector("#exerciseList");
+    list.innerHTML = "<h3>Checklist de ejercicios oficiales</h3>" + exercises.map((e, i) => `
+      <div class="exercise searchable">
+        <div class="num">${String(i + 1).padStart(2, "0")}</div>
+        <div><strong>${e[0]}</strong><p>${e[1]}: ${e[2]}</p></div>
+        <span class="pill">teoria + practica</span>
+      </div>`).join("");
+    document.querySelector("#examplesList").innerHTML = guidedExamples.map(example => `
+      <article class="card example-card searchable">
+        <h3>${escapeHtml(example.title)}</h3>
+        <div class="example-meta">
+          <div class="meta-box"><b>Problema</b><p>${escapeHtml(example.problem)}</p></div>
+          <div class="meta-box"><b>Remedio</b><p>${escapeHtml(example.remedy)}</p></div>
+          <div class="meta-box"><b>Ventaja</b><p>${escapeHtml(example.efficiency)}</p></div>
+        </div>
+        <div class="sample-grid">
+          <pre><code>${escapeHtml(example.code)}</code></pre>
+          <pre class="terminal"><code>${escapeHtml(example.output)}</code></pre>
+        </div>
+      </article>`).join("");
+    const normalizeCodeText = text => {
+      const lines = String(text).replace(/\r\n/g, "\n").replace(/\r/g, "\n").split("\n");
+      while (lines.length && !lines[0].trim()) lines.shift();
+      while (lines.length && !lines[lines.length - 1].trim()) lines.pop();
+      const indents = lines.filter(line => line.trim()).map(line => (line.match(/^\s*/) || [""])[0].length);
+      const minIndent = indents.length ? Math.min(...indents) : 0;
+      return lines.map(line => line.slice(minIndent)).join("\n");
+    };
+    const highlightCode = source => {
+      const placeholders = [];
+      let html = escapeHtml(source);
+      const hold = (className, value) => {
+        const key = `\uE000${"A".repeat(placeholders.length + 1)}\uE001`;
+        placeholders.push(`<span class="${className}">${value}</span>`);
+        return key;
+      };
+      html = html.replace(/(&quot;.*?&quot;|'.*?')/g, value => hold("tok-string", value));
+      html = html.replace(/(\/\/.*$|#.*$)/gm, value => hold("tok-comment", value));
+      html = html.replace(/(@[A-Za-z_][\w]*)/g, value => hold("tok-annotation", value));
+      html = html.replace(/\b(GET|POST|PUT|PATCH|DELETE|HEAD|OPTIONS|HTTP\/1\.1)\b/g, value => hold("tok-http-method", value));
+      html = html.replace(/\b(200|201|202|204|304|400|401|403|404|405|406|409|415|422|429|500|503)\b/g, value => hold("tok-http-status", value));
+      html = html.replace(/\b(public|private|protected|class|interface|record|sealed|permits|extends|implements|return|new|if|else|switch|case|try|catch|throw|throws|static|final|void|int|double|boolean|var)\b/g, value => hold("tok-keyword", value));
+      html = html.replace(/\b([A-Z][A-Za-z0-9_]*)(?=[\s&lt;&gt;,\)\{])/g, value => hold("tok-type", value));
+      html = html.replace(/\b([a-zA-Z_][\w]*)(?=\()/g, value => hold("tok-fn", value));
+      html = html.replace(/\b([a-z_][\w-]*)(?=\s*:)/g, value => hold("tok-name", value));
+      html = html.replace(/\b(\d+(?:\.\d+)?)\b/g, value => hold("tok-number", value));
+      return placeholders.reduce((acc, value, index) => acc.replaceAll(`\uE000${"A".repeat(index + 1)}\uE001`, value), html);
+    };
+    document.querySelectorAll("pre").forEach(pre => {
+      const code = pre.querySelector("code");
+      if (code) {
+        const normalized = normalizeCodeText(code.textContent);
+        code.dataset.raw = normalized;
+        code.innerHTML = highlightCode(normalized);
+      }
+    });
+
+    document.querySelector("#flashcards").innerHTML = flashcards.map(([q, a]) => `
+      <article class="card mini flash searchable" tabindex="0"><h3>${q}</h3><p class="answer">${a}</p></article>`).join("");
+    document.querySelectorAll(".flash").forEach(card => {
+      card.addEventListener("click", () => card.classList.toggle("open"));
+      card.addEventListener("keydown", ev => { if (ev.key === "Enter") card.classList.toggle("open"); });
+    });
+
+    const root = document.documentElement;
+    const saved = localStorage.getItem("b00-theme");
+    if (saved) root.dataset.theme = saved;
+    document.querySelector("#themeBtn").addEventListener("click", () => {
+      root.dataset.theme = root.dataset.theme === "dark" ? "light" : "dark";
+      localStorage.setItem("b00-theme", root.dataset.theme);
+    });
+    document.querySelector("#expandBtn").addEventListener("click", () => {
+      document.querySelectorAll(".flash").forEach(c => c.classList.toggle("open"));
+    });
+    const shell = document.querySelector(".shell");
+    const sidebarBtn = document.querySelector("#sidebarBtn");
+    const sidebarPreference = localStorage.getItem("b00-sidebar");
+    if (sidebarPreference === "hidden" || (!sidebarPreference && matchMedia("(max-width: 720px)").matches)) {
+      shell.classList.add("sidebar-hidden");
+    }
+    sidebarBtn.textContent = shell.classList.contains("sidebar-hidden") ? "Mostrar indice" : "Ocultar indice";
+    sidebarBtn.addEventListener("click", () => {
+      shell.classList.toggle("sidebar-hidden");
+      const hidden = shell.classList.contains("sidebar-hidden");
+      sidebarBtn.textContent = hidden ? "Mostrar indice" : "Ocultar indice";
+      localStorage.setItem("b00-sidebar", hidden ? "hidden" : "visible");
+    });
+    document.querySelector("#pdfBtn").addEventListener("click", () => {
+      document.querySelectorAll(".flash").forEach(c => c.classList.add("open"));
+      document.body.classList.add("printing");
+      setTimeout(() => window.print(), 80);
+      setTimeout(() => document.body.classList.remove("printing"), 700);
+    });
+
+    const links = [...document.querySelectorAll("nav a")];
+    links.forEach(link => link.addEventListener("click", () => {
+      if (matchMedia("(max-width: 720px)").matches) {
+        shell.classList.add("sidebar-hidden");
+        sidebarBtn.textContent = "Mostrar indice";
+      }
+    }));
+    const sections = documentSections;
+    const onScroll = () => {
+      const max = document.body.scrollHeight - innerHeight;
+      document.querySelector("#bar").style.width = Math.max(0, Math.min(100, scrollY / max * 100)) + "%";
+      let current = sections[0]?.id;
+      sections.forEach(s => { if (s.getBoundingClientRect().top < 140) current = s.id; });
+      links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + current));
+    };
+    addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    document.querySelector("#search").addEventListener("input", ev => {
+      const q = ev.target.value.trim().toLowerCase();
+      document.querySelectorAll("main section").forEach(section => {
+        section.classList.toggle("hidden", q && !section.textContent.toLowerCase().includes(q));
+      });
+    });
+  </script>
+</body>
+</html>

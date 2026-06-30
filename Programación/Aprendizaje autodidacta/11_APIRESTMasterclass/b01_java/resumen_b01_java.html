@@ -1,0 +1,1181 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bloque 01 - Java moderno para APIs</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-2: #eef2f7;
+      --text: #111827;
+      --muted: #65758b;
+      --line: #d9e2ec;
+      --accent: #1d4ed8;
+      --accent-2: #0f766e;
+      --accent-3: #7c3aed;
+      --accent-4: #db2777;
+      --accent-5: #b45309;
+      --accent-6: #0891b2;
+      --warn: #b45309;
+      --bad: #be123c;
+      --soft-a: #dbeafe;
+      --soft-b: #ccfbf1;
+      --soft-c: #f5f3ff;
+      --soft-d: #fdf2f8;
+      --soft-e: #fff7ed;
+      --shadow: 0 18px 50px rgba(17, 24, 39, .08);
+      --radius: 8px;
+      --code-bg: #edf2f7;
+      --code: #111827;
+    }
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #0b1020;
+      --surface: #141b2d;
+      --surface-2: #1e293b;
+      --text: #eef4ff;
+      --muted: #a0aec0;
+      --line: #334155;
+      --accent: #60a5fa;
+      --accent-2: #2dd4bf;
+      --accent-3: #c4b5fd;
+      --accent-4: #f472b6;
+      --accent-5: #fbbf24;
+      --accent-6: #22d3ee;
+      --warn: #fbbf24;
+      --bad: #fb7185;
+      --soft-a: #102a4c;
+      --soft-b: #0b322f;
+      --soft-c: #261b4d;
+      --soft-d: #3a1428;
+      --soft-e: #34230a;
+      --shadow: 0 18px 50px rgba(0, 0, 0, .32);
+      --code-bg: #0f172a;
+      --code: #f8fafc;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scrollbar-color: var(--accent) var(--surface-2); scrollbar-width: thin; }
+    *::-webkit-scrollbar { width: 12px; height: 12px; }
+    *::-webkit-scrollbar-track { background: var(--surface-2); }
+    *::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, var(--accent), var(--accent-4));
+      border: 3px solid var(--surface-2);
+      border-radius: 999px;
+    }
+    *::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, var(--accent-2), var(--accent-5)); }
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+    ::selection { background: color-mix(in srgb, var(--accent-4) 28%, transparent); color: var(--text); }
+    button, input { font: inherit; }
+    .shell { min-height: 100vh; display: grid; grid-template-columns: 292px minmax(0, 1fr); transition: grid-template-columns .22s ease; }
+    .shell.sidebar-hidden { grid-template-columns: 0 minmax(0, 1fr); }
+    aside {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 22px;
+      border-right: 1px solid var(--line);
+      background: color-mix(in srgb, var(--surface) 92%, transparent);
+      backdrop-filter: blur(16px);
+      overflow: auto;
+      transition: transform .22s ease, opacity .22s ease, padding .22s ease;
+    }
+    .shell.sidebar-hidden aside { transform: translateX(-100%); opacity: 0; pointer-events: none; padding-left: 0; padding-right: 0; }
+    main { min-width: 0; }
+    .sidebar-toggle {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 20;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 10px 13px;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+    }
+    .sidebar-toggle:hover { border-color: var(--accent); }
+    .brand { display: grid; gap: 4px; margin-bottom: 18px; }
+    .eyebrow { color: var(--accent); font-weight: 850; text-transform: uppercase; letter-spacing: .08em; font-size: .78rem; }
+    h1, h2, h3 { line-height: 1.12; letter-spacing: 0; }
+    h1 { margin: 0; font-size: clamp(2.1rem, 5vw, 5rem); max-width: 1040px; }
+    h2 { margin: 0 0 16px; font-size: clamp(1.7rem, 3vw, 2.65rem); }
+    h3 { margin: 0 0 10px; font-size: 1.12rem; }
+    p { margin: 0 0 14px; color: var(--muted); }
+    strong { color: var(--text); }
+    code, pre { font-family: "JetBrains Mono", "Cascadia Code", Consolas, monospace; }
+    code { color: var(--code); background: var(--code-bg); padding: .1rem .32rem; border-radius: 5px; }
+    pre code { background: transparent; padding: 0; border-radius: 0; color: inherit; }
+    .tok-keyword { color: #7c3aed; font-weight: 800; }
+    .tok-type { color: #0f766e; font-weight: 800; }
+    .tok-fn { color: #2563eb; font-weight: 800; }
+    .tok-name { color: #b45309; }
+    .tok-string { color: #15803d; }
+    .tok-number { color: #db2777; }
+    .tok-comment { color: #64748b; font-style: italic; }
+    .tok-annotation { color: #0891b2; font-weight: 800; }
+    .tok-http-method { color: #7c3aed; font-weight: 900; }
+    .tok-http-status { color: #15803d; font-weight: 900; }
+    [data-theme="dark"] .tok-keyword { color: #c4b5fd; }
+    [data-theme="dark"] .tok-type { color: #5eead4; }
+    [data-theme="dark"] .tok-fn { color: #93c5fd; }
+    [data-theme="dark"] .tok-name { color: #fbbf24; }
+    [data-theme="dark"] .tok-string { color: #86efac; }
+    [data-theme="dark"] .tok-number { color: #f9a8d4; }
+    [data-theme="dark"] .tok-comment { color: #94a3b8; }
+    [data-theme="dark"] .tok-annotation { color: #67e8f9; }
+    pre { margin: 0; overflow: auto; padding: 16px; background: var(--code-bg); color: var(--code); border: 1px solid var(--line); border-radius: var(--radius); line-height: 1.45; position: relative; max-width: 100%; }
+    .hero {
+      min-height: 88vh;
+      display: grid;
+      align-content: center;
+      padding: 68px clamp(22px, 5vw, 72px) 44px;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(115deg, color-mix(in srgb, var(--accent) 14%, transparent), transparent 42%),
+        linear-gradient(25deg, color-mix(in srgb, var(--accent-2) 12%, transparent), transparent 43%),
+        linear-gradient(155deg, color-mix(in srgb, var(--accent-4) 10%, transparent), transparent 58%);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(color-mix(in srgb, var(--line) 52%, transparent) 1px, transparent 1px),
+        linear-gradient(90deg, color-mix(in srgb, var(--line) 52%, transparent) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+      opacity: .38;
+    }
+    .hero > * { position: relative; }
+    .hero p { max-width: 790px; font-size: 1.12rem; }
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 30px;
+      max-width: 920px;
+    }
+    .metric {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 13px;
+      background: color-mix(in srgb, var(--surface) 76%, transparent);
+      backdrop-filter: blur(10px);
+    }
+    .metric b { display: block; font-size: 1.28rem; color: var(--text); }
+    .metric span { color: var(--muted); font-size: .86rem; }
+    .toolbar { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 24px; }
+    .btn {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 7px;
+      padding: 10px 12px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 1px 0 rgba(0,0,0,.04);
+    }
+    .btn:hover { border-color: var(--accent); }
+    .progress { width: min(430px, 100%); height: 8px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface-2); overflow: hidden; }
+    .progress span { display: block; height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+    .search { width: 100%; border: 1px solid var(--line); border-radius: 7px; padding: 10px 11px; background: var(--surface); color: var(--text); }
+    nav { display: grid; gap: 4px; margin-top: 16px; }
+    nav a { color: var(--muted); text-decoration: none; padding: 8px 10px; border-radius: 6px; border: 1px solid transparent; }
+    nav a:hover, nav a.active { color: var(--text); background: var(--surface-2); border-color: var(--line); }
+    section { padding: 64px clamp(22px, 5vw, 72px); border-bottom: 1px solid var(--line); }
+    .section-head { max-width: 980px; margin-bottom: 24px; }
+    .grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 16px; }
+    .card { grid-column: span 4; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); }
+    .card:nth-child(5n+1) { border-top: 4px solid var(--accent); }
+    .card:nth-child(5n+2) { border-top: 4px solid var(--accent-2); }
+    .card:nth-child(5n+3) { border-top: 4px solid var(--accent-3); }
+    .card:nth-child(5n+4) { border-top: 4px solid var(--accent-4); }
+    .card:nth-child(5n+5) { border-top: 4px solid var(--accent-5); }
+    .wide { grid-column: span 8; }
+    .full { grid-column: 1 / -1; }
+    .mini { grid-column: span 3; }
+    .tag { display: inline-flex; align-items: center; padding: 3px 8px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font-size: .8rem; margin: 0 6px 6px 0; background: var(--surface-2); }
+    .color-band {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      height: 8px;
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      margin: 14px 0 22px;
+    }
+    .color-band span:nth-child(1) { background: var(--accent); }
+    .color-band span:nth-child(2) { background: var(--accent-2); }
+    .color-band span:nth-child(3) { background: var(--accent-3); }
+    .color-band span:nth-child(4) { background: var(--accent-4); }
+    .color-band span:nth-child(5) { background: var(--accent-5); }
+    .color-band span:nth-child(6) { background: var(--accent-6); }
+    table { width: 100%; border-collapse: collapse; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--surface); }
+    th, td { text-align: left; padding: 11px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { background: var(--surface-2); color: var(--text); font-size: .88rem; }
+    tr:last-child td { border-bottom: 0; }
+    .pipe { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; align-items: stretch; }
+    .stage { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: 14px; min-height: 98px; position: relative; }
+    .stage:not(:last-child)::after { content: "->"; position: absolute; right: -18px; top: 39px; color: var(--muted); font-weight: 900; }
+    .exercise { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: start; padding: 14px 0; border-bottom: 1px solid var(--line); }
+    .exercise:last-child { border-bottom: 0; }
+    .num { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 7px; background: var(--surface-2); color: var(--accent); font-weight: 900; }
+    .pill { border: 1px solid var(--line); border-radius: 999px; padding: 4px 9px; color: var(--muted); font-size: .82rem; white-space: nowrap; }
+    .flash { cursor: pointer; transition: transform .15s ease, border-color .15s ease; }
+    .flash:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .flash .answer { display: none; margin-top: 12px; color: var(--text); }
+    .flash.open .answer { display: block; }
+    .hidden { display: none !important; }
+    .pdf-cover, .pdf-toc, .print-page-footer { display: none; }
+    .example-card { grid-column: span 6; display: grid; gap: 12px; }
+    .example-meta { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+    .meta-box { border: 1px solid var(--line); border-radius: var(--radius); padding: 10px; background: var(--surface-2); }
+    .meta-box b { display: block; color: var(--text); margin-bottom: 4px; }
+    .sample-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .terminal { background: #07111f; color: #d1fae5; border-color: #123047; }
+    .terminal code { background: transparent; color: inherit; padding: 0; }
+    .callout {
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--accent-5);
+      border-radius: var(--radius);
+      padding: 14px;
+      background: linear-gradient(90deg, color-mix(in srgb, var(--accent-5) 12%, transparent), transparent);
+    }
+    .study-path { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; counter-reset: step; }
+    .study-step {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px;
+      background: var(--surface);
+      position: relative;
+      min-height: 150px;
+    }
+    .study-step::before {
+      counter-increment: step;
+      content: counter(step);
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--accent);
+      color: white;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+    .decision-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .decision {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px;
+      background: linear-gradient(135deg, var(--surface), color-mix(in srgb, var(--soft-a) 45%, var(--surface)));
+    }
+    .decision:nth-child(2) { background: linear-gradient(135deg, var(--surface), color-mix(in srgb, var(--soft-b) 45%, var(--surface))); }
+    .decision:nth-child(3) { background: linear-gradient(135deg, var(--surface), color-mix(in srgb, var(--soft-c) 45%, var(--surface))); }
+    .decision:nth-child(4) { background: linear-gradient(135deg, var(--surface), color-mix(in srgb, var(--soft-d) 45%, var(--surface))); }
+    @media (max-width: 980px) {
+      .shell { grid-template-columns: 1fr; }
+      .shell.sidebar-hidden { grid-template-columns: 1fr; }
+      .shell.sidebar-hidden aside { display: none; }
+      aside { position: relative; height: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+      .card, .wide, .mini { grid-column: 1 / -1; }
+      .pipe, .sample-grid, .example-meta, .hero-metrics, .study-path, .decision-grid { grid-template-columns: 1fr; }
+      .stage:not(:last-child)::after { display: none; }
+      .hero { min-height: auto; }
+    }
+    @media (min-width: 981px) and (max-width: 1220px) {
+      .card { grid-column: span 6; }
+      .full, .wide { grid-column: 1 / -1; }
+      .mini { grid-column: span 6; }
+      .hero-metrics, .study-path { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 720px) {
+      .sidebar-toggle { right: max(12px, env(safe-area-inset-right)); bottom: max(12px, env(safe-area-inset-bottom)); }
+      aside {
+        position: fixed;
+        z-index: 18;
+        inset: auto max(12px, env(safe-area-inset-right)) calc(64px + env(safe-area-inset-bottom)) auto;
+        width: min(88vw, 360px);
+        max-height: min(72dvh, 620px);
+        height: auto;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        box-shadow: 0 24px 70px rgba(0,0,0,.26);
+      }
+      .shell.sidebar-hidden aside { display: block; transform: translateY(14px) scale(.98); opacity: 0; pointer-events: none; }
+      section { padding: 42px 16px; }
+      .hero { padding: 58px 16px 34px; }
+      h1 { font-size: clamp(2rem, 12vw, 3.3rem); }
+      .toolbar { align-items: stretch; }
+      .btn { flex: 1 1 140px; justify-content: center; }
+      .exercise { grid-template-columns: auto 1fr; }
+      .exercise .pill { grid-column: 2; justify-self: start; }
+      table { display: block; overflow-x: auto; white-space: nowrap; }
+      th, td { white-space: normal; min-width: 140px; }
+      pre { font-size: .82rem; }
+    }
+    @media print {
+      @page {
+        margin: 20mm 12mm 18mm;
+        size: A4;
+        @bottom-center {
+          content: "Pagina " counter(page) " de " counter(pages);
+          font-family: Inter, Arial, sans-serif;
+          font-size: 9pt;
+          color: #555;
+        }
+      }
+      * { box-shadow: none !important; text-shadow: none !important; }
+      html, body { background: #fff !important; color: #111 !important; font-size: 10.5pt; line-height: 1.42; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      aside, .toolbar, .search, .sidebar-toggle, .print-page-footer { display: none !important; }
+      .shell { display: block; }
+      .pdf-cover, .pdf-toc { display: block !important; border: 0 !important; }
+      .pdf-cover {
+        min-height: 247mm;
+        padding: 18mm 14mm !important;
+        page-break-after: always;
+        break-after: page;
+        background:
+          linear-gradient(135deg, rgba(29, 78, 216, .16), rgba(15, 118, 110, .08) 45%, rgba(219, 39, 119, .12)),
+          #fff !important;
+      }
+      .pdf-cover-inner {
+        min-height: 210mm;
+        border: 2px solid #111827;
+        border-radius: 8px;
+        padding: 18mm;
+        display: grid;
+        align-content: center;
+        gap: 9mm;
+        background: rgba(255,255,255,.82);
+      }
+      .pdf-cover h1 { font-size: 38pt; line-height: 1.02; margin: 0; }
+      .pdf-cover p { font-size: 13pt; max-width: 150mm; color: #222 !important; }
+      .pdf-cover-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4mm; }
+      .pdf-cover-grid div { border: 1px solid #999; border-top: 5px solid #1d4ed8; border-radius: 6px; padding: 5mm; background: #fff; }
+      .pdf-cover-grid div:nth-child(2) { border-top-color: #0f766e; }
+      .pdf-cover-grid div:nth-child(3) { border-top-color: #7c3aed; }
+      .pdf-cover-grid div:nth-child(4) { border-top-color: #db2777; }
+      .pdf-cover-grid b { display: block; font-size: 19pt; }
+      .pdf-cover-grid span { color: #333; font-size: 9pt; }
+      .pdf-toc {
+        min-height: 247mm;
+        padding: 16mm 12mm !important;
+        page-break-after: always;
+        break-after: page;
+        background: #fff !important;
+      }
+      .pdf-toc h2 { font-size: 26pt; border-bottom: 2px solid #111; padding-bottom: 4mm; }
+      .pdf-toc ol { columns: 2; column-gap: 12mm; padding-left: 7mm; margin-top: 10mm; }
+      .pdf-toc li { break-inside: avoid; margin: 0 0 4mm; padding-left: 2mm; }
+      .pdf-toc a { color: #111 !important; text-decoration: none; }
+      .hero { display: none !important; }
+      section { padding: 8mm 0; border-bottom: 1px solid #bbb; break-before: auto; }
+      section[id] { scroll-margin: 0; }
+      h1 { font-size: 28pt; }
+      h2 { font-size: 18pt; margin-top: 0; break-after: avoid; page-break-after: avoid; }
+      h3 { font-size: 12pt; }
+      p { color: #222 !important; }
+      .grid, .pipe, .sample-grid, .example-meta, .hero-metrics, .study-path, .decision-grid { display: block; }
+      .card, .stage, .meta-box, .callout {
+        display: block;
+        margin: 0 0 4mm;
+        padding: 4mm;
+        border: 1px solid #bbb;
+        background: #fff !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+      .example-card, .exercise, .study-step, .decision, .metric { break-inside: avoid; page-break-inside: avoid; }
+      #exerciseList { break-inside: auto !important; page-break-inside: auto !important; }
+      .exercise {
+        display: grid !important;
+        grid-template-columns: 12mm minmax(0, 1fr) !important;
+        gap: 3mm !important;
+        align-items: start;
+        padding: 4mm 0 !important;
+      }
+      .exercise .pill { display: none !important; }
+      .exercise p, .exercise strong { overflow-wrap: anywhere; word-break: normal; }
+      .num { width: 9mm; height: 9mm; font-size: 8pt; }
+      .flash .answer { display: block !important; }
+      table { page-break-inside: auto; border-color: #999; }
+      thead { display: table-header-group; }
+      tfoot { display: table-footer-group; }
+      tr { page-break-inside: avoid; page-break-after: auto; }
+      th, td { border-color: #bbb; padding: 6px 7px; }
+      pre {
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+        overflow: visible;
+        background: #f5f5f5 !important;
+        color: #111 !important;
+        border: 1px solid #aaa;
+        page-break-inside: auto;
+        break-inside: auto;
+      }
+      code { background: #f0f0f0 !important; color: #111 !important; }
+      pre code { background: transparent !important; }
+      .tok-keyword, .tok-type, .tok-fn, .tok-name, .tok-string, .tok-number, .tok-comment, .tok-annotation, .tok-http-method, .tok-http-status {
+        color: #111 !important;
+        font-weight: inherit;
+        font-style: inherit;
+      }
+      a { color: #111 !important; text-decoration: none; }
+      .print-only { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <button class="sidebar-toggle" id="sidebarBtn" type="button" title="Mostrar u ocultar indice">Indice</button>
+  <div class="print-page-footer print-only"></div>
+  <div class="shell">
+    <aside>
+      <div class="brand">
+        <span class="eyebrow">Masterclass API REST</span>
+        <strong>Bloque 01</strong>
+        <span style="color:var(--muted)">Java moderno para APIs</span>
+      </div>
+      <input class="search" id="search" placeholder="Filtrar secciones, ejercicios...">
+      <nav id="toc"></nav>
+    </aside>
+    <main>
+      <section class="pdf-cover print-only" aria-label="Portada PDF">
+        <div class="pdf-cover-inner">
+          <span class="eyebrow">Masterclass API REST</span>
+          <h1>Bloque 01<br>Java moderno para APIs</h1>
+          <p>Resumen teorico, ejemplos guiados, criterios de dominio, ejercicios oficiales y ampliaciones para usar Java moderno con criterio en APIs reales.</p>
+          <div class="pdf-cover-grid">
+            <div><b>12</b><span>ejercicios oficiales</span></div>
+            <div><b>12</b><span>ejemplos con salida</span></div>
+            <div><b>13</b><span>secciones de estudio</span></div>
+            <div><b>Java</b><span>records, streams, genericos y robustez</span></div>
+          </div>
+        </div>
+      </section>
+      <section class="pdf-toc print-only" aria-label="Indice PDF">
+        <span class="eyebrow">Indice del documento</span>
+        <h2>Contenido</h2>
+        <p>Usa este indice como ruta de lectura: herramientas de modelado primero, transformaciones despues, robustez y repaso al final.</p>
+        <ol id="printToc"></ol>
+      </section>
+      <header class="hero" id="inicio">
+        <span class="eyebrow">Resumen expandido</span>
+        <h1>Java moderno: las piezas que hacen que Spring deje de parecer magia</h1>
+        <p>Records, Optional, streams, genericos, lambdas, sealed types, excepciones, java.time, concurrencia y equals/hashCode. Este resumen organiza la teoria del bloque, la conecta con cada ejercicio y anade practicas frecuentes y avanzadas sin resolver los ejercicios.</p>
+        <div class="toolbar">
+          <button class="btn" id="themeBtn" title="Cambiar tema">Tema</button>
+          <button class="btn" id="expandBtn" title="Mostrar respuestas de repaso">Repaso</button>
+          <button class="btn" id="pdfBtn" title="Imprimir o guardar como PDF">PDF limpio</button>
+          <div class="progress" aria-label="Progreso de lectura"><span id="bar"></span></div>
+        </div>
+        <div class="hero-metrics" aria-label="Resumen del contenido">
+          <div class="metric"><b>12</b><span>ejercicios oficiales conectados</span></div>
+          <div class="metric"><b>12</b><span>ejemplos con salida esperada</span></div>
+          <div class="metric"><b>5</b><span>familias: datos, ausencia, colecciones, tipos, robustez</span></div>
+          <div class="metric"><b>API</b><span>enfoque practico para servicios reales</span></div>
+        </div>
+      </header>
+
+      <section id="mapa" data-title="Mapa del bloque">
+        <div class="section-head">
+          <h2>Mapa de herramientas</h2>
+          <p>El bloque 01 no es "Java por Java": son construcciones que aparecen continuamente en controladores, servicios, repositorios, DTOs y tests de APIs reales.</p>
+          <div class="color-band" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        </div>
+        <div class="grid">
+          <article class="card"><h3>Modelar datos</h3><p><code>record</code> reduce ruido y crea DTOs inmutables. <code>equals/hashCode</code> define identidad y valor.</p><span class="tag">Ej011</span><span class="tag">Ej022</span></article>
+          <article class="card"><h3>Ausencia explicita</h3><p><code>Optional</code> hace visible que algo puede faltar y obliga a elegir entre transformar, filtrar o lanzar.</p><span class="tag">Ej012</span></article>
+          <article class="card"><h3>Procesar colecciones</h3><p>Streams y collectors convierten listas en informes, mapas, totales, agrupaciones y filtros declarativos.</p><span class="tag">Ej013</span><span class="tag">Ej014</span></article>
+          <article class="card"><h3>Abstraer bien</h3><p>Genericos y wildcards evitan duplicacion y expresan contratos seguros de lectura/escritura.</p><span class="tag">Ej015</span><span class="tag">Ej016</span></article>
+          <article class="card"><h3>Componer comportamiento</h3><p>Lambdas, referencias a metodo e interfaces funcionales permiten pasar reglas y transformaciones.</p><span class="tag">Ej017</span></article>
+          <article class="card"><h3>Robustez de API</h3><p>Sealed, excepciones, fechas y concurrencia controlan estados, errores, tiempo y peticiones simultaneas.</p><span class="tag">Ej018</span><span class="tag">Ej019</span><span class="tag">Ej020</span><span class="tag">Ej021</span></article>
+        </div>
+      </section>
+
+      <section id="dominio" data-title="Ruta de dominio">
+        <div class="section-head">
+          <h2>Ruta de dominio Java moderno</h2>
+          <p>Este bloque se domina cuando dejas de ver las herramientas como sintaxis nueva y empiezas a elegirlas por el problema que eliminan: mutabilidad accidental, nulls, duplicacion, colecciones verbosas, errores sin modelar y concurrencia insegura.</p>
+        </div>
+        <div class="grid">
+          <div class="study-path">
+            <article class="study-step"><h3>Modelar valores</h3><p>Usa records e igualdad correcta para que los datos sean pequenos, claros e inmutables.</p></article>
+            <article class="study-step"><h3>Expresar ausencia</h3><p>Usa Optional como contrato de retorno y evita nulls silenciosos que explotan lejos.</p></article>
+            <article class="study-step"><h3>Transformar colecciones</h3><p>Usa streams, collectors y lambdas para leer la intencion antes que el mecanismo.</p></article>
+            <article class="study-step"><h3>Cerrar casos raros</h3><p>Usa sealed, excepciones con causa, java.time y atomicos para reducir estados imposibles.</p></article>
+          </div>
+          <article class="card wide">
+            <h3>Matriz de eleccion</h3>
+            <div class="decision-grid">
+              <div class="decision"><strong>Solo transporta datos</strong><p>Record. Si hay listas, copia defensiva para inmutabilidad real.</p></div>
+              <div class="decision"><strong>Puede no existir</strong><p>Optional como retorno; <code>orElseThrow</code> si la ausencia es error de negocio.</p></div>
+              <div class="decision"><strong>Lista a informe</strong><p>Stream + collector. Si agrupas y sumas, usa downstream en vez de mapas manuales.</p></div>
+              <div class="decision"><strong>Casos cerrados</strong><p>Sealed + switch exhaustivo. Evita booleanos y strings magicos.</p></div>
+            </div>
+          </article>
+          <article class="card">
+            <h3>Senales de dominio</h3>
+            <p>Puedes explicar PECS, por que <code>orElseGet</code> es perezoso, por que <code>contador++</code> no es atomico y por que equals/hashCode son inseparables.</p>
+          </article>
+          <article class="card">
+            <h3>Cuando volver atras</h3>
+            <p>Si aparece <code>Optional.get()</code>, streams con mutacion externa, <code>catch(Exception)</code> vacio o listas genericas que no compilan, vuelve a esta ruta.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="records" data-title="Records">
+        <div class="section-head">
+          <h2>1. Records: DTOs inmutables</h2>
+          <p>Un record es una clase de datos compacta. El compilador genera constructor, accesores, <code>equals</code>, <code>hashCode</code> y <code>toString</code>.</p>
+        </div>
+        <div class="grid">
+          <article class="card wide">
+            <pre><code>public record UsuarioDto(Long id, String nombre, String email) {
+    public UsuarioDto {
+        if (email == null || email.isBlank()) {
+            throw new IllegalArgumentException("email obligatorio");
+        }
+        nombre = nombre.trim();
+    }
+
+    public UsuarioDto conNombre(String nuevoNombre) {
+        return new UsuarioDto(id, nuevoNombre, email);
+    }
+}</code></pre>
+          </article>
+          <article class="card">
+            <h3>Idea clave</h3>
+            <p>Inmutable significa que no se modifica: se crea otro valor. Esto reduce bugs de estado y facilita compartir datos entre hilos.</p>
+            <p>Un record puede tener validacion y metodos derivados, pero no estado adicional mutable.</p>
+          </article>
+          <article class="card"><h3>Popular</h3><p>DTOs de entrada/salida, claves de mapas, respuestas de servicio, valores de dominio pequenos.</p></article>
+          <article class="card"><h3>No tan popular</h3><p>Constructor canonico explicito cuando necesitas anotaciones por parametro o normalizacion mas controlada.</p></article>
+          <article class="card"><h3>Cuidado</h3><p>Los componentes son referencias finales, pero si guardas una lista mutable dentro, el contenido de esa lista todavia puede cambiar.</p></article>
+        </div>
+      </section>
+
+      <section id="optional" data-title="Optional">
+        <div class="section-head">
+          <h2>2. Optional: ausencia como parte del tipo</h2>
+          <p>Un metodo que devuelve <code>Optional&lt;T&gt;</code> declara que puede no haber resultado. El consumidor debe decidir que hacer.</p>
+        </div>
+        <div class="grid">
+          <article class="card full">
+            <table>
+              <thead><tr><th>Metodo</th><th>Uso</th><th>Trampa</th></tr></thead>
+              <tbody>
+                <tr><td><code>of</code></td><td>Valor obligatorio.</td><td>Lanza NPE si recibe null.</td></tr>
+                <tr><td><code>ofNullable</code></td><td>Frontera con codigo legacy.</td><td>No lo uses para esconder diseno confuso.</td></tr>
+                <tr><td><code>map</code></td><td>Transforma si existe.</td><td>Si la funcion devuelve Optional, genera anidamiento.</td></tr>
+                <tr><td><code>flatMap</code></td><td>Transforma evitando <code>Optional&lt;Optional&lt;T&gt;&gt;</code>.</td><td>La funcion debe devolver Optional.</td></tr>
+                <tr><td><code>filter</code></td><td>Vaciar si no cumple condicion.</td><td>No reemplaza validaciones de negocio complejas.</td></tr>
+                <tr><td><code>orElse</code></td><td>Default ya calculado.</td><td>Se evalua aunque haya valor.</td></tr>
+                <tr><td><code>orElseGet</code></td><td>Default perezoso.</td><td>Ideal para calculos caros.</td></tr>
+                <tr><td><code>orElseThrow</code></td><td>Ausencia como excepcion.</td><td>Patron natural para 404.</td></tr>
+              </tbody>
+            </table>
+          </article>
+          <article class="card"><h3>Patron API</h3><pre><code>return repo.findById(id)
+    .map(UsuarioDto::from)
+    .orElseThrow(() -> new NotFound(id));</code></pre></article>
+          <article class="card"><h3>Antipatron</h3><p><code>isPresent()</code> + <code>get()</code> suele ser un null-check disfrazado. Encadena operaciones.</p></article>
+          <article class="card"><h3>Regla</h3><p>Optional como retorno, no como campo ni parametro. Es convencion del JDK y evita modelos raros.</p></article>
+        </div>
+      </section>
+
+      <section id="streams" data-title="Streams">
+        <div class="section-head">
+          <h2>3. Streams y collectors</h2>
+          <p>Un stream es una tuberia perezosa: operaciones intermedias preparan el trabajo; una terminal lo ejecuta.</p>
+        </div>
+        <div class="grid">
+          <article class="card full">
+            <div class="pipe">
+              <div class="stage"><strong>List&lt;Pedido&gt;</strong><p>Datos de entrada.</p></div>
+              <div class="stage"><strong>stream()</strong><p>Abre la tuberia.</p></div>
+              <div class="stage"><strong>filter/map</strong><p>Transforma sin mutar.</p></div>
+              <div class="stage"><strong>collect</strong><p>Operacion terminal.</p></div>
+              <div class="stage"><strong>Resultado</strong><p>Lista, mapa, total, boolean...</p></div>
+            </div>
+          </article>
+          <article class="card wide">
+            <table>
+              <thead><tr><th>Operacion</th><th>Tipo</th><th>Uso</th></tr></thead>
+              <tbody>
+                <tr><td><code>filter</code></td><td>Intermedia</td><td>Conservar elementos que cumplen predicado.</td></tr>
+                <tr><td><code>map</code></td><td>Intermedia</td><td>Transformar 1 a 1.</td></tr>
+                <tr><td><code>flatMap</code></td><td>Intermedia</td><td>Aplanar 1 a muchos.</td></tr>
+                <tr><td><code>sorted/distinct</code></td><td>Intermedia</td><td>Ordenar o quitar duplicados.</td></tr>
+                <tr><td><code>toList/count/sum</code></td><td>Terminal</td><td>Materializar o agregar.</td></tr>
+                <tr><td><code>anyMatch/findFirst</code></td><td>Terminal</td><td>Comprobar o buscar.</td></tr>
+              </tbody>
+            </table>
+          </article>
+          <article class="card">
+            <h3>Collectors</h3>
+            <p><code>groupingBy</code> agrupa, <code>partitioningBy</code> separa true/false, <code>joining</code> concatena, <code>toMap</code> convierte a mapa.</p>
+            <p>Si hay claves duplicadas en <code>toMap</code>, define funcion de fusion.</p>
+          </article>
+          <article class="card"><h3>Detalle fino</h3><p><code>Stream.toList()</code> devuelve lista inmodificable. Si vas a usar <code>add</code>, crea un <code>ArrayList</code>.</p></article>
+          <article class="card"><h3>Orden</h3><p><code>groupingBy</code> usa normalmente <code>HashMap</code>. Si el orden importa, pide <code>LinkedHashMap</code>.</p></article>
+          <article class="card"><h3>Paralelo</h3><p><code>parallelStream()</code> no es turbo gratis. Requiere operaciones independientes, sin estado compartido y coste suficiente.</p></article>
+        </div>
+      </section>
+
+      <section id="genericos" data-title="Genericos y varianza">
+        <div class="section-head">
+          <h2>4. Genericos, wildcards y PECS</h2>
+          <p>Los genericos permiten escribir repositorios, servicios y utilidades reutilizables sin perder tipo. Los wildcards expresan varianza segura.</p>
+        </div>
+        <div class="grid">
+          <article class="card wide">
+            <pre><code>public class InMemoryRepository&lt;T, ID&gt; {
+    private final Map&lt;ID, T&gt; data = new HashMap&lt;&gt;();
+    private final Function&lt;T, ID&gt; idExtractor;
+
+    public T save(T entity) {
+        data.put(idExtractor.apply(entity), entity);
+        return entity;
+    }
+
+    public Optional&lt;T&gt; findById(ID id) {
+        return Optional.ofNullable(data.get(id));
+    }
+}</code></pre>
+          </article>
+          <article class="card">
+            <h3>Erasure</h3>
+            <p>En runtime se borran los parametros de tipo: <code>List&lt;String&gt;</code> y <code>List&lt;Integer&gt;</code> comparten clase. Por eso no puedes hacer <code>new T()</code>.</p>
+          </article>
+          <article class="card"><h3><code>? extends T</code></h3><p>Productor: lees como T, no anades porque desconoces el subtipo exacto.</p></article>
+          <article class="card"><h3><code>? super T</code></h3><p>Consumidor: puedes anadir T, al leer obtienes algo tan general como Object.</p></article>
+          <article class="card"><h3>PECS</h3><p>Producer Extends, Consumer Super. Es la regla que desbloquea firmas como <code>Collections.copy</code>.</p></article>
+          <article class="card full">
+            <table>
+              <thead><tr><th>Necesidad</th><th>Firma mental</th><th>Ejemplo</th></tr></thead>
+              <tbody>
+                <tr><td>Leer animales de cualquier subtipo</td><td><code>List&lt;? extends Animal&gt;</code></td><td>Calcula peso total.</td></tr>
+                <tr><td>Meter perros en una lista compatible</td><td><code>List&lt;? super Perro&gt;</code></td><td>Rellenar destino con perros.</td></tr>
+                <tr><td>Ordenar elementos comparables</td><td><code>&lt;T extends Comparable&lt;T&gt;&gt;</code></td><td>Buscar minimo/maximo.</td></tr>
+              </tbody>
+            </table>
+          </article>
+        </div>
+      </section>
+
+      <section id="funcional" data-title="Lambdas y funcional">
+        <div class="section-head">
+          <h2>5. Interfaces funcionales y lambdas</h2>
+          <p>Una interfaz funcional tiene un unico metodo abstracto. Una lambda permite pasar comportamiento sin crear una clase entera.</p>
+        </div>
+        <div class="grid">
+          <article class="card full">
+            <table>
+              <thead><tr><th>Interfaz</th><th>Firma</th><th>Se lee como</th><th>Ejemplo</th></tr></thead>
+              <tbody>
+                <tr><td><code>Predicate&lt;T&gt;</code></td><td>T -> boolean</td><td>cumple?</td><td><code>u -> u.edad() &gt;= 18</code></td></tr>
+                <tr><td><code>Function&lt;T,R&gt;</code></td><td>T -> R</td><td>transforma</td><td><code>Usuario::nombre</code></td></tr>
+                <tr><td><code>Consumer&lt;T&gt;</code></td><td>T -> void</td><td>efecto</td><td><code>System.out::println</code></td></tr>
+                <tr><td><code>Supplier&lt;T&gt;</code></td><td>() -> T</td><td>fabrica</td><td><code>ArrayList::new</code></td></tr>
+              </tbody>
+            </table>
+          </article>
+          <article class="card wide">
+            <pre><code>Predicate&lt;Usuario&gt; adulto = u -> u.edad() &gt;= 18;
+Predicate&lt;Usuario&gt; activo = Usuario::activo;
+Predicate&lt;Usuario&gt; clienteValido = adulto.and(activo);
+
+Function&lt;String, String&gt; normalizar =
+    String::trim
+        .andThen(String::toLowerCase);</code></pre>
+          </article>
+          <article class="card">
+            <h3>Referencias ::</h3>
+            <p>Estaticas, de instancia sobre parametro, de instancia sobre objeto concreto y de constructor. Mejoran lectura cuando el nombre del metodo dice suficiente.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="sealed" data-title="Sealed y errores">
+        <div class="section-head">
+          <h2>6. Sealed, pattern matching y excepciones</h2>
+          <p>Sealed cierra una jerarquia y permite switches exhaustivos. Las excepciones bien hechas conservan causa y expresan negocio.</p>
+        </div>
+        <div class="grid">
+          <article class="card wide">
+            <pre><code>public sealed interface Resultado permits Ok, NotFound, Error {}
+public record Ok(Object dato) implements Resultado {}
+public record NotFound(String id) implements Resultado {}
+public record Error(String motivo) implements Resultado {}
+
+int status(Resultado r) {
+    return switch (r) {
+        case Ok ok -> 200;
+        case NotFound nf -> 404;
+        case Error err -> 500;
+    };
+}</code></pre>
+          </article>
+          <article class="card">
+            <h3>Ventaja</h3>
+            <p>Si anades otro subtipo, el compilador senala cada switch incompleto. No necesitas <code>default</code> que oculte olvidos.</p>
+          </article>
+          <article class="card"><h3>Try-with-resources</h3><p>Todo <code>AutoCloseable</code> se cierra aunque haya excepcion. Si hay varios recursos, se cierran en orden inverso.</p></article>
+          <article class="card"><h3>Causas</h3><p>Al envolver excepciones, conserva la causa: <code>new RepoException("fallo", e)</code>. Sin causa pierdes la pista real.</p></article>
+          <article class="card"><h3>Checked vs unchecked</h3><p>En APIs modernas, las excepciones de negocio suelen ser unchecked y luego se traducen a HTTP en una capa central.</p></article>
+        </div>
+      </section>
+
+      <section id="time-concurrency" data-title="Tiempo y concurrencia">
+        <div class="section-head">
+          <h2>7. java.time y concurrencia minima viable</h2>
+          <p>Las APIs reales manejan fechas, zonas, expiraciones y muchas peticiones simultaneas. Estos temas son pequenos hasta que fallan.</p>
+        </div>
+        <div class="grid">
+          <article class="card wide">
+            <table>
+              <thead><tr><th>Clase</th><th>Representa</th><th>Uso API</th></tr></thead>
+              <tbody>
+                <tr><td><code>LocalDate</code></td><td>Fecha sin hora.</td><td>Cumpleanos, vencimientos de calendario.</td></tr>
+                <tr><td><code>LocalDateTime</code></td><td>Fecha y hora sin zona.</td><td>Solo si la zona no importa o se conoce fuera.</td></tr>
+                <tr><td><code>Instant</code></td><td>Punto exacto UTC.</td><td>Persistencia y JSON tecnico.</td></tr>
+                <tr><td><code>ZonedDateTime</code></td><td>Fecha/hora con zona.</td><td>Eventos humanos en zona concreta.</td></tr>
+                <tr><td><code>Duration</code></td><td>Tiempo maquina.</td><td>Timeouts, expiraciones, latencia.</td></tr>
+                <tr><td><code>Period</code></td><td>Tiempo calendario.</td><td>Meses, anos, reglas humanas.</td></tr>
+              </tbody>
+            </table>
+          </article>
+          <article class="card">
+            <h3>Regla de oro</h3>
+            <p>Guarda instantes en UTC; presenta en la zona del usuario. La zona horaria es presentacion salvo que el dominio diga lo contrario.</p>
+          </article>
+          <article class="card"><h3>Atomicos</h3><p><code>contador++</code> no es atomico. Usa <code>AtomicInteger.incrementAndGet()</code> para contadores compartidos.</p></article>
+          <article class="card"><h3>ConcurrentHashMap</h3><p><code>merge</code> permite sumar por clave de forma atomica. No acepta claves ni valores null.</p></article>
+          <article class="card"><h3>CompletableFuture</h3><p><code>supplyAsync</code> lanza trabajo, <code>thenApply</code> transforma, <code>thenCombine</code> junta resultados, <code>join</code> espera.</p></article>
+          <article class="card full">
+            <pre><code>CompletableFuture&lt;Precio&gt; precio = CompletableFuture.supplyAsync(() -> consultarPrecio(id));
+CompletableFuture&lt;Stock&gt; stock = CompletableFuture.supplyAsync(() -> consultarStock(id));
+
+Ficha ficha = precio.thenCombine(stock, Ficha::new).join();</code></pre>
+          </article>
+        </div>
+      </section>
+
+      <section id="equals" data-title="equals/hashCode">
+        <div class="section-head">
+          <h2>8. Contratos equals/hashCode</h2>
+          <p>Si dos objetos son iguales por <code>equals</code>, deben tener el mismo <code>hashCode</code>. Romperlo destruye colecciones hash.</p>
+        </div>
+        <div class="grid">
+          <article class="card wide">
+            <pre><code>@Override
+public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof Usuario u)) return false;
+    return Objects.equals(id, u.id);
+}
+
+@Override
+public int hashCode() {
+    return Objects.hash(id);
+}</code></pre>
+          </article>
+          <article class="card">
+            <h3>Identidad vs valor</h3>
+            <p>Entidades con BD suelen comparar por id estable. Objetos de valor comparan por todos sus campos, y por eso un record suele ser ideal.</p>
+          </article>
+          <article class="card"><h3>Sintoma clasico</h3><p>Metes un objeto en un <code>HashSet</code> y <code>contains</code> devuelve false para otro "igual". El hash lo mando al cajon equivocado.</p></article>
+          <article class="card"><h3>Mutabilidad</h3><p>No uses campos mutables en hashCode si el objeto vive dentro de un HashSet/HashMap. Cambiar el campo cambia su posicion logica.</p></article>
+          <article class="card"><h3>Consistencia</h3><p>Los campos usados en equals y hashCode deben coincidir. Si cambias uno, cambia el otro.</p></article>
+        </div>
+      </section>
+
+      <section id="ejercicios" data-title="Ejercicios y retos">
+        <div class="section-head">
+          <h2>9. Ejercicios del bloque y ampliaciones</h2>
+          <p>Mapa de objetivos de cada ejercicio y retos extra para dominar la herramienta mas alla del caso basico.</p>
+        </div>
+        <div class="grid">
+          <article class="card full" id="exerciseList"></article>
+          <article class="card full">
+            <h3>Retos extra populares y menos populares</h3>
+            <table>
+              <thead><tr><th>Reto</th><th>Por que importa</th><th>Pista teorica</th></tr></thead>
+              <tbody>
+                <tr><td>Record con colecciones defensivas</td><td>Inmutabilidad real, no solo referencias finales.</td><td><code>List.copyOf</code> en constructor.</td></tr>
+                <tr><td>Optional.or en cadenas alternativas</td><td>Fallbacks limpios entre repositorios/cache.</td><td>Devuelve otro Optional perezoso.</td></tr>
+                <tr><td>Collectors.teeing</td><td>Dos agregaciones en una pasada.</td><td>Media, rango, resumen doble.</td></tr>
+                <tr><td>MapMulti</td><td>Alternativa eficiente a algunos flatMap.</td><td>Evita crear streams intermedios.</td></tr>
+                <tr><td>Comparator.comparing encadenado</td><td>Ordenaciones reales por varios campos.</td><td><code>thenComparing</code>, nullsFirst/nullsLast.</td></tr>
+                <tr><td>Wildcard capture helper</td><td>Casos genericos donde el compilador no infiere.</td><td>Metodo privado generico de apoyo.</td></tr>
+                <tr><td>Structured concurrency conceptual</td><td>Futuro de tareas concurrentes coordinadas.</td><td>No necesario para el ejercicio, si para cultura Java moderna.</td></tr>
+                <tr><td>Clock inyectable</td><td>Tests fiables con java.time.</td><td>Evita depender de <code>Instant.now()</code> directo.</td></tr>
+                <tr><td>Excepciones suprimidas</td><td>try-with-resources puede cerrar fallando.</td><td><code>getSuppressed()</code>.</td></tr>
+                <tr><td>Equals en herencia</td><td>Simetria se rompe facil.</td><td>Prefiere composicion o records para value objects.</td></tr>
+              </tbody>
+            </table>
+          </article>
+        </div>
+      </section>
+
+      <section id="ejemplos" data-title="Ejemplos guiados">
+        <div class="section-head">
+          <h2>10. Ejemplos guiados por ejercicio</h2>
+          <p>Cada caso muestra el problema que resuelve la herramienta, un ejemplo de codigo, su salida esperada y la mejora frente a la solucion anterior o mas ingenua.</p>
+        </div>
+        <div class="grid" id="examplesList"></div>
+      </section>
+
+      <section id="repaso" data-title="Repaso activo">
+        <div class="section-head">
+          <h2>11. Repaso activo</h2>
+          <p>Haz clic para comprobar. La meta es explicar la decision tecnica con una frase clara.</p>
+        </div>
+        <div class="grid" id="flashcards"></div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const exercises = [
+      ["Ej011Records", "Records", "DTO inmutable, validacion compacta, metodos derivados y copias tipo wither."],
+      ["Ej012OptionalSafeAccess", "Optional", "map, flatMap, filter, orElseGet, orElseThrow y ausencia explicita."],
+      ["Ej013StreamsBasics", "Streams basicos", "filter, map, sorted, distinct, count, sum, findFirst y anyMatch."],
+      ["Ej014StreamsAdvanced", "Collectors", "groupingBy, partitioningBy, flatMap, toMap, joining y agregaciones."],
+      ["Ej015GenericsRepository", "Repositorio generico", "T, ID, Function<T,ID>, Optional y CRUD reutilizable."],
+      ["Ej016WildcardsVariance", "Varianza", "? extends, ? super, PECS y jerarquias seguras."],
+      ["Ej017FunctionalInterfaces", "Lambdas", "Predicate, Function, Consumer, Supplier, composicion y referencias a metodo."],
+      ["Ej018SealedPatternMatching", "Sealed", "Jerarquia cerrada, switch exhaustivo, records como casos de resultado."],
+      ["Ej019ExceptionsAndTryWith", "Excepciones", "Checked/unchecked, try-with-resources, multicatch y causas encadenadas."],
+      ["Ej020DateTimeApi", "java.time", "Instant, LocalDate, ZonedDateTime, Duration, Period y formateo ISO."],
+      ["Ej021ConcurrencyBasics", "Concurrencia", "AtomicInteger, ConcurrentHashMap, merge y CompletableFuture."],
+      ["Ej022EqualsHashCodeContracts", "Contratos", "Reflexividad, simetria, consistencia, hashCode y colecciones hash."]
+    ];
+    const flashcards = [
+      ["Que genera automaticamente un record?", "Constructor canonico, accesores, equals, hashCode y toString."],
+      ["Diferencia entre map y flatMap?", "map transforma a un valor. flatMap transforma a otro contenedor y lo aplana."],
+      ["Por que orElseGet puede ser mejor que orElse?", "Porque calcula el valor alternativo solo cuando el Optional esta vacio."],
+      ["Por que List<Perro> no es List<Animal>?", "Porque si lo fuera podrias meter un Gato en una lista de Perros."],
+      ["Que significa PECS?", "Producer Extends para leer, Consumer Super para escribir."],
+      ["Que ventaja da sealed a un switch?", "El compilador puede comprobar exhaustividad y avisar si falta un caso."],
+      ["Por que contador++ no es seguro?", "Porque son leer, sumar y escribir; entre hilos se pueden perder incrementos."],
+      ["Que contrato une equals y hashCode?", "Si a.equals(b), entonces a.hashCode() debe ser igual a b.hashCode()."],
+      ["Que usar para almacenar instantes en APIs?", "Instant en UTC; la zona se aplica al presentar o segun el dominio."],
+      ["Por que conservar la causa al relanzar?", "Porque mantiene el stack trace original y permite diagnosticar el fallo real."]
+    ];
+    const guidedExamples = [
+      {
+        title: "Ej011 - Records para DTOs",
+        problem: "Antes un DTO simple exigia clase, campos, constructor, getters, equals, hashCode y toString escritos a mano.",
+        remedy: "Usar record para expresar datos inmutables y validar en constructor compacto.",
+        efficiency: "Menos codigo accidental, menos bugs de igualdad y objetos seguros para compartir.",
+        code: `record UsuarioDto(Long id, String nombre) {
+    UsuarioDto {
+        if (nombre == null || nombre.isBlank()) {
+            throw new IllegalArgumentException("nombre obligatorio");
+        }
+        nombre = nombre.trim();
+    }
+}
+
+System.out.println(new UsuarioDto(7L, " Ana "));`,
+        output: `UsuarioDto[id=7, nombre=Ana]`
+      },
+      {
+        title: "Ej012 - Optional sin null-checks",
+        problem: "Antes una busqueda podia devolver null y el fallo aparecia lejos como NullPointerException.",
+        remedy: "Devolver Optional y encadenar map/filter/orElseThrow para tratar la ausencia donde toca.",
+        efficiency: "La ausencia queda documentada en el tipo y el compilador empuja a manejarla.",
+        code: `Optional.of(" ana@demo.test ")
+    .map(String::trim)
+    .filter(s -> s.contains("@"))
+    .map(String::toLowerCase)
+    .orElseThrow();`,
+        output: `ana@demo.test`
+      },
+      {
+        title: "Ej013 - Streams basicos",
+        problem: "Antes se mezclaba recorrido, filtros, acumuladores y mutacion en bucles largos.",
+        remedy: "Declarar una tuberia: filtrar, transformar y materializar.",
+        efficiency: "Mejora lectura y reduce variables temporales; cada etapa tiene una intencion.",
+        code: `List.of("Ana", "Luis", "Ada", "Eva").stream()
+    .filter(n -> n.startsWith("A"))
+    .map(String::toUpperCase)
+    .sorted()
+    .toList();`,
+        output: `[ADA, ANA]`
+      },
+      {
+        title: "Ej014 - Collectors avanzados",
+        problem: "Antes agrupar totales requeria mapas mutables, containsKey y sumas manuales.",
+        remedy: "Usar groupingBy con downstream como summingDouble.",
+        efficiency: "Agrupa y agrega en una pasada expresando el resultado como Map.",
+        code: `pedidos.stream()
+    .collect(groupingBy(Pedido::cliente,
+             summingDouble(Pedido::total)));`,
+        output: `{Ana=125.5, Luis=80.0, Eva=210.0}`
+      },
+      {
+        title: "Ej015 - Repositorio generico",
+        problem: "Antes se copiaba el mismo CRUD para Usuario, Pedido, Producto y cada entidad nueva.",
+        remedy: "Parametrizar entidad e id: Repository<T, ID> con una funcion extractora de id.",
+        efficiency: "Una sola implementacion reutilizable, tipada y facil de probar.",
+        code: `InMemoryRepository<Usuario, Long> repo =
+    new InMemoryRepository<>(Usuario::id);
+
+repo.save(new Usuario(42L, "Ana"));
+repo.findById(42L).map(Usuario::nombre);`,
+        output: `Optional[Ana]`
+      },
+      {
+        title: "Ej016 - Wildcards y PECS",
+        problem: "Antes se esperaba que List<Perro> sirviera como List<Animal>, pero Java lo rechaza por seguridad.",
+        remedy: "Usar ? extends cuando lees y ? super cuando escribes.",
+        efficiency: "Acepta jerarquias completas sin permitir inserciones peligrosas.",
+        code: `double pesoTotal(List<? extends Animal> animales) {
+    return animales.stream().mapToDouble(Animal::peso).sum();
+}
+
+void llenar(List<? super Perro> destino) {
+    destino.add(new Perro("Luna"));
+}`,
+        output: `pesoTotal(List<Perro>) compila
+llenar(List<Animal>) compila`
+      },
+      {
+        title: "Ej017 - Interfaces funcionales",
+        problem: "Antes cada filtro o transformacion necesitaba una clase anonima o condicionales repetidos.",
+        remedy: "Pasar comportamiento con Predicate, Function, Consumer y Supplier.",
+        efficiency: "Permite componer reglas y reutilizar logica sin acoplarla a una clase concreta.",
+        code: `Predicate<Usuario> adulto = u -> u.edad() >= 18;
+Predicate<Usuario> activo = Usuario::activo;
+Function<Usuario, String> etiqueta = u -> u.nombre().toUpperCase();
+
+usuarios.stream().filter(adulto.and(activo)).map(etiqueta).toList();`,
+        output: `[ANA, EVA]`
+      },
+      {
+        title: "Ej018 - Sealed y pattern matching",
+        problem: "Antes los resultados se modelaban con booleanos, null o strings magicos.",
+        remedy: "Crear una jerarquia cerrada de resultados y traducirla con switch exhaustivo.",
+        efficiency: "Si aparece un nuevo caso, el compilador marca los switch incompletos.",
+        code: `return switch (resultado) {
+    case Ok ok -> 200;
+    case NotFound nf -> 404;
+    case Error err -> 500;
+};`,
+        output: `Ok -> 200
+NotFound -> 404
+Error -> 500`
+      },
+      {
+        title: "Ej019 - Excepciones y try-with-resources",
+        problem: "Antes se cerraban recursos a mano y al envolver errores se perdia la causa original.",
+        remedy: "try-with-resources cierra AutoCloseable y las excepciones propias conservan causa.",
+        efficiency: "Menos fugas de recursos y diagnosticos reales en el stack trace.",
+        code: `try (var reader = Files.newBufferedReader(path)) {
+    return reader.readLine();
+} catch (IOException e) {
+    throw new RepositorioException("No se pudo leer", e);
+}`,
+        output: `RepositorioException: No se pudo leer
+caused by: java.io.IOException`
+      },
+      {
+        title: "Ej020 - java.time",
+        problem: "Antes Date era mutable, confusa con zonas y mala para tests.",
+        remedy: "Usar Instant para tiempo tecnico, LocalDate para calendario y ZonedDateTime para eventos humanos.",
+        efficiency: "Tipos inmutables, ISO-8601 natural y conversiones explicitas.",
+        code: `Instant creado = Instant.parse("2026-06-30T10:15:00Z");
+ZonedDateTime madrid = creado.atZone(ZoneId.of("Europe/Madrid"));
+
+System.out.println(madrid.toLocalDate());`,
+        output: `2026-06-30`
+      },
+      {
+        title: "Ej021 - Concurrencia basica",
+        problem: "Antes contador++ parecia suficiente, pero entre hilos pierde incrementos.",
+        remedy: "AtomicInteger para contadores y ConcurrentHashMap.merge para acumulados compartidos.",
+        efficiency: "Operaciones atomicas sin bloquear toda la aplicacion con synchronized amplio.",
+        code: `AtomicInteger visitas = new AtomicInteger();
+visitas.incrementAndGet();
+
+ConcurrentHashMap<String, Integer> porRuta = new ConcurrentHashMap<>();
+porRuta.merge("/api", 1, Integer::sum);`,
+        output: `visitas = 1
+porRuta = {/api=1}`
+      },
+      {
+        title: "Ej022 - equals/hashCode",
+        problem: "Antes dos objetos iguales podian no encontrarse en HashSet si hashCode no acompanaba a equals.",
+        remedy: "Usar los mismos campos en equals y hashCode; records lo generan automaticamente para value objects.",
+        efficiency: "Las colecciones hash localizan objetos en el bucket correcto.",
+        code: `Set<Usuario> set = new HashSet<>();
+set.add(new Usuario(1L, "Ana"));
+
+System.out.println(set.contains(new Usuario(1L, "Ana")));`,
+        output: `true, si equals y hashCode usan el mismo id`
+      }
+    ];
+
+    const escapeHtml = value => String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;");
+
+    const toc = document.querySelector("#toc");
+    const documentSections = [...document.querySelectorAll("main section[data-title]")];
+    documentSections.forEach(section => {
+      const a = document.createElement("a");
+      a.href = "#" + section.id;
+      a.textContent = section.dataset.title;
+      toc.appendChild(a);
+    });
+    const printToc = document.querySelector("#printToc");
+    if (printToc) {
+      printToc.innerHTML = documentSections.map(section =>
+        `<li><a href="#${section.id}">${escapeHtml(section.dataset.title)}</a></li>`
+      ).join("");
+    }
+
+    document.querySelector("#exerciseList").innerHTML = "<h3>Checklist de ejercicios oficiales</h3>" + exercises.map((e, i) => `
+      <div class="exercise searchable">
+        <div class="num">${String(i + 11).padStart(2, "0")}</div>
+        <div><strong>${e[0]}</strong><p>${e[1]}: ${e[2]}</p></div>
+        <span class="pill">concepto + practica</span>
+      </div>`).join("");
+    document.querySelector("#examplesList").innerHTML = guidedExamples.map(example => `
+      <article class="card example-card searchable">
+        <h3>${escapeHtml(example.title)}</h3>
+        <div class="example-meta">
+          <div class="meta-box"><b>Problema</b><p>${escapeHtml(example.problem)}</p></div>
+          <div class="meta-box"><b>Remedio</b><p>${escapeHtml(example.remedy)}</p></div>
+          <div class="meta-box"><b>Ventaja</b><p>${escapeHtml(example.efficiency)}</p></div>
+        </div>
+        <div class="sample-grid">
+          <pre><code>${escapeHtml(example.code)}</code></pre>
+          <pre class="terminal"><code>${escapeHtml(example.output)}</code></pre>
+        </div>
+      </article>`).join("");
+    const normalizeCodeText = text => {
+      const lines = String(text).replace(/\r\n/g, "\n").replace(/\r/g, "\n").split("\n");
+      while (lines.length && !lines[0].trim()) lines.shift();
+      while (lines.length && !lines[lines.length - 1].trim()) lines.pop();
+      const indents = lines.filter(line => line.trim()).map(line => (line.match(/^\s*/) || [""])[0].length);
+      const minIndent = indents.length ? Math.min(...indents) : 0;
+      return lines.map(line => line.slice(minIndent)).join("\n");
+    };
+    const highlightCode = source => {
+      const placeholders = [];
+      let html = escapeHtml(source);
+      const hold = (className, value) => {
+        const key = `\uE000${"A".repeat(placeholders.length + 1)}\uE001`;
+        placeholders.push(`<span class="${className}">${value}</span>`);
+        return key;
+      };
+      html = html.replace(/(&quot;.*?&quot;|'.*?')/g, value => hold("tok-string", value));
+      html = html.replace(/(\/\/.*$|#.*$)/gm, value => hold("tok-comment", value));
+      html = html.replace(/(@[A-Za-z_][\w]*)/g, value => hold("tok-annotation", value));
+      html = html.replace(/\b(GET|POST|PUT|PATCH|DELETE|HEAD|OPTIONS|HTTP\/1\.1)\b/g, value => hold("tok-http-method", value));
+      html = html.replace(/\b(200|201|202|204|304|400|401|403|404|405|406|409|415|422|429|500|503)\b/g, value => hold("tok-http-status", value));
+      html = html.replace(/\b(public|private|protected|class|interface|record|sealed|permits|extends|implements|return|new|if|else|switch|case|try|catch|throw|throws|static|final|void|int|double|boolean|var)\b/g, value => hold("tok-keyword", value));
+      html = html.replace(/\b([A-Z][A-Za-z0-9_]*)(?=[\s&lt;&gt;,\)\{])/g, value => hold("tok-type", value));
+      html = html.replace(/\b([a-zA-Z_][\w]*)(?=\()/g, value => hold("tok-fn", value));
+      html = html.replace(/\b([a-z_][\w-]*)(?=\s*:)/g, value => hold("tok-name", value));
+      html = html.replace(/\b(\d+(?:\.\d+)?)\b/g, value => hold("tok-number", value));
+      return placeholders.reduce((acc, value, index) => acc.replaceAll(`\uE000${"A".repeat(index + 1)}\uE001`, value), html);
+    };
+    document.querySelectorAll("pre").forEach(pre => {
+      const code = pre.querySelector("code");
+      if (code) {
+        const normalized = normalizeCodeText(code.textContent);
+        code.dataset.raw = normalized;
+        code.innerHTML = highlightCode(normalized);
+      }
+    });
+
+    document.querySelector("#flashcards").innerHTML = flashcards.map(([q, a]) => `
+      <article class="card mini flash searchable" tabindex="0"><h3>${q}</h3><p class="answer">${a}</p></article>`).join("");
+    document.querySelectorAll(".flash").forEach(card => {
+      card.addEventListener("click", () => card.classList.toggle("open"));
+      card.addEventListener("keydown", ev => { if (ev.key === "Enter") card.classList.toggle("open"); });
+    });
+
+    const root = document.documentElement;
+    const saved = localStorage.getItem("b01-theme");
+    if (saved) root.dataset.theme = saved;
+    document.querySelector("#themeBtn").addEventListener("click", () => {
+      root.dataset.theme = root.dataset.theme === "dark" ? "light" : "dark";
+      localStorage.setItem("b01-theme", root.dataset.theme);
+    });
+    document.querySelector("#expandBtn").addEventListener("click", () => {
+      document.querySelectorAll(".flash").forEach(c => c.classList.toggle("open"));
+    });
+    const shell = document.querySelector(".shell");
+    const sidebarBtn = document.querySelector("#sidebarBtn");
+    const sidebarPreference = localStorage.getItem("b01-sidebar");
+    if (sidebarPreference === "hidden" || (!sidebarPreference && matchMedia("(max-width: 720px)").matches)) {
+      shell.classList.add("sidebar-hidden");
+    }
+    sidebarBtn.textContent = shell.classList.contains("sidebar-hidden") ? "Mostrar indice" : "Ocultar indice";
+    sidebarBtn.addEventListener("click", () => {
+      shell.classList.toggle("sidebar-hidden");
+      const hidden = shell.classList.contains("sidebar-hidden");
+      sidebarBtn.textContent = hidden ? "Mostrar indice" : "Ocultar indice";
+      localStorage.setItem("b01-sidebar", hidden ? "hidden" : "visible");
+    });
+    document.querySelector("#pdfBtn").addEventListener("click", () => {
+      document.querySelectorAll(".flash").forEach(c => c.classList.add("open"));
+      document.body.classList.add("printing");
+      setTimeout(() => window.print(), 80);
+      setTimeout(() => document.body.classList.remove("printing"), 700);
+    });
+
+    const links = [...document.querySelectorAll("nav a")];
+    links.forEach(link => link.addEventListener("click", () => {
+      if (matchMedia("(max-width: 720px)").matches) {
+        shell.classList.add("sidebar-hidden");
+        sidebarBtn.textContent = "Mostrar indice";
+      }
+    }));
+    const sections = documentSections;
+    const onScroll = () => {
+      const max = document.body.scrollHeight - innerHeight;
+      document.querySelector("#bar").style.width = Math.max(0, Math.min(100, scrollY / max * 100)) + "%";
+      let current = sections[0]?.id;
+      sections.forEach(s => { if (s.getBoundingClientRect().top < 140) current = s.id; });
+      links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + current));
+    };
+    addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    document.querySelector("#search").addEventListener("input", ev => {
+      const q = ev.target.value.trim().toLowerCase();
+      document.querySelectorAll("main section").forEach(section => {
+        section.classList.toggle("hidden", q && !section.textContent.toLowerCase().includes(q));
+      });
+    });
+  </script>
+</body>
+</html>

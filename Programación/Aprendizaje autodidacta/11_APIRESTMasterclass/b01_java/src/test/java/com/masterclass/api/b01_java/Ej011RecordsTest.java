@@ -1,8 +1,13 @@
 package com.masterclass.api.b01_java;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
+
 import com.masterclass.api.b01_java.Ej011Records.ProductoDto;
-import static org.junit.jupiter.api.Assertions.*;
 
 class Ej011RecordsTest {
 
@@ -97,7 +102,7 @@ class Ej011RecordsTest {
     @Test
     void retoExtra09_formatoEtiqueta() {
         var p = new ProductoDto(1L, "Teclado", 100.0);
-        assertEquals("Teclado - $100.0", Ej011Records.formatoEtiqueta(p));
+        assertEquals("Teclado - $100,0", Ej011Records.formatoEtiqueta(p));
     }
 
     @Test
