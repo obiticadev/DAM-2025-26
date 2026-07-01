@@ -1,13 +1,19 @@
 package com.masterclass.api.b01_java;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.TreeMap;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * Ejercicio 014 · Streams avanzados: reduce, flatMap, Collectors.groupingBy.
  *
- * <p>Teoría: {@code teoria/01_Java_Moderno_para_APIs.md} (sección 1.3).
+ * <p>
+ * Teoría: {@code teoria/01_Java_Moderno_para_APIs.md} (sección 1.3).
  */
 public final class Ej014StreamsAdvanced {
 
@@ -24,7 +30,9 @@ public final class Ej014StreamsAdvanced {
         // TODO 1: abre stream sobre 'listas' (cada elemento es una sublista).
         // TODO 2: usa flatMap(List::stream) para fundir las sublistas en un solo flujo.
         // TODO 3: recoge a List respetando el orden de aparición y devuélvela.
-        return List.of();
+        return listas.stream()
+                .flatMap(List::stream)
+                .toList();
     }
 
     /**
@@ -37,8 +45,10 @@ public final class Ej014StreamsAdvanced {
         // TODO 4: abre stream sobre 'palabras'.
         // TODO 5: define la clave de agrupación: p -> p.charAt(0).
         // TODO 6: usa Collectors.groupingBy con esa función clave.
-        // TODO 7: el value por defecto de groupingBy ya es una List que preserva orden: devuélvelo.
-        return Map.of();
+        // TODO 7: el value por defecto de groupingBy ya es una List que preserva orden:
+        // devuélvelo.
+        return palabras.stream()
+                .collect(Collectors.groupingBy(p -> p.charAt(0)));
     }
 
     /**
@@ -51,7 +61,11 @@ public final class Ej014StreamsAdvanced {
         // TODO 8: abre stream sobre 'nombres'.
         // TODO 9: usa Collectors.joining(", ") (el caso vacío produce "" naturalmente).
         // TODO 10: devuelve la cadena resultante.
-        return "";
+        if (nombres == null) {
+            return "";
+        }
+        return nombres.stream()
+                .collect(Collectors.joining(", "));
     }
 
     public static void main(String[] args) {
@@ -59,7 +73,8 @@ public final class Ej014StreamsAdvanced {
         System.out.println(unirConComas(List.of("a", "b", "c")));
     }
 
-    public record Producto(String nombre, String categoria, double precio) {}
+    public record Producto(String nombre, String categoria, double precio) {
+    }
 
     /**
      * Reto Extra 1: Clasificación con groupingBy.
@@ -72,7 +87,8 @@ public final class Ej014StreamsAdvanced {
         // GUÍA: decide qué propiedad de cada palabra será la clave del grupo.
         // Las palabras con la misma clave deben quedar juntas y conservar su
         // orden relativo dentro de cada lista.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para agruparPorLongitud");
+        return palabras.stream()
+                .collect(Collectors.groupingBy(a -> a.length()));
     }
 
     /**
@@ -86,7 +102,8 @@ public final class Ej014StreamsAdvanced {
         // GUÍA: una partición binaria siempre tiene dos lados: los que cumplen
         // la condición y los que no. Aunque un lado quede vacío, el mapa debería
         // poder consultarse sin sorpresas.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para particionarParesImpares");
+        return numeros.stream()
+                .collect(Collectors.partitioningBy(a -> a % 2 == 0));
     }
 
     /**
@@ -100,7 +117,15 @@ public final class Ej014StreamsAdvanced {
         // GUÍA: hay dos niveles que pueden contener basura: la sublista completa
         // y cada cadena individual. Primero evita entrar en sublistas nulas y,
         // después, descarta elementos nulos o vacíos al aplanar.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para aplanarListas");
+        if (listas == null) {
+            return List.of();
+        }
+
+        return listas.stream()
+                .filter(Objects::nonNull)
+                .flatMap(List::stream)
+                .filter(s -> s != null && !s.isEmpty())
+                .toList();
     }
 
     /**
@@ -114,12 +139,18 @@ public final class Ej014StreamsAdvanced {
         // GUÍA: cada palabra debe convertirse en una clave y el valor asociado
         // no es la lista de apariciones, sino la cantidad de veces que aparece.
         // Piensa en esto como un histograma textual.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarOcurrencias");
+        if (palabras == null || palabras.isEmpty()) {
+            return Map.of();
+        }
+        return palabras.stream()
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
     }
 
     /**
      * Reto Extra 5: Reducción secundaria de valores agrupados.
-     * Agrupa las palabras por su longitud, y concatena los nombres de cada grupo separados por coma.
+     * Agrupa las palabras por su longitud, y concatena los nombres de cada grupo
+     * separados por coma.
      *
      * @param palabras lista de palabras
      * @return mapa longitud -> nombres concatenados
@@ -128,7 +159,11 @@ public final class Ej014StreamsAdvanced {
         // GUÍA: primero agrupa por longitud y luego decide cómo resumir cada
         // grupo. En este caso el resumen no es una lista ni un conteo: es una
         // cadena con los elementos del grupo unidos en orden.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerNombresConcatenadosPorGrupo");
+        if (palabras == null || palabras.isEmpty()) {
+            return Map.of();
+        }
+        return palabras.stream()
+                .collect(Collectors.groupingBy(String::length, Collectors.joining(", ")));
     }
 
     /**
@@ -142,7 +177,12 @@ public final class Ej014StreamsAdvanced {
         // GUÍA: cada categoría forma un grupo y dentro de cada grupo debes elegir
         // el producto con mayor precio. La firma usa Optional porque una reducción
         // de máximo representa una respuesta que podría no existir.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para encontrarProductoMasCaroPorCategoria");
+        if (productos == null) {
+            return Map.of();
+        }
+        return productos.stream()
+                .collect(Collectors.groupingBy(Producto::categoria,
+                        Collectors.maxBy(Comparator.comparing(Producto::precio))));
     }
 
     /**
@@ -157,12 +197,18 @@ public final class Ej014StreamsAdvanced {
         // GUÍA: no promedies todos los productos, solo los de la categoría pedida.
         // Si no hay ninguno, el contrato define 0.0 como valor neutro de respuesta.
         // Distingue entre tiempo de filtrado y tiempo de cálculo del promedio.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularPromedioPrecio");
+        if (productos == null || categoria == null) {
+            return 0.0;
+        }
+        return productos.stream()
+                .filter(a -> a.categoria.equals(categoria))
+                .collect(Collectors.averagingDouble(Producto::precio));
     }
 
     /**
      * Reto Extra 8: Prevención de duplicados en toMap con merge.
-     * Convierte la lista de productos en un mapa donde la clave es el nombre del producto y el valor es el producto.
+     * Convierte la lista de productos en un mapa donde la clave es el nombre del
+     * producto y el valor es el producto.
      * En caso de duplicados de nombre, quédate con el producto de mayor precio.
      *
      * @param productos lista de productos
@@ -172,12 +218,19 @@ public final class Ej014StreamsAdvanced {
         // GUÍA: el nombre es la clave del mapa, pero puede repetirse. Define una
         // regla clara para resolver colisiones: entre productos con igual nombre,
         // debe sobrevivir el de mayor precio.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearMapaDeValoresUnicos");
+        if (productos == null) {
+            throw new IllegalArgumentException();
+        }
+        return productos.stream()
+                .filter(Objects::nonNull)
+                .collect(Collectors.toMap(Producto::nombre, Function.identity(),
+                        (p1, p2) -> (p1.precio >= p2.precio) ? p1 : p2));
     }
 
     /**
      * Reto Extra 9: Estadísticas completas con summarizingDouble.
-     * Genera un objeto DoubleSummaryStatistics con el resumen de precios de los productos.
+     * Genera un objeto DoubleSummaryStatistics con el resumen de precios de los
+     * productos.
      *
      * @param productos lista de productos
      * @return estadísticas de precios
@@ -186,12 +239,18 @@ public final class Ej014StreamsAdvanced {
         // GUÍA: no calcules cada métrica en recorridos separados. El JDK tiene
         // una estructura preparada para resumir valores double con count, suma,
         // mínimo, máximo y media en una sola pasada.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para generarEstadisticasPrecio");
+        if (productos == null) {
+            throw new IllegalArgumentException();
+        }
+        return productos.stream()
+                .filter(Objects::nonNull)
+                .collect(Collectors.summarizingDouble(Producto::precio));
     }
 
     /**
      * Reto Extra 10: Agrupamiento con mapa ordenado (TreeMap).
-     * Agrupa los productos por su categoría, retornando un mapa ordenado alfabéticamente por la categoría.
+     * Agrupa los productos por su categoría, retornando un mapa ordenado
+     * alfabéticamente por la categoría.
      *
      * @param productos lista de productos
      * @return mapa ordenado categoria -> lista de productos
@@ -200,7 +259,12 @@ public final class Ej014StreamsAdvanced {
         // GUÍA: además de agrupar, el mapa resultante debe tener claves ordenadas.
         // El tipo concreto de mapa importa porque un mapa hash no promete orden
         // al recorrer sus claves.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para agruparYOrdenarResultados");
+        if (productos == null) {
+            throw new IllegalArgumentException();
+        }
+        return productos.stream()
+                .filter(Objects::nonNull)
+                .collect(Collectors.groupingBy(Producto::categoria, TreeMap::new, Collectors.toList()));
     }
 
 }
