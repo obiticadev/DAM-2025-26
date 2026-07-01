@@ -1,12 +1,15 @@
 package com.masterclass.api.b01_java;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Ejercicio 013 · Streams básicos: filter/map/collect.
  *
- * <p>Teoría: {@code teoria/01_Java_Moderno_para_APIs.md} (sección 1.3).
+ * <p>
+ * Teoría: {@code teoria/01_Java_Moderno_para_APIs.md} (sección 1.3).
  */
 public final class Ej013StreamsBasics {
 
@@ -14,7 +17,8 @@ public final class Ej013StreamsBasics {
     }
 
     /**
-     * Devuelve los nombres en mayúsculas de los productos cuyo precio supera un umbral.
+     * Devuelve los nombres en mayúsculas de los productos cuyo precio supera un
+     * umbral.
      *
      * @param precios lista de pares [nombre, precio] ya emparejados como entradas
      * @param umbral  precio mínimo estricto
@@ -26,7 +30,11 @@ public final class Ej013StreamsBasics {
         // TODO 3: mapea cada entrada a su getKey().
         // TODO 4: transforma cada clave a mayúsculas.
         // TODO 5: recoge a List preservando el orden y devuélvela.
-        return List.of();
+
+        return precios.stream()
+                .filter(a -> a.getValue() > umbral)
+                .map(a -> a.getKey().toUpperCase())
+                .toList();
     }
 
     /**
@@ -38,7 +46,9 @@ public final class Ej013StreamsBasics {
     public static double total(List<Double> importes) {
         // TODO 6: usa mapToDouble(Double::doubleValue) sobre el stream.
         // TODO 7: aplica sum() (el caso lista vacía debe dar 0.0 de forma natural).
-        return -1;
+        return importes.stream()
+                .mapToDouble(Double::doubleValue)
+                .sum();
     }
 
     /**
@@ -51,7 +61,9 @@ public final class Ej013StreamsBasics {
         // TODO 8: abre stream sobre 'numeros'.
         // TODO 9: filtra los que cumplan n % 2 == 0.
         // TODO 10: devuelve count().
-        return -1;
+        return numeros.stream()
+                .filter(a -> a % 2 == 0)
+                .count();
     }
 
     public static void main(String[] args) {
@@ -61,7 +73,8 @@ public final class Ej013StreamsBasics {
 
     /**
      * Reto Extra 1: Filtrado numérico simple.
-     * Filtra los números para obtener sólo los mayores de edad (mayor o igual a 18).
+     * Filtra los números para obtener sólo los mayores de edad (mayor o igual a
+     * 18).
      *
      * @param edades lista de edades
      * @return lista de mayores de edad
@@ -70,7 +83,7 @@ public final class Ej013StreamsBasics {
         // GUÍA: conserva solo las edades que cumplen el límite legal indicado.
         // El 18 entra; no lo trates como menor. Si decides proteger listas null,
         // devuelve una lista vacía en vez de propagar un fallo accidental.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para filtrarMayoresDeEdad");
+        return edades.stream().filter(e -> e >= 18).toList();
     }
 
     /**
@@ -83,8 +96,12 @@ public final class Ej013StreamsBasics {
     public static List<String> convertirAMayusculas(List<String> palabras) {
         // GUÍA: separa el problema en dos decisiones: qué entradas son válidas
         // y cómo se transforma cada una. El orden importa porque un null no puede
-        // convertirse a mayúsculas. Recuerda que una lista de prueba sí puede traer nulls.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para convertirAMayusculas");
+        // convertirse a mayúsculas. Recuerda que una lista de prueba sí puede traer
+        // nulls.
+        return palabras.stream()
+                .filter(a -> a != null && !a.isEmpty())
+                .map(String::toUpperCase)
+                .toList();
     }
 
     /**
@@ -98,12 +115,19 @@ public final class Ej013StreamsBasics {
         // GUÍA: cada número aporta su cuadrado al total. Puedes pensarlo como
         // una transformación numérica seguida de una reducción. Para una lista
         // vacía, el total natural debe ser cero.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para calcularSumaCuadrados");
+        if (numeros == null || numeros.isEmpty()) {
+            return 0;
+        }
+        return numeros.stream()
+                .mapToInt(a -> (int) Math.pow(a, 2))
+                .sum();
+
     }
 
     /**
      * Reto Extra 4: Operación de conteo terminal.
-     * Cuenta cuántas cadenas en la lista son vacías (o contienen sólo espacios en blanco).
+     * Cuenta cuántas cadenas en la lista son vacías (o contienen sólo espacios en
+     * blanco).
      *
      * @param cadenas lista de cadenas
      * @return cantidad de cadenas vacías
@@ -112,12 +136,16 @@ public final class Ej013StreamsBasics {
         // GUÍA: cuenta cadenas que no tienen contenido visible. No es lo mismo
         // una cadena vacía que una cadena con espacios, pero ambas deben tratarse
         // como vacías para este reto. Fíjate en que el retorno es long.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarCadenasVacias");
+        return cadenas.stream()
+                .map(String::trim)
+                .filter(String::isEmpty)
+                .count();
     }
 
     /**
      * Reto Extra 5: Colector Collectors.joining.
-     * Une las palabras con coma y espacio, y las envuelve en corchetes "[palabra1, palabra2]".
+     * Une las palabras con coma y espacio, y las envuelve en corchetes "[palabra1,
+     * palabra2]".
      *
      * @param cadenas lista de palabras
      * @return cadena con el formato especificado
@@ -126,12 +154,14 @@ public final class Ej013StreamsBasics {
         // GUÍA: el formato tiene tres partes: prefijo, separador entre elementos
         // y sufijo. Comprueba mentalmente el caso de lista vacía: no debe aparecer
         // una coma sobrante ni espacios internos innecesarios.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para unirConComas");
+        return cadenas.stream()
+                .collect(Collectors.joining(", ", "[", "]"));
     }
 
     /**
      * Reto Extra 6: Deduplicación y ordenación.
-     * Retorna una lista con los elementos únicos (sin duplicados) ordenados alfabéticamente.
+     * Retorna una lista con los elementos únicos (sin duplicados) ordenados
+     * alfabéticamente.
      *
      * @param lista lista de palabras
      * @return lista sin duplicados y ordenada
@@ -140,7 +170,11 @@ public final class Ej013StreamsBasics {
         // GUÍA: necesitas eliminar repeticiones y después presentar un orden
         // estable y predecible. Para String, el orden natural es alfabético.
         // Piensa si el orden original debe influir en el resultado final.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerElementosUnicos");
+        return lista.stream()
+                .filter(Objects::nonNull)
+                .distinct()
+                .sorted()
+                .toList();
     }
 
     /**
@@ -156,12 +190,16 @@ public final class Ej013StreamsBasics {
         // GUÍA: este es el núcleo de la paginación: descartar una cantidad inicial
         // y quedarse con una ventana de tamaño máximo. Si la ventana pide más
         // elementos de los disponibles, devuelve simplemente los que existan.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para limitarYDescartar");
+        return lista.stream()
+                .skip(skip)
+                .limit(limit)
+                .toList();
     }
 
     /**
      * Reto Extra 8: Búsqueda con anyMatch.
-     * Comprueba si al menos una palabra de la lista empieza por el prefijo indicado.
+     * Comprueba si al menos una palabra de la lista empieza por el prefijo
+     * indicado.
      *
      * @param palabras lista de palabras
      * @param prefijo  prefijo a buscar (insensible a mayúsculas/minúsculas)
@@ -171,7 +209,15 @@ public final class Ej013StreamsBasics {
         // GUÍA: la comparación no debe depender de mayúsculas o minúsculas, así
         // que ambos lados deben evaluarse con el mismo criterio. Basta con que
         // una palabra cumpla; no necesitas recorrer lógicamente más tras encontrarla.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para algunoEmpiezaCon");
+        if (palabras == null || palabras.isEmpty() || prefijo == null) {
+            return false;
+        }
+
+        String newPrefijo = prefijo.toLowerCase();
+
+        return palabras.stream()
+                .filter(Objects::nonNull)
+                .anyMatch(a -> a.toLowerCase().startsWith(newPrefijo));
     }
 
     /**
@@ -179,13 +225,18 @@ public final class Ej013StreamsBasics {
      * Comprueba si todos los números de la lista son estrictamente positivos (> 0).
      *
      * @param numeros lista de números
-     * @return true si todos son positivos o si la lista está vacía, false de lo contrario
+     * @return true si todos son positivos o si la lista está vacía, false de lo
+     *         contrario
      */
     public static boolean todosSonPositivos(List<Integer> numeros) {
         // GUÍA: esta es una condición universal: ningún elemento puede incumplirla.
         // La lista vacía se considera válida porque no contiene contraejemplos,
         // una idea lógica conocida como verdad vacua.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para todosSonPositivos");
+        if (numeros == null) {
+            return false;
+        }
+        return numeros.stream()
+                .allMatch(a -> a != null && a > 0);
     }
 
     /**
@@ -199,7 +250,12 @@ public final class Ej013StreamsBasics {
         // GUÍA: buscar un máximo requiere comparar elementos entre sí. Si no hay
         // elementos, no existe respuesta válida; por eso el contrato usa Optional
         // en vez de devolver null o un número inventado.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerMaximo");
+        if (numeros == null || numeros.isEmpty()) {
+            return Optional.empty();
+        }
+        return numeros.stream()
+                .filter(Objects::nonNull)
+                .max(Integer::compareTo);
     }
 
 }

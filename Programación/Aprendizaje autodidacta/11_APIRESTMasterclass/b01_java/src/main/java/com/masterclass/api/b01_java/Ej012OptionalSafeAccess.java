@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 /**
@@ -89,8 +90,7 @@ public final class Ej012OptionalSafeAccess {
         // GUÍA: si el Optional contiene texto, transforma ese contenido en su longitud.
         // Si está vacío, la ausencia debe llegar intacta al resultado. Evita tratar
         // el caso vacío con null o con get() sin comprobar presencia.
-        throw new UnsupportedOperationException(
-                "TODO: Implementar la lógica del reto extra para obtenerLargoSiPresente");
+        return opt.map(String::length);
     }
 
     /**
@@ -105,7 +105,13 @@ public final class Ej012OptionalSafeAccess {
         // GUÍA: hay dos niveles de ausencia: la lista puede no existir y cada
         // posición puede ser un Optional vacío. El resultado debe ser el primer
         // valor real en orden de aparición, no el primer contenedor.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para obtenerPrimeroValido");
+        if (optList == null) {
+            throw new IllegalArgumentException();
+        }
+        return optList.stream()
+                .filter(Objects::nonNull)
+                .flatMap(Optional::stream)
+                .findFirst();
     }
 
     /**
@@ -121,7 +127,7 @@ public final class Ej012OptionalSafeAccess {
         // GUÍA: aquí no transformas la cadena, solo decides si se conserva.
         // El mínimo es inclusivo: una longitud exactamente igual a minLen es válida.
         // Si el Optional ya estaba vacío, debe seguir vacío.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para filtrarPorLongitud");
+        return (opt == null) ? Optional.empty() : opt.filter(l -> l.length() >= minLen);
     }
 
     /**
@@ -137,8 +143,7 @@ public final class Ej012OptionalSafeAccess {
         // GUÍA: el proveedor representa trabajo que solo debe hacerse si falta
         // el valor principal. El test puede detectar si ejecutas el fallback aunque
         // no haga falta, así que piensa en evaluación perezosa.
-        throw new UnsupportedOperationException(
-                "TODO: Implementar la lógica del reto extra para obtenerConLazyFallback");
+        return opt.orElseGet(s);
     }
 
     /**
@@ -155,8 +160,7 @@ public final class Ej012OptionalSafeAccess {
         // GUÍA: si hay valor, devuélvelo tal cual. Si no lo hay, expresa el fallo
         // con una excepción de negocio y respeta exactamente el mensaje indicado
         // en el contrato del método.
-        throw new UnsupportedOperationException(
-                "TODO: Implementar la lógica del reto extra para lanzarExcepcionPersonalizada");
+        return opt.orElseThrow(() -> new IllegalArgumentException("Valor requerido ausente"));
     }
 
     /**
@@ -172,9 +176,11 @@ public final class Ej012OptionalSafeAccess {
     public static List<String> convertirAStreamYFiltrar(Optional<String> opt) {
         // GUÍA: un Optional presente puede convertirse en una secuencia de un solo
         // elemento, y uno vacío en una secuencia sin elementos. A partir de ahí,
-        // acepta solo cadenas escritas en minúsculas y devuelve su versión en mayúsculas.
-        throw new UnsupportedOperationException(
-                "TODO: Implementar la lógica del reto extra para convertirAStreamYFiltrar");
+        // acepta solo cadenas escritas en minúsculas y devuelve su versión en
+        // mayúsculas.
+        return opt.stream().filter(s -> !s.isEmpty() && s.equals(s.toLowerCase()))
+                .map(String::toUpperCase)
+                .toList();
     }
 
     /**
@@ -190,8 +196,7 @@ public final class Ej012OptionalSafeAccess {
         // GUÍA: este método trata efectos, no transformaciones. Si hay valor,
         // debe ejecutarse la acción que lo consume; si no hay valor, la alternativa
         // sin argumentos. No devuelvas nada ni fabriques valores intermedios.
-        throw new UnsupportedOperationException(
-                "TODO: Implementar la lógica del reto extra para ejecutarAccionCondicional");
+        opt.ifPresentOrElse(siEsta, siNoEsta);
     }
 
     /**
@@ -206,7 +211,7 @@ public final class Ej012OptionalSafeAccess {
         // GUÍA: el objetivo es quitar un nivel de envoltorio. Si el Optional
         // externo está vacío, no hay resultado; si contiene otro Optional, el
         // resultado final debe tener exactamente el estado del Optional interno.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para mapearConFlatMap");
+        return (opt == null) ? Optional.empty() : opt.flatMap(Function.identity());
     }
 
     /**
@@ -224,8 +229,8 @@ public final class Ej012OptionalSafeAccess {
         // GUÍA: respeta el orden de la normalización: primero limpia espacios,
         // después descarta el texto si queda vacío y solo al final transforma el
         // valor válido. Una cadena en blanco debe convertirse en ausencia.
-        throw new UnsupportedOperationException(
-                "TODO: Implementar la lógica del reto extra para reemplazarPorVacioSiInvalido");
+        return (opt == null) ? Optional.empty()
+                : opt.map(String::trim).filter(s -> !s.isEmpty()).map(String::toUpperCase);
     }
 
     /**
@@ -240,8 +245,10 @@ public final class Ej012OptionalSafeAccess {
         // GUÍA: opt1 tiene prioridad. Solo si opt1 no contiene valor debes mirar
         // opt2. La idea es encadenar alternativas sin convertir ausencia en null
         // ni evaluar el fallback antes de saber si hace falta.
-        throw new UnsupportedOperationException(
-                "TODO: Implementar la lógica del reto extra para obtenerPrimeroDeVarios");
+        if (opt1 == null) {
+            return (opt2 == null) ? Optional.empty() : opt2;
+        }
+        return opt1.or(() -> (opt2 == null) ? Optional.empty() : opt2);
     }
 
 }
