@@ -56,123 +56,158 @@ public final class Ej211Nio2PathFiles {
 
     /**
      * Reto Extra 1: Files.exists es true tras crear el fichero.
+     * Formaliza el comportamiento esperado de files.exists es true tras crear el fichero dentro de una
+     * operación de E/S pequeña y verificable.
+     *
      * @return true si Files.exists(path) tras crearlo
      */
     public static boolean existsTrasCrear() {
-        // GUÍA: Path p = Files.createTempFile(...); return Files.exists(p);  (bórralo después).
+        // GUÍA: Usa Path para expresar rutas y Files para ejecutar operaciones atómicas de creación, copia, movimiento,
+        // lectura o borrado, limpiando siempre los recursos temporales creados.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para existsTrasCrear");
     }
 
     /**
      * Reto Extra 2: tras borrar, el fichero ya no existe.
+     * Formaliza el comportamiento esperado de tras borrar, el fichero ya no existe dentro de una operación
+     * de E/S pequeña y verificable.
+     *
      * @return true si Files.exists es false tras Files.deleteIfExists
      */
     public static boolean noExisteTrasBorrar() {
-        // GUÍA: crea, Files.deleteIfExists(p), return !Files.exists(p).
-        // OJO: deleteIfExists NO lanza si no existe; Files.delete SÍ lanza NoSuchFileException.
+        // GUÍA: Usa Path para expresar rutas y Files para ejecutar operaciones atómicas de creación, copia, movimiento,
+        // lectura o borrado, limpiando siempre los recursos temporales creados.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para noExisteTrasBorrar");
     }
 
     /**
      * Reto Extra 3: mover un fichero lo quita del origen y lo pone en el destino.
+     * Formaliza el comportamiento esperado de mover un fichero lo quita del origen y lo pone en el destino
+     * dentro de una operación de E/S pequeña y verificable.
+     *
      * @return true si tras Files.move el origen no existe y el destino sí
      */
     public static boolean moverFichero() {
-        // GUÍA: Files.move(origen, destino, StandardCopyOption.REPLACE_EXISTING);
-        //   return !Files.exists(origen) && Files.exists(destino);
+        // GUÍA: Usa Path para expresar rutas y Files para ejecutar operaciones atómicas de creación, copia, movimiento,
+        // lectura o borrado, limpiando siempre los recursos temporales creados.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para moverFichero");
     }
 
     /**
      * Reto Extra 4: copiar con REPLACE_EXISTING sobrescribe el destino.
-     * @return el contenido del destino tras copiar encima de un fichero existente (== "nuevo")
+     * Formaliza el comportamiento esperado de copiar con REPLACE_EXISTING sobrescribe el destino dentro de
+     * una operación de E/S pequeña y verificable.
+     *
+     * @return el contenido del destino tras copiar encima de un fichero existente (igual a "nuevo")
      */
     public static String copiarReplaceExisting() {
-        // GUÍA: crea destino con "viejo"; crea origen con "nuevo"; Files.copy(origen, destino, REPLACE_EXISTING);
-        //   return Files.readString(destino);  // "nuevo".
-        // OJO: sin REPLACE_EXISTING, copiar sobre un fichero que ya existe lanza FileAlreadyExistsException.
+        // GUÍA: Usa Path para expresar rutas y Files para ejecutar operaciones atómicas de creación, copia, movimiento,
+        // lectura o borrado, limpiando siempre los recursos temporales creados.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para copiarReplaceExisting");
     }
 
     /**
      * Reto Extra 5: crear un directorio y comprobar que lo es.
+     * Formaliza el comportamiento esperado de crear un directorio y comprobar que lo es dentro de una
+     * operación de E/S pequeña y verificable.
+     *
      * @return true si Files.isDirectory tras Files.createDirectory
      */
     public static boolean crearDirectorio() {
-        // GUÍA: Path d = Files.createTempDirectory("ej211dir"); return Files.isDirectory(d);  (bórralo).
+        // GUÍA: Usa Path para expresar rutas y Files para ejecutar operaciones atómicas de creación, copia, movimiento,
+        // lectura o borrado, limpiando siempre los recursos temporales creados.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearDirectorio");
     }
 
     /**
      * Reto Extra 6: Files.size devuelve el tamaño en bytes.
-     * @return tamaño del fichero tras escribir "abcdef" en UTF-8 (== 6)
+     * Formaliza el comportamiento esperado de files.size devuelve el tamaño en bytes dentro de una
+     * operación de E/S pequeña y verificable.
+     *
+     * @return tamaño del fichero tras escribir "abcdef" en UTF-8 (igual a 6)
      */
     public static long tamanoFichero() {
-        // GUÍA: Files.writeString(p, "abcdef"); return Files.size(p);  // 6 (ASCII = 1 byte/char).
+        // GUÍA: Usa Path para expresar rutas y Files para ejecutar operaciones atómicas de creación, copia, movimiento,
+        // lectura o borrado, limpiando siempre los recursos temporales creados.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tamanoFichero");
     }
 
     /**
      * Reto Extra 7: un fichero normal es "regular file".
+     * Formaliza el comportamiento esperado de un fichero normal es "regular file" dentro de una operación
+     * de E/S pequeña y verificable.
+     *
      * @return true si Files.isRegularFile(path) para un fichero creado
      */
     public static boolean esRegularFile() {
-        // GUÍA: return Files.isRegularFile(Files.createTempFile(...));
-        // CONTRASTE: un directorio NO es regular file (isDirectory sí).
+        // GUÍA: Usa Path para expresar rutas y Files para ejecutar operaciones atómicas de creación, copia, movimiento,
+        // lectura o borrado, limpiando siempre los recursos temporales creados.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para esRegularFile");
     }
 
     /**
      * Reto Extra 8: resolve construye una ruta hija a partir de un directorio.
+     * Formaliza el comportamiento esperado de resolve construye una ruta hija a partir de un directorio
+     * dentro de una operación de E/S pequeña y verificable.
+     *
      * @return true si dir.resolve("datos.txt") termina en "datos.txt"
      */
     public static boolean resolveConstruyeRuta() {
-        // GUÍA: Path d = Files.createTempDirectory(...); Path hijo = d.resolve("datos.txt");
-        //   return hijo.endsWith("datos.txt");  // o hijo.getFileName().toString().equals("datos.txt").
-        // CULTURA: resolve es la forma correcta de unir rutas (en vez de concatenar Strings con "/").
+        // GUÍA: Usa Path para expresar rutas y Files para ejecutar operaciones atómicas de creación, copia, movimiento,
+        // lectura o borrado, limpiando siempre los recursos temporales creados.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para resolveConstruyeRuta");
     }
 
     /**
      * Reto Extra 9: getFileName devuelve el nombre del fichero sin la ruta.
-     * @return el nombre del fichero de un Path "carpeta/informe.pdf" (== "informe.pdf")
+     * Formaliza el comportamiento esperado de getFileName devuelve el nombre del fichero sin la ruta
+     * dentro de una operación de E/S pequeña y verificable.
+     *
+     * @return el nombre del fichero de un Path "carpeta/informe.pdf" (igual a "informe.pdf")
      */
     public static String getFileName() {
-        // GUÍA: Path p = Path.of("carpeta", "informe.pdf"); return p.getFileName().toString();  // "informe.pdf".
-        // (no necesita tocar disco; Path es solo la ruta).
+        // GUÍA: Usa Path para expresar rutas y Files para ejecutar operaciones atómicas de creación, copia, movimiento,
+        // lectura o borrado, limpiando siempre los recursos temporales creados.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para getFileName");
     }
 
     /**
      * Reto Extra 10: escribir y leer texto con acentos (UTF-8) con Files.
+     * Formaliza el comportamiento esperado de escribir y leer texto con acentos (UTF-8) con Files dentro
+     * de una operación de E/S pequeña y verificable.
+     *
+     * @param texto texto de entrada del escenario
      * @return el texto releído con Files.readString, igual al original "ñandú café"
      */
     public static String writeReadStringUtf8(String texto) {
-        // GUÍA: Files.writeString(p, texto) y Files.readString(p) usan UTF-8 por defecto; el texto vuelve intacto.
-        // (Puedes pasar un Charset explícito como tercer argumento para otros encodings).
+        // GUÍA: Usa Path para expresar rutas y Files para ejecutar operaciones atómicas de creación, copia, movimiento,
+        // lectura o borrado, limpiando siempre los recursos temporales creados.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para writeReadStringUtf8");
     }
 
     /**
      * Reto Extra 11: Files.notExists es true para una ruta inventada.
+     * Formaliza el comportamiento esperado de files.notExists es true para una ruta inventada dentro de
+     * una operación de E/S pequeña y verificable.
+     *
      * @return true si Files.notExists para un Path que nunca se creó
      */
     public static boolean notExistsParaRutaInventada() {
-        // GUÍA: Path p = Path.of(System.getProperty("java.io.tmpdir"), "no-existe-" + System.nanoTime());
-        //   return Files.notExists(p);
-        // OJO: notExists NO es exactamente !exists (existe un tercer estado "desconocido" por permisos),
-        // pero para una ruta claramente inexistente devuelve true.
+        // GUÍA: Usa Path para expresar rutas y Files para ejecutar operaciones atómicas de creación, copia, movimiento,
+        // lectura o borrado, limpiando siempre los recursos temporales creados.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para notExistsParaRutaInventada");
     }
 
     /**
      * Reto Extra 12: crear una jerarquía de directorios anidados de una vez.
+     * Formaliza el comportamiento esperado de crear una jerarquía de directorios anidados de una vez
+     * dentro de una operación de E/S pequeña y verificable.
+     *
      * @return true si Files.createDirectories(a/b/c) crea toda la cadena y existe
      */
     public static boolean crearDirectoriosAnidados() {
-        // GUÍA: Path base = Files.createTempDirectory(...); Path anidado = base.resolve("a").resolve("b").resolve("c");
-        //   Files.createDirectories(anidado); return Files.isDirectory(anidado);
-        // OJO: createDirectories crea los intermedios que falten; createDirectory (singular) fallaría si "a"/"b" no existen.
+        // GUÍA: Usa Path para expresar rutas y Files para ejecutar operaciones atómicas de creación, copia, movimiento,
+        // lectura o borrado, limpiando siempre los recursos temporales creados.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para crearDirectoriosAnidados");
     }
 }

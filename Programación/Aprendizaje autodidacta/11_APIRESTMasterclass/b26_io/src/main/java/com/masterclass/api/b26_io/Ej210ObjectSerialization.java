@@ -88,126 +88,157 @@ public final class Ej210ObjectSerialization {
 
     /**
      * Reto Extra 1: un campo transient no se serializa (vuelve null).
+     * Formaliza el comportamiento esperado de un campo transient no se serializa (vuelve null) dentro de
+     * una operación de E/S pequeña y verificable.
+     *
      * @return true si tras serializar una Credencial, el password (transient) llega null
      */
     public static boolean transientNoPersiste() {
-        // GUÍA: serializa new Credencial("ana","secreto"); al recuperarla, usuario=="ana" pero
-        // password==null. return recibida.password == null && "ana".equals(recibida.usuario).
-        // CULTURA: transient marca lo que NO debe guardarse (secretos, cachés, datos derivados).
+        // GUÍA: Comprueba la frontera entre el grafo de objetos en memoria y su representación serializada. El contrato
+        // depende de qué objetos son serializables y qué estado se conserva al reconstruirlos.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para transientNoPersiste");
     }
 
     /**
      * Reto Extra 2: se puede serializar y recuperar un null.
+     * Formaliza el comportamiento esperado de se puede serializar y recuperar un null dentro de una
+     * operación de E/S pequeña y verificable.
+     *
      * @return true si writeObject(null) se recupera como null
      */
     public static boolean objetoNuloSeSerializa() {
-        // GUÍA: oos.writeObject(null); Object o = ois.readObject(); return o == null.
+        // GUÍA: Comprueba la frontera entre el grafo de objetos en memoria y su representación serializada. El contrato
+        // depende de qué objetos son serializables y qué estado se conserva al reconstruirlos.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para objetoNuloSeSerializa");
     }
 
     /**
-     * Reto Extra 3: un grafo de objetos (Caja -> Punto) se serializa completo.
+     * Reto Extra 3: un grafo de objetos (Caja a Punto) se serializa completo.
+     * Formaliza el comportamiento esperado de un grafo de objetos (Caja a Punto) se serializa completo
+     * dentro de una operación de E/S pequeña y verificable.
+     *
      * @return true si la Caja recuperada conserva su Punto interno
      */
     public static boolean grafoDeObjetosSeSerializa() {
-        // GUÍA: serializa new Caja("c", new Punto(1,2)); comprueba recuperada.esquina().equals(new Punto(1,2)).
-        // CULTURA: writeObject sigue TODAS las referencias en cascada (ojo con grafos enormes o ciclos).
+        // GUÍA: Comprueba la frontera entre el grafo de objetos en memoria y su representación serializada. El contrato
+        // depende de qué objetos son serializables y qué estado se conserva al reconstruirlos.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para grafoDeObjetosSeSerializa");
     }
 
     /**
      * Reto Extra 4: serializar un objeto no Serializable lanza NotSerializableException.
+     * Formaliza el comportamiento esperado de serializar un objeto no Serializable lanza
+     * NotSerializableException dentro de una operación de E/S pequeña y verificable.
+     *
      * @return true si writeObject(new NoSerializable(1)) lanza NotSerializableException
      */
     public static boolean noSerializableLanzaExcepcion() {
-        // GUÍA: try { oos.writeObject(new NoSerializable(1)); return false; }
-        //   catch (java.io.NotSerializableException e) { return true; }
-        // OJO: es subclase de IOException; captúrala específica.
+        // GUÍA: Comprueba la frontera entre el grafo de objetos en memoria y su representación serializada. El contrato
+        // depende de qué objetos son serializables y qué estado se conserva al reconstruirlos.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para noSerializableLanzaExcepcion");
     }
 
     /**
      * Reto Extra 5: serializar a memoria produce más de 0 bytes.
+     * Formaliza el comportamiento esperado de serializar a memoria produce más de 0 bytes dentro de una
+     * operación de E/S pequeña y verificable.
+     *
      * @return true si serializar un Punto a un ByteArrayOutputStream genera bytes &gt; 0
      */
     public static boolean tamanoSerializadoMayorQueCero() {
-        // GUÍA: ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        //   try (ObjectOutputStream oos = new ObjectOutputStream(bos)) { oos.writeObject(new Punto(1,1)); }
-        //   return bos.toByteArray().length > 0;
-        // CULTURA: el mismo writeObject vale para fichero, memoria o socket; solo cambia el stream.
+        // GUÍA: Comprueba la frontera entre el grafo de objetos en memoria y su representación serializada. El contrato
+        // depende de qué objetos son serializables y qué estado se conserva al reconstruirlos.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tamanoSerializadoMayorQueCero");
     }
 
     /**
      * Reto Extra 6: un record viaja por serialización y vuelve equals.
+     * Formaliza el comportamiento esperado de un record viaja por serialización y vuelve equals dentro de
+     * una operación de E/S pequeña y verificable.
+     *
      * @return true si el Punto deserializado equals al original (reutiliza serializarPunto)
      */
     public static boolean recordRoundTripIgual() {
-        // GUÍA: return new Punto(7,9).equals(serializarPunto(7,9));
+        // GUÍA: Comprueba la frontera entre el grafo de objetos en memoria y su representación serializada. El contrato
+        // depende de qué objetos son serializables y qué estado se conserva al reconstruirlos.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para recordRoundTripIgual");
     }
 
     /**
      * Reto Extra 7: clonar en profundidad copiando por serialización.
+     * Formaliza el comportamiento esperado de clonar en profundidad copiando por serialización dentro de
+     * una operación de E/S pequeña y verificable.
+     *
      * @return true si el clon (serializar+deserializar) es equals pero NO la misma instancia
      */
     public static boolean clonarPorSerializacion() {
-        // GUÍA: serializa y deserializa un Punto; el resultado equals al original pero clon != original
-        // (es una instancia nueva). return clon.equals(orig) && clon != orig.
-        // CULTURA: truco clásico de "deep clone" sin escribir copy-constructores (con coste de E/S).
+        // GUÍA: Comprueba la frontera entre el grafo de objetos en memoria y su representación serializada. El contrato
+        // depende de qué objetos son serializables y qué estado se conserva al reconstruirlos.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para clonarPorSerializacion");
     }
 
     /**
      * Reto Extra 8: una HashMap es serializable y se recupera igual.
-     * @return número de entradas del mapa recuperado (== 2)
+     * Formaliza el comportamiento esperado de una HashMap es serializable y se recupera igual dentro de
+     * una operación de E/S pequeña y verificable.
+     *
+     * @return número de entradas del mapa recuperado (igual a 2)
      */
     public static int mapSerializableConservaEntradas() {
-        // GUÍA: serializa un new HashMap<>(Map.of("a",1,"b",2)) (HashMap implementa Serializable),
-        // recupéralo y return mapa.size();  // 2.
-        // OJO: Map.of(...) devuelve un mapa inmutable también serializable; usa cualquiera.
+        // GUÍA: Comprueba la frontera entre el grafo de objetos en memoria y su representación serializada. El contrato
+        // depende de qué objetos son serializables y qué estado se conserva al reconstruirlos.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para mapSerializableConservaEntradas");
     }
 
     /**
      * Reto Extra 9: un Integer (envuelto como objeto) se serializa.
-     * @return el entero recuperado (== 99)
+     * Formaliza el comportamiento esperado de un Integer (envuelto como objeto) se serializa dentro de una
+     * operación de E/S pequeña y verificable.
+     *
+     * @return el entero recuperado (igual a 99)
      */
     public static int enteroSerializable() {
-        // GUÍA: oos.writeObject(Integer.valueOf(99)); int r = (Integer) ois.readObject(); return r.
+        // GUÍA: Comprueba la frontera entre el grafo de objetos en memoria y su representación serializada. El contrato
+        // depende de qué objetos son serializables y qué estado se conserva al reconstruirlos.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para enteroSerializable");
     }
 
     /**
      * Reto Extra 10: escribir dos objetos en el mismo fichero y leerlos en orden.
-     * @return la suma de x de dos Puntos escritos y leídos secuencialmente (== 1+2 = 3)
+     * Formaliza el comportamiento esperado de escribir dos objetos en el mismo fichero y leerlos en orden
+     * dentro de una operación de E/S pequeña y verificable.
+     *
+     * @return la suma de x de dos Puntos escritos y leídos secuencialmente (igual a 1+2 = 3)
      */
     public static int dosObjetosEnElMismoFichero() {
-        // GUÍA: oos.writeObject(new Punto(1,0)); oos.writeObject(new Punto(2,0));  (en el mismo stream)
-        //   luego ois.readObject() dos veces, EN EL MISMO ORDEN; suma sus x.
-        // OJO/CUIDADO: hay que leerlos en el mismo orden en que se escribieron.
+        // GUÍA: Comprueba la frontera entre el grafo de objetos en memoria y su representación serializada. El contrato
+        // depende de qué objetos son serializables y qué estado se conserva al reconstruirlos.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para dosObjetosEnElMismoFichero");
     }
 
     /**
      * Reto Extra 11: el campo transient SÍ tiene valor antes de serializar (solo se pierde al guardar).
+     * Formaliza el comportamiento esperado de el campo transient SÍ tiene valor antes de serializar (solo
+     * se pierde al guardar) dentro de una operación de E/S pequeña y verificable.
+     *
      * @return true si password no es null en el objeto original pero sí lo es tras el round-trip
      */
     public static boolean transientPresenteAntesAusenteDespues() {
-        // GUÍA: Credencial orig = new Credencial("u","p"); comprueba orig.password != null;
-        // tras serializar+deserializar, recuperada.password == null. return (orig.password != null && recuperada.password == null).
-        // CULTURA: transient no borra el campo en memoria; solo lo excluye de la serialización.
+        // GUÍA: Comprueba la frontera entre el grafo de objetos en memoria y su representación serializada. El contrato
+        // depende de qué objetos son serializables y qué estado se conserva al reconstruirlos.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para transientPresenteAntesAusenteDespues");
     }
 
     /**
      * Reto Extra 12: una lista grande sobrevive al round-trip con todos sus elementos.
-     * @return tamaño de la lista recuperada tras serializar 1000 elementos (== 1000)
+     * Formaliza el comportamiento esperado de una lista grande sobrevive al round-trip con todos sus
+     * elementos dentro de una operación de E/S pequeña y verificable.
+     *
+     * @return tamaño de la lista recuperada tras serializar 1000 elementos (igual a 1000)
      */
     public static int listaGrandeRoundTrip() {
-        // GUÍA: crea una ArrayList con 1000 Strings, serialízala, recupérala y return size().
-        // CULTURA: la serialización maneja colecciones enteras; pero ojo con objetos enormes (memoria/tiempo).
+        // GUÍA: Comprueba la frontera entre el grafo de objetos en memoria y su representación serializada. El contrato
+        // depende de qué objetos son serializables y qué estado se conserva al reconstruirlos.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para listaGrandeRoundTrip");
     }
 }

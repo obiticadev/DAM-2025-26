@@ -58,125 +58,163 @@ public final class Ej209RandomAccessFile {
 
     /**
      * Reto Extra 1: length() devuelve el tamaño del fichero.
-     * @return tamaño en bytes tras escribir 'datos' (== datos.length)
+     * Formaliza el comportamiento esperado de length() devuelve el tamaño del fichero dentro de una
+     * operación de E/S pequeña y verificable.
+     *
+     * @param datos bytes de entrada del escenario
+     * @return tamaño en bytes tras escribir 'datos' (igual a datos.length)
      */
     public static long longitudDelFichero(byte[] datos) {
-        // GUÍA: escribe 'datos' y return raf.length();
+        // GUÍA: Razona con el puntero de fichero como estado observable: cada lectura, escritura o seek cambia desde
+        // dónde se opera sin obligarte a recorrer el contenido previo.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para longitudDelFichero");
     }
 
     /**
-     * Reto Extra 2: seek más allá del final + write EXTIENDE el fichero (deja un hueco de ceros).
-     * @return tamaño del fichero tras seek(10) y escribir 1 byte (debe ser 11)
+     * Reto Extra 2: seek más allá del final + write extiende el fichero (deja un hueco de ceros).
+     * Formaliza el comportamiento esperado de seek más allá del final + write extiende el fichero (deja un
+     * hueco de ceros) dentro de una operación de E/S pequeña y verificable.
+     *
+     * @return tamaño del fichero tras seek(10) y escribir 1 byte (esperado: 11)
      */
     public static long seekMasAllaExtiende() {
-        // GUÍA: RandomAccessFile vacío; raf.seek(10); raf.write(0xFF); return raf.length();  // 11.
-        // CULTURA: los bytes entre 0 y 10 quedan a cero (un "agujero"); útil para reservar espacio.
+        // GUÍA: Razona con el puntero de fichero como estado observable: cada lectura, escritura o seek cambia desde
+        // dónde se opera sin obligarte a recorrer el contenido previo.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para seekMasAllaExtiende");
     }
 
     /**
      * Reto Extra 3: setLength() trunca el fichero a un tamaño menor.
-     * @return tamaño tras escribir 10 bytes y hacer setLength(4) (debe ser 4)
+     * Formaliza el comportamiento esperado de setLength() trunca el fichero a un tamaño menor dentro de
+     * una operación de E/S pequeña y verificable.
+     *
+     * @return tamaño tras escribir 10 bytes y hacer setLength(4) (esperado: 4)
      */
     public static long setLengthTrunca() {
-        // GUÍA: escribe new byte[10]; raf.setLength(4); return raf.length();  // 4 (se descartan 6 bytes).
-        // CULTURA: setLength también puede EXTENDER (rellenando con ceros).
+        // GUÍA: Razona con el puntero de fichero como estado observable: cada lectura, escritura o seek cambia desde
+        // dónde se opera sin obligarte a recorrer el contenido previo.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para setLengthTrunca");
     }
 
     /**
      * Reto Extra 4: writeInt/readInt escriben y leen un entero (4 bytes) en cualquier posición.
-     * @return el entero leído tras escribirlo (== valor)
+     * Formaliza el comportamiento esperado de writeInt/readInt escriben y leen un entero (4 bytes) en
+     * cualquier posición dentro de una operación de E/S pequeña y verificable.
+     *
+     * @param valor valor numérico que se convierte o persiste
+     * @return el entero leído tras escribirlo (igual a valor)
      */
     public static int escribirYLeerInt(int valor) {
-        // GUÍA: raf.writeInt(valor); raf.seek(0); return raf.readInt();
-        // OJO: writeInt escribe 4 bytes en big-endian; por eso un int siempre ocupa lo mismo (registro fijo).
+        // GUÍA: Razona con el puntero de fichero como estado observable: cada lectura, escritura o seek cambia desde
+        // dónde se opera sin obligarte a recorrer el contenido previo.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para escribirYLeerInt");
     }
 
     /**
      * Reto Extra 5: writeUTF/readUTF guardan y recuperan una cadena con su longitud.
-     * @return la cadena leída tras escribirla (== texto)
+     * Formaliza el comportamiento esperado de writeUTF/readUTF guardan y recuperan una cadena con su
+     * longitud dentro de una operación de E/S pequeña y verificable.
+     *
+     * @param texto texto de entrada del escenario
+     * @return la cadena leída tras escribirla (igual a texto)
      */
     public static String escribirYLeerUTF(String texto) {
-        // GUÍA: raf.writeUTF(texto); raf.seek(0); return raf.readUTF();
-        // CULTURA: writeUTF antepone 2 bytes con la longitud (formato "UTF modificado"); así readUTF
-        // sabe cuántos bytes leer. Es un mini-protocolo de longitud-prefijada (compárese con b29).
+        // GUÍA: Razona con el puntero de fichero como estado observable: cada lectura, escritura o seek cambia desde
+        // dónde se opera sin obligarte a recorrer el contenido previo.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para escribirYLeerUTF");
     }
 
     /**
-     * Reto Extra 6: leer un fichero en orden INVERSO usando seek.
+     * Reto Extra 6: leer un fichero en orden inverso usando seek.
+     * Formaliza el comportamiento esperado de leer un fichero en orden inverso usando seek dentro de una
+     * operación de E/S pequeña y verificable.
+     *
+     * @param datos bytes de entrada del escenario
      * @return los bytes leídos del último al primero (inverso de 'datos')
      */
     public static byte[] leerInverso(byte[] datos) {
-        // GUÍA: for (long p = raf.length()-1; p >= 0; p--) { raf.seek(p); out[i++] = (byte) raf.read(); }
-        // Demuestra el acceso aleatorio: imposible de hacer así con un InputStream secuencial.
-        // OJO: el test pasa {1,2,3} y espera {3,2,1}.
+        // GUÍA: Razona con el puntero de fichero como estado observable: cada lectura, escritura o seek cambia desde
+        // dónde se opera sin obligarte a recorrer el contenido previo.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para leerInverso");
     }
 
     /**
      * Reto Extra 7: el puntero de fichero avanza al leer.
-     * @return la posición del puntero tras leer 3 bytes (getFilePointer == 3)
+     * Formaliza el comportamiento esperado de el puntero de fichero avanza al leer dentro de una operación
+     * de E/S pequeña y verificable.
+     *
+     * @return la posición del puntero tras leer 3 bytes (getFilePointer igual a 3)
      */
     public static long punteroAvanzaAlLeer() {
-        // GUÍA: escribe >=3 bytes, seek(0), lee 3 bytes (read() x3 o readFully(new byte[3]));
-        //   return raf.getFilePointer();  // 3.
+        // GUÍA: Razona con el puntero de fichero como estado observable: cada lectura, escritura o seek cambia desde
+        // dónde se opera sin obligarte a recorrer el contenido previo.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para punteroAvanzaAlLeer");
     }
 
     /**
      * Reto Extra 8: registros de tamaño fijo — saltar al k-ésimo con seek(k*tam).
+     * Formaliza el comportamiento esperado de registros de tamaño fijo — saltar al k-ésimo con seek(k*tam)
+     * dentro de una operación de E/S pequeña y verificable.
+     *
      * @return el primer byte del registro de índice 2 con registros de 4 bytes
      */
     public static int leerRegistroFijo() {
-        // GUÍA: escribe 3 registros de 4 bytes; el registro 0 empieza en byte 0, el 1 en el 4, el 2 en el 8.
-        // Marca el primer byte de cada registro (p.ej. 100,101,102). raf.seek(2*4); return raf.read();  // 102.
-        // CULTURA: así funcionan los ficheros indexados y muchas BD: posición = índice * tamañoRegistro.
+        // GUÍA: Razona con el puntero de fichero como estado observable: cada lectura, escritura o seek cambia desde
+        // dónde se opera sin obligarte a recorrer el contenido previo.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para leerRegistroFijo");
     }
 
     /**
      * Reto Extra 9: abrir en modo "r" (solo lectura) impide escribir.
+     * Formaliza el comportamiento esperado de abrir en modo "r" (solo lectura) impide escribir dentro de
+     * una operación de E/S pequeña y verificable.
+     *
      * @return true si intentar write() sobre un RandomAccessFile abierto en "r" lanza IOException
      */
     public static boolean modoSoloLecturaNoEscribe() {
-        // GUÍA: crea el fichero, ábrelo en modo "r"; try { raf.write(1); return false; }
-        //   catch (IOException e) { return true; }
-        // CULTURA: el modo "r"/"rw"/"rws"/"rwd" controla permisos y durabilidad de la escritura.
+        // GUÍA: Razona con el puntero de fichero como estado observable: cada lectura, escritura o seek cambia desde
+        // dónde se opera sin obligarte a recorrer el contenido previo.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para modoSoloLecturaNoEscribe");
     }
 
     /**
      * Reto Extra 10: writeDouble/readDouble round-trip de un número en coma flotante.
-     * @return el double leído tras escribirlo (== valor)
+     * Formaliza el comportamiento esperado de writeDouble/readDouble round-trip de un número en coma
+     * flotante dentro de una operación de E/S pequeña y verificable.
+     *
+     * @param valor valor numérico que se convierte o persiste
+     * @return el double leído tras escribirlo (igual a valor)
      */
     public static double escribirYLeerDouble(double valor) {
-        // GUÍA: raf.writeDouble(valor); raf.seek(0); return raf.readDouble();  // 8 bytes.
-        // OJO: el test compara con delta 0.0 (round-trip exacto: los mismos bits IEEE-754).
+        // GUÍA: Razona con el puntero de fichero como estado observable: cada lectura, escritura o seek cambia desde
+        // dónde se opera sin obligarte a recorrer el contenido previo.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para escribirYLeerDouble");
     }
 
     /**
      * Reto Extra 11: seek(0) vuelve al inicio para releer.
-     * @return el primer byte leído dos veces tras seek(0) entre medias (== datos[0])
+     * Formaliza el comportamiento esperado de seek(0) vuelve al inicio para releer dentro de una operación
+     * de E/S pequeña y verificable.
+     *
+     * @param datos bytes de entrada del escenario
+     * @return el primer byte leído dos veces tras seek(0) entre medias (igual a datos[0])
      */
     public static int seekCeroRelee(byte[] datos) {
-        // GUÍA: escribe 'datos', seek(0), lee el primer byte; seek(0) otra vez, vuelve a leer el primero.
-        // Demuestra que seek(0) "rebobina". El test pasa {7,...} y espera 7.
+        // GUÍA: Razona con el puntero de fichero como estado observable: cada lectura, escritura o seek cambia desde
+        // dónde se opera sin obligarte a recorrer el contenido previo.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para seekCeroRelee");
     }
 
     /**
      * Reto Extra 12: acceso aleatorio puro — leer un offset sin leer lo anterior.
+     * Formaliza el comportamiento esperado de acceso aleatorio puro — leer un offset sin leer lo anterior
+     * dentro de una operación de E/S pequeña y verificable.
+     *
      * @return el byte en el offset 5 de un fichero de 10 bytes, leído directamente
      */
     public static int accesoAleatorioDirecto() {
-        // GUÍA: escribe 10 bytes con valores conocidos (p.ej. byte i = i*10); raf.seek(5); return raf.read();
-        // CONTRASTE con 207: con un InputStream tendrías que leer (y descartar) los 5 primeros bytes;
-        // con seek saltas directo. El test espera 50 (si datos[i] = i*10).
+        // GUÍA: Razona con el puntero de fichero como estado observable: cada lectura, escritura o seek cambia desde
+        // dónde se opera sin obligarte a recorrer el contenido previo.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para accesoAleatorioDirecto");
     }
 }

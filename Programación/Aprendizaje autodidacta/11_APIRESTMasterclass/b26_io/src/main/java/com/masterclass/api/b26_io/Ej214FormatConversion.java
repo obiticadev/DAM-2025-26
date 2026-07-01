@@ -57,127 +57,165 @@ public final class Ej214FormatConversion {
 
     /**
      * Reto Extra 1: cuántos bytes ocupa un texto con acentos en UTF-8.
-     * @return número de bytes de "ñ" en UTF-8 (debe ser 2)
+     * Formaliza el comportamiento esperado de cuántos bytes ocupa un texto con acentos en UTF-8 dentro de
+     * una operación de E/S pequeña y verificable.
+     *
+     * @param texto texto de entrada del escenario
+     * @return número de bytes de "ñ" en UTF-8 (esperado: 2)
      */
     public static int numeroDeBytesUtf8(String texto) {
-        // GUÍA: return texto.getBytes(StandardCharsets.UTF_8).length;  // "ñ" -> 2 bytes (C3 B1).
-        // CONTRASTE con la longitud en caracteres: "ñ".length() == 1 pero ocupa 2 bytes.
+        // GUÍA: Separa representación de dominio, texto y bytes. Cada conversión debe ser reversible o medible según el
+        // contrato, sin confundir formato con significado.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para numeroDeBytesUtf8");
     }
 
     /**
      * Reto Extra 2: convertir un Properties a líneas CSV "clave,valor".
-     * @return número de líneas CSV generadas a partir de 2 propiedades (debe ser 2)
+     * Formaliza el comportamiento esperado de convertir un Properties a líneas CSV "clave,valor" dentro de
+     * una operación de E/S pequeña y verificable.
+     *
+     * @return número de líneas CSV generadas a partir de 2 propiedades (esperado: 2)
      */
     public static int propertiesACsv() {
-        // GUÍA: Properties p con 2 claves; recorre p.stringPropertyNames() y genera "clave,valor" por cada una;
-        // return numeroDeLineas.  (Une con '\n' si quieres una sola cadena; aquí basta contar.)
-        // CULTURA: conversión de formato real (config -> tabla). Enlaza con b16·Ej148 (CSV) si existe.
+        // GUÍA: Separa representación de dominio, texto y bytes. Cada conversión debe ser reversible o medible según el
+        // contrato, sin confundir formato con significado.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para propertiesACsv");
     }
 
     /**
      * Reto Extra 3: parsear CSV "clave,valor" a un Properties y leer una clave.
-     * @return el valor de la clave "a" tras parsear "a,1\nb,2" (debe ser "1")
+     * Formaliza el comportamiento esperado de parsear CSV "clave,valor" a un Properties y leer una clave
+     * dentro de una operación de E/S pequeña y verificable.
+     *
+     * @return el valor de la clave "a" tras parsear "a,1\nb,2" (esperado: "1")
      */
     public static String csvAProperties() {
-        // GUÍA: por cada línea, String[] campos = linea.split(",", 2); props.setProperty(campos[0], campos[1]).
-        //   return props.getProperty("a");  // "1".
-        // OJO: split(",", 2) por si el valor contiene comas (como en b29·Ej236 con los espacios).
+        // GUÍA: Separa representación de dominio, texto y bytes. Cada conversión debe ser reversible o medible según el
+        // contrato, sin confundir formato con significado.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para csvAProperties");
     }
 
     /**
      * Reto Extra 4: convertir un int a 4 bytes y reconstruirlo.
-     * @return el entero reconstruido desde sus bytes (== valor)
+     * Formaliza el comportamiento esperado de convertir un int a 4 bytes y reconstruirlo dentro de una
+     * operación de E/S pequeña y verificable.
+     *
+     * @param valor valor numérico que se convierte o persiste
+     * @return el entero reconstruido desde sus bytes (igual a valor)
      */
     public static int intABytesYVuelta(int valor) {
-        // GUÍA: byte[] b = ByteBuffer.allocate(4).putInt(valor).array();
-        //   int v = ByteBuffer.wrap(b).getInt(); return v;
-        // CULTURA: así se serializa un número a binario de tamaño fijo (big-endian); base de formatos binarios.
+        // GUÍA: Separa representación de dominio, texto y bytes. Cada conversión debe ser reversible o medible según el
+        // contrato, sin confundir formato con significado.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para intABytesYVuelta");
     }
 
     /**
      * Reto Extra 5: round-trip de texto por Base64.
-     * @return el texto reconstruido tras codificar y decodificar en Base64 (== texto)
+     * Formaliza el comportamiento esperado de round-trip de texto por Base64 dentro de una operación de
+     * E/S pequeña y verificable.
+     *
+     * @param texto texto de entrada del escenario
+     * @return el texto reconstruido tras codificar y decodificar en Base64 (igual a texto)
      */
     public static String base64RoundTrip(String texto) {
-        // GUÍA: String s = Base64.getEncoder().encodeToString(texto.getBytes(UTF_8));
-        //   String vuelta = new String(Base64.getDecoder().decode(s), UTF_8); return vuelta.
-        // OJO: Base64 NO cifra ni comprime; solo convierte bytes a texto ASCII seguro (b30 lo recuerda).
+        // GUÍA: Separa representación de dominio, texto y bytes. Cada conversión debe ser reversible o medible según el
+        // contrato, sin confundir formato con significado.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para base64RoundTrip");
     }
 
     /**
      * Reto Extra 6: separar una línea CSV en campos.
-     * @return número de campos de "uno,dos,tres" (debe ser 3)
+     * Formaliza el comportamiento esperado de separar una línea CSV en campos dentro de una operación de
+     * E/S pequeña y verificable.
+     *
+     * @param linea línea de texto que se va a separar
+     * @return número de campos de "uno,dos,tres" (esperado: 3)
      */
     public static int csvParsearCampos(String linea) {
-        // GUÍA: return linea.split(",").length;  // "uno,dos,tres" -> 3.
-        // OJO/CUIDADO: split simple NO maneja comas dentro de comillas ("a,\"b,c\""); para CSV real haría
-        // falta un parser; para el examen, el split básico suele bastar.
+        // GUÍA: Separa representación de dominio, texto y bytes. Cada conversión debe ser reversible o medible según el
+        // contrato, sin confundir formato con significado.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para csvParsearCampos");
     }
 
     /**
      * Reto Extra 7: unir una lista en una línea CSV.
+     * Formaliza el comportamiento esperado de unir una lista en una línea CSV dentro de una operación de
+     * E/S pequeña y verificable.
+     *
+     * @param campos campos que se deben unir en formato CSV
      * @return "a,b,c" a partir de la lista ["a","b","c"]
      */
     public static String csvJoin(List<String> campos) {
-        // GUÍA: return String.join(",", campos);  // ["a","b","c"] -> "a,b,c".
+        // GUÍA: Separa representación de dominio, texto y bytes. Cada conversión debe ser reversible o medible según el
+        // contrato, sin confundir formato con significado.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para csvJoin");
     }
 
     /**
      * Reto Extra 8: round-trip de bytes por hexadecimal.
+     * Formaliza el comportamiento esperado de round-trip de bytes por hexadecimal dentro de una operación
+     * de E/S pequeña y verificable.
+     *
+     * @param datos bytes de entrada del escenario
      * @return los bytes reconstruidos tras pasar a hex y volver (iguales a datos)
      */
     public static byte[] hexRoundTrip(byte[] datos) {
-        // GUÍA: String hex = HexFormat.of().formatHex(datos);
-        //   byte[] vuelta = HexFormat.of().parseHex(hex); return vuelta.
-        // CULTURA: hex es otra codificación texto-de-bytes (2 chars por byte); usada en hashes (b30).
+        // GUÍA: Separa representación de dominio, texto y bytes. Cada conversión debe ser reversible o medible según el
+        // contrato, sin confundir formato con significado.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para hexRoundTrip");
     }
 
     /**
      * Reto Extra 9: listar las claves de un Properties.
-     * @return número de claves de un Properties con 2 entradas (debe ser 2)
+     * Formaliza el comportamiento esperado de listar las claves de un Properties dentro de una operación
+     * de E/S pequeña y verificable.
+     *
+     * @return número de claves de un Properties con 2 entradas (esperado: 2)
      */
     public static int propertiesListarClaves() {
-        // GUÍA: Properties p con 2 claves; return p.stringPropertyNames().size();  // 2.
+        // GUÍA: Separa representación de dominio, texto y bytes. Cada conversión debe ser reversible o medible según el
+        // contrato, sin confundir formato con significado.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para propertiesListarClaves");
     }
 
     /**
      * Reto Extra 10: getProperty con valor por defecto para una clave inexistente.
-     * @return el valor por defecto al pedir una clave que no existe (debe ser "N/A")
+     * Formaliza el comportamiento esperado de getProperty con valor por defecto para una clave inexistente
+     * dentro de una operación de E/S pequeña y verificable.
+     *
+     * @return el valor por defecto al pedir una clave que no existe (esperado: "N/A")
      */
     public static String propertiesValorPorDefecto() {
-        // GUÍA: Properties p = new Properties(); return p.getProperty("no-existe", "N/A");  // "N/A".
-        // CULTURA: patrón típico de config (enlaza con b04 @Value con default).
+        // GUÍA: Separa representación de dominio, texto y bytes. Cada conversión debe ser reversible o medible según el
+        // contrato, sin confundir formato con significado.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para propertiesValorPorDefecto");
     }
 
     /**
      * Reto Extra 11: round-trip de un double por 8 bytes.
-     * @return el double reconstruido desde sus bytes (== valor)
+     * Formaliza el comportamiento esperado de round-trip de un double por 8 bytes dentro de una operación
+     * de E/S pequeña y verificable.
+     *
+     * @param valor valor numérico que se convierte o persiste
+     * @return el double reconstruido desde sus bytes (igual a valor)
      */
     public static double doubleABytesYVuelta(double valor) {
-        // GUÍA: byte[] b = ByteBuffer.allocate(8).putDouble(valor).array();
-        //   return ByteBuffer.wrap(b).getDouble();
-        // OJO: el test compara con delta 0.0 (los mismos bits IEEE-754 vuelven exactos).
+        // GUÍA: Separa representación de dominio, texto y bytes. Cada conversión debe ser reversible o medible según el
+        // contrato, sin confundir formato con significado.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para doubleABytesYVuelta");
     }
 
     /**
-     * Reto Extra 12: texto multilínea -> lista de líneas -> texto, sin perder líneas.
-     * @return número de líneas tras split("\n") de "a\nb\nc\nd" (debe ser 4)
+     * Reto Extra 12: texto multilínea a lista de líneas a texto, sin perder líneas.
+     * Formaliza el comportamiento esperado de texto multilínea a lista de líneas a texto, sin perder
+     * líneas dentro de una operación de E/S pequeña y verificable.
+     *
+     * @param texto texto de entrada del escenario
+     * @return número de líneas tras split("\n") de "a\nb\nc\nd" (esperado: 4)
      */
     public static int textoALineasYVuelta(String texto) {
-        // GUÍA: String[] lineas = texto.split("\n"); ... String unido = String.join("\n", lineas);
-        //   return lineas.length;  // "a\nb\nc\nd" -> 4.
-        // CULTURA: convertir entre "blob de texto" y "lista de registros" es el día a día de procesar ficheros.
+        // GUÍA: Separa representación de dominio, texto y bytes. Cada conversión debe ser reversible o medible según el
+        // contrato, sin confundir formato con significado.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para textoALineasYVuelta");
     }
 }

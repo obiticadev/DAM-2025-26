@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pulir Retos Extra"
+  short_description: "Profesionaliza comentarios de retos extra"
+  default_prompt: "Use $polish-extra-challenges en b08 para profesionalizar solo los comentarios de retos extra."

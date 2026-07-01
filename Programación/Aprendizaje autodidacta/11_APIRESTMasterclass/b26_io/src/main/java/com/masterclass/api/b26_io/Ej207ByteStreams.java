@@ -56,129 +56,168 @@ public final class Ej207ByteStreams {
 
     /**
      * Reto Extra 1: copiar de un stream a otro byte a byte detectando el EOF (-1).
-     * @return número de bytes copiados (== datos.length)
+     * Formaliza el comportamiento esperado de copiar de un stream a otro byte a byte detectando el EOF
+     * (-1) dentro de una operación de E/S pequeña y verificable.
+     *
+     * @param datos bytes de entrada del escenario
+     * @return número de bytes copiados (igual a datos.length)
      */
     public static long copiarDetectandoEof(byte[] datos) {
-        // GUÍA: teoría 26.1. int b; while ((b = in.read()) != -1) { out.write(b); contador++; }
-        // OJO: read() sin argumentos devuelve un int 0..255, o -1 en fin de stream (NUNCA un byte).
+        // GUÍA: Trabaja el contrato de los flujos binarios: leer hasta fin de stream, escribir solo los bytes válidos y
+        // cerrar los recursos que respaldan el fichero temporal.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para copiarDetectandoEof");
     }
 
     /**
      * Reto Extra 2: copiar usando un buffer de 1024 bytes.
-     * @return número de bytes copiados con buffer (== datos.length)
+     * Formaliza el comportamiento esperado de copiar usando un buffer de 1024 bytes dentro de una
+     * operación de E/S pequeña y verificable.
+     *
+     * @param datos bytes de entrada del escenario
+     * @return número de bytes copiados con buffer (igual a datos.length)
      */
     public static long copiarConBuffer1024(byte[] datos) {
-        // GUÍA: byte[] buf = new byte[1024]; int n; while ((n = in.read(buf)) != -1) out.write(buf, 0, n);
-        // OJO/CUIDADO: escribe out.write(buf, 0, n), NO out.write(buf): el buffer puede ir medio lleno
-        // en la última vuelta y escribirías basura.
+        // GUÍA: Trabaja el contrato de los flujos binarios: leer hasta fin de stream, escribir solo los bytes válidos y
+        // cerrar los recursos que respaldan el fichero temporal.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para copiarConBuffer1024");
     }
 
     /**
      * Reto Extra 3: volcar bytes a memoria con ByteArrayOutputStream.
-     * @return número de bytes acumulados en memoria (== datos.length)
+     * Formaliza el comportamiento esperado de volcar bytes a memoria con ByteArrayOutputStream dentro de
+     * una operación de E/S pequeña y verificable.
+     *
+     * @param datos bytes de entrada del escenario
+     * @return número de bytes acumulados en memoria (igual a datos.length)
      */
     public static int volcarAMemoria(byte[] datos) {
-        // GUÍA: ByteArrayOutputStream bos = new ByteArrayOutputStream(); bos.write(datos);
-        //   return bos.toByteArray().length;  (o bos.size()).
-        // CULTURA: BAOS es un OutputStream que escribe en un array que crece solo; útil para construir
-        // bytes sin tocar disco (p.ej. serializar a memoria, ver Ej210/b29·Ej238).
+        // GUÍA: Trabaja el contrato de los flujos binarios: leer hasta fin de stream, escribir solo los bytes válidos y
+        // cerrar los recursos que respaldan el fichero temporal.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para volcarAMemoria");
     }
 
     /**
      * Reto Extra 4: el modo append añade al final en vez de sobrescribir.
-     * @return tamaño del fichero tras escribir 'datos' DOS veces en modo append (== 2*datos.length)
+     * Formaliza el comportamiento esperado de el modo append añade al final en vez de sobrescribir dentro
+     * de una operación de E/S pequeña y verificable.
+     *
+     * @param datos bytes de entrada del escenario
+     * @return tamaño del fichero tras escribir 'datos' DOS veces en modo append (igual a 2*datos.length)
      */
     public static long appendDuplicaTamano(byte[] datos) {
-        // GUÍA: new FileOutputStream(tmp, true) abre en modo APPEND (el segundo arg). Escribe 'datos',
-        // cierra, vuelve a abrir en append y escribe otra vez; el fichero mide 2*datos.length.
-        // OJO: sin el 'true', el segundo FileOutputStream TRUNCA el fichero (lo deja en datos.length).
+        // GUÍA: Trabaja el contrato de los flujos binarios: leer hasta fin de stream, escribir solo los bytes válidos y
+        // cerrar los recursos que respaldan el fichero temporal.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para appendDuplicaTamano");
     }
 
     /**
      * Reto Extra 5: dos ficheros con el mismo contenido son iguales byte a byte.
+     * Formaliza el comportamiento esperado de dos ficheros con el mismo contenido son iguales byte a byte
+     * dentro de una operación de E/S pequeña y verificable.
+     *
+     * @param datos bytes de entrada del escenario
      * @return true si dos ficheros escritos con los mismos bytes tienen contenido idéntico
      */
     public static boolean dosFicherosIgualesPorContenido(byte[] datos) {
-        // GUÍA: escribe 'datos' en dos temporales, léelos con readAllBytes y compara con Arrays.equals.
-        // (En NIO existe Files.mismatch, ver Ej212; aquí hazlo con streams.)
+        // GUÍA: Trabaja el contrato de los flujos binarios: leer hasta fin de stream, escribir solo los bytes válidos y
+        // cerrar los recursos que respaldan el fichero temporal.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para dosFicherosIgualesPorContenido");
     }
 
     /**
      * Reto Extra 6: escribir y leer un único byte.
+     * Formaliza el comportamiento esperado de escribir y leer un único byte dentro de una operación de E/S
+     * pequeña y verificable.
+     *
+     * @param valor valor numérico que se convierte o persiste
      * @return el byte leído (como int 0..255), igual al escrito
      */
     public static int escribirYLeerUnByte(int valor) {
-        // GUÍA: out.write(valor); ... int leido = in.read();  return leido;
-        // OJO: write(int) escribe solo el byte bajo (valor & 0xff). El test usa 65 ('A') y espera 65.
+        // GUÍA: Trabaja el contrato de los flujos binarios: leer hasta fin de stream, escribir solo los bytes válidos y
+        // cerrar los recursos que respaldan el fichero temporal.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para escribirYLeerUnByte");
     }
 
     /**
      * Reto Extra 7: copiar un stream a otro con transferTo (JDK 9+).
-     * @return número de bytes transferidos (== datos.length)
+     * Formaliza el comportamiento esperado de copiar un stream a otro con transferTo (JDK 9+) dentro de
+     * una operación de E/S pequeña y verificable.
+     *
+     * @param datos bytes de entrada del escenario
+     * @return número de bytes transferidos (igual a datos.length)
      */
     public static long copiarConTransferTo(byte[] datos) {
-        // GUÍA: try (InputStream in = ...; OutputStream out = ...) { return in.transferTo(out); }
-        // transferTo copia todo el stream y devuelve el número de bytes; sustituye al bucle manual.
-        // CULTURA: es la forma moderna y concisa; por debajo usa un buffer interno.
+        // GUÍA: Trabaja el contrato de los flujos binarios: leer hasta fin de stream, escribir solo los bytes válidos y
+        // cerrar los recursos que respaldan el fichero temporal.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para copiarConTransferTo");
     }
 
     /**
      * Reto Extra 8: un BufferedOutputStream/BufferedInputStream envuelve al stream crudo.
+     * Formaliza el comportamiento esperado de un BufferedOutputStream/BufferedInputStream envuelve al
+     * stream crudo dentro de una operación de E/S pequeña y verificable.
+     *
+     * @param datos bytes de entrada del escenario
      * @return los bytes leídos a través de streams con buffer (iguales a datos)
      */
     public static byte[] copiarConBufferedStreams(byte[] datos) {
-        // GUÍA: envuelve: new BufferedOutputStream(new FileOutputStream(tmp)) y al leer
-        // new BufferedInputStream(new FileInputStream(tmp)). El buffer reduce llamadas al SO.
-        // OJO: con BufferedOutputStream hay que cerrar (o flush) para que vacíe su buffer al fichero.
+        // GUÍA: Trabaja el contrato de los flujos binarios: leer hasta fin de stream, escribir solo los bytes válidos y
+        // cerrar los recursos que respaldan el fichero temporal.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para copiarConBufferedStreams");
     }
 
     /**
      * Reto Extra 9: un fichero vacío tiene 0 bytes.
-     * @return tamaño de un fichero al que no se escribe nada (debe ser 0)
+     * Formaliza el comportamiento esperado de un fichero vacío tiene 0 bytes dentro de una operación de
+     * E/S pequeña y verificable.
+     *
+     * @return tamaño de un fichero al que no se escribe nada (esperado: 0)
      */
     public static long ficheroVacioTieneCeroBytes() {
-        // GUÍA: crea un temporal, ábrelo y ciérralo sin escribir; return tmp.length();  // 0
+        // GUÍA: Trabaja el contrato de los flujos binarios: leer hasta fin de stream, escribir solo los bytes válidos y
+        // cerrar los recursos que respaldan el fichero temporal.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para ficheroVacioTieneCeroBytes");
     }
 
     /**
      * Reto Extra 10: flush fuerza el envío del buffer antes de cerrar.
+     * Formaliza el comportamiento esperado de flush fuerza el envío del buffer antes de cerrar dentro de
+     * una operación de E/S pequeña y verificable.
+     *
+     * @param datos bytes de entrada del escenario
      * @return los bytes leídos tras hacer flush explícito (iguales a datos)
      */
     public static byte[] flushAseguraEscritura(byte[] datos) {
-        // GUÍA: con un BufferedOutputStream, escribe 'datos', llama a os.flush() y LUEGO lee el fichero
-        // (sin haber cerrado todavía). Sin flush, los bytes podrían seguir en el buffer en memoria.
-        // CULTURA: close() hace flush implícito; flush() sirve cuando quieres asegurar a mitad.
+        // GUÍA: Trabaja el contrato de los flujos binarios: leer hasta fin de stream, escribir solo los bytes válidos y
+        // cerrar los recursos que respaldan el fichero temporal.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para flushAseguraEscritura");
     }
 
     /**
      * Reto Extra 11: leer más allá del final devuelve -1 repetidamente.
+     * Formaliza el comportamiento esperado de leer más allá del final devuelve -1 repetidamente dentro de
+     * una operación de E/S pequeña y verificable.
+     *
+     * @param datos bytes de entrada del escenario
      * @return true si, tras leer todo, una lectura extra con read() devuelve -1
      */
     public static boolean leerTrasEofDevuelveMenosUno(byte[] datos) {
-        // GUÍA: lee todos los bytes; luego una llamada más a in.read() debe devolver -1 (sigue en EOF).
-        // OJO: -1 es la señal universal de fin de stream en java.io; no es un byte válido.
+        // GUÍA: Trabaja el contrato de los flujos binarios: leer hasta fin de stream, escribir solo los bytes válidos y
+        // cerrar los recursos que respaldan el fichero temporal.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para leerTrasEofDevuelveMenosUno");
     }
 
     /**
      * Reto Extra 12: try-with-resources cierra el stream automáticamente.
+     * Formaliza el comportamiento esperado de try-with-resources cierra el stream automáticamente dentro
+     * de una operación de E/S pequeña y verificable.
+     *
+     * @param datos bytes de entrada del escenario
      * @return true si, tras el bloque try-with-resources, el stream quedó cerrado
      */
     public static boolean tryWithResourcesCierraStream(byte[] datos) {
-        // GUÍA: usa una subclase para observarlo, o un FileInputStream is; tras try-with-resources,
-        // intentar is.read() lanza IOException ("Stream Closed") → captúrala y return true.
-        // PISTA: try (FileInputStream is = new FileInputStream(tmp)) { ref = is; }  luego ref.read().
-        // CULTURA: try-with-resources llama a close() siempre (incluso con excepción); evita fugas.
+        // GUÍA: Trabaja el contrato de los flujos binarios: leer hasta fin de stream, escribir solo los bytes válidos y
+        // cerrar los recursos que respaldan el fichero temporal.
         throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para tryWithResourcesCierraStream");
     }
 }

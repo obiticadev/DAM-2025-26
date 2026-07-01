@@ -1,0 +1,4 @@
+interface:
+  display_name: "Generate Review Project"
+  short_description: "Create adaptive Java review projects"
+  default_prompt: "Use $generate-review-project to update my learning memory and create a new adaptive Java review project."
