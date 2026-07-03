@@ -1,9 +1,12 @@
 package com.masterclass.api.b26_io;
 
+<<<<<<< Updated upstream
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+=======
+>>>>>>> Stashed changes
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -52,11 +55,35 @@ public final class Ej207ByteStreams {
         // TODO 2: escribe con try (OutputStream os = new FileOutputStream(tmp)) {
         // os.write(datos); }.
         // TODO 3: lee con try (InputStream is = new FileInputStream(tmp)) { ... }.
+<<<<<<< Updated upstream
         // TODO 4: dentro, usa is.readAllBytes() (JDK 9+) para obtener todos los bytes
         // de golpe.
         // TODO 5: borra el temporal (tmp.delete()) y devuelve los bytes leídos (maneja
         // IOException).
         return null;
+=======
+        // TODO 4: dentro, usa is.readAllBytes() (JDK 9+) para obtener todos los bytes de golpe.
+        // TODO 5: borra el temporal (tmp.delete()) y devuelve los bytes leídos (maneja IOException).
+        File tmp = null;
+        byte[] byteFinal = null;
+        try {
+            tmp = File.createTempFile("ej207", ".bin");
+            try (OutputStream os = new FileOutputStream(tmp)) {
+                os.write(datos);
+            }
+            try (InputStream is = new FileInputStream(tmp)) {
+                byteFinal = is.readAllBytes();
+            }
+        } catch (IOException io) {
+            io.printStackTrace();
+        } finally {
+            if (tmp != null && tmp.exists()) {
+            tmp.delete();
+            }
+        }
+        return byteFinal;
+
+>>>>>>> Stashed changes
     }
 
     /**
@@ -74,7 +101,29 @@ public final class Ej207ByteStreams {
         // (read devuelve -1 en EOF).
         // TODO 9: borra el temporal.
         // TODO 10: devuelve el total contado.
-        return -1;
+        File tmp = null;
+        long contador = 0;
+        try {
+            tmp = File.createTempFile("ej207", ".bin");
+            try (OutputStream os = new FileOutputStream(tmp)) {
+                os.write(datos);
+            }
+            try (InputStream is = new FileInputStream(tmp)) {
+                byte[] buffer = new byte[8192];
+                int n;
+                while ((n = is.read(buffer)) != -1) {
+                    contador += n;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return -1;
+        } finally {
+            if (tmp != null && tmp.exists()){
+                tmp.delete();
+            }
+        }
+        return contador;
     }
 
     public static void main(String[] args) {
