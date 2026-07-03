@@ -1,15 +1,21 @@
 package com.masterclass.api.b26_io;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.StringReader;
 import java.io.Writer;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -143,7 +149,13 @@ public final class Ej208CharStreams {
         // comportamiento correcto depende de usar el
         // charset adecuado y de conservar exactamente las líneas o caracteres
         // observables.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para contarLineas");
+        try (BufferedReader br = new BufferedReader(new StringReader(contenido))) {
+            return (int) br.lines().count();
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            return -1;
+        }
     }
 
     /**
@@ -160,8 +172,26 @@ public final class Ej208CharStreams {
         // comportamiento correcto depende de usar el
         // charset adecuado y de conservar exactamente las líneas o caracteres
         // observables.
-        throw new UnsupportedOperationException(
-                "TODO: Implementar la lógica del reto extra para mojibakeAlCambiarCharset");
+        File tmp = null;
+        try {
+            tmp = File.createTempFile("ej208", ".txt");
+            tmp.deleteOnExit();
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(tmp, StandardCharsets.UTF_8))) {
+                bw.write("ñ");
+            }
+            try (BufferedReader br = new BufferedReader(
+                    new FileReader(tmp, StandardCharsets.ISO_8859_1))) {
+                return !(br.readLine().equals("ñ"));
+            }
+        } catch (IOException e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            return false;
+        } finally {
+            if (tmp != null && tmp.exists()) {
+                tmp.delete();
+            }
+        }
     }
 
     /**
@@ -178,7 +208,13 @@ public final class Ej208CharStreams {
         // comportamiento correcto depende de usar el
         // charset adecuado y de conservar exactamente las líneas o caracteres
         // observables.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para utf8RespetaAcentos");
+        try (BufferedReader br = new BufferedReader(
+                new InputStreamReader(new ByteArrayInputStream(texto.getBytes(StandardCharsets.UTF_8))))) {
+            return br.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**

@@ -1,12 +1,10 @@
 package com.masterclass.api.b26_io;
 
-<<<<<<< Updated upstream
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-=======
->>>>>>> Stashed changes
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -55,15 +53,10 @@ public final class Ej207ByteStreams {
         // TODO 2: escribe con try (OutputStream os = new FileOutputStream(tmp)) {
         // os.write(datos); }.
         // TODO 3: lee con try (InputStream is = new FileInputStream(tmp)) { ... }.
-<<<<<<< Updated upstream
         // TODO 4: dentro, usa is.readAllBytes() (JDK 9+) para obtener todos los bytes
         // de golpe.
         // TODO 5: borra el temporal (tmp.delete()) y devuelve los bytes leídos (maneja
         // IOException).
-        return null;
-=======
-        // TODO 4: dentro, usa is.readAllBytes() (JDK 9+) para obtener todos los bytes de golpe.
-        // TODO 5: borra el temporal (tmp.delete()) y devuelve los bytes leídos (maneja IOException).
         File tmp = null;
         byte[] byteFinal = null;
         try {
@@ -78,12 +71,11 @@ public final class Ej207ByteStreams {
             io.printStackTrace();
         } finally {
             if (tmp != null && tmp.exists()) {
-            tmp.delete();
+                tmp.delete();
             }
         }
         return byteFinal;
 
->>>>>>> Stashed changes
     }
 
     /**
@@ -119,7 +111,7 @@ public final class Ej207ByteStreams {
             e.printStackTrace();
             return -1;
         } finally {
-            if (tmp != null && tmp.exists()){
+            if (tmp != null && tmp.exists()) {
                 tmp.delete();
             }
         }
@@ -448,8 +440,28 @@ public final class Ej207ByteStreams {
         // GUÍA: Trabaja el contrato de los flujos binarios: leer hasta fin de stream,
         // escribir solo los bytes válidos y
         // cerrar los recursos que respaldan el fichero temporal.
-        throw new UnsupportedOperationException(
-                "TODO: Implementar la lógica del reto extra para ficheroVacioTieneCeroBytes");
+        File tmp = null;
+        try {
+            tmp = File.createTempFile("ej208", ".bin");
+            tmp.deleteOnExit();
+            try (FileOutputStream fos = new FileOutputStream(tmp)) {
+                fos.write(new byte[0]);
+            }
+            long tamano = tmp.length();
+
+            tmp.delete();
+
+            return tamano;
+
+        } catch (IOException e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            return -1;
+        } finally {
+            if (tmp != null && tmp.exists()) {
+                tmp.delete();
+            }
+        }
     }
 
     /**
@@ -465,8 +477,27 @@ public final class Ej207ByteStreams {
         // GUÍA: Trabaja el contrato de los flujos binarios: leer hasta fin de stream,
         // escribir solo los bytes válidos y
         // cerrar los recursos que respaldan el fichero temporal.
-        throw new UnsupportedOperationException(
-                "TODO: Implementar la lógica del reto extra para flushAseguraEscritura");
+        File tmp = null;
+        byte[] byteLeidos = null;
+        try {
+            tmp = File.createTempFile("ej208", ".bin");
+            tmp.deleteOnExit();
+            try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(tmp))) {
+                bos.write(datos);
+                bos.flush();
+                try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(tmp))) {
+                    byteLeidos = bis.readAllBytes();
+                }
+            }
+        } catch (IOException e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        } finally {
+            if (tmp != null && tmp.exists()) {
+                tmp.delete();
+            }
+        }
+        return byteLeidos;
     }
 
     /**
@@ -482,8 +513,18 @@ public final class Ej207ByteStreams {
         // GUÍA: Trabaja el contrato de los flujos binarios: leer hasta fin de stream,
         // escribir solo los bytes válidos y
         // cerrar los recursos que respaldan el fichero temporal.
-        throw new UnsupportedOperationException(
-                "TODO: Implementar la lógica del reto extra para leerTrasEofDevuelveMenosUno");
+
+        try {
+            try (BufferedInputStream bis = new BufferedInputStream(new ByteArrayInputStream(datos))) {
+                bis.readAllBytes();
+                bis.read();
+                return (bis.read() == -1);
+            }
+        } catch (IOException e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            return false;
+        }
     }
 
     /**
@@ -499,7 +540,19 @@ public final class Ej207ByteStreams {
         // GUÍA: Trabaja el contrato de los flujos binarios: leer hasta fin de stream,
         // escribir solo los bytes válidos y
         // cerrar los recursos que respaldan el fichero temporal.
-        throw new UnsupportedOperationException(
-                "TODO: Implementar la lógica del reto extra para tryWithResourcesCierraStream");
+        BufferedInputStream bis = null;
+        try {
+            try (BufferedInputStream binario = new BufferedInputStream(new ByteArrayInputStream(datos))) {
+                bis = binario;
+                binario.readAllBytes();
+            }
+            bis.read();
+
+            return false;
+        } catch (IOException e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            return true;
+        }
     }
 }
