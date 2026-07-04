@@ -10,16 +10,16 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.io.StringReader;
+import java.io.StringWriter;
 import java.io.Writer;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Ejercicio 208 · Flujos de caracteres: {@code Reader} / {@code Writer} y
@@ -231,7 +231,16 @@ public final class Ej208CharStreams {
         // comportamiento correcto depende de usar el
         // charset adecuado y de conservar exactamente las líneas o caracteres
         // observables.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para leerTodoComoString");
+        try (BufferedReader br = new BufferedReader(
+                new InputStreamReader(new ByteArrayInputStream(contenido.getBytes())))) {
+            StringWriter sw = new StringWriter();
+            br.transferTo(sw);
+            return sw.toString();
+        } catch (IOException e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**
@@ -249,8 +258,15 @@ public final class Ej208CharStreams {
         // comportamiento correcto depende de usar el
         // charset adecuado y de conservar exactamente las líneas o caracteres
         // observables.
-        throw new UnsupportedOperationException(
-                "TODO: Implementar la lógica del reto extra para contarLineasConStream");
+        try {
+            try (BufferedReader br = new BufferedReader(new StringReader(contenido))) {
+                return br.lines().count();
+            }
+        } catch (IOException e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            return 0;
+        }
     }
 
     /**
@@ -266,8 +282,25 @@ public final class Ej208CharStreams {
         // comportamiento correcto depende de usar el
         // charset adecuado y de conservar exactamente las líneas o caracteres
         // observables.
-        throw new UnsupportedOperationException(
-                "TODO: Implementar la lógica del reto extra para printWriterEscribeLineas");
+        try (StringWriter sw = new StringWriter();
+                PrintWriter pw = new PrintWriter(sw)) {
+            pw.println("Primera línea");
+            pw.println("Segunda línea");
+
+            pw.flush();
+
+            try (BufferedReader br = new BufferedReader(new StringReader(sw.toString()))) {
+                int contador = 0;
+                while (br.readLine() != null) {
+                    contador++;
+                }
+                return contador;
+            }
+        } catch (IOException e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            return 0;
+        }
     }
 
     /**
@@ -283,7 +316,7 @@ public final class Ej208CharStreams {
         // comportamiento correcto depende de usar el
         // charset adecuado y de conservar exactamente las líneas o caracteres
         // observables.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para charsetPorDefecto");
+        return Charset.defaultCharset().name();
     }
 
     /**
@@ -300,7 +333,13 @@ public final class Ej208CharStreams {
         // comportamiento correcto depende de usar el
         // charset adecuado y de conservar exactamente las líneas o caracteres
         // observables.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para bytesEnIsoLatin1");
+        try {
+            byte[] b = texto.getBytes(StandardCharsets.ISO_8859_1);
+            return b.length;
+        } catch (Exception e) {
+            // TODO: handle exception
+            return 0;
+        }
     }
 
     /**
@@ -317,7 +356,8 @@ public final class Ej208CharStreams {
         // comportamiento correcto depende de usar el
         // charset adecuado y de conservar exactamente las líneas o caracteres
         // observables.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para utf8SinBom");
+        byte[] bytes = "normal".getBytes(StandardCharsets.UTF_8);
+        return bytes[0] != (byte) 0xEF;
     }
 
     /**
@@ -333,8 +373,7 @@ public final class Ej208CharStreams {
         // comportamiento correcto depende de usar el
         // charset adecuado y de conservar exactamente las líneas o caracteres
         // observables.
-        throw new UnsupportedOperationException(
-                "TODO: Implementar la lógica del reto extra para separadorDeLineaNoVacio");
+        return System.lineSeparator() != null && !System.lineSeparator().isEmpty();
     }
 
     /**
@@ -351,8 +390,16 @@ public final class Ej208CharStreams {
         // comportamiento correcto depende de usar el
         // charset adecuado y de conservar exactamente las líneas o caracteres
         // observables.
-        throw new UnsupportedOperationException(
-                "TODO: Implementar la lógica del reto extra para leerCaracterACaracter");
+        try (BufferedReader br = new BufferedReader(new StringReader(texto))) {
+            int contador = 0;
+            while (br.read() != -1) {
+                contador++;
+            }
+            return contador;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
 
     /**
@@ -369,7 +416,8 @@ public final class Ej208CharStreams {
         // comportamiento correcto depende de usar el
         // charset adecuado y de conservar exactamente las líneas o caracteres
         // observables.
-        throw new UnsupportedOperationException(
-                "TODO: Implementar la lógica del reto extra para roundTripUtf8Idempotente");
+        byte[] bytes = "测试 café ñ".getBytes(StandardCharsets.UTF_8);
+        String textoLeido = new String(bytes, StandardCharsets.UTF_8);
+        return textoLeido.equals("测试 café ñ");
     }
 }
