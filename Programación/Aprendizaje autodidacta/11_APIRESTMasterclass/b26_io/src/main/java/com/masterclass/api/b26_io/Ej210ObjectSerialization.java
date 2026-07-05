@@ -1,5 +1,6 @@
 package com.masterclass.api.b26_io;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -240,8 +241,27 @@ public final class Ej210ObjectSerialization {
         // representación serializada. El contrato
         // depende de qué objetos son serializables y qué estado se conserva al
         // reconstruirlos.
-        throw new UnsupportedOperationException(
-                "TODO: Implementar la lógica del reto extra para grafoDeObjetosSeSerializa");
+        File tmp = null;
+        try {
+            tmp = File.createTempFile("ej210", ".bin");
+            tmp.deleteOnExit();
+            Caja caja = new Caja("Etiqueta1", new Punto(10, 20));
+            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(tmp))) {
+                oos.writeObject(caja);
+            }
+            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(tmp))) {
+                Caja cajaResult = (Caja) ois.readObject();
+                return cajaResult.esquina.equals(caja.esquina);
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            return false;
+        } finally {
+            if (tmp != null && tmp.exists()) {
+                tmp.delete();
+            }
+        }
     }
 
     /**
@@ -260,8 +280,25 @@ public final class Ej210ObjectSerialization {
         // representación serializada. El contrato
         // depende de qué objetos son serializables y qué estado se conserva al
         // reconstruirlos.
-        throw new UnsupportedOperationException(
-                "TODO: Implementar la lógica del reto extra para noSerializableLanzaExcepcion");
+        File tmp = null;
+        try {
+            tmp = File.createTempFile("ej210", ".bin");
+            tmp.deleteOnExit();
+            NoSerializable noSerializable = new NoSerializable(99);
+            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(tmp))) {
+                oos.writeObject(noSerializable);
+            }
+            return false;
+        } catch (IOException e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            return true;
+
+        } finally {
+            if (tmp != null && tmp.exists()) {
+                tmp.delete();
+            }
+        }
     }
 
     /**
@@ -278,8 +315,18 @@ public final class Ej210ObjectSerialization {
         // representación serializada. El contrato
         // depende de qué objetos son serializables y qué estado se conserva al
         // reconstruirlos.
-        throw new UnsupportedOperationException(
-                "TODO: Implementar la lógica del reto extra para tamanoSerializadoMayorQueCero");
+        Punto punto = new Punto(10, 20);
+        try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                ObjectOutputStream oos = new ObjectOutputStream(baos)) {
+            oos.writeObject(punto);
+            oos.flush();
+            byte[] bytes = baos.toByteArray();
+
+            return bytes.length > 0;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     /**
