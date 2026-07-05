@@ -3,10 +3,14 @@ package com.masterclass.api.b26_io;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.io.RandomAccessFile;
 
 /**
@@ -133,7 +137,23 @@ public final class Ej209RandomAccessFile {
         // GUÍA: Razona con el puntero de fichero como estado observable: cada lectura,
         // escritura o seek cambia desde
         // dónde se opera sin obligarte a recorrer el contenido previo.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para longitudDelFichero");
+        File tmp = null;
+        try {
+            tmp = File.createTempFile("ej209", ".bin");
+            tmp.deleteOnExit();
+            try (FileOutputStream fos = new FileOutputStream(tmp)) {
+                fos.write(datos);
+                return tmp.length();
+            }
+        } catch (IOException e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            return -1;
+        } finally {
+            if (tmp != null && tmp.exists()) {
+                tmp.delete();
+            }
+        }
     }
 
     /**
@@ -149,7 +169,24 @@ public final class Ej209RandomAccessFile {
         // GUÍA: Razona con el puntero de fichero como estado observable: cada lectura,
         // escritura o seek cambia desde
         // dónde se opera sin obligarte a recorrer el contenido previo.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para seekMasAllaExtiende");
+        File tmp = null;
+        try {
+            tmp = File.createTempFile("ej209", ".bin");
+            tmp.deleteOnExit();
+            try (RandomAccessFile raf = new RandomAccessFile(tmp, "rw")) {
+                raf.seek(10);
+                raf.writeByte(1);
+                return raf.length();
+            }
+        } catch (IOException e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            return -1;
+        } finally {
+            if (tmp != null && tmp.exists()) {
+                tmp.delete();
+            }
+        }
     }
 
     /**
@@ -164,7 +201,24 @@ public final class Ej209RandomAccessFile {
         // GUÍA: Razona con el puntero de fichero como estado observable: cada lectura,
         // escritura o seek cambia desde
         // dónde se opera sin obligarte a recorrer el contenido previo.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para setLengthTrunca");
+        File tmp = null;
+        try {
+            tmp = File.createTempFile("ej209", ".bin");
+            tmp.deleteOnExit();
+            try (RandomAccessFile raf = new RandomAccessFile(tmp, "rw")) {
+                raf.write(new byte[10]);
+                raf.setLength(4);
+                return raf.length();
+            }
+        } catch (IOException e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            return -1;
+        } finally {
+            if (tmp != null && tmp.exists()) {
+                tmp.delete();
+            }
+        }
     }
 
     /**
@@ -181,7 +235,24 @@ public final class Ej209RandomAccessFile {
         // GUÍA: Razona con el puntero de fichero como estado observable: cada lectura,
         // escritura o seek cambia desde
         // dónde se opera sin obligarte a recorrer el contenido previo.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para escribirYLeerInt");
+        File tmp = null;
+        try {
+            tmp = File.createTempFile("ej209", ".bin");
+            tmp.deleteOnExit();
+            try (RandomAccessFile raf = new RandomAccessFile(tmp, "rw")) {
+                raf.writeInt(valor);
+                raf.seek(0);
+                return raf.readInt();
+            }
+        } catch (IOException e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            return -1;
+        } finally {
+            if (tmp != null && tmp.exists()) {
+                tmp.delete();
+            }
+        }
     }
 
     /**
@@ -198,7 +269,24 @@ public final class Ej209RandomAccessFile {
         // GUÍA: Razona con el puntero de fichero como estado observable: cada lectura,
         // escritura o seek cambia desde
         // dónde se opera sin obligarte a recorrer el contenido previo.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para escribirYLeerUTF");
+        File tmp = null;
+        try {
+            tmp = File.createTempFile("ej209", ".bin");
+            tmp.deleteOnExit();
+            try (RandomAccessFile raf = new RandomAccessFile(tmp, "rw")) {
+                raf.writeUTF(texto);
+                raf.seek(0);
+                return raf.readUTF();
+            }
+        } catch (IOException e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (tmp != null && tmp.exists()) {
+                tmp.delete();
+            }
+        }
     }
 
     /**
@@ -214,7 +302,28 @@ public final class Ej209RandomAccessFile {
         // GUÍA: Razona con el puntero de fichero como estado observable: cada lectura,
         // escritura o seek cambia desde
         // dónde se opera sin obligarte a recorrer el contenido previo.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para leerInverso");
+        File tmp = null;
+        try {
+            tmp = File.createTempFile("ej209", ".bin");
+            tmp.deleteOnExit();
+            try (RandomAccessFile raf = new RandomAccessFile(tmp, "rw")) {
+                raf.write(datos);
+                byte[] inverso = new byte[datos.length];
+                for (int i = 0; i < datos.length; i++) {
+                    raf.seek(datos.length - 1 - i);
+                    inverso[i] = raf.readByte();
+                }
+                return inverso;
+            }
+        } catch (IOException e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            return new byte[0];
+        } finally {
+            if (tmp != null && tmp.exists()) {
+                tmp.delete();
+            }
+        }
     }
 
     /**
@@ -229,7 +338,27 @@ public final class Ej209RandomAccessFile {
         // GUÍA: Razona con el puntero de fichero como estado observable: cada lectura,
         // escritura o seek cambia desde
         // dónde se opera sin obligarte a recorrer el contenido previo.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para punteroAvanzaAlLeer");
+        File tmp = null;
+        try {
+            tmp = File.createTempFile("ej209", ".bin");
+            tmp.deleteOnExit();
+            try (RandomAccessFile raf = new RandomAccessFile(tmp, "rw")) {
+                raf.write(new byte[] { 0, 10, 20, 30, 40, 50 });
+                raf.seek(0);
+                raf.read();
+                raf.read();
+                raf.read();
+                return raf.getFilePointer();
+            }
+        } catch (IOException e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            return -1;
+        } finally {
+            if (tmp != null && tmp.exists()) {
+                tmp.delete();
+            }
+        }
     }
 
     /**
@@ -244,7 +373,29 @@ public final class Ej209RandomAccessFile {
         // GUÍA: Razona con el puntero de fichero como estado observable: cada lectura,
         // escritura o seek cambia desde
         // dónde se opera sin obligarte a recorrer el contenido previo.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para leerRegistroFijo");
+        File tmp = null;
+        try {
+            tmp = File.createTempFile("ej209", ".bin");
+            tmp.deleteOnExit();
+            try (RandomAccessFile raf = new RandomAccessFile(tmp, "rw")) {
+                raf.write(new byte[] {
+                        100, 100, 100, 100,
+                        101, 101, 101, 101,
+                        102, 102, 102, 102,
+                        103, 103, 103, 103
+                });
+                raf.seek(2 * 4);
+                return raf.readByte();
+            }
+        } catch (IOException e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            return -1;
+        } finally {
+            if (tmp != null && tmp.exists()) {
+                tmp.delete();
+            }
+        }
     }
 
     /**
@@ -260,8 +411,23 @@ public final class Ej209RandomAccessFile {
         // GUÍA: Razona con el puntero de fichero como estado observable: cada lectura,
         // escritura o seek cambia desde
         // dónde se opera sin obligarte a recorrer el contenido previo.
-        throw new UnsupportedOperationException(
-                "TODO: Implementar la lógica del reto extra para modoSoloLecturaNoEscribe");
+        File tmp = null;
+        try {
+            tmp = File.createTempFile("ej209", ".bin");
+            tmp.deleteOnExit();
+            try (RandomAccessFile raf = new RandomAccessFile(tmp, "r")) {
+                raf.write(new byte[1]);
+                return false;
+            }
+        } catch (IOException e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            return true;
+        } finally {
+            if (tmp != null && tmp.exists()) {
+                tmp.delete();
+            }
+        }
     }
 
     /**
@@ -278,7 +444,24 @@ public final class Ej209RandomAccessFile {
         // GUÍA: Razona con el puntero de fichero como estado observable: cada lectura,
         // escritura o seek cambia desde
         // dónde se opera sin obligarte a recorrer el contenido previo.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para escribirYLeerDouble");
+        File tmp = null;
+        try {
+            tmp = File.createTempFile("ej209", ".bin");
+            tmp.deleteOnExit();
+            try (RandomAccessFile raf = new RandomAccessFile(tmp, "rw")) {
+                raf.writeDouble(valor);
+                raf.seek(0);
+                return raf.readDouble();
+            }
+        } catch (IOException e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            return -1;
+        } finally {
+            if (tmp != null && tmp.exists()) {
+                tmp.delete();
+            }
+        }
     }
 
     /**
@@ -295,7 +478,26 @@ public final class Ej209RandomAccessFile {
         // GUÍA: Razona con el puntero de fichero como estado observable: cada lectura,
         // escritura o seek cambia desde
         // dónde se opera sin obligarte a recorrer el contenido previo.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para seekCeroRelee");
+        File tmp = null;
+        try {
+            tmp = File.createTempFile("ej209", ".bin");
+            tmp.deleteOnExit();
+            try (RandomAccessFile raf = new RandomAccessFile(tmp, "rw")) {
+                raf.write(datos);
+                raf.seek(0);
+                raf.read();
+                raf.seek(0);
+                return raf.read();
+            }
+        } catch (IOException e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            return -1;
+        } finally {
+            if (tmp != null && tmp.exists()) {
+                tmp.delete();
+            }
+        }
     }
 
     /**
@@ -310,7 +512,23 @@ public final class Ej209RandomAccessFile {
         // GUÍA: Razona con el puntero de fichero como estado observable: cada lectura,
         // escritura o seek cambia desde
         // dónde se opera sin obligarte a recorrer el contenido previo.
-        throw new UnsupportedOperationException(
-                "TODO: Implementar la lógica del reto extra para accesoAleatorioDirecto");
+        File tmp = null;
+        try {
+            tmp = File.createTempFile("ej209", ".bin");
+            tmp.deleteOnExit();
+            try (RandomAccessFile raf = new RandomAccessFile(tmp, "rw")) {
+                raf.write(new byte[] { 0, 10, 20, 30, 40, 50, 60, 70, 80, 90 });
+                raf.seek(5);
+                return raf.read();
+            }
+        } catch (IOException e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            return -1;
+        } finally {
+            if (tmp != null && tmp.exists()) {
+                tmp.delete();
+            }
+        }
     }
 }
