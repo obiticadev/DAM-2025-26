@@ -1,5 +1,6 @@
 package com.masterclass.api.b26_io;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -343,7 +344,26 @@ public final class Ej210ObjectSerialization {
         // representación serializada. El contrato
         // depende de qué objetos son serializables y qué estado se conserva al
         // reconstruirlos.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para recordRoundTripIgual");
+        Punto p = new Punto(10, 20);
+        File tmp = null;
+        try {
+            tmp = File.createTempFile("ej210", ".bin");
+            tmp.deleteOnExit();
+            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(tmp))) {
+                oos.writeObject(p);
+            }
+            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(tmp))) {
+                return p.equals((Punto) ois.readObject());
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            return false;
+        } finally {
+            if (tmp != null && tmp.exists()) {
+                tmp.delete();
+            }
+        }
     }
 
     /**
@@ -360,8 +380,29 @@ public final class Ej210ObjectSerialization {
         // representación serializada. El contrato
         // depende de qué objetos son serializables y qué estado se conserva al
         // reconstruirlos.
-        throw new UnsupportedOperationException(
-                "TODO: Implementar la lógica del reto extra para clonarPorSerializacion");
+        Credencial cred = new Credencial("User", "Pass");
+
+        try {
+            byte[] datos;
+
+            try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    ObjectOutputStream oos = new ObjectOutputStream(baos)) {
+
+                oos.writeObject(cred);
+                datos = baos.toByteArray();
+            }
+
+            try (ByteArrayInputStream bais = new ByteArrayInputStream(datos);
+                    ObjectInputStream ois = new ObjectInputStream(bais)) {
+
+                Credencial clon = (Credencial) ois.readObject();
+                return cred.equals(clon) && cred != clon;
+            }
+
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     /**
