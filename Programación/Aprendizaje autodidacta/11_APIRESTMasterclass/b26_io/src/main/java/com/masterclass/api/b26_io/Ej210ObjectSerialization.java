@@ -6,11 +6,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -418,8 +418,28 @@ public final class Ej210ObjectSerialization {
         // representación serializada. El contrato
         // depende de qué objetos son serializables y qué estado se conserva al
         // reconstruirlos.
-        throw new UnsupportedOperationException(
-                "TODO: Implementar la lógica del reto extra para mapSerializableConservaEntradas");
+        HashMap<Integer, String> listMap = new HashMap<>();
+        listMap.put(1, "Comida");
+        listMap.put(2, "Cena");
+
+        try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                ObjectOutputStream oos = new ObjectOutputStream(baos)) {
+
+            oos.writeObject(listMap);
+            oos.flush();
+
+            try (ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+                    ObjectInputStream ois = new ObjectInputStream(bais)) {
+
+                HashMap<Integer, String> recuperado = (HashMap<Integer, String>) ois.readObject();
+
+                return recuperado.size();
+            }
+
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return -1;
+        }
     }
 
     /**
