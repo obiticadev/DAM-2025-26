@@ -396,7 +396,9 @@ public final class Ej210ObjectSerialization {
                     ObjectInputStream ois = new ObjectInputStream(bais)) {
 
                 Credencial clon = (Credencial) ois.readObject();
-                return cred.equals(clon) && cred != clon;
+                return cred != clon
+                        && cred.usuario.equals(clon.usuario)
+                        && clon.password == null;
             }
 
         } catch (IOException | ClassNotFoundException e) {
@@ -455,7 +457,21 @@ public final class Ej210ObjectSerialization {
         // representación serializada. El contrato
         // depende de qué objetos son serializables y qué estado se conserva al
         // reconstruirlos.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para enteroSerializable");
+        Integer num = 99;
+        try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                ObjectOutputStream oos = new ObjectOutputStream(baos)) {
+            oos.writeObject(num);
+            oos.flush();
+            try (ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+                    ObjectInputStream ois = new ObjectInputStream(bais)) {
+                Integer resultNum = (Integer) ois.readObject();
+                return (int) resultNum;
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            return -1;
+        }
     }
 
     /**
@@ -472,8 +488,26 @@ public final class Ej210ObjectSerialization {
         // representación serializada. El contrato
         // depende de qué objetos son serializables y qué estado se conserva al
         // reconstruirlos.
-        throw new UnsupportedOperationException(
-                "TODO: Implementar la lógica del reto extra para dosObjetosEnElMismoFichero");
+        Integer num1 = 1;
+        Integer num2 = 2;
+        int suma = num1 + num2;
+        try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                ObjectOutputStream oos = new ObjectOutputStream(baos)) {
+            oos.writeObject(num1);
+            oos.writeObject(num2);
+            oos.flush();
+            try (ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+                    ObjectInputStream ois = new ObjectInputStream(bais)) {
+                Integer resultNum1 = (Integer) ois.readObject();
+                Integer resultNum2 = (Integer) ois.readObject();
+                int resultSuma = resultNum1 + resultNum2;
+                return resultSuma;
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            return -1;
+        }
     }
 
     /**
@@ -491,8 +525,20 @@ public final class Ej210ObjectSerialization {
         // representación serializada. El contrato
         // depende de qué objetos son serializables y qué estado se conserva al
         // reconstruirlos.
-        throw new UnsupportedOperationException(
-                "TODO: Implementar la lógica del reto extra para transientPresenteAntesAusenteDespues");
+        Credencial credencial = new Credencial("User", "Pass");
+        try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                ObjectOutputStream oos = new ObjectOutputStream(baos)) {
+            oos.writeObject(credencial);
+            oos.flush();
+            try (ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+                    ObjectInputStream ois = new ObjectInputStream(bais)) {
+                Credencial resultCredencial = (Credencial) ois.readObject();
+                return credencial.password != resultCredencial.password;
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            // TODO: handle exception
+            return false;
+        }
     }
 
     /**
@@ -510,6 +556,29 @@ public final class Ej210ObjectSerialization {
         // representación serializada. El contrato
         // depende de qué objetos son serializables y qué estado se conserva al
         // reconstruirlos.
-        throw new UnsupportedOperationException("TODO: Implementar la lógica del reto extra para listaGrandeRoundTrip");
+        List<String> lista = new ArrayList<>();
+        for (int i = 0; i < 1000; i++) {
+            lista.add(String.format("Elemento %d", i));
+        }
+        try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                ObjectOutputStream oos = new ObjectOutputStream(baos)) {
+            oos.writeObject(lista);
+            oos.flush();
+            try (ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+                    ObjectInputStream ois = new ObjectInputStream(bais)) {
+                List<?> resultLista = (List<?>) ois.readObject();
+                List<String> resultListaString = new ArrayList<>();
+                for (Object object : resultLista) {
+                    if (object instanceof String s) {
+                        resultListaString.add(s);
+                    }
+                }
+                return resultListaString.size();
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            return -1;
+        }
     }
 }
