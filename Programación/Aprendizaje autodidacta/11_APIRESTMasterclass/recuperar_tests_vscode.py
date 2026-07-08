@@ -8,6 +8,9 @@ import sys
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SETTINGS_PATH = os.path.join(ROOT, ".vscode", "settings.json")
 TEST_EXTENSION = "vscjava.vscode-java-test"
+CUSTOM_EXTENSION_JS = os.path.expanduser(
+    "~/.vscode-oss/extensions/oliwheel.java-maven-test-buttons-0.0.1/extension.js"
+)
 
 
 def run(command):
@@ -62,6 +65,37 @@ def ensure_settings():
     print(f"OK: configuración actualizada: {SETTINGS_PATH}", flush=True)
 
 
+def ensure_custom_extension_log_path():
+    os.makedirs("/tmp/opencode", exist_ok=True)
+    if not os.path.exists(CUSTOM_EXTENSION_JS):
+        print("AVISO: no existe la extensión local oliwheel.java-maven-test-buttons.")
+        return
+
+    with open(CUSTOM_EXTENSION_JS, "r", encoding="utf-8") as f:
+        content = f.read()
+
+    old = "function log(message) { fs.appendFileSync('/tmp/opencode/java-test-buttons.log', `${new Date().toISOString()} ${message}\\n`); }"
+    if old not in content:
+        print("OK: extensión local ya no falla por /tmp/opencode", flush=True)
+    else:
+        new = """const logDir = '/tmp/opencode';
+const logFile = path.join(logDir, 'java-test-buttons.log');
+function log(message) {
+  fs.mkdirSync(logDir, { recursive: true });
+  fs.appendFileSync(logFile, `${new Date().toISOString()} ${message}\\n`);
+}"""
+        content = content.replace(old, new)
+        print("OK: extensión local reparada para crear /tmp/opencode", flush=True)
+
+    content = content.replace(
+        "vscode.workspace.findFiles('src/test/java/**/*Test.java', '**/target/**')",
+        "vscode.workspace.findFiles('**/src/test/java/**/*Test.java', '**/target/**')",
+    )
+    with open(CUSTOM_EXTENSION_JS, "w", encoding="utf-8") as f:
+        f.write(content)
+    print("OK: extensión local busca tests en submódulos", flush=True)
+
+
 def activate_block(block):
     bloque_py = os.path.join(ROOT, "bloque.py")
     if not os.path.exists(bloque_py):
@@ -77,6 +111,7 @@ def main():
     block = sys.argv[1] if len(sys.argv) > 1 else "b26"
     ensure_test_extension()
     ensure_settings()
+    ensure_custom_extension_log_path()
     activate_block(block)
     print()
     print("Ahora en VS Code ejecuta:")
