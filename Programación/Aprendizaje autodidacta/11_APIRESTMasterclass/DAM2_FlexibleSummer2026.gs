@@ -66,7 +66,7 @@ function inicializarPlanVerano2026() {
   setConfigValue_(configSheet, 'spreadsheet_id', ss.getId());
   setConfigValue_(configSheet, 'last_init', new Date());
 
-  SpreadsheetApp.getUi().alert('Plan Verano 2DAM 2026 inicializado. Ahora ejecuta sincronizarBidireccionalVerano2026() para crear/actualizar Tasks por lotes. Sheet: ' + ss.getUrl());
+  notifyPlanUser_('Plan Verano 2DAM 2026 inicializado. Ahora ejecuta sincronizarBidireccionalVerano2026() para crear/actualizar Tasks por lotes. Sheet: ' + ss.getUrl(), 8);
 }
 
 function sincronizarBidireccionalVerano2026() {
@@ -78,9 +78,14 @@ function sincronizarBidireccionalVerano2026() {
 
   const taskList = getOrCreateTaskList_();
   const allRows = readRows_(sheet);
-  const startIndex = Math.max(0, Number(getConfigValue_(ss, 'sync_next_index') || 0));
-  const rows = allRows.slice(startIndex, startIndex + PLAN_2026_SYNC.maxRowsPerRun);
   const taskIndex = indexTasksBySessionId_(taskList.id);
+  const completadasDesdeTasks = sellarCompletadasDesdeTasks_(allRows, taskList.id, taskIndex);
+  const ajusteFlexible = ajustarPlanVivoDesdeHoy_(allRows);
+  if (completadasDesdeTasks.changed || ajusteFlexible.changed) writeRows_(sheet, allRows);
+
+  const startIndex = completadasDesdeTasks.changed || ajusteFlexible.changed ? 0 : Math.max(0, Number(getConfigValue_(ss, 'sync_next_index') || 0));
+  const maxRowsThisRun = completadasDesdeTasks.changed || ajusteFlexible.changed ? allRows.length : PLAN_2026_SYNC.maxRowsPerRun;
+  const rows = allRows.slice(startIndex, startIndex + maxRowsThisRun);
   const updates = [];
   let processed = 0;
 
@@ -107,6 +112,16 @@ function sincronizarBidireccionalVerano2026() {
     const lastSync = row.ultima_sync ? new Date(row.ultima_sync) : null;
     const taskChangedAfterSync = taskUpdated && (!lastSync || taskUpdated.getTime() > lastSync.getTime() + 1000);
     const sheetChangedAfterSync = sheetHash !== beforeHash;
+
+    if (taskState.status === 'completed' && row.estado !== 'completada') {
+      applyTaskToRow_(row, taskState);
+      row.ultima_sync = new Date();
+      row.sync_hash = computeSessionHash_(row);
+      updates.push(row);
+      logSync_('task_to_sheet', row.session_id, 'Tarea completada en Google Tasks; fecha_actual sellada');
+      processed++;
+      continue;
+    }
 
     if (taskChangedAfterSync && !sheetChangedAfterSync) {
       applyTaskToRow_(row, taskState);
@@ -144,15 +159,17 @@ function sincronizarBidireccionalVerano2026() {
 
   if (nextIndex < allRows.length) {
     scheduleSyncContinuation_();
-    SpreadsheetApp.getActive().toast('Sincronizadas ' + nextIndex + '/' + allRows.length + ' sesiones. Continuara automaticamente.', 'Verano 2DAM 2026', 8);
+    notifyPlanUser_('Sincronizadas ' + nextIndex + '/' + allRows.length + ' sesiones. Continuara automaticamente.', 8);
   } else {
-    SpreadsheetApp.getActive().toast('Sincronizacion completada: ' + allRows.length + ' sesiones.', 'Verano 2DAM 2026', 8);
+    notifyPlanUser_('Sincronizacion completada: ' + allRows.length + ' sesiones.', 8);
   }
 }
 
 function crearTriggersVerano2026() {
   ScriptApp.getProjectTriggers()
-    .filter(function(trigger) { return trigger.getHandlerFunction() === 'sincronizarBidireccionalVerano2026'; })
+    .filter(function(trigger) {
+      return ['sincronizarBidireccionalVerano2026', 'continuarSincronizacionVerano2026'].indexOf(trigger.getHandlerFunction()) !== -1;
+    })
     .forEach(function(trigger) { ScriptApp.deleteTrigger(trigger); });
 
   ScriptApp.newTrigger('sincronizarBidireccionalVerano2026')
@@ -160,7 +177,48 @@ function crearTriggersVerano2026() {
     .everyMinutes(15)
     .create();
 
-  SpreadsheetApp.getUi().alert('Trigger creado: sincronización cada 15 minutos.');
+  notifyPlanUser_('Trigger creado: sincronizacion cada 15 minutos.', 8);
+}
+
+function continuarSincronizacionVerano2026() {
+  deleteContinuationTriggers_();
+  sincronizarBidireccionalVerano2026();
+}
+
+function repararFechasGoogleTasksVerano2026() {
+  PLAN_2026_LOG_BUFFER = [];
+  const ss = getOrCreateSpreadsheet_();
+  const sheet = ss.getSheetByName(PLAN_2026.sheets.sessions);
+  if (!sheet) throw new Error('No existe la pestaÃ±a Sesiones. Ejecuta inicializarPlanVerano2026().');
+
+  const taskList = getOrCreateTaskList_();
+  const rows = readRows_(sheet);
+  const taskIndex = indexTasksBySessionId_(taskList.id);
+  sellarCompletadasDesdeTasks_(rows, taskList.id, taskIndex);
+  ajustarPlanVivoDesdeHoy_(rows);
+
+  let repaired = 0;
+  rows.forEach(function(row) {
+    let task = row.google_task_id ? safeGetTask_(taskList.id, row.google_task_id) : taskIndex[row.session_id];
+
+    if (!task) {
+      task = createTaskFromRow_(taskList.id, row);
+      row.google_task_id = task.id;
+    } else {
+      updateTaskFromRow_(taskList.id, task.id, row, normalizeTaskState_(task));
+      row.google_task_id = task.id;
+    }
+
+    row.ultima_sync = new Date();
+    row.sync_hash = computeSessionHash_(row);
+    repaired++;
+  });
+
+  writeRows_(sheet, rows);
+  logSync_('repair_due_dates', 'SYNC', 'Reparadas fechas de Google Tasks desde fecha_actual para ' + repaired + ' sesiones.');
+  flushSyncLog_(ss);
+  refreshDashboard_(ss);
+  notifyPlanUser_('Fechas reparadas en Google Tasks: ' + repaired + ' sesiones.', 8);
 }
 
 function replanificarDesdeSeleccion() {
@@ -333,6 +391,7 @@ function setupConfigSheet_(sheet) {
     ['task_list_name', PLAN_2026.taskListName],
     ['timezone', PLAN_2026.timezone],
     ['sync_policy', 'bidireccional: gana el cambio posterior a ultima_sync'],
+    ['auto_replan_policy', 'cada sincronizacion compacta la cola viva desde hoy, una sesion por dia; completada/descartada quedan fijas'],
     ['skip_policy', 'saltada/descartada no completan Tasks; se refleja en titulo y notas'],
     ['max_daily_minutes', '120'],
     ['default_session_minutes', '105'],
@@ -410,7 +469,11 @@ function buildTaskResource_(row) {
 }
 
 function applyTaskToRow_(row, taskState) {
-  if (taskState.status === 'completed') row.estado = 'completada';
+  if (taskState.status === 'completed') {
+    row.estado = 'completada';
+    row.fecha_actual = taskState.completed ? fromTaskDue_(taskState.completed) : todayPlanDate_();
+    return;
+  }
   if (taskState.due) row.fecha_actual = fromTaskDue_(taskState.due);
 }
 
@@ -418,6 +481,7 @@ function normalizeTaskState_(task) {
   return {
     status: task.status || 'needsAction',
     due: task.due || '',
+    completed: task.completed || '',
     updated: task.updated || ''
   };
 }
@@ -440,6 +504,120 @@ function readRows_(sheet) {
       headers.forEach(function(header, index) { row[header] = valuesRow[index]; });
       return row;
     });
+}
+
+function sellarCompletadasDesdeTasks_(rows, taskListId, taskIndex) {
+  let changedCount = 0;
+  let firstSealed = '';
+  let lastSealed = '';
+
+  rows.forEach(function(row) {
+    if (String(row.estado || '').toLowerCase() === 'completada') return;
+
+    const task = row.google_task_id ? safeGetTask_(taskListId, row.google_task_id) : taskIndex[row.session_id];
+    if (!task || task.status !== 'completed') return;
+
+    applyTaskToRow_(row, normalizeTaskState_(task));
+    row.ultima_sync = new Date();
+    row.sync_hash = computeSessionHash_(row);
+    changedCount++;
+    firstSealed = firstSealed || row.session_id;
+    lastSealed = row.session_id;
+  });
+
+  if (changedCount > 0) {
+    logSync_(
+      'task_to_sheet',
+      firstSealed === lastSealed ? firstSealed : firstSealed + '..' + lastSealed,
+      'Selladas ' + changedCount + ' tareas ya completadas en Google Tasks antes de recompactar la cola viva.'
+    );
+  }
+
+  return { changed: changedCount > 0, count: changedCount };
+}
+
+function ajustarPlanVivoDesdeHoy_(rows) {
+  const today = todayPlanDate_();
+  let cursor = copyPlanDate_(today);
+  let changedCount = 0;
+  let firstMoved = '';
+  let lastMoved = '';
+
+  rows
+    .slice()
+    .sort(function(left, right) { return Number(left.orden || 0) - Number(right.orden || 0); })
+    .forEach(function(row) {
+    const estado = String(row.estado || '').toLowerCase();
+    const current = parsePlanDate_(row.fecha_actual || row.fecha_planificada);
+
+    if (estado === 'completada' || estado === 'descartada') return;
+    if (!current) return;
+
+    const target = copyPlanDate_(cursor);
+    if (!samePlanDate_(current, target)) {
+      row.fecha_actual = target;
+      if (estado === 'pendiente') row.estado = 'reprogramada';
+      changedCount++;
+      firstMoved = firstMoved || row.session_id;
+      lastMoved = row.session_id;
+    }
+
+    cursor = addPlanDays_(target, 1);
+  });
+
+  if (changedCount > 0) {
+    logSync_(
+      'auto_replan',
+      firstMoved === lastMoved ? firstMoved : firstMoved + '..' + lastMoved,
+      'Recolocadas ' + changedCount + ' sesiones vivas desde ' + formatPlanDate_(today) + ', una por dia y en orden. Las completadas/descartadas no se han tocado.'
+    );
+  }
+
+  return { changed: changedCount > 0, count: changedCount };
+}
+
+function todayPlanDate_() {
+  return parsePlanDate_(Utilities.formatDate(new Date(), PLAN_2026.timezone, 'yyyy-MM-dd'));
+}
+
+function parsePlanDate_(value) {
+  if (!value) return null;
+
+  if (value instanceof Date) {
+    if (Number.isNaN(value.getTime())) return null;
+    return new Date(value.getFullYear(), value.getMonth(), value.getDate());
+  }
+
+  const text = String(value).trim();
+  let match = text.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (match) return new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+
+  match = text.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+  if (match) return new Date(Number(match[3]), Number(match[2]) - 1, Number(match[1]));
+
+  const parsed = new Date(text);
+  if (Number.isNaN(parsed.getTime())) return null;
+  return new Date(parsed.getFullYear(), parsed.getMonth(), parsed.getDate());
+}
+
+function copyPlanDate_(date) {
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+}
+
+function addPlanDays_(date, days) {
+  const result = copyPlanDate_(date);
+  result.setDate(result.getDate() + days);
+  return result;
+}
+
+function samePlanDate_(left, right) {
+  return left.getFullYear() === right.getFullYear()
+    && left.getMonth() === right.getMonth()
+    && left.getDate() === right.getDate();
+}
+
+function formatPlanDate_(date) {
+  return Utilities.formatDate(date, PLAN_2026.timezone, 'yyyy-MM-dd');
 }
 
 function writeRows_(sheet, rows) {
@@ -480,8 +658,9 @@ function normalizeHashValue_(value) {
 }
 
 function toTaskDue_(dateValue) {
-  const date = dateValue instanceof Date ? dateValue : new Date(dateValue);
-  return Utilities.formatDate(date, 'UTC', "yyyy-MM-dd'T'00:00:00.000'Z'");
+  const date = parsePlanDate_(dateValue);
+  if (!date) return '';
+  return formatPlanDate_(date) + "T00:00:00.000Z";
 }
 
 function fromTaskDue_(due) {
@@ -540,11 +719,48 @@ function getConfigValue_(ss, key) {
   return '';
 }
 
+function notifyPlanUser_(message, seconds) {
+  try {
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    if (ss) {
+      ss.toast(message, 'Verano 2DAM 2026', seconds || 8);
+      return;
+    }
+  } catch (error) {
+    // En triggers o proyectos independientes puede no existir una UI activa.
+  }
+
+  Logger.log(message);
+}
+
 function scheduleSyncContinuation_() {
-  ScriptApp.newTrigger('sincronizarBidireccionalVerano2026')
+  cleanupDuplicateSyncTriggers_();
+  deleteContinuationTriggers_();
+  ScriptApp.newTrigger('continuarSincronizacionVerano2026')
     .timeBased()
     .after(PLAN_2026_SYNC.continuationAfterMs)
     .create();
+}
+
+function deleteContinuationTriggers_() {
+  ScriptApp.getProjectTriggers()
+    .filter(function(trigger) { return trigger.getHandlerFunction() === 'continuarSincronizacionVerano2026'; })
+    .forEach(function(trigger) { ScriptApp.deleteTrigger(trigger); });
+}
+
+function cleanupDuplicateSyncTriggers_() {
+  const mainTriggers = ScriptApp.getProjectTriggers()
+    .filter(function(trigger) { return trigger.getHandlerFunction() === 'sincronizarBidireccionalVerano2026'; });
+
+  if (mainTriggers.length <= 1) return;
+
+  mainTriggers.forEach(function(trigger) { ScriptApp.deleteTrigger(trigger); });
+  ScriptApp.newTrigger('sincronizarBidireccionalVerano2026')
+    .timeBased()
+    .everyMinutes(15)
+    .create();
+
+  logSync_('trigger_cleanup', 'SYNC', 'Eliminados triggers duplicados de sincronizacion; conservado un trigger cada 15 minutos.');
 }
 
 function refreshDashboard_(ss) {

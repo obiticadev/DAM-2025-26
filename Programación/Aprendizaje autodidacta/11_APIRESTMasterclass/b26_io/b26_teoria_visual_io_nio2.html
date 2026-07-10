@@ -4,11 +4,132 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bloque 26 - Java I/O, ficheros y NIO.2</title>
+<meta name="description" content="Teoría visual, completa e interactiva del bloque 26: java.io, NIO.2, Path, Files, canales, buffers, serialización y conversión de formatos.">
+<meta name="theme-color" content="#0f2735">
 <style>
 :root{--ink:#172033;--muted:#5a6574;--paper:#faf8f3;--panel:#fff;--line:#d8e0ea;--soft:#f3f7fb;--byte:#057a72;--char:#a55704;--nio:#245fca;--obj:#7c3aed;--bad:#b42318;--ok:#147a3d;--warn:#b7791f;--code:#111827;--r:8px;--shadow:0 14px 34px rgba(23,32,51,.09)}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:linear-gradient(90deg,rgba(36,95,202,.06) 0 1px,transparent 1px),linear-gradient(0deg,rgba(5,122,114,.05) 0 1px,transparent 1px),var(--paper);background-size:36px 36px;line-height:1.68}a{color:inherit}code,pre{font-family:"JetBrains Mono","Cascadia Code",Consolas,monospace}code{font-size:.95em}.layout{display:grid;grid-template-columns:286px minmax(0,1fr);min-height:100vh}.side{position:sticky;top:0;height:100vh;overflow:auto;padding:22px 16px;background:rgba(255,255,255,.92);border-right:1px solid var(--line);backdrop-filter:blur(12px)}.brand{display:grid;gap:4px;margin-bottom:18px}.brand strong{font-size:1.06rem}.brand span{font-size:.9rem;color:var(--muted)}.nav{display:grid;gap:5px}.nav a{text-decoration:none;border:1px solid transparent;border-radius:var(--r);padding:9px 10px;font-weight:750;font-size:.92rem;color:#2f3b4c}.nav a:hover,.nav a:focus{background:#edf5ff;border-color:#cbdff8;outline:0}.hero{min-height:86vh;display:grid;align-items:center;padding:clamp(34px,7vw,90px);background:linear-gradient(135deg,rgba(17,24,39,.96),rgba(16,82,82,.92)),linear-gradient(90deg,#0f172a,#153e52);color:#fff;position:relative;overflow:hidden}.hero:after{content:"";position:absolute;left:0;right:0;bottom:0;height:76px;background:linear-gradient(transparent,rgba(250,248,243,.98))}.hero-inner{width:min(1120px,100%);margin:auto;display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:clamp(26px,5vw,68px);align-items:center;position:relative;z-index:1}.eyebrow{text-transform:uppercase;letter-spacing:.08em;font-weight:900;color:#9be8df;font-size:.82rem}h1{font-size:clamp(2.3rem,6vw,5.4rem);line-height:.96;margin:10px 0 14px;letter-spacing:0}.lead{font-size:clamp(1.06rem,2vw,1.32rem);color:#e3edf7;max-width:790px}.hero-panel{border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.1);border-radius:var(--r);padding:16px;box-shadow:var(--shadow)}.stack{display:grid;gap:9px}.stack .node{background:rgba(255,255,255,.94);color:#182133;border-radius:var(--r);padding:10px 12px;font-weight:900;display:flex;justify-content:space-between;gap:12px}.stack .node span{color:var(--muted);font-weight:800}.buttons{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}.btn{border:1px solid var(--line);border-radius:var(--r);min-height:42px;padding:9px 14px;background:#fff;color:var(--ink);font-weight:900;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}.btn.primary{background:#f3b63f;border-color:#f3b63f}.btn.dark{background:#172033;color:#fff;border-color:#172033}.content{padding:0 clamp(16px,5vw,64px) 70px}.article{width:min(920px,100%);margin:0 auto}.section{padding:clamp(38px,6vw,78px) 0;border-bottom:1px solid rgba(216,224,234,.9)}.section-head{margin-bottom:22px}.kicker{display:block;color:var(--nio);font-weight:950;letter-spacing:.08em;text-transform:uppercase;font-size:.78rem;margin-bottom:8px}h2{font-size:clamp(1.75rem,4vw,3.1rem);line-height:1.08;margin:0 0 10px;letter-spacing:0}h3{font-size:1.22rem;margin:22px 0 8px}.intro{font-size:1.08rem;color:#344054}.note{border-left:5px solid var(--nio);background:#eef5ff;padding:14px 16px;border-radius:0 var(--r) var(--r) 0;margin:18px 0}.note.byte{border-color:var(--byte);background:#eafaf6}.note.char{border-color:var(--char);background:#fff5e8}.note.warn{border-color:var(--bad);background:#fff0ee}.note.obj{border-color:var(--obj);background:#f5f0ff}.visual{border:1px solid var(--line);background:rgba(255,255,255,.94);border-radius:var(--r);padding:18px;margin:18px 0;box-shadow:0 10px 26px rgba(23,32,51,.06)}.flow{display:grid;gap:10px}.flow-row{display:grid;grid-template-columns:1fr 34px 1fr;gap:10px;align-items:center}.box{border:1px solid var(--line);background:#fff;border-radius:var(--r);padding:12px;text-align:center}.box strong{display:block}.box small{color:var(--muted)}.arrow{font-weight:950;color:var(--nio);text-align:center}.map{display:grid;gap:10px}.mapline{display:grid;grid-template-columns:180px 1fr;gap:12px;align-items:start;border-bottom:1px solid #edf0f4;padding:10px 0}.mapline:last-child{border-bottom:0}.badge{display:inline-flex;align-items:center;width:max-content;border-radius:999px;padding:4px 9px;font-weight:900;font-size:.8rem;color:#fff}.b-byte{background:var(--byte)}.b-char{background:var(--char)}.b-nio{background:var(--nio)}.b-obj{background:var(--obj)}.b-warn{background:var(--bad)}.pillset{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.pill{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 9px;font-weight:850;font-size:.86rem}.api{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin:16px 0;background:#fff}.api-row{display:grid;grid-template-columns:210px 1fr;border-top:1px solid var(--line)}.api-row:first-child{border-top:0}.api-name{padding:12px;background:#f7fafc;font-weight:950}.api-use{padding:12px}.code-title{font-size:.82rem;text-transform:uppercase;letter-spacing:.08em;font-weight:950;color:#9fb1c7;background:#0b1220;border:1px solid #283244;border-bottom:0;border-radius:var(--r) var(--r) 0 0;padding:8px 12px;margin-top:16px}pre{margin:0 0 16px;overflow:auto;background:var(--code);color:#e5edf8;border:1px solid #283244;border-radius:0 0 var(--r) var(--r);padding:14px 16px;font-size:.92rem;line-height:1.55}.kw{color:#ffcc66}.type{color:#7dd3fc;font-weight:850}.iface{color:#86efac;font-weight:900}.method{color:#fca5a5}.lit{color:#fde68a}.comment{color:#93a4b8;font-style:italic}.ann{color:#c4b5fd}.bad{color:#fca5a5;font-weight:900}.good{color:#86efac;font-weight:900}.sim{border:1px solid var(--line);background:#fff;border-radius:var(--r);padding:16px;margin:18px 0}.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:10px 0}input[type=text],select{min-height:42px;border:1px solid #cbd5e1;border-radius:var(--r);padding:9px 11px;font:inherit;background:#fff;min-width:min(100%,250px)}input[type=range]{width:min(100%,360px)}.out{border:1px dashed #b6c3d3;border-radius:var(--r);padding:12px;background:#f8fafc;min-height:50px;overflow-wrap:anywhere}.bytes{display:flex;flex-wrap:wrap;gap:7px}.byte{font-family:"JetBrains Mono",Consolas,monospace;border-radius:6px;padding:7px 8px;background:#e9fbf7;color:#0f514d;font-weight:950;border:1px solid #bfe9df}.buffer{display:grid;grid-template-columns:repeat(12,minmax(22px,1fr));gap:6px;margin:26px 0}.slot{aspect-ratio:1;border:1px solid #cbd5e1;background:#f8fafc;border-radius:6px;display:grid;place-items:center;font-weight:950;position:relative}.slot.filled{background:#dff7ef;border-color:#96d8c8;color:#0f514d}.slot.pos:after,.slot.limit:before{position:absolute;left:50%;transform:translateX(-50%);font-size:.68rem;color:#172033}.slot.pos:after{content:"pos";top:-18px}.slot.limit:before{content:"limit";bottom:-18px}.table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:table;margin:16px 0}.table th,.table td{border-bottom:1px solid var(--line);padding:10px;text-align:left;vertical-align:top}.table th{background:#f3f7fb}.table tr:last-child td{border-bottom:0}.quiz{display:grid;gap:10px}.q{border:1px solid var(--line);background:#fff;border-radius:var(--r);overflow:hidden}.q button{width:100%;text-align:left;border:0;background:#fff;padding:14px 16px;font:inherit;font-weight:900;cursor:pointer;color:var(--ink)}.answer{display:none;padding:0 16px 16px;color:var(--muted)}.q.open .answer{display:block}.toplink{position:fixed;right:14px;bottom:14px;z-index:5}.legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.legend span{font-size:.84rem}@media(max-width:980px){.layout{grid-template-columns:1fr}.side{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line)}.nav{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{min-height:auto}.hero-inner{grid-template-columns:1fr}.api-row,.mapline{grid-template-columns:1fr}.flow-row{grid-template-columns:1fr}.arrow{transform:rotate(90deg)}}@media(max-width:560px){.content{padding-inline:14px}.hero{padding-inline:18px}.buttons,.controls{display:grid}.btn{width:100%}.nav{grid-template-columns:1fr}.table{font-size:.92rem}.buffer{gap:4px}.slot{font-size:.75rem}}
 </style>
+<style id="professional-polish">
+/* Capa editorial v2: una única línea de lectura, accesible y sin dependencias externas. */
+:root{--accent:#1e63d9;--accent-soft:#eaf2ff;--rail:#c8d6e5;--focus:#f7b731;--surface:#fffdf9;--deep:#0f2735;--teal:#087f78;--gold:#b86e00}
+*{scrollbar-color:#9bb0c6 transparent;scrollbar-width:thin}
+body{overflow-x:hidden;background-color:#fbfaf6}
+:not(pre)>code{overflow-wrap:anywhere;word-break:break-word}
+::selection{background:#bfe8df;color:#0b2931}
+.skip-link{position:fixed;z-index:1000;left:12px;top:12px;transform:translateY(-160%);background:#fff;color:#0f172a;border:2px solid var(--focus);padding:10px 14px;border-radius:8px;font-weight:900;text-decoration:none;transition:transform .18s ease}
+.skip-link:focus{transform:translateY(0)}
+.reading-meter{position:fixed;z-index:90;inset:0 0 auto;height:4px;background:rgba(255,255,255,.4);pointer-events:none}
+.reading-meter>span{display:block;width:0;height:100%;background:linear-gradient(90deg,#0da093,#3a7be0,#f1ae2b);box-shadow:0 0 12px rgba(58,123,224,.55);transition:width .08s linear}
+.menu-toggle{display:none;position:fixed;z-index:95;top:14px;left:14px;width:46px;height:46px;border:1px solid rgba(255,255,255,.3);border-radius:9px;background:#102a3a;color:#fff;font:900 1.2rem/1 system-ui;box-shadow:0 10px 28px rgba(15,39,53,.22);cursor:pointer}
+:focus-visible{outline:3px solid var(--focus)!important;outline-offset:3px}
+.side{z-index:80;border-right-color:#cbd7e4;box-shadow:8px 0 30px rgba(15,39,53,.035)}
+.brand{padding:8px 10px 18px;border-bottom:1px solid #e4eaf0}
+.brand:before{content:"IO";display:grid;place-items:center;width:42px;height:42px;margin-bottom:8px;background:var(--deep);color:#8ff0e5;border-radius:10px;font:950 1rem/1 ui-monospace,monospace;letter-spacing:.08em}
+.nav a{position:relative;transition:background .18s ease,color .18s ease,transform .18s ease}
+.nav a[aria-current="location"]{background:#eaf3ff;border-color:#bfd4f0;color:#174f9d;transform:translateX(3px)}
+.nav a[aria-current="location"]:before{content:"";position:absolute;left:-7px;top:25%;bottom:25%;width:3px;border-radius:3px;background:var(--accent)}
+.hero{isolation:isolate;background:radial-gradient(circle at 82% 18%,rgba(52,211,153,.18),transparent 28%),linear-gradient(135deg,#101c2c 0%,#10333d 56%,#0d4b4b 100%)}
+.hero:before{content:"";position:absolute;inset:0;z-index:-1;opacity:.16;background-image:linear-gradient(rgba(255,255,255,.22) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.22) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to right,transparent,black 38%,black)}
+.hero-panel{position:relative;padding:22px;background:rgba(4,28,37,.34);border-color:rgba(185,241,234,.28);box-shadow:0 22px 60px rgba(2,15,24,.25)}
+.stack .node{position:relative;border-left:4px solid #40c9bb;box-shadow:0 6px 16px rgba(0,0,0,.12)}
+.stack .node:not(:last-child):after{content:"↓";position:absolute;left:50%;bottom:-18px;z-index:2;color:#9be8df;font-weight:950}
+.content{padding-bottom:110px}
+.article{width:min(1020px,100%);position:relative}
+.article:before{content:"";position:absolute;left:20px;top:30px;bottom:30px;width:2px;background:linear-gradient(180deg,transparent,var(--rail) 4%,var(--rail) 96%,transparent)}
+.section{--section-accent:var(--accent);position:relative;padding-left:70px;scroll-margin-top:24px}
+.section:before{content:attr(data-chapter);position:absolute;left:0;top:clamp(38px,6vw,78px);display:grid;place-items:center;width:42px;height:42px;border:2px solid var(--section-accent);border-radius:50%;background:#fffdf9;color:var(--section-accent);box-shadow:0 0 0 8px #fbfaf6;font:950 .78rem/1 ui-monospace,monospace;letter-spacing:-.03em}
+.section[data-topic="byte"]{--section-accent:var(--byte)}
+.section[data-topic="char"]{--section-accent:var(--char)}
+.section[data-topic="object"]{--section-accent:var(--obj)}
+.section[data-topic="nio"]{--section-accent:var(--nio)}
+.section[data-topic="warning"]{--section-accent:var(--bad)}
+.section .kicker{color:var(--section-accent)}
+.visual,.sim,.api,.table{box-shadow:0 16px 42px rgba(16,39,53,.055)}
+.visual,.sim{border-top:4px solid var(--section-accent)}
+.section h2{max-width:850px}
+.section p,.section li{max-width:82ch}
+.model-rail{display:grid;gap:0;margin:24px 0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff;box-shadow:0 16px 42px rgba(16,39,53,.06)}
+.rail-step{display:grid;grid-template-columns:74px 190px minmax(0,1fr);align-items:stretch;min-height:98px;border-top:1px solid var(--line)}
+.rail-step:first-child{border-top:0}
+.rail-index{display:grid;place-items:center;background:#102a3a;color:#8ff0e5;font:950 1.02rem/1 ui-monospace,monospace}
+.rail-label{display:flex;align-items:center;padding:16px;background:#f3f7fb;font-weight:950}
+.rail-copy{padding:16px 18px;align-self:center;color:#334155}
+.decision-shell{margin:24px 0;border:1px solid #b9cadc;border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 22px 60px rgba(15,39,53,.09)}
+.decision-prompt{padding:18px 20px;background:#102a3a;color:#fff}
+.decision-prompt h3{margin:0 0 5px;color:#fff}
+.decision-prompt p{margin:0;color:#cce1e7}
+.decision-choices{display:flex;flex-wrap:wrap;gap:8px;padding:16px 18px;border-bottom:1px solid var(--line);background:#f5f8fb}
+.decision-choice{border:1px solid #afc2d6;border-radius:999px;background:#fff;color:#24364a;padding:9px 13px;font:850 .9rem/1.2 system-ui;cursor:pointer;transition:.18s ease}
+.decision-choice:hover,.decision-choice[aria-pressed="true"]{background:#146f75;border-color:#146f75;color:#fff;transform:translateY(-1px)}
+.decision-result{display:grid;grid-template-columns:170px minmax(0,1fr);gap:20px;align-items:start;padding:20px;min-height:174px}
+.decision-api{padding:15px;border-radius:9px;background:#eaf7f5;color:#0d5854;font:950 1rem/1.5 ui-monospace,monospace;text-align:center}
+.decision-result h3{margin:0 0 6px}.decision-result p{margin:5px 0}.decision-trap{color:#8a341a;font-weight:800}
+.model-caption{margin-top:10px;color:var(--muted);font-size:.92rem}
+.lab-band{margin:22px 0 34px;padding:clamp(18px,4vw,30px);border:1px solid var(--line);border-left:6px solid var(--section-accent);border-radius:10px;background:linear-gradient(100deg,#fff,#f8fbff)}
+.lab-band>h3{margin-top:0}
+.record-track{display:grid;grid-template-columns:repeat(6,minmax(82px,1fr));gap:7px;margin:28px 0 12px;overflow:auto;padding:20px 2px 4px}
+.record-cell{position:relative;min-height:82px;border:2px solid #b7c6d6;border-radius:8px;background:#fff;display:grid;place-items:center;text-align:center;font:850 .86rem/1.35 system-ui;transition:.18s ease}
+.record-cell.active{border-color:#6d36cc;background:#f2eaff;color:#5c2aae;box-shadow:0 0 0 4px rgba(124,58,237,.12)}
+.record-cell.active:before{content:"puntero ↓";position:absolute;left:50%;top:-24px;transform:translateX(-50%);white-space:nowrap;color:#6d36cc;font:950 .72rem/1 ui-monospace,monospace}
+.record-cell small{display:block;color:var(--muted)}
+.record-controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.record-controls input{flex:1 1 260px}
+.tree-stage{padding:16px;border:1px solid var(--line);border-radius:9px;background:#fff;font-family:ui-monospace,monospace}
+.tree-line{display:flex;align-items:center;gap:8px;min-height:36px;padding-left:calc(var(--depth)*24px);border-radius:5px;transition:.18s ease}
+.tree-line:before{content:"├─";color:#7a8ca1}.tree-line[data-kind="dir"]{font-weight:900}.tree-line[data-kind="dir"]:after{content:"directorio";margin-left:auto;color:#60738a;font:700 .72rem/1 system-ui}
+.tree-line.hit{background:#e6f7f2;color:#09625b}.tree-line.dim{opacity:.22}
+.tree-tools{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.tree-mode[aria-pressed="true"]{background:#146f75;border-color:#146f75;color:#fff}
+.format-chain{display:flex;align-items:stretch;gap:8px;overflow:auto;padding:10px 2px 16px}
+.format-node{min-width:150px;flex:1;padding:14px;border:1px solid #b7c7d8;border-radius:8px;background:#fff;text-align:center}
+.format-node strong{display:block;color:#163f71}.format-arrow{display:grid;place-items:center;color:#2e6fba;font-size:1.35rem;font-weight:950}
+.precision-list{display:grid;gap:1px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--line)}
+.precision-item{display:grid;grid-template-columns:42px minmax(0,1fr);gap:14px;padding:15px;background:#fff}
+.precision-item>span{display:grid;place-items:center;align-self:start;width:34px;height:34px;border-radius:50%;background:#e8f3ff;color:#1d5ba7;font-weight:950}
+.precision-item p{margin:2px 0}.precision-item strong{display:block;margin-bottom:3px}
+.source-strip{margin-top:24px;padding:16px 18px;border-radius:9px;background:#eef3f7;color:#405267;font-size:.9rem}
+.source-strip a{color:#174f9d;font-weight:850}
+.quiz-progress{margin:0 0 14px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:#fff;color:#405267;font-weight:850}
+.muted{color:var(--muted)}
+.answer{display:block}
+.js-ready .answer{display:none}
+.js-ready .q.open .answer{display:block}
+.q button{display:flex;justify-content:space-between;align-items:center;gap:14px}
+.q button:after{content:"+";font:950 1.3rem/1 ui-monospace,monospace;color:var(--nio)}
+.q.open button:after{content:"−"}
+.toplink{opacity:0;visibility:hidden;transform:translateY(10px);pointer-events:none;transition:opacity .18s ease,transform .18s ease,visibility 0s linear .18s}
+.toplink.visible{opacity:1;visibility:visible;transform:none;pointer-events:auto;transition-delay:0s}
+@media(max-width:980px){
+  .layout{display:block}.menu-toggle{display:grid;place-items:center}
+  .side{position:fixed;inset:0 auto 0 0;width:min(86vw,330px);height:100dvh;overflow:auto;transform:translateX(-105%);visibility:hidden;transition:transform .22s ease,visibility 0s linear .22s;border-right:1px solid var(--line);border-bottom:0;padding-top:74px}
+  body.nav-open{overflow:hidden}body.nav-open .side{transform:translateX(0)}
+  body.nav-open .side{visibility:visible;transition-delay:0s}
+  body.nav-open:after{content:"";position:fixed;z-index:70;inset:0;background:rgba(3,19,29,.56);backdrop-filter:blur(2px)}
+  .nav{grid-template-columns:1fr}.hero{padding-top:90px}.hero-inner{grid-template-columns:1fr}
+  .decision-result{grid-template-columns:1fr}.decision-api{text-align:left}.rail-step{grid-template-columns:58px 150px minmax(0,1fr)}
+  html:not(.js-ready) .menu-toggle{display:none}
+  html:not(.js-ready) .side{position:static;inset:auto;width:100%;height:auto;overflow:visible;transform:none;visibility:visible;padding-top:22px;border-right:0;border-bottom:1px solid var(--line)}
+}
+@media(max-width:640px){
+  .article:before{left:8px}.section{padding-left:32px}.section:before{left:-9px;width:34px;height:34px;box-shadow:0 0 0 5px #fbfaf6;font-size:.66rem}
+  .rail-step{grid-template-columns:48px minmax(0,1fr)}.rail-copy{grid-column:1/-1;padding-left:62px}.rail-label{padding:13px}
+  .record-track{grid-template-columns:repeat(6,92px)}.format-chain{align-items:center}.format-node{min-width:138px}
+  .precision-item{grid-template-columns:34px minmax(0,1fr);gap:10px}.toplink{right:10px;bottom:10px;padding:8px 11px;min-height:38px;width:auto}
+  .article,.section,.visual,.sim,.lab-band,.api,.table{min-width:0;max-width:100%}
+  .table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .buffer{grid-template-columns:repeat(6,minmax(22px,1fr))}
+  pre{max-width:100%;-webkit-overflow-scrolling:touch}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
+html:not(.js-ready) .article{display:flex;flex-direction:column}
+html:not(.js-ready) #mapa{order:1}html:not(.js-ready) #abstracciones{order:2}html:not(.js-ready) #decision{order:3}html:not(.js-ready) #bytes{order:4}html:not(.js-ready) #chars{order:5}html:not(.js-ready) #random{order:6}html:not(.js-ready) #serial{order:7}html:not(.js-ready) #pathfiles{order:8}html:not(.js-ready) #walk{order:9}html:not(.js-ready) #channels{order:10}html:not(.js-ready) #formats{order:11}html:not(.js-ready) #laboratorio{order:12}html:not(.js-ready) #errores{order:13}html:not(.js-ready) #chuleta{order:14}html:not(.js-ready) #quiz{order:15}
+@media print{.side,.menu-toggle,.reading-meter,.toplink,.buttons,.decision-choices,.record-controls,.tree-tools{display:none!important}.layout{display:block}.hero{min-height:auto;padding:30px;background:#fff!important;color:#111}.hero *{color:#111!important}.hero-panel{border:1px solid #bbb}.content{padding:0}.article{width:100%}.article:before,.section:before{display:none}.section{padding:28px 0;break-inside:avoid}.answer{display:block!important}pre{white-space:pre-wrap}.visual,.sim,.api,.table,.lab-band{box-shadow:none}}
+</style>
 </head>
 <body>
+<a class="skip-link" href="#mapa">Saltar al contenido</a>
+<div class="reading-meter" aria-hidden="true"><span id="readingProgress"></span></div>
+<button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir índice" aria-expanded="false">☰</button>
 <a class="btn dark toplink" href="#top">Arriba</a>
 <div class="layout">
 <aside class="side"><div class="brand"><strong>Bloque 26 · I/O y NIO.2</strong><span>Documento visual completo, con abstracciones y código coloreado</span></div><nav class="nav"><a href="#mapa">Mapa completo</a><a href="#abstracciones">Abstracciones</a><a href="#bytes">26.1 Bytes</a><a href="#chars">26.2 Caracteres</a><a href="#random">26.3 Aleatorio</a><a href="#serial">26.4 Serialización</a><a href="#pathfiles">26.5 Path/Files</a><a href="#walk">26.6 Árboles</a><a href="#channels">26.7 Canales</a><a href="#formats">26.8 Formatos</a><a href="#errores">Errores</a><a href="#chuleta">Chuleta</a><a href="#quiz">Autoevaluación</a></nav></aside>
@@ -39,7 +160,7 @@ String bien = new String(enUtf8, StandardCharsets.UTF_8);     // "ñ"</code></pr
     raf.seek(2);
     raf.write(99);               // sobrescribe en sitio
     long tam = raf.length();
-}</code></pre><div class="visual"><h3>Registros de tamaño fijo</h3><p>Si cada registro mide lo mismo, puedes saltar directamente al k-ésimo registro sin leer los anteriores.</p><div class="out"><code>posición = índice * tamañoRegistro</code></div><p>Por eso <code>writeInt/readInt</code>, <code>writeDouble/readDouble</code> o tamaños fijos importan: un <code>int</code> siempre ocupa 4 bytes.</p></div><ul><li><code>getFilePointer()</code> te dice dónde está el puntero.</li><li>Modos: <code>r</code>, <code>rw</code>, <code>rws</code>, <code>rwd</code>.</li><li><code>setLength()</code> trunca o extiende.</li><li><code>seek</code> más allá del final y luego escribir puede dejar una zona rellena con ceros.</li></ul><p><strong>Lo practicas en <code>Ej209RandomAccessFile</code>:</strong> offsets, actualización en sitio, truncar/extender, registros fijos y recorrido inverso.</p></section>
+}</code></pre><div class="visual"><h3>Registros de tamaño fijo</h3><p>Si cada registro mide lo mismo, puedes saltar directamente al k-ésimo registro sin leer los anteriores.</p><div class="out"><code>posición = índice * tamañoRegistro</code></div><p>Por eso <code>writeInt/readInt</code>, <code>writeDouble/readDouble</code> o campos con longitud pactada importan: un <code>int</code> siempre ocupa 4 bytes, mientras que <code>writeUTF</code> tiene tamaño variable.</p></div><ul><li><code>getFilePointer()</code> te dice dónde está el puntero.</li><li>Modos: <code>r</code>, <code>rw</code>, <code>rws</code> (datos y metadatos síncronos), <code>rwd</code> (datos síncronos).</li><li><code>setLength()</code> trunca o extiende.</li><li>Al extender, el contenido de la nueva zona queda <strong>sin definir</strong> hasta que lo escribas: no presupongas que son ceros.</li></ul><p><strong>Lo practicas en <code>Ej209RandomAccessFile</code>:</strong> offsets, actualización en sitio, truncar/extender, registros fijos y recorrido inverso.</p></section>
 <section class="section" id="serial"><div class="section-head"><span class="kicker">26.4 · Serialización</span><h2><code>ObjectOutputStream</code> convierte objetos en bytes</h2><p class="intro">Serializar es transformar un objeto y su grafo de referencias en bytes. Deserializar es reconstruirlo. La clase debe implementar <code>Serializable</code>, una interfaz marcadora sin métodos.</p></div><div class="visual"><h3>Viaje de un objeto</h3><div class="flow"><div class="flow-row"><div class="box"><strong>Objeto vivo</strong><small>campos normales + transient</small></div><div class="arrow">→</div><div class="box"><strong>writeObject()</strong><small>transient se omite</small></div></div><div class="flow-row"><div class="box"><strong>Bytes serializados</strong><small>fichero, memoria, red</small></div><div class="arrow">→</div><div class="box"><strong>readObject()</strong><small>objeto reconstruido</small></div></div></div></div><div class="code-title">Serializar y reconstruir</div><pre><code class="language-java">try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f))) {
     oos.writeObject(new Punto(3, 4));    // Punto implements Serializable
 }
@@ -69,15 +190,22 @@ a.isRegularFile();
 a.size();
 a.creationTime();
 a.lastModifiedTime();</code></pre><p><strong>Lo practicas en <code>Ej212Nio2ReadWriteWalk</code>:</strong> escribir/leer líneas, <code>walk</code>/<code>find</code>/<code>list</code>, atributos y <code>mismatch</code>.</p></section>
-<section class="section" id="channels"><div class="section-head"><span class="kicker">26.7 · Temporales, canales y buffers</span><h2><code>FileChannel</code> y <code>ByteBuffer</code>: más cerca del hardware</h2><p class="intro">NIO también trabaja con canales y buffers. Un <code>FileChannel</code> lee o escribe contra un <code>ByteBuffer</code>, que tiene capacidad, posición y límite.</p></div><div class="code-title">Escribir y leer con canal</div><pre><code class="language-java">try (FileChannel ch = FileChannel.open(p, StandardOpenOption.WRITE)) {
-    ch.write(ByteBuffer.wrap(datos));
+<section class="section" id="channels"><div class="section-head"><span class="kicker">26.7 · Temporales, canales y buffers</span><h2><code>FileChannel</code> y <code>ByteBuffer</code>: más cerca del hardware</h2><p class="intro">NIO también trabaja con canales y buffers. Un <code>FileChannel</code> lee o escribe contra un <code>ByteBuffer</code>, que tiene capacidad, posición y límite.</p></div><div class="code-title">Escribir y leer por ventanas con un canal</div><pre><code class="language-java">try (FileChannel ch = FileChannel.open(p, CREATE, WRITE, TRUNCATE_EXISTING)) {
+    ByteBuffer src = ByteBuffer.wrap(datos);
+    while (src.hasRemaining()) {
+        ch.write(src);                 // una escritura puede ser parcial
+    }
 }
-try (FileChannel ch = FileChannel.open(p, StandardOpenOption.READ)) {
-    ByteBuffer buf = ByteBuffer.allocate((int) ch.size());
-    ch.read(buf);
-    buf.flip();                  // pasa de modo escritura a modo lectura
-    // ahora buf.get() lee lo que se escribió
-}</code></pre><div class="sim"><h3>Simulador de <code>ByteBuffer</code></h3><p>Mira cómo cambian <code>position</code> y <code>limit</code>. Después de llenar el buffer, <code>flip()</code> pone <code>position</code> a 0 y <code>limit</code> donde estaba la posición.</p><div class="controls"><button class="btn" id="putBytes" type="button">Poner 4 bytes</button><button class="btn" id="flipBuffer" type="button">flip()</button><button class="btn" id="clearBuffer" type="button">clear()</button></div><div id="bufferTrack" class="buffer"></div><div id="bufferState" class="out"></div></div><div class="api"><div class="api-row"><div class="api-name"><code>capacity</code></div><div class="api-use">Tamaño total reservado por el buffer.</div></div><div class="api-row"><div class="api-name"><code>position</code></div><div class="api-use">Índice donde ocurrirá la próxima lectura o escritura.</div></div><div class="api-row"><div class="api-name"><code>limit</code></div><div class="api-use">Frontera hasta la que puedes leer o escribir.</div></div><div class="api-row"><div class="api-name"><code>remaining()</code></div><div class="api-use"><code>limit - position</code>. Indica cuántos bytes quedan por procesar.</div></div><div class="api-row"><div class="api-name"><code>clear()</code></div><div class="api-use">Prepara para reutilizar. No borra necesariamente los datos antiguos.</div></div></div><ul><li><code>Files.createTempFile</code> y <code>createTempDirectory</code> crean temporales en <code>java.io.tmpdir</code>.</li><li><code>ch.map(READ_ONLY, 0, size)</code> mapea un fichero a memoria, útil para ficheros grandes e índices.</li><li><code>transferTo</code>/<code>transferFrom</code> pueden copiar canal a canal con ayuda eficiente del sistema operativo.</li></ul><p><strong>Lo practicas en <code>Ej213TempFilesAndChannels</code>:</strong> temporales, <code>flip</code>, capacidad/posición/<code>remaining</code>, mapeo, truncado y transferencias.</p></section>
+try (FileChannel ch = FileChannel.open(p, READ)) {
+    ByteBuffer buf = ByteBuffer.allocate(8192);
+    while (ch.read(buf) != -1) {
+        buf.flip();                    // escritura del canal → lectura del programa
+        while (buf.hasRemaining()) {
+            byte actual = buf.get();   // procesar incrementalmente
+        }
+        buf.clear();                   // reutilizar; no borra los bytes antiguos
+    }
+}</code></pre><div class="note byte"><strong>Por qué este patrón escala:</strong> no convierte <code>ch.size()</code> a <code>int</code> ni carga el fichero entero. Además, explicita <code>CREATE</code>/<code>TRUNCATE_EXISTING</code> y admite transferencias parciales.</div><div class="sim"><h3>Simulador de <code>ByteBuffer</code></h3><p>Mira cómo cambian <code>position</code> y <code>limit</code>. Después de llenar el buffer, <code>flip()</code> pone <code>position</code> a 0 y <code>limit</code> donde estaba la posición.</p><div class="controls"><button class="btn" id="putBytes" type="button">Poner 4 bytes</button><button class="btn" id="flipBuffer" type="button">flip()</button><button class="btn" id="clearBuffer" type="button">clear()</button></div><div id="bufferTrack" class="buffer"></div><div id="bufferState" class="out"></div></div><div class="api"><div class="api-row"><div class="api-name"><code>capacity</code></div><div class="api-use">Tamaño total reservado por el buffer.</div></div><div class="api-row"><div class="api-name"><code>position</code></div><div class="api-use">Índice donde ocurrirá la próxima lectura o escritura.</div></div><div class="api-row"><div class="api-name"><code>limit</code></div><div class="api-use">Frontera hasta la que puedes leer o escribir.</div></div><div class="api-row"><div class="api-name"><code>remaining()</code></div><div class="api-use"><code>limit - position</code>. Indica cuántos bytes quedan por procesar.</div></div><div class="api-row"><div class="api-name"><code>clear()</code></div><div class="api-use">Prepara para reutilizar. No borra los datos antiguos.</div></div><div class="api-row"><div class="api-name"><code>compact()</code></div><div class="api-use">Conserva al principio los bytes todavía no consumidos y deja espacio para recibir más.</div></div></div><ul><li><code>Files.createTempFile</code> y <code>createTempDirectory</code> crean temporales en <code>java.io.tmpdir</code>.</li><li><code>ch.map(READ_ONLY, 0, size)</code> mapea una región a memoria, útil para grandes índices y acceso aleatorio.</li><li><code>transferTo</code>/<code>transferFrom</code> pueden copiar canal a canal con ayuda eficiente del sistema operativo.</li></ul><p><strong>Lo practicas en <code>Ej213TempFilesAndChannels</code>:</strong> temporales, <code>flip</code>, capacidad/posición/<code>remaining</code>, mapeo, truncado y transferencias.</p></section>
 <section class="section" id="formats"><div class="section-head"><span class="kicker">26.8 · Conversión entre formatos</span><h2>Convertir es cambiar representación</h2><p class="intro">Los datos viven como bytes, texto, properties, CSV, hex, Base64 o números en binario. Convertir significa leer una representación, transformar en memoria y escribir otra.</p></div><div class="code-title">Texto, properties, CSV, números, Base64 y hex</div><pre><code class="language-java">// texto &lt;-&gt; binario
 byte[] bytes = texto.getBytes(StandardCharsets.UTF_8);
 String vuelta = new String(bytes, StandardCharsets.UTF_8);
@@ -99,7 +227,7 @@ int n = ByteBuffer.wrap(b).getInt();
 
 // bytes &lt;-&gt; texto transportable, no cifrado
 String b64 = Base64.getEncoder().encodeToString(bytes);
-String hex = HexFormat.of().formatHex(bytes);</code></pre><div class="note warn"><strong>Ojo con CSV:</strong> <code>split(",")</code> no maneja comas dentro de comillas. Para CSV real necesitas parser. Y Base64/hex no cifran ni comprimen: solo convierten bytes a texto ASCII portable.</div><p><strong>Lo practicas en <code>Ej214FormatConversion</code>:</strong> texto ↔ binario, properties ↔ CSV, número ↔ bytes, Base64 y hex.</p></section>
+String hex = HexFormat.of().formatHex(bytes);</code></pre><div class="note char"><strong>Detalle de <code>Properties</code>:</strong> las variantes con <code>InputStream</code>/<code>OutputStream</code> usan ISO-8859-1 y escapes Unicode por compatibilidad histórica. Si el formato debe ser UTF-8 explícito, usa <code>load(Reader)</code>/<code>store(Writer,...)</code>.</div><div class="note warn"><strong>Ojo con CSV:</strong> <code>split(",")</code> no maneja comas dentro de comillas. Para CSV real necesitas parser. Y Base64/hex no cifran ni comprimen: solo convierten bytes a texto ASCII portable.</div><p><strong>Lo practicas en <code>Ej214FormatConversion</code>:</strong> texto ↔ binario, properties ↔ CSV, número ↔ bytes, Base64 y hex.</p></section>
 <section class="section" id="errores"><div class="section-head"><span class="kicker">Errores comunes</span><h2>Antídotos rápidos del bloque</h2></div><table class="table"><thead><tr><th>#</th><th>Error</th><th>Antídoto</th></tr></thead><tbody><tr><td>1</td><td><code>out.write(buf)</code> en vez de <code>out.write(buf, 0, n)</code></td><td>Escribe solo los <code>n</code> bytes leídos.</td></tr><tr><td>2</td><td>Tratar <code>read()==-1</code> o <code>readLine()==null</code> como error</td><td>Es EOF: fin normal de stream.</td></tr><tr><td>3</td><td>Leer/escribir sin <code>Charset</code></td><td>Usa UTF-8 explícito en ambos lados.</td></tr><tr><td>4</td><td>No cerrar streams, canales o <code>Stream&lt;Path&gt;</code></td><td><code>try-with-resources</code>.</td></tr><tr><td>5</td><td>Olvidar <code>flip()</code></td><td>Tras escribir en un <code>ByteBuffer</code>, haz <code>flip()</code> antes de leer.</td></tr><tr><td>6</td><td>Serializar un campo sensible</td><td>Márcalo <code>transient</code>.</td></tr><tr><td>7</td><td><code>serialVersionUID</code> ausente o incompatible</td><td>Decláralo explícito y cámbialo solo con intención.</td></tr><tr><td>8</td><td><code>Files.copy</code> sin <code>REPLACE_EXISTING</code></td><td>Añade opción o gestiona <code>FileAlreadyExistsException</code>.</td></tr><tr><td>9</td><td><code>Files.delete</code> sobre inexistente</td><td>Usa <code>deleteIfExists</code> o captura <code>NoSuchFileException</code>.</td></tr><tr><td>10</td><td>Concatenar rutas con <code>"/"</code></td><td>Usa <code>Path.resolve(...)</code>.</td></tr><tr><td>11</td><td>Deserializar datos no confiables</td><td>No lo hagas; usa formatos controlados.</td></tr><tr><td>12</td><td>Creer que Base64/hex protegen datos</td><td>Solo codifican; el cifrado es otro tema.</td></tr></tbody></table></section>
 <section class="section" id="chuleta"><div class="section-head"><span class="kicker">Chuleta final</span><h2>Patrones mínimos que debes reconocer</h2></div><div class="code-title">Resumen operativo del bloque</div><pre><code class="language-java">// BYTES
 try (var in = new FileInputStream(o); var out = new FileOutputStream(d)) {
@@ -127,31 +255,356 @@ try (Stream&lt;Path&gt; w = Files.walk(dir)) { w.filter(Files::isRegularFile).co
 
 // CANALES + BUFFER
 try (var ch = FileChannel.open(p, READ)) {
-    var buf = ByteBuffer.allocate((int) ch.size()); ch.read(buf); buf.flip();
+    var buf = ByteBuffer.allocate(8192);
+    while (ch.read(buf) != -1) {
+        buf.flip(); while (buf.hasRemaining()) { byte actual = buf.get(); }
+        buf.clear();
+    }
 }
 
 // FORMATOS
 byte[] bs = txt.getBytes(UTF_8);  String t = new String(bs, UTF_8);
 String b64 = Base64.getEncoder().encodeToString(bs);   // no cifra
-String hex = HexFormat.of().formatHex(bs);</code></pre></section>
+byte[] desdeB64 = Base64.getDecoder().decode(b64);
+String hex = HexFormat.of().formatHex(bs);
+byte[] desdeHex = HexFormat.of().parseHex(hex);</code></pre></section>
 <section class="section" id="quiz"><div class="section-head"><span class="kicker">Autoevaluación</span><h2>Preguntas del `.md`, con respuesta desplegable</h2></div><div class="quiz"><div class="q"><button type="button">1. ¿Por qué <code>out.write(buf, 0, n)</code> y no <code>out.write(buf)</code>?</button><div class="answer">Porque <code>read(buf)</code> devuelve cuántos bytes válidos hay en esa vuelta. El último buffer puede estar medio lleno. Al final, <code>read()</code> devuelve <code>-1</code>.</div></div><div class="q"><button type="button">2. ¿Qué es el mojibake y cómo se evita?</button><div class="answer">Es texto corrupto por leer bytes con un charset distinto al de escritura. Se evita fijando el mismo charset, normalmente UTF-8. En JDK 18+ el default es UTF-8, pero conviene explicitarlo.</div></div><div class="q"><button type="button">3. ¿Diferencia entre acceso secuencial y aleatorio?</button><div class="answer">Secuencial avanza de principio a fin. Aleatorio permite saltar con <code>seek</code>. En registros fijos: <code>posición = índice * tamañoRegistro</code>.</div></div><div class="q"><button type="button">4. ¿Qué pasa con <code>transient</code> y qué hace <code>serialVersionUID</code>?</button><div class="answer"><code>transient</code> no se serializa y vuelve al valor por defecto. <code>serialVersionUID</code> controla compatibilidad de versión entre clase serializada y clase actual.</div></div><div class="q"><button type="button">5. ¿Por qué preferir NIO.2 sobre <code>java.io.File</code>?</button><div class="answer">Porque <code>Path</code>/<code>Files</code> son más expresivos, portables y lanzan excepciones claras. Ejemplos: <code>Files.readString(p)</code>, <code>Files.copy(a,b,REPLACE_EXISTING)</code>.</div></div><div class="q"><button type="button">6. ¿Por qué cerrar <code>Files.walk</code>/<code>lines</code>?</button><div class="answer">Porque abren recursos del sistema. <code>walk</code> recorre recursivo, <code>find</code> recorre y filtra con atributos, <code>list</code> solo hijos directos.</div></div><div class="q"><button type="button">7. ¿Qué hace <code>flip()</code>?</button><div class="answer">Cambia un <code>ByteBuffer</code> de modo escritura a modo lectura: <code>limit</code> pasa a la posición actual y <code>position</code> vuelve a 0. Sin <code>flip()</code>, lees desde el final.</div></div><div class="q"><button type="button">8. ¿Base64 y hex cifran?</button><div class="answer">No. Solo convierten bytes a texto transportable. Cualquiera puede revertirlo.</div></div><div class="q"><button type="button">9. ¿Por qué es peligroso deserializar datos no confiables?</button><div class="answer">Porque la deserialización puede activar cadenas de objetos peligrosas. Para entrada externa, mejor formatos controlados como JSON o Protobuf.</div></div></div></section>
+<section class="section" id="decision" data-chapter="00" data-topic="nio">
+  <div class="section-head">
+    <span class="kicker">Modelo mental transversal</span>
+    <h2>El viaje de un dato: una sola historia para todo el bloque</h2>
+    <p class="intro">Las clases cambian, pero el recorrido casi siempre es el mismo. Primero identifica la representación del dato y el tipo de acceso; después elige la abstracción más alta que resuelva el problema.</p>
+  </div>
+
+  <div class="model-rail" aria-label="Recorrido conceptual de una operación de entrada y salida">
+    <div class="rail-step"><div class="rail-index">01</div><div class="rail-label">Representación</div><div class="rail-copy"><strong>¿Qué existe realmente?</strong> Bytes, caracteres, objetos o registros. Un fichero nunca “sabe” que contiene texto: solo conserva bytes.</div></div>
+    <div class="rail-step"><div class="rail-index">02</div><div class="rail-label">Dirección</div><div class="rail-copy"><strong>Entrada o salida.</strong> Lees desde una fuente hacia el programa; escribes desde el programa hacia un destino.</div></div>
+    <div class="rail-step"><div class="rail-index">03</div><div class="rail-label">Acceso</div><div class="rail-copy"><strong>Secuencial, aleatorio o por árbol.</strong> El patrón de acceso decide entre stream, <code>RandomAccessFile</code>, canal o recorrido NIO.2.</div></div>
+    <div class="rail-step"><div class="rail-index">04</div><div class="rail-label">Transformación</div><div class="rail-copy"><strong>Charset, serialización o formato.</strong> Aquí los bytes adquieren significado: texto UTF-8, entero big-endian, objeto, Base64, hex o CSV.</div></div>
+    <div class="rail-step"><div class="rail-index">05</div><div class="rail-label">Ciclo de vida</div><div class="rail-copy"><strong>Abrir, procesar, cerrar.</strong> El recurso pertenece a un <code>try-with-resources</code>; el cierre es parte del algoritmo, no una tarea de limpieza opcional.</div></div>
+  </div>
+
+  <div class="decision-shell" id="decisionTool">
+    <div class="decision-prompt">
+      <h3>Selector de herramienta</h3>
+      <p>Elige la forma del problema. El resultado muestra la API, el motivo y la trampa que debes vigilar.</p>
+    </div>
+    <div class="decision-choices" role="group" aria-label="Tipo de problema de entrada y salida">
+      <button class="decision-choice" type="button" data-choice="texto" aria-pressed="true">Texto</button>
+      <button class="decision-choice" type="button" data-choice="binario" aria-pressed="false">Binario</button>
+      <button class="decision-choice" type="button" data-choice="registro" aria-pressed="false">Registro fijo</button>
+      <button class="decision-choice" type="button" data-choice="objeto" aria-pressed="false">Objeto local</button>
+      <button class="decision-choice" type="button" data-choice="ruta" aria-pressed="false">Ruta / fichero</button>
+      <button class="decision-choice" type="button" data-choice="arbol" aria-pressed="false">Árbol de carpetas</button>
+      <button class="decision-choice" type="button" data-choice="grande" aria-pressed="false">Fichero grande</button>
+      <button class="decision-choice" type="button" data-choice="transporte" aria-pressed="false">Texto transportable</button>
+    </div>
+    <div class="decision-result" id="decisionResult" aria-live="polite">
+      <div class="decision-api"><code>Path</code><br>+<br><code>Files</code></div>
+      <div><h3>Texto completo de tamaño razonable</h3><p><code>Files.readString</code> y <code>Files.writeString</code> expresan directamente la intención. Fija UTF-8 cuando quieras que el contrato sea explícito.</p><p class="decision-trap">Vigila: cargar todo el contenido en memoria no es apropiado para ficheros enormes.</p></div>
+    </div>
+  </div>
+
+  <h3>Piezas concretas que completan el mapa</h3>
+  <div class="api" aria-label="APIs complementarias del bloque 26">
+    <div class="api-row"><div class="api-name"><code>ByteArrayInputStream</code><br><code>ByteArrayOutputStream</code></div><div class="api-use">Aplican el mismo contrato de streams sobre memoria. Son útiles para preparar, probar o transformar un <code>byte[]</code> sin tocar disco; la salida se recupera con <code>toByteArray()</code>.</div></div>
+    <div class="api-row"><div class="api-name"><code>FilterInputStream</code><br><code>FilterOutputStream</code></div><div class="api-use">Son la base del patrón decorador: envuelven otro stream para añadir comportamiento. <code>BufferedInputStream</code> y <code>BufferedOutputStream</code> reducen llamadas al sistema.</div></div>
+    <div class="api-row"><div class="api-name"><code>readInt()</code><br><code>readDouble()</code><br><code>readUTF()</code></div><div class="api-use">En <code>RandomAccessFile</code>, los primitivos numéricos usan big-endian y tamaño fijo; <code>readUTF</code>/<code>writeUTF</code> usan longitud + UTF modificado y por eso el campo es variable. <code>readUnsignedByte()</code> evita interpretar 128–255 como negativos.</div></div>
+    <div class="api-row"><div class="api-name"><code>getFileName()</code><br><code>normalize()</code></div><div class="api-use"><code>Path.getFileName()</code> devuelve el último componente. <code>normalize()</code> simplifica elementos <code>.</code>/<code>..</code> de forma léxica; no abre el fichero ni equivale a <code>toRealPath()</code>.</div></div>
+    <div class="api-row"><div class="api-name"><code>Files.write(..., APPEND)</code><br><code>FileTime</code></div><div class="api-use"><code>Files.write(p, List.of("línea"), StandardOpenOption.CREATE, StandardOpenOption.APPEND)</code> añade líneas. Las fechas de <code>BasicFileAttributes</code> son valores <code>FileTime</code>.</div></div>
+    <div class="api-row"><div class="api-name"><code>serialVersionUID</code><br>filtro de entrada</div><div class="api-use">Decláralo con intención: <code>private static final long serialVersionUID = 1L;</code>. Un <code>ObjectInputFilter</code> reduce superficie, pero no convierte en segura una fuente no confiable ni elimina el riesgo de <em>gadget chains</em>.</div></div>
+  </div>
+
+  <div class="note"><strong>Jerarquía de decisión:</strong> empieza por <code>Path</code>/<code>Files</code>; usa <code>Reader</code>/<code>Writer</code> si procesas texto en streaming, streams si necesitas bytes y canales cuando necesitas buffers, posiciones o transferencias de bajo nivel.</div>
+</section>
+
+<section class="section" id="laboratorio" data-chapter="LAB" data-topic="object">
+  <div class="section-head">
+    <span class="kicker">Atlas visual interactivo</span>
+    <h2>Ver el estado interno para dejar de memorizar a ciegas</h2>
+    <p class="intro">Estas cuatro lentes conectan los temas más abstractos: posición física, alcance de un recorrido, memoria consumida y cambio de representación.</p>
+  </div>
+
+  <div class="lab-band">
+    <h3>1 · <code>RandomAccessFile</code>: el offset es una coordenada</h3>
+    <p>Imagina seis registros de 12 bytes. Mover el selector no recorre los anteriores: calcula directamente <code>offset = índice × 12</code> y coloca allí el puntero.</p>
+    <div class="record-controls">
+      <label for="recordIndex"><strong>Registro seleccionado:</strong> <span id="recordIndexLabel">2</span></label>
+      <input id="recordIndex" type="range" min="0" max="5" value="2">
+      <output id="recordOffset" class="pill">offset = 24 bytes</output>
+    </div>
+    <div class="record-track" id="recordTrack" aria-hidden="true"></div>
+    <p class="model-caption"><strong>Matiz:</strong> <code>writeInt</code> y <code>writeDouble</code> tienen tamaño fijo; <code>writeUTF</code> añade una longitud y usa UTF modificado, por lo que su tamaño depende del texto. Si extiendes el fichero, el contenido de la nueva zona no está definido hasta escribirlo.</p>
+  </div>
+
+  <div class="lab-band" data-topic="nio">
+    <h3>2 · Un árbol, tres operaciones distintas</h3>
+    <p><code>list</code> mira solo los hijos directos; <code>walk</code> recorre el subárbol; <code>find</code> recorre y filtra con la ruta y sus atributos. Prueba los tres enfoques sobre el mismo árbol.</p>
+    <div class="tree-tools" role="group" aria-label="Elegir tipo de recorrido">
+      <button class="btn tree-mode" type="button" data-mode="list">Files.list</button>
+      <button class="btn tree-mode" type="button" data-mode="walk">Files.walk</button>
+      <button class="btn tree-mode" type="button" data-mode="find">Files.find *.txt</button>
+    </div>
+    <div class="tree-stage" id="treeStage" aria-live="polite">
+      <div class="tree-line" style="--depth:0" data-depth="0" data-kind="dir">datos/</div>
+      <div class="tree-line" style="--depth:1" data-depth="1" data-kind="file" data-ext="txt">informe.txt</div>
+      <div class="tree-line" style="--depth:1" data-depth="1" data-kind="file" data-ext="csv">ventas.csv</div>
+      <div class="tree-line" style="--depth:1" data-depth="1" data-kind="dir">archivo/</div>
+      <div class="tree-line" style="--depth:2" data-depth="2" data-kind="file" data-ext="txt">2025.txt</div>
+      <div class="tree-line" style="--depth:2" data-depth="2" data-kind="dir">privado/</div>
+      <div class="tree-line" style="--depth:3" data-depth="3" data-kind="file" data-ext="bin">datos.bin</div>
+    </div>
+    <p class="model-caption">Los streams devueltos por <code>list</code>, <code>walk</code>, <code>find</code> y <code>lines</code> mantienen recursos abiertos: envuélvelos en <code>try-with-resources</code>.</p>
+  </div>
+
+  <div class="lab-band" data-topic="byte">
+    <h3>3 · Fichero completo o streaming: el tamaño cambia el diseño</h3>
+    <table class="table">
+      <thead><tr><th>Situación</th><th>API expresiva</th><th>Coste mental y de memoria</th></tr></thead>
+      <tbody>
+        <tr><td>Configuración o texto pequeño</td><td><code>readString</code>, <code>readAllLines</code>, <code>readAllBytes</code></td><td>Muy simple; el contenido completo reside en memoria.</td></tr>
+        <tr><td>Log grande o flujo continuo</td><td><code>BufferedReader</code>, <code>Files.lines</code>, buffer de bytes</td><td>Memoria acotada; debes cerrar y procesar incrementalmente.</td></tr>
+        <tr><td>Binario con control de posición</td><td><code>FileChannel</code> + <code>ByteBuffer</code></td><td>Control fino; <code>read</code>/<code>write</code> pueden ser parciales.</td></tr>
+        <tr><td>Región enorme con acceso aleatorio</td><td><code>FileChannel.map</code></td><td>Mapeo eficiente, pero con coste y ciclo de vida del sistema operativo.</td></tr>
+      </tbody>
+    </table>
+    <div class="code-title">Canal robusto: creación explícita y escrituras parciales</div>
+    <pre><code class="language-java">try (FileChannel ch = FileChannel.open(p, CREATE, WRITE, TRUNCATE_EXISTING)) {
+    ByteBuffer src = ByteBuffer.wrap(datos);
+    while (src.hasRemaining()) {
+        ch.write(src);                // una llamada puede escribir menos bytes
+    }
+}</code></pre>
+  </div>
+
+  <div class="lab-band" data-topic="char">
+    <h3>4 · Cambiar formato no cambia el dato</h3>
+    <div class="format-chain" role="region" tabindex="0" aria-label="Cadena de conversiones de una cadena de texto">
+      <div class="format-node"><strong>String</strong><span>«ñandú #42»</span></div><div class="format-arrow">→</div>
+      <div class="format-node"><strong>UTF-8</strong><span>bytes con significado textual</span></div><div class="format-arrow">→</div>
+      <div class="format-node"><strong>byte[]</strong><span>representación binaria</span></div><div class="format-arrow">→</div>
+      <div class="format-node"><strong>Base64 / hex</strong><span>texto ASCII transportable</span></div>
+    </div>
+    <p><strong>Round-trip:</strong> si conservas charset y algoritmo, puedes volver al dato original. Hex usa dos caracteres por byte; Base64 ronda cuatro caracteres por cada tres bytes. Ninguno cifra ni comprime.</p>
+    <div class="note char"><strong><code>.properties</code> tiene una excepción histórica:</strong> <code>load(InputStream)</code>/<code>store(OutputStream)</code> usan ISO-8859-1 y escapes Unicode. Para controlar UTF-8, usa las sobrecargas con <code>Reader</code>/<code>Writer</code>.</div>
+  </div>
+
+  <h3>Precisiones profesionales para Java 21</h3>
+  <div class="precision-list">
+    <div class="precision-item"><span>1</span><div><strong>No confundas comprobar con garantizar</strong><p><code>Files.exists(p)</code> sirve como consulta, pero el fichero puede cambiar antes de la siguiente operación. Intenta la operación y trata su excepción.</p></div></div>
+    <div class="precision-item"><span>2</span><div><strong>Una llamada no siempre vacía el buffer</strong><p>Con canales, itera mientras haya datos pendientes. Para lectura continua: <code>read → flip → get → clear/compact</code>.</p></div></div>
+    <div class="precision-item"><span>3</span><div><strong><code>clear()</code> no borra</strong><p>Restablece <code>position=0</code> y <code>limit=capacity</code>. <code>compact()</code> conserva los bytes todavía no consumidos.</p></div></div>
+    <div class="precision-item"><span>4</span><div><strong>Un grafo cíclico puede serializarse</strong><p>La serialización conserva referencias compartidas y ciclos. El problema aparece si alcanza un objeto no serializable, crece sin control o proviene de una fuente no confiable.</p></div></div>
+    <div class="precision-item"><span>5</span><div><strong><code>transient</code> no cifra</strong><p>Solo omite el campo en la serialización por defecto; no sustituye un diseño de seguridad ni impide que código personalizado lo escriba.</p></div></div>
+    <div class="precision-item"><span>6</span><div><strong>Las utilidades tienen versiones distintas</strong><p>NIO.2 llegó en Java 7; <code>Path.of</code>/<code>readString</code> en Java 11, <code>mismatch</code> en Java 12 y <code>HexFormat</code> en Java 17. Este módulo compila con Java 21.</p></div></div>
+  </div>
+
+  <div class="source-strip"><strong>Contraste técnico:</strong> la página sigue la teoría del bloque y añade matices cotejados con la documentación oficial de Java 21 sobre <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/RandomAccessFile.html">RandomAccessFile</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/nio/channels/FileChannel.html">FileChannel</a> y <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Properties.html">Properties</a>. Los enlaces son opcionales; todo el contenido principal funciona sin conexión.</div>
+</section>
+
 </article></div></main></div>
 <script>
 const $=(s,r=document)=>r.querySelector(s);const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
 function esc(v){return v.replace(/[&<>"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));}
-function paintCode(){const types=['InputStream','OutputStream','FileInputStream','FileOutputStream','BufferedReader','BufferedInputStream','BufferedOutputStream','ByteArrayOutputStream','InputStreamReader','OutputStreamWriter','Reader','Writer','RandomAccessFile','ObjectOutputStream','ObjectInputStream','Serializable','Path','Files','StandardCharsets','Charset','FileChannel','ByteBuffer','BasicFileAttributes','Properties','Base64','HexFormat','Stream','List','String','System','StandardOpenOption','StandardCopyOption','NoSuchFileException','InvalidClassException','NotSerializableException','ClassNotFoundException'];const methods=['read','write','flush','close','readLine','lines','getBytes','forName','seek','length','getFilePointer','setLength','writeObject','readObject','of','writeString','readString','copy','move','deleteIfExists','exists','size','createDirectories','resolve','walk','find','list','readAllLines','readAttributes','mismatch','open','wrap','allocate','flip','get','remaining','clear','map','transferTo','transferFrom','createTempFile','createTempDirectory','store','load','getProperty','setProperty','split','join','putInt','getInt','getEncoder','encodeToString','formatHex','isRegularFile','creationTime','lastModifiedTime'];$$('pre code').forEach(code=>{let html=esc(code.textContent);html=html.replace(/(\/\/.*)$/gm,'<span class="comment">$1</span>');html=html.replace(/("(?:[^"\\]|\\.)*")/g,'<span class="lit">$1</span>');html=html.replace(new RegExp('\\b('+types.join('|')+')\\b','g'),'<span class="type">$1</span>');html=html.replace(new RegExp('\\.('+methods.join('|')+')\\b','g'),'.<span class="method">$1</span>');html=html.replace(/\b(try|catch|while|new|var|int|long|byte|boolean|double|return|if|null|true|false|throws)\b/g,'<span class="kw">$1</span>');html=html.replace(/\b(-1|EOF|UTF_8|ISO_8859_1|REPLACE_EXISTING|READ|WRITE|APPEND|READ_ONLY)\b/g,'<span class="good">$1</span>');code.innerHTML=html;});}
+function paintCode(){
+  const interfaces=['Serializable','Path','Stream','AutoCloseable','Closeable'];
+  const types=['InputStream','OutputStream','FileInputStream','FileOutputStream','BufferedReader','BufferedWriter','BufferedInputStream','BufferedOutputStream','ByteArrayInputStream','ByteArrayOutputStream','InputStreamReader','OutputStreamWriter','Reader','Writer','RandomAccessFile','ObjectOutputStream','ObjectInputStream','Files','StandardCharsets','Charset','FileChannel','ByteBuffer','BasicFileAttributes','FileTime','Properties','Base64','HexFormat','List','String','System','StandardOpenOption','StandardCopyOption','FileAlreadyExistsException','NoSuchFileException','InvalidClassException','NotSerializableException','ClassNotFoundException'];
+  const methods=['read','write','flush','close','readLine','lines','getBytes','forName','seek','length','getFilePointer','setLength','writeObject','readObject','of','writeString','readString','copy','move','deleteIfExists','exists','size','createDirectories','resolve','normalize','getFileName','walk','find','list','readAllLines','readAllBytes','readAttributes','mismatch','open','wrap','allocate','flip','get','hasRemaining','remaining','clear','compact','map','transferTo','transferFrom','truncate','createTempFile','createTempDirectory','store','load','getProperty','setProperty','split','join','putInt','getInt','getEncoder','getDecoder','encodeToString','decode','formatHex','parseHex','isRegularFile','creationTime','lastModifiedTime','count','filter'];
+  const constants=['EOF','UTF_8','ISO_8859_1','REPLACE_EXISTING','CREATE','CREATE_NEW','READ','WRITE','APPEND','TRUNCATE_EXISTING','READ_ONLY'];
+  const keywords=/\b(try|catch|finally|while|for|new|var|int|long|byte|boolean|double|void|return|if|else|null|true|false|throws|throw|private|public|protected|static|final|record|implements|instanceof)\b/g;
+  const tokenPattern=/("(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*')|(\/\/[^\n]*|\/\*[\s\S]*?\*\/)/g;
+  const ifacePattern=new RegExp('\\b('+interfaces.join('|')+')\\b','g');
+  const typePattern=new RegExp('\\b('+types.join('|')+')\\b','g');
+  const methodPattern=new RegExp('\\.('+methods.join('|')+')\\b','g');
+  const constantPattern=new RegExp('\\b('+constants.join('|')+')\\b','g');
+  function paintPlain(raw){
+    return esc(raw)
+      .replace(ifacePattern,'<span class="iface">$1</span>')
+      .replace(typePattern,'<span class="type">$1</span>')
+      .replace(methodPattern,'.<span class="method">$1</span>')
+      .replace(keywords,'<span class="kw">$1</span>')
+      .replace(constantPattern,'<span class="good">$1</span>')
+      .replace(/(-1|\b\d+(?:_\d+)*(?:\.\d+)?)\b/g,'<span class="lit">$1</span>');
+  }
+  $$('pre code').forEach(code=>{
+    const raw=code.textContent;
+    let html='',last=0,match;
+    tokenPattern.lastIndex=0;
+    while((match=tokenPattern.exec(raw))!==null){
+      html+=paintPlain(raw.slice(last,match.index));
+      html+=`<span class="${match[1]?'lit':'comment'}">${esc(match[0])}</span>`;
+      last=match.index+match[0].length;
+    }
+    html+=paintPlain(raw.slice(last));
+    code.innerHTML=html;
+  });
+}
 function utf8Encode(str){return Array.from(new TextEncoder().encode(str));}
 function latin1Misread(bytes){return bytes.map(b=>String.fromCharCode(b)).join('');}
 function renderCharset(){const input=$('#charsetText');if(!input)return;const text=input.value;const bytes=utf8Encode(text);$('#utf8Bytes').innerHTML=bytes.map(b=>`<span class="byte">${b.toString(16).toUpperCase().padStart(2,'0')}</span>`).join('');const mode=$('#readCharset').value;const decoded=mode==='latin1'?latin1Misread(bytes):new TextDecoder().decode(new Uint8Array(bytes));$('#decodedText').innerHTML=`<strong>Resultado:</strong> ${esc(decoded)}<br><span class="muted">${mode==='latin1'?'Mojibake: bytes UTF-8 interpretados como ISO-8859-1.':'Correcto: mismo charset al escribir y leer.'}</span>`;}
-function renderCopy(){const slider=$('#dataSize');if(!slider)return;const total=Number(slider.value),size=8;$('#dataSizeLabel').textContent=`${total} bytes`;const blocks=[];let remaining=total;while(remaining>0){const n=Math.min(size,remaining);blocks.push(n);remaining-=n;}$('#bufferBlocks').innerHTML=blocks.map((n,i)=>`<span class="byte">vuelta ${i+1}: n=${n}</span>`).join('');const last=blocks[blocks.length-1];$('#bufferExplanation').innerHTML=last===size?`Todas las vueltas llenan el buffer de ${size}. Aun así, el patrón correcto es <code>write(buf, 0, n)</code>.`:`La última vuelta solo trae <strong>${last}</strong> bytes. <code>write(buf)</code> escribiría restos antiguos del array.`;}
-const buffer={capacity:12,position:0,limit:12,filled:0,mode:'write'};
-function renderByteBuffer(){const track=$('#bufferTrack');if(!track)return;let cells='';for(let i=0;i<buffer.capacity;i++){const cls=['slot'];if(i<buffer.filled)cls.push('filled');if(i===buffer.position)cls.push('pos');if(i===buffer.limit-1)cls.push('limit');cells+=`<div class="${cls.join(' ')}">${i<buffer.filled?String.fromCharCode(65+i):''}</div>`;}track.innerHTML=cells;$('#bufferState').innerHTML=`<strong>Modo:</strong> ${buffer.mode} · <strong>capacity:</strong> ${buffer.capacity} · <strong>position:</strong> ${buffer.position} · <strong>limit:</strong> ${buffer.limit} · <strong>remaining:</strong> ${buffer.limit-buffer.position}`;}
-$('#charsetText')?.addEventListener('input',renderCharset);$('#readCharset')?.addEventListener('change',renderCharset);$('#dataSize')?.addEventListener('input',renderCopy);
-$('#putBytes')?.addEventListener('click',()=>{buffer.mode='write';buffer.filled=Math.min(buffer.capacity,buffer.filled+4);buffer.position=buffer.filled;buffer.limit=buffer.capacity;renderByteBuffer();});
-$('#flipBuffer')?.addEventListener('click',()=>{buffer.mode='read';buffer.limit=buffer.position;buffer.position=0;renderByteBuffer();});
-$('#clearBuffer')?.addEventListener('click',()=>{buffer.mode='write';buffer.position=0;buffer.limit=buffer.capacity;renderByteBuffer();});
-$$('.q button').forEach(b=>b.addEventListener('click',()=>b.parentElement.classList.toggle('open')));
-paintCode();renderCharset();renderCopy();renderByteBuffer();
+function renderCopy(){
+  const slider=$('#dataSize');if(!slider)return;
+  const total=Number(slider.value),size=8;$('#dataSizeLabel').textContent=`${total} bytes`;
+  const blocks=[];let remaining=total;
+  while(remaining>0){const n=Math.min(size,remaining);blocks.push(n);remaining-=n;}
+  $('#bufferBlocks').innerHTML=blocks.map((n,i)=>`<span class="byte">vuelta ${i+1}: n=${n}</span>`).join('');
+  const last=blocks[blocks.length-1];
+  $('#bufferExplanation').innerHTML=last===size
+    ?`Todas las vueltas llenan el buffer de ${size}. Aun así, el patrón correcto es <code>write(buf, 0, n)</code>.`
+    :`La última vuelta solo trae <strong>${last}</strong> bytes. <code>write(buf)</code> añadiría posiciones no válidas: ceros iniciales o restos de una vuelta anterior.`;
+}
+const buffer={capacity:12,position:0,limit:12,filled:0,mode:'write',message:'Buffer recién creado: listo para escribir.'};
+function renderByteBuffer(){
+  const track=$('#bufferTrack');if(!track)return;
+  let cells='';
+  for(let i=0;i<buffer.capacity;i++){
+    const cls=['slot'];
+    if(i<buffer.filled)cls.push('filled');
+    if(i===buffer.position&&buffer.position<buffer.capacity)cls.push('pos');
+    if(i===buffer.limit-1)cls.push('limit');
+    cells+=`<div class="${cls.join(' ')}">${i<buffer.filled?String.fromCharCode(65+i):''}</div>`;
+  }
+  track.innerHTML=cells;
+  $('#bufferState').innerHTML=`<strong>Modo:</strong> ${buffer.mode} · <strong>capacity:</strong> ${buffer.capacity} · <strong>position:</strong> ${buffer.position} · <strong>limit:</strong> ${buffer.limit} · <strong>remaining:</strong> ${buffer.limit-buffer.position}<br><span class="muted">${buffer.message}</span>`;
+}
+function moveEnrichedSections(){
+  const decision=$('#decision'),abstractions=$('#abstracciones'),lab=$('#laboratorio'),errors=$('#errores');
+  if(decision&&abstractions)abstractions.after(decision);
+  if(lab&&errors)errors.before(lab);
+}
+function decorateSections(){
+  const meta={
+    mapa:['IN','nio'],abstracciones:['A','nio'],decision:['00','nio'],bytes:['26.1','byte'],chars:['26.2','char'],random:['26.3','object'],serial:['26.4','object'],pathfiles:['26.5','nio'],walk:['26.6','nio'],channels:['26.7','byte'],formats:['26.8','char'],laboratorio:['LAB','object'],errores:['!','warning'],chuleta:['Σ','nio'],quiz:['?','nio']
+  };
+  $$('.section[id]').forEach(section=>{const item=meta[section.id];if(item){section.dataset.chapter=item[0];section.dataset.topic=item[1];}});
+}
+function setupNav(){
+  const nav=$('.nav');if(!nav)return;
+  function addLink(id,label,afterSelector){
+    if(nav.querySelector(`a[href="#${id}"]`))return;
+    const link=document.createElement('a');link.href=`#${id}`;link.textContent=label;
+    const anchor=nav.querySelector(afterSelector);anchor?.after(link);
+  }
+  addLink('decision','Selector mental','a[href="#abstracciones"]');
+  addLink('laboratorio','Atlas interactivo','a[href="#formats"]');
+}
+function setupMenu(){
+  const toggle=$('#menuToggle'),side=$('.side'),main=$('main');if(!toggle||!side)return;
+  const mobile=matchMedia('(max-width: 980px)');side.id='chapterIndex';side.setAttribute('aria-label','Índice del bloque');toggle.setAttribute('aria-controls',side.id);
+  const setState=(open,returnFocus=false)=>{
+    const active=mobile.matches&&open;
+    document.body.classList.toggle('nav-open',active);toggle.setAttribute('aria-expanded',String(active));toggle.textContent=active?'×':'☰';toggle.setAttribute('aria-label',active?'Cerrar índice':'Abrir índice');
+    side.inert=mobile.matches&&!active;
+    if(mobile.matches)side.setAttribute('aria-hidden',String(!active));else side.removeAttribute('aria-hidden');
+    if(main)main.inert=active;
+    if(returnFocus)toggle.focus();
+  };
+  toggle.addEventListener('click',()=>{
+    const open=!document.body.classList.contains('nav-open');
+    setState(open);
+  });
+  $$('.nav a',side).forEach(link=>link.addEventListener('click',()=>setState(false)));
+  document.addEventListener('keydown',event=>{if(event.key==='Escape'&&document.body.classList.contains('nav-open'))setState(false,true);});
+  document.addEventListener('click',event=>{if(document.body.classList.contains('nav-open')&&!side.contains(event.target)&&!toggle.contains(event.target))setState(false);});
+  mobile.addEventListener('change',()=>setState(false));setState(false);
+}
+function setupReadingProgress(){
+  const meter=$('#readingProgress'),toplink=$('.toplink');
+  let scheduled=false;
+  const update=()=>{
+    const max=Math.max(1,document.documentElement.scrollHeight-innerHeight);
+    if(meter)meter.style.width=`${Math.min(100,Math.max(0,scrollY/max*100))}%`;
+    toplink?.classList.toggle('visible',scrollY>650);scheduled=false;
+  };
+  addEventListener('scroll',()=>{if(!scheduled){scheduled=true;requestAnimationFrame(update);}},{passive:true});
+  addEventListener('resize',update);update();
+}
+function setupScrollSpy(){
+  if(!('IntersectionObserver' in window))return;
+  const links=new Map($$('.nav a[href^="#"]').map(link=>[link.getAttribute('href').slice(1),link]));
+  const observer=new IntersectionObserver(entries=>{
+    const visible=entries.filter(entry=>entry.isIntersecting).sort((a,b)=>Math.abs(a.boundingClientRect.top)-Math.abs(b.boundingClientRect.top))[0];
+    if(!visible)return;
+    links.forEach(link=>link.removeAttribute('aria-current'));
+    links.get(visible.target.id)?.setAttribute('aria-current','location');
+  },{rootMargin:'-22% 0px -68% 0px',threshold:0});
+  $$('.section[id]').forEach(section=>observer.observe(section));
+}
+function setupDecisionTool(){
+  const result=$('#decisionResult');if(!result)return;
+  const choices={
+    texto:{api:'<code>Reader</code><br>+<br><code>Writer</code>',title:'Texto procesado en streaming',copy:'Usa un puente con charset —por ejemplo <code>InputStreamReader</code>— y añade buffering para leer líneas sin cargar todo el fichero.',trap:'Vigila: escritura y lectura deben compartir charset; EOF es <code>null</code> en <code>readLine()</code>.'},
+    binario:{api:'<code>InputStream</code><br>+<br><code>OutputStream</code>',title:'Bytes secuenciales',copy:'Es la abstracción adecuada para imágenes, binarios, sockets y filtros. Copia por bloques y conserva el número real devuelto por <code>read</code>.',trap:'Vigila: la última lectura puede llenar solo una parte del array.'},
+    registro:{api:'<code>RandomAccessFile</code>',title:'Acceso directo por offset',copy:'Calcula la posición del registro y salta con <code>seek</code>. Funciona especialmente bien cuando cada registro tiene una longitud pactada.',trap:'Vigila: <code>writeUTF</code> tiene longitud variable y no encaja directamente en un registro fijo.'},
+    objeto:{api:'<code>ObjectOutputStream</code><br>↔<br><code>ObjectInputStream</code>',title:'Grafo de objetos Java de confianza',copy:'Útil para persistencia local controlada, prácticas y comunicación Java-a-Java. Mantiene identidad y referencias compartidas.',trap:'Vigila: nunca deserialices bytes de una fuente no confiable.'},
+    ruta:{api:'<code>Path</code><br>+<br><code>Files</code>',title:'Operación de alto nivel sobre el sistema de ficheros',copy:'Empieza aquí para crear, leer, copiar, mover, borrar y consultar. <code>Path</code> es la dirección; <code>Files</code> ejecuta la operación.',trap:'Vigila: una comprobación con <code>exists</code> no garantiza que la siguiente operación vaya a funcionar.'},
+    arbol:{api:'<code>Files.list</code><br><code>walk</code> / <code>find</code>',title:'Recorrido de directorios',copy:'Elige un nivel, recorrido recursivo o recorrido con predicado. Los atributos pueden leerse durante el filtrado.',trap:'Vigila: el <code>Stream&lt;Path&gt;</code> mantiene recursos abiertos y debe cerrarse.'},
+    grande:{api:'<code>FileChannel</code><br>+<br><code>ByteBuffer</code>',title:'Procesamiento por ventanas',copy:'Controla posición, límite y capacidad con memoria acotada. Para regiones de acceso aleatorio puedes valorar un mapeo.',trap:'Vigila: <code>read</code>/<code>write</code> pueden ser parciales; itera mientras queden bytes.'},
+    transporte:{api:'<code>Base64</code><br>o<br><code>HexFormat</code>',title:'Bytes representados como ASCII',copy:'Codifica bytes para logs, cabeceras, JSON o protocolos que esperan texto. El round-trip recupera exactamente los bytes.',trap:'Vigila: codificar no significa cifrar ni comprimir.'}
+  };
+  function render(key){
+    const item=choices[key];
+    result.innerHTML=`<div class="decision-api">${item.api}</div><div><h3>${item.title}</h3><p>${item.copy}</p><p class="decision-trap">${item.trap}</p></div>`;
+    $$('.decision-choice').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.choice===key)));
+  }
+  $$('.decision-choice').forEach(button=>button.addEventListener('click',()=>render(button.dataset.choice)));
+  render('texto');
+}
+function setupRecordLab(){
+  const slider=$('#recordIndex'),track=$('#recordTrack');if(!slider||!track)return;
+  const render=()=>{
+    const current=Number(slider.value),size=12;
+    $('#recordIndexLabel').textContent=String(current);$('#recordOffset').textContent=`offset = ${current*size} bytes`;
+    track.innerHTML=Array.from({length:6},(_,index)=>`<div class="record-cell${index===current?' active':''}"><span>registro ${index}<small>${index*size}…${index*size+size-1}</small></span></div>`).join('');
+  };
+  slider.addEventListener('input',render);render();
+}
+function setupTreeLab(){
+  const lines=$$('#treeStage .tree-line'),buttons=$$('.tree-mode');if(!lines.length)return;
+  const render=mode=>{
+    lines.forEach(line=>{
+      const depth=Number(line.dataset.depth),isTxt=line.dataset.ext==='txt';
+      const hit=mode==='walk'||(mode==='list'&&depth<=1)||(mode==='find'&&isTxt);
+      line.classList.toggle('hit',hit);line.classList.toggle('dim',!hit);
+    });
+    buttons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.mode===mode)));
+  };
+  buttons.forEach(button=>button.addEventListener('click',()=>render(button.dataset.mode)));render('walk');
+}
+function setupQuiz(){
+  const quiz=$('.quiz');if(!quiz)return;
+  const status=document.createElement('div');status.className='quiz-progress';status.setAttribute('role','status');status.setAttribute('aria-live','polite');quiz.before(status);
+  const questions=$$('.q',quiz);
+  const update=()=>{const open=questions.filter(q=>q.classList.contains('open')).length;status.textContent=`Respuestas abiertas: ${open} de ${questions.length}`;};
+  questions.forEach((question,index)=>{
+    const button=$('button',question),answer=$('.answer',question),id=`answer-${index+1}`;
+    answer.id=id;button.setAttribute('aria-controls',id);button.setAttribute('aria-expanded','false');
+    button.addEventListener('click',()=>{const open=question.classList.toggle('open');button.setAttribute('aria-expanded',String(open));update();});
+  });update();
+}
+function setupAccessibility(){
+  ['#decodedText','#bufferExplanation','#bufferState','#recordOffset'].forEach(selector=>{$(selector)?.setAttribute('aria-live','polite');});
+  $('#bufferTrack')?.setAttribute('aria-hidden','true');
+  $('#utf8Bytes')?.setAttribute('aria-label','Bytes UTF-8 en hexadecimal');
+  $$('.table').forEach((table,index)=>{if(!table.hasAttribute('aria-label')){const title=table.closest('.section')?.querySelector('h2')?.textContent?.trim()||'Datos del bloque';table.setAttribute('aria-label',`${title} · tabla ${index+1}`);}});
+}
+function setupLegacySimulators(){
+  $('#charsetText')?.addEventListener('input',renderCharset);$('#readCharset')?.addEventListener('change',renderCharset);$('#dataSize')?.addEventListener('input',renderCopy);
+  $('#putBytes')?.addEventListener('click',()=>{
+    if(buffer.mode!=='write'){buffer.message='Antes de volver a escribir, usa clear().';renderByteBuffer();return;}
+    const amount=Math.min(4,buffer.limit-buffer.position);buffer.filled=Math.max(buffer.filled,buffer.position+amount);buffer.position+=amount;buffer.message=`Se escribieron ${amount} bytes desde la posición actual.`;renderByteBuffer();
+  });
+  $('#flipBuffer')?.addEventListener('click',()=>{
+    if(buffer.mode!=='write'){buffer.message='El buffer ya está en modo lectura.';renderByteBuffer();return;}
+    buffer.mode='read';buffer.limit=buffer.position;buffer.position=0;buffer.message='flip(): limit recibe la antigua position y position vuelve a 0.';renderByteBuffer();
+  });
+  $('#clearBuffer')?.addEventListener('click',()=>{buffer.mode='write';buffer.position=0;buffer.limit=buffer.capacity;buffer.message='clear(): listo para sobrescribir; los datos físicos antiguos siguen en memoria.';renderByteBuffer();});
+}
+function init(){
+  document.documentElement.classList.add('js-ready');
+  moveEnrichedSections();decorateSections();setupNav();setupAccessibility();paintCode();setupMenu();setupReadingProgress();setupScrollSpy();setupDecisionTool();setupRecordLab();setupTreeLab();setupQuiz();setupLegacySimulators();renderCharset();renderCopy();renderByteBuffer();
+}
+init();
 </script>
 </body>
 </html>
